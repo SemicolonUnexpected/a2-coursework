@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View {
-    partial class Splash {
+    partial class SplashView {
         /// <summary>
         /// Required designer variable.
         /// </summary>

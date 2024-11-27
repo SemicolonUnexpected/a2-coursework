@@ -13,24 +13,7 @@ internal static class Program {
         ApplicationConfiguration.Initialize();
         Application.EnableVisualStyles();
 
-        Splash splash = new();
-        SplashPresenter splashPresenter = new(splash);
-
-        Master master;
-        MasterPresenter masterPresenter;
-
-        Task.Run(async () => {
-            await splashPresenter.ShowLoading();
-
-            splash.Invoke(() => {
-                master = new();
-                masterPresenter = new();
-
-                splashPresenter.Close();
-                master.Show();
-            });
-        });
-
-        Application.Run();
+        // Start the application
+        Application.Run(new AppContext());
     }
 }

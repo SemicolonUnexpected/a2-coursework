@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View {
-    partial class Master {
+    partial class MasterView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -32,7 +32,6 @@
             ClientSize = new Size(800, 450);
             Name = "Master";
             Text = "Master";
-            FormClosing += Master_FormClosing;
             ResumeLayout(false);
         }
 

@@ -1,4 +1,5 @@
 ﻿namespace a2_coursework.View.Interfaces; 
-internal interface IMaster {
+internal interface ILoginView {
     public event FormClosedEventHandler? FormClosed;
+    public void Show();
 }
