@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             pnlProgress = new Panel();
-            pictureBox1 = new PictureBox();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            pb = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pb).BeginInit();
             SuspendLayout();
             // 
             // pnlProgress
@@ -37,42 +37,42 @@
             pnlProgress.Size = new Size(500, 5);
             pnlProgress.TabIndex = 0;
             // 
-            // pictureBox1
+            // pb
             // 
-            pictureBox1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pictureBox1.Image = Properties.Resources.Logo;
-            pictureBox1.Location = new Point(122, 12);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(256, 256);
-            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
-            pictureBox1.TabIndex = 1;
-            pictureBox1.TabStop = false;
+            pb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pb.Image = Properties.Resources.Logo;
+            pb.Location = new Point(122, 12);
+            pb.Name = "pb";
+            pb.Size = new Size(256, 256);
+            pb.SizeMode = PictureBoxSizeMode.Zoom;
+            pb.TabIndex = 1;
+            pb.TabStop = false;
             // 
-            // Splash
+            // SplashView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(17, 24, 39);
             ClientSize = new Size(500, 300);
             ControlBox = false;
-            Controls.Add(pictureBox1);
+            Controls.Add(pb);
             Controls.Add(pnlProgress);
             Cursor = Cursors.AppStarting;
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
             Margin = new Padding(2);
-            Name = "Splash";
+            Name = "SplashView";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Splash";
             TopMost = true;
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pb).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
         private Panel pnlProgress;
-        private PictureBox pictureBox1;
+        private PictureBox pb;
     }
 }

@@ -7,10 +7,15 @@ namespace AS_Coursework.Custom_Controls;
 [Designer(typeof(ParentControlDesigner))]
 // Inherit from the Control class for a more lightweight control
 // Inheriting from control instead of panel also removes any nasty flickering
-public partial class CustomRectangle : Control {
+public partial class CustomPanel : Control {
+    [Category("Appearance")]
+    public Color? HoverColor { get; set; } = null;
+
+    [Category("Appearance")]
+    public Color? ClickedColor { get; set; } = null;
 
     private Color _borderColor;
-    [Category("_Custom rectangle")]
+    [Category("Appearance")]
     public Color BorderColor {
         get => _borderColor;
         set {
@@ -20,7 +25,7 @@ public partial class CustomRectangle : Control {
     }
     
     private int _cornerRadius;
-    [Category("_Custom rectangle")]
+    [Category("Appearance")]
     public int CornerRadius {
         get => _cornerRadius;
         set {
@@ -30,7 +35,7 @@ public partial class CustomRectangle : Control {
     }
 
     private int _borderWidth;
-    [Category("_Custom rectangle")]
+    [Category("Appearance")]
     public int BorderWidth {
         get => _borderWidth;
         set {
@@ -39,10 +44,26 @@ public partial class CustomRectangle : Control {
         }
     }
 
-    public CustomRectangle() { }
+    private Color _backColor;
+    [Category("Appearance")]
+    public override Color BackColor {
+        get {
+            return _backColor;
+        }
+        set {
+
+        }
+    }
+
+    public CustomPanel() {
+        _defaultBackColor = BackColor;
+    }
 
     protected override void OnPaint(PaintEventArgs e) {
         Graphics graphics = e.Graphics;
+
+        // Scale the corners based on DPI
+        float scalingFactor = DeviceDpi / 96f;
 
         // The rectangle of the control which is drawn
         Rectangle rectangleSurface = DisplayRectangle;
@@ -53,9 +74,9 @@ public partial class CustomRectangle : Control {
         int smoothSize = BorderWidth > 0 ? BorderWidth : 2;
 
         if (CornerRadius > 2) {
-            using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius);
-            using GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, CornerRadius - BorderWidth);
-            using Pen penSurface = new(Parent.BackColor, smoothSize);
+            using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius * scalingFactor);
+            using GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, (CornerRadius - BorderWidth) * scalingFactor);
+            using Pen penSurface = new(Parent!.BackColor, smoothSize);
             using Pen penBorder = new(BorderColor, BorderWidth);
 
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
@@ -72,7 +93,7 @@ public partial class CustomRectangle : Control {
 
             Region = new Region(rectangleSurface);
 
-            if (BorderWidth <= 1) return;
+            if (BorderWidth < 1) return;
 
             using Pen penBorder = new(BorderColor, BorderWidth);
 
@@ -82,6 +103,32 @@ public partial class CustomRectangle : Control {
     }
 
     protected override void OnSizeChanged(EventArgs e) {
-        Refresh();
+        Invalidate();
+    }
+
+    protected override void OnMouseEnter(EventArgs e) {
+        base.OnMouseEnter(e);
+
+        if (HoverColor is not null) BackColor = (Color)HoverColor;
+    }
+
+    protected override void OnMouseLeave(EventArgs e) {
+        base.OnMouseLeave(e);
+
+        BackColor = _defaultBackColor;
+    }
+
+    protected override void OnMouseDown(MouseEventArgs e) {
+        base.OnMouseDown(e);
+
+        MessageBox.Show(_defaultBackColor.ToString());
+        if (ClickedColor is not null) BackColor = (Color)ClickedColor;
+        MessageBox.Show(_defaultBackColor.ToString());
+    }
+
+    protected override void OnMouseUp(MouseEventArgs e) {
+        base.OnMouseUp(e);
+
+        BackColor = _defaultBackColor;
     }
 }

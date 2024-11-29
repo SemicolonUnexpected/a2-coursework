@@ -23,54 +23,41 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            panel1 = new Panel();
-            customButton3 = new AS_Coursework.Custom_Controls.CustomButton();
+            pnlLeft = new Panel();
             label1 = new Label();
             customTextbox2 = new AS_Coursework.Custom_Controls.CustomTextbox();
             customTextbox1 = new AS_Coursework.Custom_Controls.CustomTextbox();
-            customButton2 = new AS_Coursework.Custom_Controls.CustomButton();
-            customButton1 = new AS_Coursework.Custom_Controls.CustomButton();
-            picturePanel1 = new AS_Coursework.Custom_Controls.PicturePanel();
-            panel1.SuspendLayout();
+            pbShowPassword = new PictureBox();
+            btnChangeTheme = new AS_Coursework.Custom_Controls.CustomButton();
+            btnSignIn = new AS_Coursework.Custom_Controls.CustomButton();
+            pbBackground = new AS_Coursework.Custom_Controls.PicturePanel();
+            customRectangle1 = new AS_Coursework.Custom_Controls.CustomPanel();
+            pnlLeft.SuspendLayout();
+            customTextbox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbShowPassword).BeginInit();
             SuspendLayout();
             // 
-            // panel1
+            // pnlLeft
             // 
-            panel1.BackColor = SystemColors.ControlDark;
-            panel1.Controls.Add(customButton3);
-            panel1.Controls.Add(label1);
-            panel1.Controls.Add(customTextbox2);
-            panel1.Controls.Add(customTextbox1);
-            panel1.Controls.Add(customButton2);
-            panel1.Controls.Add(customButton1);
-            panel1.Dock = DockStyle.Left;
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(399, 450);
-            panel1.TabIndex = 0;
-            // 
-            // customButton3
-            // 
-            customButton3.BackColor = Color.White;
-            customButton3.BorderColor = Color.White;
-            customButton3.BorderWidth = 0;
-            customButton3.CornerRadius = 0;
-            customButton3.FlatAppearance.BorderSize = 0;
-            customButton3.FlatStyle = FlatStyle.Flat;
-            customButton3.ForeColor = Color.Black;
-            customButton3.Image = null;
-            customButton3.ImageSize = new Size(150, 40);
-            customButton3.Location = new Point(125, 320);
-            customButton3.Name = "customButton3";
-            customButton3.Size = new Size(150, 40);
-            customButton3.TabIndex = 5;
-            customButton3.Text = "customButton3";
-            customButton3.UseVisualStyleBackColor = false;
+            pnlLeft.Anchor = AnchorStyles.None;
+            pnlLeft.BackColor = Color.FromArgb(17, 24, 39);
+            pnlLeft.Controls.Add(customRectangle1);
+            pnlLeft.Controls.Add(label1);
+            pnlLeft.Controls.Add(customTextbox2);
+            pnlLeft.Controls.Add(customTextbox1);
+            pnlLeft.Controls.Add(btnChangeTheme);
+            pnlLeft.Controls.Add(btnSignIn);
+            pnlLeft.Location = new Point(0, 0);
+            pnlLeft.Name = "pnlLeft";
+            pnlLeft.Size = new Size(400, 461);
+            pnlLeft.TabIndex = 0;
+            pnlLeft.Paint += pnlLeft_Paint;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(307, 333);
+            label1.ForeColor = Color.Coral;
+            label1.Location = new Point(125, 61);
             label1.Name = "label1";
             label1.Size = new Size(38, 15);
             label1.TabIndex = 4;
@@ -78,7 +65,7 @@
             // 
             // customTextbox2
             // 
-            customTextbox2.BackColor = Color.FromArgb(20, 20, 50);
+            customTextbox2.BackColor = Color.FromArgb(17, 24, 39);
             customTextbox2.BorderColor = Color.White;
             customTextbox2.BorderFocusColor = Color.White;
             customTextbox2.BorderSize = 2;
@@ -86,7 +73,7 @@
             customTextbox2.Font = new Font("Bahnschrift", 14F);
             customTextbox2.ForeColor = Color.White;
             customTextbox2.IsMultiline = false;
-            customTextbox2.Location = new Point(108, 118);
+            customTextbox2.Location = new Point(74, 118);
             customTextbox2.Margin = new Padding(25);
             customTextbox2.Name = "customTextbox2";
             customTextbox2.Padding = new Padding(7);
@@ -99,96 +86,125 @@
             // 
             // customTextbox1
             // 
-            customTextbox1.BackColor = Color.FromArgb(20, 20, 50);
+            customTextbox1.BackColor = Color.FromArgb(17, 24, 39);
             customTextbox1.BorderColor = Color.White;
             customTextbox1.BorderFocusColor = Color.White;
             customTextbox1.BorderSize = 2;
+            customTextbox1.Controls.Add(pbShowPassword);
             customTextbox1.CustomBorderStyle = AS_Coursework.Custom_Controls.CustomTextbox.CustomTextboxBorderStyle.Underlined;
             customTextbox1.Font = new Font("Bahnschrift", 14F);
             customTextbox1.ForeColor = Color.White;
             customTextbox1.IsMultiline = false;
-            customTextbox1.Location = new Point(226, 153);
+            customTextbox1.Location = new Point(74, 183);
             customTextbox1.Margin = new Padding(25);
             customTextbox1.Name = "customTextbox1";
             customTextbox1.Padding = new Padding(7);
-            customTextbox1.PlaceholderText = "";
+            customTextbox1.PlaceholderText = "Password";
             customTextbox1.PlaceholderTextColor = Color.White;
             customTextbox1.ShortcutEnabled = true;
             customTextbox1.Size = new Size(250, 38);
             customTextbox1.TabIndex = 2;
-            customTextbox1.UsePasswordChar = false;
+            customTextbox1.UsePasswordChar = true;
             // 
-            // customButton2
+            // pbShowPassword
             // 
-            customButton2.BackColor = Color.White;
-            customButton2.BorderColor = Color.White;
-            customButton2.BorderWidth = 0;
-            customButton2.CornerRadius = 0;
-            customButton2.FlatAppearance.BorderSize = 0;
-            customButton2.FlatStyle = FlatStyle.Flat;
-            customButton2.ForeColor = Color.Black;
-            customButton2.Image = null;
-            customButton2.ImageSize = new Size(150, 40);
-            customButton2.Location = new Point(343, 65);
-            customButton2.Name = "customButton2";
-            customButton2.Size = new Size(150, 40);
-            customButton2.TabIndex = 1;
-            customButton2.Text = "customButton2";
-            customButton2.UseVisualStyleBackColor = false;
+            pbShowPassword.Location = new Point(211, 2);
+            pbShowPassword.Name = "pbShowPassword";
+            pbShowPassword.Size = new Size(32, 32);
+            pbShowPassword.TabIndex = 6;
+            pbShowPassword.TabStop = false;
             // 
-            // customButton1
+            // btnChangeTheme
             // 
-            customButton1.BackColor = Color.White;
-            customButton1.BorderColor = Color.White;
-            customButton1.BorderWidth = 0;
-            customButton1.CornerRadius = 0;
-            customButton1.FlatAppearance.BorderSize = 0;
-            customButton1.FlatStyle = FlatStyle.Flat;
-            customButton1.ForeColor = Color.Black;
-            customButton1.Image = null;
-            customButton1.ImageSize = new Size(150, 40);
-            customButton1.Location = new Point(207, 249);
-            customButton1.Name = "customButton1";
-            customButton1.Size = new Size(150, 40);
-            customButton1.TabIndex = 0;
-            customButton1.Text = "customButton1";
-            customButton1.UseVisualStyleBackColor = false;
+            btnChangeTheme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnChangeTheme.BackColor = Color.FromArgb(17, 24, 39);
+            btnChangeTheme.BorderColor = Color.Transparent;
+            btnChangeTheme.BorderWidth = 0;
+            btnChangeTheme.CornerRadius = 16;
+            btnChangeTheme.FlatAppearance.BorderSize = 0;
+            btnChangeTheme.FlatStyle = FlatStyle.Flat;
+            btnChangeTheme.ForeColor = Color.Black;
+            btnChangeTheme.Image = Properties.Resources.SunWhite;
+            btnChangeTheme.ImageSize = new Size(32, 32);
+            btnChangeTheme.Location = new Point(361, 7);
+            btnChangeTheme.Name = "btnChangeTheme";
+            btnChangeTheme.Size = new Size(32, 32);
+            btnChangeTheme.TabIndex = 1;
+            btnChangeTheme.UseCompatibleTextRendering = true;
+            btnChangeTheme.UseVisualStyleBackColor = false;
+            btnChangeTheme.Click += btnChangeTheme_Click;
             // 
-            // picturePanel1
+            // btnSignIn
             // 
-            picturePanel1.Dock = DockStyle.Fill;
-            picturePanel1.Image = Properties.Resources.Moving_van_back;
-            picturePanel1.ImagePortion = new Rectangle(0, 0, 878, 700);
-            picturePanel1.Location = new Point(399, 0);
-            picturePanel1.Name = "picturePanel1";
-            picturePanel1.Size = new Size(401, 450);
-            picturePanel1.TabIndex = 1;
-            picturePanel1.Text = "picturePanel1";
+            btnSignIn.BackColor = Color.White;
+            btnSignIn.BorderColor = Color.White;
+            btnSignIn.BorderWidth = 0;
+            btnSignIn.CornerRadius = 5;
+            btnSignIn.FlatAppearance.BorderSize = 0;
+            btnSignIn.FlatStyle = FlatStyle.Flat;
+            btnSignIn.ForeColor = Color.Black;
+            btnSignIn.Image = null;
+            btnSignIn.ImageSize = new Size(150, 40);
+            btnSignIn.Location = new Point(125, 249);
+            btnSignIn.Name = "btnSignIn";
+            btnSignIn.Size = new Size(150, 40);
+            btnSignIn.TabIndex = 0;
+            btnSignIn.Text = "Sign in";
+            btnSignIn.UseVisualStyleBackColor = false;
+            btnSignIn.Click += customButton1_Click;
+            // 
+            // pbBackground
+            // 
+            pbBackground.Anchor = AnchorStyles.None;
+            pbBackground.Image = Properties.Resources.Moving_van_back;
+            pbBackground.ImagePortion = new Rectangle(0, 0, 878, 700);
+            pbBackground.Location = new Point(544, 61);
+            pbBackground.Name = "pbBackground";
+            pbBackground.Size = new Size(62, 10);
+            pbBackground.TabIndex = 1;
+            // 
+            // customRectangle1
+            // 
+            customRectangle1.BackColor = Color.Red;
+            customRectangle1.BorderColor = Color.Empty;
+            customRectangle1.BorderWidth = 0;
+            customRectangle1.CornerRadius = 0;
+            customRectangle1.Location = new Point(150, 325);
+            customRectangle1.Name = "customRectangle1";
+            customRectangle1.Size = new Size(218, 104);
+            customRectangle1.TabIndex = 5;
+            customRectangle1.Text = "customRectangle1";
             // 
             // LoginView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(picturePanel1);
-            Controls.Add(panel1);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            ClientSize = new Size(784, 461);
+            Controls.Add(pbBackground);
+            Controls.Add(pnlLeft);
+            MinimumSize = new Size(600, 500);
             Name = "LoginView";
             Text = "LoginView";
             Load += LoginView_Load;
-            panel1.ResumeLayout(false);
-            panel1.PerformLayout();
+            pnlLeft.ResumeLayout(false);
+            pnlLeft.PerformLayout();
+            customTextbox1.ResumeLayout(false);
+            customTextbox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbShowPassword).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private AS_Coursework.Custom_Controls.PicturePanel picturePanel1;
-        private AS_Coursework.Custom_Controls.CustomButton customButton3;
+        private Panel pnlLeft;
+        private AS_Coursework.Custom_Controls.PicturePanel pbBackground;
         private Label label1;
         private AS_Coursework.Custom_Controls.CustomTextbox customTextbox2;
         private AS_Coursework.Custom_Controls.CustomTextbox customTextbox1;
-        private AS_Coursework.Custom_Controls.CustomButton customButton2;
-        private AS_Coursework.Custom_Controls.CustomButton customButton1;
+        private AS_Coursework.Custom_Controls.CustomButton btnChangeTheme;
+        private AS_Coursework.Custom_Controls.CustomButton btnSignIn;
+        private Button button1;
+        private PictureBox pbShowPassword;
+        private AS_Coursework.Custom_Controls.CustomPanel customRectangle1;
     }
 }

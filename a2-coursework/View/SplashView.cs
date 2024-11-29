@@ -1,4 +1,5 @@
-﻿using a2_coursework.View.Interfaces;
+﻿using a2_coursework.Theming;
+using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
 
@@ -7,8 +8,8 @@ public partial class SplashView : Form, ISplash {
         InitializeComponent();
 
         // Initialise colours
-        BackColor = ColourScheme.Current.PrimaryBackground;
-        pnlProgress.BackColor = ColourScheme.Current.Primary;
+        BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
+        pnlProgress.BackColor = ColourScheme.CurrentTheme.Primary;
     }
 
     /// <summary>
