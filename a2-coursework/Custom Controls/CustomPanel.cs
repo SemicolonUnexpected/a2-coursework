@@ -8,11 +8,6 @@ namespace AS_Coursework.Custom_Controls;
 // Inherit from the Control class for a more lightweight control
 // Inheriting from control instead of panel also removes any nasty flickering
 public partial class CustomPanel : Control {
-    [Category("Appearance")]
-    public Color? HoverColor { get; set; } = null;
-
-    [Category("Appearance")]
-    public Color? ClickedColor { get; set; } = null;
 
     private Color _borderColor;
     [Category("Appearance")]
@@ -34,29 +29,14 @@ public partial class CustomPanel : Control {
         }
     }
 
-    private int _borderWidth;
+    private float _borderWidth;
     [Category("Appearance")]
-    public int BorderWidth {
+    public float BorderWidth {
         get => _borderWidth;
         set {
             _borderWidth = value;
             Invalidate();
         }
-    }
-
-    private Color _backColor;
-    [Category("Appearance")]
-    public override Color BackColor {
-        get {
-            return _backColor;
-        }
-        set {
-
-        }
-    }
-
-    public CustomPanel() {
-        _defaultBackColor = BackColor;
     }
 
     protected override void OnPaint(PaintEventArgs e) {
@@ -68,10 +48,10 @@ public partial class CustomPanel : Control {
         // The rectangle of the control which is drawn
         Rectangle rectangleSurface = DisplayRectangle;
         // Get the correct size for the border
-        Rectangle borderRectangle = Rectangle.Inflate(rectangleSurface, -BorderWidth, -BorderWidth);
+        RectangleF borderRectangle = RectangleF.Inflate(rectangleSurface, -BorderWidth, -BorderWidth);
 
         // The size of the border to prevent a jagged edge
-        int smoothSize = BorderWidth > 0 ? BorderWidth : 2;
+        int smoothSize = BorderWidth > 0 ? (int)BorderWidth : 2;
 
         if (CornerRadius > 2) {
             using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius * scalingFactor);
@@ -95,40 +75,13 @@ public partial class CustomPanel : Control {
 
             if (BorderWidth < 1) return;
 
-            using Pen penBorder = new(BorderColor, BorderWidth);
+            using Pen penBorder = new(BorderColor, BorderWidth * 2f);
 
-            penBorder.Alignment = PenAlignment.Inset;
-            graphics.DrawRectangle(penBorder, 0, 0, Width - 1, Height - 1);
+            graphics.DrawRectangle(penBorder, 0, 0, Width, Height);
         }
     }
 
     protected override void OnSizeChanged(EventArgs e) {
         Invalidate();
-    }
-
-    protected override void OnMouseEnter(EventArgs e) {
-        base.OnMouseEnter(e);
-
-        if (HoverColor is not null) BackColor = (Color)HoverColor;
-    }
-
-    protected override void OnMouseLeave(EventArgs e) {
-        base.OnMouseLeave(e);
-
-        BackColor = _defaultBackColor;
-    }
-
-    protected override void OnMouseDown(MouseEventArgs e) {
-        base.OnMouseDown(e);
-
-        MessageBox.Show(_defaultBackColor.ToString());
-        if (ClickedColor is not null) BackColor = (Color)ClickedColor;
-        MessageBox.Show(_defaultBackColor.ToString());
-    }
-
-    protected override void OnMouseUp(MouseEventArgs e) {
-        base.OnMouseUp(e);
-
-        BackColor = _defaultBackColor;
     }
 }

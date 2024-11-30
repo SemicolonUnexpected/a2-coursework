@@ -35,7 +35,7 @@ namespace AS_Coursework.Custom_Controls {
             tb.Dock = DockStyle.Fill;
             tb.Location = new Point(7, 7);
             tb.Name = "tb";
-            tb.Size = new Size(236, 34);
+            tb.Size = new Size(236, 23);
             tb.TabIndex = 0;
             // 
             // CustomTextbox
@@ -43,7 +43,7 @@ namespace AS_Coursework.Custom_Controls {
             AutoScaleMode = AutoScaleMode.None;
             BackColor = Color.FromArgb(20, 20, 50);
             Controls.Add(tb);
-            Font = new Font("Bahnschrift", 14F, FontStyle.Regular, GraphicsUnit.Point);
+            Font = new Font("Bahnschrift", 14F);
             ForeColor = Color.White;
             Margin = new Padding(25);
             Name = "CustomTextbox";

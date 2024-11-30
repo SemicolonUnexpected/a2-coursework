@@ -27,6 +27,7 @@ public partial class LoginView : Form, ILoginView {
     }
 
     private void customButton1_Click(object sender, EventArgs e) {
+        customPanel1.BackColor = Color.White;
     }
 
     private void customButton3_Click(object sender, EventArgs e) {
@@ -42,6 +43,10 @@ public partial class LoginView : Form, ILoginView {
     }
 
     private void pnlLeft_Paint(object sender, PaintEventArgs e) {
+
+    }
+
+    private void customPanel1_Click(object sender, EventArgs e) {
 
     }
 }

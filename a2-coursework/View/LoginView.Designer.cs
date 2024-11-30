@@ -24,6 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             pnlLeft = new Panel();
+            customBasicButton1 = new Custom_Controls.CustomBasicButton();
+            customPanel1 = new AS_Coursework.Custom_Controls.CustomPanel();
             label1 = new Label();
             customTextbox2 = new AS_Coursework.Custom_Controls.CustomTextbox();
             customTextbox1 = new AS_Coursework.Custom_Controls.CustomTextbox();
@@ -31,7 +33,6 @@
             btnChangeTheme = new AS_Coursework.Custom_Controls.CustomButton();
             btnSignIn = new AS_Coursework.Custom_Controls.CustomButton();
             pbBackground = new AS_Coursework.Custom_Controls.PicturePanel();
-            customRectangle1 = new AS_Coursework.Custom_Controls.CustomPanel();
             pnlLeft.SuspendLayout();
             customTextbox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbShowPassword).BeginInit();
@@ -41,7 +42,8 @@
             // 
             pnlLeft.Anchor = AnchorStyles.None;
             pnlLeft.BackColor = Color.FromArgb(17, 24, 39);
-            pnlLeft.Controls.Add(customRectangle1);
+            pnlLeft.Controls.Add(customBasicButton1);
+            pnlLeft.Controls.Add(customPanel1);
             pnlLeft.Controls.Add(label1);
             pnlLeft.Controls.Add(customTextbox2);
             pnlLeft.Controls.Add(customTextbox1);
@@ -52,6 +54,35 @@
             pnlLeft.Size = new Size(400, 461);
             pnlLeft.TabIndex = 0;
             pnlLeft.Paint += pnlLeft_Paint;
+            // 
+            // customBasicButton1
+            // 
+            customBasicButton1.BackColor = Color.Lime;
+            customBasicButton1.BorderClickedColor = Color.Blue;
+            customBasicButton1.BorderColor = Color.Fuchsia;
+            customBasicButton1.BorderHoverColor = Color.Empty;
+            customBasicButton1.BorderWidth = 2;
+            customBasicButton1.ClickedColor = Color.Yellow;
+            customBasicButton1.CornerRadius = 5;
+            customBasicButton1.HoverColor = Color.Red;
+            customBasicButton1.Location = new Point(237, 355);
+            customBasicButton1.Name = "customBasicButton1";
+            customBasicButton1.Size = new Size(70, 48);
+            customBasicButton1.TabIndex = 6;
+            customBasicButton1.Text = "customBasicButton1";
+            // 
+            // customPanel1
+            // 
+            customPanel1.BackColor = Color.Lime;
+            customPanel1.BorderColor = Color.Red;
+            customPanel1.BorderWidth = 1;
+            customPanel1.CornerRadius = 0;
+            customPanel1.Location = new Point(125, 357);
+            customPanel1.Name = "customPanel1";
+            customPanel1.Size = new Size(106, 32);
+            customPanel1.TabIndex = 5;
+            customPanel1.Text = "customPanel1";
+            customPanel1.Click += customPanel1_Click;
             // 
             // label1
             // 
@@ -163,18 +194,6 @@
             pbBackground.Size = new Size(62, 10);
             pbBackground.TabIndex = 1;
             // 
-            // customRectangle1
-            // 
-            customRectangle1.BackColor = Color.Red;
-            customRectangle1.BorderColor = Color.Empty;
-            customRectangle1.BorderWidth = 0;
-            customRectangle1.CornerRadius = 0;
-            customRectangle1.Location = new Point(150, 325);
-            customRectangle1.Name = "customRectangle1";
-            customRectangle1.Size = new Size(218, 104);
-            customRectangle1.TabIndex = 5;
-            customRectangle1.Text = "customRectangle1";
-            // 
             // LoginView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -205,6 +224,7 @@
         private AS_Coursework.Custom_Controls.CustomButton btnSignIn;
         private Button button1;
         private PictureBox pbShowPassword;
-        private AS_Coursework.Custom_Controls.CustomPanel customRectangle1;
+        private Custom_Controls.CustomBasicButton customBasicButton1;
+        private AS_Coursework.Custom_Controls.CustomPanel customPanel1;
     }
 }
