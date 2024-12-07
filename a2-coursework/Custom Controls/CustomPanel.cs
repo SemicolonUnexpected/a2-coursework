@@ -39,6 +39,11 @@ public partial class CustomPanel : Control {
         }
     }
 
+    public CustomPanel() : base(){
+        float scalingFactor = DeviceDpi / 96f;
+        Location = new Point((int)(Location.X * scalingFactor), (int)(Location.Y * scalingFactor));
+    }
+
     protected override void OnPaint(PaintEventArgs e) {
         Graphics graphics = e.Graphics;
 

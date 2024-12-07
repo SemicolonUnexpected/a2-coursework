@@ -8,9 +8,6 @@ public partial class LoginView : Form, ILoginView {
         OnResize(new EventArgs());
     }
 
-    private void LoginView_Load(object sender, EventArgs e) {
-    }
-
     protected override void OnResize(EventArgs e) {
         pnlLeft.Size = new Size((int)(Width * 0.5f), Height);
         pbBackground.Size = new Size(Width - pnlLeft.Width, Height);
@@ -24,29 +21,5 @@ public partial class LoginView : Form, ILoginView {
 
         // Call the base method to invalidate then redraw the form
         base.OnResize(e);
-    }
-
-    private void customButton1_Click(object sender, EventArgs e) {
-        customPanel1.BackColor = Color.White;
-    }
-
-    private void customButton3_Click(object sender, EventArgs e) {
-
-    }
-
-    private void btnChangeTheme_Click(object sender, EventArgs e) {
-
-    }
-
-    private void label1_Click(object sender, EventArgs e) {
-
-    }
-
-    private void pnlLeft_Paint(object sender, PaintEventArgs e) {
-
-    }
-
-    private void customPanel1_Click(object sender, EventArgs e) {
-
     }
 }

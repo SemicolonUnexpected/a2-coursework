@@ -31,18 +31,20 @@ public partial class CustomBasicButton : CustomPanel {
 
     public CustomBasicButton() {
         BackColor = base.BackColor;
+        //int scalingFactor = DeviceDpi / 96;
+        //Location = new Point(Location.X * scalingFactor, Location.Y * scalingFactor);
     }
 
     protected override void OnMouseEnter(EventArgs e) {
         base.OnMouseEnter(e);
 
-        if(HoverColor != Color.Empty) base.BackColor = HoverColor;
+        if(ClientRectangle.Contains(PointToClient(MousePosition)) && HoverColor != Color.Empty) base.BackColor = HoverColor;
     }
 
     protected override void OnMouseLeave(EventArgs e) {
         base.OnMouseLeave(e);
 
-        base.BackColor = BackColor;
+        if (!ClientRectangle.Contains(PointToClient(MousePosition))) base.BackColor = BackColor;
     }
 
     protected override void OnMouseDown(MouseEventArgs e) {
@@ -54,6 +56,6 @@ public partial class CustomBasicButton : CustomPanel {
     protected override void OnMouseUp(MouseEventArgs e) {
         base.OnMouseUp(e);
 
-        base.BackColor = HoverColor;
+        if (HoverColor != Color.Empty) base.BackColor = HoverColor;
     }
 }

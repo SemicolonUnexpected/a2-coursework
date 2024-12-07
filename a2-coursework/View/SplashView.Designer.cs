@@ -34,7 +34,7 @@
             pnlProgress.BackColor = Color.FromArgb(212, 0, 0);
             pnlProgress.Location = new Point(0, 295);
             pnlProgress.Name = "pnlProgress";
-            pnlProgress.Size = new Size(500, 5);
+            pnlProgress.Size = new Size(0, 5);
             pnlProgress.TabIndex = 0;
             // 
             // pb
