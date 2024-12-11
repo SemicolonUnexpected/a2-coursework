@@ -39,9 +39,13 @@ public partial class CustomPanel : Control {
         }
     }
 
-    public CustomPanel() : base(){
-        float scalingFactor = DeviceDpi / 96f;
-        Location = new Point((int)(Location.X * scalingFactor), (int)(Location.Y * scalingFactor));
+    private GraphicsPath? _graphicsPath;
+    protected GraphicsPath? GraphicsPath {
+        get => _graphicsPath;
+        private set {
+            _graphicsPath?.Dispose();
+            _graphicsPath = value;
+        } 
     }
 
     protected override void OnPaint(PaintEventArgs e) {
@@ -60,9 +64,12 @@ public partial class CustomPanel : Control {
 
         if (CornerRadius > 2) {
             using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius * scalingFactor);
-            using GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, (CornerRadius - BorderWidth) * scalingFactor);
+            GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, (CornerRadius - BorderWidth) * scalingFactor);
             using Pen penSurface = new(Parent!.BackColor, smoothSize);
             using Pen penBorder = new(BorderColor, BorderWidth);
+
+            // Store the graphics path for later use when checking for the mouse position
+            GraphicsPath = pathBorder;
 
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
@@ -84,9 +91,5 @@ public partial class CustomPanel : Control {
 
             graphics.DrawRectangle(penBorder, 0, 0, Width, Height);
         }
-    }
-
-    protected override void OnSizeChanged(EventArgs e) {
-        Invalidate();
     }
 }

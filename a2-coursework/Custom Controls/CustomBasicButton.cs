@@ -29,22 +29,19 @@ public partial class CustomBasicButton : CustomPanel {
         }
     }
 
-    public CustomBasicButton() {
-        BackColor = base.BackColor;
-        //int scalingFactor = DeviceDpi / 96;
-        //Location = new Point(Location.X * scalingFactor, Location.Y * scalingFactor);
-    }
+    public CustomBasicButton() { BackColor = base.BackColor; }
 
     protected override void OnMouseEnter(EventArgs e) {
         base.OnMouseEnter(e);
 
-        if(ClientRectangle.Contains(PointToClient(MousePosition)) && HoverColor != Color.Empty) base.BackColor = HoverColor;
+        if(GraphicsPath!.IsVisible(PointToClient(MousePosition)) && HoverColor != Color.Empty) base.BackColor = HoverColor;
     }
 
     protected override void OnMouseLeave(EventArgs e) {
         base.OnMouseLeave(e);
 
-        if (!ClientRectangle.Contains(PointToClient(MousePosition))) base.BackColor = BackColor;
+        Point mouseClientPosition = PointToClient(MousePosition);
+        if (!GraphicsPath!.IsVisible(mouseClientPosition) || !ClientRectangle.Contains(MousePosition)) base.BackColor = BackColor;
     }
 
     protected override void OnMouseDown(MouseEventArgs e) {
