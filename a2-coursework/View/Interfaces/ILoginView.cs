@@ -2,4 +2,6 @@
 internal interface ILoginView {
     public event FormClosedEventHandler? FormClosed;
     public void Show();
+
+    public event EventHandler? AttemptSignIn;
 }

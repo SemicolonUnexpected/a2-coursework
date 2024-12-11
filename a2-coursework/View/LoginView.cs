@@ -1,6 +1,5 @@
-﻿using a2_coursework._Helpers;
-using a2_coursework.View.Interfaces;
-using System.Diagnostics;
+﻿using a2_coursework.View.Interfaces;
+using a2_coursework.Theming;
 
 namespace a2_coursework.View;
 public partial class LoginView : Form, ILoginView {
@@ -10,6 +9,16 @@ public partial class LoginView : Form, ILoginView {
         OnResize(new EventArgs());
 
         FixFormatting();
+
+        Theme();
+    }
+
+    private void Theme() {
+        pnlLeft.BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
+
+        btnSignIn.BackColor = ColourScheme.CurrentTheme.Blue;
+        btnSignIn.HoverColor = ColourScheme.CurrentTheme.Red;
+        btnSignIn.ClickedColor = ColourScheme.CurrentTheme.Red;
     }
 
     // Necessary as dpi scaling does not work :(
@@ -17,26 +26,14 @@ public partial class LoginView : Form, ILoginView {
         float scalingFactor = DeviceDpi / 96f;
 
         btnSignIn.Location = new((int)(130 * scalingFactor), (int)(320 * scalingFactor));
-        btnSignIn.Anchor = AnchorStyles.None;
-
         btnSwitchTheme.Location = new((int)(363 * scalingFactor), (int)(5 * scalingFactor));
-        btnSwitchTheme.Anchor = AnchorStyles.Right | AnchorStyles.Top;
-
         lblSignIn.Location = new((int)(82 * scalingFactor), (int)(115 * scalingFactor));
-        lblSignIn.Anchor = AnchorStyles.None;
-
+        pbShowPassword.Location = new((int)(6 * scalingFactor), (int)(6 * scalingFactor));
         lblWelcome.Location = new((int)(79 * scalingFactor), (int)(70 * scalingFactor));
-        lblWelcome.Anchor = AnchorStyles.None;
-
         tbUsername.Location = new((int)(90 * scalingFactor), (int)(180 * scalingFactor));
-        tbUsername.Anchor = AnchorStyles.None;
-
         tbPassword.Location = new((int)(90 * scalingFactor), (int)(240 * scalingFactor));
-        tbPassword.Anchor = AnchorStyles.None;
-
-        pbShowPassword.Location = new((int)(194 *  scalingFactor), (int)(6 * scalingFactor));
+        pbShowPassword.Location = new((int)(194 * scalingFactor), (int)(6 * scalingFactor));
         pbShowPassword.Size = new((int)(25 * scalingFactor), (int)(25 * scalingFactor));
-        pbShowPassword.Anchor = AnchorStyles.Right;
     }
 
     protected override void OnResize(EventArgs e) {
@@ -53,4 +50,7 @@ public partial class LoginView : Form, ILoginView {
         // Call the base method to invalidate then redraw the form
         base.OnResize(e);
     }
+
+    public event EventHandler? AttemptSignIn;
+    private void btnSignIn_Click(object sender, EventArgs e) => AttemptSignIn?.Invoke(sender, e);
 }

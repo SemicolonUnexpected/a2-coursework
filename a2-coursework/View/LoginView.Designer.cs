@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
             pnlLeft = new Panel();
             lblSignIn = new Label();
             btnSwitchTheme = new Custom_Controls.CustomBindingButton();
@@ -72,7 +73,7 @@
             // 
             // btnSwitchTheme
             // 
-            btnSwitchTheme.Anchor = AnchorStyles.None;
+            btnSwitchTheme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSwitchTheme.BackColor = Color.FromArgb(17, 24, 39);
             btnSwitchTheme.BorderClickedColor = Color.Empty;
             btnSwitchTheme.BorderColor = Color.Empty;
@@ -81,7 +82,7 @@
             btnSwitchTheme.ClickedColor = Color.Empty;
             btnSwitchTheme.Controls.Add(pictureBox1);
             btnSwitchTheme.CornerRadius = 16;
-            btnSwitchTheme.HoverColor = Color.FromArgb(224, 224, 224);
+            btnSwitchTheme.HoverColor = Color.FromArgb(31, 41, 55);
             btnSwitchTheme.Location = new Point(362, 12);
             btnSwitchTheme.Name = "btnSwitchTheme";
             btnSwitchTheme.Padding = new Padding(5);
@@ -91,7 +92,8 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.SunWhite;
+            pictureBox1.BackgroundImage = Properties.Resources.SunWhite;
+            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
             pictureBox1.Location = new Point(6, 6);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(20, 20);
@@ -127,6 +129,7 @@
             btnSignIn.Name = "btnSignIn";
             btnSignIn.Size = new Size(140, 30);
             btnSignIn.TabIndex = 5;
+            btnSignIn.Click += btnSignIn_Click;
             // 
             // label3
             // 
@@ -163,6 +166,7 @@
             // 
             // tbPassword
             // 
+            tbPassword.Anchor = AnchorStyles.None;
             tbPassword.BackColor = Color.FromArgb(17, 24, 39);
             tbPassword.BorderColor = Color.FromArgb(248, 250, 252);
             tbPassword.BorderFocusColor = Color.FromArgb(248, 250, 252);
@@ -212,6 +216,7 @@
             ClientSize = new Size(784, 461);
             Controls.Add(pbBackground);
             Controls.Add(pnlLeft);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(600, 500);
             Name = "LoginView";
             Text = "LoginView";

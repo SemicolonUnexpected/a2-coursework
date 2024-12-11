@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SplashView));
             pnlProgress = new Panel();
             pb = new PictureBox();
             ((System.ComponentModel.ISupportInitialize)pb).BeginInit();
@@ -60,6 +61,7 @@
             Cursor = Cursors.AppStarting;
             DoubleBuffered = true;
             FormBorderStyle = FormBorderStyle.None;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             Margin = new Padding(2);
             Name = "SplashView";
             SizeGripStyle = SizeGripStyle.Hide;

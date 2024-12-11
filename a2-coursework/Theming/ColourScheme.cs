@@ -10,8 +10,8 @@ internal class ColourScheme {
         secondaryForeground: Color.FromArgb(156, 163, 175), // grey-400
         primaryBackground: Color.FromArgb(17, 24, 39),      // grey-900
         secondaryBackground: Color.FromArgb(31, 41, 55),    // grey-900
-        primary: Color.FromArgb(212, 0, 0),                 // red
-        secondary: Color.FromArgb(48, 154, 207)             // blue
+        red: Color.FromArgb(212, 0, 0),                 // red
+        blue: Color.FromArgb(48, 154, 207)             // blue
         );
 
     public static ColourScheme Light { get; } = new(
@@ -19,8 +19,8 @@ internal class ColourScheme {
         secondaryForeground: Color.FromArgb(156, 163, 175), // grey-400
         primaryBackground: Color.FromArgb(248, 250, 252),   // grey-50
         secondaryBackground: Color.FromArgb(248, 250, 252), // grey-50
-        primary: Color.FromArgb(212, 0, 0),                 // red
-        secondary: Color.FromArgb(48, 154, 207)             // blue
+        red: Color.FromArgb(212, 0, 0),                 // red
+        blue: Color.FromArgb(48, 154, 207)             // blue
         );
 
     #region Colours
@@ -28,8 +28,8 @@ internal class ColourScheme {
     public Color SecondaryForeground { get; private set; }
     public Color PrimaryBackground { get; private set; }
     public Color SecondaryBackground { get; private set; }
-    public Color Primary { get; private set; }
-    public Color Secondary { get; private set; }
+    public Color Red { get; private set; }
+    public Color Blue { get; private set; }
     #endregion
 
     public static event EventHandler? ColourSchemeChanged;
@@ -53,10 +53,10 @@ internal class ColourScheme {
         ColourSchemeChanged?.Invoke(null, new EventArgs());
     }
 
-    public ColourScheme(Color primaryForeground, Color secondaryForeground, Color primaryBackground, Color secondaryBackground, Color primary, Color secondary) {
+    public ColourScheme(Color primaryForeground, Color secondaryForeground, Color primaryBackground, Color secondaryBackground, Color red, Color blue) {
         PrimaryForeground = primaryForeground;
-        Secondary = secondary;
-        Primary = primary;
+        Blue = blue;
+        Red = red;
         SecondaryBackground = secondaryBackground;
         PrimaryBackground = primaryBackground;
         SecondaryForeground = secondaryForeground;
