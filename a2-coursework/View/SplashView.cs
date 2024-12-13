@@ -9,7 +9,7 @@ public partial class SplashView : Form, ISplash {
 
         // Initialise colours
         BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
-        pnlProgress.BackColor = ColourScheme.CurrentTheme.Red;
+        pnlProgress.BackColor = ColourScheme.Red;
     }
 
     /// <summary>

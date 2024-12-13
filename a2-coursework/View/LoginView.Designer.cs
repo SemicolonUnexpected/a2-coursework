@@ -25,9 +25,10 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
             pnlLeft = new Panel();
+            lblError = new Label();
             lblSignIn = new Label();
             btnSwitchTheme = new Custom_Controls.CustomBindingButton();
-            pictureBox1 = new PictureBox();
+            pbThemeIcon = new PictureBox();
             lblWelcome = new Label();
             btnSignIn = new Custom_Controls.CustomBindingButton();
             label3 = new Label();
@@ -37,7 +38,7 @@
             pbBackground = new AS_Coursework.Custom_Controls.PicturePanel();
             pnlLeft.SuspendLayout();
             btnSwitchTheme.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pbThemeIcon).BeginInit();
             btnSignIn.SuspendLayout();
             tbPassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbShowPassword).BeginInit();
@@ -46,6 +47,7 @@
             // pnlLeft
             // 
             pnlLeft.BackColor = Color.FromArgb(17, 24, 39);
+            pnlLeft.Controls.Add(lblError);
             pnlLeft.Controls.Add(lblSignIn);
             pnlLeft.Controls.Add(btnSwitchTheme);
             pnlLeft.Controls.Add(lblWelcome);
@@ -58,6 +60,18 @@
             pnlLeft.Size = new Size(400, 461);
             pnlLeft.TabIndex = 9;
             pnlLeft.Text = "pnlLeft";
+            // 
+            // lblError
+            // 
+            lblError.Anchor = AnchorStyles.None;
+            lblError.BackColor = Color.Transparent;
+            lblError.Font = new Font("Bahnschrift", 11F);
+            lblError.ForeColor = Color.Red;
+            lblError.Location = new Point(50, 283);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(300, 30);
+            lblError.TabIndex = 10;
+            lblError.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // lblSignIn
             // 
@@ -80,7 +94,7 @@
             btnSwitchTheme.BorderHoverColor = Color.Empty;
             btnSwitchTheme.BorderWidth = 0F;
             btnSwitchTheme.ClickedColor = Color.Empty;
-            btnSwitchTheme.Controls.Add(pictureBox1);
+            btnSwitchTheme.Controls.Add(pbThemeIcon);
             btnSwitchTheme.CornerRadius = 16;
             btnSwitchTheme.HoverColor = Color.FromArgb(31, 41, 55);
             btnSwitchTheme.Location = new Point(362, 12);
@@ -89,16 +103,17 @@
             btnSwitchTheme.Size = new Size(32, 32);
             btnSwitchTheme.TabIndex = 8;
             btnSwitchTheme.Text = "customBindingButton2";
+            btnSwitchTheme.Click += btnSwitchTheme_Click;
             // 
-            // pictureBox1
+            // pbThemeIcon
             // 
-            pictureBox1.BackgroundImage = Properties.Resources.SunWhite;
-            pictureBox1.BackgroundImageLayout = ImageLayout.Zoom;
-            pictureBox1.Location = new Point(6, 6);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(20, 20);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            pbThemeIcon.BackgroundImage = Properties.Resources.SunWhite;
+            pbThemeIcon.BackgroundImageLayout = ImageLayout.Zoom;
+            pbThemeIcon.Location = new Point(6, 6);
+            pbThemeIcon.Name = "pbThemeIcon";
+            pbThemeIcon.Size = new Size(20, 20);
+            pbThemeIcon.TabIndex = 0;
+            pbThemeIcon.TabStop = false;
             // 
             // lblWelcome
             // 
@@ -135,6 +150,7 @@
             // 
             label3.Anchor = AnchorStyles.None;
             label3.AutoSize = true;
+            label3.BackColor = Color.Transparent;
             label3.ForeColor = Color.FromArgb(248, 250, 252);
             label3.Location = new Point(43, 6);
             label3.Name = "label3";
@@ -163,6 +179,7 @@
             tbUsername.Size = new Size(220, 34);
             tbUsername.TabIndex = 3;
             tbUsername.UsePasswordChar = false;
+            tbUsername.TextChanged += tbUsername_TextChanged;
             // 
             // tbPassword
             // 
@@ -186,18 +203,21 @@
             tbPassword.Size = new Size(220, 34);
             tbPassword.TabIndex = 2;
             tbPassword.UsePasswordChar = true;
+            tbPassword.TextChanged += tbPassword_TextChanged;
+            tbPassword.Enter += tbPassword_Enter;
             // 
             // pbShowPassword
             // 
             pbShowPassword.Anchor = AnchorStyles.None;
-            pbShowPassword.BackgroundImage = Properties.Resources.EyeWhite;
             pbShowPassword.BackgroundImageLayout = ImageLayout.Zoom;
             pbShowPassword.Image = Properties.Resources.EyeWhite;
             pbShowPassword.Location = new Point(193, 4);
             pbShowPassword.Name = "pbShowPassword";
             pbShowPassword.Size = new Size(25, 25);
+            pbShowPassword.SizeMode = PictureBoxSizeMode.Zoom;
             pbShowPassword.TabIndex = 6;
             pbShowPassword.TabStop = false;
+            pbShowPassword.Click += pbShowPassword_Click;
             // 
             // pbBackground
             // 
@@ -223,7 +243,7 @@
             pnlLeft.ResumeLayout(false);
             pnlLeft.PerformLayout();
             btnSwitchTheme.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pbThemeIcon).EndInit();
             btnSignIn.ResumeLayout(false);
             btnSignIn.PerformLayout();
             tbPassword.ResumeLayout(false);
@@ -244,6 +264,7 @@
         private Custom_Controls.CustomBindingButton btnSwitchTheme;
         private Label lblSignIn;
         private Panel pnlLeft;
-        private PictureBox pictureBox1;
+        private PictureBox pbThemeIcon;
+        private Label lblError;
     }
 }

@@ -3,22 +3,44 @@ using a2_coursework.Theming;
 
 namespace a2_coursework.View;
 public partial class LoginView : Form, ILoginView {
+    public string ErrorText {
+        get => lblError.Text;
+        set => lblError.Text = value;
+    }
+
     public LoginView() {
         InitializeComponent();
-
         OnResize(new EventArgs());
 
         FixFormatting();
-
         Theme();
     }
 
     private void Theme() {
         pnlLeft.BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
 
-        btnSignIn.BackColor = ColourScheme.CurrentTheme.Blue;
-        btnSignIn.HoverColor = ColourScheme.CurrentTheme.Red;
-        btnSignIn.ClickedColor = ColourScheme.CurrentTheme.Red;
+        lblSignIn.ForeColor = ColourScheme.CurrentTheme.PrimaryForeground;
+        lblWelcome.ForeColor = ColourScheme.CurrentTheme.PrimaryForeground;
+
+        tbUsername.ForeColor = ColourScheme.CurrentTheme.PrimaryForeground;
+        tbUsername.BorderColor = ColourScheme.CurrentTheme.PrimaryForeground;
+        tbUsername.BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
+
+        tbPassword.ForeColor = ColourScheme.CurrentTheme.PrimaryForeground;
+        tbPassword.BorderColor = ColourScheme.CurrentTheme.PrimaryForeground;
+        tbPassword.BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
+
+        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.Eye : IconTheme.CurrentTheme.EyeCrossed;
+
+        lblError.ForeColor = ColourScheme.Red;
+
+        btnSignIn.BackColor = ColourScheme.Blue;
+        btnSignIn.HoverColor = ColourScheme.BlueDark;
+
+        btnSwitchTheme.BackColor = ColourScheme.CurrentTheme.PrimaryBackground;
+        btnSwitchTheme.HoverColor = ColourScheme.CurrentTheme.SecondaryBackground;
+
+        pbThemeIcon.Image = ColourScheme.CurrentTheme == ColourScheme.Dark ? IconTheme.Dark.Sun : IconTheme.Light.Moon;
     }
 
     // Necessary as dpi scaling does not work :(
@@ -33,7 +55,9 @@ public partial class LoginView : Form, ILoginView {
         tbUsername.Location = new((int)(90 * scalingFactor), (int)(180 * scalingFactor));
         tbPassword.Location = new((int)(90 * scalingFactor), (int)(240 * scalingFactor));
         pbShowPassword.Location = new((int)(194 * scalingFactor), (int)(6 * scalingFactor));
-        pbShowPassword.Size = new((int)(25 * scalingFactor), (int)(25 * scalingFactor));
+        lblError.Location = new((int)(50 * scalingFactor), (int)(283 * scalingFactor));
+
+        pbShowPassword.Size = new((int)(20 * scalingFactor), (int)(20 * scalingFactor));
     }
 
     protected override void OnResize(EventArgs e) {
@@ -52,5 +76,23 @@ public partial class LoginView : Form, ILoginView {
     }
 
     public event EventHandler? AttemptSignIn;
+    public event EventHandler? UsernameUpdated;
+    public event EventHandler? PasswordUpdated;
+
     private void btnSignIn_Click(object sender, EventArgs e) => AttemptSignIn?.Invoke(sender, e);
+    private void tbPassword_Enter(object sender, EventArgs e) => AttemptSignIn?.Invoke(sender, e);
+    private void tbUsername_TextChanged(object sender, EventArgs e) => UsernameUpdated?.Invoke(sender, e);
+    private void tbPassword_TextChanged(object sender, EventArgs e) => PasswordUpdated?.Invoke(sender, e);
+
+    private void btnSwitchTheme_Click(object sender, EventArgs e) {
+        ColourScheme.ToggleColourScheme();
+        Theme();
+
+        Invalidate();
+    }
+
+    private void pbShowPassword_Click(object sender, EventArgs e) {
+        tbPassword.UsePasswordChar = !tbPassword.UsePasswordChar;
+        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.Eye : IconTheme.CurrentTheme.EyeCrossed;
+    }
 }

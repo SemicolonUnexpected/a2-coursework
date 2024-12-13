@@ -4,32 +4,34 @@ namespace a2_coursework.Theming;
 internal class ColourScheme {
     public static ColourScheme CurrentTheme { get; private set; }
 
-    // Colours inspired by the the tailwind css defaults
+    // Colours based on the the tailwind css defaults
     public static ColourScheme Dark { get; } = new(
-        primaryForeground: Color.FromArgb(248, 250, 252),   // slate-50
-        secondaryForeground: Color.FromArgb(156, 163, 175), // grey-400
-        primaryBackground: Color.FromArgb(17, 24, 39),      // grey-900
-        secondaryBackground: Color.FromArgb(31, 41, 55),    // grey-900
-        red: Color.FromArgb(212, 0, 0),                 // red
-        blue: Color.FromArgb(48, 154, 207)             // blue
+        primaryForeground:      Color.FromArgb(248, 250, 252),      // slate-50
+        secondaryForeground:    Color.FromArgb(203, 213, 225),      // slate-300
+        primaryBackground:      Color.FromArgb(15, 23, 42),         // slate-900
+        secondaryBackground:    Color.FromArgb(30, 41, 59)          // slate-800
         );
 
     public static ColourScheme Light { get; } = new(
-        primaryForeground: Color.FromArgb(31, 41, 55),      // slate-900
-        secondaryForeground: Color.FromArgb(156, 163, 175), // grey-400
-        primaryBackground: Color.FromArgb(248, 250, 252),   // grey-50
-        secondaryBackground: Color.FromArgb(248, 250, 252), // grey-50
-        red: Color.FromArgb(212, 0, 0),                 // red
-        blue: Color.FromArgb(48, 154, 207)             // blue
+        primaryForeground:      Color.FromArgb(15, 23, 42),         // slate-900
+        secondaryForeground:    Color.FromArgb(30, 41, 59),         // slate-800
+        primaryBackground:      Color.FromArgb(248, 250, 252),      // slate-50
+        secondaryBackground:    Color.FromArgb(203, 213, 225)       // slate-300
         );
 
-    #region Colours
+    public static Color Red = Color.FromArgb(185, 28, 28);          // red-700
+    public static Color RedDark = Color.FromArgb(153, 27, 27);      // red-800
+    public static Color RedLight = Color.FromArgb(220, 38, 38);     // red-600
+
+    public static Color Blue = Color.FromArgb(14, 165, 233);        // sky-500
+    public static Color BlueDark = Color.FromArgb(2, 132, 199);     // sky-600
+    public static Color BlueLight = Color.FromArgb(56, 189, 248);   // sky-400
+
+    #region Themed Colours
     public Color PrimaryForeground { get; private set; }
     public Color SecondaryForeground { get; private set; }
     public Color PrimaryBackground { get; private set; }
     public Color SecondaryBackground { get; private set; }
-    public Color Red { get; private set; }
-    public Color Blue { get; private set; }
     #endregion
 
     public static event EventHandler? ColourSchemeChanged;
@@ -53,10 +55,8 @@ internal class ColourScheme {
         ColourSchemeChanged?.Invoke(null, new EventArgs());
     }
 
-    public ColourScheme(Color primaryForeground, Color secondaryForeground, Color primaryBackground, Color secondaryBackground, Color red, Color blue) {
+    public ColourScheme(Color primaryForeground, Color secondaryForeground, Color primaryBackground, Color secondaryBackground) {
         PrimaryForeground = primaryForeground;
-        Blue = blue;
-        Red = red;
         SecondaryBackground = secondaryBackground;
         PrimaryBackground = primaryBackground;
         SecondaryForeground = secondaryForeground;

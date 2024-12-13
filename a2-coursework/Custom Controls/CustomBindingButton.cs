@@ -38,7 +38,10 @@ public partial class CustomBindingButton : CustomBasicButton {
 
     private void ControlMouseDown(object? sender, MouseEventArgs e) => base.OnMouseDown(e);
     private void ControlMouseUp(object? sender, MouseEventArgs e) => base.OnMouseUp(e);
-    private void ControlMouseEnter(object? sender, EventArgs e) => base.OnMouseEnter(e);
+    private void ControlMouseEnter(object? sender, EventArgs e) {
+        base.OnMouseEnter(e);
+
+    }
     private void ControlMouseLeave(object? sender, EventArgs e) => base.OnMouseLeave(e);
     private void ControlMouseClick(object? sender, MouseEventArgs e) => OnMouseClick(e);
     private void ControlClick(object? sender, EventArgs e) => Click?.Invoke(sender, e);
