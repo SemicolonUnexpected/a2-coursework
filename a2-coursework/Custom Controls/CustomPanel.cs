@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using a2_coursework.Custom_Controls;
+using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms.Design;
 
@@ -19,12 +20,15 @@ public partial class CustomPanel : Control {
         }
     }
     
-    private int _cornerRadius;
+    private CornerRadiiF _cornerRadii;
     [Category("Appearance")]
-    public int CornerRadius {
-        get => _cornerRadius;
+    [TypeConverter(typeof(CornerRadiiFConverter))]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [Browsable(true)]
+    public CornerRadiiF CornerRadii {
+        get => _cornerRadii;
         set {
-            _cornerRadius = value;
+            _cornerRadii = value;
             Invalidate();
         }
     }
@@ -62,9 +66,9 @@ public partial class CustomPanel : Control {
         // The size of the border to prevent a jagged edge
         int smoothSize = BorderWidth > 0 ? (int)BorderWidth : 2;
 
-        if (CornerRadius > 2) {
-            using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius * scalingFactor);
-            GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, (CornerRadius - BorderWidth) * scalingFactor);
+        if (true) {
+            using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadii * scalingFactor);
+            GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, (CornerRadii - BorderWidth) * scalingFactor);
             using Pen penSurface = new(Parent!.BackColor, smoothSize);
             using Pen penBorder = new(BorderColor, BorderWidth);
 

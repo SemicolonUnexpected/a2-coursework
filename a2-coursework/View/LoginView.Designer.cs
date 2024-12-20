@@ -95,7 +95,7 @@
             btnSwitchTheme.BorderWidth = 0F;
             btnSwitchTheme.ClickedColor = Color.Empty;
             btnSwitchTheme.Controls.Add(pbThemeIcon);
-            btnSwitchTheme.CornerRadius = 16;
+            btnSwitchTheme.CornerRadii = new Custom_Controls.CornerRadiiF(0F, 0F, 0F, 0F);
             btnSwitchTheme.HoverColor = Color.FromArgb(31, 41, 55);
             btnSwitchTheme.Location = new Point(362, 12);
             btnSwitchTheme.Name = "btnSwitchTheme";
@@ -137,7 +137,7 @@
             btnSignIn.BorderWidth = 0F;
             btnSignIn.ClickedColor = Color.Empty;
             btnSignIn.Controls.Add(label3);
-            btnSignIn.CornerRadius = 5;
+            btnSignIn.CornerRadii = new Custom_Controls.CornerRadiiF(5F, 0F, 0F, 0F);
             btnSignIn.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btnSignIn.HoverColor = Color.Empty;
             btnSignIn.Location = new Point(130, 320);

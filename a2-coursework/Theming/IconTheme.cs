@@ -1,4 +1,5 @@
-﻿using a2_coursework.Properties;
+﻿global using Tasc = System.Threading.Tasks.Task;
+using a2_coursework.Properties;
 using System.Configuration;
 
 namespace a2_coursework.Theming;

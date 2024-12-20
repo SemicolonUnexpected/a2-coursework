@@ -18,12 +18,12 @@ internal class ApplicationStartupManager {
         _splashPresenter.FormClosed += OnFormExit;
 
         _splashPresenter.Show();
-        Task.Run(async () => {
+        Tasc.Run(async () => {
             // Show loading screen while initialising forms, and wait for all of them to be done
-            await Task.WhenAll(
+            await Tasc.WhenAll(
                 _splashPresenter.ShowLoading(),
-                Task.Run(InitialiseLogin),
-                Task.Run(InitialiseMaster)
+                Tasc.Run(InitialiseLogin),
+                Tasc.Run(InitialiseMaster)
                 );
 
             // Close the splash form and open the login form when loading is complete
