@@ -43,9 +43,6 @@ public partial class CustomTextBox : UserControl {
     }
 
     [Category("Appearance")]
-    public override Color ForeColor { get => tb.ForeColor; set => tb.ForeColor = value; }
-
-    [Category("Appearance")]
     public new Padding Padding {
         get => pnl.Padding;
         set => pnl.Padding = value;
@@ -53,8 +50,6 @@ public partial class CustomTextBox : UserControl {
 
     public CustomTextBox() {
         InitializeComponent();
-
-        
     }
 
     protected override void OnResize(EventArgs e) {
@@ -65,5 +60,14 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
-    private float GetMaxCornerRadius() => Math.Max(CornerRadii.TopRight, Math.Max(CornerRadii.TopLeft, Math.Max(CornerRadii.BottomRight, CornerRadii.BottomLeft)));
+    protected override void OnForeColorChanged(EventArgs e) {
+        tb.ForeColor = ForeColor;
+
+        base.OnForeColorChanged(e);
+    }
+
+    protected override void OnPaint(PaintEventArgs e) {
+        base.OnPaint(e);
+        e.Graphics.Clear(Color.Red);
+    }
 }

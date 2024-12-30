@@ -33,6 +33,7 @@
             customTextBox1.BorderColor = Color.DarkGray;
             customTextBox1.BorderThickness = 1.5F;
             customTextBox1.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            customTextBox1.ForeColor = Color.AliceBlue;
             customTextBox1.InternalBackColor = Color.FromArgb(9, 9, 10);
             customTextBox1.Location = new Point(207, 115);
             customTextBox1.Name = "customTextBox1";

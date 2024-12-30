@@ -1,4 +1,6 @@
-﻿namespace a2_coursework.CustomControls; 
+﻿using Microsoft.IdentityModel.Tokens;
+
+namespace a2_coursework.CustomControls; 
 
 // This class is needed for the customTextBox so that unwanted features of the default textbox can be disabled
 public partial class ImprovedTextbox : TextBox {
@@ -15,5 +17,30 @@ public partial class ImprovedTextbox : TextBox {
             return;
         }
         base.WndProc(ref m);
+    }
+
+    protected override void OnKeyDown(KeyEventArgs e) {
+        if (Text.IsNullOrEmpty()) {
+            _showPlaceholderText = false;
+            Invalidate();
+        }
+        base.OnKeyDown(e);
+    }
+
+
+    private bool _showPlaceholderText;
+    private string _placeholderText;
+    public override string PlaceholderText {
+        get => _placeholderText;
+        set {
+            _placeholderText = value;
+        }
+    }
+
+    protected override void OnPaint(PaintEventArgs e) {
+        if (!string.IsNullOrWhiteSpace(_placeholderText) && _showPlaceholderText) {
+            e.Graphics.DrawString(_placeholderText, Font, new SolidBrush(ForeColor), new Point(2, 2));
+        }
+        base.OnPaint(e);
     }
 }
