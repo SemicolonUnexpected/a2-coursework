@@ -1,14 +1,12 @@
-﻿using a2_coursework.Custom_Controls;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using System.Drawing.Drawing2D;
 using System.Windows.Forms.Design;
 
-namespace AS_Coursework.Custom_Controls;
+namespace a2_coursework.CustomControls;
+
 // Allow the control to have children
 [Designer(typeof(ParentControlDesigner))]
-// Inherit from the Control class for a more lightweight control
-// Inheriting from control instead of panel also removes any nasty flickering
-public partial class CustomPanel : Control {
+public partial class CustomPanel : Panel {
 
     private Color _borderColor;
     [Category("Appearance")]
@@ -35,7 +33,7 @@ public partial class CustomPanel : Control {
 
     private float _borderWidth;
     [Category("Appearance")]
-    public float BorderWidth {
+    public float BorderThickness {
         get => _borderWidth;
         set {
             _borderWidth = value;
@@ -43,13 +41,8 @@ public partial class CustomPanel : Control {
         }
     }
 
-    private GraphicsPath? _graphicsPath;
-    protected GraphicsPath? GraphicsPath {
-        get => _graphicsPath;
-        private set {
-            _graphicsPath?.Dispose();
-            _graphicsPath = value;
-        } 
+    public CustomPanel() {
+        DoubleBuffered = true;
     }
 
     protected override void OnPaint(PaintEventArgs e) {
@@ -59,21 +52,18 @@ public partial class CustomPanel : Control {
         float scalingFactor = DeviceDpi / 96f;
 
         // The rectangle of the control which is drawn
-        Rectangle rectangleSurface = DisplayRectangle;
+        Rectangle rectangleSurface = ClientRectangle;
         // Get the correct size for the border
-        RectangleF borderRectangle = RectangleF.Inflate(rectangleSurface, -BorderWidth, -BorderWidth);
+        RectangleF borderRectangle = RectangleF.Inflate(rectangleSurface, -BorderThickness, -BorderThickness);
 
         // The size of the border to prevent a jagged edge
-        int smoothSize = BorderWidth > 0 ? (int)BorderWidth : 2;
+        int smoothSize = BorderThickness > 0 ? (int)BorderThickness : 2;
 
-        if (true) {
-            using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadii * scalingFactor);
-            GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borderRectangle, (CornerRadii - BorderWidth) * scalingFactor);
+        if (CornerRadii.All != 0) {
+            using GraphicsPath pathSurface = CustomControlHelpers.GetRoundedRectGraphicPath(rectangleSurface, CornerRadii * scalingFactor);
+            using GraphicsPath pathBorder = CustomControlHelpers.GetRoundedRectGraphicPath(borderRectangle, (CornerRadii - BorderThickness) * scalingFactor);
             using Pen penSurface = new(Parent!.BackColor, smoothSize);
-            using Pen penBorder = new(BorderColor, BorderWidth);
-
-            // Store the graphics path for later use when checking for the mouse position
-            GraphicsPath = pathBorder;
+            using Pen penBorder = new(BorderColor, BorderThickness);
 
             graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
@@ -82,18 +72,23 @@ public partial class CustomPanel : Control {
 
             graphics.DrawPath(penSurface, pathSurface);
 
-            if (BorderWidth >= 1) graphics.DrawPath(penBorder, pathBorder);
+            if (BorderThickness >= 1) graphics.DrawPath(penBorder, pathBorder);
         }
         else {
             graphics.SmoothingMode = SmoothingMode.None;
 
             Region = new Region(rectangleSurface);
 
-            if (BorderWidth < 1) return;
+            if (BorderThickness < 1) return;
 
-            using Pen penBorder = new(BorderColor, BorderWidth * 2f);
+            using Pen penBorder = new(BorderColor, BorderThickness * 2f);
 
             graphics.DrawRectangle(penBorder, 0, 0, Width, Height);
         }
+    }
+
+    protected override void OnResize(EventArgs e) {
+        Invalidate();
+        base.OnResize(e);
     }
 }

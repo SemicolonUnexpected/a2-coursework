@@ -18,13 +18,13 @@ internal class SplashPresenter {
         _view.FormClosed += (o, e) => FormClosed?.Invoke(o, e);
     }
 
-    public async Tasc ShowLoading(int duration = 1000) {
+    public async Task ShowLoading(int duration = 1000) {
         // Create the stopwatch and start it
         Stopwatch stopwatch = Stopwatch.StartNew();
 
         // Update the progress bar asynchronously to prevent the application freezing until the time has elapsed
         while (stopwatch.ElapsedMilliseconds <= duration) {
-            await Tasc.Delay(FRAME_DELAY);
+            await Task.Delay(FRAME_DELAY);
 
             // Clamp the value as the stopwatch continues ticking while this call is executed
             _view.Invoke(() => _view.Progress = Math.Min(1, (double)stopwatch.ElapsedMilliseconds / duration));
@@ -33,6 +33,6 @@ internal class SplashPresenter {
         stopwatch.Stop();
 
         // Pause with the loading bar full
-        await Tasc.Delay(PROGRESS_PAUSE);
+        await Task.Delay(PROGRESS_PAUSE);
     }
 }

@@ -1,7 +1,6 @@
-﻿using AS_Coursework.Custom_Controls;
+﻿using a2_coursework.CustomControls;
 using System.ComponentModel;
 using System.Drawing.Drawing2D;
-using System.Windows.Markup;
 
 namespace AS_Coursework.Custom_Controls;
 public partial class CustomButton : Button {
@@ -87,8 +86,8 @@ public partial class CustomButton : Button {
         int smoothSize = BorderWidth > 0 ? BorderWidth : 2;
 
         if (CornerRadius > 2) {
-            using GraphicsPath pathSurface = CustomControlGraphics.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius);
-            using GraphicsPath pathBorder = CustomControlGraphics.GetRoundedRectGraphicPath(borders, CornerRadius - BorderWidth);
+            using GraphicsPath pathSurface = CustomControlHelpers.GetRoundedRectGraphicPath(rectangleSurface, CornerRadius);
+            using GraphicsPath pathBorder = CustomControlHelpers.GetRoundedRectGraphicPath(borders, CornerRadius - BorderWidth);
             using Pen penSurface = new(Parent.BackColor, smoothSize);
             using Pen penBorder = new(BorderColor, BorderWidth);
 

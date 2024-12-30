@@ -1,7 +1,5 @@
-﻿using AS_Coursework.Custom_Controls;
-
-namespace AS_Coursework.Custom_Controls {
-    partial class CustomTextbox {
+﻿namespace a2_coursework.CustomControls {
+    partial class CustomTextBox {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -25,36 +23,51 @@ namespace AS_Coursework.Custom_Controls {
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            tb = new ImprovedTextbox();
+            pnl = new CustomPanel();
+            tb = new TextBox();
+            pnl.SuspendLayout();
             SuspendLayout();
+            // 
+            // pnl
+            // 
+            pnl.BackColor = Color.FromArgb(9, 9, 10);
+            pnl.BorderColor = Color.Empty;
+            pnl.BorderThickness = 0F;
+            pnl.Controls.Add(tb);
+            pnl.CornerRadii = new CornerRadiiF(10F, 10F, 10F, 10F);
+            pnl.Dock = DockStyle.Fill;
+            pnl.Location = new Point(0, 0);
+            pnl.Name = "pnl";
+            pnl.Padding = new Padding(10);
+            pnl.Size = new Size(336, 36);
+            pnl.TabIndex = 0;
             // 
             // tb
             // 
-            tb.BackColor = Color.FromArgb(20, 20, 50);
+            tb.BackColor = Color.FromArgb(9, 9, 10);
             tb.BorderStyle = BorderStyle.None;
             tb.Dock = DockStyle.Fill;
-            tb.Location = new Point(7, 7);
+            tb.Location = new Point(10, 10);
             tb.Name = "tb";
-            tb.Size = new Size(236, 23);
+            tb.Size = new Size(316, 16);
             tb.TabIndex = 0;
             // 
-            // CustomTextbox
+            // CustomTextBox
             // 
-            AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.FromArgb(20, 20, 50);
-            Controls.Add(tb);
-            Font = new Font("Bahnschrift", 14F);
-            ForeColor = Color.White;
-            Margin = new Padding(25);
-            Name = "CustomTextbox";
-            Padding = new Padding(7);
-            Size = new Size(250, 33);
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            Controls.Add(pnl);
+            Name = "CustomTextBox";
+            Size = new Size(336, 36);
+            pnl.ResumeLayout(false);
+            pnl.PerformLayout();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
 
-        private ImprovedTextbox tb;
+        private CustomControls.CustomPanel pnl;
+        private TextBox tb;
     }
 }

@@ -2,8 +2,8 @@
 internal interface ILoginView {
     public event FormClosedEventHandler? FormClosed;
     public void Show();
-    public event EventHandler? AttemptSignIn;
-    public event EventHandler? UsernameUpdated;
-    public event EventHandler? PasswordUpdated;
-    public string ErrorText { get; set; }
+    //public event EventHandler? AttemptSignIn;
+    //public event EventHandler? UsernameUpdated;
+    //public event EventHandler? PasswordUpdated;
+    //public string ErrorText { get; set; }
 }

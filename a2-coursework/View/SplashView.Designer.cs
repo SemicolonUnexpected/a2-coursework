@@ -33,18 +33,18 @@
             // 
             pnlProgress.Anchor = AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlProgress.BackColor = Color.FromArgb(212, 0, 0);
-            pnlProgress.Location = new Point(0, 295);
+            pnlProgress.Location = new Point(0, 297);
             pnlProgress.Name = "pnlProgress";
-            pnlProgress.Size = new Size(0, 5);
+            pnlProgress.Size = new Size(0, 3);
             pnlProgress.TabIndex = 0;
             // 
             // pb
             // 
             pb.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pb.Image = Properties.Resources.Logo;
-            pb.Location = new Point(122, 12);
+            pb.Image = Properties.Resources.Logo_Title_Condensed;
+            pb.Location = new Point(100, 100);
             pb.Name = "pb";
-            pb.Size = new Size(256, 256);
+            pb.Size = new Size(300, 100);
             pb.SizeMode = PictureBoxSizeMode.Zoom;
             pb.TabIndex = 1;
             pb.TabStop = false;
@@ -53,7 +53,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(17, 24, 39);
+            BackColor = Color.FromArgb(3, 7, 18);
             ClientSize = new Size(500, 300);
             ControlBox = false;
             Controls.Add(pb);

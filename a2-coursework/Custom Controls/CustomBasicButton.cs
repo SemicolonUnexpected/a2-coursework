@@ -1,8 +1,11 @@
-﻿using AS_Coursework.Custom_Controls;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using static a2_coursework.CustomControls.CustomControlHelpers;
 
-namespace a2_coursework.Custom_Controls; 
+namespace a2_coursework.CustomControls; 
 public partial class CustomBasicButton : CustomPanel {
+    private bool _isMouseInside = false;
+
+    #region Appearance Properties
     [Category("Appearance")]
     public Color HoverColor { get; set; }
 
@@ -23,36 +26,144 @@ public partial class CustomBasicButton : CustomPanel {
         }
         set {
             _backColor = value;
-            if (!ClientRectangle.Contains(MousePosition) || DesignMode) {
+            // The PointToClient method is required as the ClientRectangle is given in client coordinates
+            if (!_isMouseInside || DesignMode) {
                 base.BackColor = value;
             }
         }
     }
 
-    public CustomBasicButton() { BackColor = base.BackColor; }
+    public override string Text { get => base.Text; set { base.Text = value; Invalidate(); } }
 
-    protected override void OnMouseEnter(EventArgs e) {
-        base.OnMouseEnter(e);
+    private ButtonTextAlign _textAlign;
 
-        if(GraphicsPath!.IsVisible(PointToClient(MousePosition)) && HoverColor != Color.Empty) base.BackColor = HoverColor;
+    public ButtonTextAlign TextAlign {
+        get => _textAlign;
+        set {
+            _textAlign = value;
+            Invalidate();
+        }
     }
 
-    protected override void OnMouseLeave(EventArgs e) {
-        base.OnMouseLeave(e);
-
-        Point mouseClientPosition = PointToClient(MousePosition);
-        if (!GraphicsPath!.IsVisible(mouseClientPosition) || !ClientRectangle.Contains(MousePosition)) base.BackColor = BackColor;
+    private Point _textPosition;
+    public Point TextPosition {
+        get => _textPosition;
+        set {
+            _textPosition = value;
+            Invalidate();
+        }
     }
 
-    protected override void OnMouseDown(MouseEventArgs e) {
-        base.OnMouseDown(e);
+    #endregion
 
-        if (ClickedColor != Color.Empty) base.BackColor = ClickedColor;
+    public CustomBasicButton() {
+        DoubleBuffered = true;
+
+        BackColor = base.BackColor;
+
+        MouseDown += ControlMouseDown;
+        MouseUp += ControlMouseUp;
+        MouseClick += ControlMouseClick;
+        Click += ControlClick;
+        MouseEnter += ControlMouseEnter;
+        MouseLeave += ControlMouseLeave;
     }
 
-    protected override void OnMouseUp(MouseEventArgs e) {
-        base.OnMouseUp(e);
+    protected override void OnControlAdded(ControlEventArgs e) {
+        ExecuteRecursive(ctrl => {
+            ctrl.MouseDown += ControlMouseDown;
+            ctrl.MouseUp += ControlMouseUp;
+            ctrl.MouseClick += ControlMouseClick;
+            ctrl.Click += ControlClick;
+            ctrl.MouseEnter += ControlMouseEnter;
+            ctrl.MouseLeave += ControlMouseLeave;
+        },
+            e.Control);
 
-        if (HoverColor != Color.Empty) base.BackColor = HoverColor;
+        base.OnControlAdded(e);
     }
+
+    protected override void OnControlRemoved(ControlEventArgs e) {
+        ExecuteRecursive((ctrl) => {
+            ctrl.MouseDown -= ControlMouseDown;
+            ctrl.MouseUp -= ControlMouseUp;
+            ctrl.MouseClick -= ControlMouseClick;
+            ctrl.Click -= ControlClick;
+            ctrl.MouseEnter -= ControlMouseEnter;
+            ctrl.MouseLeave -= ControlMouseLeave;
+        },
+            e.Control);
+
+        base.OnControlRemoved(e);
+    }
+
+    private void ControlMouseEnter(object? sender, EventArgs e) {
+        _isMouseInside = true;
+        base.BackColor = HoverColor;
+
+        foreach (Control? ctrl in Controls) {
+            if (ctrl is not null) ctrl.BackColor = HoverColor;
+        }
+    }
+
+    private void ControlClick(object? sender, EventArgs e) { }
+
+    private void ControlMouseDown(object? sender, MouseEventArgs e) {
+        base.BackColor = ClickedColor;
+
+        foreach (Control? ctrl in Controls) {
+            if (ctrl is not null) ctrl.BackColor = ClickedColor;
+        }
+    }
+
+    private void ControlMouseClick(object? sender, MouseEventArgs e) { }
+
+    private void ControlMouseUp(object? sender, MouseEventArgs e) {
+        base.BackColor = HoverColor;
+
+        foreach (Control? ctrl in Controls) {
+            if (ctrl is not null) ctrl.BackColor = HoverColor;
+        }
+    }
+
+    private void ControlMouseLeave(object? sender, EventArgs e) {
+        _isMouseInside = false;
+        base.BackColor = BackColor;
+
+        foreach (Control? ctrl in Controls) {
+            if (ctrl is not null) ctrl.BackColor = BackColor;
+        }
+    }
+
+    protected override void OnPaint(PaintEventArgs e) {
+        Size measurement = TextRenderer.MeasureText(Text, Font);
+        int center = (Width - measurement.Width) / 2;
+        int middle = (Height - measurement.Height) / 2;
+
+        Point textPosition = TextAlign switch {
+            //ButtonTextAlign.TopLeft => new Point(Padding.Left, Padding.Top),
+            //ButtonTextAlign.TopCenter => new Point(center, Padding.Top),
+            ButtonTextAlign.MiddleCenter => new Point(center, middle),
+            ButtonTextAlign.Point => TextPosition,
+            _ => throw new NotImplementedException(),
+        };
+
+        Graphics graphics = e.Graphics;
+        graphics.DrawString(Text, Font, new SolidBrush(ForeColor), textPosition);
+
+        base.OnPaint(e);
+    }
+}
+
+public enum ButtonTextAlign {
+    //TopLeft,
+    //TopCenter, 
+    //TopRight,
+    //MiddleLeft,
+    MiddleCenter,
+    //MiddleRight,
+    //BottomLeft,
+    //BottomCenter,
+    //BottomRight,
+    Point
 }

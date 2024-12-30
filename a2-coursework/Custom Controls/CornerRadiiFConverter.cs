@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.ComponentModel.Design.Serialization;
 using System.Globalization;
 
-namespace a2_coursework.Custom_Controls;
+namespace a2_coursework.CustomControls;
 public class CornerRadiiFConverter : TypeConverter {
     public override bool CanConvertFrom(ITypeDescriptorContext? context, Type sourceType) {
         if (sourceType == typeof(string)) return true;
@@ -41,6 +41,11 @@ public class CornerRadiiFConverter : TypeConverter {
 
             if (values.Length == 4) {
                 return new CornerRadiiF(values[0], values[1], values[2], values[3]);
+            }
+
+            // So you just have to type in one value to set them all
+            if (values.Length == 1) {
+                return new CornerRadiiF(values[0]);
             }
 
             if (values.Length != 4) {
@@ -101,8 +106,7 @@ public class CornerRadiiFConverter : TypeConverter {
 
     public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext? context, object value, Attribute[]? attributes) {
         PropertyDescriptorCollection props = TypeDescriptor.GetProperties(typeof(CornerRadiiF), attributes);
-        //return props.Sort([nameof(CornerRadiiF.All), nameof(CornerRadiiF.TopLeft), nameof(CornerRadiiF.TopRight), nameof(CornerRadiiF.BottomLeft), nameof(CornerRadiiF.BottomRight)]);
-        return props.Sort([nameof(CornerRadiiF.TopLeft), nameof(CornerRadiiF.TopRight), nameof(CornerRadiiF.BottomLeft), nameof(CornerRadiiF.BottomRight)]);
+        return props.Sort([nameof(CornerRadiiF.All), nameof(CornerRadiiF.TopLeft), nameof(CornerRadiiF.TopRight), nameof(CornerRadiiF.BottomLeft), nameof(CornerRadiiF.BottomRight)]);
     }
 
     public override bool GetPropertiesSupported(ITypeDescriptorContext? context) => true;

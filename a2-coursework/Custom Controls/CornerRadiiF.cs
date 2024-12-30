@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace a2_coursework.Custom_Controls;
+namespace a2_coursework.CustomControls;
 
 [TypeConverter(typeof(CornerRadiiFConverter))]
 public struct CornerRadiiF : IEquatable<CornerRadiiF> {
@@ -59,10 +59,10 @@ public struct CornerRadiiF : IEquatable<CornerRadiiF> {
     }
 
     public static CornerRadiiF operator *(CornerRadiiF c, int factor) {
-        return new CornerRadiiF(c.TopLeft * factor, c.TopRight * factor, c.BottomLeft * factor, c.BottomRight);
+        return new CornerRadiiF(c.TopLeft * factor, c.TopRight * factor, c.BottomLeft * factor, c.BottomRight * factor);
     }
 
     public static CornerRadiiF operator *(CornerRadiiF c, float factor) {
-        return new CornerRadiiF(c.TopLeft * factor, c.TopRight * factor, c.BottomLeft * factor, c.BottomRight);
+        return new CornerRadiiF(c.TopLeft * factor, c.TopRight * factor, c.BottomLeft * factor, c.BottomRight * factor);
     }
 }

@@ -1,5 +1,4 @@
-﻿global using Tasc = System.Threading.Tasks.Task;
-using a2_coursework.Properties;
+﻿using a2_coursework.Properties;
 using System.Configuration;
 
 namespace a2_coursework.Theming;
@@ -21,7 +20,7 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image sun, Image moon) {
         );
 
     #region Static Icons
-    public static Image Logo { get; } = Resources.Logo;
+    //public static Image Logo { get; } = Resources.Logo;
     #endregion
 
     #region Themed Icons
