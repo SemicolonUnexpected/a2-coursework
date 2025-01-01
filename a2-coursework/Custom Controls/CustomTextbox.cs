@@ -23,6 +23,13 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
+    private Color _internalHoverColor;
+    [Category("Appearance")]
+    public Color InternalHoverColor {
+        get => _internalHoverColor;
+        set => _internalHoverColor = value;
+    }
+
     [Category("Appearance")]
     public Color BorderColor { get => pnl.BorderColor; set => pnl.BorderColor = value; }
 
@@ -66,8 +73,7 @@ public partial class CustomTextBox : UserControl {
         base.OnForeColorChanged(e);
     }
 
-    protected override void OnPaint(PaintEventArgs e) {
-        base.OnPaint(e);
-        e.Graphics.Clear(Color.Red);
+    private void TextBoxHover(object sender, EventArgs e) {
+        tb.BackColor = InternalHoverColor;
     }
 }

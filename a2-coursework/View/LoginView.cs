@@ -29,4 +29,8 @@ public partial class LoginView : Form, ILoginView {
 
         Invalidate();
     }
+
+    private void improvedTextbox1_TextChanged(object sender, EventArgs e) {
+
+    }
 }
