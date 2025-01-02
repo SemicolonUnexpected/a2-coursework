@@ -5,9 +5,14 @@ namespace a2_coursework.View;
 public partial class LoginView : Form, ILoginView {
     const int PANEL_GRAPHICS_MARGIN = 10;
 
+    private readonly Image _backgroundImage = null;
+
     public LoginView() {
         InitializeComponent();
 
+        float scalingFactor = DeviceDpi / 96f;
+
+        MessageBox.Show(DisplayRectangle.ToString());
     }
 
     protected override void OnResize(EventArgs e) {
@@ -32,5 +37,10 @@ public partial class LoginView : Form, ILoginView {
 
     private void improvedTextbox1_TextChanged(object sender, EventArgs e) {
 
+    }
+
+    protected override void OnPaint(PaintEventArgs e) {
+        e.Graphics.DrawImage(_backgroundImage, ClientRectangle, srcRect, GraphicsUnit.Pixel);
+        base.OnPaint(e);
     }
 }

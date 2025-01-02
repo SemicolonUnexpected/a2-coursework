@@ -40,6 +40,6 @@ public partial class PicturePanel : Control {
 
         if (_image is null || _imagePortion is null) return;
 
-        e.Graphics.DrawImage(_image, DisplayRectangle, (Rectangle)ImagePortion!, GraphicsUnit.Pixel);
+        e.Graphics.DrawImage(_image, ClientRectangle, (Rectangle)ImagePortion!, GraphicsUnit.Pixel);
     }
 }

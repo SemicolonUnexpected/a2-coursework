@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
+using System.Windows.Forms.Design;
 
 namespace a2_coursework.CustomControls;
+[Designer(typeof(ParentControlDesigner))]
 public partial class CustomTextBox : UserControl {
     [Category("Appearance")]
     public CornerRadiiF CornerRadii {
@@ -13,7 +15,7 @@ public partial class CustomTextBox : UserControl {
 
     private Color _internalBackColor;
     [Category("Appearance")]
-    public  Color InternalBackColor {
+    public new Color BackColor {
         get => _internalBackColor;
         set {
             _internalBackColor = value;
@@ -50,9 +52,18 @@ public partial class CustomTextBox : UserControl {
     }
 
     [Category("Appearance")]
-    public new Padding Padding {
+    public Padding TextBoxInset {
         get => pnl.Padding;
-        set => pnl.Padding = value;
+        set {
+            pnl.Padding = value;
+            Height = tb.Height + value.Vertical;
+        }
+    }
+
+    [Browsable(true)]
+    public new string Text {
+        get => tb.Text;
+        set => tb.Text = value;
     }
 
     public CustomTextBox() {
@@ -62,8 +73,10 @@ public partial class CustomTextBox : UserControl {
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
 
+        pnl.Size = new Size(Width, Height);
+
         if (!tb.Multiline) {
-            Height = TextRenderer.MeasureText("Text", Font).Height + Padding.Vertical;
+            Height = tb.Height + TextBoxInset.Vertical;
         }
     }
 

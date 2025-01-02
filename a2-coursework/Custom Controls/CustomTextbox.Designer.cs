@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             pnl = new CustomPanel();
-            tb = new TextBox();
+            tb = new ImprovedTextBox();
             pnl.SuspendLayout();
             SuspendLayout();
             // 
@@ -35,7 +35,6 @@
             pnl.BorderThickness = 0F;
             pnl.Controls.Add(tb);
             pnl.CornerRadii = new CornerRadiiF(10F, 10F, 10F, 10F);
-            pnl.Dock = DockStyle.Fill;
             pnl.Location = new Point(0, 0);
             pnl.Name = "pnl";
             pnl.Padding = new Padding(10);
@@ -49,13 +48,14 @@
             tb.Dock = DockStyle.Fill;
             tb.Location = new Point(10, 10);
             tb.Name = "tb";
+            tb.PlaceholderTextColor = Color.Empty;
             tb.Size = new Size(316, 16);
             tb.TabIndex = 0;
             // 
             // CustomTextBox
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.White;
             Controls.Add(pnl);
             Name = "CustomTextBox";
@@ -68,6 +68,6 @@
         #endregion
 
         private CustomControls.CustomPanel pnl;
-        private TextBox tb;
+        private ImprovedTextBox tb;
     }
 }
