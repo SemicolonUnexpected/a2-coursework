@@ -5,12 +5,28 @@ internal class LoginPresenter {
     private ILoginView _view;
  
     public void Show() => _view.Show();
+    public void Close() => _view.Close();
 
-    public event FormClosedEventHandler? FormClosed;
+    public event EventHandler? LoginSuccessful;
 
     public LoginPresenter(ILoginView view) {
         _view = view;
 
-        _view.FormClosed += (o, e) => FormClosed?.Invoke(o, e);
+        _view.LoginAttempt += LoginAttempt;
+        _view.UsernameTextChanged += UsernameTextChanged;
+        _view.PasswordTextChanged += PasswordTextChanged;
+    
+
+    private void LoginAttempt(object? sender, EventArgs e) {
+         
     }
+
+    private void UsernameTextChanged(object? sender, EventArgs e) {
+
+    }
+
+    private void PasswordTextChanged(object? sender, EventArgs e) {
+
+    }
+
 }
