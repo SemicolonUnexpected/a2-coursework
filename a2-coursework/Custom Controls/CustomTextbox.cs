@@ -15,6 +15,9 @@ public partial class CustomTextBox : UserControl {
 
     private Color _internalBackColor;
     [Category("Appearance")]
+    [TypeConverter(typeof(ColorConverter))]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue(typeof(Color), "255, 255, 255")]
     public new Color BackColor {
         get => _internalBackColor;
         set {
@@ -25,11 +28,11 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
-    private Color _internalHoverColor;
+    private Color _hoverColor;
     [Category("Appearance")]
-    public Color InternalHoverColor {
-        get => _internalHoverColor;
-        set => _internalHoverColor = value;
+    public Color HoverColor {
+        get => _hoverColor;
+        set => _hoverColor = value;
     }
 
     [Category("Appearance")]
@@ -39,6 +42,8 @@ public partial class CustomTextBox : UserControl {
     public float BorderThickness { get => pnl.BorderThickness; set => pnl.BorderThickness = value; }
 
     [Category("Appearance")]
+    [TypeConverter(typeof(FontConverter))]
+    [DefaultValue(typeof(Font), "Segoe UI, 9pt")]
     public override Font Font {
         get => tb.Font;
         set {
@@ -60,7 +65,16 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
+    [Category("Placeholder Text")]
+    public string PlaceholderText { get => tb.PlaceholderText; set => tb.PlaceholderText = value; }
+
+    [Category("Placeholder Text")]
+    public Color PlaceholderTextColor { get => tb.PlaceholderTextColor; set => tb.PlaceholderTextColor = value; }
+
     [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue("")]
+    [TypeConverter(typeof(StringConverter))]
     public new string Text {
         get => tb.Text;
         set => tb.Text = value;
@@ -86,7 +100,14 @@ public partial class CustomTextBox : UserControl {
         base.OnForeColorChanged(e);
     }
 
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
+            TextBoxInset = new Padding((int)(TextBoxInset.Left * factor.Width), (int)(TextBoxInset.Top * factor.Height), (int)(TextBoxInset.Right * factor.Width), (int)(TextBoxInset.Bottom * factor.Height));
+        }
+        base.ScaleControl(factor, specified);
+    }
+
     private void TextBoxHover(object sender, EventArgs e) {
-        tb.BackColor = InternalHoverColor;
+        tb.BackColor = HoverColor;
     }
 }

@@ -53,7 +53,7 @@
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(3, 7, 18);
+            BackColor = Color.FromArgb(9, 9, 11);
             ClientSize = new Size(500, 300);
             ControlBox = false;
             Controls.Add(pb);

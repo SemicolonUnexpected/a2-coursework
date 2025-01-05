@@ -33,7 +33,19 @@ public partial class CustomBasicButton : CustomPanel {
         }
     }
 
-    public override string Text { get => base.Text; set { base.Text = value; Invalidate(); } }
+    private string _text;
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue("")]
+    [TypeConverter(typeof(StringConverter))]
+    public new string Text {
+        get => _text;
+        set {
+            _text = value;
+            CalculateTextPosition();
+            Invalidate();
+        } 
+    }
 
     private ButtonTextAlign _textAlign;
 
@@ -41,6 +53,7 @@ public partial class CustomBasicButton : CustomPanel {
         get => _textAlign;
         set {
             _textAlign = value;
+            CalculateTextPosition();
             Invalidate();
         }
     }
@@ -97,6 +110,15 @@ public partial class CustomBasicButton : CustomPanel {
         base.OnControlRemoved(e);
     }
 
+    protected override void OnResize(EventArgs e) {
+        CalculateTextPosition();
+        base.OnResize(e);
+    }
+
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        base.ScaleControl(factor, specified);
+    }
+
     private void ControlMouseEnter(object? sender, EventArgs e) {
         _isMouseInside = true;
         base.BackColor = HoverColor;
@@ -136,25 +158,27 @@ public partial class CustomBasicButton : CustomPanel {
     }
 
     protected override void OnPaint(PaintEventArgs e) {
+        TextRenderer.DrawText(e.Graphics, Text, Font, _textPosition, ForeColor);
+        base.OnPaint(e);
+    }
+
+    private void CalculateTextPosition() {
         Size measurement = TextRenderer.MeasureText(Text, Font);
         int center = (Width - measurement.Width) / 2;
         int middle = (Height - measurement.Height) / 2;
 
-        Point textPosition = TextAlign switch {
+        _textPosition = TextAlign switch {
             //ButtonTextAlign.TopLeft => new Point(Padding.Left, Padding.Top),
             //ButtonTextAlign.TopCenter => new Point(center, Padding.Top),
             ButtonTextAlign.MiddleCenter => new Point(center, middle),
             ButtonTextAlign.Point => TextPosition,
             _ => throw new NotImplementedException(),
         };
-
-        Graphics graphics = e.Graphics;
-        graphics.DrawString(Text, Font, new SolidBrush(ForeColor), textPosition);
-
-        base.OnPaint(e);
     }
+
 }
 
+[Flags]
 public enum ButtonTextAlign {
     //TopLeft,
     //TopCenter, 

@@ -4,10 +4,10 @@ namespace a2_coursework.Theming;
 internal class ColourScheme(Color background, Color foreground, Color primary, Color primaryForeground, Color secondary, Color secondaryForeground, Color danger, Color warning, Color info) {
     public static ColourScheme CurrentTheme { get; private set; }
 
-    // Colours based on the the tailwind css
+    // Colours based on tailwind css
     public static ColourScheme Dark { get; } = new(
             background: Color.FromArgb(9, 9, 10),
-            foreground: Color.FromArgb(255, 255, 255),
+            foreground: Color.FromArgb(250, 250, 250),
             primary: Color.FromArgb(24, 24, 26),
             primaryForeground: Color.FromArgb(250, 250, 250),
             secondary: Color.FromArgb(113, 113, 118),
@@ -18,7 +18,7 @@ internal class ColourScheme(Color background, Color foreground, Color primary, C
         );
 
     public static ColourScheme Light { get; } = new(
-            background: Color.FromArgb(255, 255, 255),
+            background: Color.FromArgb(250, 250, 250),
             foreground: Color.FromArgb(9, 9, 10),
             primary: Color.FromArgb(250, 250, 250),
             primaryForeground: Color.FromArgb(24, 24, 26),
