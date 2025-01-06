@@ -47,9 +47,9 @@ public partial class CustomBasicButton : CustomPanel {
         } 
     }
 
-    private ButtonTextAlign _textAlign;
+    private CustomButtonAlign _textAlign;
 
-    public ButtonTextAlign TextAlign {
+    public CustomButtonAlign TextAlign {
         get => _textAlign;
         set {
             _textAlign = value;
@@ -63,6 +63,25 @@ public partial class CustomBasicButton : CustomPanel {
         get => _textPosition;
         set {
             _textPosition = value;
+            CalculateTextPosition();
+            Invalidate();
+        }
+    }
+
+    private Image _backgroundImage;
+    public new Image BackgroundImage {
+        get => _backgroundImage;
+        set {
+            _backgroundImage = value;
+            Invalidate();
+        }
+    }
+
+    private Rectangle _imageRectangle;
+    public Rectangle ImageRectangle {
+        get => _imageRectangle;
+        set {
+            _imageRectangle = value;
             Invalidate();
         }
     }
@@ -116,6 +135,7 @@ public partial class CustomBasicButton : CustomPanel {
     }
 
     protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        ImageRectangle = new((int)(ImageRectangle.Location.X * factor.Width), (int)(ImageRectangle.Location.Y * factor.Height), (int)(ImageRectangle.Width * factor.Width), (int)(ImageRectangle.Height * factor.Height));
         base.ScaleControl(factor, specified);
     }
 
@@ -159,6 +179,7 @@ public partial class CustomBasicButton : CustomPanel {
 
     protected override void OnPaint(PaintEventArgs e) {
         TextRenderer.DrawText(e.Graphics, Text, Font, _textPosition, ForeColor);
+        if (BackgroundImage is not null) e.Graphics.DrawImage(BackgroundImage, ImageRectangle);
         base.OnPaint(e);
     }
 
@@ -170,16 +191,15 @@ public partial class CustomBasicButton : CustomPanel {
         _textPosition = TextAlign switch {
             //ButtonTextAlign.TopLeft => new Point(Padding.Left, Padding.Top),
             //ButtonTextAlign.TopCenter => new Point(center, Padding.Top),
-            ButtonTextAlign.MiddleCenter => new Point(center, middle),
-            ButtonTextAlign.Point => TextPosition,
+            CustomButtonAlign.MiddleCenter => new Point(center, middle),
+            CustomButtonAlign.Point => TextPosition,
             _ => throw new NotImplementedException(),
         };
     }
-
 }
 
 [Flags]
-public enum ButtonTextAlign {
+public enum CustomButtonAlign {
     //TopLeft,
     //TopCenter, 
     //TopRight,

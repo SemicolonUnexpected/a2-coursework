@@ -28,11 +28,18 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
-    private Color _hoverColor;
+    private Color _internalForeColor;
     [Category("Appearance")]
-    public Color HoverColor {
-        get => _hoverColor;
-        set => _hoverColor = value;
+    [TypeConverter(typeof(ColorConverter))]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue(typeof(Color), "255, 255, 255")]
+    public new Color ForeColor {
+        get => _internalForeColor;
+        set {
+            _internalForeColor = value;
+            tb.ForeColor = value;
+            Invalidate();
+        }
     }
 
     [Category("Appearance")]
@@ -65,6 +72,13 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
+    private Color _hoverColor;
+    [Category("Hover")]
+    public Color HoverColor {
+        get => _hoverColor;
+        set => _hoverColor = value;
+    }
+
     [Category("Placeholder Text")]
     public string PlaceholderText { get => tb.PlaceholderText; set => tb.PlaceholderText = value; }
 
@@ -80,8 +94,19 @@ public partial class CustomTextBox : UserControl {
         set => tb.Text = value;
     }
 
+    public bool UsePasswordChar {
+        get => tb.UsePasswordChar;
+        set => tb.UsePasswordChar = value;
+    }
+
+    public new bool Focused {
+        get => tb.Focused;
+    }
+
     public CustomTextBox() {
         InitializeComponent();
+
+        tb.TextChanged += (s, e) => TextChanged?.Invoke(s, e);
     }
 
     protected override void OnResize(EventArgs e) {
@@ -94,12 +119,6 @@ public partial class CustomTextBox : UserControl {
         }
     }
 
-    protected override void OnForeColorChanged(EventArgs e) {
-        tb.ForeColor = ForeColor;
-
-        base.OnForeColorChanged(e);
-    }
-
     protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
         if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
             TextBoxInset = new Padding((int)(TextBoxInset.Left * factor.Width), (int)(TextBoxInset.Top * factor.Height), (int)(TextBoxInset.Right * factor.Width), (int)(TextBoxInset.Bottom * factor.Height));
@@ -107,7 +126,6 @@ public partial class CustomTextBox : UserControl {
         base.ScaleControl(factor, specified);
     }
 
-    private void TextBoxHover(object sender, EventArgs e) {
-        tb.BackColor = HoverColor;
-    }
+    [Browsable(true)]
+    public new event EventHandler? TextChanged;
 }

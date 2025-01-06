@@ -61,6 +61,16 @@ public partial class ImprovedTextBox : TextBox {
         }
     }
 
+    private bool _usePasswordChar = false;
+    public bool UsePasswordChar {
+        get => _usePasswordChar;
+        set {
+            TryRemovePlaceholderText();
+            UseSystemPasswordChar = value;
+            _usePasswordChar = value;
+            TrySetPlaceholderText();
+        }
+    }
     protected override void OnEnter(EventArgs e) {
         TryRemovePlaceholderText();
         base.OnEnter(e);
@@ -71,13 +81,15 @@ public partial class ImprovedTextBox : TextBox {
         base.OnLeave(e);
     }
 
+
     private void TrySetPlaceholderText() {
-        if (_placeholderText.IsNullOrEmpty() || !Text.IsNullOrEmpty()) return;
+        if (_placeholderText.IsNullOrEmpty() || !Text.IsNullOrEmpty() || Focused) return;
+
+        _isPlaceholderText = true;
 
         base.ForeColor = PlaceholderTextColor;
         base.Text = PlaceholderText;
-
-        _isPlaceholderText = true;
+        if (UsePasswordChar) UseSystemPasswordChar = false;
     }
 
     private void TryRemovePlaceholderText() {
@@ -85,7 +97,12 @@ public partial class ImprovedTextBox : TextBox {
 
         base.Text = "";
         base.ForeColor = _foreColor;
+        if (UsePasswordChar) UseSystemPasswordChar = true;
 
         _isPlaceholderText = false;
+    }
+
+    protected override void OnTextChanged(EventArgs e) {
+        if (!_isPlaceholderText) base.OnTextChanged(e);
     }
 }

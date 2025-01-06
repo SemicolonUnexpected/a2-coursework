@@ -63,9 +63,19 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Login_Background {
+        internal static System.Drawing.Bitmap brightness {
             get {
-                object obj = ResourceManager.GetObject("Login Background", resourceCulture);
+                object obj = ResourceManager.GetObject("brightness", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Logo {
+            get {
+                object obj = ResourceManager.GetObject("Logo", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -76,6 +86,16 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap Logo_Title_Condensed {
             get {
                 object obj = ResourceManager.GetObject("Logo Title Condensed", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap moon {
+            get {
+                object obj = ResourceManager.GetObject("moon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

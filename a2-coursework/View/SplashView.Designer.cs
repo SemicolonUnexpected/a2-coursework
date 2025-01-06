@@ -48,12 +48,13 @@
             pb.SizeMode = PictureBoxSizeMode.Zoom;
             pb.TabIndex = 1;
             pb.TabStop = false;
+            pb.WaitOnLoad = true;
             // 
             // SplashView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
-            BackColor = Color.FromArgb(9, 9, 11);
+            BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(500, 300);
             ControlBox = false;
             Controls.Add(pb);

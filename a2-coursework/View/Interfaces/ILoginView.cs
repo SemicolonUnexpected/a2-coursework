@@ -6,10 +6,12 @@ internal interface ILoginView {
 
     public event EventHandler? LoginAttempt;
 
-    public string Username;
-    public string Password;
+    public string Username { get; set; }
+    public string Password { get; set; }
 
     public event EventHandler? UsernameTextChanged;
     public event EventHandler? PasswordTextChanged;
-    public string ErrorText;
+
+    public event FormClosedEventHandler? FormClosed;
+    public string ErrorText { get; set; }
 }
