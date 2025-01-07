@@ -29,11 +29,11 @@
             lblSignIn = new Label();
             lblWelcome = new Label();
             tbPassword = new CustomControls.CustomTextBox();
-            btnSignIn = new CustomControls.CustomBasicButton();
+            btnSignIn = new CustomControls.CustomButton();
             tbUsername = new CustomControls.CustomTextBox();
             pbLogoTitle = new PictureBox();
             tbFocusHolder = new CustomControls.ImprovedTextBox();
-            btnSwitchTheme = new CustomControls.CustomBasicButton();
+            btnSwitchTheme = new CustomControls.CustomButton();
             pnlCover = new Panel();
             pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbLogoTitle).BeginInit();
@@ -202,13 +202,14 @@
             btnSwitchTheme.Text = null;
             btnSwitchTheme.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnSwitchTheme.TextPosition = new Point(20, 20);
-            btnSwitchTheme.MouseDown += btnSwitchTheme_MouseDown;
+            btnSwitchTheme.MouseClick += btnSwitchTheme_MouseClick;
             // 
             // pnlCover
             // 
+            pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, 0);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(792, 463);
+            pnlCover.Size = new Size(786, 462);
             pnlCover.TabIndex = 4;
             // 
             // LoginView
@@ -241,13 +242,13 @@
         private CustomControls.CustomPanel pnl;
         private CustomControls.CustomTextBox tbUsername;
         private PictureBox pbLogoTitle;
-        private CustomControls.CustomBasicButton btnSignIn;
+        private CustomControls.CustomButton btnSignIn;
         private CustomControls.CustomTextBox tbPassword;
         private Label lblError;
         private Label lblSignIn;
         private Label lblWelcome;
         private CustomControls.ImprovedTextBox tbFocusHolder;
-        private CustomControls.CustomBasicButton btnSwitchTheme;
+        private CustomControls.CustomButton btnSwitchTheme;
         private Panel pnlCover;
     }
 }

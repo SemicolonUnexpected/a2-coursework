@@ -11,5 +11,8 @@ internal static class DAL {
     //public static string GetPassword(string Username) {
 
     //}
-    
+
+    public static bool GetUserCredentials(string username, out byte[] hash, out byte[] salt) {
+        throw new NotImplementedException();
+    }
 }

@@ -21,16 +21,8 @@ public partial class LoginView : Form, ILoginView {
 
     public LoginView() {
         InitializeComponent();
-
-        Theme();
-    }
-
-    protected override void OnShown(EventArgs e) {
-        // Have a cover to avoid the initial flicker
         pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlCover.Hide();
-
-        base.OnShown(e);
+        Theme();
     }
 
     private void Theme() {
@@ -71,29 +63,30 @@ public partial class LoginView : Form, ILoginView {
         else btnSwitchTheme.BackgroundImage = IconTheme.Moon;
     }
 
-    public event EventHandler? AttemptSignIn;
-    public event EventHandler? UsernameUpdated;
-    public event EventHandler? PasswordUpdated;
     public event EventHandler? LoginAttempt;
     public event EventHandler? UsernameTextChanged;
     public event EventHandler? PasswordTextChanged;
 
-    private void btnSignIn_Click(object sender, EventArgs e) => AttemptSignIn?.Invoke(sender, e);
-    private void tbUsername_TextChanged(object sender, EventArgs e) => UsernameUpdated?.Invoke(sender, e);
-    private void tbPassword_TextChanged(object sender, EventArgs e) => PasswordUpdated?.Invoke(sender, e);
-
-    private void ClearFocus(object sender, EventArgs e) {
-        tbFocusHolder.Focus();
-    }
+    private void btnSignIn_Click(object sender, EventArgs e) => LoginAttempt?.Invoke(sender, e);
+    private void tbUsername_TextChanged(object sender, EventArgs e) => UsernameTextChanged?.Invoke(sender, e);
+    private void tbPassword_TextChanged(object sender, EventArgs e) => PasswordTextChanged?.Invoke(sender, e);
 
     protected override void OnMouseMove(MouseEventArgs e) {
-        //lblWelcome.Text = tbUsername.Focused.ToString();
         base.OnMouseMove(e);
     }
 
-    private void btnSwitchTheme_MouseDown(object sender, MouseEventArgs e) {
+    protected override void OnShown(EventArgs e) {
+        base.OnShown(e);
+        pnlCover.Hide();
+    }
+
+    private void btnSwitchTheme_MouseClick(object sender, MouseEventArgs e) {
         ColorScheme.ToggleColourScheme();
         Theme();
         Invalidate();
+    }
+
+    private void ClearFocus(object sender, EventArgs e) {
+        tbFocusHolder.Focus();
     }
 }
