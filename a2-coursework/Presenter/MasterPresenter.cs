@@ -7,12 +7,10 @@ internal class MasterPresenter {
     public MasterPresenter(IMaster view) {
         _view = view;
 
-        SetupBindings();
-    }
-
-    public void SetupBindings() {
         _view.FormClosed += CloseApplication;
     }
 
     private void CloseApplication(object? sender, EventArgs e) => Application.Exit();
+
+    public void Show() => _view.Show();
 }

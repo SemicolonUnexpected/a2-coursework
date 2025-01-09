@@ -26,6 +26,7 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
             pnl = new CustomControls.CustomPanel();
             lblError = new Label();
+            pbShowPassword = new PictureBox();
             lblSignIn = new Label();
             lblWelcome = new Label();
             tbPassword = new CustomControls.CustomTextBox();
@@ -36,6 +37,7 @@
             btnSwitchTheme = new CustomControls.CustomButton();
             pnlCover = new Panel();
             pnl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)pbShowPassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbLogoTitle).BeginInit();
             SuspendLayout();
             // 
@@ -45,6 +47,7 @@
             pnl.BorderColor = Color.FromArgb(39, 39, 42);
             pnl.BorderThickness = 1F;
             pnl.Controls.Add(lblError);
+            pnl.Controls.Add(pbShowPassword);
             pnl.Controls.Add(lblSignIn);
             pnl.Controls.Add(lblWelcome);
             pnl.Controls.Add(tbPassword);
@@ -67,6 +70,18 @@
             lblError.TabIndex = 4;
             lblError.TextAlign = ContentAlignment.TopCenter;
             lblError.Click += ClearFocus;
+            // 
+            // pbShowPassword
+            // 
+            pbShowPassword.Anchor = AnchorStyles.None;
+            pbShowPassword.Image = Properties.Resources.eye_crossed_light;
+            pbShowPassword.Location = new Point(278, 177);
+            pbShowPassword.Name = "pbShowPassword";
+            pbShowPassword.Size = new Size(21, 21);
+            pbShowPassword.SizeMode = PictureBoxSizeMode.StretchImage;
+            pbShowPassword.TabIndex = 5;
+            pbShowPassword.TabStop = false;
+            pbShowPassword.Click += pbShowPassword_Click;
             // 
             // lblSignIn
             // 
@@ -107,9 +122,10 @@
             tbPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbPassword.Size = new Size(282, 40);
             tbPassword.TabIndex = 1;
-            tbPassword.TextBoxInset = new Padding(10);
+            tbPassword.TextBoxInset = new Padding(10, 10, 45, 10);
             tbPassword.UsePasswordChar = true;
             tbPassword.TextChanged += tbPassword_TextChanged;
+            tbPassword.KeyPress += tbPassword_KeyPress;
             // 
             // btnSignIn
             // 
@@ -209,7 +225,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, 0);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(786, 462);
+            pnlCover.Size = new Size(790, 462);
             pnlCover.TabIndex = 4;
             // 
             // LoginView
@@ -232,6 +248,7 @@
             Click += ClearFocus;
             pnl.ResumeLayout(false);
             pnl.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)pbShowPassword).EndInit();
             ((System.ComponentModel.ISupportInitialize)pbLogoTitle).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -250,5 +267,6 @@
         private CustomControls.ImprovedTextBox tbFocusHolder;
         private CustomControls.CustomButton btnSwitchTheme;
         private Panel pnlCover;
+        private PictureBox pbShowPassword;
     }
 }

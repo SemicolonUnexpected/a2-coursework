@@ -40,6 +40,7 @@ internal class ApplicationStartupManager {
         _loginView = new();
         _loginPresenter = new(_loginView);
         _loginPresenter.FormClosed += OnFormExit;
+        _loginPresenter.LoginSuccessful += LoginSuccessful;
     }
 
     private void InitialiseMaster() {
@@ -47,5 +48,13 @@ internal class ApplicationStartupManager {
         _masterPresenter = new(_masterView);
     }
 
-    public void OnFormExit(object? sender, FormClosedEventArgs e) => Application.Exit();
+    private void OnFormExit(object? sender, FormClosedEventArgs e) => Application.Exit();
+
+    private void LoginSuccessful(object? sender, string username) {
+        _loginPresenter!.LoginSuccessful -= LoginSuccessful;
+        _loginPresenter.FormClosed -= OnFormExit;
+        _loginPresenter.Close();
+
+        _masterPresenter!.Show();
+    }
 }

@@ -28,6 +28,8 @@ public partial class LoginView : Form, ILoginView {
     private void Theme() {
         BackColor = ColorScheme.CurrentTheme.Background;
 
+        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+
         pnl.BackColor = ColorScheme.CurrentTheme.Background;
         pnl.BorderColor = ColorScheme.CurrentTheme.Primary;
 
@@ -88,5 +90,15 @@ public partial class LoginView : Form, ILoginView {
 
     private void ClearFocus(object sender, EventArgs e) {
         tbFocusHolder.Focus();
+    }
+
+    private void tbPassword_KeyPress(object sender, KeyPressEventArgs e) {
+        // If enter is pressed in the password box, attempt to sign in
+        if (e.KeyChar == (char)13) LoginAttempt?.Invoke(sender, e);
+    }
+
+    private void pbShowPassword_Click(object sender, EventArgs e) {
+        tbPassword.UsePasswordChar = !tbPassword.UsePasswordChar;
+        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
     }
 }

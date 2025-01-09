@@ -2,7 +2,6 @@
 using a2_coursework.View.Interfaces;
 using AS_Coursework.Model.Security;
 using Microsoft.IdentityModel.Tokens;
-using System.Security;
 
 namespace a2_coursework.Presenter; 
 internal class LoginPresenter {
@@ -11,7 +10,7 @@ internal class LoginPresenter {
     public void Show() => _view.Show();
     public void Close() => _view.Close();
 
-    public event EventHandler? LoginSuccessful;
+    public event EventHandler<string>? LoginSuccessful;
     public event FormClosedEventHandler? FormClosed;
 
     public LoginPresenter(ILoginView view) {
@@ -25,8 +24,11 @@ internal class LoginPresenter {
     }
 
     private void LoginAttempt(object? sender, EventArgs e) {
-        bool isUsernameEmpty = _view.Username.IsNullOrEmpty();
-        bool isPasswordEmpty = _view.Username.IsNullOrEmpty();
+        string username = _view.Username;
+        string password = _view.Password;
+
+        bool isUsernameEmpty = username.IsNullOrEmpty();
+        bool isPasswordEmpty = password.IsNullOrEmpty();
 
         if (isUsernameEmpty && isPasswordEmpty) {
             _view.ErrorText = "Please fill in a username and password";
@@ -34,8 +36,9 @@ internal class LoginPresenter {
         }
 
         if (isUsernameEmpty) {
-            _view.ErrorText = "Please fill in a username and password";
             _view.Password = "";
+            _view.ErrorText = "Please fill in a username and password";
+            return;
         }
 
         if (isPasswordEmpty) {
@@ -43,19 +46,31 @@ internal class LoginPresenter {
             return;
         }
 
-        //bool userExits = DAL.GetUserCredentials(_view.Username, out byte[] hash, out byte[] salt);
+        bool userExists = DAL.GetUserCredentials(username, out byte[]? hash, out byte[]? salt);
 
-        //CryptographyManager.VerifyHashEquality(_view.Password, hash, salt);
+        if (!userExists) {
+            _view.Password = "";
+            _view.ErrorText = "Username or password incorrect";
+            return;
+        }
+
+        if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) LoginSuccessful?.Invoke(this, username);
+        else {
+            _view.Password = "";
+            _view.ErrorText = "Username or password incorrect";
+            return;
+        }
     }
 
     private void UsernameTextChanged(object? sender, EventArgs e) {
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText ==  "Please fill in a username and password") _view.ErrorText = "Please fill in a password";
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username") _view.ErrorText = "";
+        if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
     }
 
     private void PasswordTextChanged(object? sender, EventArgs e) {
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a password") _view.ErrorText = "";
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a username";
+        if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
     }
-
 }

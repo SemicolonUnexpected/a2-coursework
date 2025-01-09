@@ -25,48 +25,35 @@
         private void InitializeComponent() {
             panel1 = new Panel();
             panel2 = new Panel();
-            pictureBox1 = new PictureBox();
-            panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
+            panel1.SuspendLayout();
             SuspendLayout();
             // 
             // panel1
             // 
-            panel1.Dock = DockStyle.Left;
+            panel1.Controls.Add(panel2);
             panel1.Location = new Point(0, 0);
             panel1.Name = "panel1";
-            panel1.Size = new Size(200, 450);
+            panel1.Size = new Size(200, 451);
             panel1.TabIndex = 0;
             // 
             // panel2
             // 
-            panel2.Controls.Add(pictureBox1);
-            panel2.Dock = DockStyle.Fill;
-            panel2.Location = new Point(200, 0);
+            panel2.BackColor = Color.White;
+            panel2.Location = new Point(199, 0);
             panel2.Name = "panel2";
-            panel2.Size = new Size(600, 450);
-            panel2.TabIndex = 1;
-            // 
-            // pictureBox1
-            // 
-            pictureBox1.Image = Properties.Resources.moon;
-            pictureBox1.Location = new Point(0, 0);
-            pictureBox1.Name = "pictureBox1";
-            pictureBox1.Size = new Size(100, 50);
-            pictureBox1.TabIndex = 0;
-            pictureBox1.TabStop = false;
+            panel2.Size = new Size(1, 454);
+            panel2.TabIndex = 0;
             // 
             // MasterView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(800, 450);
-            Controls.Add(panel2);
             Controls.Add(panel1);
             Name = "MasterView";
             Text = "Master";
-            panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
+            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -74,6 +61,5 @@
 
         private Panel panel1;
         private Panel panel2;
-        private PictureBox pictureBox1;
     }
 }
