@@ -14,4 +14,6 @@ internal interface ILoginView {
 
     public event FormClosedEventHandler? FormClosed;
     public string ErrorText { get; set; }
+    public string ButtonSignInText { get; set; }
+    public bool ButtonSignInEnabled { get; set; }
 }

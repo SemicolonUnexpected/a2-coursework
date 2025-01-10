@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace a2_coursework.CustomControls; 
+namespace a2_coursework.CustomControls;
 public partial class CustomButton : CustomPanel {
     private ButtonState _buttonState = ButtonState.Normal;
 
@@ -17,7 +17,7 @@ public partial class CustomButton : CustomPanel {
         }
     }
 
-    private Color _clickedColor; 
+    private Color _clickedColor;
     [Category("Appearance")]
     public Color ClickedColor {
         get => _clickedColor;
@@ -27,27 +27,26 @@ public partial class CustomButton : CustomPanel {
                 base.BackColor = _hoverColor;
             }
         }
-    } 
+    }
 
-    private Color _borderHoverColor; 
+    private Color _borderHoverColor;
     [Category("Appearance")]
     public Color BorderHoverColor {
-        get =>  _borderHoverColor;
+        get => _borderHoverColor;
         set {
             _borderHoverColor = value;
             if (_buttonState == ButtonState.Hover) {
                 BorderColor = _borderHoverColor;
             }
         }
-
     }
 
-    private Color _borderClickedColor; 
+    private Color _borderClickedColor;
     [Category("Appearance")]
     public Color BorderClickedColor {
-        get =>  _borderClickedColor;
+        get => _borderClickedColor;
         set {
-              _borderClickedColor = value;
+            _borderClickedColor = value;
             if (_buttonState == ButtonState.Clicked) {
                 BorderColor = _borderHoverColor;
             }
@@ -57,14 +56,23 @@ public partial class CustomButton : CustomPanel {
     private Color _backColor;
     [Category("Appearance")]
     public new Color BackColor {
-        get {
-            return _backColor;
-        }
+        get =>_backColor;
         set {
             _backColor = value;
-            // The PointToClient method is required as the ClientRectangle is given in client coordinates
             if (_buttonState == ButtonState.Normal) {
-                base.BackColor = value;
+                base.BackColor = _backColor;
+            }
+        }
+    }
+
+    private Color _disabledColor;
+    [Category("Appearance")]
+    public Color DisabledColor {
+        get => _disabledColor;
+        set {
+            _disabledColor = value;
+            if (_buttonState != ButtonState.Disabled) {
+                base.BackColor = _disabledColor;
             }
         }
     }
@@ -80,7 +88,7 @@ public partial class CustomButton : CustomPanel {
             _text = value;
             CalculateTextPosition();
             Invalidate();
-        } 
+        }
     }
 
     private CustomButtonAlign _textAlign;
@@ -132,25 +140,40 @@ public partial class CustomButton : CustomPanel {
     protected override void OnMouseEnter(EventArgs e) {
         _buttonState = ButtonState.Hover;
         base.BackColor = HoverColor;
+
+        base.OnMouseEnter(e);
     }
 
     protected override void OnMouseLeave(EventArgs e) {
         _buttonState = ButtonState.Normal;
         base.BackColor = BackColor;
+
+        base.OnMouseLeave(e);
     }
 
     protected override void OnMouseDown(MouseEventArgs e) {
         _buttonState = ButtonState.Clicked;
         base.BackColor = ClickedColor;
+
+        base.OnMouseDown(e);
     }
 
     protected override void OnMouseUp(MouseEventArgs e) {
         _buttonState = ButtonState.Clicked;
         base.BackColor = HoverColor;
+
+        base.OnMouseUp(e);
+    }
+
+    protected override void OnEnabledChanged(EventArgs e) {
+        _buttonState = ButtonState.Disabled;
+        base.BackColor = DisabledColor;
+
+        base.OnEnabledChanged(e);
     }
 
     protected override void OnPaint(PaintEventArgs e) {
-        if (!string.IsNullOrWhiteSpace(Text))TextRenderer.DrawText(e.Graphics, Text, Font, _textPosition, ForeColor);
+        if (!string.IsNullOrWhiteSpace(Text)) TextRenderer.DrawText(e.Graphics, Text, Font, _textPosition, ForeColor);
         if (BackgroundImage is not null) e.Graphics.DrawImage(BackgroundImage, ImageRectangle);
 
         base.OnPaint(e);
@@ -183,14 +206,15 @@ public partial class CustomButton : CustomPanel {
     private enum ButtonState {
         Normal,
         Clicked,
-        Hover
+        Hover,
+        Disabled
     }
 }
 
 [Flags]
 public enum CustomButtonAlign {
     TopLeft,
-    TopCenter, 
+    TopCenter,
     TopRight,
     MiddleLeft,
     MiddleCenter,

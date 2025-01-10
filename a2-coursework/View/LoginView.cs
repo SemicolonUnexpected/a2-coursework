@@ -14,9 +14,20 @@ public partial class LoginView : Form, ILoginView {
         get => tbPassword.Text;
         set => tbPassword.Text = value;
     }
+
     public string ErrorText {
         get => lblError.Text;
         set => lblError.Text = value;
+    }
+
+    public string ButtonSignInText {
+        get => btnSignIn.Text;
+        set => btnSignIn.Text = value;
+    }
+
+    public bool ButtonSignInEnabled {
+        get => btnSignIn.Enabled;
+        set => btnSignIn.Enabled = value;
     }
 
     public LoginView() {

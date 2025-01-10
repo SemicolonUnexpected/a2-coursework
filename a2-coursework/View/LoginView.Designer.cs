@@ -137,6 +137,7 @@
             btnSignIn.ClickedColor = Color.FromArgb(226, 226, 226);
             btnSignIn.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnSignIn.Cursor = Cursors.Hand;
+            btnSignIn.DisabledColor = Color.FromArgb(226, 226, 226);
             btnSignIn.Font = new Font("Bahnschrift", 12F);
             btnSignIn.ForeColor = Color.FromArgb(9, 9, 10);
             btnSignIn.HoverColor = Color.FromArgb(226, 226, 226);
@@ -205,6 +206,7 @@
             btnSwitchTheme.ClickedColor = Color.FromArgb(9, 9, 10);
             btnSwitchTheme.CornerRadii = new CustomControls.CornerRadiiF(20F, 20F, 20F, 20F);
             btnSwitchTheme.Cursor = Cursors.Hand;
+            btnSwitchTheme.DisabledColor = Color.Empty;
             btnSwitchTheme.Font = new Font("Bahnschrift", 12F);
             btnSwitchTheme.ForeColor = Color.FromArgb(9, 9, 10);
             btnSwitchTheme.HoverColor = Color.FromArgb(39, 39, 42);

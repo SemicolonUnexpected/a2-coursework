@@ -23,7 +23,9 @@ internal class LoginPresenter {
         _view.FormClosed += (s, e) => FormClosed?.Invoke(s, e);
     }
 
-    private void LoginAttempt(object? sender, EventArgs e) {
+    private async void LoginAttempt(object? sender, EventArgs e) {
+        _view.ButtonSignInEnabled = false;
+
         string username = _view.Username;
         string password = _view.Password;
 
@@ -46,7 +48,9 @@ internal class LoginPresenter {
             return;
         }
 
-        bool userExists = DAL.GetUserCredentials(username, out byte[]? hash, out byte[]? salt);
+        (byte[]? hash, byte[]? salt) = await DAL.GetUserCredentialsAsync(username);
+
+        bool userExists = false;
 
         if (!userExists) {
             _view.Password = "";

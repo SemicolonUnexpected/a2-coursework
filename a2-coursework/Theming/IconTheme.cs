@@ -1,6 +1,4 @@
 ﻿using a2_coursework.Properties;
-using System.Collections.ObjectModel;
-using System.Configuration;
 
 namespace a2_coursework.Theming;
 internal class IconTheme(Image eye, Image eyeCrossed) {
@@ -28,9 +26,7 @@ internal class IconTheme(Image eye, Image eyeCrossed) {
     #endregion
 
     #region Themed Icons
-
     public Image Eye { get; } = eye;
     public Image EyeCrossed { get; } = eyeCrossed;
-    
     #endregion
 }
