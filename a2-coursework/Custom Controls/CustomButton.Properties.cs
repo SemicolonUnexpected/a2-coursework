@@ -101,7 +101,7 @@ public partial class CustomButton {
         }
     }
 
-    private string _text;
+    private string _text = "";
     [Browsable(true)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
     [DefaultValue("")]
