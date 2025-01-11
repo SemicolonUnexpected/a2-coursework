@@ -10,7 +10,7 @@ public partial class CustomPanel : Panel {
 
     private Color _borderColor;
     [Category("Appearance")]
-    public Color BorderColor {
+    public virtual Color BorderColor {
         get => _borderColor;
         set {
             _borderColor = value;

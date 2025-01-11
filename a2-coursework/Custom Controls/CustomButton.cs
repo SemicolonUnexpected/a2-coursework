@@ -1,175 +1,49 @@
-﻿using System.ComponentModel;
-
-namespace a2_coursework.CustomControls;
+﻿namespace a2_coursework.CustomControls;
 public partial class CustomButton : CustomPanel {
-    private ButtonState _buttonState = ButtonState.Normal;
-
-    #region Properties
-    private Color _hoverColor;
-    [Category("Appearance")]
-    public Color HoverColor {
-        get => _hoverColor;
-        set {
-            _hoverColor = value;
-            if (_buttonState == ButtonState.Hover) {
-                base.BackColor = _hoverColor;
-            }
-        }
-    }
-
-    private Color _clickedColor;
-    [Category("Appearance")]
-    public Color ClickedColor {
-        get => _clickedColor;
-        set {
-            _clickedColor = value;
-            if (_buttonState == ButtonState.Clicked) {
-                base.BackColor = _hoverColor;
-            }
-        }
-    }
-
-    private Color _borderHoverColor;
-    [Category("Appearance")]
-    public Color BorderHoverColor {
-        get => _borderHoverColor;
-        set {
-            _borderHoverColor = value;
-            if (_buttonState == ButtonState.Hover) {
-                BorderColor = _borderHoverColor;
-            }
-        }
-    }
-
-    private Color _borderClickedColor;
-    [Category("Appearance")]
-    public Color BorderClickedColor {
-        get => _borderClickedColor;
-        set {
-            _borderClickedColor = value;
-            if (_buttonState == ButtonState.Clicked) {
-                BorderColor = _borderHoverColor;
-            }
-        }
-    }
-
-    private Color _backColor;
-    [Category("Appearance")]
-    public new Color BackColor {
-        get =>_backColor;
-        set {
-            _backColor = value;
-            if (_buttonState == ButtonState.Normal) {
-                base.BackColor = _backColor;
-            }
-        }
-    }
-
-    private Color _disabledColor;
-    [Category("Appearance")]
-    public Color DisabledColor {
-        get => _disabledColor;
-        set {
-            _disabledColor = value;
-            if (_buttonState != ButtonState.Disabled) {
-                base.BackColor = _disabledColor;
-            }
-        }
-    }
-
-    private string _text;
-    [Browsable(true)]
-    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
-    [DefaultValue("")]
-    [TypeConverter(typeof(StringConverter))]
-    public new string Text {
-        get => _text;
-        set {
-            _text = value;
-            CalculateTextPosition();
-            Invalidate();
-        }
-    }
-
-    private CustomButtonAlign _textAlign;
-
-    public CustomButtonAlign TextAlign {
-        get => _textAlign;
-        set {
-            _textAlign = value;
-            CalculateTextPosition();
-            Invalidate();
-        }
-    }
-
-    private Point _textPosition;
-    public Point TextPosition {
-        get => _textPosition;
-        set {
-            _textPosition = value;
-            CalculateTextPosition();
-            Invalidate();
-        }
-    }
-
-    private Image _backgroundImage;
-    public new Image BackgroundImage {
-        get => _backgroundImage;
-        set {
-            _backgroundImage = value;
-            Invalidate();
-        }
-    }
-
-    private Rectangle _imageRectangle;
-    public Rectangle ImageRectangle {
-        get => _imageRectangle;
-        set {
-            _imageRectangle = value;
-            Invalidate();
-        }
-    }
-
-    #endregion
 
     public CustomButton() {
         DoubleBuffered = true;
         BackColor = base.BackColor;
     }
 
-    protected override void OnMouseEnter(EventArgs e) {
-        _buttonState = ButtonState.Hover;
-        base.BackColor = HoverColor;
+    protected override void OnClick(EventArgs e) {
+        if (Enabled) base.OnClick(e);
+    }
 
-        base.OnMouseEnter(e);
+    protected override void OnMouseEnter(EventArgs e) {
+        if (Enabled) {
+            _buttonState = ButtonState.Hover;
+            base.BackColor = HoverColor;
+            base.BorderColor = HoverBorderColor;
+            base.OnMouseEnter(e);
+        }
     }
 
     protected override void OnMouseLeave(EventArgs e) {
-        _buttonState = ButtonState.Normal;
-        base.BackColor = BackColor;
-
-        base.OnMouseLeave(e);
+        if (Enabled) {
+            _buttonState = ButtonState.Normal;
+            base.BackColor = BackColor;
+            base.BorderColor = BorderColor;
+            base.OnMouseLeave(e);
+        }
     }
 
     protected override void OnMouseDown(MouseEventArgs e) {
-        _buttonState = ButtonState.Clicked;
-        base.BackColor = ClickedColor;
-
-        base.OnMouseDown(e);
+        if (Enabled) {
+            _buttonState = ButtonState.Clicked;
+            base.BackColor = ClickedColor;
+            base.BorderColor = ClickedBorderColor;
+            base.OnMouseDown(e);
+        }
     }
 
     protected override void OnMouseUp(MouseEventArgs e) {
-        _buttonState = ButtonState.Clicked;
-        base.BackColor = HoverColor;
-
-        base.OnMouseUp(e);
-    }
-
-    protected override void OnEnabledChanged(EventArgs e) {
-        _buttonState = ButtonState.Disabled;
-        base.BackColor = DisabledColor;
-
-        base.OnEnabledChanged(e);
+        if (Enabled) {
+            _buttonState = ButtonState.Clicked;
+            base.BackColor = HoverColor;
+            base.BorderColor = HoverBorderColor;
+            base.OnMouseUp(e);
+        }
     }
 
     protected override void OnPaint(PaintEventArgs e) {
@@ -182,6 +56,15 @@ public partial class CustomButton : CustomPanel {
     protected override void OnResize(EventArgs e) {
         CalculateTextPosition();
         base.OnResize(e);
+    }
+
+    protected override void OnEnabledChanged(EventArgs e) {
+        if (!Enabled) {
+            base.BackColor = DisabledColor;
+            base.BorderColor = DisabledBorderColor;
+        }
+
+        base.OnEnabledChanged(e);
     }
 
     protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
@@ -203,24 +86,4 @@ public partial class CustomButton : CustomPanel {
         };
     }
 
-    private enum ButtonState {
-        Normal,
-        Clicked,
-        Hover,
-        Disabled
-    }
-}
-
-[Flags]
-public enum CustomButtonAlign {
-    TopLeft,
-    TopCenter,
-    TopRight,
-    MiddleLeft,
-    MiddleCenter,
-    MiddleRight,
-    BottomLeft,
-    BottomCenter,
-    BottomRight,
-    Point
 }

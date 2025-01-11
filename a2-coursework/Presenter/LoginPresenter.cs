@@ -1,6 +1,7 @@
 ﻿using a2_coursework.Model;
 using a2_coursework.View.Interfaces;
 using AS_Coursework.Model.Security;
+using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 
 namespace a2_coursework.Presenter; 
@@ -25,6 +26,7 @@ internal class LoginPresenter {
 
     private async void LoginAttempt(object? sender, EventArgs e) {
         _view.ButtonSignInEnabled = false;
+        _view.ButtonSignInText = "Signing you in...";
 
         string username = _view.Username;
         string password = _view.Password;
@@ -34,35 +36,60 @@ internal class LoginPresenter {
 
         if (isUsernameEmpty && isPasswordEmpty) {
             _view.ErrorText = "Please fill in a username and password";
+            _view.ButtonSignInEnabled = true;
+            _view.ButtonSignInText = "Sign in";
             return;
         }
 
         if (isUsernameEmpty) {
             _view.Password = "";
             _view.ErrorText = "Please fill in a username and password";
+            _view.ButtonSignInEnabled = true;
+            _view.ButtonSignInText = "Sign in";
             return;
         }
 
         if (isPasswordEmpty) {
             _view.ErrorText = "Please fill in a password";
+            _view.ButtonSignInEnabled = true;
+            _view.ButtonSignInText = "Sign in";
             return;
         }
 
-        (byte[]? hash, byte[]? salt) = await DAL.GetUserCredentialsAsync(username);
+        byte[]? hash;
+        byte[]? salt;
 
-        bool userExists = false;
+        try {
+            Task<(byte[]?, byte[]?)> getUserData = DAL.GetUserCredentialsAsync(username);
+            await Task.WhenAll(getUserData, Task.Delay(1000));
 
-        if (!userExists) {
-            _view.Password = "";
-            _view.ErrorText = "Username or password incorrect";
-            return;
+            (hash, salt) = await getUserData;
+
+            if (hash is null || salt is null) {
+                _view.Password = "";
+                _view.ErrorText = "Username or password incorrect";
+                _view.ButtonSignInEnabled = true;
+                _view.ButtonSignInText = "Sign in";
+                return;
+            }
+
+            if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) LoginSuccessful?.Invoke(this, username);
+            else {
+                _view.Password = "";
+                _view.ErrorText = "Username or password incorrect";
+                _view.ButtonSignInEnabled = true;
+                _view.ButtonSignInText = "Sign in";
+                return;
+            }
         }
-
-        if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) LoginSuccessful?.Invoke(this, username);
-        else {
-            _view.Password = "";
-            _view.ErrorText = "Username or password incorrect";
-            return;
+        catch (AggregateException ex) {
+            foreach (Exception ex2 in ex.InnerExceptions) {
+                if (ex2 is SqlException) MessageBox.Show($"Error connecting to database: {ex2.Message}");
+            }
+        }
+        finally {
+            _view.ButtonSignInEnabled = true;
+            _view.ButtonSignInText = "Sign in";
         }
     }
 

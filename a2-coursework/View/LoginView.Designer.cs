@@ -130,16 +130,17 @@
             // btnSignIn
             // 
             btnSignIn.BackColor = SystemColors.Control;
-            btnSignIn.BorderClickedColor = Color.Empty;
             btnSignIn.BorderColor = Color.Empty;
-            btnSignIn.BorderHoverColor = Color.Empty;
             btnSignIn.BorderThickness = 0F;
+            btnSignIn.ClickedBorderColor = Color.Empty;
             btnSignIn.ClickedColor = Color.FromArgb(226, 226, 226);
             btnSignIn.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnSignIn.Cursor = Cursors.Hand;
+            btnSignIn.DisabledBorderColor = Color.Empty;
             btnSignIn.DisabledColor = Color.FromArgb(226, 226, 226);
             btnSignIn.Font = new Font("Bahnschrift", 12F);
             btnSignIn.ForeColor = Color.FromArgb(9, 9, 10);
+            btnSignIn.HoverBorderColor = Color.Empty;
             btnSignIn.HoverColor = Color.FromArgb(226, 226, 226);
             btnSignIn.ImageRectangle = new Rectangle(0, 0, 0, 0);
             btnSignIn.Location = new Point(28, 227);
@@ -196,19 +197,21 @@
             // btnSwitchTheme
             // 
             btnSwitchTheme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
-            btnSwitchTheme.BackColor = Color.FromArgb(9, 9, 10);
+            btnSwitchTheme.BackColor = SystemColors.Control;
             btnSwitchTheme.BackgroundImage = Properties.Resources.brightness;
             btnSwitchTheme.BackgroundImageLayout = ImageLayout.Zoom;
-            btnSwitchTheme.BorderClickedColor = Color.Empty;
             btnSwitchTheme.BorderColor = Color.FromArgb(39, 39, 42);
-            btnSwitchTheme.BorderHoverColor = Color.FromArgb(39, 39, 42);
             btnSwitchTheme.BorderThickness = 1F;
+            btnSwitchTheme.ClickedBorderColor = Color.Empty;
             btnSwitchTheme.ClickedColor = Color.FromArgb(9, 9, 10);
             btnSwitchTheme.CornerRadii = new CustomControls.CornerRadiiF(20F, 20F, 20F, 20F);
             btnSwitchTheme.Cursor = Cursors.Hand;
+            btnSwitchTheme.DisabledBorderColor = Color.Empty;
             btnSwitchTheme.DisabledColor = Color.Empty;
+            btnSwitchTheme.Enabled = false;
             btnSwitchTheme.Font = new Font("Bahnschrift", 12F);
             btnSwitchTheme.ForeColor = Color.FromArgb(9, 9, 10);
+            btnSwitchTheme.HoverBorderColor = Color.FromArgb(39, 39, 42);
             btnSwitchTheme.HoverColor = Color.FromArgb(39, 39, 42);
             btnSwitchTheme.ImageRectangle = new Rectangle(7, 7, 28, 28);
             btnSwitchTheme.Location = new Point(724, 19);
