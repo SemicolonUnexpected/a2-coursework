@@ -7,15 +7,14 @@ internal static class DAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
     public static async Task<(byte[]? hash, byte[]? salt)> GetUserCredentialsAsync(string username) {
-        await using SqlConnection connection = new(_connectionString);
-
         byte[]? hash;
         byte[]? salt;
+
+        await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("GetUserCredentials", connection);
         command.CommandType = CommandType.StoredProcedure;
-
         command.Parameters.AddWithValue("username", username);
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
@@ -30,5 +29,18 @@ internal static class DAL {
         }
 
         return (hash, salt);
+    }
+
+    public static async Task LoginAttempt(string username, DateTime dateTime, bool success) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("LoginAttempt", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("username", username);
+        command.Parameters.AddWithValue("attemptTime", dateTime);
+        command.Parameters.AddWithValue("success", success);
+
+        await command.ExecuteNonQueryAsync();
     }
 }

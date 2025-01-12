@@ -61,7 +61,7 @@ internal class LoginPresenter {
 
         try {
             Task<(byte[]?, byte[]?)> getUserData = DAL.GetUserCredentialsAsync(username);
-            await Task.WhenAll(getUserData, Task.Delay(1000));
+            await Task.WhenAll(getUserData, Task.Delay(1500));
 
             (hash, salt) = await getUserData;
 
@@ -70,15 +70,20 @@ internal class LoginPresenter {
                 _view.ErrorText = "Username or password incorrect";
                 _view.ButtonSignInEnabled = true;
                 _view.ButtonSignInText = "Sign in";
+                await DAL.LoginAttempt(username, DateTime.UtcNow, false);
                 return;
             }
 
-            if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) LoginSuccessful?.Invoke(this, username);
+            if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) {
+                LoginSuccessful?.Invoke(this, username);
+                await DAL.LoginAttempt(username, DateTime.UtcNow, true);
+            }
             else {
                 _view.Password = "";
                 _view.ErrorText = "Username or password incorrect";
                 _view.ButtonSignInEnabled = true;
                 _view.ButtonSignInText = "Sign in";
+                await DAL.LoginAttempt(username, DateTime.UtcNow, false);
                 return;
             }
         }
