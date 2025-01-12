@@ -73,6 +73,26 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chevron_left_dark {
+            get {
+                object obj = ResourceManager.GetObject("chevron-left-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevron_left_light {
+            get {
+                object obj = ResourceManager.GetObject("chevron-left-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eye_crossed_dark {
             get {
                 object obj = ResourceManager.GetObject("eye-crossed-dark", resourceCulture);
@@ -136,6 +156,26 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap moon {
             get {
                 object obj = ResourceManager.GetObject("moon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_sliders_dark {
+            get {
+                object obj = ResourceManager.GetObject("settings-sliders-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap settings_sliders_light {
+            get {
+                object obj = ResourceManager.GetObject("settings-sliders-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -208,7 +208,6 @@
             btnSwitchTheme.Cursor = Cursors.Hand;
             btnSwitchTheme.DisabledBorderColor = Color.Empty;
             btnSwitchTheme.DisabledColor = Color.Empty;
-            btnSwitchTheme.Enabled = false;
             btnSwitchTheme.Font = new Font("Bahnschrift", 12F);
             btnSwitchTheme.ForeColor = Color.FromArgb(9, 9, 10);
             btnSwitchTheme.HoverBorderColor = Color.FromArgb(39, 39, 42);

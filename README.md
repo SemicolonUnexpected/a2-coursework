@@ -3,10 +3,12 @@ A2 Coursework, yay!
 
 ## Todo
 
-- Use SVG lib to draw graphics
+- Fix loading tb disabled
+- Ensure username limit in login
 - Figure out how to open print dialogue
 - Actually do the colour scheme an don't just steal one
 - Use PDF lib to edit and render PDFs
+- Something dodgy with async 
 
 ## Things that are semi-fixed (i.e. I don't know what went wrong, but its gone now after some code that i dont trust)
 
@@ -23,6 +25,7 @@ A2 Coursework, yay!
 ## Ideas
 
 - Make a theme transition to avoid flicker
+- Update login attempt db to include connection errors
 
 ### Menu Items
 

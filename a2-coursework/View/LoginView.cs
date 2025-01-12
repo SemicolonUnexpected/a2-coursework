@@ -66,6 +66,7 @@ public partial class LoginView : Form, ILoginView {
         btnSignIn.BackColor = ColorScheme.CurrentTheme.Foreground;
         btnSignIn.ForeColor = ColorScheme.CurrentTheme.Background;
         btnSignIn.HoverColor = ColorScheme.CurrentTheme.SecondaryForeground;
+        btnSignIn.DisabledColor = ColorScheme.CurrentTheme.SecondaryForeground;
 
         btnSwitchTheme.BackColor = ColorScheme.CurrentTheme.Background;
         btnSwitchTheme.HoverColor = ColorScheme.CurrentTheme.Primary;

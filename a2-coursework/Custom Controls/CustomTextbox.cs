@@ -123,6 +123,7 @@ public partial class CustomTextBox : UserControl {
     protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
         if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
             TextBoxInset = new Padding((int)(TextBoxInset.Left * factor.Width), (int)(TextBoxInset.Top * factor.Height), (int)(TextBoxInset.Right * factor.Width), (int)(TextBoxInset.Bottom * factor.Height));
+            BorderThickness *= factor.Width;
         }
         base.ScaleControl(factor, specified);
     }

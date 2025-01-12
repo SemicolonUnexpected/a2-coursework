@@ -62,13 +62,12 @@ public partial class ImprovedTextBox : TextBox {
     }
 
     private bool _usePasswordChar = false;
+    [DefaultValue(false)]
     public bool UsePasswordChar {
         get => _usePasswordChar;
         set {
-            TryRemovePlaceholderText();
-            UseSystemPasswordChar = value;
             _usePasswordChar = value;
-            TrySetPlaceholderText();
+            if (!_isPlaceholderText) UseSystemPasswordChar = _usePasswordChar;
         }
     }
     protected override void OnEnter(EventArgs e) {

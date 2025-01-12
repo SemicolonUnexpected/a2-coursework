@@ -10,9 +10,14 @@ public partial class CustomButton : CustomPanel {
         if (Enabled) base.OnClick(e);
     }
 
+    protected override void OnMouseClick(MouseEventArgs e) {
+        if (Enabled) base.OnMouseClick(e);
+    }
+
     protected override void OnMouseEnter(EventArgs e) {
+        _buttonState = ButtonState.Hover;
+
         if (Enabled) {
-            _buttonState = ButtonState.Hover;
             base.BackColor = HoverColor;
             base.BorderColor = HoverBorderColor;
             base.OnMouseEnter(e);
@@ -20,8 +25,9 @@ public partial class CustomButton : CustomPanel {
     }
 
     protected override void OnMouseLeave(EventArgs e) {
+        _buttonState = ButtonState.Normal;
+
         if (Enabled) {
-            _buttonState = ButtonState.Normal;
             base.BackColor = BackColor;
             base.BorderColor = BorderColor;
             base.OnMouseLeave(e);
@@ -29,8 +35,9 @@ public partial class CustomButton : CustomPanel {
     }
 
     protected override void OnMouseDown(MouseEventArgs e) {
+        _buttonState = ButtonState.Clicked;
+
         if (Enabled) {
-            _buttonState = ButtonState.Clicked;
             base.BackColor = ClickedColor;
             base.BorderColor = ClickedBorderColor;
             base.OnMouseDown(e);
@@ -38,8 +45,9 @@ public partial class CustomButton : CustomPanel {
     }
 
     protected override void OnMouseUp(MouseEventArgs e) {
+        _buttonState = ButtonState.Hover;
+
         if (Enabled) {
-            _buttonState = ButtonState.Clicked;
             base.BackColor = HoverColor;
             base.BorderColor = HoverBorderColor;
             base.OnMouseUp(e);
@@ -62,6 +70,18 @@ public partial class CustomButton : CustomPanel {
         if (!Enabled) {
             base.BackColor = DisabledColor;
             base.BorderColor = DisabledBorderColor;
+        }
+        else if (_buttonState == ButtonState.Clicked) {
+            base.BackColor = ClickedColor;
+            base.BorderColor = ClickedBorderColor;
+        }
+        else if (_buttonState == ButtonState.Hover) {
+            base.BackColor = HoverColor;
+            base.BorderColor = HoverBorderColor;
+        }
+        else {
+            base.BackColor = BackColor;
+            base.BorderColor = BorderColor;
         }
 
         base.OnEnabledChanged(e);

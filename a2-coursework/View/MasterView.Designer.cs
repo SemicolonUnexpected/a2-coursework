@@ -23,43 +23,36 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            panel1 = new Panel();
-            panel2 = new Panel();
-            panel1.SuspendLayout();
+            topBar1 = new User_Controls.TopBar();
             SuspendLayout();
             // 
-            // panel1
+            // topBar1
             // 
-            panel1.Controls.Add(panel2);
-            panel1.Location = new Point(0, 0);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(200, 451);
-            panel1.TabIndex = 0;
-            // 
-            // panel2
-            // 
-            panel2.BackColor = Color.White;
-            panel2.Location = new Point(199, 0);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(1, 454);
-            panel2.TabIndex = 0;
+            topBar1.BackButtonVisible = true;
+            topBar1.BackColor = Color.FromArgb(9, 9, 10);
+            topBar1.Dock = DockStyle.Top;
+            topBar1.Location = new Point(0, 0);
+            topBar1.Name = "topBar1";
+            topBar1.SettingsButtonVisible = true;
+            topBar1.Size = new Size(784, 40);
+            topBar1.TabIndex = 0;
+            topBar1.UsernameText = "test";
             // 
             // MasterView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(800, 450);
-            Controls.Add(panel1);
+            ClientSize = new Size(784, 461);
+            Controls.Add(topBar1);
+            MinimumSize = new Size(800, 500);
             Name = "MasterView";
             Text = "Master";
-            panel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Panel panel1;
-        private Panel panel2;
+        private User_Controls.TopBar topBar1;
     }
 }
