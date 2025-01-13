@@ -4,7 +4,6 @@ A2 Coursework, yay!
 ## Todo
 
 - Fix loading tb disabled
-- Ensure username limit in login
 - Figure out how to open print dialogue
 - Actually do the colour scheme an don't just steal one
 - Use PDF lib to edit and render PDFs
@@ -26,6 +25,7 @@ A2 Coursework, yay!
 
 - Make a theme transition to avoid flicker
 - Update login attempt db to include connection errors
+- Add periodic password reset requirements
 
 ### Menu Items
 

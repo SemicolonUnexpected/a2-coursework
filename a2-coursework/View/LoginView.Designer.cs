@@ -112,11 +112,13 @@
             tbPassword.BorderColor = Color.FromArgb(39, 39, 42);
             tbPassword.BorderThickness = 1F;
             tbPassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbPassword.Enabled = false;
             tbPassword.Font = new Font("Bahnschrift", 12F);
             tbPassword.ForeColor = Color.Empty;
             tbPassword.HoverColor = Color.Empty;
             tbPassword.Location = new Point(28, 167);
             tbPassword.Margin = new Padding(10);
+            tbPassword.MaxLength = 32767;
             tbPassword.Name = "tbPassword";
             tbPassword.PlaceholderText = "Password";
             tbPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
@@ -164,6 +166,7 @@
             tbUsername.HoverColor = Color.Empty;
             tbUsername.Location = new Point(28, 107);
             tbUsername.Margin = new Padding(10);
+            tbUsername.MaxLength = 256;
             tbUsername.Name = "tbUsername";
             tbUsername.PlaceholderText = "Username";
             tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
@@ -192,7 +195,6 @@
             tbFocusHolder.PlaceholderTextColor = Color.Empty;
             tbFocusHolder.Size = new Size(0, 23);
             tbFocusHolder.TabIndex = 0;
-            tbFocusHolder.UsePasswordChar = false;
             // 
             // btnSwitchTheme
             // 
@@ -229,7 +231,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, 0);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(790, 462);
+            pnlCover.Size = new Size(873, 462);
             pnlCover.TabIndex = 4;
             // 
             // LoginView

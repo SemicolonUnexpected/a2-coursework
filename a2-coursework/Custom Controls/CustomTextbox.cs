@@ -103,6 +103,21 @@ public partial class CustomTextBox : UserControl {
         get => tb.Focused;
     }
 
+    public int MaxLength {
+        get => tb.MaxLength;
+        set => tb.MaxLength = value;
+    }
+
+    private bool _enabled = true;
+    [DefaultValue(true)]
+    public new bool Enabled {
+        get => _enabled;
+        set {
+            _enabled = value;
+            tb.ReadOnly = !_enabled;
+        }
+    }
+
     public CustomTextBox() {
         InitializeComponent();
 
