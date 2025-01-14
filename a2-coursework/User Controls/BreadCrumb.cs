@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.User_Controls; 
+﻿namespace a2_coursework.UserControls; 
 public partial class BreadCrumb : Control {
     public BreadCrumb() {
 

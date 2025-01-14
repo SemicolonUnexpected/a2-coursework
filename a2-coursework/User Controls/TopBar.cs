@@ -1,7 +1,7 @@
 ﻿
 using a2_coursework.Theming;
 
-namespace a2_coursework.User_Controls;
+namespace a2_coursework.UserControls;
 public partial class TopBar : UserControl {
 
     private int _height = 40;

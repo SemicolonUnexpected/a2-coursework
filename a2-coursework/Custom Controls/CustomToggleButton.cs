@@ -4,10 +4,25 @@ namespace a2_coursework.CustomControls;
 public partial class CustomToggleButton : CustomPanel {
     private ToggleButtonState _buttonState = ToggleButtonState.Normal;
 
+    public event EventHandler? ToggleChanged;
     private bool _toggled = false;
     public bool Toggled {
-        get => _buttonState == ToggleButtonState.Toggled;
+        get => _toggled;
         set {
+            if (!Enabled) return;
+
+            _toggled = value;
+
+            if (_toggled) {
+                base.BackColor = ToggledColor;
+                Font = new Font(Font, FontStyle.Bold);
+            }
+            else if (_buttonState == ToggleButtonState.Normal) {
+                base.BackColor = BackColor;
+                Font = new Font(Font, FontStyle.Regular);
+            }
+
+            ToggleChanged?.Invoke(this, EventArgs.Empty);
 
             Invalidate();
         }
@@ -19,7 +34,7 @@ public partial class CustomToggleButton : CustomPanel {
         get => _backColor;
         set {
             _backColor = value;
-            if (Enabled && _buttonState == ToggleButtonState.Normal) {
+            if (_buttonState == ToggleButtonState.Normal && Enabled && !Toggled) {
                 base.BackColor = _backColor;
             }
         }
@@ -30,7 +45,8 @@ public partial class CustomToggleButton : CustomPanel {
     public new Color ForeColor {
         get => _foreColor;
         set {
-            base.ForeColor = value;
+            _foreColor = value;
+            if (Enabled) base.ForeColor = _foreColor;
         }
     }
 
@@ -40,7 +56,7 @@ public partial class CustomToggleButton : CustomPanel {
         get => _hoverColor;
         set {
             _hoverColor = value;
-            if (_buttonState == ToggleButtonState.Hover) {
+            if (_buttonState == ToggleButtonState.Hover && Enabled && !Toggled) {
                 base.BackColor = _hoverColor;
                 Invalidate();
             }
@@ -53,7 +69,7 @@ public partial class CustomToggleButton : CustomPanel {
         get => _toggledColor;
         set {
             _toggledColor = value;
-            if (_buttonState == ToggleButtonState.Toggled) {
+            if (Toggled && Enabled) {
                 base.BackColor = _toggledColor;
                 Invalidate();
             }
@@ -74,39 +90,77 @@ public partial class CustomToggleButton : CustomPanel {
         }
     }
 
+    private string _text = "";
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue("")]
+    [TypeConverter(typeof(StringConverter))]
+    public new string Text {
+        get => _text;
+        set {
+            _text = value;
+            Invalidate();
+        } 
+    }
+
+    public new Padding Padding {
+        get => base.Padding;
+        set {
+            base.Padding = value;
+            Invalidate();
+        }
+    }
+
     protected override void OnMouseEnter(EventArgs e) {
         _buttonState = ToggleButtonState.Hover;
+        if (!Enabled) return;
 
-        if (Enabled) {
+        if (!Toggled) {
             base.BackColor = HoverColor;
-            base.OnMouseEnter(e);
         }
+        base.OnMouseEnter(e);
     }
 
     protected override void OnMouseLeave(EventArgs e) {
         _buttonState = ToggleButtonState.Normal;
+        if (!Enabled) return;
 
-        if (Enabled) {
+        if (!Toggled) {
             base.BackColor = BackColor;
-            base.OnMouseLeave(e);
         }
+
+        base.OnMouseLeave(e);
     }
 
     protected override void OnMouseClick(MouseEventArgs e) {
+        if (!Enabled) return;
+
         Toggled = !Toggled;
+
+        if (Toggled) {
+            Font = new Font(Font, FontStyle.Bold);
+            base.BackColor = ToggledColor;
+        }
+        else {
+            Font = new Font(Font, FontStyle.Regular);
+            base.BackColor = HoverColor;
+        }
         
-        if (Enabled) {
-            base.BackColor = Toggled ? 
-            base.OnMouseClick(e);
+        base.OnMouseClick(e);
     }
 
     protected override void OnClick(EventArgs e) {
         if (Enabled) base.OnClick(e);
     }
 
+    protected override void OnPaint(PaintEventArgs e) {
+        Size textSize = TextRenderer.MeasureText(Text, Font);
+        TextRenderer.DrawText(e.Graphics, Text, Font, new Point(Padding.Left, (Height - textSize.Height) / 2), ForeColor);
+        base.OnPaint(e);
+    }
+
     private enum ToggleButtonState {
         Normal,
-        Toggled,
         Hover
     }
 }

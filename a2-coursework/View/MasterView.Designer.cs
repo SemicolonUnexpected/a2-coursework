@@ -23,7 +23,8 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            topBar1 = new User_Controls.TopBar();
+            topBar1 = new UserControls.TopBar();
+            sideMenu1 = new UserControls.SideMenu();
             SuspendLayout();
             // 
             // topBar1
@@ -39,12 +40,20 @@
             topBar1.TabIndex = 0;
             topBar1.UsernameText = "test";
             // 
+            // sideMenu1
+            // 
+            sideMenu1.Location = new Point(309, 279);
+            sideMenu1.Name = "sideMenu1";
+            sideMenu1.Size = new Size(150, 150);
+            sideMenu1.TabIndex = 1;
+            // 
             // MasterView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(784, 461);
+            Controls.Add(sideMenu1);
             Controls.Add(topBar1);
             MinimumSize = new Size(800, 500);
             Name = "MasterView";
@@ -54,6 +63,7 @@
 
         #endregion
 
-        private User_Controls.TopBar topBar1;
+        private UserControls.TopBar topBar1;
+        private UserControls.SideMenu sideMenu1;
     }
 }

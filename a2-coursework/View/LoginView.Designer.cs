@@ -112,7 +112,6 @@
             tbPassword.BorderColor = Color.FromArgb(39, 39, 42);
             tbPassword.BorderThickness = 1F;
             tbPassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbPassword.Enabled = false;
             tbPassword.Font = new Font("Bahnschrift", 12F);
             tbPassword.ForeColor = Color.Empty;
             tbPassword.HoverColor = Color.Empty;

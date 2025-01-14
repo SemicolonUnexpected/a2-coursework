@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.User_Controls {
+﻿namespace a2_coursework.UserControls {
     partial class TopBar {
         /// <summary> 
         /// Required designer variable.
