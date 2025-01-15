@@ -23,84 +23,87 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            btn = new SideMenuButton();
+            btnToggle = new SideMenuToggleButton();
             pnlDropDown = new Panel();
-            pnlSpacer1 = new Panel();
-            pnlSideDecor2 = new Panel();
-            sideMenuToggleButton1 = new SideMenuToggleButton();
-            sideMenuButton1 = new SideMenuButton();
+            pnlSpacer = new Panel();
+            pnlDecor = new Panel();
             pnlDropDown.SuspendLayout();
-            pnlSpacer1.SuspendLayout();
+            pnlSpacer.SuspendLayout();
             SuspendLayout();
+            // 
+            // btn
+            // 
+            btn.BackColor = Color.FromArgb(9, 9, 10);
+            btn.Dock = DockStyle.Top;
+            btn.IconImage = null;
+            btn.Location = new Point(0, 0);
+            btn.Name = "btn";
+            btn.Padding = new Padding(2);
+            btn.Size = new Size(373, 40);
+            btn.TabIndex = 9;
+            btn.Text = "qa";
+            // 
+            // btnToggle
+            // 
+            btnToggle.BackColor = Color.FromArgb(9, 9, 10);
+            btnToggle.Dock = DockStyle.Top;
+            btnToggle.Location = new Point(0, 40);
+            btnToggle.Name = "btnToggle";
+            btnToggle.Padding = new Padding(2);
+            btnToggle.Size = new Size(373, 40);
+            btnToggle.TabIndex = 10;
+            btnToggle.Text = "toggle";
+            btnToggle.Toggled = false;
             // 
             // pnlDropDown
             // 
-            pnlDropDown.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            pnlDropDown.Controls.Add(pnlSpacer1);
-            pnlDropDown.Location = new Point(0, 116);
+            pnlDropDown.Controls.Add(pnlSpacer);
+            pnlDropDown.Dock = DockStyle.Top;
+            pnlDropDown.Location = new Point(0, 80);
             pnlDropDown.Name = "pnlDropDown";
-            pnlDropDown.Size = new Size(373, 105);
-            pnlDropDown.TabIndex = 8;
+            pnlDropDown.Size = new Size(373, 110);
+            pnlDropDown.TabIndex = 11;
             // 
-            // pnlSpacer1
+            // pnlSpacer
             // 
-            pnlSpacer1.Controls.Add(pnlSideDecor2);
-            pnlSpacer1.Dock = DockStyle.Left;
-            pnlSpacer1.Location = new Point(0, 0);
-            pnlSpacer1.Name = "pnlSpacer1";
-            pnlSpacer1.Padding = new Padding(5, 5, 5, 10);
-            pnlSpacer1.Size = new Size(33, 105);
-            pnlSpacer1.TabIndex = 7;
+            pnlSpacer.Controls.Add(pnlDecor);
+            pnlSpacer.Dock = DockStyle.Left;
+            pnlSpacer.Location = new Point(0, 0);
+            pnlSpacer.Name = "pnlSpacer";
+            pnlSpacer.Padding = new Padding(5, 5, 5, 10);
+            pnlSpacer.Size = new Size(30, 110);
+            pnlSpacer.TabIndex = 8;
             // 
-            // pnlSideDecor2
+            // pnlDecor
             // 
-            pnlSideDecor2.BackColor = Color.FromArgb(39, 39, 42);
-            pnlSideDecor2.Dock = DockStyle.Right;
-            pnlSideDecor2.Location = new Point(27, 5);
-            pnlSideDecor2.Name = "pnlSideDecor2";
-            pnlSideDecor2.Size = new Size(1, 90);
-            pnlSideDecor2.TabIndex = 3;
-            // 
-            // sideMenuToggleButton1
-            // 
-            sideMenuToggleButton1.BackColor = Color.FromArgb(9, 9, 10);
-            sideMenuToggleButton1.Dock = DockStyle.Top;
-            sideMenuToggleButton1.Location = new Point(0, 0);
-            sideMenuToggleButton1.Name = "sideMenuToggleButton1";
-            sideMenuToggleButton1.Padding = new Padding(2);
-            sideMenuToggleButton1.Size = new Size(373, 40);
-            sideMenuToggleButton1.TabIndex = 9;
-            sideMenuToggleButton1.Toggled = false;
-            // 
-            // sideMenuButton1
-            // 
-            sideMenuButton1.BackColor = Color.FromArgb(9, 9, 10);
-            sideMenuButton1.Dock = DockStyle.Top;
-            sideMenuButton1.IconImage = null;
-            sideMenuButton1.Location = new Point(0, 40);
-            sideMenuButton1.Name = "sideMenuButton1";
-            sideMenuButton1.Padding = new Padding(2);
-            sideMenuButton1.Size = new Size(373, 40);
-            sideMenuButton1.TabIndex = 10;
+            pnlDecor.BackColor = Color.FromArgb(39, 39, 42);
+            pnlDecor.Dock = DockStyle.Right;
+            pnlDecor.Location = new Point(24, 5);
+            pnlDecor.Name = "pnlDecor";
+            pnlDecor.Size = new Size(1, 95);
+            pnlDecor.TabIndex = 3;
             // 
             // SideMenuDropDown
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            Controls.Add(sideMenuButton1);
-            Controls.Add(sideMenuToggleButton1);
+            BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(pnlDropDown);
+            Controls.Add(btnToggle);
+            Controls.Add(btn);
             Name = "SideMenuDropDown";
             Size = new Size(373, 337);
             pnlDropDown.ResumeLayout(false);
-            pnlSpacer1.ResumeLayout(false);
+            pnlSpacer.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
+        private SideMenuButton btn;
+        private SideMenuToggleButton btnToggle;
         private Panel pnlDropDown;
-        private Panel pnlSpacer1;
-        private Panel pnlSideDecor2;
-        private SideMenuToggleButton sideMenuToggleButton1;
-        private SideMenuButton sideMenuButton1;
+        private Panel pnlSpacer;
+        private Panel pnlDecor;
     }
 }

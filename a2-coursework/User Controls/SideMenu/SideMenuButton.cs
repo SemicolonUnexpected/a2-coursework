@@ -1,5 +1,6 @@
 ﻿using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
+using System.ComponentModel;
 
 namespace a2_coursework.UserControls.SideMenu;
 public partial class SideMenuButton : UserControl, IThemeable {
@@ -32,6 +33,11 @@ public partial class SideMenuButton : UserControl, IThemeable {
         }
     }
 
+
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue("")]
+    [TypeConverter(typeof(StringConverter))]
     public new string Text {
         get => btn.Text;
         set {

@@ -1,4 +1,5 @@
 ﻿using a2_coursework.Theming;
+using System.ComponentModel;
 
 namespace a2_coursework.UserControls.SideMenu; 
 public partial class SideMenuToggleButton : UserControl {
@@ -24,11 +25,13 @@ public partial class SideMenuToggleButton : UserControl {
         }
     }
 
+    [Browsable(true)]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [DefaultValue("")]
+    [TypeConverter(typeof(StringConverter))]
     public new string Text {
         get => btn.Text;
-        set {
-            btn.Text = value;
-        }
+        set => btn.Text = value;
     }
 
     public bool Toggled {

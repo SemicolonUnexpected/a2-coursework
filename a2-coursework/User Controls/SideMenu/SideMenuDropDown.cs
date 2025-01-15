@@ -8,7 +8,7 @@ public partial class SideMenuDropDown : UserControl {
 
     }
 
-    private MenuItemData _menuItemData;
+    private MenuItemData _menuItemData = new();
     [TypeConverter(typeof(MenuItemDataConverter))]
     public MenuItemData Data {
         get => _menuItemData;
@@ -21,6 +21,7 @@ public partial class SideMenuDropDown : UserControl {
     private void GenerateMenuDropDown() {
         if (Data.ChildNames is null || Data.ChildNames.Length == 0) {
             pnlDropDown.Visible = false;
+            
         }
         else {
             pnlDropDown.Visible = true;
@@ -33,5 +34,14 @@ public partial class SideMenuDropDown : UserControl {
         set {
             _dropDownToggled = value;
         }
+    }
+
+    private void ShowDropDown() {
+        pnlDecor.Visible = true;
+    }
+
+    protected override void OnResize(EventArgs e) {
+
+        base.OnResize(e);
     }
 }
