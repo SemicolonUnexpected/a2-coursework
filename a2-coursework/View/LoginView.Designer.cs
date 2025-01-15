@@ -199,7 +199,7 @@
             // 
             btnSwitchTheme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSwitchTheme.BackColor = SystemColors.Control;
-            btnSwitchTheme.BackgroundImage = Properties.Resources.brightness;
+            btnSwitchTheme.Image = Properties.Resources.brightness;
             btnSwitchTheme.BackgroundImageLayout = ImageLayout.Zoom;
             btnSwitchTheme.BorderColor = Color.FromArgb(39, 39, 42);
             btnSwitchTheme.BorderThickness = 1F;

@@ -11,15 +11,6 @@ public partial class TopBar : UserControl {
 
         pbLogo.BackColor = ColorScheme.CurrentTheme.Background;
 
-        btnBack.BackColor = ColorScheme.CurrentTheme.Background;
-        btnBack.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        btnBack.HoverColor = ColorScheme.CurrentTheme.Primary;
-        btnBack.BackgroundImage = IconTheme.CurrentTheme.BackArrow;
-
-        btnSettings.BackColor = ColorScheme.CurrentTheme.Background;
-        btnSettings.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        btnSettings.HoverColor = ColorScheme.CurrentTheme.Primary;
-        btnSettings.BackgroundImage = IconTheme.CurrentTheme.Settings;
     }
 
     public string UsernameText {
@@ -30,40 +21,6 @@ public partial class TopBar : UserControl {
         }
     }
 
-    public void HideBackButton() {
-        btnBack.Hide();
-    }
-
-    public void ShowBackButton() {
-        btnBack.Show();
-    }
-
-    public bool BackButtonVisible {
-        get => btnBack.Visible;
-        set => btnBack.Visible = value;
-    }
-
-    public void HideSettingsButton() {
-        btnSettings.Hide();
-    }
-
-    public void ShowSettingsButton() {
-        btnSettings.Show();
-    }
-
-    public bool SettingsButtonVisible {
-        get => btnSettings.Visible;
-        set => btnSettings.Visible = value;
-    }
-
-    private int _gap;
-    public int Gap {
-        get => _gap;
-        set {
-            _gap = value;
-            OnResize(EventArgs.Empty);
-        }
-    }
 
     protected override void OnResize(EventArgs e) {
         Height = _height;

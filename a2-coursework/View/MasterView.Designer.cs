@@ -24,27 +24,27 @@
         /// </summary>
         private void InitializeComponent() {
             topBar1 = new UserControls.TopBar();
-            sideMenu1 = new UserControls.SideMenu();
+            sideMenu1 = new UserControls.SideMenuTwo();
             SuspendLayout();
             // 
             // topBar1
             // 
-            topBar1.BackButtonVisible = true;
             topBar1.BackColor = Color.FromArgb(9, 9, 10);
             topBar1.Dock = DockStyle.Top;
-            topBar1.Gap = 0;
             topBar1.Location = new Point(0, 0);
             topBar1.Name = "topBar1";
-            topBar1.SettingsButtonVisible = true;
             topBar1.Size = new Size(784, 40);
             topBar1.TabIndex = 0;
             topBar1.UsernameText = "test";
             // 
             // sideMenu1
             // 
-            sideMenu1.Location = new Point(309, 279);
+            sideMenu1.AutoScroll = true;
+            sideMenu1.BackColor = Color.FromArgb(9, 9, 10);
+            sideMenu1.Dock = DockStyle.Left;
+            sideMenu1.Location = new Point(0, 40);
             sideMenu1.Name = "sideMenu1";
-            sideMenu1.Size = new Size(150, 150);
+            sideMenu1.Size = new Size(210, 421);
             sideMenu1.TabIndex = 1;
             // 
             // MasterView
@@ -64,6 +64,6 @@
         #endregion
 
         private UserControls.TopBar topBar1;
-        private UserControls.SideMenu sideMenu1;
+        private UserControls.SideMenuTwo sideMenu1;
     }
 }

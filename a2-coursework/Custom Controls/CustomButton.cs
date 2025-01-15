@@ -56,7 +56,7 @@ public partial class CustomButton : CustomPanel {
 
     protected override void OnPaint(PaintEventArgs e) {
         if (!string.IsNullOrWhiteSpace(Text)) TextRenderer.DrawText(e.Graphics, Text, Font, _textPosition, ForeColor);
-        if (BackgroundImage is not null) e.Graphics.DrawImage(BackgroundImage, ImageRectangle);
+        if (Image is not null) e.Graphics.DrawImage(Image, ImageRectangle);
 
         base.OnPaint(e);
     }
@@ -101,9 +101,15 @@ public partial class CustomButton : CustomPanel {
             CustomButtonAlign.TopLeft => new Point(Padding.Left, Padding.Top),
             CustomButtonAlign.TopCenter => new Point(center, Padding.Top),
             CustomButtonAlign.MiddleCenter => new Point(center, middle),
+            CustomButtonAlign.MiddleLeft => new Point(Padding.Left, middle),
             CustomButtonAlign.Point => TextPosition,
             _ => throw new NotImplementedException(),
         };
     }
 
+    protected override void OnPaddingChanged(EventArgs e) {
+        CalculateTextPosition();
+        Invalidate();
+        base.OnPaddingChanged(e);
+    }
 }

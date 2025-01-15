@@ -73,8 +73,8 @@ public partial class LoginView : Form, ILoginView {
         btnSwitchTheme.BorderColor = ColorScheme.CurrentTheme.Primary;
         btnSwitchTheme.ClickedColor = ColorScheme.CurrentTheme.Primary;
 
-        if (ColorScheme.CurrentTheme == ColorScheme.Dark) btnSwitchTheme.BackgroundImage = IconTheme.Brightness;
-        else btnSwitchTheme.BackgroundImage = IconTheme.Moon;
+        if (ColorScheme.CurrentTheme == ColorScheme.Dark) btnSwitchTheme.Image = IconTheme.Brightness;
+        else btnSwitchTheme.Image = IconTheme.Moon;
     }
 
     public event EventHandler? LoginAttempt;
