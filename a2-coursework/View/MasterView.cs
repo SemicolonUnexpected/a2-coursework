@@ -9,4 +9,8 @@ public partial class MasterView : Form, IMaster {
     private void lblWelcome_Click(object sender, EventArgs e) {
 
     }
+
+    private void MasterView_Load(object sender, EventArgs e) {
+
+    }
 }

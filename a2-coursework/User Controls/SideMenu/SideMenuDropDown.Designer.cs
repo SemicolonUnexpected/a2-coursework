@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             btn = new SideMenuButton();
-            btnToggle = new SideMenuToggleButton();
             pnlDropDown = new Panel();
+            pnlChildHolder = new Panel();
             pnlSpacer = new Panel();
             pnlDecor = new Panel();
             pnlDropDown.SuspendLayout();
@@ -43,27 +43,26 @@
             btn.Size = new Size(373, 40);
             btn.TabIndex = 9;
             btn.Text = "qa";
-            // 
-            // btnToggle
-            // 
-            btnToggle.BackColor = Color.FromArgb(9, 9, 10);
-            btnToggle.Dock = DockStyle.Top;
-            btnToggle.Location = new Point(0, 40);
-            btnToggle.Name = "btnToggle";
-            btnToggle.Padding = new Padding(2);
-            btnToggle.Size = new Size(373, 40);
-            btnToggle.TabIndex = 10;
-            btnToggle.Text = "toggle";
-            btnToggle.Toggled = false;
+            btn.Click += btn_Click;
             // 
             // pnlDropDown
             // 
+            pnlDropDown.BackColor = Color.FromArgb(9, 9, 10);
+            pnlDropDown.Controls.Add(pnlChildHolder);
             pnlDropDown.Controls.Add(pnlSpacer);
             pnlDropDown.Dock = DockStyle.Top;
-            pnlDropDown.Location = new Point(0, 80);
+            pnlDropDown.Location = new Point(0, 40);
             pnlDropDown.Name = "pnlDropDown";
             pnlDropDown.Size = new Size(373, 110);
             pnlDropDown.TabIndex = 11;
+            // 
+            // pnlChildHolder
+            // 
+            pnlChildHolder.Dock = DockStyle.Fill;
+            pnlChildHolder.Location = new Point(30, 0);
+            pnlChildHolder.Name = "pnlChildHolder";
+            pnlChildHolder.Size = new Size(343, 110);
+            pnlChildHolder.TabIndex = 9;
             // 
             // pnlSpacer
             // 
@@ -90,7 +89,6 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(pnlDropDown);
-            Controls.Add(btnToggle);
             Controls.Add(btn);
             Name = "SideMenuDropDown";
             Size = new Size(373, 337);
@@ -101,9 +99,9 @@
 
         #endregion
         private SideMenuButton btn;
-        private SideMenuToggleButton btnToggle;
         private Panel pnlDropDown;
         private Panel pnlSpacer;
         private Panel pnlDecor;
+        private Panel pnlChildHolder;
     }
 }

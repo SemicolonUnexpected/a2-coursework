@@ -24,7 +24,7 @@ internal class MenuItemDataConverter : TypeConverter {
 
         if (value is MenuItemData data) {
             if (destinationType == typeof(string)) {
-                return data.ToString();
+                return $"{data.Name};{string.Join(", ", data.ChildNames)}";
             }
             else if (destinationType == typeof(InstanceDescriptor)) {
                 var ctor = typeof(MenuItemData).GetConstructor([typeof(string), typeof(string[])]);
@@ -38,6 +38,8 @@ internal class MenuItemDataConverter : TypeConverter {
     }
 
     public override object? ConvertFrom(ITypeDescriptorContext? context, CultureInfo? culture, object value) {
+        if (value is null) return null;
+
         if (value is string stringValue) {
             stringValue = stringValue.Trim();
 
@@ -47,7 +49,9 @@ internal class MenuItemDataConverter : TypeConverter {
 
             string[] parts = stringValue.Split(';');
             if (parts.Length == 1) {
-                return new MenuItemData(parts[0], null);
+                return new MenuItemData() {
+                    Name = parts[0],
+                };
             }
             else if (parts.Length == 2) {
                 string[] values = parts[1].Split(",");
@@ -64,11 +68,11 @@ internal class MenuItemDataConverter : TypeConverter {
     public override bool GetCreateInstanceSupported(ITypeDescriptorContext? context) => true;
 
     public override object? CreateInstance(ITypeDescriptorContext? context, IDictionary propertyValues) {
-        if (propertyValues is null) return new MenuItemData();
+        ArgumentNullException.ThrowIfNull(propertyValues);
 
         return new MenuItemData(
-            propertyValues[nameof(MenuItemData.Name)] as string ?? "", 
-            propertyValues[nameof(MenuItemData.ChildNames)] as string[]
+            (string)propertyValues[nameof(MenuItemData.Name)]!,
+            (string[])propertyValues[nameof(MenuItemData.ChildNames)]!
             );
     }
 

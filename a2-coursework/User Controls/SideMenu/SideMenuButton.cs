@@ -44,4 +44,9 @@ public partial class SideMenuButton : UserControl, IThemeable {
             btn.Text = value;
         }
     }
+
+    protected override void OnResize(EventArgs e) {
+        base.OnResize(e);
+        btn.ImageRectangle = new Rectangle(btn.Width - (btn.ImageRectangle.Width + btn.Padding.Right), (btn.Height - btn.ImageRectangle.Height) / 2, btn.ImageRectangle.Width, btn.ImageRectangle.Height);
+    }
 }
