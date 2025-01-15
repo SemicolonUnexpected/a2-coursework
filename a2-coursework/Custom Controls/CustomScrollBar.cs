@@ -27,7 +27,10 @@ public partial class CustomScrollBar : Control {
     }
 
     protected override void OnMouseDown(MouseEventArgs e) {
-        if (e.Button == MouseButtons.Left) _isDragging = true;
+        if (e.Button == MouseButtons.Left) {
+            _isDragging = true;
+            _grabY = PointToClient(e.Location).Y;
+        }
 
         base.OnMouseDown(e);
     }
@@ -53,7 +56,7 @@ public partial class CustomScrollBar : Control {
             CalculateThumbPosition();
         }
 
-        Invalidate();
+        if (ThumbPath is not null) Invalidate(Rectangle.Round(ThumbPath.GetBounds()));
         base.OnMouseMove(e);
     }
 
