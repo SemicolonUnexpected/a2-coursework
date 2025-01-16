@@ -22,7 +22,8 @@ public partial class CustomScrollBar : Control {
         base.OnPaint(e);
     }
 
-    private void CalculateThumbPosition() {
+    private void CalculateThumbPosition(int mouseY) {
+        int actualRange = _channelHeight - (int)_thumbHeight;
 
     }
 
@@ -37,6 +38,7 @@ public partial class CustomScrollBar : Control {
 
     protected override void OnMouseUp(MouseEventArgs e) {
         _isDragging = false;
+
 
         base.OnMouseUp(e);
     }
@@ -53,17 +55,18 @@ public partial class CustomScrollBar : Control {
         }
 
         if (_isDragging) {
-            CalculateThumbPosition();
+            CalculateThumbPosition(PointToClient(e.Location).Y);
         }
 
-        if (ThumbPath is not null) Invalidate(Rectangle.Round(ThumbPath.GetBounds()));
+        Invalidate();
         base.OnMouseMove(e);
     }
 
     protected override void OnResize(EventArgs e) {
+        base.OnResize(e);
+
         // Cache these to allow for faster painting
         _channelHeight = Height - Padding.Vertical;
         _thumbHeight = Math.Max(MinimumThumbHeight, (int)((double)Maximum / LargeChange * _channelHeight));
-        base.OnResize(e);
     }
 }

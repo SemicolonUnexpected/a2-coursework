@@ -42,7 +42,6 @@
             btn.Padding = new Padding(2);
             btn.Size = new Size(373, 40);
             btn.TabIndex = 9;
-            btn.Text = "qa";
             btn.Click += btn_Click;
             // 
             // pnlDropDown

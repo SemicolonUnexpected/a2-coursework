@@ -1,20 +1,21 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
+﻿using a2_coursework.Theming;
 
-namespace a2_coursework.User_Controls.SideMenu
-{
-    public partial class MainSideMenu: UserControl
-    {
-        public MainSideMenu()
-        {
-            InitializeComponent();
-        }
+namespace a2_coursework.User_Controls.SideMenu;
+public partial class MainSideMenu : UserControl {
+    public MainSideMenu() {
+        InitializeComponent();
+    }
+
+    public void Theme() {
+        BackColor = ColorScheme.CurrentTheme.Background;
+
+        btnDashboard.Theme();
+        smdBooking.Theme();
+        smdCustomers.Theme();
+        smdOrders.Theme();
+        smdSecurity.Theme();
+        smdAnalytics.Theme();
+        smdUsers.Theme();
+        smdSettings.Theme();
     }
 }

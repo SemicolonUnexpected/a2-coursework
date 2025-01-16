@@ -74,6 +74,8 @@ public partial class SideMenuDropDown : UserControl {
 
             pnlChildHolder.Controls.Add(button);
         }
+
+        OnResize(EventArgs.Empty);
     }
 
     private void btn_Click(object sender, EventArgs e) {
@@ -85,12 +87,13 @@ public partial class SideMenuDropDown : UserControl {
         set {
             pnlDropDown.Visible = value;
             btn.IconImage = pnlDropDown.Visible ? IconTheme.CurrentTheme.Minus : IconTheme.CurrentTheme.Plus;
+            OnResize(EventArgs.Empty);
         }
     }
 
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
 
-        Size = new Size(Width, btn.Height + pnlDropDown.Height);
+        Size = new Size(Width, pnlDropDown.Visible ? pnlDropDown.Height + btn.Height : btn.Height);
     }
 }
