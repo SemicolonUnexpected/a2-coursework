@@ -63,7 +63,7 @@ public partial class SideMenuDropDown : UserControl {
         float scalingFactor = DeviceDpi / 96f;
         _sideMenuItems = new SideMenuToggleButton[ChildNames!.Length];
 
-        pnlDropDown.Height = MENU_ITEM_HEIGHT * ChildNames.Length;
+        pnlDropDown.Height = (int)(MENU_ITEM_HEIGHT * ChildNames.Length * scalingFactor);
 
         for (int i = 0; i < ChildNames.Length; i++) {
             SideMenuToggleButton button = new() {

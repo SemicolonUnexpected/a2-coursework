@@ -1,4 +1,5 @@
-﻿using System.Drawing.Drawing2D;
+﻿using System.ComponentModel;
+using System.Drawing.Drawing2D;
 
 namespace a2_coursework.CustomControls;
 public partial class CustomScrollBar {
@@ -7,6 +8,7 @@ public partial class CustomScrollBar {
         get => _maximum;
         set {
             _maximum = value;
+            CalculateThumbHeight();
             Invalidate();
         }
     }
@@ -16,6 +18,7 @@ public partial class CustomScrollBar {
         get => _minimum;
         set {
             _minimum = value;
+            CalculateThumbHeight();
             Invalidate();
         }
     }
@@ -25,6 +28,7 @@ public partial class CustomScrollBar {
         get => _largeChange;
         set {
             _largeChange = value;
+            CalculateThumbHeight();
             Invalidate();
         }
     }
@@ -34,6 +38,7 @@ public partial class CustomScrollBar {
         get => _smallChange;
         set {
             _smallChange = value;
+            CalculateThumbHeight();
             Invalidate();
         }
     }
@@ -42,8 +47,14 @@ public partial class CustomScrollBar {
     public int Value {
         get => _value;
         set {
-            _value = value;
-            Invalidate();
+            value = Math.Clamp(value, Minimum, Maximum);
+            if (value != _value) {
+                _thumbY = _channelWorkingHeight * (float)_value / (Maximum - Minimum);
+                _value = value;
+                Invalidate();
+
+                ValueChanged?.Invoke(this, EventArgs.Empty);
+            }
         }
     }
 
@@ -52,6 +63,7 @@ public partial class CustomScrollBar {
         get => _minimumThumbSize;
         set {
             _minimumThumbSize = value;
+            CalculateThumbHeight();
             Invalidate();
         }
     }
@@ -61,6 +73,11 @@ public partial class CustomScrollBar {
         get => _thumbColor;
         set {
             _thumbColor = value;
+
+            if (_thumbState == CustomScrollBarThumbState.Normal) {
+                _actualThumbColor = _thumbColor;
+            }
+
             Invalidate();
         }
     }
@@ -70,6 +87,11 @@ public partial class CustomScrollBar {
         get => _thumbHoverColor;
         set {
             _thumbHoverColor = value;
+
+            if (_thumbState == CustomScrollBarThumbState.Hover) {
+                _actualThumbColor = _thumbHoverColor;
+            }
+
             Invalidate();
         }
     }
@@ -79,6 +101,11 @@ public partial class CustomScrollBar {
         get => _thumbClickedColor;
         set {
             _thumbClickedColor = value;
+
+            if (_thumbState == CustomScrollBarThumbState.Clicked) {
+                _actualThumbColor = _thumbClickedColor;
+            }
+
             Invalidate();
         }
     }
@@ -93,10 +120,24 @@ public partial class CustomScrollBar {
     }
 
     private Padding _padding;
+    [TypeConverter(typeof(PaddingConverter))]
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [Browsable(true)]
+    [DefaultValue(typeof(Padding), "0,0,0,0")]
     public new Padding Padding {
         get => _padding;
         set {
             _padding = value;
+            if (_thumbY < _padding.Top) {
+                _thumbY = _padding.Top;
+            }
+            else if (_thumbY + _thumbHeight > _padding.Bottom) {
+                _thumbY = Height - (_padding.Bottom + _thumbHeight);
+            }
+
+            CalculateChannelWorkingHeight();
+            CalculateThumbHeight();
+
             Invalidate();
         }
     }
@@ -110,7 +151,7 @@ public partial class CustomScrollBar {
         }
     }
 
-
+    private enum CustomScrollBarThumbState { Normal, Hover, Clicked }
 
     public event EventHandler? Scroll;
     public event EventHandler? ValueChanged;

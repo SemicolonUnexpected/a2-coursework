@@ -23,7 +23,19 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterView));
+            mainSideMenu1 = new User_Controls.SideMenu.MainSideMenu();
             SuspendLayout();
+            // 
+            // mainSideMenu1
+            // 
+            mainSideMenu1.AutoScroll = true;
+            mainSideMenu1.BackColor = Color.FromArgb(9, 9, 10);
+            mainSideMenu1.Dock = DockStyle.Left;
+            mainSideMenu1.Location = new Point(0, 0);
+            mainSideMenu1.Name = "mainSideMenu1";
+            mainSideMenu1.Size = new Size(202, 461);
+            mainSideMenu1.TabIndex = 0;
             // 
             // MasterView
             // 
@@ -31,6 +43,8 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(784, 461);
+            Controls.Add(mainSideMenu1);
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(800, 500);
             Name = "MasterView";
             Text = "Master";
@@ -40,5 +54,6 @@
 
         #endregion
         private UserControls.SideMenu.SideMenuDropDown sideMenuDropDown1;
+        private User_Controls.SideMenu.MainSideMenu mainSideMenu1;
     }
 }
