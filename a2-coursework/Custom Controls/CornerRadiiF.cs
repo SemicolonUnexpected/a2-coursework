@@ -1,4 +1,6 @@
-﻿using System.ComponentModel;
+﻿using System.CodeDom;
+using System.ComponentModel;
+using System.Diagnostics;
 
 namespace a2_coursework.CustomControls;
 
@@ -17,7 +19,7 @@ public struct CornerRadiiF : IEquatable<CornerRadiiF> {
     }
 
     [RefreshProperties(RefreshProperties.All)]
-    public float TopLeft { readonly get; set; } 
+    public float TopLeft { readonly get; set; }
     [RefreshProperties(RefreshProperties.All)]
     public float TopRight { readonly get; set; }
     [RefreshProperties(RefreshProperties.All)]
@@ -38,7 +40,7 @@ public struct CornerRadiiF : IEquatable<CornerRadiiF> {
             BottomRight = value;
         }
     }
-    
+
     public bool Equals(CornerRadiiF other) {
         return TopLeft == other.TopLeft && TopRight == other.TopRight && BottomRight == other.BottomRight && BottomLeft == other.BottomLeft;
     }
@@ -51,11 +53,11 @@ public struct CornerRadiiF : IEquatable<CornerRadiiF> {
         return new CornerRadiiF(c1.TopLeft - c2.TopLeft, c1.TopRight - c2.TopRight, c1.BottomLeft - c2.BottomLeft, c1.BottomRight - c2.BottomRight);
     }
     public static CornerRadiiF operator -(CornerRadiiF c, int value) {
-        return new CornerRadiiF(c.TopLeft - value, c.TopRight - value, c.BottomLeft -  value,c.BottomRight -  value);
+        return new CornerRadiiF(c.TopLeft - value, c.TopRight - value, c.BottomLeft - value, c.BottomRight - value);
     }
 
     public static CornerRadiiF operator -(CornerRadiiF c, float value) {
-        return new CornerRadiiF(c.TopLeft - value, c.TopRight - value, c.BottomLeft -  value,c.BottomRight -  value);
+        return new CornerRadiiF(c.TopLeft - value, c.TopRight - value, c.BottomLeft - value, c.BottomRight - value);
     }
 
     public static CornerRadiiF operator *(CornerRadiiF c, int factor) {

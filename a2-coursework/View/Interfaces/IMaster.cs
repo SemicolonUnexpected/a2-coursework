@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.Interfaces; 
+﻿namespace a2_coursework.View.Interfaces;
 internal interface IMaster {
     public void Show();
     public void Close();

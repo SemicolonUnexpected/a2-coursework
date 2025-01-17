@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel;
 using System.Windows.Forms.Design;
 
-namespace AS_Coursework.Custom_Controls; 
+namespace AS_Coursework.Custom_Controls;
 
 [Designer(typeof(ParentControlDesigner))]
 public partial class PicturePanel : Control {
@@ -12,7 +12,7 @@ public partial class PicturePanel : Control {
         get => _image;
         set {
             _image = value;
-            if(value is not null) ImagePortion = new Rectangle(0, 0, value.Width, value.Height);
+            if (value is not null) ImagePortion = new Rectangle(0, 0, value.Width, value.Height);
             Invalidate();
         }
     }

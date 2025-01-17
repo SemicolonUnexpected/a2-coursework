@@ -103,7 +103,7 @@ public partial class ToggleButton : CustomPanel {
         set {
             _text = value;
             Invalidate();
-        } 
+        }
     }
 
     public new Padding Padding {
@@ -148,7 +148,7 @@ public partial class ToggleButton : CustomPanel {
             Font = new Font(Font, FontStyle.Regular);
             base.BackColor = HoverColor;
         }
-        
+
         base.OnMouseClick(e);
     }
 

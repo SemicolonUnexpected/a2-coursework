@@ -4,10 +4,10 @@ using AS_Coursework.Model.Security;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 
-namespace a2_coursework.Presenter; 
+namespace a2_coursework.Presenter;
 internal class LoginPresenter {
     private ILoginView _view;
- 
+
     public void Show() => _view.Show();
     public void Close() => _view.Close();
 
@@ -99,7 +99,7 @@ internal class LoginPresenter {
     }
 
     private void UsernameTextChanged(object? sender, EventArgs e) {
-        if (!_view.Username.IsNullOrEmpty() && _view.ErrorText ==  "Please fill in a username and password") _view.ErrorText = "Please fill in a password";
+        if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a password";
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username") _view.ErrorText = "";
         if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
     }

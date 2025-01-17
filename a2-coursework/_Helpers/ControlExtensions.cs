@@ -1,4 +1,4 @@
-﻿namespace a2_coursework._Helpers; 
+﻿namespace a2_coursework._Helpers;
 public static class ControlExtensions {
     public static void ExecuteOnChildrenRecursive(this Control control, Action<Control> a) {
         Queue<Control> queue = new();

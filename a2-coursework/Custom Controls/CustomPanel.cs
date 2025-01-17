@@ -17,7 +17,7 @@ public partial class CustomPanel : Panel {
             Invalidate();
         }
     }
-    
+
     private CornerRadiiF _cornerRadii;
     [Category("Appearance")]
     [TypeConverter(typeof(CornerRadiiFConverter))]

@@ -59,7 +59,7 @@ public partial class PictureFrame : Control {
 
     [Category("_CustomPictureBox Border")]
     public Color BorderColorOne {
-        get => _borderColorOne; 
+        get => _borderColorOne;
         set {
             _borderColorOne = value;
             Invalidate();
@@ -114,7 +114,7 @@ public partial class PictureFrame : Control {
         switch (BorderStyle) {
             case BorderType.None:
                 break;
-            case BorderType.Circle:        
+            case BorderType.Circle:
                 // Create a circular display region
                 using (GraphicsPath regionPath = new()) {
                     regionPath.AddEllipse(DisplayRectangle);

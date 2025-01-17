@@ -1,7 +1,7 @@
-﻿using System.Drawing.Drawing2D;
-using System.ComponentModel;
+﻿using System.ComponentModel;
+using System.Drawing.Drawing2D;
 
-namespace a2_coursework.CustomControls; 
+namespace a2_coursework.CustomControls;
 public partial class CustomProgressBar : Control {
 
     private Color _startColor = Color.FromArgb(0, 100, 255);

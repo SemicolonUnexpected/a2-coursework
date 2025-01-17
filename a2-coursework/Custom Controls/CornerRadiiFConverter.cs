@@ -14,7 +14,7 @@ public class CornerRadiiFConverter : TypeConverter {
     public override bool CanConvertTo(ITypeDescriptorContext? context, Type? destinationType) {
         if (destinationType == typeof(string)) return true;
         if (destinationType == typeof(InstanceDescriptor)) return true;
-        
+
         return base.CanConvertTo(context, destinationType);
     }
 
@@ -75,7 +75,7 @@ public class CornerRadiiFConverter : TypeConverter {
             else if (destinationType == typeof(InstanceDescriptor)) {
                 var ctor = typeof(CornerRadiiF).GetConstructor([typeof(float), typeof(float), typeof(float), typeof(float)]);
                 if (ctor is not null) {
-                    return new InstanceDescriptor(ctor, new object[] {cornerRadiiF.TopLeft, cornerRadiiF.TopRight, cornerRadiiF.BottomLeft, cornerRadiiF.BottomRight});
+                    return new InstanceDescriptor(ctor, new object[] { cornerRadiiF.TopLeft, cornerRadiiF.TopRight, cornerRadiiF.BottomLeft, cornerRadiiF.BottomRight });
                 }
             }
         }

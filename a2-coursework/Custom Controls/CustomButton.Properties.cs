@@ -112,7 +112,7 @@ public partial class CustomButton {
             _text = value;
             CalculateTextPosition();
             Invalidate();
-        } 
+        }
     }
 
     private bool _enabled = true;

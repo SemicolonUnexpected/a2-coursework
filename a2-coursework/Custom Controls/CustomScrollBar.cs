@@ -1,18 +1,16 @@
-﻿namespace a2_coursework.CustomControls; 
+﻿using System.ComponentModel;
+
+namespace a2_coursework.CustomControls;
 public partial class CustomScrollBar : Control {
-    private int _channelWorkingHeight;
+    private int _channelHeight;
     private float _thumbHeight;
+    private float _channelWorkingHeight;
     private int _thumbGrabYOffset;
     private float _thumbY;
-    private Color _actualThumbColor;
-    private bool _isDragging = false;
-    private bool _mouseDown = false;
-    private CustomScrollBarThumbState _thumbState = CustomScrollBarThumbState.Normal;
 
     public CustomScrollBar() {
         // Cache these to allow for faster painting
-        CalculateChannelWorkingHeight();
-        CalculateThumbHeight();
+        CalculateHeights();
 
         DoubleBuffered = true;
     }
@@ -30,7 +28,7 @@ public partial class CustomScrollBar : Control {
     protected override void OnMouseDown(MouseEventArgs e) {
         if (e.Button == MouseButtons.Left) {
             _mouseDown = true;
-            
+
             if (ThumbContainsMouse(e.Location)) {
                 _isDragging = true;
 
@@ -103,11 +101,12 @@ public partial class CustomScrollBar : Control {
     }
 
     protected override void OnResize(EventArgs e) {
+        // Cache these to allow for faster painting
+        CalculateHeights();
+
         base.OnResize(e);
 
-        // Cache these to allow for faster painting
-        CalculateChannelWorkingHeight();
-        CalculateThumbHeight();
+        Invalidate();
     }
 
     private void SetThumbY(int y) {
@@ -116,17 +115,27 @@ public partial class CustomScrollBar : Control {
         else if (thumbY > _channelWorkingHeight) _thumbY = _channelWorkingHeight;
         else _thumbY = thumbY;
 
-        float fractionScrolled = _thumbY / _channelWorkingHeight;
+        float fractionScrolled = (_thumbY - Padding.Top) / _channelWorkingHeight;
         int value = (int)((Maximum - Minimum) * fractionScrolled + Minimum);
-        if (value != Value) {
-            Value = value;
+        if (value != _value) {
+            _value = value;
             ValueChanged?.Invoke(this, EventArgs.Empty);
         }
 
         Scroll?.Invoke(this, EventArgs.Empty);
     }
 
-    private void CalculateThumbHeight() => _thumbHeight = Math.Max(MinimumThumbHeight, (int)(Maximum / (double)LargeChange * _channelWorkingHeight));
-    private void CalculateChannelWorkingHeight() => _channelWorkingHeight = Height - (Padding.Vertical + (int)_thumbHeight);
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        ThumbCorderRadii = new CornerRadiiF(ThumbCorderRadii.TopLeft * factor.Width, ThumbCorderRadii.TopRight * factor.Width, ThumbCorderRadii.BottomLeft * factor.Width, ThumbCorderRadii.BottomRight * factor.Width);
+        base.ScaleControl(factor, specified);
+    }
+
+    private void CalculateHeights() {
+        _channelHeight = Height - Padding.Vertical;
+        _thumbHeight = Math.Min(_channelHeight, Math.Max(MinimumThumbHeight, (int)(LargeChange / (double)Maximum * _channelHeight)));
+        _channelWorkingHeight = _channelHeight - _thumbHeight;
+        _thumbY = _channelWorkingHeight * (float)_value / (Maximum - Minimum) + Padding.Top;
+    }
+
     private bool ThumbContainsMouse(Point mouseClientLocation) => ThumbPath is not null && ThumbPath.IsVisible(mouseClientLocation);
 }

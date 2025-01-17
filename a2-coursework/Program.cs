@@ -1,4 +1,4 @@
-namespace a2_coursework; 
+namespace a2_coursework;
 internal static class Program {
     /// <summary>
     ///  The main entry point for the application.

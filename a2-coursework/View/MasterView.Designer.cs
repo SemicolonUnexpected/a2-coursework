@@ -29,12 +29,11 @@
             // 
             // mainSideMenu1
             // 
-            mainSideMenu1.AutoScroll = true;
             mainSideMenu1.BackColor = Color.FromArgb(9, 9, 10);
             mainSideMenu1.Dock = DockStyle.Left;
             mainSideMenu1.Location = new Point(0, 0);
             mainSideMenu1.Name = "mainSideMenu1";
-            mainSideMenu1.Size = new Size(202, 461);
+            mainSideMenu1.Size = new Size(198, 461);
             mainSideMenu1.TabIndex = 0;
             // 
             // MasterView

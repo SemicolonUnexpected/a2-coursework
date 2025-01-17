@@ -37,7 +37,7 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
     public Image Eye { get; } = eye;
     public Image EyeCrossed { get; } = eyeCrossed;
     public Image Settings { get; } = settings;
-    public Image BackArrow { get;  } = backArrow;
+    public Image BackArrow { get; } = backArrow;
     public Image Plus { get; } = plus;
     public Image Minus { get; } = minus;
     #endregion

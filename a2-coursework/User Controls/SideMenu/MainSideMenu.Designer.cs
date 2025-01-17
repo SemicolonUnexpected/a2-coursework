@@ -32,8 +32,11 @@
             smdSecurity = new UserControls.SideMenu.SideMenuDropDown();
             smdSettings = new UserControls.SideMenu.SideMenuDropDown();
             pnlMenuHolder = new Panel();
-            customScrollBar1 = new CustomControls.CustomScrollBar();
+            sb = new CustomControls.CustomScrollBar();
+            pnlDecor = new Panel();
+            pnlHolder = new Panel();
             pnlMenuHolder.SuspendLayout();
+            pnlHolder.SuspendLayout();
             SuspendLayout();
             // 
             // btnDashboard
@@ -43,7 +46,7 @@
             btnDashboard.Location = new Point(0, 0);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Padding = new Padding(2);
-            btnDashboard.Size = new Size(139, 40);
+            btnDashboard.Size = new Size(191, 40);
             btnDashboard.TabIndex = 0;
             btnDashboard.Text = "Dashboard";
             btnDashboard.Toggled = true;
@@ -62,8 +65,9 @@
             smdBooking.Location = new Point(0, 40);
             smdBooking.Name = "smdBooking";
             smdBooking.ParentName = "Bookings";
-            smdBooking.Size = new Size(139, 40);
+            smdBooking.Size = new Size(191, 40);
             smdBooking.TabIndex = 1;
+            smdBooking.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // smdCustomers
             // 
@@ -79,8 +83,9 @@
             smdCustomers.Location = new Point(0, 80);
             smdCustomers.Name = "smdCustomers";
             smdCustomers.ParentName = "Customers";
-            smdCustomers.Size = new Size(139, 40);
+            smdCustomers.Size = new Size(191, 40);
             smdCustomers.TabIndex = 2;
+            smdCustomers.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // smdOrders
             // 
@@ -97,8 +102,9 @@
             smdOrders.Location = new Point(0, 120);
             smdOrders.Name = "smdOrders";
             smdOrders.ParentName = "Orders";
-            smdOrders.Size = new Size(139, 40);
+            smdOrders.Size = new Size(191, 40);
             smdOrders.TabIndex = 3;
+            smdOrders.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // smdAnalytics
             // 
@@ -115,8 +121,9 @@
             smdAnalytics.Location = new Point(0, 160);
             smdAnalytics.Name = "smdAnalytics";
             smdAnalytics.ParentName = "Analytics";
-            smdAnalytics.Size = new Size(139, 40);
+            smdAnalytics.Size = new Size(191, 40);
             smdAnalytics.TabIndex = 4;
+            smdAnalytics.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // smdUsers
             // 
@@ -131,8 +138,9 @@
             smdUsers.Location = new Point(0, 200);
             smdUsers.Name = "smdUsers";
             smdUsers.ParentName = "Staff";
-            smdUsers.Size = new Size(139, 40);
+            smdUsers.Size = new Size(191, 40);
             smdUsers.TabIndex = 5;
+            smdUsers.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // smdSecurity
             // 
@@ -147,8 +155,10 @@
             smdSecurity.Location = new Point(0, 240);
             smdSecurity.Name = "smdSecurity";
             smdSecurity.ParentName = "Security";
-            smdSecurity.Size = new Size(139, 40);
+            smdSecurity.Size = new Size(191, 40);
             smdSecurity.TabIndex = 6;
+            smdSecurity.TabStop = false;
+            smdSecurity.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // smdSettings
             // 
@@ -164,11 +174,13 @@
             smdSettings.Location = new Point(0, 280);
             smdSettings.Name = "smdSettings";
             smdSettings.ParentName = "Settings";
-            smdSettings.Size = new Size(139, 40);
+            smdSettings.Size = new Size(191, 40);
             smdSettings.TabIndex = 7;
+            smdSettings.DropDownToggleChanged += DropDownToggleChanged;
             // 
             // pnlMenuHolder
             // 
+            pnlMenuHolder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
             pnlMenuHolder.Controls.Add(smdSettings);
             pnlMenuHolder.Controls.Add(smdSecurity);
             pnlMenuHolder.Controls.Add(smdUsers);
@@ -177,41 +189,62 @@
             pnlMenuHolder.Controls.Add(smdCustomers);
             pnlMenuHolder.Controls.Add(smdBooking);
             pnlMenuHolder.Controls.Add(btnDashboard);
-            pnlMenuHolder.Location = new Point(3, 3);
+            pnlMenuHolder.Location = new Point(0, 0);
             pnlMenuHolder.Name = "pnlMenuHolder";
-            pnlMenuHolder.Size = new Size(139, 401);
+            pnlMenuHolder.Size = new Size(191, 320);
             pnlMenuHolder.TabIndex = 8;
             // 
-            // customScrollBar1
+            // sb
             // 
-            customScrollBar1.LargeChange = 50;
-            customScrollBar1.Location = new Point(164, 43);
-            customScrollBar1.Maximum = 100;
-            customScrollBar1.Minimum = 0;
-            customScrollBar1.MinimumThumbHeight = 30;
-            customScrollBar1.Name = "customScrollBar1";
-            customScrollBar1.Padding = new Padding(2);
-            customScrollBar1.Size = new Size(23, 657);
-            customScrollBar1.SmallChange = 10;
-            customScrollBar1.TabIndex = 9;
-            customScrollBar1.Text = "customScrollBar1";
-            customScrollBar1.ThumbClickedColor = Color.FromArgb(39, 39, 42);
-            customScrollBar1.ThumbColor = Color.FromArgb(39, 39, 42);
-            customScrollBar1.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
-            customScrollBar1.ThumbHoverColor = Color.FromArgb(39, 39, 42);
-            customScrollBar1.Value = 0;
+            sb.Dock = DockStyle.Right;
+            sb.LargeChange = 50;
+            sb.Location = new Point(191, 0);
+            sb.Maximum = 100;
+            sb.Minimum = 0;
+            sb.MinimumThumbHeight = 30;
+            sb.Name = "sb";
+            sb.Padding = new Padding(2);
+            sb.Size = new Size(10, 320);
+            sb.SmallChange = 10;
+            sb.TabIndex = 9;
+            sb.Text = "customScrollBar1";
+            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
+            sb.Visible = false;
+            // 
+            // pnlDecor
+            // 
+            pnlDecor.BackColor = Color.FromArgb(39, 39, 42);
+            pnlDecor.Dock = DockStyle.Right;
+            pnlDecor.Location = new Point(201, 0);
+            pnlDecor.Name = "pnlDecor";
+            pnlDecor.Size = new Size(1, 320);
+            pnlDecor.TabIndex = 8;
+            // 
+            // pnlHolder
+            // 
+            pnlHolder.Controls.Add(pnlMenuHolder);
+            pnlHolder.Dock = DockStyle.Fill;
+            pnlHolder.Location = new Point(0, 0);
+            pnlHolder.Name = "pnlHolder";
+            pnlHolder.Size = new Size(191, 320);
+            pnlHolder.TabIndex = 8;
             // 
             // MainSideMenu
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            Controls.Add(customScrollBar1);
-            Controls.Add(pnlMenuHolder);
+            Controls.Add(pnlHolder);
+            Controls.Add(sb);
+            Controls.Add(pnlDecor);
             DoubleBuffered = true;
             Name = "MainSideMenu";
-            Size = new Size(202, 1018);
+            Size = new Size(202, 320);
             pnlMenuHolder.ResumeLayout(false);
+            pnlHolder.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -226,6 +259,8 @@
         private UserControls.SideMenu.SideMenuDropDown smdSecurity;
         private UserControls.SideMenu.SideMenuDropDown smdSettings;
         private Panel pnlMenuHolder;
-        private CustomControls.CustomScrollBar customScrollBar1;
+        private CustomControls.CustomScrollBar sb;
+        private Panel pnlDecor;
+        private Panel pnlHolder;
     }
 }

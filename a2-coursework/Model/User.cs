@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.Model; 
+﻿namespace a2_coursework.Model;
 
 internal class User {
     public string Username { get; init; }

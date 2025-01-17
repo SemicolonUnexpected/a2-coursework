@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.UserControls.SideMenu; 
+namespace a2_coursework.UserControls.SideMenu;
 public partial class SideMenuToggleButton : UserControl {
     public SideMenuToggleButton() {
         InitializeComponent();

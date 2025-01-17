@@ -159,7 +159,7 @@ public partial class OldCustomScrollBar : Control {
         Point mousePoint = e.Location;
         if (e.Button == MouseButtons.Left && _channelRectangle.Contains(mousePoint)) {
             // Set the grab point to the mouse Y position if it is on the thumb or the middle of the thumb if it is not
-          //  _grabY = mousePoint.Y <  ? mousePoint.Y - _thumbRectangle.Top : _thumbRectangle.Height / 2;
+            //  _grabY = mousePoint.Y <  ? mousePoint.Y - _thumbRectangle.Top : _thumbRectangle.Height / 2;
             _isDragging = true;
 
             //TrySetThumbHeight();
@@ -167,13 +167,13 @@ public partial class OldCustomScrollBar : Control {
     }
 
     private void SetRectanglesToSizeAndPadding() {
-//            _channelRectangle.X = value.Left;
-//            _channelRectangle.Y = value.Top;
-//            _channelRectangle.Width = Width - value.Horizontal;
-//            _channelRectangle.Height = Height - value.Vertical;
-//
-//            _thumbRectangle.X = _channelRectangle.X;
-//            _thumbRectangle.Width = _channelRectangle.Width;
-//
+        //            _channelRectangle.X = value.Left;
+        //            _channelRectangle.Y = value.Top;
+        //            _channelRectangle.Width = Width - value.Horizontal;
+        //            _channelRectangle.Height = Height - value.Vertical;
+        //
+        //            _thumbRectangle.X = _channelRectangle.X;
+        //            _thumbRectangle.Width = _channelRectangle.Width;
+        //
     }
 }

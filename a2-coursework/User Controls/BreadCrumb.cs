@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.UserControls; 
+﻿namespace a2_coursework.UserControls;
 public partial class BreadCrumb : Control {
     public BreadCrumb() {
 
@@ -12,7 +12,7 @@ public partial class BreadCrumb : Control {
     public Image BreadCrumbSeparator {
         get => _breadCrumbSeparator;
         set {
-             _breadCrumbSeparator = value;
+            _breadCrumbSeparator = value;
             Invalidate();
         }
     }

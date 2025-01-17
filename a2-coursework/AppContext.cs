@@ -1,4 +1,4 @@
-﻿namespace a2_coursework; 
+﻿namespace a2_coursework;
 internal class AppContext : ApplicationContext {
 
     public AppContext() {

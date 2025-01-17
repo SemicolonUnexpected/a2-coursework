@@ -3,12 +3,17 @@ using System.Drawing.Drawing2D;
 
 namespace a2_coursework.CustomControls;
 public partial class CustomScrollBar {
+    private Color _actualThumbColor;
+    private bool _isDragging = false;
+    private bool _mouseDown = false;
+    private CustomScrollBarThumbState _thumbState = CustomScrollBarThumbState.Normal;
+
     private int _maximum;
     public int Maximum {
         get => _maximum;
         set {
             _maximum = value;
-            CalculateThumbHeight();
+            CalculateHeights();
             Invalidate();
         }
     }
@@ -18,7 +23,7 @@ public partial class CustomScrollBar {
         get => _minimum;
         set {
             _minimum = value;
-            CalculateThumbHeight();
+            CalculateHeights();
             Invalidate();
         }
     }
@@ -28,7 +33,7 @@ public partial class CustomScrollBar {
         get => _largeChange;
         set {
             _largeChange = value;
-            CalculateThumbHeight();
+            CalculateHeights();
             Invalidate();
         }
     }
@@ -38,19 +43,21 @@ public partial class CustomScrollBar {
         get => _smallChange;
         set {
             _smallChange = value;
-            CalculateThumbHeight();
+            CalculateHeights();
             Invalidate();
         }
     }
 
-    private int _value;
+    private int _value = 0;
+    [DefaultValue(0)]
     public int Value {
         get => _value;
         set {
             value = Math.Clamp(value, Minimum, Maximum);
+
             if (value != _value) {
-                _thumbY = _channelWorkingHeight * (float)_value / (Maximum - Minimum);
                 _value = value;
+                CalculateHeights();
                 Invalidate();
 
                 ValueChanged?.Invoke(this, EventArgs.Empty);
@@ -63,7 +70,7 @@ public partial class CustomScrollBar {
         get => _minimumThumbSize;
         set {
             _minimumThumbSize = value;
-            CalculateThumbHeight();
+            CalculateHeights();
             Invalidate();
         }
     }
@@ -135,8 +142,7 @@ public partial class CustomScrollBar {
                 _thumbY = Height - (_padding.Bottom + _thumbHeight);
             }
 
-            CalculateChannelWorkingHeight();
-            CalculateThumbHeight();
+            CalculateHeights();
 
             Invalidate();
         }

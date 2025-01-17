@@ -1,5 +1,5 @@
-using System.Text;
 using System.Security.Cryptography;
+using System.Text;
 
 namespace AS_Coursework.Model.Security;
 
@@ -38,4 +38,4 @@ internal static class CryptographyManager {
         // Use a fixed time equals to prevent time based attacks
         return CryptographicOperations.FixedTimeEquals(hash, hashedText);
     }
-} 
+}

@@ -3,6 +3,8 @@
 namespace a2_coursework.UserControls.SideMenu;
 public partial class SideMenuDropDown : UserControl {
     private const int MENU_ITEM_HEIGHT = 40;
+
+    public event EventHandler? DropDownToggleChanged;
     public SideMenuDropDown() {
         InitializeComponent();
 
@@ -87,7 +89,10 @@ public partial class SideMenuDropDown : UserControl {
         set {
             pnlDropDown.Visible = value;
             btn.IconImage = pnlDropDown.Visible ? IconTheme.CurrentTheme.Minus : IconTheme.CurrentTheme.Plus;
+
             OnResize(EventArgs.Empty);
+
+            DropDownToggleChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 

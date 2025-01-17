@@ -41,7 +41,7 @@ internal static class CustomControlHelpers {
             path.AddArc(rectangle.Right - cornerRadii.BottomRight * 2, rectangle.Bottom - cornerRadii.BottomRight * 2, cornerRadii.BottomRight * 2, cornerRadii.BottomRight * 2, 0, 90);
         }
 
-        if(cornerRadii.BottomLeft == 0) {
+        if (cornerRadii.BottomLeft == 0) {
             path.AddLine(rectangle.X, rectangle.Bottom, rectangle.X, rectangle.Bottom);
         }
         else {
