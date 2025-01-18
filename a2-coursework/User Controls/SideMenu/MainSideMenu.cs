@@ -1,4 +1,5 @@
-﻿using a2_coursework.UserControls.SideMenu;
+﻿using a2_coursework.UserControls;
+using a2_coursework.UserControls.SideMenu;
 
 namespace a2_coursework.User_Controls.SideMenu;
 public partial class MainSideMenu : UserControl {
@@ -18,16 +19,52 @@ public partial class MainSideMenu : UserControl {
             smdUsers,
             smdSettings
         ];
+
+        foreach (SideMenuDropdown dropdown in _dropdowns) {
+            foreach (SideMenuToggleButton sideMenuToggleButton in dropdown.ToggleButtons) {
+                sideMenuToggleButton.ToggleButton.ToggleChanged += ToggleChanged;
+            }
+        }
+
+        btnDashboard.ToggleChanged += ToggleChanged;
     }
 
-    private void DropdownToggleChanged(object? sender, EventArgs e) {
-        SetupSizeAndScroll();
+    protected override void OnMouseWheel(MouseEventArgs e) {
+        sb.Value -= e.Delta;
+        Update();
+
+        base.OnMouseWheel(e);
     }
 
     protected override void OnResize(EventArgs e) {
         SetupSizeAndScroll();
 
         base.OnResize(e);
+    }
+
+    private void DropdownToggleChanged(object? sender, EventArgs e) {
+        SetupSizeAndScroll();
+    }
+
+    private void ToggleChanged(object? sender, EventArgs e) {
+        if (sender is not ToggleButton btn) return;
+
+        if (!btn.Toggled) return;
+
+        foreach (SideMenuDropdown dropdown in _dropdowns) {
+            foreach (SideMenuToggleButton sideMenuToggleButton in dropdown.ToggleButtons) {
+                if (sideMenuToggleButton.ToggleButton != btn) sideMenuToggleButton.Toggled = false;
+            }
+        }
+
+        if (btnDashboard.ToggleButton != btn) btnDashboard.Toggled = false;
+
+        // Choose the event to fire
+        InvokeToggledEvent(btn.Text);
+    }
+
+    private void sb_ValueChanged(object sender, EventArgs e) {
+        pnlMenuHolder.Location = new Point(0, -sb.Value);
     }
 
     private void SetupSizeAndScroll() {
@@ -59,16 +96,53 @@ public partial class MainSideMenu : UserControl {
         }
     }
 
-    private void sb_ValueChanged(object sender, EventArgs e) {
-        pnlMenuHolder.Location = new Point(0, -sb.Value);
+    public event EventHandler? DashboardToggled;
+    public event EventHandler? CalendarToggled;
+    public event EventHandler? UpcomingBookingsToggled;
+    public event EventHandler? RecentBookingsToggled;
+    public event EventHandler? ViewLocationsToggled;
+    public event EventHandler? ViewCustomersToggled;
+    public event EventHandler? RecentCustomersToggled;
+    public event EventHandler? StockUsageToggled;
+    public event EventHandler? ManageStockToggled;
+    public event EventHandler? PendingOrdersToggled;
+    public event EventHandler? CurrentStockToggled;
+    public event EventHandler? OverviewToggled;
+    public event EventHandler? CleaningToggled;
+    public event EventHandler? CleaningStockToggled;
+    public event EventHandler? ViewStaffToggled;
+    public event EventHandler? ChangePasswordToggled;
+    public event EventHandler? BusinessClosureToggled;
+    public event EventHandler? PasswordsToggled;
+    public event EventHandler? LoginAttemptsToggled;
+    public event EventHandler? AppearanceToggled;
+    public event EventHandler? AccountStatisticsToggled;
+    public event EventHandler? PersonalInformationToggled;
+
+    private void InvokeToggledEvent(string name) {
+         if (name == "Dashboard") DashboardToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Calendar") CalendarToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Upcoming bookings") UpcomingBookingsToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Recent bookings") RecentBookingsToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "View locations") ViewLocationsToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "View customers") ViewCustomersToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Recent customers") RecentCustomersToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Stock usage") StockUsageToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Manage stock") ManageStockToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Pending orders") PendingOrdersToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Current stock") CurrentStockToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Overview") OverviewToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Cleaning") CleaningToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Cleaning stock") CleaningStockToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "View staff") ViewStaffToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Change password") ChangePasswordToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Business closure") BusinessClosureToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Passwords") PasswordsToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Login attempts") LoginAttemptsToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Appearance") AppearanceToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Account statistics") AccountStatisticsToggled?.Invoke(this, EventArgs.Empty);
+         else if (name == "Personal information") PersonalInformationToggled?.Invoke(this, EventArgs.Empty);
+
+        throw new NotImplementedException();
     }
-
-    protected override void OnMouseWheel(MouseEventArgs e) {
-        sb.Value -= e.Delta;
-        Update();
-
-        base.OnMouseWheel(e);
-    }
-
-    public string Debug => $"{pnlHolder.Height}, {pnlMenuHolder.Height}";
 }

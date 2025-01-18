@@ -115,10 +115,9 @@
             smdAnalytics.BackColor = Color.FromArgb(9, 9, 10);
             smdAnalytics.ChildNames = new string[]
     {
-    "Stock",
-    "Upcoming bookings",
-    "Calendar",
-    "Holidays"
+    "Overview",
+    "Cleaning",
+    "Cleaning Stock",
     };
             smdAnalytics.Dock = DockStyle.Top;
             smdAnalytics.DropDownToggled = false;
@@ -136,7 +135,8 @@
             smdUsers.ChildNames = new string[]
     {
     "View staff",
-    "Change password"
+    "Change password",
+    "Business closure"
     };
             smdUsers.Dock = DockStyle.Top;
             smdUsers.DropDownToggled = false;

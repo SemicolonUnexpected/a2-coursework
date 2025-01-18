@@ -38,4 +38,8 @@ public partial class SideMenuToggleButton : UserControl {
         get => btn.Toggled;
         set => btn.Toggled = value;
     }
+
+    public ToggleButton ToggleButton {
+        get => btn;
+    }
 }

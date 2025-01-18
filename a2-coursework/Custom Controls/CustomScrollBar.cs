@@ -136,7 +136,12 @@ public partial class CustomScrollBar : Control {
     }
 
     private void CalculateHeights() {
-        Value = _value;
+        int value = Math.Clamp(Value, Minimum, Maximum);
+        if (value != _value) {
+            _value = value;
+            ValueChanged?.Invoke(this, EventArgs.Empty);
+        }
+
         _channelHeight = Height - Padding.Vertical;
         _thumbHeight = Math.Min(_channelHeight, Math.Max(MinimumThumbHeight, (int)(LargeChange / (float)(Maximum + LargeChange) * _channelHeight)));
         _channelWorkingHeight = _channelHeight - _thumbHeight;

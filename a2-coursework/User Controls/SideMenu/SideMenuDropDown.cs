@@ -76,6 +76,7 @@ public partial class SideMenuDropdown : UserControl {
             };
 
             pnlChildHolder.Controls.Add(button);
+            _sideMenuItems[i] = button;
         }
 
         ResizeDropDown();
