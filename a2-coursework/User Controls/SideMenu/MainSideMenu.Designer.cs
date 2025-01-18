@@ -221,6 +221,7 @@
             sb.ThumbColor = Color.FromArgb(39, 39, 42);
             sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
+            sb.ValueChanged += sb_ValueChanged;
             // 
             // pnlDecor
             // 

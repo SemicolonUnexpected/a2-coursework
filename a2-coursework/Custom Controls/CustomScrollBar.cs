@@ -109,11 +109,16 @@ public partial class CustomScrollBar : Control {
         Invalidate();
     }
 
+    protected override void OnMouseWheel(MouseEventArgs e) {
+        SetThumbY((int)_thumbY - e.Delta);
+        Refresh();
+
+        base.OnMouseWheel(e);
+    }
+
     private void SetThumbY(int y) {
         int thumbY = y - _thumbGrabYOffset;
-        if (thumbY < 0) _thumbY = 0;
-        else if (thumbY > _channelWorkingHeight) _thumbY = _channelWorkingHeight;
-        else _thumbY = thumbY;
+        _thumbY = Math.Clamp(thumbY, 0, _channelWorkingHeight);
 
         float fractionScrolled = (_thumbY - Padding.Top) / _channelWorkingHeight;
         int value = (int)((Maximum - Minimum) * fractionScrolled + Minimum);
@@ -131,6 +136,7 @@ public partial class CustomScrollBar : Control {
     }
 
     private void CalculateHeights() {
+        Value = _value;
         _channelHeight = Height - Padding.Vertical;
         _thumbHeight = Math.Min(_channelHeight, Math.Max(MinimumThumbHeight, (int)(LargeChange / (float)(Maximum + LargeChange) * _channelHeight)));
         _channelWorkingHeight = _channelHeight - _thumbHeight;

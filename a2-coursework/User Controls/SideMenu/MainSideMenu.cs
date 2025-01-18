@@ -28,8 +28,6 @@ public partial class MainSideMenu : UserControl {
         SetupSizeAndScroll();
 
         base.OnResize(e);
-
-        int value = pnlMenuHolder.Height + pnlHolder.Height;
     }
 
     private void SetupSizeAndScroll() {
@@ -59,6 +57,17 @@ public partial class MainSideMenu : UserControl {
             sb.Visible = false;
             sb.Value = 0;
         }
+    }
+
+    private void sb_ValueChanged(object sender, EventArgs e) {
+        pnlMenuHolder.Location = new Point(0, -sb.Value);
+    }
+
+    protected override void OnMouseWheel(MouseEventArgs e) {
+        sb.Value -= e.Delta;
+        Update();
+
+        base.OnMouseWheel(e);
     }
 
     public string Debug => $"{pnlHolder.Height}, {pnlMenuHolder.Height}";
