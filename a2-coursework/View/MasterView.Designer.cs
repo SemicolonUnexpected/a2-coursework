@@ -33,7 +33,7 @@
             mainSideMenu1.Dock = DockStyle.Left;
             mainSideMenu1.Location = new Point(0, 0);
             mainSideMenu1.Name = "mainSideMenu1";
-            mainSideMenu1.Size = new Size(198, 461);
+            mainSideMenu1.Size = new Size(202, 461);
             mainSideMenu1.TabIndex = 0;
             // 
             // MasterView
@@ -52,7 +52,7 @@
         }
 
         #endregion
-        private UserControls.SideMenu.SideMenuDropDown sideMenuDropDown1;
+        private UserControls.SideMenu.SideMenuDropdown sideMenuDropDown1;
         private User_Controls.SideMenu.MainSideMenu mainSideMenu1;
     }
 }

@@ -41,21 +41,21 @@
             btn.ForeColor = Color.White;
             btn.HoverBorderColor = Color.Empty;
             btn.HoverColor = Color.FromArgb(39, 39, 42);
+            btn.Image = null;
             btn.ImageRectangle = new Rectangle(264, 8, 16, 16);
             btn.Location = new Point(2, 2);
             btn.Name = "btn";
             btn.Padding = new Padding(5);
             btn.Size = new Size(196, 36);
             btn.TabIndex = 1;
-            btn.Text = "Bookings";
             btn.TextAlign = CustomControls.CustomButtonAlign.TopCenter | CustomControls.CustomButtonAlign.TopRight;
-            btn.TextPosition = new Point(5, 9);
+            btn.TextPosition = new Point(5, 18);
             btn.Click += btn_Click;
             // 
             // SideMenuButton
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(btn);
             Name = "SideMenuButton";

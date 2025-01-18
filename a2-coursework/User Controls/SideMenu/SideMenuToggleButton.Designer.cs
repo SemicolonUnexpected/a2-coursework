@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            btn = new UserControls.ToggleButton();
+            btn = new ToggleButton();
             SuspendLayout();
             // 
             // btn
@@ -42,18 +42,17 @@
             btn.Padding = new Padding(5);
             btn.Size = new Size(279, 36);
             btn.TabIndex = 3;
-            btn.Text = "Dashboard";
             btn.Toggled = false;
             btn.ToggledColor = Color.FromArgb(39, 39, 42);
-            btn.ToggleChanged += this.btn_ToggleChanged;
+            btn.ToggleChanged += btn_ToggleChanged;
             // 
-            // SideMenuItem
+            // SideMenuToggleButton
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(btn);
-            Name = "SideMenuItem";
+            Name = "SideMenuToggleButton";
             Padding = new Padding(2);
             Size = new Size(283, 40);
             ResumeLayout(false);

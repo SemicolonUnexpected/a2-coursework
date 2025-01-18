@@ -1,3 +1,5 @@
+using a2_coursework.View;
+
 namespace a2_coursework;
 internal static class Program {
     /// <summary>
@@ -12,6 +14,6 @@ internal static class Program {
         Application.EnableVisualStyles();
 
         // Start the application
-        Application.Run(new AppContext());
+        Application.Run(new MasterView());
     }
 }

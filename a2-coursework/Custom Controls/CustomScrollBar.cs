@@ -132,9 +132,9 @@ public partial class CustomScrollBar : Control {
 
     private void CalculateHeights() {
         _channelHeight = Height - Padding.Vertical;
-        _thumbHeight = Math.Min(_channelHeight, Math.Max(MinimumThumbHeight, (int)(LargeChange / (double)Maximum * _channelHeight)));
+        _thumbHeight = Math.Min(_channelHeight, Math.Max(MinimumThumbHeight, (int)(LargeChange / (float)(Maximum + LargeChange) * _channelHeight)));
         _channelWorkingHeight = _channelHeight - _thumbHeight;
-        _thumbY = _channelWorkingHeight * (float)_value / (Maximum - Minimum) + Padding.Top;
+        _thumbY = _channelWorkingHeight * _value / (Maximum - Minimum) + Padding.Top;
     }
 
     private bool ThumbContainsMouse(Point mouseClientLocation) => ThumbPath is not null && ThumbPath.IsVisible(mouseClientLocation);

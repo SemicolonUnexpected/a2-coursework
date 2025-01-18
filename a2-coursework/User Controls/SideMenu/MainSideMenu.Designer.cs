@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             btnDashboard = new UserControls.SideMenu.SideMenuToggleButton();
-            smdBooking = new UserControls.SideMenu.SideMenuDropDown();
-            smdCustomers = new UserControls.SideMenu.SideMenuDropDown();
-            smdOrders = new UserControls.SideMenu.SideMenuDropDown();
-            smdAnalytics = new UserControls.SideMenu.SideMenuDropDown();
-            smdUsers = new UserControls.SideMenu.SideMenuDropDown();
-            smdSecurity = new UserControls.SideMenu.SideMenuDropDown();
-            smdSettings = new UserControls.SideMenu.SideMenuDropDown();
+            smdBooking = new UserControls.SideMenu.SideMenuDropdown();
+            smdCustomers = new UserControls.SideMenu.SideMenuDropdown();
+            smdOrders = new UserControls.SideMenu.SideMenuDropdown();
+            smdAnalytics = new UserControls.SideMenu.SideMenuDropdown();
+            smdUsers = new UserControls.SideMenu.SideMenuDropdown();
+            smdSecurity = new UserControls.SideMenu.SideMenuDropdown();
+            smdSettings = new UserControls.SideMenu.SideMenuDropdown();
             pnlMenuHolder = new Panel();
             sb = new CustomControls.CustomScrollBar();
             pnlDecor = new Panel();
@@ -44,6 +44,7 @@
             btnDashboard.BackColor = Color.FromArgb(9, 9, 10);
             btnDashboard.Dock = DockStyle.Top;
             btnDashboard.Location = new Point(0, 0);
+            btnDashboard.Margin = new Padding(0);
             btnDashboard.Name = "btnDashboard";
             btnDashboard.Padding = new Padding(2);
             btnDashboard.Size = new Size(191, 40);
@@ -63,11 +64,12 @@
             smdBooking.Dock = DockStyle.Top;
             smdBooking.DropDownToggled = false;
             smdBooking.Location = new Point(0, 40);
+            smdBooking.Margin = new Padding(0);
             smdBooking.Name = "smdBooking";
             smdBooking.ParentName = "Bookings";
             smdBooking.Size = new Size(191, 40);
             smdBooking.TabIndex = 1;
-            smdBooking.DropDownToggleChanged += DropDownToggleChanged;
+            smdBooking.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // smdCustomers
             // 
@@ -81,11 +83,12 @@
             smdCustomers.Dock = DockStyle.Top;
             smdCustomers.DropDownToggled = false;
             smdCustomers.Location = new Point(0, 80);
+            smdCustomers.Margin = new Padding(0);
             smdCustomers.Name = "smdCustomers";
             smdCustomers.ParentName = "Customers";
             smdCustomers.Size = new Size(191, 40);
             smdCustomers.TabIndex = 2;
-            smdCustomers.DropDownToggleChanged += DropDownToggleChanged;
+            smdCustomers.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // smdOrders
             // 
@@ -100,11 +103,12 @@
             smdOrders.Dock = DockStyle.Top;
             smdOrders.DropDownToggled = false;
             smdOrders.Location = new Point(0, 120);
+            smdOrders.Margin = new Padding(0);
             smdOrders.Name = "smdOrders";
             smdOrders.ParentName = "Orders";
             smdOrders.Size = new Size(191, 40);
             smdOrders.TabIndex = 3;
-            smdOrders.DropDownToggleChanged += DropDownToggleChanged;
+            smdOrders.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // smdAnalytics
             // 
@@ -119,11 +123,12 @@
             smdAnalytics.Dock = DockStyle.Top;
             smdAnalytics.DropDownToggled = false;
             smdAnalytics.Location = new Point(0, 160);
+            smdAnalytics.Margin = new Padding(0);
             smdAnalytics.Name = "smdAnalytics";
             smdAnalytics.ParentName = "Analytics";
             smdAnalytics.Size = new Size(191, 40);
             smdAnalytics.TabIndex = 4;
-            smdAnalytics.DropDownToggleChanged += DropDownToggleChanged;
+            smdAnalytics.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // smdUsers
             // 
@@ -136,11 +141,12 @@
             smdUsers.Dock = DockStyle.Top;
             smdUsers.DropDownToggled = false;
             smdUsers.Location = new Point(0, 200);
+            smdUsers.Margin = new Padding(0);
             smdUsers.Name = "smdUsers";
             smdUsers.ParentName = "Staff";
             smdUsers.Size = new Size(191, 40);
             smdUsers.TabIndex = 5;
-            smdUsers.DropDownToggleChanged += DropDownToggleChanged;
+            smdUsers.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // smdSecurity
             // 
@@ -153,12 +159,13 @@
             smdSecurity.Dock = DockStyle.Top;
             smdSecurity.DropDownToggled = false;
             smdSecurity.Location = new Point(0, 240);
+            smdSecurity.Margin = new Padding(0);
             smdSecurity.Name = "smdSecurity";
             smdSecurity.ParentName = "Security";
             smdSecurity.Size = new Size(191, 40);
             smdSecurity.TabIndex = 6;
             smdSecurity.TabStop = false;
-            smdSecurity.DropDownToggleChanged += DropDownToggleChanged;
+            smdSecurity.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // smdSettings
             // 
@@ -172,15 +179,17 @@
             smdSettings.Dock = DockStyle.Top;
             smdSettings.DropDownToggled = false;
             smdSettings.Location = new Point(0, 280);
+            smdSettings.Margin = new Padding(0);
             smdSettings.Name = "smdSettings";
             smdSettings.ParentName = "Settings";
             smdSettings.Size = new Size(191, 40);
             smdSettings.TabIndex = 7;
-            smdSettings.DropDownToggleChanged += DropDownToggleChanged;
+            smdSettings.DropDownToggleChanged += DropdownToggleChanged;
             // 
             // pnlMenuHolder
             // 
             pnlMenuHolder.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            pnlMenuHolder.BackColor = Color.FromArgb(9, 9, 10);
             pnlMenuHolder.Controls.Add(smdSettings);
             pnlMenuHolder.Controls.Add(smdSecurity);
             pnlMenuHolder.Controls.Add(smdUsers);
@@ -212,7 +221,6 @@
             sb.ThumbColor = Color.FromArgb(39, 39, 42);
             sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
-            sb.Visible = false;
             // 
             // pnlDecor
             // 
@@ -251,13 +259,13 @@
         #endregion
 
         private UserControls.SideMenu.SideMenuToggleButton btnDashboard;
-        private UserControls.SideMenu.SideMenuDropDown smdBooking;
-        private UserControls.SideMenu.SideMenuDropDown smdCustomers;
-        private UserControls.SideMenu.SideMenuDropDown smdOrders;
-        private UserControls.SideMenu.SideMenuDropDown smdAnalytics;
-        private UserControls.SideMenu.SideMenuDropDown smdUsers;
-        private UserControls.SideMenu.SideMenuDropDown smdSecurity;
-        private UserControls.SideMenu.SideMenuDropDown smdSettings;
+        private UserControls.SideMenu.SideMenuDropdown smdBooking;
+        private UserControls.SideMenu.SideMenuDropdown smdCustomers;
+        private UserControls.SideMenu.SideMenuDropdown smdOrders;
+        private UserControls.SideMenu.SideMenuDropdown smdAnalytics;
+        private UserControls.SideMenu.SideMenuDropdown smdUsers;
+        private UserControls.SideMenu.SideMenuDropdown smdSecurity;
+        private UserControls.SideMenu.SideMenuDropdown smdSettings;
         private Panel pnlMenuHolder;
         private CustomControls.CustomScrollBar sb;
         private Panel pnlDecor;
