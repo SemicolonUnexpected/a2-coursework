@@ -49,6 +49,20 @@ public partial class MainSideMenu : UserControl {
     private void ToggleChanged(object? sender, EventArgs e) {
         if (sender is not ToggleButton btn) return;
 
+        bool anyToggled = false;
+        
+        foreach (SideMenuDropdown dropdown in _dropdowns) {
+            foreach (SideMenuToggleButton sideMenuToggleButton in dropdown.ToggleButtons) {
+                anyToggled |= sideMenuToggleButton.Toggled;
+            }
+        }
+        anyToggled |= btnDashboard.Toggled;
+
+        if (!anyToggled) {
+            btn.Toggled = true;
+            return;
+        }
+
         if (!btn.Toggled) return;
 
         foreach (SideMenuDropdown dropdown in _dropdowns) {
@@ -56,7 +70,6 @@ public partial class MainSideMenu : UserControl {
                 if (sideMenuToggleButton.ToggleButton != btn) sideMenuToggleButton.Toggled = false;
             }
         }
-
         if (btnDashboard.ToggleButton != btn) btnDashboard.Toggled = false;
 
         // Choose the event to fire
@@ -120,29 +133,29 @@ public partial class MainSideMenu : UserControl {
     public event EventHandler? PersonalInformationToggled;
 
     private void InvokeToggledEvent(string name) {
-         if (name == "Dashboard") DashboardToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Calendar") CalendarToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Upcoming bookings") UpcomingBookingsToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Recent bookings") RecentBookingsToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "View locations") ViewLocationsToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "View customers") ViewCustomersToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Recent customers") RecentCustomersToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Stock usage") StockUsageToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Manage stock") ManageStockToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Pending orders") PendingOrdersToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Current stock") CurrentStockToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Overview") OverviewToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Cleaning") CleaningToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Cleaning stock") CleaningStockToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "View staff") ViewStaffToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Change password") ChangePasswordToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Business closure") BusinessClosureToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Passwords") PasswordsToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Login attempts") LoginAttemptsToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Appearance") AppearanceToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Account statistics") AccountStatisticsToggled?.Invoke(this, EventArgs.Empty);
-         else if (name == "Personal information") PersonalInformationToggled?.Invoke(this, EventArgs.Empty);
+        if (name == "Dashboard") DashboardToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Calendar") CalendarToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Upcoming bookings") UpcomingBookingsToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Recent bookings") RecentBookingsToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "View locations") ViewLocationsToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "View customers") ViewCustomersToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Recent customers") RecentCustomersToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Stock usage") StockUsageToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Manage stock") ManageStockToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Pending orders") PendingOrdersToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Current stock") CurrentStockToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Overview") OverviewToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Cleaning") CleaningToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Cleaning stock") CleaningStockToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "View staff") ViewStaffToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Change password") ChangePasswordToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Business closure") BusinessClosureToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Passwords") PasswordsToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Login attempts") LoginAttemptsToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Appearance") AppearanceToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Account statistics") AccountStatisticsToggled?.Invoke(this, EventArgs.Empty);
+        else if (name == "Personal information") PersonalInformationToggled?.Invoke(this, EventArgs.Empty);
 
-        throw new NotImplementedException();
+        else throw new NotImplementedException();
     }
 }

@@ -5,7 +5,7 @@ internal class AppContext : ApplicationContext {
         Application.ApplicationExit += OnApplicationExit;
 
         ApplicationStartupManager startupManager = new();
-        startupManager.StartApplication();
+        startupManager.StartApplicationAsync();
     }
 
     private void OnApplicationExit(object? sender, EventArgs e) {

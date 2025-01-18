@@ -11,6 +11,7 @@ internal class SplashPresenter {
     public void Show() => _view.Show();
 
     public event FormClosedEventHandler? FormClosed;
+    public event EventHandler? FinishedLoading;
 
     public SplashPresenter(ISplash view) {
         _view = view;
@@ -34,5 +35,7 @@ internal class SplashPresenter {
 
         // Pause with the loading bar full
         await Task.Delay(PROGRESS_PAUSE);
+
+        _view.Invoke(() => FinishedLoading?.Invoke(this , EventArgs.Empty));
     }
 }

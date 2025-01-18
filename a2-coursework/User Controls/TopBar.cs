@@ -1,10 +1,16 @@
-﻿
-using a2_coursework.Theming;
+﻿using a2_coursework.Theming;
+using System.ComponentModel;
 
 namespace a2_coursework.UserControls;
 public partial class TopBar : UserControl {
+    private readonly int _height;
 
-    private int _height = 40;
+    public TopBar() {
+        InitializeComponent();
+
+        // Set the height for the top bar - it is made a fixed height in the OnResize event
+        _height = (int)(40 * DeviceDpi / 96f);
+    }
 
     public void Theme() {
         BackColor = ColorScheme.CurrentTheme.Background;
@@ -13,27 +19,22 @@ public partial class TopBar : UserControl {
 
     }
 
+    [DefaultValue("")]
     public string UsernameText {
         get => lblUsername.Text;
         set {
-            lblUsername.Width = TextRenderer.MeasureText(value, lblUsername.Font).Width;
             lblUsername.Text = value;
+
+            PositionUsernameText();
         }
     }
 
-
     protected override void OnResize(EventArgs e) {
         Height = _height;
+        PositionUsernameText();
+
         base.OnResize(e);
     }
 
-    public TopBar() {
-        InitializeComponent();
-
-        _height = (int)(_height * (DeviceDpi / 96f));
-    }
-
-    private void lblUsername_Click(object sender, EventArgs e) {
-
-    }
+    private void PositionUsernameText() => lblUsername.Location = new Point(Width - (lblUsername.Width + pnlRight.Width), lblUsername.Location.Y);
 }

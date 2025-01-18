@@ -24,17 +24,37 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterView));
-            mainSideMenu1 = new User_Controls.SideMenu.MainSideMenu();
+            topBar = new UserControls.TopBar();
+            sideMenu = new User_Controls.SideMenu.MainSideMenu();
+            pnlDisplayHolder = new Panel();
             SuspendLayout();
             // 
-            // mainSideMenu1
+            // topBar
             // 
-            mainSideMenu1.BackColor = Color.FromArgb(9, 9, 10);
-            mainSideMenu1.Dock = DockStyle.Left;
-            mainSideMenu1.Location = new Point(0, 0);
-            mainSideMenu1.Name = "mainSideMenu1";
-            mainSideMenu1.Size = new Size(202, 461);
-            mainSideMenu1.TabIndex = 0;
+            topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.Dock = DockStyle.Top;
+            topBar.Location = new Point(0, 0);
+            topBar.Name = "topBar";
+            topBar.Size = new Size(784, 40);
+            topBar.TabIndex = 0;
+            topBar.UsernameText = "test";
+            // 
+            // sideMenu
+            // 
+            sideMenu.BackColor = Color.FromArgb(9, 9, 10);
+            sideMenu.Dock = DockStyle.Left;
+            sideMenu.Location = new Point(0, 40);
+            sideMenu.Name = "sideMenu";
+            sideMenu.Size = new Size(202, 421);
+            sideMenu.TabIndex = 1;
+            // 
+            // pnlDisplayHolder
+            // 
+            pnlDisplayHolder.Dock = DockStyle.Fill;
+            pnlDisplayHolder.Location = new Point(202, 40);
+            pnlDisplayHolder.Name = "pnlDisplayHolder";
+            pnlDisplayHolder.Size = new Size(582, 421);
+            pnlDisplayHolder.TabIndex = 2;
             // 
             // MasterView
             // 
@@ -42,7 +62,9 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(784, 461);
-            Controls.Add(mainSideMenu1);
+            Controls.Add(pnlDisplayHolder);
+            Controls.Add(sideMenu);
+            Controls.Add(topBar);
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(800, 500);
             Name = "MasterView";
@@ -53,6 +75,8 @@
 
         #endregion
         private UserControls.SideMenu.SideMenuDropdown sideMenuDropDown1;
-        private User_Controls.SideMenu.MainSideMenu mainSideMenu1;
+        private UserControls.TopBar topBar;
+        private User_Controls.SideMenu.MainSideMenu sideMenu;
+        private Panel pnlDisplayHolder;
     }
 }

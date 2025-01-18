@@ -12,49 +12,45 @@ internal class ApplicationStartupManager {
     private MasterView? _masterView;
     private MasterPresenter? _masterPresenter;
 
-    public void StartApplication() {
+    public async void StartApplicationAsync() {
         _splashView = new();
         _splashPresenter = new(_splashView);
         _splashPresenter.FormClosed += OnFormExit;
 
         _splashPresenter.Show();
-        Task.Run(async () => {
-            // Show loading screen while initialising forms, and wait for all of them to be done
-            await Task.WhenAll(
-                _splashPresenter.ShowLoading(),
-                Task.Run(InitialiseLogin),
-                Task.Run(InitialiseMaster)
-                );
+        _splashPresenter.FinishedLoading += DisplayLogin;
 
-            // Close the splash form and open the login form when loading is complete
-            _splashView.Invoke(() => {
-                _splashPresenter.FormClosed -= OnFormExit;
-                _splashPresenter.Close();
-
-                _loginPresenter.Show();
-            });
-        });
+        // Start the loading
+        await _splashPresenter.ShowLoading();
     }
 
-    private void InitialiseLogin() {
+    private void DisplayLogin(object? sender, EventArgs e) {
         _loginView = new();
         _loginPresenter = new(_loginView);
+
         _loginPresenter.FormClosed += OnFormExit;
         _loginPresenter.LoginSuccessful += LoginSuccessful;
+
+        _splashPresenter!.FormClosed -= OnFormExit;
+        _splashPresenter.Close();
+
+        _loginPresenter.Show();
     }
 
-    private void InitialiseMaster() {
-        _masterView = new();
-        _masterPresenter = new(_masterView);
-    }
-
+    // If the user closes any windows, ensure the application exits
     private void OnFormExit(object? sender, FormClosedEventArgs e) => Application.Exit();
 
     private void LoginSuccessful(object? sender, string username) {
+        // Create the main page after a successful login
+        _masterView = new();
+        _masterPresenter = new(_masterView);
+
+        // Clean up after a successful login
         _loginPresenter!.LoginSuccessful -= LoginSuccessful;
         _loginPresenter.FormClosed -= OnFormExit;
         _loginPresenter.Close();
 
-        _masterPresenter!.Show();
+
+        _masterPresenter.Show();
     }
 }
