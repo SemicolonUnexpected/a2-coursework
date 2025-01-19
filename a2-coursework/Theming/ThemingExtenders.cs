@@ -19,11 +19,32 @@ internal static class ThemingExtenders {
 
     public static void ThemeTitle(this Label label) {
         label.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        label.BackColor = ColorScheme.CurrentTheme.Background;
     }
 
     public static void ThemeSubtitle(this Label label) {
-        label.BackColor = ColorScheme.CurrentTheme.Background;
         label.ForeColor = ColorScheme.CurrentTheme.PrimaryForeground;
+    }
+
+    public static void ThemeError(this Label label) {
+        label.ForeColor = ColorScheme.Red;
+    }
+
+    public static void ThemeStrong(this CustomButton button) {
+        button.BackColor = ColorScheme.CurrentTheme.Foreground;
+        button.ForeColor = ColorScheme.CurrentTheme.Background;
+        button.HoverColor = ColorScheme.CurrentTheme.SecondaryForeground;
+        button.DisabledColor = ColorScheme.CurrentTheme.SecondaryForeground;
+    }
+
+    public static void ThemeWeak(this CustomButton button) {
+        button.BackColor = ColorScheme.CurrentTheme.Background;
+        button.HoverColor = ColorScheme.CurrentTheme.Primary;
+        button.BorderColor = ColorScheme.CurrentTheme.Primary;
+        button.ClickedColor = ColorScheme.CurrentTheme.Primary;
+    }
+
+    public static void Theme(this CustomPanel panel) {
+        panel.BackColor = ColorScheme.CurrentTheme.Background;
+        panel.BorderColor = ColorScheme.CurrentTheme.Primary;
     }
 }
