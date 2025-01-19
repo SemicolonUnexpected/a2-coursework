@@ -9,6 +9,6 @@ internal class AppContext : ApplicationContext {
     }
 
     private void OnApplicationExit(object? sender, EventArgs e) {
-        // CLean up code
+        // Clean up code
     }
 }

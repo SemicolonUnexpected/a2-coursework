@@ -13,10 +13,7 @@ public partial class TopBar : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-
-        pbLogo.BackColor = ColorScheme.CurrentTheme.Background;
-
+        throw new NotImplementedException();
     }
 
     [DefaultValue("")]

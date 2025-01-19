@@ -37,41 +37,21 @@ public partial class LoginView : Form, ILoginView {
     }
 
     private void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        Theme();
 
         pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
 
-        pnl.BackColor = ColorScheme.CurrentTheme.Background;
-        pnl.BorderColor = ColorScheme.CurrentTheme.Primary;
+        pnl.Theme();
 
-        tbUsername.BackColor = ColorScheme.CurrentTheme.Background;
-        tbUsername.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        tbUsername.BorderColor = ColorScheme.CurrentTheme.Primary;
-        tbUsername.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
+        tbUsername.Theme();
+        tbPassword.Theme();
 
-        tbPassword.BackColor = ColorScheme.CurrentTheme.Background;
-        tbPassword.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        tbPassword.BorderColor = ColorScheme.CurrentTheme.Primary;
-        tbPassword.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
+        lblWelcome.ThemeTitle();
+        lblSignIn.ThemeSubtitle();
+        lblError.ThemeError();
 
-        lblWelcome.BackColor = ColorScheme.CurrentTheme.Background;
-        lblWelcome.ForeColor = ColorScheme.CurrentTheme.Foreground;
-
-        lblSignIn.BackColor = ColorScheme.CurrentTheme.Background;
-        lblSignIn.ForeColor = ColorScheme.CurrentTheme.PrimaryForeground;
-
-        lblError.BackColor = ColorScheme.CurrentTheme.Background;
-        lblError.ForeColor = ColorScheme.Red;
-
-        btnSignIn.BackColor = ColorScheme.CurrentTheme.Foreground;
-        btnSignIn.ForeColor = ColorScheme.CurrentTheme.Background;
-        btnSignIn.HoverColor = ColorScheme.CurrentTheme.SecondaryForeground;
-        btnSignIn.DisabledColor = ColorScheme.CurrentTheme.SecondaryForeground;
-
-        btnSwitchTheme.BackColor = ColorScheme.CurrentTheme.Background;
-        btnSwitchTheme.HoverColor = ColorScheme.CurrentTheme.Primary;
-        btnSwitchTheme.BorderColor = ColorScheme.CurrentTheme.Primary;
-        btnSwitchTheme.ClickedColor = ColorScheme.CurrentTheme.Primary;
+        btnSignIn.ThemeStrong();
+        btnSwitchTheme.ThemeWeak();
 
         if (ColorScheme.CurrentTheme == ColorScheme.Dark) btnSwitchTheme.Image = IconTheme.Brightness;
         else btnSwitchTheme.Image = IconTheme.Moon;

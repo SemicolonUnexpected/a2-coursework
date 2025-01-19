@@ -20,7 +20,7 @@ public partial class SplashView : Form, ISplash {
             return (double)pnlProgress.Width / Width;
         }
         set {
-            if (value < 0 || value > 1) throw new ArgumentOutOfRangeException("Progress must be between 0 and 1", nameof(Progress));
+            if (value < 0 || value > 1) throw new ArgumentOutOfRangeException(nameof(Progress), "Progress must be between 0 and 1");
             pnlProgress.Width = (int)(Width * value);
         }
     }

@@ -50,7 +50,6 @@ internal class ApplicationStartupManager {
         _loginPresenter.FormClosed -= OnFormExit;
         _loginPresenter.Close();
 
-
         _masterPresenter.Show();
     }
 }
