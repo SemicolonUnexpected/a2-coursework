@@ -3,11 +3,6 @@ A2 Coursework, yay!
 
 ## Todo
 
-- Fix loading tb disabled
-- Figure out how to open print dialogue
-- Actually do the colour scheme an don't just steal one
-- Use PDF lib to edit and render PDFs
-- Something dodgy with async 
 
 ## Things that are semi-fixed (i.e. I don't know what went wrong, but its gone now after some code that i dont trust)
 

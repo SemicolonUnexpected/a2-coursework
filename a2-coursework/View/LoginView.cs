@@ -30,6 +30,14 @@ public partial class LoginView : Form, ILoginView {
         set => btnSignIn.Enabled = value;
     }
 
+    public bool TextBoxesEnabled {
+        get => tbUsername.Enabled;
+        set {
+            tbUsername.Enabled = value;
+            tbPassword.Enabled = value;
+        }
+    }
+
     public LoginView() {
         InitializeComponent();
         pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
@@ -37,7 +45,7 @@ public partial class LoginView : Form, ILoginView {
     }
 
     private void Theme() {
-        Theme();
+        BackColor = ColorScheme.CurrentTheme.Background;
 
         pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
 

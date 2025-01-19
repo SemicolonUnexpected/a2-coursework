@@ -93,6 +93,26 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chevron_right_dark {
+            get {
+                object obj = ResourceManager.GetObject("chevron-right-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevron_right_light {
+            get {
+                object obj = ResourceManager.GetObject("chevron-right-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap eye_crossed_dark {
             get {
                 object obj = ResourceManager.GetObject("eye-crossed-dark", resourceCulture);
@@ -183,6 +203,26 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap navigation_dark {
+            get {
+                object obj = ResourceManager.GetObject("navigation-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap navigation_light {
+            get {
+                object obj = ResourceManager.GetObject("navigation-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap plus_dark {
             get {
                 object obj = ResourceManager.GetObject("plus-dark", resourceCulture);
@@ -196,6 +236,26 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap plus_light {
             get {
                 object obj = ResourceManager.GetObject("plus-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_dark {
+            get {
+                object obj = ResourceManager.GetObject("search-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap search_light {
+            get {
+                object obj = ResourceManager.GetObject("search-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

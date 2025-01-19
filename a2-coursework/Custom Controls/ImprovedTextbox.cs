@@ -70,6 +70,7 @@ public partial class ImprovedTextBox : TextBox {
             if (!_isPlaceholderText) UseSystemPasswordChar = _usePasswordChar;
         }
     }
+
     protected override void OnEnter(EventArgs e) {
         TryRemovePlaceholderText();
         base.OnEnter(e);
@@ -79,7 +80,6 @@ public partial class ImprovedTextBox : TextBox {
         TrySetPlaceholderText();
         base.OnLeave(e);
     }
-
 
     private void TrySetPlaceholderText() {
         if (_placeholderText.IsNullOrEmpty() || !Text.IsNullOrEmpty() || Focused) return;

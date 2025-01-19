@@ -1,8 +1,6 @@
 ﻿using a2_coursework.CustomControls;
-using System.Runtime.CompilerServices;
-using System.Windows.Forms.VisualStyles;
 
-namespace a2_coursework.Theming; 
+namespace a2_coursework.Theming;
 internal static class ThemingExtenders {
 
     public static void Theme(this Form form) {

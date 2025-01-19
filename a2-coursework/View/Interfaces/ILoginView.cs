@@ -16,4 +16,5 @@ internal interface ILoginView {
     public string ErrorText { get; set; }
     public string ButtonSignInText { get; set; }
     public bool ButtonSignInEnabled { get; set; }
+    public bool TextBoxesEnabled { get; set; }
 }

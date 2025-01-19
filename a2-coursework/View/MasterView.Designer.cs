@@ -27,6 +27,8 @@
             topBar = new UserControls.TopBar();
             sideMenu = new User_Controls.SideMenu.MainSideMenu();
             pnlDisplayHolder = new Panel();
+            calendarMenuBar1 = new User_Controls.Calendar.CalendarMenuBar();
+            pnlDisplayHolder.SuspendLayout();
             SuspendLayout();
             // 
             // topBar
@@ -35,7 +37,7 @@
             topBar.Dock = DockStyle.Top;
             topBar.Location = new Point(0, 0);
             topBar.Name = "topBar";
-            topBar.Size = new Size(784, 40);
+            topBar.Size = new Size(884, 40);
             topBar.TabIndex = 0;
             topBar.UsernameText = "test";
             // 
@@ -45,31 +47,41 @@
             sideMenu.Dock = DockStyle.Left;
             sideMenu.Location = new Point(0, 40);
             sideMenu.Name = "sideMenu";
-            sideMenu.Size = new Size(202, 421);
+            sideMenu.Size = new Size(169, 571);
             sideMenu.TabIndex = 1;
             // 
             // pnlDisplayHolder
             // 
+            pnlDisplayHolder.Controls.Add(calendarMenuBar1);
             pnlDisplayHolder.Dock = DockStyle.Fill;
-            pnlDisplayHolder.Location = new Point(202, 40);
+            pnlDisplayHolder.Location = new Point(169, 40);
             pnlDisplayHolder.Name = "pnlDisplayHolder";
-            pnlDisplayHolder.Size = new Size(582, 421);
+            pnlDisplayHolder.Size = new Size(715, 571);
             pnlDisplayHolder.TabIndex = 2;
+            // 
+            // calendarMenuBar1
+            // 
+            calendarMenuBar1.BackColor = Color.FromArgb(9, 9, 10);
+            calendarMenuBar1.BarEnabled = true;
+            calendarMenuBar1.Location = new Point(45, 51);
+            calendarMenuBar1.Name = "calendarMenuBar1";
+            calendarMenuBar1.Size = new Size(586, 40);
+            calendarMenuBar1.TabIndex = 0;
             // 
             // MasterView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(784, 461);
+            ClientSize = new Size(884, 611);
             Controls.Add(pnlDisplayHolder);
             Controls.Add(sideMenu);
             Controls.Add(topBar);
             Icon = (Icon)resources.GetObject("$this.Icon");
-            MinimumSize = new Size(800, 500);
+            MinimumSize = new Size(900, 650);
             Name = "MasterView";
             Text = "Master";
-            Load += MasterView_Load;
+            pnlDisplayHolder.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -78,5 +90,6 @@
         private UserControls.TopBar topBar;
         private User_Controls.SideMenu.MainSideMenu sideMenu;
         private Panel pnlDisplayHolder;
+        private User_Controls.Calendar.CalendarMenuBar calendarMenuBar1;
     }
 }

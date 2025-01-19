@@ -26,6 +26,7 @@ internal class LoginPresenter {
 
     private async void LoginAttempt(object? sender, EventArgs e) {
         _view.ButtonSignInEnabled = false;
+        _view.TextBoxesEnabled = false;
         _view.ButtonSignInText = "Signing you in...";
 
         string username = _view.Username;
@@ -37,6 +38,7 @@ internal class LoginPresenter {
         if (isUsernameEmpty && isPasswordEmpty) {
             _view.ErrorText = "Please fill in a username and password";
             _view.ButtonSignInEnabled = true;
+            _view.TextBoxesEnabled = true;
             _view.ButtonSignInText = "Sign in";
             return;
         }
@@ -45,6 +47,7 @@ internal class LoginPresenter {
             _view.Password = "";
             _view.ErrorText = "Please fill in a username and password";
             _view.ButtonSignInEnabled = true;
+            _view.TextBoxesEnabled = true;
             _view.ButtonSignInText = "Sign in";
             return;
         }
@@ -52,6 +55,7 @@ internal class LoginPresenter {
         if (isPasswordEmpty) {
             _view.ErrorText = "Please fill in a password";
             _view.ButtonSignInEnabled = true;
+            _view.TextBoxesEnabled = true;
             _view.ButtonSignInText = "Sign in";
             return;
         }
@@ -69,6 +73,7 @@ internal class LoginPresenter {
                 _view.Password = "";
                 _view.ErrorText = "Username or password incorrect";
                 _view.ButtonSignInEnabled = true;
+                _view.TextBoxesEnabled = true;
                 _view.ButtonSignInText = "Sign in";
                 await DAL.LoginAttempt(username, DateTime.UtcNow, false);
                 return;
@@ -82,6 +87,7 @@ internal class LoginPresenter {
                 _view.Password = "";
                 _view.ErrorText = "Username or password incorrect";
                 _view.ButtonSignInEnabled = true;
+                _view.TextBoxesEnabled = true;
                 _view.ButtonSignInText = "Sign in";
                 await DAL.LoginAttempt(username, DateTime.UtcNow, false);
                 return;
@@ -91,9 +97,9 @@ internal class LoginPresenter {
             foreach (Exception ex2 in ex.InnerExceptions) {
                 if (ex2 is SqlException) MessageBox.Show($"Error connecting to database: {ex2.Message}");
             }
-        }
-        finally {
+
             _view.ButtonSignInEnabled = true;
+            _view.TextBoxesEnabled = true;
             _view.ButtonSignInText = "Sign in";
         }
     }
