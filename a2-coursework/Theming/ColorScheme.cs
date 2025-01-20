@@ -2,7 +2,12 @@
 
 namespace a2_coursework.Theming;
 internal class ColorScheme(Color background, Color foreground, Color primary, Color primaryForeground, Color secondary, Color secondaryForeground, Color danger, Color warning, Color info) {
-    public static ColorScheme CurrentTheme { get; private set; }
+    public static ColorScheme CurrentTheme {
+        get {
+            if (Theme.CurrentTheme == ThemeMode.Dark) return Dark;
+            else return Light;
+        }
+    }
 
     // Colours based on tailwind css
     public static ColorScheme Dark { get; } = new(
@@ -53,33 +58,4 @@ internal class ColorScheme(Color background, Color foreground, Color primary, Co
     public Color Info { get; init; } = info;
 
     #endregion
-
-    public static event EventHandler? ColourSchemeChanged;
-
-    public static void SetColourSchemeDark() {
-        CurrentTheme = Dark;
-
-        ColourSchemeChanged?.Invoke(null, new EventArgs());
-    }
-
-    public static void SetColourSchemeLight() {
-        CurrentTheme = Light;
-
-        ColourSchemeChanged?.Invoke(null, new EventArgs());
-    }
-
-    public static void ToggleColourScheme() {
-        if (CurrentTheme == Dark) CurrentTheme = Light;
-        else CurrentTheme = Dark;
-
-        ColourSchemeChanged?.Invoke(null, new EventArgs());
-    }
-
-    static ColorScheme() {
-        string? themeConfiguration = ConfigurationManager.AppSettings.Get("DefaultTheme");
-
-        // If there is an error in App.config, default to a dark theme
-        if (themeConfiguration == "light") CurrentTheme = Light;
-        else CurrentTheme = Dark;
-    }
 }

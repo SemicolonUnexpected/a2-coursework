@@ -2,7 +2,7 @@
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class LoginView : Form, ILoginView {
+public partial class LoginView : Form, ILogin {
     const int PANEL_GRAPHICS_MARGIN = 10;
 
     public string Username {
@@ -83,7 +83,7 @@ public partial class LoginView : Form, ILoginView {
     }
 
     private void btnSwitchTheme_MouseClick(object sender, MouseEventArgs e) {
-        ColorScheme.ToggleColourScheme();
+        Theming.Theme.ToggleTheme();
         Theme();
         Invalidate();
     }

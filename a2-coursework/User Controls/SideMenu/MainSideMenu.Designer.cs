@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.User_Controls.SideMenu {
+﻿namespace a2_coursework.UserControls.SideMenu {
     partial class MainSideMenu {
         /// <summary> 
         /// Required designer variable.

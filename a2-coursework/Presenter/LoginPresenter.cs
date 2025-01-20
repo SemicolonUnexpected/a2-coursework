@@ -6,15 +6,15 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace a2_coursework.Presenter;
 internal class LoginPresenter {
-    private ILoginView _view;
+    private ILogin _view;
 
     public void Show() => _view.Show();
     public void Close() => _view.Close();
 
-    public event EventHandler<string>? LoginSuccessful;
+    public event EventHandler<User>? LoginSuccessful;
     public event FormClosedEventHandler? FormClosed;
 
-    public LoginPresenter(ILoginView view) {
+    public LoginPresenter(ILogin view) {
         _view = view;
 
         _view.LoginAttempt += LoginAttempt;

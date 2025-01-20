@@ -1,7 +1,7 @@
 ﻿using a2_coursework.UserControls;
 using a2_coursework.UserControls.SideMenu;
 
-namespace a2_coursework.User_Controls.SideMenu;
+namespace a2_coursework.UserControls.SideMenu;
 public partial class MainSideMenu : UserControl {
     private SideMenuDropdown[] _dropdowns;
 

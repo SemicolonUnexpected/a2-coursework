@@ -25,9 +25,9 @@
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterView));
             topBar = new UserControls.TopBar();
-            sideMenu = new User_Controls.SideMenu.MainSideMenu();
+            sideMenu = new UserControls.SideMenu.MainSideMenu();
             pnlDisplayHolder = new Panel();
-            calendarMenuBar1 = new User_Controls.Calendar.CalendarMenuBar();
+            calendarMenuBar1 = new UserControls.Calendar.CalendarMenuBar();
             pnlDisplayHolder.SuspendLayout();
             SuspendLayout();
             // 
@@ -88,8 +88,8 @@
         #endregion
         private UserControls.SideMenu.SideMenuDropdown sideMenuDropDown1;
         private UserControls.TopBar topBar;
-        private User_Controls.SideMenu.MainSideMenu sideMenu;
+        private UserControls.SideMenu.MainSideMenu sideMenu;
         private Panel pnlDisplayHolder;
-        private User_Controls.Calendar.CalendarMenuBar calendarMenuBar1;
+        private UserControls.Calendar.CalendarMenuBar calendarMenuBar1;
     }
 }

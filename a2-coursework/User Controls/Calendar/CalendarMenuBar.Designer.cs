@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.User_Controls.Calendar {
+﻿namespace a2_coursework.UserControls.Calendar {
     partial class CalendarMenuBar {
         /// <summary> 
         /// Required designer variable.

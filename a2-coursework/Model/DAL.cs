@@ -43,4 +43,59 @@ internal static class DAL {
 
         await command.ExecuteNonQueryAsync();
     }
+
+    public static async Task<User?> GetUser(string username) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetUser", connection);
+        command.Parameters.AddWithValue("username", username);
+        
+        await using SqlDataReader reader = command.ExecuteReader();
+        if (await reader.ReadAsync()) {
+            try {
+                return new User(
+                    staffID: (int)reader["StaffID"],
+                    username: (string)reader["Username"],
+                    forename: (string)reader["Forename"],
+                    surname: (string)reader["Surname"],
+                    email: (string)reader["Email"],
+                    phoneNumber: (string)reader["PhoneNumber"],
+                    emergencyContactForename: (string)reader["EmergencyContactForename"],
+                    emergencyContactSurname: (string)reader["EmergencyContactSurname"],
+                    emergencyContactPhoneNumber: (string)reader["EmergencyContactPhoneNumber"],
+                    address: (string)reader["Address"],
+                    position: (string)reader["Position"],
+                    department: (string)reader["Department"],
+                    active: (bool)reader["Active"],
+                    priviledgeLevel: ConvertToPrivilegeLevel(reader["PrivildegeLevel"].ToString()!)
+                    );
+            }
+            catch {
+                return null;
+            }
+        }
+        return null;
+    }
+
+    public static async Task GetDepartment() {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = connection.CreateCommand("GetDeparment", connection);
+        command.CommandType = CommandType.StoredProcedure;
+
+        using SqlDataReader reader = command.ExecuteReader();
+        while (await reader.ReadAsync()) {
+
+        }
+    }
+
+    private static PriviledgeLevel ConvertToPrivilegeLevel(string value) => value switch {
+        "admin" => PriviledgeLevel.Admin,
+        "user" => PriviledgeLevel.User,
+        "manager" => PriviledgeLevel.Manager,
+        _ => throw new NotImplementedException("Not a valid user priviledge level"),
+    };
+
 }

@@ -1,10 +1,11 @@
-﻿using a2_coursework.View.Interfaces;
+﻿using a2_coursework.Model;
+using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.Presenter;
 internal class MasterPresenter {
     private IMaster _view;
 
-    public MasterPresenter(IMaster view) {
+    public MasterPresenter(IMaster view, User user) {
         _view = view;
 
         _view.FormClosed += CloseApplication;

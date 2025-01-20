@@ -1,6 +1,6 @@
 ﻿using a2_coursework.Theming;
 
-namespace a2_coursework.User_Controls.Calendar; 
+namespace a2_coursework.UserControls.Calendar; 
 public partial class CalendarMenuBar : UserControl {
     public CalendarMenuBar() {
         InitializeComponent();

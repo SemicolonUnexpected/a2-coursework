@@ -7,6 +7,13 @@ public partial class SideMenuDropdown : UserControl {
     public SideMenuDropdown() {
         InitializeComponent();
 
+        Theme();
+    }
+
+    public SideMenuDropdown(string parentName, string[] childNames) {
+        ParentName = parentName;
+        ChildNames = childNames;
+
         GenerateMenuDropDown();
         Theme();
     }
