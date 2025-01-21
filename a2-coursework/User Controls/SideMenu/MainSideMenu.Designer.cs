@@ -69,7 +69,7 @@
             smdBooking.ParentName = "Bookings";
             smdBooking.Size = new Size(191, 40);
             smdBooking.TabIndex = 1;
-            smdBooking.DropDownToggleChanged += DropdownToggleChanged;
+            smdBooking.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // smdCustomers
             // 
@@ -88,7 +88,7 @@
             smdCustomers.ParentName = "Customers";
             smdCustomers.Size = new Size(191, 40);
             smdCustomers.TabIndex = 2;
-            smdCustomers.DropDownToggleChanged += DropdownToggleChanged;
+            smdCustomers.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // smdOrders
             // 
@@ -108,7 +108,7 @@
             smdOrders.ParentName = "Orders";
             smdOrders.Size = new Size(191, 40);
             smdOrders.TabIndex = 3;
-            smdOrders.DropDownToggleChanged += DropdownToggleChanged;
+            smdOrders.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // smdAnalytics
             // 
@@ -127,7 +127,7 @@
             smdAnalytics.ParentName = "Analytics";
             smdAnalytics.Size = new Size(191, 40);
             smdAnalytics.TabIndex = 4;
-            smdAnalytics.DropDownToggleChanged += DropdownToggleChanged;
+            smdAnalytics.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // smdUsers
             // 
@@ -146,7 +146,7 @@
             smdUsers.ParentName = "Staff";
             smdUsers.Size = new Size(191, 40);
             smdUsers.TabIndex = 5;
-            smdUsers.DropDownToggleChanged += DropdownToggleChanged;
+            smdUsers.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // smdSecurity
             // 
@@ -165,7 +165,7 @@
             smdSecurity.Size = new Size(191, 40);
             smdSecurity.TabIndex = 6;
             smdSecurity.TabStop = false;
-            smdSecurity.DropDownToggleChanged += DropdownToggleChanged;
+            smdSecurity.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // smdSettings
             // 
@@ -184,7 +184,7 @@
             smdSettings.ParentName = "Settings";
             smdSettings.Size = new Size(191, 40);
             smdSettings.TabIndex = 7;
-            smdSettings.DropDownToggleChanged += DropdownToggleChanged;
+            smdSettings.DropDownItemToggleChanged += DropdownToggleChanged;
             // 
             // pnlMenuHolder
             // 

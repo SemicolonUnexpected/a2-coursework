@@ -1,4 +1,5 @@
-﻿using a2_coursework.Presenter;
+﻿using a2_coursework.Model;
+using a2_coursework.Presenter;
 using a2_coursework.View;
 
 namespace a2_coursework;
@@ -40,10 +41,10 @@ internal class ApplicationStartupManager {
     // If the user closes any windows, ensure the application exits
     private void OnFormExit(object? sender, FormClosedEventArgs e) => Application.Exit();
 
-    private void LoginSuccessful(object? sender, string username) {
+    private void LoginSuccessful(object? sender, User user) {
         // Create the main page after a successful login
         _masterView = new();
-        _masterPresenter = new(_masterView);
+        _masterPresenter = new(_masterView, user);
 
         // Clean up after a successful login
         _loginPresenter!.LoginSuccessful -= LoginSuccessful;

@@ -13,7 +13,9 @@ public partial class TopBar : UserControl {
     }
 
     public void Theme() {
-        throw new NotImplementedException();
+        BackColor = ColorScheme.CurrentTheme.Background;
+        lblUsername.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
     }
 
     [DefaultValue("")]

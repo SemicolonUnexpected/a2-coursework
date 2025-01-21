@@ -27,7 +27,7 @@ internal class ColorScheme(Color background, Color foreground, Color primary, Co
             foreground: Color.FromArgb(9, 9, 10),
             primary: Color.FromArgb(200, 200, 204),
             primaryForeground: Color.FromArgb(133, 133, 134),
-            secondary: Color.FromArgb(24, 24, 27),
+            secondary: Color.FromArgb(226, 226, 226),
             secondaryForeground: Color.FromArgb(24, 24, 27),
             danger: Color.FromArgb(225, 29, 72),
             warning: Color.FromArgb(251, 191, 36),

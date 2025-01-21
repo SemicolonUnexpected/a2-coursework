@@ -80,7 +80,7 @@ internal class LoginPresenter {
             }
 
             if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) {
-                LoginSuccessful?.Invoke(this, username);
+                LoginSuccessful?.Invoke(this, (await DAL.GetUser(username))!);
                 await DAL.LoginAttempt(username, DateTime.UtcNow, true);
             }
             else {

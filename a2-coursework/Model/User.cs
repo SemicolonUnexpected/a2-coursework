@@ -1,7 +1,7 @@
 ﻿namespace a2_coursework.Model;
 
 internal class User {
-    public User(int staffID, string username, bool active, PriviledgeLevel priviledgeLevel, string forename, string surname, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, string position, string department) {
+    public User(int staffID, string username, bool active, PrivilegeLevel priviledgeLevel, string forename, string surname, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, string position, string department) {
         StaffID = staffID;
         Username = username;
         Active = active;
@@ -21,7 +21,7 @@ internal class User {
     public int StaffID { get; private init; }
     public string Username { get; private init; }
     public bool Active { get; init; }
-    public PriviledgeLevel PriviledgeLevel { get; init; }
+    public PrivilegeLevel PriviledgeLevel { get; init; }
     public string Forename { get; set; }
     public string Surname { get; set; }
     public string Email { get; set; }

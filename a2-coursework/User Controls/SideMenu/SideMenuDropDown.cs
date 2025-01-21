@@ -4,18 +4,18 @@ using System.ComponentModel;
 namespace a2_coursework.UserControls.SideMenu;
 public partial class SideMenuDropdown : UserControl {
     public event EventHandler? DropDownToggleChanged;
+    public event EventHandler? DropDownItemToggleChanged;
     public SideMenuDropdown() {
         InitializeComponent();
-
-        Theme();
     }
 
     public SideMenuDropdown(string parentName, string[] childNames) {
+        InitializeComponent();
+
         ParentName = parentName;
         ChildNames = childNames;
 
         GenerateMenuDropDown();
-        Theme();
     }
 
     public void Theme() {
@@ -80,6 +80,10 @@ public partial class SideMenuDropdown : UserControl {
                 Text = ChildNames[i],
                 Height = btn.Height,
                 Dock = DockStyle.Top,
+            };
+
+            button.ToggleChanged += (s, e) => {
+                DropDownItemToggleChanged?.Invoke(s, e);
             };
 
             pnlChildHolder.Controls.Add(button);

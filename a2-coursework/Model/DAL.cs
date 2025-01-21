@@ -49,6 +49,7 @@ internal static class DAL {
         await connection.OpenAsync();
 
         await using SqlCommand command = new("GetUser", connection);
+        command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("username", username);
         
         await using SqlDataReader reader = command.ExecuteReader();
@@ -66,9 +67,9 @@ internal static class DAL {
                     emergencyContactPhoneNumber: (string)reader["EmergencyContactPhoneNumber"],
                     address: (string)reader["Address"],
                     position: (string)reader["Position"],
-                    department: (string)reader["Department"],
+                    department: (string)reader["DepartmentName"],
                     active: (bool)reader["Active"],
-                    priviledgeLevel: ConvertToPrivilegeLevel(reader["PrivildegeLevel"].ToString()!)
+                    priviledgeLevel: ConvertToPrivilegeLevel(reader["PrivilegeLevel"].ToString()!)
                     );
             }
             catch {
@@ -78,23 +79,27 @@ internal static class DAL {
         return null;
     }
 
-    public static async Task GetDepartment() {
+    public static async Task<string[]> GetDepartment() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = connection.CreateCommand("GetDeparment", connection);
+        await using SqlCommand command = new("GetDepartment", connection);
         command.CommandType = CommandType.StoredProcedure;
 
         using SqlDataReader reader = command.ExecuteReader();
-        while (await reader.ReadAsync()) {
 
+        List<string> rows = new();
+        while (await reader.ReadAsync()) {
+            rows.Add(reader["Departments"].ToString()!);
         }
+
+        return [.. rows];
     }
 
-    private static PriviledgeLevel ConvertToPrivilegeLevel(string value) => value switch {
-        "admin" => PriviledgeLevel.Admin,
-        "user" => PriviledgeLevel.User,
-        "manager" => PriviledgeLevel.Manager,
+    private static PrivilegeLevel ConvertToPrivilegeLevel(string value) => value switch {
+        "admin" => PrivilegeLevel.Admin,
+        "user" => PrivilegeLevel.User,
+        "manager" => PrivilegeLevel.Manager,
         _ => throw new NotImplementedException("Not a valid user priviledge level"),
     };
 

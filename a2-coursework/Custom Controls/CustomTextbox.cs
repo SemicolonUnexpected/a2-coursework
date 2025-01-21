@@ -8,7 +8,6 @@ public partial class CustomTextBox : UserControl {
         InitializeComponent();
 
         tb.TextChanged += (s, e) => TextChanged?.Invoke(s, e);
-        tb.KeyPress += (s, e) => KeyPress?.Invoke(s, e);
     }
 
     protected override void OnResize(EventArgs e) {

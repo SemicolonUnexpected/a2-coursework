@@ -8,6 +8,7 @@ public partial class SideMenuToggleButton : UserControl {
     }
 
     public void Theme() {
+        BackColor = ColorScheme.CurrentTheme.Background;
         btn.BackColor = ColorScheme.CurrentTheme.Background;
         btn.HoverColor = ColorScheme.CurrentTheme.Primary;
         btn.ToggledColor = ColorScheme.CurrentTheme.Primary;

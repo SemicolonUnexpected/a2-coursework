@@ -1,4 +1,6 @@
-﻿namespace a2_coursework.UserControls.SideMenu; 
+﻿using a2_coursework.Theming;
+
+namespace a2_coursework.UserControls.SideMenu; 
 public partial class SideMenu : UserControl {
     public SideMenu(string[][] items) {
         InitializeComponent();
@@ -6,25 +8,102 @@ public partial class SideMenu : UserControl {
         GenerateMenu(items);
     }
 
+    public event EventHandler<string>? SideMenuToggleUpdated;
+    public event EventHandler<string>? DropdownToggleChanged;
+    public event EventHandler<SideMenuToggleButton>? SideMenuButtonToggleUpdated;
+
     public SideMenu() {
         InitializeComponent();
     }
 
+    public void Theme() {
+        foreach (Control control in pnlMenuHolder.Controls) {
+            if (control is SideMenuDropdown dropdown) {
+                dropdown.Theme();
+            }
+            else if (control is SideMenuToggleButton toggle) {
+                toggle.Theme();
+            }
+        }
+
+        BackColor = ColorScheme.CurrentTheme.Background;
+        pnlHolder.BackColor = ColorScheme.CurrentTheme.Background;
+        pnlMenuHolder.BackColor = ColorScheme.CurrentTheme.Background;
+        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+        sb.Theme();
+    }
+
     public void GenerateMenu(string[][] items) {
-        foreach (string[] item in items) {
-            if (item.Length == 1) {
-                SideMenuToggleButton btn = new() { Text = item[0], Dock = DockStyle.Top };
+        for (int i = items.Length - 1; i >= 0; i--) {
+            if (items[i].Length == 1) {
+                SideMenuToggleButton btn = new() { Text = items[i][0], Dock = DockStyle.Top };
+                btn.ToggleChanged += SideMenuToggleButtonChanged;
                 pnlMenuHolder.Controls.Add(btn);
             }
             else {
-                SideMenuDropdown dropDown = new(item[0], item[1..]) { Dock = DockStyle.Top };
+                SideMenuDropdown dropDown = new(items[i][0], items[i][1..]) { Dock = DockStyle.Top };
+                dropDown.DropDownItemToggleChanged += SideMenuToggleButtonChanged;
+                dropDown.DropDownToggleChanged += (s, e) => DropdownToggleChanged?.Invoke(s, ((SideMenuDropdown)s!).ParentName);
                 pnlMenuHolder.Controls.Add(dropDown);
             }
         }
+
+        SetupSizeAndScroll();
+    }
+
+    private void SideMenuToggleButtonChanged(object? sender, EventArgs e) {
+        ToggleButton btn = (ToggleButton)sender!;
+
+        // Check if any have been changed
+        bool anyToggled = false;
+        foreach (Control control in pnlMenuHolder.Controls) {
+            if (control is SideMenuToggleButton button) {
+                anyToggled |= button.Toggled;
+            }
+            else if (control is SideMenuDropdown dropdown) {
+                foreach (SideMenuToggleButton internalButton in dropdown.ToggleButtons) {
+                    anyToggled |= internalButton.Toggled; 
+                }
+            }
+            else throw new NotImplementedException("side menus can only contain toggles and dropdowns");
+        }
+
+        // If none are toggled retoggle the one that was just toggled while not firing the event
+        if (!anyToggled) {
+            btn.ToggleChanged -= SideMenuToggleButtonChanged;
+            btn.Toggled = true;
+            btn.ToggleChanged += SideMenuToggleButtonChanged;
+            return;
+        }
+
+        // If a button is not toggled, exit
+        if (!btn.Toggled) {
+            return;
+        }
+
+        // Clear all toggled buttons
+        foreach (Control control in pnlMenuHolder.Controls) {
+            if (control is SideMenuToggleButton button) {
+                if (button.ToggleButton != btn) {
+                    button.Toggled = false;
+                }
+            }
+            else if (control is SideMenuDropdown dropdown) {
+                foreach (SideMenuToggleButton internalButton in dropdown.ToggleButtons) {
+                    if (internalButton.ToggleButton != btn) {
+                        internalButton.Toggled = false;
+                    }
+                }
+            }
+            else throw new NotImplementedException("side menus can only contain toggles and dropdowns");
+        }
+
+        SetupSizeAndScroll();
+        SideMenuToggleUpdated?.Invoke(this, btn.Text);
     }
 
     public object this[int i] {
-        get => pnlMenuHolder.Controls[i];
+        get => pnlMenuHolder.Controls[pnlMenuHolder.Controls.Count - i - 1];
     }
 
     private void sb_ValueChanged(object sender, EventArgs e) {
@@ -58,5 +137,18 @@ public partial class SideMenu : UserControl {
             sb.Visible = false;
             sb.Value = 0;
         }
+    }
+    
+    protected override void OnMouseWheel(MouseEventArgs e) {
+        sb.Value -= e.Delta;
+        Update();
+
+        base.OnMouseWheel(e);
+    }
+
+    protected override void OnResize(EventArgs e) {
+        SetupSizeAndScroll();
+
+        base.OnResize(e);
     }
 }

@@ -31,6 +31,7 @@ internal static class ThemingExtenders {
         button.BackColor = ColorScheme.CurrentTheme.Foreground;
         button.ForeColor = ColorScheme.CurrentTheme.Background;
         button.HoverColor = ColorScheme.CurrentTheme.SecondaryForeground;
+        button.ClickedColor = ColorScheme.CurrentTheme.SecondaryForeground;
         button.DisabledColor = ColorScheme.CurrentTheme.SecondaryForeground;
     }
 
@@ -44,5 +45,12 @@ internal static class ThemingExtenders {
     public static void Theme(this CustomPanel panel) {
         panel.BackColor = ColorScheme.CurrentTheme.Background;
         panel.BorderColor = ColorScheme.CurrentTheme.Primary;
+    }
+
+    public static void Theme(this CustomScrollBar scrollBar) {
+        scrollBar.BackColor = ColorScheme.CurrentTheme.Background;
+        scrollBar.ThumbColor = ColorScheme.CurrentTheme.Secondary;
+        scrollBar.ThumbClickedColor = ColorScheme.CurrentTheme.Primary;
+        scrollBar.ThumbHoverColor = ColorScheme.CurrentTheme.Primary;
     }
 }

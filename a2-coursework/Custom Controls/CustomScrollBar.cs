@@ -95,8 +95,10 @@ public partial class CustomScrollBar : Control {
     }
 
     protected override void OnMouseClick(MouseEventArgs e) {
-        _thumbGrabYOffset = (int)_thumbHeight / 2;
-        SetThumbY(e.Location.Y);
+        if (ThumbPath is not null && !ThumbPath.IsVisible(e.Location)) {
+            _thumbGrabYOffset = (int)_thumbHeight / 2;
+            SetThumbY(e.Location.Y);
+        }
         base.OnMouseClick(e);
     }
 
