@@ -79,7 +79,7 @@ public partial class CustomScrollBar : Control {
             SetThumbY(e.Location.Y);
         }
 
-        Invalidate();
+        Refresh();
         base.OnMouseMove(e);
     }
 

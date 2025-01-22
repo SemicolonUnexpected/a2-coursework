@@ -75,6 +75,7 @@
             Controls.Add(dataGridView1);
             Controls.Add(panel2);
             Controls.Add(panel1);
+            FormBorderStyle = FormBorderStyle.None;
             Name = "TestView";
             Text = "TestView";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();

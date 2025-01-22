@@ -1,5 +1,8 @@
 ﻿namespace a2_coursework.View.Interfaces;
-internal interface IMaster {
+internal interface IMaster : IThemable {
+    public Form? ChildForm { get; set; }
+    public string UsernameText {  get; set; }
+    public void DisplayChildForm(Form childForm) { }
     public void Show();
     public void Close();
 

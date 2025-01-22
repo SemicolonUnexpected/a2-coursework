@@ -3,7 +3,7 @@ using a2_coursework.UserControls.SideMenu;
 
 namespace a2_coursework.UserControls.SideMenu;
 public partial class MainSideMenu : UserControl {
-    private SideMenuDropdown[] _dropdowns;
+    private MenuDropdown[] _dropdowns;
 
     public MainSideMenu() {
         InitializeComponent();
@@ -20,7 +20,7 @@ public partial class MainSideMenu : UserControl {
             smdSettings
         ];
 
-        foreach (SideMenuDropdown dropdown in _dropdowns) {
+        foreach (MenuDropdown dropdown in _dropdowns) {
             foreach (SideMenuToggleButton sideMenuToggleButton in dropdown.ToggleButtons) {
                 sideMenuToggleButton.ToggleButton.ToggleChanged += ToggleChanged;
             }
@@ -51,7 +51,7 @@ public partial class MainSideMenu : UserControl {
 
         bool anyToggled = false;
         
-        foreach (SideMenuDropdown dropdown in _dropdowns) {
+        foreach (MenuDropdown dropdown in _dropdowns) {
             foreach (SideMenuToggleButton sideMenuToggleButton in dropdown.ToggleButtons) {
                 anyToggled |= sideMenuToggleButton.Toggled;
             }
@@ -65,7 +65,7 @@ public partial class MainSideMenu : UserControl {
 
         if (!btn.Toggled) return;
 
-        foreach (SideMenuDropdown dropdown in _dropdowns) {
+        foreach (MenuDropdown dropdown in _dropdowns) {
             foreach (SideMenuToggleButton sideMenuToggleButton in dropdown.ToggleButtons) {
                 if (sideMenuToggleButton.ToggleButton != btn) sideMenuToggleButton.Toggled = false;
             }
@@ -89,7 +89,7 @@ public partial class MainSideMenu : UserControl {
         if (_dropdowns is null) return;
 
         int height = btnDashboard.Height;
-        foreach (SideMenuDropdown dropdown in _dropdowns) {
+        foreach (MenuDropdown dropdown in _dropdowns) {
             height += dropdown.Height;
         }
 

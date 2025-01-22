@@ -32,6 +32,7 @@
             label1 = new Label();
             lblSignIn = new Label();
             customTextBox5 = new CustomControls.CustomTextBox();
+            lblError = new Label();
             pnlHolder.SuspendLayout();
             SuspendLayout();
             // 
@@ -48,9 +49,9 @@
             tbUsername.Margin = new Padding(5);
             tbUsername.MaxLength = 256;
             tbUsername.Name = "tbUsername";
-            tbUsername.PlaceholderText = "";
+            tbUsername.PlaceholderText = "Forename";
             tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbUsername.Size = new Size(336, 40);
+            tbUsername.Size = new Size(388, 40);
             tbUsername.TabIndex = 1;
             tbUsername.TextBoxInset = new Padding(10);
             tbUsername.UsePasswordChar = false;
@@ -70,6 +71,7 @@
             // pnlHolder
             // 
             pnlHolder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            pnlHolder.Controls.Add(lblError);
             pnlHolder.Controls.Add(dateInput1);
             pnlHolder.Controls.Add(label3);
             pnlHolder.Controls.Add(label2);
@@ -80,13 +82,13 @@
             pnlHolder.Controls.Add(lblSettings);
             pnlHolder.Location = new Point(105, 0);
             pnlHolder.Name = "pnlHolder";
-            pnlHolder.Size = new Size(428, 536);
+            pnlHolder.Size = new Size(428, 500);
             pnlHolder.TabIndex = 3;
             // 
             // dateInput1
             // 
             dateInput1.BackColor = Color.FromArgb(9, 9, 10);
-            dateInput1.Location = new Point(7, 302);
+            dateInput1.Location = new Point(7, 340);
             dateInput1.MaximumSize = new Size(200, 100);
             dateInput1.MinimumSize = new Size(200, 100);
             dateInput1.Name = "dateInput1";
@@ -98,7 +100,7 @@
             label3.AutoSize = true;
             label3.Font = new Font("Bahnschrift", 14F);
             label3.ForeColor = Color.White;
-            label3.Location = new Point(20, 278);
+            label3.Location = new Point(20, 316);
             label3.Margin = new Padding(5);
             label3.Name = "label3";
             label3.Size = new Size(116, 23);
@@ -154,12 +156,22 @@
             customTextBox5.Margin = new Padding(5);
             customTextBox5.MaxLength = 256;
             customTextBox5.Name = "customTextBox5";
-            customTextBox5.PlaceholderText = "";
+            customTextBox5.PlaceholderText = "Surname";
             customTextBox5.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            customTextBox5.Size = new Size(336, 40);
+            customTextBox5.Size = new Size(388, 40);
             customTextBox5.TabIndex = 3;
             customTextBox5.TextBoxInset = new Padding(10);
             customTextBox5.UsePasswordChar = false;
+            // 
+            // lblError
+            // 
+            lblError.Font = new Font("Bahnschrift", 12F);
+            lblError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblError.Location = new Point(20, 273);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(388, 38);
+            lblError.TabIndex = 9;
+            lblError.TextAlign = ContentAlignment.TopCenter;
             // 
             // PersonalInfromationSettingsView
             // 
@@ -188,5 +200,6 @@
         private Label label2;
         private Label label3;
         private User_Controls.DateInput dateInput1;
+        private Label lblError;
     }
 }

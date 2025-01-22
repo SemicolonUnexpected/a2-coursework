@@ -17,6 +17,7 @@ internal class LoginPresenter {
     public LoginPresenter(ILogin view) {
         _view = view;
 
+        // Attach events to the view
         _view.LoginAttempt += LoginAttempt;
         _view.UsernameTextChanged += UsernameTextChanged;
         _view.PasswordTextChanged += PasswordTextChanged;
@@ -24,6 +25,7 @@ internal class LoginPresenter {
         _view.FormClosed += (s, e) => FormClosed?.Invoke(s, e);
     }
 
+    // When the form fires the login attempt event, check to see if the login deatils are valid and update the view accordingly
     private async void LoginAttempt(object? sender, EventArgs e) {
         _view.ButtonSignInEnabled = false;
         _view.TextBoxesEnabled = false;
@@ -104,12 +106,14 @@ internal class LoginPresenter {
         }
     }
 
+    // Update the username error text when the text changes
     private void UsernameTextChanged(object? sender, EventArgs e) {
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a password";
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username") _view.ErrorText = "";
         if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
     }
 
+    // Update the password error text when the text changes
     private void PasswordTextChanged(object? sender, EventArgs e) {
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a password") _view.ErrorText = "";
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a username";

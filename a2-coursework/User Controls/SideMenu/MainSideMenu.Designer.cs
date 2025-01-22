@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             btnDashboard = new UserControls.SideMenu.SideMenuToggleButton();
-            smdBooking = new UserControls.SideMenu.SideMenuDropdown();
-            smdCustomers = new UserControls.SideMenu.SideMenuDropdown();
-            smdOrders = new UserControls.SideMenu.SideMenuDropdown();
-            smdAnalytics = new UserControls.SideMenu.SideMenuDropdown();
-            smdUsers = new UserControls.SideMenu.SideMenuDropdown();
-            smdSecurity = new UserControls.SideMenu.SideMenuDropdown();
-            smdSettings = new UserControls.SideMenu.SideMenuDropdown();
+            smdBooking = new UserControls.SideMenu.MenuDropdown();
+            smdCustomers = new UserControls.SideMenu.MenuDropdown();
+            smdOrders = new UserControls.SideMenu.MenuDropdown();
+            smdAnalytics = new UserControls.SideMenu.MenuDropdown();
+            smdUsers = new UserControls.SideMenu.MenuDropdown();
+            smdSecurity = new UserControls.SideMenu.MenuDropdown();
+            smdSettings = new UserControls.SideMenu.MenuDropdown();
             pnlMenuHolder = new Panel();
             sb = new CustomControls.CustomScrollBar();
             pnlDecor = new Panel();
@@ -260,13 +260,13 @@
         #endregion
 
         private UserControls.SideMenu.SideMenuToggleButton btnDashboard;
-        private UserControls.SideMenu.SideMenuDropdown smdBooking;
-        private UserControls.SideMenu.SideMenuDropdown smdCustomers;
-        private UserControls.SideMenu.SideMenuDropdown smdOrders;
-        private UserControls.SideMenu.SideMenuDropdown smdAnalytics;
-        private UserControls.SideMenu.SideMenuDropdown smdUsers;
-        private UserControls.SideMenu.SideMenuDropdown smdSecurity;
-        private UserControls.SideMenu.SideMenuDropdown smdSettings;
+        private UserControls.SideMenu.MenuDropdown smdBooking;
+        private UserControls.SideMenu.MenuDropdown smdCustomers;
+        private UserControls.SideMenu.MenuDropdown smdOrders;
+        private UserControls.SideMenu.MenuDropdown smdAnalytics;
+        private UserControls.SideMenu.MenuDropdown smdUsers;
+        private UserControls.SideMenu.MenuDropdown smdSecurity;
+        private UserControls.SideMenu.MenuDropdown smdSettings;
         private Panel pnlMenuHolder;
         private CustomControls.CustomScrollBar sb;
         private Panel pnlDecor;

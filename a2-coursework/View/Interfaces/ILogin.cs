@@ -1,6 +1,6 @@
 ﻿namespace a2_coursework.View.Interfaces;
 
-internal interface ILogin {
+internal interface ILogin : IThemable {
     public void Show();
     public void Close();
 

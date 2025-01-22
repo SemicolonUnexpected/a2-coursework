@@ -44,7 +44,7 @@ public partial class LoginView : Form, ILogin {
         Theme();
     }
 
-    private void Theme() {
+    public void Theme() {
         BackColor = ColorScheme.CurrentTheme.Background;
 
         pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;

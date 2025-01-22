@@ -72,7 +72,7 @@
             // 
             // pnlHolder
             // 
-            pnlHolder.Dock = DockStyle.Fill;
+            pnlHolder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlHolder.Location = new Point(230, 40);
             pnlHolder.Name = "pnlHolder";
             pnlHolder.Size = new Size(644, 571);
@@ -96,7 +96,7 @@
         }
 
         #endregion
-        private UserControls.SideMenu.SideMenuDropdown sideMenuDropDown1;
+        private UserControls.SideMenu.MenuDropdown sideMenuDropDown1;
         private UserControls.TopBar topBar;
         private UserControls.SideMenu.SideMenu sideMenu;
         private CustomControls.CustomScrollBar sb;

@@ -16,9 +16,11 @@ public partial class MasterView : Form, IMaster {
     }
 
     public void Theme() {
+        BackColor = ColorScheme.CurrentTheme.Background;
+
         sideMenu.Theme();
         topBar.Theme();
-        BackColor = ColorScheme.CurrentTheme.Background;
+        sb.Theme();
     }
 
     private Form? _childForm;
@@ -27,16 +29,29 @@ public partial class MasterView : Form, IMaster {
         set => _childForm = value;
     }
 
+    public string UsernameText {
+        get => topBar.UsernameText;
+        set => topBar.UsernameText = value;
+    }
 
     public void DisplayChildForm(Form childForm) {
+        // Remove the previous child form
+        pnlHolder.Controls.Clear();
+        if (ChildForm is not null) {
+            ChildForm.MouseWheel -= OnChildMouseWheel;
+            ChildForm.Dispose();
+        }
+
         ChildForm = childForm;
 
+        // Setup the child form to be displayed
         childForm.TopLevel = false;
         childForm.Width = pnlHolder.Width;
         childForm.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        ChildForm.MouseWheel += OnChildMouseWheel;
 
+        // Display the form
         pnlHolder.Controls.Add(childForm);
-
         childForm.Show();
 
         SetScrollOptions();
@@ -55,6 +70,11 @@ public partial class MasterView : Form, IMaster {
             sb.Value = 0;
         }
     }
+
+    private void OnChildMouseWheel(object? sender, MouseEventArgs e) {
+        sb.Value -= e.Delta;
+        Update();
+    }
     
     private void sb_ValueChanged(object sender, EventArgs e) {
         if (ChildForm is null) return;
@@ -63,8 +83,17 @@ public partial class MasterView : Form, IMaster {
     }
 
     protected override void OnResize(EventArgs e) {
+        base.OnResize(e);
         SetScrollOptions();
 
-        base.OnResize(e);
+        if (ChildForm is not null ) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
+    }
+
+    protected override void OnDockChanged(EventArgs e) {
+        SetScrollOptions();
+
+        if (ChildForm is not null ) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
+
+        base.OnDockChanged(e);
     }
 }

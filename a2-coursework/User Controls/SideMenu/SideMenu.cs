@@ -18,7 +18,7 @@ public partial class SideMenu : UserControl {
 
     public void Theme() {
         foreach (Control control in pnlMenuHolder.Controls) {
-            if (control is SideMenuDropdown dropdown) {
+            if (control is MenuDropdown dropdown) {
                 dropdown.Theme();
             }
             else if (control is SideMenuToggleButton toggle) {
@@ -41,14 +41,20 @@ public partial class SideMenu : UserControl {
                 pnlMenuHolder.Controls.Add(btn);
             }
             else {
-                SideMenuDropdown dropDown = new(items[i][0], items[i][1..]) { Dock = DockStyle.Top };
+                MenuDropdown dropDown = new(items[i][0], items[i][1..]) { Dock = DockStyle.Top };
                 dropDown.DropDownItemToggleChanged += SideMenuToggleButtonChanged;
-                dropDown.DropDownToggleChanged += (s, e) => DropdownToggleChanged?.Invoke(s, ((SideMenuDropdown)s!).ParentName);
+                dropDown.DropDownToggleChanged += OnDropdownToggleChanged;
                 pnlMenuHolder.Controls.Add(dropDown);
             }
         }
 
         SetupSizeAndScroll();
+    }
+
+
+    private void OnDropdownToggleChanged(object? sender, EventArgs e) {
+        DropdownToggleChanged?.Invoke(sender, ((MenuDropdown)sender!).ParentName);
+        SetupSizeAndScroll() ;
     }
 
     private void SideMenuToggleButtonChanged(object? sender, EventArgs e) {
@@ -60,7 +66,7 @@ public partial class SideMenu : UserControl {
             if (control is SideMenuToggleButton button) {
                 anyToggled |= button.Toggled;
             }
-            else if (control is SideMenuDropdown dropdown) {
+            else if (control is MenuDropdown dropdown) {
                 foreach (SideMenuToggleButton internalButton in dropdown.ToggleButtons) {
                     anyToggled |= internalButton.Toggled; 
                 }
@@ -88,7 +94,7 @@ public partial class SideMenu : UserControl {
                     button.Toggled = false;
                 }
             }
-            else if (control is SideMenuDropdown dropdown) {
+            else if (control is MenuDropdown dropdown) {
                 foreach (SideMenuToggleButton internalButton in dropdown.ToggleButtons) {
                     if (internalButton.ToggleButton != btn) {
                         internalButton.Toggled = false;
@@ -147,8 +153,8 @@ public partial class SideMenu : UserControl {
     }
 
     protected override void OnResize(EventArgs e) {
-        SetupSizeAndScroll();
-
         base.OnResize(e);
+
+        SetupSizeAndScroll();
     }
 }
