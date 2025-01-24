@@ -1,8 +1,7 @@
 ﻿using a2_coursework.Theming;
-using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class PersonalInfromationSettingsView : Form, IThemable {
+public partial class PersonalInfromationSettingsView : Form, IThemeable {
     public PersonalInfromationSettingsView() {
         InitializeComponent();
     }

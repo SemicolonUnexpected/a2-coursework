@@ -33,6 +33,7 @@
             lblForenameTitle = new Label();
             lblEditPromt = new Label();
             tbSurname = new CustomControls.CustomTextBox();
+            approveChangesBar1 = new User_Controls.Settings.ApproveChangesBar();
             SuspendLayout();
             // 
             // tbForename
@@ -166,12 +167,22 @@
             tbSurname.TextBoxInset = new Padding(10);
             tbSurname.UsePasswordChar = false;
             // 
+            // approveChangesBar1
+            // 
+            approveChangesBar1.BackColor = Color.FromArgb(9, 9, 10);
+            approveChangesBar1.Dock = DockStyle.Bottom;
+            approveChangesBar1.Location = new Point(0, 460);
+            approveChangesBar1.Name = "approveChangesBar1";
+            approveChangesBar1.Size = new Size(654, 40);
+            approveChangesBar1.TabIndex = 11;
+            // 
             // PersonalInfromationSettingsView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
+            Controls.Add(approveChangesBar1);
             Controls.Add(lblDateOfBirthErrorText);
             Controls.Add(lblNameError);
             Controls.Add(lblPersonalInfo);
@@ -202,5 +213,6 @@
         private User_Controls.DateInput diDateOfBirth;
         private Label lblNameError;
         private Label lblDateOfBirthErrorText;
+        private User_Controls.Settings.ApproveChangesBar approveChangesBar1;
     }
 }

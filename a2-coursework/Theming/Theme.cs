@@ -4,7 +4,7 @@ using Newtonsoft.Json.Serialization;
 using System.Configuration;
 
 namespace a2_coursework.Theming; 
-internal class Theme {
+public class Theme {
     static Theme() {
         _currentTheme = new Theme(ConfigurationManager.AppSettings.Get("DefaultTheme") != "light" ? AppearanceTheme.Dark : AppearanceTheme.Light, true);
     }

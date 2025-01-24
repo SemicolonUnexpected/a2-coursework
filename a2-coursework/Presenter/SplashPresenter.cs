@@ -2,21 +2,15 @@
 using System.Diagnostics;
 
 namespace a2_coursework.Presenter;
-internal class SplashPresenter {
+public class SplashPresenter {
     private const int FRAME_DELAY = 1;
     private const int PROGRESS_PAUSE = 200;
     private ISplash _view;
 
-    public void Close() => _view.Close();
-    public void Show() => _view.Show();
-
-    public event FormClosedEventHandler? FormClosed;
     public event EventHandler? FinishedLoading;
 
     public SplashPresenter(ISplash view) {
         _view = view;
-
-        _view.FormClosed += (o, e) => FormClosed?.Invoke(o, e);
     }
 
     public async Task ShowLoading(int duration = 1000) {

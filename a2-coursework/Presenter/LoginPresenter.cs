@@ -5,28 +5,16 @@ using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 
 namespace a2_coursework.Presenter;
-internal class LoginPresenter {
+public class LoginPresenter {
     private ILogin _view;
 
-    public void Show() => _view.Show();
-    public void Close() => _view.Close();
-
-    public event EventHandler<User>? LoginSuccessful;
-    public event FormClosedEventHandler? FormClosed;
+    public event EventHandler<Staff>? LoginSuccessful;
 
     public LoginPresenter(ILogin view) {
         _view = view;
-
-        // Attach events to the view
-        _view.LoginAttempt += LoginAttempt;
-        _view.UsernameTextChanged += UsernameTextChanged;
-        _view.PasswordTextChanged += PasswordTextChanged;
-
-        _view.FormClosed += (s, e) => FormClosed?.Invoke(s, e);
     }
 
-    // When the form fires the login attempt event, check to see if the login deatils are valid and update the view accordingly
-    private async void LoginAttempt(object? sender, EventArgs e) {
+    public async void LoginAttempt() {
         _view.ButtonSignInEnabled = false;
         _view.TextBoxesEnabled = false;
         _view.ButtonSignInText = "Signing you in...";
@@ -66,7 +54,7 @@ internal class LoginPresenter {
         byte[]? salt;
 
         try {
-            Task<(byte[]?, byte[]?)> getUserData = UserDAL.GetUserCredentialsAsync(username);
+            Task<(byte[]?, byte[]?)> getUserData = StaffDAL.GetUserCredentialsAsync(username);
             await Task.WhenAll(getUserData, Task.Delay(1500));
 
             (hash, salt) = await getUserData;
@@ -77,13 +65,13 @@ internal class LoginPresenter {
                 _view.ButtonSignInEnabled = true;
                 _view.TextBoxesEnabled = true;
                 _view.ButtonSignInText = "Sign in";
-                await UserDAL.LoginAttempt(username, DateTime.UtcNow, false);
+                await StaffDAL.LoginAttempt(username, DateTime.UtcNow, false);
                 return;
             }
 
             if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) {
-                LoginSuccessful?.Invoke(this, (await UserDAL.GetUser(username))!);
-                await UserDAL.LoginAttempt(username, DateTime.UtcNow, true);
+                LoginSuccessful?.Invoke(this, (await StaffDAL.GetUser(username))!);
+                await StaffDAL.LoginAttempt(username, DateTime.UtcNow, true);
             }
             else {
                 _view.Password = "";
@@ -91,7 +79,7 @@ internal class LoginPresenter {
                 _view.ButtonSignInEnabled = true;
                 _view.TextBoxesEnabled = true;
                 _view.ButtonSignInText = "Sign in";
-                await UserDAL.LoginAttempt(username, DateTime.UtcNow, false);
+                await StaffDAL.LoginAttempt(username, DateTime.UtcNow, false);
                 return;
             }
         }
@@ -107,14 +95,14 @@ internal class LoginPresenter {
     }
 
     // Update the username error text when the text changes
-    private void UsernameTextChanged(object? sender, EventArgs e) {
+    public void UsernameTextChanged() {
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a password";
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username") _view.ErrorText = "";
         if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
     }
 
     // Update the password error text when the text changes
-    private void PasswordTextChanged(object? sender, EventArgs e) {
+    public void PasswordTextChanged() {
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a password") _view.ErrorText = "";
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a username";
         if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";

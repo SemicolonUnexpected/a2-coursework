@@ -1,9 +1,8 @@
 ﻿using a2_coursework.Theming;
-using a2_coursework.View.Interfaces;
 using System.ComponentModel;
 
 namespace a2_coursework.UserControls.SideMenu;
-public partial class MenuButton : UserControl, IThemable {
+public partial class MenuButton : UserControl, IThemeable {
     public MenuButton() {
         InitializeComponent();
     }

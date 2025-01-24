@@ -1,18 +1,10 @@
-﻿namespace a2_coursework.View.Interfaces;
+﻿using a2_coursework.Theming;
 
-internal interface ILogin : IThemable {
-    public void Show();
-    public void Close();
+namespace a2_coursework.View.Interfaces;
 
-    public event EventHandler? LoginAttempt;
-
+public interface ILogin : IThemeable {
     public string Username { get; set; }
     public string Password { get; set; }
-
-    public event EventHandler? UsernameTextChanged;
-    public event EventHandler? PasswordTextChanged;
-
-    public event FormClosedEventHandler? FormClosed;
     public string ErrorText { get; set; }
     public string ButtonSignInText { get; set; }
     public bool ButtonSignInEnabled { get; set; }

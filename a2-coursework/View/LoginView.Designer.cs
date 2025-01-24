@@ -251,6 +251,7 @@
             MinimumSize = new Size(600, 500);
             Name = "LoginView";
             Text = "LoginView";
+            Shown += LoginView_Shown;
             Click += ClearFocus;
             pnl.ResumeLayout(false);
             pnl.PerformLayout();

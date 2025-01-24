@@ -1,15 +1,23 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework.Presenter;
+using a2_coursework.Theming;
 using a2_coursework.UserControls.SideMenu;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
 public partial class MasterView : Form, IMaster {
+    private MasterPresenter? _presenter;
+
     public MasterView() {
         InitializeComponent();
 
         pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
 
         Theme();
+        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+    }
+
+    public void SetPresenter(MasterPresenter presenter) {
+        _presenter = presenter;
     }
 
     public void Theme() {

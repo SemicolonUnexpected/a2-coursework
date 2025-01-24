@@ -1,9 +1,8 @@
-﻿namespace a2_coursework.View.Interfaces;
+﻿using a2_coursework.Theming;
 
-internal interface ISplash {
+namespace a2_coursework.View.Interfaces;
+
+public interface ISplash : IThemeable {
     double Progress { get; set; }
-    public event FormClosedEventHandler? FormClosed;
-    public void Show();
-    public void Close();
     void Invoke(Action a);
 }
