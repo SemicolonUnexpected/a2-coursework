@@ -13,9 +13,10 @@ public partial class MenuDropdown : UserControl {
         InitializeComponent();
 
         ParentName = parentName;
-        ChildNames = childNames;
+        ChildNames = childNames.Reverse().ToArray();
 
         GenerateMenuDropDown();
+        Theme();
     }
 
     public void Theme() {
@@ -29,7 +30,7 @@ public partial class MenuDropdown : UserControl {
         btn.Theme();
         btn.IconImage = pnlDropDown.Visible ? IconTheme.CurrentTheme.Minus : IconTheme.CurrentTheme.Plus;
 
-        foreach (SideMenuToggleButton sideMenuToggleButton in ToggleButtons) {
+        foreach (MenuToggleButton sideMenuToggleButton in ToggleButtons) {
             sideMenuToggleButton.Theme();
         }
     }
@@ -57,26 +58,26 @@ public partial class MenuDropdown : UserControl {
         }
     }
 
-    private SideMenuToggleButton[] _sideMenuItems = [];
-    public SideMenuToggleButton[] ToggleButtons {
+    private MenuToggleButton[] _sideMenuItems = [];
+    public MenuToggleButton[] ToggleButtons {
         get => _sideMenuItems;
     }
 
     private void GenerateMenuDropDown() {
         // Clear the current drop down menu
         if (_sideMenuItems is not null) {
-            foreach (SideMenuToggleButton btn in _sideMenuItems) {
+            foreach (MenuToggleButton btn in _sideMenuItems) {
                 pnlDropDown.Controls.Remove(btn);
                 btn.Dispose();
             }
         }
 
-        _sideMenuItems = new SideMenuToggleButton[ChildNames!.Length];
+        _sideMenuItems = new MenuToggleButton[ChildNames!.Length];
 
         pnlDropDown.Height = btn.Height * ChildNames.Length;
 
         for (int i = 0; i < ChildNames.Length; i++) {
-            SideMenuToggleButton button = new() {
+            MenuToggleButton button = new() {
                 Text = ChildNames[i],
                 Height = btn.Height,
                 Dock = DockStyle.Top,

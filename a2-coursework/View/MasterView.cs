@@ -7,12 +7,9 @@ public partial class MasterView : Form, IMaster {
     public MasterView() {
         InitializeComponent();
 
-        sideMenu.GenerateMenu([["q"], ["a", "b", "c"], ["one", "two", "three"], ["q"], ["a", "b", "c"], ["one", "two", "three"], ["q"], ["a", "b", "c"], ["one", "two", "three"]]);
-        ((SideMenuToggleButton)sideMenu[0]).Toggled = true;
+        pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
 
         Theme();
-
-        DisplayChildForm(new TestView());
     }
 
     public void Theme() {
@@ -21,6 +18,10 @@ public partial class MasterView : Form, IMaster {
         sideMenu.Theme();
         topBar.Theme();
         sb.Theme();
+    }
+
+    public void GenerateMenu(string[][] menuItems) { 
+        sideMenu.GenerateMenu(menuItems);
     }
 
     private Form? _childForm;
@@ -32,6 +33,15 @@ public partial class MasterView : Form, IMaster {
     public string UsernameText {
         get => topBar.UsernameText;
         set => topBar.UsernameText = value;
+    }
+
+    public void SetSideMenuToggledIndex(int i, int j, bool toggled) {
+        if (sideMenu[i] is MenuToggleButton menuToggleButton) {
+            menuToggleButton.Toggled = toggled;
+        }
+        else if (sideMenu[i] is MenuDropdown dropdown) {
+            dropdown.ToggleButtons[j].Toggled = toggled;
+        }
     }
 
     public void DisplayChildForm(Form childForm) {
@@ -75,7 +85,7 @@ public partial class MasterView : Form, IMaster {
         sb.Value -= e.Delta;
         Update();
     }
-    
+
     private void sb_ValueChanged(object sender, EventArgs e) {
         if (ChildForm is null) return;
 
@@ -86,14 +96,18 @@ public partial class MasterView : Form, IMaster {
         base.OnResize(e);
         SetScrollOptions();
 
-        if (ChildForm is not null ) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
+        if (ChildForm is not null) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
     }
 
     protected override void OnDockChanged(EventArgs e) {
         SetScrollOptions();
 
-        if (ChildForm is not null ) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
+        if (ChildForm is not null) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
 
         base.OnDockChanged(e);
+    }
+
+    private void MasterView_Shown(object sender, EventArgs e) {
+        pnlCover.Visible = false;
     }
 }

@@ -28,6 +28,7 @@
             sideMenu = new UserControls.SideMenu.SideMenu();
             sb = new CustomControls.CustomScrollBar();
             pnlHolder = new Panel();
+            pnlCover = new Panel();
             SuspendLayout();
             // 
             // topBar
@@ -78,12 +79,21 @@
             pnlHolder.Size = new Size(644, 571);
             pnlHolder.TabIndex = 12;
             // 
+            // pnlCover
+            // 
+            pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlCover.Location = new Point(0, -14);
+            pnlCover.Name = "pnlCover";
+            pnlCover.Size = new Size(899, 649);
+            pnlCover.TabIndex = 13;
+            // 
             // MasterView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(884, 611);
+            Controls.Add(pnlCover);
             Controls.Add(pnlHolder);
             Controls.Add(sb);
             Controls.Add(sideMenu);
@@ -92,6 +102,7 @@
             MinimumSize = new Size(900, 650);
             Name = "MasterView";
             Text = "Master";
+            Shown += MasterView_Shown;
             ResumeLayout(false);
         }
 
@@ -101,5 +112,6 @@
         private UserControls.SideMenu.SideMenu sideMenu;
         private CustomControls.CustomScrollBar sb;
         private Panel pnlHolder;
+        private Panel pnlCover;
     }
 }

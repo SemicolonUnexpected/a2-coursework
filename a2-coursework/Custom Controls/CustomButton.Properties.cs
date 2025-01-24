@@ -151,7 +151,7 @@ public partial class CustomButton {
     }
 
     private Image _backgroundImage = null;
-    public new Image Image {
+    public Image Image {
         get => _backgroundImage;
         set {
             _backgroundImage = value;

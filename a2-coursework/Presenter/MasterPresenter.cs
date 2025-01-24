@@ -9,6 +9,19 @@ internal class MasterPresenter {
         _view = view;
 
         _view.FormClosed += CloseApplication;
+
+        _view.UsernameText = user.Username;
+        Theming.Theme.CurrentTheme = user.Theme;
+
+        _view.Theme();
+
+        string[][] menuItems = user.PrivilegeLevel switch {
+            PrivilegeLevel.User => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
+            PrivilegeLevel.Admin => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
+            PrivilegeLevel.Manager => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
+        };
+
+        _view.GenerateMenu(menuItems);
     }
 
     private void CloseApplication(object? sender, EventArgs e) => Application.Exit();

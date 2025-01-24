@@ -23,183 +23,184 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            tbUsername = new CustomControls.CustomTextBox();
-            lblSettings = new Label();
-            pnlHolder = new Panel();
-            dateInput1 = new User_Controls.DateInput();
-            label3 = new Label();
-            label2 = new Label();
-            label1 = new Label();
-            lblSignIn = new Label();
-            customTextBox5 = new CustomControls.CustomTextBox();
-            lblError = new Label();
-            pnlHolder.SuspendLayout();
+            tbForename = new CustomControls.CustomTextBox();
+            lblPersonalInfo = new Label();
+            lblDateOfBirthErrorText = new Label();
+            lblNameError = new Label();
+            diDateOfBirth = new User_Controls.DateInput();
+            lblDateOfBirthTitle = new Label();
+            lblSurnameTitle = new Label();
+            lblForenameTitle = new Label();
+            lblEditPromt = new Label();
+            tbSurname = new CustomControls.CustomTextBox();
             SuspendLayout();
             // 
-            // tbUsername
+            // tbForename
             // 
-            tbUsername.BackColor = Color.FromArgb(9, 9, 10);
-            tbUsername.BorderColor = Color.FromArgb(39, 39, 42);
-            tbUsername.BorderThickness = 1F;
-            tbUsername.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbUsername.Font = new Font("Bahnschrift", 12F);
-            tbUsername.ForeColor = Color.Empty;
-            tbUsername.HoverColor = Color.Empty;
-            tbUsername.Location = new Point(20, 145);
-            tbUsername.Margin = new Padding(5);
-            tbUsername.MaxLength = 256;
-            tbUsername.Name = "tbUsername";
-            tbUsername.PlaceholderText = "Forename";
-            tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbUsername.Size = new Size(388, 40);
-            tbUsername.TabIndex = 1;
-            tbUsername.TextBoxInset = new Padding(10);
-            tbUsername.UsePasswordChar = false;
+            tbForename.BackColor = Color.FromArgb(9, 9, 10);
+            tbForename.BorderColor = Color.FromArgb(39, 39, 42);
+            tbForename.BorderThickness = 1F;
+            tbForename.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbForename.Font = new Font("Bahnschrift", 12F);
+            tbForename.ForeColor = Color.Empty;
+            tbForename.HoverColor = Color.Empty;
+            tbForename.Location = new Point(151, 145);
+            tbForename.Margin = new Padding(5);
+            tbForename.MaxLength = 256;
+            tbForename.Name = "tbForename";
+            tbForename.PlaceholderText = "Forename";
+            tbForename.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbForename.Size = new Size(355, 40);
+            tbForename.TabIndex = 1;
+            tbForename.TextBoxInset = new Padding(10);
+            tbForename.UsePasswordChar = false;
             // 
-            // lblSettings
+            // lblPersonalInfo
             // 
-            lblSettings.AutoSize = true;
-            lblSettings.Font = new Font("Bahnschrift", 24F);
-            lblSettings.ForeColor = Color.White;
-            lblSettings.Location = new Point(14, 19);
-            lblSettings.Margin = new Padding(10);
-            lblSettings.Name = "lblSettings";
-            lblSettings.Size = new Size(319, 39);
-            lblSettings.TabIndex = 2;
-            lblSettings.Text = "Personal Information";
+            lblPersonalInfo.AutoSize = true;
+            lblPersonalInfo.Font = new Font("Bahnschrift", 24F);
+            lblPersonalInfo.ForeColor = Color.White;
+            lblPersonalInfo.Location = new Point(145, 19);
+            lblPersonalInfo.Margin = new Padding(10);
+            lblPersonalInfo.Name = "lblPersonalInfo";
+            lblPersonalInfo.Size = new Size(319, 39);
+            lblPersonalInfo.TabIndex = 2;
+            lblPersonalInfo.Text = "Personal Information";
             // 
-            // pnlHolder
+            // lblDateOfBirthErrorText
             // 
-            pnlHolder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            pnlHolder.Controls.Add(lblError);
-            pnlHolder.Controls.Add(dateInput1);
-            pnlHolder.Controls.Add(label3);
-            pnlHolder.Controls.Add(label2);
-            pnlHolder.Controls.Add(label1);
-            pnlHolder.Controls.Add(lblSignIn);
-            pnlHolder.Controls.Add(customTextBox5);
-            pnlHolder.Controls.Add(tbUsername);
-            pnlHolder.Controls.Add(lblSettings);
-            pnlHolder.Location = new Point(105, 0);
-            pnlHolder.Name = "pnlHolder";
-            pnlHolder.Size = new Size(428, 500);
-            pnlHolder.TabIndex = 3;
+            lblDateOfBirthErrorText.Font = new Font("Bahnschrift", 12F);
+            lblDateOfBirthErrorText.ForeColor = Color.FromArgb(168, 171, 174);
+            lblDateOfBirthErrorText.Location = new Point(344, 382);
+            lblDateOfBirthErrorText.Name = "lblDateOfBirthErrorText";
+            lblDateOfBirthErrorText.Size = new Size(195, 38);
+            lblDateOfBirthErrorText.TabIndex = 10;
+            lblDateOfBirthErrorText.TextAlign = ContentAlignment.TopCenter;
             // 
-            // dateInput1
+            // lblNameError
             // 
-            dateInput1.BackColor = Color.FromArgb(9, 9, 10);
-            dateInput1.Location = new Point(7, 340);
-            dateInput1.MaximumSize = new Size(200, 100);
-            dateInput1.MinimumSize = new Size(200, 100);
-            dateInput1.Name = "dateInput1";
-            dateInput1.Size = new Size(200, 100);
-            dateInput1.TabIndex = 8;
+            lblNameError.Font = new Font("Bahnschrift", 12F);
+            lblNameError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblNameError.Location = new Point(151, 273);
+            lblNameError.Name = "lblNameError";
+            lblNameError.Size = new Size(388, 38);
+            lblNameError.TabIndex = 9;
+            lblNameError.TextAlign = ContentAlignment.TopCenter;
             // 
-            // label3
+            // diDateOfBirth
             // 
-            label3.AutoSize = true;
-            label3.Font = new Font("Bahnschrift", 14F);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(20, 316);
-            label3.Margin = new Padding(5);
-            label3.Name = "label3";
-            label3.Size = new Size(116, 23);
-            label3.TabIndex = 7;
-            label3.Text = "Date of Birth";
+            diDateOfBirth.BackColor = Color.FromArgb(9, 9, 10);
+            diDateOfBirth.Location = new Point(138, 340);
+            diDateOfBirth.MaximumSize = new Size(200, 100);
+            diDateOfBirth.MinimumSize = new Size(200, 100);
+            diDateOfBirth.Name = "diDateOfBirth";
+            diDateOfBirth.Size = new Size(200, 100);
+            diDateOfBirth.TabIndex = 8;
+            diDateOfBirth.ErrorChanged += dateInput1_ErrorChanged;
             // 
-            // label2
+            // lblDateOfBirthTitle
             // 
-            label2.AutoSize = true;
-            label2.Font = new Font("Bahnschrift", 14F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(18, 195);
-            label2.Margin = new Padding(5);
-            label2.Name = "label2";
-            label2.Size = new Size(88, 23);
-            label2.TabIndex = 6;
-            label2.Text = "Surname";
+            lblDateOfBirthTitle.AutoSize = true;
+            lblDateOfBirthTitle.Font = new Font("Bahnschrift", 14F);
+            lblDateOfBirthTitle.ForeColor = Color.White;
+            lblDateOfBirthTitle.Location = new Point(151, 316);
+            lblDateOfBirthTitle.Margin = new Padding(5);
+            lblDateOfBirthTitle.Name = "lblDateOfBirthTitle";
+            lblDateOfBirthTitle.Size = new Size(116, 23);
+            lblDateOfBirthTitle.TabIndex = 7;
+            lblDateOfBirthTitle.Text = "Date of Birth";
             // 
-            // label1
+            // lblSurnameTitle
             // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift", 14F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(18, 112);
-            label1.Margin = new Padding(5);
-            label1.Name = "label1";
-            label1.Size = new Size(96, 23);
-            label1.TabIndex = 5;
-            label1.Text = "Forename";
+            lblSurnameTitle.AutoSize = true;
+            lblSurnameTitle.Font = new Font("Bahnschrift", 14F);
+            lblSurnameTitle.ForeColor = Color.White;
+            lblSurnameTitle.Location = new Point(149, 195);
+            lblSurnameTitle.Margin = new Padding(5);
+            lblSurnameTitle.Name = "lblSurnameTitle";
+            lblSurnameTitle.Size = new Size(88, 23);
+            lblSurnameTitle.TabIndex = 6;
+            lblSurnameTitle.Text = "Surname";
             // 
-            // lblSignIn
+            // lblForenameTitle
             // 
-            lblSignIn.AutoSize = true;
-            lblSignIn.Font = new Font("Bahnschrift", 12F);
-            lblSignIn.ForeColor = Color.FromArgb(168, 171, 174);
-            lblSignIn.Location = new Point(18, 68);
-            lblSignIn.Margin = new Padding(10, 0, 10, 20);
-            lblSignIn.Name = "lblSignIn";
-            lblSignIn.Size = new Size(279, 19);
-            lblSignIn.TabIndex = 4;
-            lblSignIn.Text = "Edit your personal information below";
+            lblForenameTitle.AutoSize = true;
+            lblForenameTitle.Font = new Font("Bahnschrift", 14F);
+            lblForenameTitle.ForeColor = Color.White;
+            lblForenameTitle.Location = new Point(149, 112);
+            lblForenameTitle.Margin = new Padding(5);
+            lblForenameTitle.Name = "lblForenameTitle";
+            lblForenameTitle.Size = new Size(96, 23);
+            lblForenameTitle.TabIndex = 5;
+            lblForenameTitle.Text = "Forename";
             // 
-            // customTextBox5
+            // lblEditPromt
             // 
-            customTextBox5.BackColor = Color.FromArgb(9, 9, 10);
-            customTextBox5.BorderColor = Color.FromArgb(39, 39, 42);
-            customTextBox5.BorderThickness = 1F;
-            customTextBox5.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            customTextBox5.Font = new Font("Bahnschrift", 12F);
-            customTextBox5.ForeColor = Color.Empty;
-            customTextBox5.HoverColor = Color.Empty;
-            customTextBox5.Location = new Point(20, 228);
-            customTextBox5.Margin = new Padding(5);
-            customTextBox5.MaxLength = 256;
-            customTextBox5.Name = "customTextBox5";
-            customTextBox5.PlaceholderText = "Surname";
-            customTextBox5.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            customTextBox5.Size = new Size(388, 40);
-            customTextBox5.TabIndex = 3;
-            customTextBox5.TextBoxInset = new Padding(10);
-            customTextBox5.UsePasswordChar = false;
+            lblEditPromt.AutoSize = true;
+            lblEditPromt.Font = new Font("Bahnschrift", 12F);
+            lblEditPromt.ForeColor = Color.FromArgb(168, 171, 174);
+            lblEditPromt.Location = new Point(149, 68);
+            lblEditPromt.Margin = new Padding(10, 0, 10, 20);
+            lblEditPromt.Name = "lblEditPromt";
+            lblEditPromt.Size = new Size(279, 19);
+            lblEditPromt.TabIndex = 4;
+            lblEditPromt.Text = "Edit your personal information below";
             // 
-            // lblError
+            // tbSurname
             // 
-            lblError.Font = new Font("Bahnschrift", 12F);
-            lblError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblError.Location = new Point(20, 273);
-            lblError.Name = "lblError";
-            lblError.Size = new Size(388, 38);
-            lblError.TabIndex = 9;
-            lblError.TextAlign = ContentAlignment.TopCenter;
+            tbSurname.BackColor = Color.FromArgb(9, 9, 10);
+            tbSurname.BorderColor = Color.FromArgb(39, 39, 42);
+            tbSurname.BorderThickness = 1F;
+            tbSurname.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbSurname.Font = new Font("Bahnschrift", 12F);
+            tbSurname.ForeColor = Color.Empty;
+            tbSurname.HoverColor = Color.Empty;
+            tbSurname.Location = new Point(151, 228);
+            tbSurname.Margin = new Padding(5);
+            tbSurname.MaxLength = 256;
+            tbSurname.Name = "tbSurname";
+            tbSurname.PlaceholderText = "Surname";
+            tbSurname.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbSurname.Size = new Size(355, 40);
+            tbSurname.TabIndex = 3;
+            tbSurname.TextBoxInset = new Padding(10);
+            tbSurname.UsePasswordChar = false;
             // 
             // PersonalInfromationSettingsView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 509);
-            Controls.Add(pnlHolder);
+            ClientSize = new Size(654, 500);
+            Controls.Add(lblDateOfBirthErrorText);
+            Controls.Add(lblNameError);
+            Controls.Add(lblPersonalInfo);
+            Controls.Add(diDateOfBirth);
+            Controls.Add(tbForename);
+            Controls.Add(lblDateOfBirthTitle);
+            Controls.Add(tbSurname);
+            Controls.Add(lblSurnameTitle);
+            Controls.Add(lblEditPromt);
+            Controls.Add(lblForenameTitle);
             ForeColor = Color.FromArgb(9, 9, 10);
             FormBorderStyle = FormBorderStyle.None;
             Name = "PersonalInfromationSettingsView";
             Text = "SettingsView";
-            pnlHolder.ResumeLayout(false);
-            pnlHolder.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
-        private CustomControls.CustomTextBox tbUsername;
-        private Label lblSettings;
-        private Panel pnlHolder;
-        private CustomControls.CustomTextBox customTextBox5;
-        private Label lblSignIn;
-        private Label label1;
-        private Label label2;
-        private Label label3;
-        private User_Controls.DateInput dateInput1;
-        private Label lblError;
+        private CustomControls.CustomTextBox tbForename;
+        private Label lblPersonalInfo;
+        private CustomControls.CustomTextBox tbSurname;
+        private Label lblEditPromt;
+        private Label lblForenameTitle;
+        private Label lblSurnameTitle;
+        private Label lblDateOfBirthTitle;
+        private User_Controls.DateInput diDateOfBirth;
+        private Label lblNameError;
+        private Label lblDateOfBirthErrorText;
     }
 }

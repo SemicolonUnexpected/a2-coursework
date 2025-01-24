@@ -4,7 +4,7 @@ namespace a2_coursework.Theming;
 internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image plus, Image minus, Image navigation, Image search) {
     public static IconTheme CurrentTheme {
         get {
-            if (Theme.CurrentTheme == ThemeMode.Dark) return Dark;
+            if (Theme.CurrentTheme.AppearanceTheme == AppearanceTheme.Dark) return Dark;
             else return Light;
         }
     }

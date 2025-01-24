@@ -4,15 +4,10 @@ using System.ComponentModel;
 
 namespace a2_coursework.User_Controls;
 public partial class DateInput : UserControl {
-    private float _borderThicknessNormal = 1;
-    private float _borderThicknessError = 2;
-
     public DateInput() {
         InitializeComponent();
 
-        float scalingFactor = DeviceDpi / 96f;
-        _borderThicknessNormal *= scalingFactor;
-        _borderThicknessError *= scalingFactor;
+        Theme();
     }
 
     public event EventHandler? ErrorChanged;
@@ -62,15 +57,15 @@ public partial class DateInput : UserControl {
 
     // The date inputs should only accept numbers
     private void tbYear_KeyPress(object sender, KeyPressEventArgs e) {
-        if (!char.IsDigit(e.KeyChar)) e.Handled = true;
+        if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
     }
 
     private void tbMonth_KeyPress(object sender, KeyPressEventArgs e) {
-        if (!char.IsDigit(e.KeyChar)) e.Handled = true;
+        if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
     }
 
     private void tbDay_KeyPress(object sender, KeyPressEventArgs e) {
-        if (!char.IsDigit(e.KeyChar)) e.Handled = true;
+        if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
     }
 
     // Insert leading zeros
@@ -78,9 +73,9 @@ public partial class DateInput : UserControl {
         if (tbDay.Text.Length == 1) {
             tbDay.Text = "0" + tbDay.Text;
         }
-        else if (tbYear.Text.Length == 0) {
-            SetBorderProperties(tbDay, true);
-            _errorMessage = "Incomplete date";
+        else if (tbDay.Text.Length == 0) {
+            SetBorderColor(tbDay, true);
+            ErrorMessage = "Incomplete date";
         }
     }
 
@@ -89,34 +84,34 @@ public partial class DateInput : UserControl {
             tbMonth.Text = "0" + tbMonth.Text;
         }
         else if (tbMonth.Text.Length == 0) {
-            SetBorderProperties(tbMonth, true);
-            _errorMessage = "Incomplete date";
+            SetBorderColor(tbMonth, true);
+            ErrorMessage = "Incomplete date";
         }
     }
 
     private void tbYear_Leave(object sender, EventArgs e) {
         if (tbYear.Text.Length == 0) {
-            SetBorderProperties(tbYear, true);
-            _errorMessage = "Incomplete date";
+            SetBorderColor(tbYear, true);
+            ErrorMessage = "Incomplete date";
         }
     }
 
     // Clear the error if the text is filled in
     private void tbDay_TextChanged(object sender, EventArgs e) {
         if (tbDay.Text.Length != 0) {
-            SetBorderProperties(tbDay, false);
+            SetBorderColor(tbDay, false);
         }
     }
 
     private void tbMonth_TextChanged(object sender, EventArgs e) {
-        if (tbDay.Text.Length != 0) {
-            SetBorderProperties(tbDay, false);
+        if (tbMonth.Text.Length != 0) {
+            SetBorderColor(tbMonth, false);
         }
     }
 
     private void tbYear_TextChanged(object sender, EventArgs e) {
-        if (tbDay.Text.Length != 0) {
-            SetBorderProperties(tbDay, false);
+        if (tbYear.Text.Length != 0) {
+            SetBorderColor(tbYear, false);
         }
     }
 
@@ -157,9 +152,9 @@ public partial class DateInput : UserControl {
 
     protected override void OnLeave(EventArgs e) {
         // Set the error for any empty fields
-        SetBorderProperties(tbDay, tbDay.Text.Length == 0);
-        SetBorderProperties(tbMonth, tbMonth.Text.Length == 0);
-        SetBorderProperties(tbYear, tbYear.Text.Length == 0);
+        SetBorderColor(tbDay, tbDay.Text.Length == 0);
+        SetBorderColor(tbMonth, tbMonth.Text.Length == 0);
+        SetBorderColor(tbYear, tbYear.Text.Length == 0);
         if (tbDay.Text.Length == 0 || tbMonth.Text.Length == 0 || tbYear.Text.Length == 0) ErrorMessage = "Incomplete date";
 
         if (IsDateInvalid()) {
@@ -171,14 +166,11 @@ public partial class DateInput : UserControl {
     }
 
     // Helpers to set the border color on an error
-    private void SetBorderProperties(CustomTextBox textBox, bool isError) {
-        textBox.BorderColor = isError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
-        textBox.BorderThickness = isError ? _borderThicknessError : _borderThicknessNormal;
-    }
+    private void SetBorderColor(CustomTextBox textBox, bool isError) => textBox.BorderColor = isError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
 
     private void SetAllBorderProperties(bool isError) {
-        SetBorderProperties(tbDay, isError);
-        SetBorderProperties(tbMonth, isError);
-        SetBorderProperties(tbYear, isError);
+        SetBorderColor(tbDay, isError);
+        SetBorderColor(tbMonth, isError);
+        SetBorderColor(tbYear, isError);
     }
 }

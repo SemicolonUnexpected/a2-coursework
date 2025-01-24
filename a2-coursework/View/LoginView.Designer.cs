@@ -143,6 +143,7 @@
             btnSignIn.ForeColor = Color.FromArgb(9, 9, 10);
             btnSignIn.HoverBorderColor = Color.Empty;
             btnSignIn.HoverColor = Color.FromArgb(226, 226, 226);
+            btnSignIn.Image = null;
             btnSignIn.ImageRectangle = new Rectangle(0, 0, 0, 0);
             btnSignIn.Location = new Point(28, 227);
             btnSignIn.Margin = new Padding(10);
@@ -199,7 +200,6 @@
             // 
             btnSwitchTheme.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             btnSwitchTheme.BackColor = SystemColors.Control;
-            btnSwitchTheme.Image = Properties.Resources.brightness;
             btnSwitchTheme.BackgroundImageLayout = ImageLayout.Zoom;
             btnSwitchTheme.BorderColor = Color.FromArgb(39, 39, 42);
             btnSwitchTheme.BorderThickness = 1F;
@@ -213,6 +213,7 @@
             btnSwitchTheme.ForeColor = Color.FromArgb(9, 9, 10);
             btnSwitchTheme.HoverBorderColor = Color.FromArgb(39, 39, 42);
             btnSwitchTheme.HoverColor = Color.FromArgb(39, 39, 42);
+            btnSwitchTheme.Image = Properties.Resources.brightness;
             btnSwitchTheme.ImageRectangle = new Rectangle(7, 7, 28, 28);
             btnSwitchTheme.Location = new Point(724, 19);
             btnSwitchTheme.Margin = new Padding(10);

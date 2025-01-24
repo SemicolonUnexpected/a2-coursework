@@ -1,6 +1,4 @@
-﻿using System.ComponentModel;
-
-namespace a2_coursework.CustomControls;
+﻿namespace a2_coursework.CustomControls;
 public partial class CustomScrollBar : Control {
     private int _channelHeight;
     private float _thumbHeight;

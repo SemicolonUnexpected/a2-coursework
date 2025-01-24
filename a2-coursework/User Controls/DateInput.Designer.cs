@@ -94,7 +94,7 @@
             tbYear.Name = "tbYear";
             tbYear.PlaceholderText = "1986";
             tbYear.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbYear.Size = new Size(55, 40);
+            tbYear.Size = new Size(60, 40);
             tbYear.TabIndex = 2;
             tbYear.TextBoxInset = new Padding(13, 10, 10, 10);
             tbYear.UsePasswordChar = false;
@@ -149,10 +149,10 @@
             Controls.Add(tbYear);
             Controls.Add(tbMonth);
             Controls.Add(tbDay);
-            MaximumSize = new Size(200, 100);
+            MaximumSize = new Size(220, 100);
             MinimumSize = new Size(200, 100);
             Name = "DateInput";
-            Size = new Size(200, 100);
+            Size = new Size(220, 100);
             ResumeLayout(false);
             PerformLayout();
         }

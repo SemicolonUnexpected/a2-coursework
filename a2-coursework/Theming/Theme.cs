@@ -1,29 +1,57 @@
-﻿using System.Configuration;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using System.Configuration;
 
 namespace a2_coursework.Theming; 
 internal class Theme {
-    public static event EventHandler? ColourSchemeChanged;
-    private static ThemeMode _currentTheme = ConfigurationManager.AppSettings.Get("DefaultTheme") != "light" ? ThemeMode.Dark : ThemeMode.Light;
-    public static ThemeMode CurrentTheme {
+    static Theme() {
+        _currentTheme = new Theme(ConfigurationManager.AppSettings.Get("DefaultTheme") != "light" ? AppearanceTheme.Dark : AppearanceTheme.Light, true);
+    }
+
+    public Theme(AppearanceTheme theme, bool showToolTips) {
+        AppearanceTheme = theme;
+        ShowToolTips = showToolTips;
+    }
+
+    public static event EventHandler? ThemeChanged;
+    private static Theme _currentTheme;
+    public static Theme CurrentTheme {
         get => _currentTheme;
         set {
             _currentTheme = value;
-            ColourSchemeChanged?.Invoke(null, EventArgs.Empty);
+            ThemeChanged?.Invoke(_currentTheme, EventArgs.Empty);
+        }
+    }
+
+    public static event EventHandler? AppearanceThemeChanged;
+    private AppearanceTheme _appearanceTheme;
+    public AppearanceTheme AppearanceTheme {
+        get =>_appearanceTheme;
+        set {
+            _appearanceTheme = value;
+            AppearanceThemeChanged?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    public static event EventHandler? ShowToolTipsChanged;
+    private bool _showToolTips;
+    public bool ShowToolTips {
+        get => _showToolTips;
+        set {
+            _showToolTips = value;
+            ShowToolTipsChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 
     public static void ToggleTheme() {
-        if (CurrentTheme == ThemeMode.Dark) CurrentTheme = ThemeMode.Light;
-        else CurrentTheme = ThemeMode.Dark;
+        CurrentTheme.AppearanceTheme = CurrentTheme.AppearanceTheme != AppearanceTheme.Dark ? AppearanceTheme.Dark : AppearanceTheme.Light;
     }
 
-    public Theme(bool isDarkMode, bool showToolTips) {
-        IsDarkMode = isDarkMode;
-        ShowToolTips = showToolTips;
-    }
-
-    public bool IsDarkMode { get; set; }
-    public bool ShowToolTips {  get; set; }
+    public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings {
+        Converters = { new StringEnumConverter(new CamelCaseNamingStrategy()) },
+        Formatting = Formatting.Indented
+    };
 }
 
-public enum ThemeMode { Dark, Light }
+public enum AppearanceTheme { Dark, Light }

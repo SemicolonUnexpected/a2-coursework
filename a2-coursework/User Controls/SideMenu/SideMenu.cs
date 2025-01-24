@@ -10,7 +10,7 @@ public partial class SideMenu : UserControl {
 
     public event EventHandler<string>? SideMenuToggleUpdated;
     public event EventHandler<string>? DropdownToggleChanged;
-    public event EventHandler<SideMenuToggleButton>? SideMenuButtonToggleUpdated;
+    public event EventHandler<MenuToggleButton>? SideMenuButtonToggleUpdated;
 
     public SideMenu() {
         InitializeComponent();
@@ -21,7 +21,7 @@ public partial class SideMenu : UserControl {
             if (control is MenuDropdown dropdown) {
                 dropdown.Theme();
             }
-            else if (control is SideMenuToggleButton toggle) {
+            else if (control is MenuToggleButton toggle) {
                 toggle.Theme();
             }
         }
@@ -36,7 +36,7 @@ public partial class SideMenu : UserControl {
     public void GenerateMenu(string[][] items) {
         for (int i = items.Length - 1; i >= 0; i--) {
             if (items[i].Length == 1) {
-                SideMenuToggleButton btn = new() { Text = items[i][0], Dock = DockStyle.Top };
+                MenuToggleButton btn = new() { Text = items[i][0], Dock = DockStyle.Top };
                 btn.ToggleChanged += SideMenuToggleButtonChanged;
                 pnlMenuHolder.Controls.Add(btn);
             }
@@ -63,11 +63,11 @@ public partial class SideMenu : UserControl {
         // Check if any have been changed
         bool anyToggled = false;
         foreach (Control control in pnlMenuHolder.Controls) {
-            if (control is SideMenuToggleButton button) {
+            if (control is MenuToggleButton button) {
                 anyToggled |= button.Toggled;
             }
             else if (control is MenuDropdown dropdown) {
-                foreach (SideMenuToggleButton internalButton in dropdown.ToggleButtons) {
+                foreach (MenuToggleButton internalButton in dropdown.ToggleButtons) {
                     anyToggled |= internalButton.Toggled; 
                 }
             }
@@ -89,13 +89,13 @@ public partial class SideMenu : UserControl {
 
         // Clear all toggled buttons
         foreach (Control control in pnlMenuHolder.Controls) {
-            if (control is SideMenuToggleButton button) {
+            if (control is MenuToggleButton button) {
                 if (button.ToggleButton != btn) {
                     button.Toggled = false;
                 }
             }
             else if (control is MenuDropdown dropdown) {
-                foreach (SideMenuToggleButton internalButton in dropdown.ToggleButtons) {
+                foreach (MenuToggleButton internalButton in dropdown.ToggleButtons) {
                     if (internalButton.ToggleButton != btn) {
                         internalButton.Toggled = false;
                     }
