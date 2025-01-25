@@ -2,40 +2,25 @@
 
 namespace a2_coursework.Model;
 
-public class Staff {
-    public Staff(int staffID, string username, bool active, PrivilegeLevel? privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string? phoneNumber, string? emergencyContactForename, string? emergencyContactSurname, string? emergencyContactPhoneNumber, string? address, string? position, string? department, Theme theme) {
-        StaffID = staffID;
-        Username = username;
-        Active = active;
-        PrivilegeLevel = privilegeLevel;
-        Forename = forename;
-        Surname = surname;
-        DateOfBirth = dateOfBirth;
-        Email = email;
-        PhoneNumber = phoneNumber;
-        EmergencyContactForename = emergencyContactForename;
-        EmergencyContactSurname = emergencyContactSurname;
-        EmergencyContactPhoneNumber = emergencyContactPhoneNumber;
-        Address = address;
-        Position = position;
-        Department = department;
-        Theme = theme;
-    }
+public class Staff(int staffID, string username, bool? active, PrivilegeLevel? privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string? phoneNumber, string? emergencyContactForename, string? emergencyContactSurname, string? emergencyContactPhoneNumber, string? address, string? position, string? department, Theme theme) : IStaff {
+    public int StaffID { get; private init; } = staffID;
+    public string Username { get; private init; } = username;
+    public bool? Active { get; init; } = active;
+    public PrivilegeLevel? PrivilegeLevel { get; init; } = privilegeLevel;
+    public string Forename { get; set; } = forename;
+    public string? Surname { get; set; } = surname;
+    public DateTime? DateOfBirth { get; set; } = dateOfBirth;
+    public string? Email { get; set; } = email;
+    public string? PhoneNumber { get; set; } = phoneNumber;
+    public string? EmergencyContactForename { get; set; } = emergencyContactForename;
+    public string? EmergencyContactSurname { get; set; } = emergencyContactSurname;
+    public string? EmergencyContactPhoneNumber { get; set; } = emergencyContactPhoneNumber;
+    public string? Address { get; set; } = address;
+    public string? Position { get; set; } = position;
+    public string? Department { get; set; } = department;
+    public Theme Theme { get; set; } = theme;
 
-    public int StaffID { get; private init; }
-    public string Username { get; private init; }
-    public bool Active { get; init; }
-    public PrivilegeLevel? PrivilegeLevel { get; init; }
-    public string Forename { get; set; }
-    public string Surname { get; set; }
-    public DateTime? DateOfBirth { get; set; }
-    public string Email { get; set; }
-    public string? PhoneNumber { get; set; }
-    public string? EmergencyContactForename { get; set; }
-    public string? EmergencyContactSurname { get; set; }
-    public string? EmergencyContactPhoneNumber { get; set; }
-    public string? Address { get; set; }
-    public string? Position { get; set; }
-    public string? Department {  get; set; }
-    public Theme Theme { get; set; }
+    public void ApplyStaffUpdateData(StaffUpdateData data) {
+        if (data.Forename is not null) Forename = data.Forename;
+    }
 }
