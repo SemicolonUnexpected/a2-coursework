@@ -23,85 +23,55 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            ListViewItem listViewItem1 = new ListViewItem("three");
-            ListViewItem listViewItem2 = new ListViewItem("two");
-            ListViewItem listViewItem3 = new ListViewItem("one");
-            panel1 = new Panel();
-            panel2 = new Panel();
-            dataGridView1 = new DataGridView();
-            listView1 = new ListView();
-            comboBox1 = new ComboBox();
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            dateInput1 = new CustomControls.DateInput();
+            button1 = new Button();
             SuspendLayout();
             // 
-            // panel1
+            // dateInput1
             // 
-            panel1.Location = new Point(116, 67);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(200, 100);
-            panel1.TabIndex = 0;
+            dateInput1.BackColor = Color.FromArgb(255, 255, 192);
+            dateInput1.BorderColor = Color.Gray;
+            dateInput1.BorderErrorColor = Color.Red;
+            dateInput1.BorderThickness = 1F;
+            dateInput1.Day = 3;
+            dateInput1.ForeColor = Color.RoyalBlue;
+            dateInput1.Location = new Point(102, 121);
+            dateInput1.MaxDate = new DateTime(2020, 1, 1, 0, 0, 0, 0);
+            dateInput1.MaximumSize = new Size(180, 68);
+            dateInput1.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
+            dateInput1.MinimumSize = new Size(180, 68);
+            dateInput1.Month = 32;
+            dateInput1.Name = "dateInput1";
+            dateInput1.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            dateInput1.Size = new Size(180, 68);
+            dateInput1.TabIndex = 5;
+            dateInput1.Year = 0;
             // 
-            // panel2
+            // button1
             // 
-            panel2.Location = new Point(403, 163);
-            panel2.Name = "panel2";
-            panel2.Size = new Size(200, 100);
-            panel2.TabIndex = 1;
-            // 
-            // dataGridView1
-            // 
-            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Location = new Point(403, 96);
-            dataGridView1.Name = "dataGridView1";
-            dataGridView1.Size = new Size(240, 150);
-            dataGridView1.TabIndex = 2;
-            // 
-            // listView1
-            // 
-            listView1.Items.AddRange(new ListViewItem[] { listViewItem1, listViewItem2, listViewItem3 });
-            listView1.Location = new Point(199, 222);
-            listView1.MultiSelect = false;
-            listView1.Name = "listView1";
-            listView1.OwnerDraw = true;
-            listView1.Size = new Size(121, 97);
-            listView1.TabIndex = 3;
-            listView1.UseCompatibleStateImageBehavior = false;
-            // 
-            // comboBox1
-            // 
-            comboBox1.BackColor = SystemColors.ScrollBar;
-            comboBox1.DrawMode = DrawMode.OwnerDrawVariable;
-            comboBox1.DropDownWidth = 200;
-            comboBox1.ForeColor = SystemColors.InactiveCaption;
-            comboBox1.FormattingEnabled = true;
-            comboBox1.Location = new Point(461, 390);
-            comboBox1.Name = "comboBox1";
-            comboBox1.Size = new Size(116, 24);
-            comboBox1.TabIndex = 4;
+            button1.Location = new Point(389, 152);
+            button1.Name = "button1";
+            button1.Size = new Size(75, 23);
+            button1.TabIndex = 6;
+            button1.Text = "button1";
+            button1.UseVisualStyleBackColor = true;
+            button1.Click += button1_Click;
             // 
             // TestView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 895);
-            Controls.Add(comboBox1);
-            Controls.Add(listView1);
-            Controls.Add(dataGridView1);
-            Controls.Add(panel2);
-            Controls.Add(panel1);
-            FormBorderStyle = FormBorderStyle.None;
+            ClientSize = new Size(800, 242);
+            Controls.Add(button1);
+            Controls.Add(dateInput1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "TestView";
             Text = "TestView";
-            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
         }
 
         #endregion
-
-        private Panel panel1;
-        private Panel panel2;
-        private DataGridView dataGridView1;
-        private ListView listView1;
-        private ComboBox comboBox1;
+        private CustomControls.DateInput dateInput1;
+        private Button button1;
     }
 }

@@ -26,4 +26,12 @@ public static class ViewFactory {
 
         return (view, presenter);
     }
+
+    public static (PersonalInformationSettingsView view, PersonalInformationSettingsPresenter presenter) CreatePersonalInformationSettings(Staff staff) {
+        PersonalInformationSettingsView view = new();
+        PersonalInformationSettingsPresenter presenter = new(view, staff);
+        view.SetPresenter(presenter);
+
+        return (view, presenter);
+    }
 }

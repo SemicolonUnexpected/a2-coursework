@@ -65,13 +65,13 @@ public class LoginPresenter {
                 _view.ButtonSignInEnabled = true;
                 _view.TextBoxesEnabled = true;
                 _view.ButtonSignInText = "Sign in";
-                await StaffDAL.LoginAttempt(username, DateTime.UtcNow, false);
+                await StaffDAL.LogLoginAttempt(username, DateTime.UtcNow, false);
                 return;
             }
 
             if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) {
                 LoginSuccessful?.Invoke(this, (await StaffDAL.GetUser(username))!);
-                await StaffDAL.LoginAttempt(username, DateTime.UtcNow, true);
+                await StaffDAL.LogLoginAttempt(username, DateTime.UtcNow, true);
             }
             else {
                 _view.Password = "";
@@ -79,7 +79,7 @@ public class LoginPresenter {
                 _view.ButtonSignInEnabled = true;
                 _view.TextBoxesEnabled = true;
                 _view.ButtonSignInText = "Sign in";
-                await StaffDAL.LoginAttempt(username, DateTime.UtcNow, false);
+                await StaffDAL.LogLoginAttempt(username, DateTime.UtcNow, false);
                 return;
             }
         }

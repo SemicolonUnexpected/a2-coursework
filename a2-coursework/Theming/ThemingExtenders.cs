@@ -53,4 +53,12 @@ internal static class ThemingExtenders {
         scrollBar.ThumbClickedColor = ColorScheme.CurrentTheme.Primary;
         scrollBar.ThumbHoverColor = ColorScheme.CurrentTheme.Primary;
     }
+
+    public static void Theme(this DateInput dateInput) {
+        dateInput.BackColor = ColorScheme.CurrentTheme.Background;
+        dateInput.BorderColor = ColorScheme.CurrentTheme.Primary;
+        dateInput.ForeColor = ColorScheme.CurrentTheme.PrimaryForeground;
+        dateInput.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
+        dateInput.BorderErrorColor = ColorScheme.CurrentTheme.Danger;
+    }
 }

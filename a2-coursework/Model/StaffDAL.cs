@@ -31,17 +31,19 @@ internal static class StaffDAL {
         return (hash, salt);
     }
 
-    public static async Task LoginAttempt(string username, DateTime dateTime, bool success) {
+    public static async Task<bool> LogLoginAttempt(string username, DateTime attemptTime, bool success) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("LoginAttempt", connection);
+        await using SqlCommand command = new("LogLoginAttempt", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("username", username);
-        command.Parameters.AddWithValue("attemptTime", dateTime);
+        command.Parameters.AddWithValue("attemptTime", attemptTime);
         command.Parameters.AddWithValue("success", success);
 
-        await command.ExecuteNonQueryAsync();
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
     }
 
     public static async Task<Staff?> GetUser(string username) {
@@ -58,23 +60,64 @@ internal static class StaffDAL {
             return new Staff(
                 staffID: reader.GetInt32(reader.GetOrdinal("StaffID")),
                 username: reader.GetString(reader.GetOrdinal("Username")),
+                active: reader.GetBoolean(reader.GetOrdinal("Active")),
                 forename: reader.GetString(reader.GetOrdinal("Forename")),
                 surname: reader.GetString(reader.GetOrdinal("Surname")),
                 dateOfBirth: reader.IsDBNull("DateOfBirth") ? null : reader.GetDateTime(reader.GetOrdinal("DateOfBirth")),
                 email: reader.GetString(reader.GetOrdinal("Email")),
-                phoneNumber: reader.IsDBNull("PhoneNumber") ? null : reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                phoneNumber: reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                address: reader.GetString(reader.GetOrdinal("Address")),
                 emergencyContactForename: reader.IsDBNull("EmergencyContactForename") ? null : reader.GetString(reader.GetOrdinal("EmergencyContactForename")),
                 emergencyContactSurname: reader.IsDBNull("EmergencyContactSurname") ? null : reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
                 emergencyContactPhoneNumber: reader.IsDBNull("EmergencyContactPhoneNumber") ? null : reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
-                address: reader.IsDBNull("Address") ? null : reader.GetString(reader.GetOrdinal("Address")),
-                position: reader.IsDBNull("Position") ? null : reader.GetString(reader.GetOrdinal("Position")),
-                department: reader.IsDBNull("DepartmentName") ? null : reader.GetString(reader.GetOrdinal("DepartmentName")),
-                active: reader.GetBoolean(reader.GetOrdinal("Active")),
-                privilegeLevel: reader.IsDBNull("PrivilegeLevel") ? null : ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
+                department: reader.GetString(reader.GetOrdinal("DepartmentName")),
+                privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
                 theme: reader.IsDBNull("UserAppearanceSettings") ? new Theming.Theme(Theming.AppearanceTheme.Dark, true) : Newtonsoft.Json.JsonConvert.DeserializeObject<Theming.Theme>(reader.GetString(reader.GetOrdinal("UserAppearanceSettings")))!
             );
         }
         return null;
+    }
+
+    public static async Task<bool> UpdateDateOfBirth(int staffId, DateTime dateOfBirth) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffDateOfBirth", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("dateOfBirth", dateOfBirth);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+    
+    public static async Task<bool> UpdateForename(int staffId, DateTime forename) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffDateOfBirth", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("forename", forename);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
+    public static async Task<bool> UpdateSurname(int staffId, string surname) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffDateOfBirth", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("surname", surname);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
     }
 
     public static async Task<string[]> GetDepartment() {
