@@ -16,7 +16,9 @@ public partial class MenuToggleButton : UserControl {
     }
 
     public event EventHandler? ToggleChanged;
+    public event EventHandler<ToggleEventArgs>? PreviewToggleChanged;
     private void btn_ToggleChanged(object? sender, EventArgs e) => ToggleChanged?.Invoke(sender, e);
+    private void btn_PreviewToggleChanged(object sender, ToggleEventArgs e) => PreviewToggleChanged?.Invoke(sender, e);
 
     public new Color BackColor {
         get => base.BackColor;

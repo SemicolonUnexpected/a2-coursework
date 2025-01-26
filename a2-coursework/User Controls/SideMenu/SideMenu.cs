@@ -8,8 +8,9 @@ public partial class SideMenu : UserControl {
         GenerateMenu(items);
     }
 
-    public event EventHandler<string>? SideMenuToggleUpdated;
-    public event EventHandler<string>? DropdownToggleChanged;
+    public event EventHandler? PreviewSideMenuToggleChanged;
+    public event EventHandler? SideMenuToggleChanged;
+    public event EventHandler? DropdownToggleChanged;
     public event EventHandler<MenuToggleButton>? SideMenuButtonToggleUpdated;
 
     public SideMenu() {
@@ -38,12 +39,14 @@ public partial class SideMenu : UserControl {
             if (items[i].Length == 1) {
                 MenuToggleButton btn = new() { Text = items[i][0], Dock = DockStyle.Top };
                 btn.ToggleChanged += SideMenuToggleButtonChanged;
+                btn.PreviewToggleChanged += (s, e) => PreviewSideMenuToggleChanged?.Invoke(s, e);
                 pnlMenuHolder.Controls.Add(btn);
             }
             else {
                 MenuDropdown dropDown = new(items[i][0], items[i][1..]) { Dock = DockStyle.Top };
                 dropDown.DropDownItemToggleChanged += SideMenuToggleButtonChanged;
                 dropDown.DropDownToggleChanged += OnDropdownToggleChanged;
+                dropDown.PreviewDropDownItemToggleChanged += (s, e) => PreviewSideMenuToggleChanged?.Invoke(s, e);
                 pnlMenuHolder.Controls.Add(dropDown);
             }
         }
@@ -53,8 +56,8 @@ public partial class SideMenu : UserControl {
 
 
     private void OnDropdownToggleChanged(object? sender, EventArgs e) {
-        DropdownToggleChanged?.Invoke(sender, ((MenuDropdown)sender!).ParentName);
-        SetupSizeAndScroll() ;
+        DropdownToggleChanged?.Invoke(sender, e);
+        SetupSizeAndScroll();
     }
 
     private void SideMenuToggleButtonChanged(object? sender, EventArgs e) {
@@ -105,7 +108,7 @@ public partial class SideMenu : UserControl {
         }
 
         SetupSizeAndScroll();
-        SideMenuToggleUpdated?.Invoke(this, btn.Text);
+        SideMenuToggleChanged?.Invoke(btn, EventArgs.Empty);
     }
 
     public object this[int i] {

@@ -8,6 +8,7 @@ public partial class ToggleButton : CustomPanel {
     private ToggleButtonState _buttonState = ToggleButtonState.Normal;
 
     public event EventHandler? ToggleChanged;
+    public event EventHandler<ToggleEventArgs>? PreviewToggleChanged;
     private bool _toggled = false;
     public bool Toggled {
         get => _toggled;
@@ -137,6 +138,14 @@ public partial class ToggleButton : CustomPanel {
 
     protected override void OnMouseClick(MouseEventArgs e) {
         if (!Enabled) return;
+
+        ToggleEventArgs args = new();
+        PreviewToggleChanged?.Invoke(this, args);
+
+        if (args.Handled) {
+            base.OnMouseClick(e);
+            return;
+        }
 
         Toggled = !Toggled;
 

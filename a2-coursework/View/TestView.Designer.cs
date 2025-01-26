@@ -25,6 +25,7 @@
         private void InitializeComponent() {
             dateInput1 = new CustomControls.DateInput();
             button1 = new Button();
+            toggleButton1 = new UserControls.ToggleButton();
             SuspendLayout();
             // 
             // dateInput1
@@ -57,11 +58,30 @@
             button1.UseVisualStyleBackColor = true;
             button1.Click += button1_Click;
             // 
+            // toggleButton1
+            // 
+            toggleButton1.BackColor = Color.FromArgb(255, 128, 128);
+            toggleButton1.BorderColor = Color.Empty;
+            toggleButton1.BorderThickness = 0F;
+            toggleButton1.CornerRadii = new CustomControls.CornerRadiiF(0F, 0F, 0F, 0F);
+            toggleButton1.Font = new Font("Segoe UI", 9F);
+            toggleButton1.HoverColor = Color.Empty;
+            toggleButton1.Location = new Point(431, 49);
+            toggleButton1.Name = "toggleButton1";
+            toggleButton1.Size = new Size(198, 58);
+            toggleButton1.TabIndex = 7;
+            toggleButton1.Text = "toggleButton1";
+            toggleButton1.Toggled = false;
+            toggleButton1.ToggledColor = Color.FromArgb(192, 255, 192);
+            toggleButton1.ToggleChanged += toggleButton1_ToggleChanged;
+            toggleButton1.PreviewToggleChanged += toggleButton1_PreviewToggleChanged;
+            // 
             // TestView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 242);
+            Controls.Add(toggleButton1);
             Controls.Add(button1);
             Controls.Add(dateInput1);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -73,5 +93,6 @@
         #endregion
         private CustomControls.DateInput dateInput1;
         private Button button1;
+        private UserControls.ToggleButton toggleButton1;
     }
 }

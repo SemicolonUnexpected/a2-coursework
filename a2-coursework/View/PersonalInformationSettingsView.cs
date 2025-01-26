@@ -29,7 +29,7 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         tbSurname.Theme();
         SetForenameBorderError(_surnameError);
 
-        //diDateOfBirth.Theme();
+        diDateOfBirth.Theme();
 
         lblPersonalInfo.ThemeTitle();
     }

@@ -5,6 +5,8 @@ namespace a2_coursework.UserControls.SideMenu;
 public partial class MenuDropdown : UserControl {
     public event EventHandler? DropDownToggleChanged;
     public event EventHandler? DropDownItemToggleChanged;
+    public event EventHandler? PreviewDropDownItemToggleChanged;
+
     public MenuDropdown() {
         InitializeComponent();
     }
@@ -85,6 +87,9 @@ public partial class MenuDropdown : UserControl {
 
             button.ToggleChanged += (s, e) => {
                 DropDownItemToggleChanged?.Invoke(s, e);
+            };
+            button.PreviewToggleChanged += (s, e) => {
+                PreviewDropDownItemToggleChanged?.Invoke(s, e);
             };
 
             pnlChildHolder.Controls.Add(button);

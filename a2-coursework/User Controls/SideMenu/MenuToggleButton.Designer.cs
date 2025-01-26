@@ -45,14 +45,15 @@
             btn.Toggled = false;
             btn.ToggledColor = Color.FromArgb(39, 39, 42);
             btn.ToggleChanged += btn_ToggleChanged;
+            btn.PreviewToggleChanged += btn_PreviewToggleChanged;
             // 
-            // SideMenuToggleButton
+            // MenuToggleButton
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(btn);
-            Name = "SideMenuToggleButton";
+            Name = "MenuToggleButton";
             Padding = new Padding(2);
             Size = new Size(283, 40);
             ResumeLayout(false);

@@ -27,13 +27,13 @@
             lblPersonalInfo = new Label();
             lblDateOfBirthErrorText = new Label();
             lblNameError = new Label();
-            diDateOfBirth = new CustomControls.DateInput();
             lblDateOfBirthTitle = new Label();
             lblSurnameTitle = new Label();
             lblForenameTitle = new Label();
             lblEditPromt = new Label();
             tbSurname = new CustomControls.CustomTextBox();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
+            diDateOfBirth = new CustomControls.DateInput();
             SuspendLayout();
             // 
             // tbForename
@@ -73,9 +73,9 @@
             // 
             lblDateOfBirthErrorText.Font = new Font("Bahnschrift", 12F);
             lblDateOfBirthErrorText.ForeColor = Color.FromArgb(168, 171, 174);
-            lblDateOfBirthErrorText.Location = new Point(344, 382);
+            lblDateOfBirthErrorText.Location = new Point(344, 347);
             lblDateOfBirthErrorText.Name = "lblDateOfBirthErrorText";
-            lblDateOfBirthErrorText.Size = new Size(195, 38);
+            lblDateOfBirthErrorText.Size = new Size(162, 68);
             lblDateOfBirthErrorText.TabIndex = 10;
             lblDateOfBirthErrorText.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -85,19 +85,9 @@
             lblNameError.ForeColor = Color.FromArgb(168, 171, 174);
             lblNameError.Location = new Point(151, 273);
             lblNameError.Name = "lblNameError";
-            lblNameError.Size = new Size(388, 38);
+            lblNameError.Size = new Size(355, 38);
             lblNameError.TabIndex = 9;
             lblNameError.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // diDateOfBirth
-            // 
-            diDateOfBirth.BackColor = Color.FromArgb(9, 9, 10);
-            diDateOfBirth.Location = new Point(138, 340);
-            diDateOfBirth.MaximumSize = new Size(200, 100);
-            diDateOfBirth.MinimumSize = new Size(200, 100);
-            diDateOfBirth.Name = "diDateOfBirth";
-            diDateOfBirth.Size = new Size(200, 100);
-            diDateOfBirth.TabIndex = 8;
             // 
             // lblDateOfBirthTitle
             // 
@@ -179,17 +169,35 @@
             approveChangesBar.Cancel += approveChangesBar_Cancel;
             approveChangesBar.Save += approveChangesBar_Save;
             // 
+            // diDateOfBirth
+            // 
+            diDateOfBirth.BorderColor = Color.Empty;
+            diDateOfBirth.BorderErrorColor = Color.Red;
+            diDateOfBirth.BorderThickness = 1F;
+            diDateOfBirth.Day = null;
+            diDateOfBirth.Location = new Point(151, 347);
+            diDateOfBirth.MaxDate = null;
+            diDateOfBirth.MaximumSize = new Size(180, 68);
+            diDateOfBirth.MinDate = null;
+            diDateOfBirth.MinimumSize = new Size(180, 68);
+            diDateOfBirth.Month = null;
+            diDateOfBirth.Name = "diDateOfBirth";
+            diDateOfBirth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            diDateOfBirth.Size = new Size(180, 68);
+            diDateOfBirth.TabIndex = 12;
+            diDateOfBirth.Year = null;
+            // 
             // PersonalInformationSettingsView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
+            Controls.Add(diDateOfBirth);
             Controls.Add(approveChangesBar);
             Controls.Add(lblDateOfBirthErrorText);
             Controls.Add(lblNameError);
             Controls.Add(lblPersonalInfo);
-            Controls.Add(diDateOfBirth);
             Controls.Add(tbForename);
             Controls.Add(lblDateOfBirthTitle);
             Controls.Add(tbSurname);
@@ -213,9 +221,9 @@
         private Label lblForenameTitle;
         private Label lblSurnameTitle;
         private Label lblDateOfBirthTitle;
-        private CustomControls.DateInput diDateOfBirth;
         private Label lblNameError;
         private Label lblDateOfBirthErrorText;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
+        private CustomControls.DateInput diDateOfBirth;
     }
 }
