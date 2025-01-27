@@ -3,7 +3,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings {
+public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings, IChildView {
     private PersonalInformationSettingsPresenter? _presenter;
 
     private bool _forenameError = false;

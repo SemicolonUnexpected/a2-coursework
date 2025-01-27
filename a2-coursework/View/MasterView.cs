@@ -1,5 +1,6 @@
 ﻿using a2_coursework.Presenter;
 using a2_coursework.Theming;
+using a2_coursework.UserControls;
 using a2_coursework.UserControls.SideMenu;
 using a2_coursework.View.Interfaces;
 
@@ -28,12 +29,12 @@ public partial class MasterView : Form, IMaster {
         sb.Theme();
     }
 
-    public void GenerateMenu(string[][] menuItems) { 
+    public void GenerateMenu(string[][] menuItems) {
         sideMenu.GenerateMenu(menuItems);
     }
 
-    private Form? _childForm;
-    public Form? ChildForm {
+    private IChildView? _childForm;
+    public IChildView? ChildForm {
         get => _childForm;
         set => _childForm = value;
     }
@@ -52,7 +53,7 @@ public partial class MasterView : Form, IMaster {
         }
     }
 
-    public void DisplayChildForm(Form childForm) {
+    public void DisplayChildForm(IChildView childForm) {
         // Remove the previous child form
         pnlHolder.Controls.Clear();
         if (ChildForm is not null) {
@@ -117,5 +118,11 @@ public partial class MasterView : Form, IMaster {
 
     private void MasterView_Shown(object sender, EventArgs e) {
         pnlCover.Visible = false;
+    }
+
+    private void sideMenu_PreviewSideMenuToggleChanged(object sender, ToggleEventArgs e) {
+        if (((ToggleButton)sender).Toggled == true) return;
+
+        _presenter?.PrepareExit(e);
     }
 }

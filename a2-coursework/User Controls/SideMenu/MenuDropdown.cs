@@ -5,7 +5,7 @@ namespace a2_coursework.UserControls.SideMenu;
 public partial class MenuDropdown : UserControl {
     public event EventHandler? DropDownToggleChanged;
     public event EventHandler? DropDownItemToggleChanged;
-    public event EventHandler? PreviewDropDownItemToggleChanged;
+    public event EventHandler<ToggleEventArgs>? PreviewDropDownItemToggleChanged;
 
     public MenuDropdown() {
         InitializeComponent();

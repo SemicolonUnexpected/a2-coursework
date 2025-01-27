@@ -48,6 +48,7 @@
             sideMenu.Name = "sideMenu";
             sideMenu.Size = new Size(230, 571);
             sideMenu.TabIndex = 1;
+            sideMenu.PreviewSideMenuToggleChanged += sideMenu_PreviewSideMenuToggleChanged;
             // 
             // sb
             // 

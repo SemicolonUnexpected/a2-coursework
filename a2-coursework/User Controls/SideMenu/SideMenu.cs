@@ -8,7 +8,7 @@ public partial class SideMenu : UserControl {
         GenerateMenu(items);
     }
 
-    public event EventHandler? PreviewSideMenuToggleChanged;
+    public event EventHandler<ToggleEventArgs>? PreviewSideMenuToggleChanged;
     public event EventHandler? SideMenuToggleChanged;
     public event EventHandler? DropdownToggleChanged;
     public event EventHandler<MenuToggleButton>? SideMenuButtonToggleUpdated;
