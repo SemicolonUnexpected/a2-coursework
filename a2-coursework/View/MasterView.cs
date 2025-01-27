@@ -70,7 +70,7 @@ public partial class MasterView : Form, IMaster {
         ChildForm.MouseWheel += OnChildMouseWheel;
 
         // Display the form
-        pnlHolder.Controls.Add(childForm);
+        pnlHolder.Controls.Add(childForm as Form);
         childForm.Show();
 
         SetScrollOptions();

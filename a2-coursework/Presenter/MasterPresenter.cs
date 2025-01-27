@@ -1,4 +1,5 @@
 ﻿using a2_coursework.Model;
+using a2_coursework.UserControls;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.Presenter;
@@ -18,5 +19,9 @@ public class MasterPresenter {
         };
 
         _view.GenerateMenu(menuItems);
+    }
+
+    public void PrepareExit(ToggleEventArgs e) {
+
     }
 }

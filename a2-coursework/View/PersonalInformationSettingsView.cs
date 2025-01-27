@@ -94,4 +94,8 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         _surnameError = isError;
         tbSurname.BorderColor = _surnameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
     }
+
+    public bool CanExit() {
+        throw new NotImplementedException();
+    }
 }
