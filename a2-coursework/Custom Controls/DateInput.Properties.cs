@@ -7,7 +7,7 @@ public partial class DateInput {
     private bool _yearEmptyError = false;
     private bool _invalidDateError = false;
 
-    public event EventHandler? DateInputChanged;
+    public event EventHandler? DateTextChanged;
 
     public string DayText => tbDay.Text;
 
@@ -27,6 +27,8 @@ public partial class DateInput {
             else tbDay.Text = value.ToString() ?? "";
         }
     }
+
+    public bool DateValid => TryGetDate(out _);
 
     public int? Month {
         get {
@@ -53,10 +55,8 @@ public partial class DateInput {
         }
     }
 
-
     public DateTime? MinDate { get; set; }
     public DateTime? MaxDate { get; set; }
-
 
     private Color _backColor = Color.FromArgb(9, 9, 10);
     [Category("Appearance")]
@@ -167,9 +167,9 @@ public partial class DateInput {
         }
         set {
             if (value is not null) {
-                tbDay.Text = value.Value.Day.ToString();
-                tbMonth.Text = value.Value.Month.ToString();
-                tbYear.Text = value.Value.Year.ToString();
+                Day = value.Value.Day;
+                Month = value.Value.Month;
+                Year = value.Value.Year;
             }
             else {
                 tbDay.Text = "";
@@ -186,5 +186,41 @@ public partial class DateInput {
         private set => _errorState = value;
     }
 
+    private bool _nullValid = false;
+    [DefaultValue(false)]
+    public bool NullValid {
+        get => _nullValid;
+        set => _nullValid = value;
+    }
+
+    private bool _showPlaceholder = true;
+    [DefaultValue(true)]
+    public bool ShowPlaceholder {
+        get => _showPlaceholder;
+        set {
+            _showPlaceholder = value;
+
+            if (_showPlaceholder) {
+                tbDay.PlaceholderText = "14";
+                tbMonth.PlaceholderText = "09";
+                tbYear.PlaceholderText = "2006";
+            }
+            else {
+                tbDay.PlaceholderText = "";
+                tbMonth.PlaceholderText = "";
+                tbYear.PlaceholderText = "";
+            }
+        }
+    }
+
     public enum DateErrorState { None, Incomplete, Invalid }
+
+    public new bool Enabled {
+        get => tbDay.Enabled;
+        set {
+            tbDay.Enabled = value;
+            tbMonth.Enabled = value;
+            tbYear.Enabled = value;
+        }
+    }
 }

@@ -33,32 +33,27 @@ public partial class DateInput : UserControl {
     private void tbYear_Leave(object sender, EventArgs e) { }
 
     private void tbDay_TextChanged(object sender, EventArgs e) {
-        if (TryGetDate(out _)) {
-            SetAllBorderColor(false);
-        }
-
-        DateInputChanged?.Invoke(this, EventArgs.Empty);
+        SetAllBorderColor(!TryGetDate(out _));
+        DateTextChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void tbMonth_TextChanged(object sender, EventArgs e) {
-        if (TryGetDate(out _)) {
-            SetAllBorderColor(false);
-        }
-
-        DateInputChanged?.Invoke(this, EventArgs.Empty);
+        SetAllBorderColor(!TryGetDate(out _));
+        DateTextChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void tbYear_TextChanged(object sender, EventArgs e) {
-        if (TryGetDate(out _)) {
-            SetAllBorderColor(false);
-        }
-
-        DateInputChanged?.Invoke(this, EventArgs.Empty);
+        SetAllBorderColor(!TryGetDate(out _));
+        DateTextChanged?.Invoke(this, EventArgs.Empty);
     }
-
 
     private bool TryGetDate(out DateTime? date) {
         date = null;
+
+        if (NullValid && tbDay.Text.Length == 0 && tbMonth.Text.Length == 0 && tbYear.Text.Length == 0) {
+            date = null;
+            return true;
+        }
 
         try {
             // Parse and validate the date
@@ -71,6 +66,8 @@ public partial class DateInput : UserControl {
 
             if (MaxDate is not null && MaxDate < candidateDate) return false;
             if (MinDate is not null && MinDate > candidateDate) return false;
+
+            date = candidateDate;
             return true;
         }
         catch {
@@ -98,5 +95,12 @@ public partial class DateInput : UserControl {
         SetBorderColor(tbDay, isError);
         SetBorderColor(tbMonth, isError);
         SetBorderColor(tbYear, isError);
+    }
+
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
+            BorderThickness *= factor.Width;
+        }
+        base.ScaleControl(factor, specified);
     }
 }

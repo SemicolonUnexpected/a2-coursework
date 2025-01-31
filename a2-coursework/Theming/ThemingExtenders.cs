@@ -56,8 +56,8 @@ internal static class ThemingExtenders {
 
     public static void Theme(this DateInput dateInput) {
         dateInput.BackColor = ColorScheme.CurrentTheme.Background;
+        dateInput.ForeColor = ColorScheme.CurrentTheme.Foreground;
         dateInput.BorderColor = ColorScheme.CurrentTheme.Primary;
-        dateInput.ForeColor = ColorScheme.CurrentTheme.PrimaryForeground;
         dateInput.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
         dateInput.BorderErrorColor = ColorScheme.CurrentTheme.Danger;
     }

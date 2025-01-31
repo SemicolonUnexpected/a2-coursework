@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.CustomControls;
-public partial class CustomMessageBoxView : Form, IThemable {
+public partial class CustomMessageBoxView : Form, IThemeable {
     public CustomMessageBoxView(string text, string caption, MessageBoxButtons buttons) {
         InitializeComponent();
 

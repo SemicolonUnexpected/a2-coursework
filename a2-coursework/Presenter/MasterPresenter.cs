@@ -1,27 +1,38 @@
 ﻿using a2_coursework.Model;
 using a2_coursework.UserControls;
+using a2_coursework.View;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.Presenter;
 public class MasterPresenter {
     private IMaster _view;
+    private Staff _staff;
 
-    public MasterPresenter(IMaster view, Staff user) {
+    public MasterPresenter(IMaster view, Staff staff) {
         _view = view;
+        _staff = staff;
 
-        _view.UsernameText = user.Username;
-        Theming.Theme.CurrentTheme = user.Theme;
+        _view.UsernameText = staff.Username;
+        Theming.Theme.CurrentTheme = staff.Theme;
 
-        string[][] menuItems = user.PrivilegeLevel switch {
+        string[][] menuItems = staff.PrivilegeLevel switch {
             PrivilegeLevel.User => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
             PrivilegeLevel.Admin => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
             PrivilegeLevel.Manager => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
+            _ => throw new NotImplementedException(),
         };
 
         _view.GenerateMenu(menuItems);
     }
 
-    public void PrepareExit(ToggleEventArgs e) {
+    public IChildView GetToggledView(string menuItemName) => menuItemName switch {
+        "Personal information" => GetPersonalInformationSettings(),
+        _ => throw new NotImplementedException(),
+    };
 
+    private IChildView GetDashboard() {
+        throw new NotImplementedException();
     }
+
+    public IChildView GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff).view;
 }

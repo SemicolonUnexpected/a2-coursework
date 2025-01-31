@@ -78,7 +78,7 @@ internal static class StaffDAL {
         return null;
     }
 
-    public static async Task<bool> UpdateDateOfBirth(int staffId, DateTime dateOfBirth) {
+    public static async Task<bool> UpdateDateOfBirth(int staffId, DateTime? dateOfBirth) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -92,11 +92,28 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
     
-    public static async Task<bool> UpdateForename(int staffId, DateTime forename) {
+    public static async Task<bool> UpdatePersonalDetails(int staffId, string forename, string surname, DateTime? dateOfBirth) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("UpdateStaffDateOfBirth", connection);
+        await using SqlCommand command = new("UpdateStaffPersonalInformation", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("forename", forename);
+        command.Parameters.AddWithValue("surname", surname);
+        command.Parameters.AddWithValue("dateOfBirth", dateOfBirth ?? (object)DBNull.Value);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
+    
+    public static async Task<bool> UpdateForename(int staffId, string forename) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffForename", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("staffId", staffId);
         command.Parameters.AddWithValue("forename", forename);
@@ -110,7 +127,7 @@ internal static class StaffDAL {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("UpdateStaffDateOfBirth", connection);
+        await using SqlCommand command = new("UpdateStaffSurname", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("staffId", staffId);
         command.Parameters.AddWithValue("surname", surname);

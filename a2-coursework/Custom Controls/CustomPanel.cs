@@ -91,4 +91,11 @@ public partial class CustomPanel : Panel {
         Invalidate();
         base.OnResize(e);
     }
+
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
+            BorderThickness *= factor.Width;
+        }
+        base.ScaleControl(factor, specified);
+    }
 }

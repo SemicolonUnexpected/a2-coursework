@@ -1,5 +1,6 @@
 ﻿using a2_coursework.Presenter;
 using a2_coursework.Model;
+using a2_coursework.View.Settings;
 
 namespace a2_coursework.View; 
 public static class ViewFactory {
@@ -30,6 +31,14 @@ public static class ViewFactory {
     public static (PersonalInformationSettingsView view, PersonalInformationSettingsPresenter presenter) CreatePersonalInformationSettings(Staff staff) {
         PersonalInformationSettingsView view = new();
         PersonalInformationSettingsPresenter presenter = new(view, staff);
+        view.SetPresenter(presenter);
+
+        return (view, presenter);
+    }
+
+    public static (EmergencyContactSettingsView view, EmergencyContactSettingsPresenter presenter) CreateEmergencyContactSettings(Staff staff) {
+        EmergencyContactSettingsView view = new();
+        EmergencyContactSettingsPresenter presenter = new(view, staff);
         view.SetPresenter(presenter);
 
         return (view, presenter);

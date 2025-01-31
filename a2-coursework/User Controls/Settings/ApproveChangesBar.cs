@@ -2,7 +2,7 @@
 
 namespace a2_coursework.User_Controls.Settings;
 public partial class ApproveChangesBar : UserControl, IThemeable {
-    private int _height = 40;
+    private int _height = 41;
     public ApproveChangesBar() {
         InitializeComponent();
 
@@ -18,8 +18,8 @@ public partial class ApproveChangesBar : UserControl, IThemeable {
     }
 
     protected override void OnResize(EventArgs e) {
-        Height = _height;
         base.OnResize(e);
+        Height = _height;
     }
 
     public event EventHandler? Cancel;
@@ -30,5 +30,24 @@ public partial class ApproveChangesBar : UserControl, IThemeable {
     public event EventHandler? Save;
     private void btnSave_Click(object sender, EventArgs e) {
         Save?.Invoke(this, e);
+    }
+
+    private bool _isLoading = false;
+    public bool IsLoading {
+        get => _isLoading;
+        set {
+            _isLoading = value;
+
+            if (_isLoading) {
+                btnSave.Text = "Saving...";
+                btnSave.Enabled = false;
+                btnCancel.Enabled = false;
+            }
+            else {
+                btnSave.Text = "Save";
+                btnSave.Enabled = true;
+                btnCancel.Enabled = true;
+            }
+        }
     }
 }

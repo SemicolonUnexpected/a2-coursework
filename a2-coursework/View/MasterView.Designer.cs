@@ -49,6 +49,7 @@
             sideMenu.Size = new Size(230, 571);
             sideMenu.TabIndex = 1;
             sideMenu.PreviewSideMenuToggleChanged += sideMenu_PreviewSideMenuToggleChanged;
+            sideMenu.SideMenuToggleChanged += sideMenu_SideMenuToggleChanged;
             // 
             // sb
             // 
@@ -74,7 +75,7 @@
             // 
             // pnlHolder
             // 
-            pnlHolder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlHolder.Dock = DockStyle.Fill;
             pnlHolder.Location = new Point(230, 40);
             pnlHolder.Name = "pnlHolder";
             pnlHolder.Size = new Size(644, 571);
@@ -85,7 +86,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, -14);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(899, 649);
+            pnlCover.Size = new Size(138, 649);
             pnlCover.TabIndex = 13;
             // 
             // MasterView

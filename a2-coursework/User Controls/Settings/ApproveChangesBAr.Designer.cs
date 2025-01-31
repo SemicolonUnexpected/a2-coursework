@@ -26,6 +26,8 @@
             pnlDecor = new Panel();
             btnSave = new CustomControls.CustomButton();
             btnCancel = new CustomControls.CustomButton();
+            flowLayoutPanel1 = new FlowLayoutPanel();
+            flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // pnlDecor
@@ -39,7 +41,7 @@
             // 
             // btnSave
             // 
-            btnSave.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnSave.Anchor = AnchorStyles.None;
             btnSave.BackColor = SystemColors.Control;
             btnSave.BorderColor = Color.Empty;
             btnSave.BorderThickness = 0F;
@@ -55,7 +57,7 @@
             btnSave.HoverColor = Color.FromArgb(226, 226, 226);
             btnSave.Image = null;
             btnSave.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnSave.Location = new Point(423, 5);
+            btnSave.Location = new Point(313, 5);
             btnSave.Margin = new Padding(5);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 30);
@@ -67,7 +69,7 @@
             // 
             // btnCancel
             // 
-            btnCancel.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            btnCancel.Anchor = AnchorStyles.None;
             btnCancel.BackColor = SystemColors.Control;
             btnCancel.BorderColor = Color.Empty;
             btnCancel.BorderThickness = 0F;
@@ -83,7 +85,7 @@
             btnCancel.HoverColor = Color.FromArgb(226, 226, 226);
             btnCancel.Image = null;
             btnCancel.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnCancel.Location = new Point(313, 5);
+            btnCancel.Location = new Point(423, 5);
             btnCancel.Margin = new Padding(5);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(100, 30);
@@ -93,16 +95,27 @@
             btnCancel.TextPosition = new Point(20, 5);
             btnCancel.Click += btnCancel_Click;
             // 
+            // flowLayoutPanel1
+            // 
+            flowLayoutPanel1.Controls.Add(btnCancel);
+            flowLayoutPanel1.Controls.Add(btnSave);
+            flowLayoutPanel1.Dock = DockStyle.Fill;
+            flowLayoutPanel1.FlowDirection = FlowDirection.RightToLeft;
+            flowLayoutPanel1.Location = new Point(0, 1);
+            flowLayoutPanel1.Name = "flowLayoutPanel1";
+            flowLayoutPanel1.Size = new Size(528, 39);
+            flowLayoutPanel1.TabIndex = 15;
+            // 
             // ApproveChangesBar
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            Controls.Add(btnCancel);
-            Controls.Add(btnSave);
+            Controls.Add(flowLayoutPanel1);
             Controls.Add(pnlDecor);
             Name = "ApproveChangesBar";
             Size = new Size(528, 40);
+            flowLayoutPanel1.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -111,5 +124,6 @@
         private Panel pnlDecor;
         private CustomControls.CustomButton btnSave;
         private CustomControls.CustomButton btnCancel;
+        private FlowLayoutPanel flowLayoutPanel1;
     }
 }

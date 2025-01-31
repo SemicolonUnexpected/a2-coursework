@@ -42,7 +42,7 @@
             pnlDecor.Location = new Point(0, 0);
             pnlDecor.Margin = new Padding(0);
             pnlDecor.Name = "pnlDecor";
-            pnlDecor.Size = new Size(363, 1);
+            pnlDecor.Size = new Size(441, 1);
             pnlDecor.TabIndex = 7;
             // 
             // pnlBottom
@@ -50,9 +50,9 @@
             pnlBottom.Controls.Add(flp);
             pnlBottom.Controls.Add(pnlDecor);
             pnlBottom.Dock = DockStyle.Bottom;
-            pnlBottom.Location = new Point(0, 141);
+            pnlBottom.Location = new Point(0, 169);
             pnlBottom.Name = "pnlBottom";
-            pnlBottom.Size = new Size(363, 41);
+            pnlBottom.Size = new Size(441, 41);
             pnlBottom.TabIndex = 8;
             // 
             // flp
@@ -63,7 +63,7 @@
             flp.FlowDirection = FlowDirection.RightToLeft;
             flp.Location = new Point(0, 1);
             flp.Name = "flp";
-            flp.Size = new Size(363, 40);
+            flp.Size = new Size(441, 40);
             flp.TabIndex = 8;
             // 
             // btnOk
@@ -83,7 +83,7 @@
             btnOk.HoverColor = Color.FromArgb(226, 226, 226);
             btnOk.Image = null;
             btnOk.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnOk.Location = new Point(258, 5);
+            btnOk.Location = new Point(336, 5);
             btnOk.Margin = new Padding(5);
             btnOk.Name = "btnOk";
             btnOk.Size = new Size(100, 30);
@@ -110,7 +110,7 @@
             btnCancel.HoverColor = Color.FromArgb(226, 226, 226);
             btnCancel.Image = null;
             btnCancel.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnCancel.Location = new Point(148, 5);
+            btnCancel.Location = new Point(226, 5);
             btnCancel.Margin = new Padding(5);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(100, 30);
@@ -127,7 +127,7 @@
             lblText.ForeColor = Color.FromArgb(168, 171, 174);
             lblText.Location = new Point(12, 48);
             lblText.Name = "lblText";
-            lblText.Size = new Size(339, 67);
+            lblText.Size = new Size(417, 95);
             lblText.TabIndex = 9;
             lblText.Text = "Sign in below to access your account";
             lblText.TextAlign = ContentAlignment.MiddleLeft;
@@ -135,11 +135,11 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Bahnschrift", 24F);
+            lblTitle.Font = new Font("Bahnschrift", 16F);
             lblTitle.ForeColor = Color.White;
             lblTitle.Location = new Point(12, 9);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(146, 39);
+            lblTitle.Size = new Size(102, 27);
             lblTitle.TabIndex = 10;
             lblTitle.Text = "Welcome";
             // 
@@ -148,7 +148,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(363, 182);
+            ClientSize = new Size(441, 210);
             Controls.Add(lblTitle);
             Controls.Add(lblText);
             Controls.Add(pnlBottom);
@@ -156,6 +156,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "CustomMessageBoxView";
+            StartPosition = FormStartPosition.CenterParent;
             pnlBottom.ResumeLayout(false);
             flp.ResumeLayout(false);
             ResumeLayout(false);

@@ -29,12 +29,17 @@ public partial class MasterView : Form, IMaster {
         sb.Theme();
     }
 
+    private void MasterView_Shown(object sender, EventArgs e) {
+        pnlCover.Visible = false;
+    }
+
+    #region Interface members
     public void GenerateMenu(string[][] menuItems) {
         sideMenu.GenerateMenu(menuItems);
     }
 
     private IChildView? _childForm;
-    public IChildView? ChildForm {
+    public IChildView? ChildView {
         get => _childForm;
         set => _childForm = value;
     }
@@ -53,36 +58,17 @@ public partial class MasterView : Form, IMaster {
         }
     }
 
-    public void DisplayChildForm(IChildView childForm) {
-        // Remove the previous child form
-        pnlHolder.Controls.Clear();
-        if (ChildForm is not null) {
-            ChildForm.MouseWheel -= OnChildMouseWheel;
-            ChildForm.Dispose();
-        }
+    #endregion
 
-        ChildForm = childForm;
-
-        // Setup the child form to be displayed
-        childForm.TopLevel = false;
-        childForm.Width = pnlHolder.Width;
-        childForm.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-        ChildForm.MouseWheel += OnChildMouseWheel;
-
-        // Display the form
-        pnlHolder.Controls.Add(childForm as Form);
-        childForm.Show();
-
-        SetScrollOptions();
-    }
+    #region Scrolling
 
     private void SetScrollOptions() {
-        if (ChildForm is null) return;
+        if (ChildView is null) return;
 
-        if (pnlHolder.Height < ChildForm.Height) {
+        if (pnlHolder.Height < ChildView.Height) {
             sb.Visible = true;
             sb.LargeChange = pnlHolder.Height;
-            sb.Maximum = ChildForm.Height - pnlHolder.Height;
+            sb.Maximum = ChildView.Height - pnlHolder.Height;
         }
         else {
             sb.Visible = false;
@@ -96,33 +82,66 @@ public partial class MasterView : Form, IMaster {
     }
 
     private void sb_ValueChanged(object sender, EventArgs e) {
-        if (ChildForm is null) return;
+        if (ChildView is null) return;
 
-        ChildForm.Location = new Point(0, -sb.Value);
+        ChildView.Location = new Point(0, -sb.Value);
     }
+
+    #endregion
+
+    #region Sizing
 
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
         SetScrollOptions();
 
-        if (ChildForm is not null) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
+        if (ChildView is not null) ChildView.Width = pnlHolder.Width;
     }
 
     protected override void OnDockChanged(EventArgs e) {
         SetScrollOptions();
-
-        if (ChildForm is not null) topBar.UsernameText = $"{pnlHolder.Height}, {ChildForm.Height}";
-
         base.OnDockChanged(e);
     }
 
-    private void MasterView_Shown(object sender, EventArgs e) {
-        pnlCover.Visible = false;
+    #endregion
+
+    #region Navigation
+
+    public void DisplayChildForm(IChildView childView) {
+        // Remove the previous child form
+        pnlHolder.Controls.Clear();
+        if (ChildView is not null) {
+            ChildView.MouseWheel -= OnChildMouseWheel;
+            ChildView.Dispose();
+        }
+
+        ChildView = childView;
+
+        // Setup the child form to be displayed
+        ChildView.TopLevel = false;
+        ChildView.Width = pnlHolder.Width;
+        ChildView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
+        ChildView.MouseWheel += OnChildMouseWheel;
+        if (ChildView.DockInParent) ChildView.Dock = DockStyle.Fill;
+
+        // Display the form
+        pnlHolder.Controls.Add(ChildView as Form);
+        ChildView.Show();
+
+        SetScrollOptions();
     }
 
     private void sideMenu_PreviewSideMenuToggleChanged(object sender, ToggleEventArgs e) {
         if (((ToggleButton)sender).Toggled == true) return;
 
-        _presenter?.PrepareExit(e);
+        if (!ChildView?.CanExit() ?? false) e.Handled = true;
     }
+
+    private void sideMenu_SideMenuToggleChanged(object sender, EventArgs e) {
+        IChildView nextView = _presenter!.GetToggledView(((ToggleButton)sender).Text);
+
+        DisplayChildForm(nextView);
+    }
+
+    #endregion
 }

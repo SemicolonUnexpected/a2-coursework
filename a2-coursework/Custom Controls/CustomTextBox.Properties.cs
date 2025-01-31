@@ -1,6 +1,8 @@
 ﻿using System.ComponentModel;
+using System.ComponentModel.Design;
+using System.Drawing.Design;
 
-namespace a2_coursework.CustomControls; 
+namespace a2_coursework.CustomControls;
 public partial class CustomTextBox {
     [Category("Appearance")]
     public CornerRadiiF CornerRadii {
@@ -78,6 +80,7 @@ public partial class CustomTextBox {
     }
 
     [Category("Placeholder Text")]
+    [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
     public string PlaceholderText { get => tb.PlaceholderText; set => tb.PlaceholderText = value; }
 
     [Category("Placeholder Text")]
@@ -85,11 +88,17 @@ public partial class CustomTextBox {
 
     [Browsable(true)]
     [DesignerSerializationVisibility(DesignerSerializationVisibility.Visible)]
+    [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
     [DefaultValue("")]
     [TypeConverter(typeof(StringConverter))]
     public new string Text {
         get => tb.Text;
         set => tb.Text = value;
+    }
+
+    public HorizontalAlignment TextAlign {
+        get => tb.TextAlign;
+        set => tb.TextAlign = value;
     }
 
     public bool UsePasswordChar {
@@ -106,15 +115,20 @@ public partial class CustomTextBox {
         set => tb.MaxLength = value;
     }
 
-    private bool _enabled = true;
-    [DefaultValue(true)]
-    public new bool Enabled {
-        get => _enabled;
-        set {
-            _enabled = value;
-            tb.ReadOnly = !_enabled;
-        }
+    public bool MultiLine {
+        get => tb.Multiline;
+        set => tb.Multiline = value;
     }
+
+    //private bool _enabled = true;
+    //[DefaultValue(true)]
+    //public new bool Enabled {
+    //    get => _enabled;
+    //    set {
+    //        _enabled = value;
+    //        ;
+    //    }
+    //}
 
     [Browsable(true)]
     public new event EventHandler? TextChanged;
@@ -122,10 +136,12 @@ public partial class CustomTextBox {
         add => tb.KeyPress += value;
         remove => tb.KeyPress -= value;
     }
+
     public new event EventHandler? Leave {
         add => tb.Leave += value;
         remove => tb.Leave -= value;
     }
+
     public new event EventHandler? Enter {
         add => tb.Enter += value;
         remove => tb.Enter -= value;

@@ -60,6 +60,7 @@
             Controls.Add(pnl);
             Name = "CustomTextBox";
             Size = new Size(336, 36);
+            Click += CustomTextBox_Click;
             pnl.ResumeLayout(false);
             pnl.PerformLayout();
             ResumeLayout(false);

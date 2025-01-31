@@ -27,4 +27,8 @@ public partial class CustomTextBox : UserControl {
         }
         base.ScaleControl(factor, specified);
     }
+
+    private void CustomTextBox_Click(object sender, EventArgs e) {
+        tb.Focus();
+    }
 }

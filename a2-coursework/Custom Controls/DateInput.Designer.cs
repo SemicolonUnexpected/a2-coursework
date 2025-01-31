@@ -24,9 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            tbDay = new CustomControls.CustomTextBox();
-            tbMonth = new CustomControls.CustomTextBox();
-            tbYear = new CustomControls.CustomTextBox();
+            tbDay = new CustomTextBox();
+            tbMonth = new CustomTextBox();
+            tbYear = new CustomTextBox();
             lblDay = new Label();
             lblMonth = new Label();
             lblYear = new Label();
@@ -38,7 +38,7 @@
             tbDay.BackColor = Color.FromArgb(9, 9, 10);
             tbDay.BorderColor = Color.FromArgb(39, 39, 42);
             tbDay.BorderThickness = 1F;
-            tbDay.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbDay.CornerRadii = new CornerRadiiF(10F, 10F, 10F, 10F);
             tbDay.Font = new Font("Bahnschrift", 12F);
             tbDay.ForeColor = Color.FromArgb(250, 250, 250);
             tbDay.HoverColor = Color.Empty;
@@ -50,7 +50,8 @@
             tbDay.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbDay.Size = new Size(40, 40);
             tbDay.TabIndex = 0;
-            tbDay.TextBoxInset = new Padding(13, 10, 10, 10);
+            tbDay.TextAlign = HorizontalAlignment.Center;
+            tbDay.TextBoxInset = new Padding(10);
             tbDay.UsePasswordChar = false;
             tbDay.TextChanged += tbDay_TextChanged;
             tbDay.KeyPress += tbDay_KeyPress;
@@ -61,7 +62,7 @@
             tbMonth.BackColor = Color.FromArgb(9, 9, 10);
             tbMonth.BorderColor = Color.FromArgb(39, 39, 42);
             tbMonth.BorderThickness = 1F;
-            tbMonth.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbMonth.CornerRadii = new CornerRadiiF(10F, 10F, 10F, 10F);
             tbMonth.Font = new Font("Bahnschrift", 12F);
             tbMonth.ForeColor = Color.FromArgb(250, 250, 250);
             tbMonth.HoverColor = Color.Empty;
@@ -73,7 +74,8 @@
             tbMonth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbMonth.Size = new Size(40, 40);
             tbMonth.TabIndex = 1;
-            tbMonth.TextBoxInset = new Padding(12, 10, 10, 10);
+            tbMonth.TextAlign = HorizontalAlignment.Center;
+            tbMonth.TextBoxInset = new Padding(10);
             tbMonth.UsePasswordChar = false;
             tbMonth.TextChanged += tbMonth_TextChanged;
             tbMonth.KeyPress += tbMonth_KeyPress;
@@ -84,7 +86,7 @@
             tbYear.BackColor = Color.FromArgb(9, 9, 10);
             tbYear.BorderColor = Color.FromArgb(39, 39, 42);
             tbYear.BorderThickness = 1F;
-            tbYear.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbYear.CornerRadii = new CornerRadiiF(10F, 10F, 10F, 10F);
             tbYear.Font = new Font("Bahnschrift", 12F);
             tbYear.ForeColor = Color.FromArgb(250, 250, 250);
             tbYear.HoverColor = Color.Empty;
@@ -96,7 +98,8 @@
             tbYear.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbYear.Size = new Size(60, 40);
             tbYear.TabIndex = 2;
-            tbYear.TextBoxInset = new Padding(13, 10, 10, 10);
+            tbYear.TextAlign = HorizontalAlignment.Center;
+            tbYear.TextBoxInset = new Padding(10);
             tbYear.UsePasswordChar = false;
             tbYear.TextChanged += tbYear_TextChanged;
             tbYear.KeyPress += tbYear_KeyPress;
@@ -140,8 +143,8 @@
             // 
             // DateInput
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(lblYear);
             Controls.Add(lblMonth);
@@ -149,10 +152,10 @@
             Controls.Add(tbYear);
             Controls.Add(tbMonth);
             Controls.Add(tbDay);
-            MaximumSize = new Size(180, 68);
-            MinimumSize = new Size(180, 68);
+            MaximumSize = new Size(180, 70);
+            MinimumSize = new Size(180, 70);
             Name = "DateInput";
-            Size = new Size(180, 68);
+            Size = new Size(180, 70);
             ResumeLayout(false);
             PerformLayout();
         }
