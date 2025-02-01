@@ -1,8 +1,7 @@
 ﻿using a2_coursework.Model;
 using a2_coursework.View.Interfaces;
-using System.Text;
 
-namespace a2_coursework.Presenter; 
+namespace a2_coursework.Presenter;
 public class PersonalInformationSettingsPresenter {
     private readonly IPersonalInformationSettings _view;
     private readonly Staff _staff;
@@ -100,7 +99,7 @@ public class PersonalInformationSettingsPresenter {
             else _view.ShowError("Could not update your personal details.", "Save failed");
         }
         catch {
-            _view.ShowError("Save failed", "Could not update your personal details");
+            _view.ShowError("Save failed", "Could not update your personal details.");
         }
         finally {
             _view.IsLoading = false;

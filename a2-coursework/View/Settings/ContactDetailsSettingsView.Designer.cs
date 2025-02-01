@@ -24,14 +24,14 @@
         /// </summary>
         private void InitializeComponent() {
             lblContactInformation = new Label();
-            tbForename = new CustomControls.CustomTextBox();
-            tbSurname = new CustomControls.CustomTextBox();
-            lblSurnameTitle = new Label();
+            tbEmail = new CustomControls.CustomTextBox();
+            tbPhoneNumber = new CustomControls.CustomTextBox();
+            lblPhoneNumber = new Label();
             lblEditPromt = new Label();
             lblEmailTitle = new Label();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
-            customTextBox1 = new CustomControls.CustomTextBox();
-            label1 = new Label();
+            tbAddress = new CustomControls.CustomTextBox();
+            lblAddressTitle = new Label();
             lblContactError = new Label();
             lblAddressError = new Label();
             SuspendLayout();
@@ -49,64 +49,64 @@
             lblContactInformation.TabIndex = 8;
             lblContactInformation.Text = "Contact Information";
             // 
-            // tbForename
+            // tbEmail
             // 
-            tbForename.Anchor = AnchorStyles.None;
-            tbForename.BackColor = Color.FromArgb(9, 9, 10);
-            tbForename.BorderColor = Color.FromArgb(39, 39, 42);
-            tbForename.BorderThickness = 1F;
-            tbForename.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbForename.Font = new Font("Bahnschrift", 12F);
-            tbForename.ForeColor = Color.Empty;
-            tbForename.HoverColor = Color.Empty;
-            tbForename.Location = new Point(151, 145);
-            tbForename.Margin = new Padding(5);
-            tbForename.MaxLength = 256;
-            tbForename.MultiLine = false;
-            tbForename.Name = "tbForename";
-            tbForename.PlaceholderText = "johndoe@example.com";
-            tbForename.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbForename.Size = new Size(355, 40);
-            tbForename.TabIndex = 7;
-            tbForename.TextAlign = HorizontalAlignment.Left;
-            tbForename.TextBoxInset = new Padding(10);
-            tbForename.UsePasswordChar = false;
+            tbEmail.Anchor = AnchorStyles.None;
+            tbEmail.BackColor = Color.FromArgb(9, 9, 10);
+            tbEmail.BorderColor = Color.FromArgb(39, 39, 42);
+            tbEmail.BorderThickness = 1F;
+            tbEmail.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbEmail.Font = new Font("Bahnschrift", 12F);
+            tbEmail.ForeColor = Color.Empty;
+            tbEmail.HoverColor = Color.Empty;
+            tbEmail.Location = new Point(151, 145);
+            tbEmail.Margin = new Padding(5);
+            tbEmail.MaxLength = 256;
+            tbEmail.MultiLine = false;
+            tbEmail.Name = "tbEmail";
+            tbEmail.PlaceholderText = "johndoe@example.com";
+            tbEmail.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbEmail.Size = new Size(355, 40);
+            tbEmail.TabIndex = 7;
+            tbEmail.TextAlign = HorizontalAlignment.Left;
+            tbEmail.TextBoxInset = new Padding(10);
+            tbEmail.UsePasswordChar = false;
             // 
-            // tbSurname
+            // tbPhoneNumber
             // 
-            tbSurname.Anchor = AnchorStyles.None;
-            tbSurname.BackColor = Color.FromArgb(9, 9, 10);
-            tbSurname.BorderColor = Color.FromArgb(39, 39, 42);
-            tbSurname.BorderThickness = 1F;
-            tbSurname.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbSurname.Font = new Font("Bahnschrift", 12F);
-            tbSurname.ForeColor = Color.Empty;
-            tbSurname.HoverColor = Color.Empty;
-            tbSurname.Location = new Point(151, 228);
-            tbSurname.Margin = new Padding(5);
-            tbSurname.MaxLength = 256;
-            tbSurname.MultiLine = false;
-            tbSurname.Name = "tbSurname";
-            tbSurname.PlaceholderText = "+441234567890";
-            tbSurname.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbSurname.Size = new Size(355, 40);
-            tbSurname.TabIndex = 9;
-            tbSurname.TextAlign = HorizontalAlignment.Left;
-            tbSurname.TextBoxInset = new Padding(10);
-            tbSurname.UsePasswordChar = false;
+            tbPhoneNumber.Anchor = AnchorStyles.None;
+            tbPhoneNumber.BackColor = Color.FromArgb(9, 9, 10);
+            tbPhoneNumber.BorderColor = Color.FromArgb(39, 39, 42);
+            tbPhoneNumber.BorderThickness = 1F;
+            tbPhoneNumber.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbPhoneNumber.Font = new Font("Bahnschrift", 12F);
+            tbPhoneNumber.ForeColor = Color.Empty;
+            tbPhoneNumber.HoverColor = Color.Empty;
+            tbPhoneNumber.Location = new Point(151, 228);
+            tbPhoneNumber.Margin = new Padding(5);
+            tbPhoneNumber.MaxLength = 256;
+            tbPhoneNumber.MultiLine = false;
+            tbPhoneNumber.Name = "tbPhoneNumber";
+            tbPhoneNumber.PlaceholderText = "+441234567890";
+            tbPhoneNumber.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbPhoneNumber.Size = new Size(355, 40);
+            tbPhoneNumber.TabIndex = 9;
+            tbPhoneNumber.TextAlign = HorizontalAlignment.Left;
+            tbPhoneNumber.TextBoxInset = new Padding(10);
+            tbPhoneNumber.UsePasswordChar = false;
             // 
-            // lblSurnameTitle
+            // lblPhoneNumber
             // 
-            lblSurnameTitle.Anchor = AnchorStyles.None;
-            lblSurnameTitle.AutoSize = true;
-            lblSurnameTitle.Font = new Font("Bahnschrift", 14F);
-            lblSurnameTitle.ForeColor = Color.White;
-            lblSurnameTitle.Location = new Point(151, 195);
-            lblSurnameTitle.Margin = new Padding(5);
-            lblSurnameTitle.Name = "lblSurnameTitle";
-            lblSurnameTitle.Size = new Size(137, 23);
-            lblSurnameTitle.TabIndex = 12;
-            lblSurnameTitle.Text = "Phone Number";
+            lblPhoneNumber.Anchor = AnchorStyles.None;
+            lblPhoneNumber.AutoSize = true;
+            lblPhoneNumber.Font = new Font("Bahnschrift", 14F);
+            lblPhoneNumber.ForeColor = Color.White;
+            lblPhoneNumber.Location = new Point(151, 195);
+            lblPhoneNumber.Margin = new Padding(5);
+            lblPhoneNumber.Name = "lblPhoneNumber";
+            lblPhoneNumber.Size = new Size(137, 23);
+            lblPhoneNumber.TabIndex = 12;
+            lblPhoneNumber.Text = "Phone Number";
             // 
             // lblEditPromt
             // 
@@ -145,41 +145,41 @@
             approveChangesBar.TabIndex = 13;
             approveChangesBar.Visible = false;
             // 
-            // customTextBox1
+            // tbAddress
             // 
-            customTextBox1.Anchor = AnchorStyles.None;
-            customTextBox1.BackColor = Color.FromArgb(9, 9, 10);
-            customTextBox1.BorderColor = Color.FromArgb(39, 39, 42);
-            customTextBox1.BorderThickness = 1F;
-            customTextBox1.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            customTextBox1.Font = new Font("Bahnschrift", 12F);
-            customTextBox1.ForeColor = Color.Empty;
-            customTextBox1.HoverColor = Color.Empty;
-            customTextBox1.Location = new Point(151, 349);
-            customTextBox1.Margin = new Padding(5);
-            customTextBox1.MaxLength = 256;
-            customTextBox1.MultiLine = true;
-            customTextBox1.Name = "customTextBox1";
-            customTextBox1.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn";
-            customTextBox1.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            customTextBox1.Size = new Size(355, 60);
-            customTextBox1.TabIndex = 14;
-            customTextBox1.TextAlign = HorizontalAlignment.Left;
-            customTextBox1.TextBoxInset = new Padding(10);
-            customTextBox1.UsePasswordChar = false;
+            tbAddress.Anchor = AnchorStyles.None;
+            tbAddress.BackColor = Color.FromArgb(9, 9, 10);
+            tbAddress.BorderColor = Color.FromArgb(39, 39, 42);
+            tbAddress.BorderThickness = 1F;
+            tbAddress.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbAddress.Font = new Font("Bahnschrift", 12F);
+            tbAddress.ForeColor = Color.Empty;
+            tbAddress.HoverColor = Color.Empty;
+            tbAddress.Location = new Point(151, 349);
+            tbAddress.Margin = new Padding(5);
+            tbAddress.MaxLength = 256;
+            tbAddress.MultiLine = true;
+            tbAddress.Name = "tbAddress";
+            tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn";
+            tbAddress.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbAddress.Size = new Size(355, 60);
+            tbAddress.TabIndex = 14;
+            tbAddress.TextAlign = HorizontalAlignment.Left;
+            tbAddress.TextBoxInset = new Padding(10);
+            tbAddress.UsePasswordChar = false;
             // 
-            // label1
+            // lblAddressTitle
             // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift", 14F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(151, 316);
-            label1.Margin = new Padding(5);
-            label1.Name = "label1";
-            label1.Size = new Size(80, 23);
-            label1.TabIndex = 15;
-            label1.Text = "Address";
+            lblAddressTitle.Anchor = AnchorStyles.None;
+            lblAddressTitle.AutoSize = true;
+            lblAddressTitle.Font = new Font("Bahnschrift", 14F);
+            lblAddressTitle.ForeColor = Color.White;
+            lblAddressTitle.Location = new Point(151, 316);
+            lblAddressTitle.Margin = new Padding(5);
+            lblAddressTitle.Name = "lblAddressTitle";
+            lblAddressTitle.Size = new Size(80, 23);
+            lblAddressTitle.TabIndex = 15;
+            lblAddressTitle.Text = "Address";
             // 
             // lblContactError
             // 
@@ -211,13 +211,13 @@
             ClientSize = new Size(654, 500);
             Controls.Add(lblAddressError);
             Controls.Add(lblContactError);
-            Controls.Add(customTextBox1);
-            Controls.Add(label1);
+            Controls.Add(tbAddress);
+            Controls.Add(lblAddressTitle);
             Controls.Add(approveChangesBar);
             Controls.Add(lblContactInformation);
-            Controls.Add(tbForename);
-            Controls.Add(tbSurname);
-            Controls.Add(lblSurnameTitle);
+            Controls.Add(tbEmail);
+            Controls.Add(tbPhoneNumber);
+            Controls.Add(lblPhoneNumber);
             Controls.Add(lblEditPromt);
             Controls.Add(lblEmailTitle);
             FormBorderStyle = FormBorderStyle.None;
@@ -230,14 +230,14 @@
         #endregion
 
         private Label lblContactInformation;
-        private CustomControls.CustomTextBox tbForename;
-        private CustomControls.CustomTextBox tbSurname;
-        private Label lblSurnameTitle;
+        private CustomControls.CustomTextBox tbEmail;
+        private CustomControls.CustomTextBox tbPhoneNumber;
+        private Label lblPhoneNumber;
         private Label lblEditPromt;
         private Label lblEmailTitle;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
-        private CustomControls.CustomTextBox customTextBox1;
-        private Label label1;
+        private CustomControls.CustomTextBox tbAddress;
+        private Label lblAddressTitle;
         private Label lblContactError;
         private Label lblAddressError;
     }

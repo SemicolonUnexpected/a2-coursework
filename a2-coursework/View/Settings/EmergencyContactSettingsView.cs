@@ -6,6 +6,12 @@ using a2_coursework.View.Interfaces;
 namespace a2_coursework.View.Settings; 
 public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettingsView {
     private EmergencyContactSettingsPresenter? _presenter;
+    
+    public event EventHandler? ForenameChanged;
+    public event EventHandler? SurnameChanged;
+    public event EventHandler? PhoneNumberChanged;
+    public event EventHandler? SaveRequested;
+    public event EventHandler? CancelRequested;
 
     public string Forename {
         get => tbEmergencyContactForename.Text;
@@ -20,11 +26,6 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     public string PhoneNumber {
         get => tbEmergencyContactPhoneNumber.Text;
         set => tbEmergencyContactPhoneNumber.Text = value;
-    }
-    
-    public string NameErrorText {
-        get => lblEmergencyContactNameError.Text;
-        set => lblEmergencyContactNameError.Text = value;
     }
 
     public string PhoneNumberErrorText {
@@ -55,6 +56,12 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        tbEmergencyContactForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactPhoneNumber.TextChanged += (s, e) => PhoneNumberChanged?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Save += (s, e) => SaveRequested?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Cancel += (s, e) => CancelRequested?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetPresenter(EmergencyContactSettingsPresenter presenter) {
@@ -76,28 +83,14 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         tbEmergencyContactForename.Theme();
         tbEmergencyContactSurname.Theme();
         tbEmergencyContactPhoneNumber.Theme();
-    }
 
-    public event EventHandler? SurnameChanged;
-    public event EventHandler? ForenameChanged;
-    public event EventHandler? PhoneNumberChanged;
-
-    private bool _forenameError;
-    public void SetForenameBorderError(bool isError) {
-        _forenameError = isError;
-        tbEmergencyContactForename.BorderColor = _forenameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
-    }
-
-    private bool _surnameError;
-    public void SetSurnameBorderError(bool isError) {
-        _surnameError = isError;
-        tbEmergencyContactSurname.BorderColor = _surnameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        SetPhoneNumberBorderError(_phoneNumberError);
     }
 
     private bool _phoneNumberError;
     public void SetPhoneNumberBorderError(bool isError) {
         _phoneNumberError = isError;
-        tbEmergencyContactPhoneNumber.BorderColor = _surnameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbEmergencyContactPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
     }
 
     public void ShowError(string message, string caption) {
@@ -107,4 +100,18 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     public void ShowSuccess(string message, string caption) {
         CustomMessageBox.Show(message, caption);
     }
+
+    public bool CanExit() {
+        if (IsLoading) return false;
+
+        if (_presenter is not null && _presenter.AnyChanges()) {
+            DialogResult result = CustomMessageBox.Show("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave this page?", MessageBoxButtons.OKCancel);
+
+            return result == DialogResult.OK;
+        }
+
+        return true;    
+    }
+
+    public bool DockInParent => true;
 }

@@ -16,9 +16,9 @@ public class MasterPresenter {
         Theming.Theme.CurrentTheme = staff.Theme;
 
         string[][] menuItems = staff.PrivilegeLevel switch {
-            PrivilegeLevel.User => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
-            PrivilegeLevel.Admin => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
-            PrivilegeLevel.Manager => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency Contacts"]],
+            PrivilegeLevel.User => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency contact"]],
+            PrivilegeLevel.Admin => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency contact"]],
+            PrivilegeLevel.Manager => [["Dashboard"], ["Settings", "Personal information", "Contact information", "Emergency contact"]],
             _ => throw new NotImplementedException(),
         };
 
@@ -27,6 +27,7 @@ public class MasterPresenter {
 
     public IChildView GetToggledView(string menuItemName) => menuItemName switch {
         "Personal information" => GetPersonalInformationSettings(),
+        "Emergency contact" => GetEmergencyContactSettings(),
         _ => throw new NotImplementedException(),
     };
 
@@ -35,4 +36,5 @@ public class MasterPresenter {
     }
 
     public IChildView GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff).view;
+    public IChildView GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff).view;
 }
