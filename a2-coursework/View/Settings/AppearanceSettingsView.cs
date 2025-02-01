@@ -17,5 +17,9 @@ namespace a2_coursework.View.Settings {
         private void AppearanceSettingsView_Load(object sender, EventArgs e) {
 
         }
+
+        private void label1_Click(object sender, EventArgs e) {
+
+        }
     }
 }

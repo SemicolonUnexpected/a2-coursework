@@ -36,6 +36,14 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
+    public static (ContactDetailsSettingsView view, ContactDetailsSettingsPresenter presenter) CreateContactDetailsSettingsView(Staff staff) {
+        ContactDetailsSettingsView view = new();
+        ContactDetailsSettingsPresenter presenter = new(view, staff);
+        view.SetPresenter(presenter);
+
+        return (view, presenter);        
+    }
+
     public static (EmergencyContactSettingsView view, EmergencyContactSettingsPresenter presenter) CreateEmergencyContactSettings(Staff staff) {
         EmergencyContactSettingsView view = new();
         EmergencyContactSettingsPresenter presenter = new(view, staff);

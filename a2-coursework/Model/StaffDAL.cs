@@ -94,6 +94,22 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
     
+    public static async Task<bool> UpdateContactDetails(int staffId, string email, string phoneNumber, string address) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffContactDetails", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("email", email);
+        command.Parameters.AddWithValue("phoneNumber", phoneNumber);
+        command.Parameters.AddWithValue("address", address);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
     public static async Task<bool> UpdateEmergencyContact(int staffId, string forename, string surname, string phoneNumber) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();

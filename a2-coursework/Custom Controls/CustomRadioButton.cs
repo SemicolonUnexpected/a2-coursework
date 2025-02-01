@@ -3,6 +3,7 @@
 namespace a2_coursework.CustomControls; 
 public partial class CustomRadioButton : Control {
     private float _borderThickness = 1;
+    [DefaultValue(1)]
     public float BorderThickness {
         get => _borderThickness;
         set {
@@ -12,6 +13,7 @@ public partial class CustomRadioButton : Control {
     }
 
     private float _checkRadius = 1;
+    [DefaultValue(1)]
     public float CheckRadius {
         get => _checkRadius;
         set {

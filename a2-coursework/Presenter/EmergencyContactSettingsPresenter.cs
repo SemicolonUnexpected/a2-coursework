@@ -5,9 +5,9 @@ using a2_coursework.View.Interfaces;
 namespace a2_coursework.Presenter;
 public partial class EmergencyContactSettingsPresenter {
     private readonly Staff _staff;
-    private readonly IEmergencyContactSettingsView _view;
+    private readonly IEmergencyContactSettings _view;
 
-    public EmergencyContactSettingsPresenter(IEmergencyContactSettingsView view, Staff staff) {
+    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, Staff staff) {
         _staff = staff;
         _view = view;
 
@@ -52,8 +52,8 @@ public partial class EmergencyContactSettingsPresenter {
     private async void Save() {
         ValidateInputs();
 
-        if (!Validators.IsValidPhoneNumber(_view.PhoneNumber)) {
-            _view.ShowError("Please ensure you fill in a valid phone number.", "Invalid details");
+        if (_view.PhoneNumber != "" && !Validators.IsValidPhoneNumber(_view.PhoneNumber)) {
+            _view.ShowError("Please ensure you fill in a valid phone number, or leave it blank.", "Invalid details");
             return;
         }
 
@@ -66,10 +66,10 @@ public partial class EmergencyContactSettingsPresenter {
                 UpdateStaff();
                 _view.ShowSuccess("Your emergency contact has been successfully updated.", "Saved");
             }
-            else _view.ShowError("Could not update your emergency contact", "Save failed");
+            else _view.ShowError("Could not update your emergency contact.", "Save failed");
         }
         catch {
-            _view.ShowError("Save failed", "Could not update your emergency contact.");
+            _view.ShowError("Could not update your emergency contact.", "Save failed");
         }
         finally {
             _view.IsLoading = false;

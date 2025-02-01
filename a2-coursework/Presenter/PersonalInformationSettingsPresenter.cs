@@ -99,7 +99,7 @@ public class PersonalInformationSettingsPresenter {
             else _view.ShowError("Could not update your personal details.", "Save failed");
         }
         catch {
-            _view.ShowError("Save failed", "Could not update your personal details.");
+            _view.ShowError("Could not update your personal details.", "Save failed");
         }
         finally {
             _view.IsLoading = false;

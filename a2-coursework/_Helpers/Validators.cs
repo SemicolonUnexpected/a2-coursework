@@ -1,4 +1,5 @@
 ﻿using PhoneNumbers;
+using System.Net.Mail;
 
 namespace a2_coursework._Helpers; 
 public static class Validators {
@@ -12,4 +13,6 @@ public static class Validators {
             return false;
         }
     }
+
+    public static bool IsValidEmail(string email) => MailAddress.TryCreate(email, out _);
 }

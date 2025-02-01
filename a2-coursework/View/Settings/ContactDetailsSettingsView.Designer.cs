@@ -33,7 +33,6 @@
             tbAddress = new CustomControls.CustomTextBox();
             lblAddressTitle = new Label();
             lblContactError = new Label();
-            lblAddressError = new Label();
             SuspendLayout();
             // 
             // lblContactInformation
@@ -59,6 +58,10 @@
             tbEmail.Font = new Font("Bahnschrift", 12F);
             tbEmail.ForeColor = Color.Empty;
             tbEmail.HoverColor = Color.Empty;
+            tbEmail.Lines = new string[]
+    {
+    "johndoe@example.com"
+    };
             tbEmail.Location = new Point(151, 145);
             tbEmail.Margin = new Padding(5);
             tbEmail.MaxLength = 256;
@@ -68,6 +71,7 @@
             tbEmail.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbEmail.Size = new Size(355, 40);
             tbEmail.TabIndex = 7;
+            tbEmail.Text = "johndoe@example.com";
             tbEmail.TextAlign = HorizontalAlignment.Left;
             tbEmail.TextBoxInset = new Padding(10);
             tbEmail.UsePasswordChar = false;
@@ -82,6 +86,10 @@
             tbPhoneNumber.Font = new Font("Bahnschrift", 12F);
             tbPhoneNumber.ForeColor = Color.Empty;
             tbPhoneNumber.HoverColor = Color.Empty;
+            tbPhoneNumber.Lines = new string[]
+    {
+    "+441234567890"
+    };
             tbPhoneNumber.Location = new Point(151, 228);
             tbPhoneNumber.Margin = new Padding(5);
             tbPhoneNumber.MaxLength = 256;
@@ -91,6 +99,7 @@
             tbPhoneNumber.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbPhoneNumber.Size = new Size(355, 40);
             tbPhoneNumber.TabIndex = 9;
+            tbPhoneNumber.Text = "+441234567890";
             tbPhoneNumber.TextAlign = HorizontalAlignment.Left;
             tbPhoneNumber.TextBoxInset = new Padding(10);
             tbPhoneNumber.UsePasswordChar = false;
@@ -155,14 +164,20 @@
             tbAddress.Font = new Font("Bahnschrift", 12F);
             tbAddress.ForeColor = Color.Empty;
             tbAddress.HoverColor = Color.Empty;
+            tbAddress.Lines = new string[]
+    {
+    "6 Oak Tree Avenue",
+    "Lisburn",
+    "Down"
+    };
             tbAddress.Location = new Point(151, 349);
             tbAddress.Margin = new Padding(5);
             tbAddress.MaxLength = 256;
             tbAddress.MultiLine = true;
             tbAddress.Name = "tbAddress";
-            tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn";
+            tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn\r\nDown";
             tbAddress.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbAddress.Size = new Size(355, 60);
+            tbAddress.Size = new Size(355, 102);
             tbAddress.TabIndex = 14;
             tbAddress.TextAlign = HorizontalAlignment.Left;
             tbAddress.TextBoxInset = new Padding(10);
@@ -192,24 +207,12 @@
             lblContactError.TabIndex = 16;
             lblContactError.TextAlign = ContentAlignment.TopCenter;
             // 
-            // lblAddressError
-            // 
-            lblAddressError.Anchor = AnchorStyles.None;
-            lblAddressError.Font = new Font("Bahnschrift", 12F);
-            lblAddressError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblAddressError.Location = new Point(151, 414);
-            lblAddressError.Name = "lblAddressError";
-            lblAddressError.Size = new Size(355, 38);
-            lblAddressError.TabIndex = 17;
-            lblAddressError.TextAlign = ContentAlignment.TopCenter;
-            // 
             // ContactDetailsSettingsView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
-            Controls.Add(lblAddressError);
             Controls.Add(lblContactError);
             Controls.Add(tbAddress);
             Controls.Add(lblAddressTitle);
@@ -239,6 +242,5 @@
         private CustomControls.CustomTextBox tbAddress;
         private Label lblAddressTitle;
         private Label lblContactError;
-        private Label lblAddressError;
     }
 }

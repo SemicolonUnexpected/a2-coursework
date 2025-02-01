@@ -120,6 +120,11 @@ public partial class CustomTextBox {
         set => tb.Multiline = value;
     }
 
+    public string[] Lines {
+        get => tb.Lines;
+        set => tb.Lines = value;
+    }
+
     //private bool _enabled = true;
     //[DefaultValue(true)]
     //public new bool Enabled {

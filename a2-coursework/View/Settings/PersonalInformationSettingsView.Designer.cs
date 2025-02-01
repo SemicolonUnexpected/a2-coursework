@@ -46,6 +46,10 @@
             tbForename.Font = new Font("Bahnschrift", 12F);
             tbForename.ForeColor = Color.Empty;
             tbForename.HoverColor = Color.Empty;
+            tbForename.Lines = new string[]
+    {
+    "John"
+    };
             tbForename.Location = new Point(151, 145);
             tbForename.Margin = new Padding(5);
             tbForename.MaxLength = 256;
@@ -156,6 +160,10 @@
             tbSurname.Font = new Font("Bahnschrift", 12F);
             tbSurname.ForeColor = Color.Empty;
             tbSurname.HoverColor = Color.Empty;
+            tbSurname.Lines = new string[]
+    {
+    "Doe"
+    };
             tbSurname.Location = new Point(151, 228);
             tbSurname.Margin = new Padding(5);
             tbSurname.MaxLength = 256;
@@ -196,7 +204,6 @@
             diDateOfBirth.Name = "diDateOfBirth";
             diDateOfBirth.NullValid = true;
             diDateOfBirth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            diDateOfBirth.ShowPlaceholder = false;
             diDateOfBirth.Size = new Size(180, 68);
             diDateOfBirth.TabIndex = 12;
             diDateOfBirth.Year = null;

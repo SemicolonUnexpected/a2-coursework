@@ -24,14 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             lblAppearance = new Label();
-            tbForename = new CustomControls.CustomTextBox();
-            tbSurname = new CustomControls.CustomTextBox();
-            lblSurnameTitle = new Label();
             lblEditPromt = new Label();
-            lblForenameTitle = new Label();
-            customTextBox1 = new CustomControls.CustomTextBox();
-            label1 = new Label();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
+            customPanel1 = new CustomControls.CustomPanel();
+            label1 = new Label();
+            customRadioButton1 = new CustomControls.CustomRadioButton();
+            lblEmergencyContactForenameTitle = new Label();
+            customPanel1.SuspendLayout();
             SuspendLayout();
             // 
             // lblAppearance
@@ -47,65 +46,6 @@
             lblAppearance.TabIndex = 8;
             lblAppearance.Text = "Appearance";
             // 
-            // tbForename
-            // 
-            tbForename.Anchor = AnchorStyles.None;
-            tbForename.BackColor = Color.FromArgb(9, 9, 10);
-            tbForename.BorderColor = Color.FromArgb(39, 39, 42);
-            tbForename.BorderThickness = 1F;
-            tbForename.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbForename.Font = new Font("Bahnschrift", 12F);
-            tbForename.ForeColor = Color.Empty;
-            tbForename.HoverColor = Color.Empty;
-            tbForename.Location = new Point(153, 252);
-            tbForename.Margin = new Padding(5);
-            tbForename.MaxLength = 256;
-            tbForename.MultiLine = false;
-            tbForename.Name = "tbForename";
-            tbForename.PlaceholderText = "John";
-            tbForename.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbForename.Size = new Size(355, 40);
-            tbForename.TabIndex = 7;
-            tbForename.TextAlign = HorizontalAlignment.Left;
-            tbForename.TextBoxInset = new Padding(10);
-            tbForename.UsePasswordChar = false;
-            // 
-            // tbSurname
-            // 
-            tbSurname.Anchor = AnchorStyles.None;
-            tbSurname.BackColor = Color.FromArgb(9, 9, 10);
-            tbSurname.BorderColor = Color.FromArgb(39, 39, 42);
-            tbSurname.BorderThickness = 1F;
-            tbSurname.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbSurname.Font = new Font("Bahnschrift", 12F);
-            tbSurname.ForeColor = Color.Empty;
-            tbSurname.HoverColor = Color.Empty;
-            tbSurname.Location = new Point(153, 335);
-            tbSurname.Margin = new Padding(5);
-            tbSurname.MaxLength = 256;
-            tbSurname.MultiLine = false;
-            tbSurname.Name = "tbSurname";
-            tbSurname.PlaceholderText = "Doe";
-            tbSurname.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbSurname.Size = new Size(355, 40);
-            tbSurname.TabIndex = 9;
-            tbSurname.TextAlign = HorizontalAlignment.Left;
-            tbSurname.TextBoxInset = new Padding(10);
-            tbSurname.UsePasswordChar = false;
-            // 
-            // lblSurnameTitle
-            // 
-            lblSurnameTitle.Anchor = AnchorStyles.None;
-            lblSurnameTitle.AutoSize = true;
-            lblSurnameTitle.Font = new Font("Bahnschrift", 14F);
-            lblSurnameTitle.ForeColor = Color.White;
-            lblSurnameTitle.Location = new Point(151, 302);
-            lblSurnameTitle.Margin = new Padding(5);
-            lblSurnameTitle.Name = "lblSurnameTitle";
-            lblSurnameTitle.Size = new Size(88, 23);
-            lblSurnameTitle.TabIndex = 12;
-            lblSurnameTitle.Text = "Surname";
-            // 
             // lblEditPromt
             // 
             lblEditPromt.Anchor = AnchorStyles.None;
@@ -119,55 +59,6 @@
             lblEditPromt.TabIndex = 10;
             lblEditPromt.Text = "Edit your appearance settings below";
             // 
-            // lblForenameTitle
-            // 
-            lblForenameTitle.Anchor = AnchorStyles.None;
-            lblForenameTitle.AutoSize = true;
-            lblForenameTitle.Font = new Font("Bahnschrift", 14F);
-            lblForenameTitle.ForeColor = Color.White;
-            lblForenameTitle.Location = new Point(151, 219);
-            lblForenameTitle.Margin = new Padding(5);
-            lblForenameTitle.Name = "lblForenameTitle";
-            lblForenameTitle.Size = new Size(96, 23);
-            lblForenameTitle.TabIndex = 11;
-            lblForenameTitle.Text = "Forename";
-            // 
-            // customTextBox1
-            // 
-            customTextBox1.Anchor = AnchorStyles.None;
-            customTextBox1.BackColor = Color.FromArgb(9, 9, 10);
-            customTextBox1.BorderColor = Color.FromArgb(39, 39, 42);
-            customTextBox1.BorderThickness = 1F;
-            customTextBox1.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            customTextBox1.Font = new Font("Bahnschrift", 12F);
-            customTextBox1.ForeColor = Color.Empty;
-            customTextBox1.HoverColor = Color.Empty;
-            customTextBox1.Location = new Point(150, 247);
-            customTextBox1.Margin = new Padding(5);
-            customTextBox1.MaxLength = 256;
-            customTextBox1.MultiLine = false;
-            customTextBox1.Name = "customTextBox1";
-            customTextBox1.PlaceholderText = "+441234567890";
-            customTextBox1.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            customTextBox1.Size = new Size(355, 40);
-            customTextBox1.TabIndex = 13;
-            customTextBox1.TextAlign = HorizontalAlignment.Left;
-            customTextBox1.TextBoxInset = new Padding(10);
-            customTextBox1.UsePasswordChar = false;
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift", 14F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(150, 214);
-            label1.Margin = new Padding(5);
-            label1.Name = "label1";
-            label1.Size = new Size(137, 23);
-            label1.TabIndex = 14;
-            label1.Text = "Phone Number";
-            // 
             // approveChangesBar
             // 
             approveChangesBar.BackColor = Color.FromArgb(9, 9, 10);
@@ -179,25 +70,74 @@
             approveChangesBar.TabIndex = 15;
             approveChangesBar.Visible = false;
             // 
+            // customPanel1
+            // 
+            customPanel1.BorderColor = Color.FromArgb(39, 39, 42);
+            customPanel1.BorderThickness = 1F;
+            customPanel1.Controls.Add(label1);
+            customPanel1.Controls.Add(customRadioButton1);
+            customPanel1.Controls.Add(lblEmergencyContactForenameTitle);
+            customPanel1.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            customPanel1.Location = new Point(151, 121);
+            customPanel1.Name = "customPanel1";
+            customPanel1.Padding = new Padding(5);
+            customPanel1.Size = new Size(339, 87);
+            customPanel1.TabIndex = 16;
+            // 
+            // label1
+            // 
+            label1.Anchor = AnchorStyles.Left;
+            label1.Font = new Font("Bahnschrift", 10F);
+            label1.ForeColor = Color.FromArgb(168, 171, 174);
+            label1.Location = new Point(10, 43);
+            label1.Margin = new Padding(5);
+            label1.Name = "label1";
+            label1.Size = new Size(281, 38);
+            label1.TabIndex = 17;
+            label1.Text = "If enabled, the application will run in dark mode";
+            // 
+            // customRadioButton1
+            // 
+            customRadioButton1.Anchor = AnchorStyles.Right;
+            customRadioButton1.BorderThickness = 1.7F;
+            customRadioButton1.CheckColor = Color.White;
+            customRadioButton1.CheckRadius = 0F;
+            customRadioButton1.ForeColor = Color.White;
+            customRadioButton1.Location = new Point(301, 29);
+            customRadioButton1.Name = "customRadioButton1";
+            customRadioButton1.Size = new Size(21, 21);
+            customRadioButton1.TabIndex = 0;
+            customRadioButton1.Text = "customRadioButton1";
+            // 
+            // lblEmergencyContactForenameTitle
+            // 
+            lblEmergencyContactForenameTitle.Anchor = AnchorStyles.Left;
+            lblEmergencyContactForenameTitle.AutoSize = true;
+            lblEmergencyContactForenameTitle.Font = new Font("Bahnschrift", 14F);
+            lblEmergencyContactForenameTitle.ForeColor = Color.White;
+            lblEmergencyContactForenameTitle.Location = new Point(10, 10);
+            lblEmergencyContactForenameTitle.Margin = new Padding(5);
+            lblEmergencyContactForenameTitle.Name = "lblEmergencyContactForenameTitle";
+            lblEmergencyContactForenameTitle.Size = new Size(100, 23);
+            lblEmergencyContactForenameTitle.TabIndex = 18;
+            lblEmergencyContactForenameTitle.Text = "Dark Mode";
+            // 
             // AppearanceSettingsView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
+            Controls.Add(customPanel1);
             Controls.Add(approveChangesBar);
-            Controls.Add(customTextBox1);
-            Controls.Add(label1);
             Controls.Add(lblAppearance);
-            Controls.Add(tbForename);
-            Controls.Add(tbSurname);
-            Controls.Add(lblSurnameTitle);
             Controls.Add(lblEditPromt);
-            Controls.Add(lblForenameTitle);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AppearanceSettingsView";
             Text = "AppearanceSettingsView";
             Load += AppearanceSettingsView_Load;
+            customPanel1.ResumeLayout(false);
+            customPanel1.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -205,13 +145,11 @@
         #endregion
 
         private Label lblAppearance;
-        private CustomControls.CustomTextBox tbForename;
-        private CustomControls.CustomTextBox tbSurname;
-        private Label lblSurnameTitle;
         private Label lblEditPromt;
-        private Label lblForenameTitle;
-        private CustomControls.CustomTextBox customTextBox1;
-        private Label label1;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
+        private CustomControls.CustomPanel customPanel1;
+        private CustomControls.CustomRadioButton customRadioButton1;
+        private Label label1;
+        private Label lblEmergencyContactForenameTitle;
     }
 }

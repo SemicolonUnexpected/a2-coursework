@@ -1,25 +1,26 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces; 
-public interface IEmergencyContactSettingsView : IThemeable, IChildView {
-    public event EventHandler? ForenameChanged;
-    public event EventHandler? SurnameChanged;
-    public event EventHandler? PhoneNumberChanged;
+public interface IContactDetailsSettings : IChildView, IThemeable {
     public event EventHandler? SaveRequested;
     public event EventHandler? CancelRequested;
-
+    public event EventHandler? EmailChanged;
+    public event EventHandler? PhoneNumberChanged;
+    public event EventHandler? AddressChanged;
+    
     // Data fields
-    public string Forename { get; set; }
-    public string Surname { get; set; }
+    public string Email { get; set; }
     public string PhoneNumber { get; set; }
+    public string Address { get; set; }
 
     // Error UI
+    public void SetEmailBorderError(bool isError);
     public void SetPhoneNumberBorderError(bool isError);
-    public string PhoneNumberErrorText { set; }
+    public string ContactErrorText { set; }
     public void ShowError(string text, string caption);
     public void ShowSuccess(string message, string caption);
 
     // Saving state UI
     public bool SaveVisible { set; }
-    public bool IsLoading { set; }
+    public bool IsLoading { set; get; }
 }

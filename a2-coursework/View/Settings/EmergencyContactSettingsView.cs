@@ -4,7 +4,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View.Settings; 
-public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettingsView {
+public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettings {
     private EmergencyContactSettingsPresenter? _presenter;
     
     public event EventHandler? ForenameChanged;
@@ -77,7 +77,6 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         lblEmergencyContactForenameTitle.ThemeTitle();
         lblEmergencyContactSurnameTitle.ThemeTitle();
 
-        lblEmergencyContactNameError.ThemeError();
         lblEmergencyPhoneNumberError.ThemeError();
 
         tbEmergencyContactForename.Theme();

@@ -132,7 +132,10 @@ public partial class MasterView : Form, IMaster {
     }
 
     private void sideMenu_PreviewSideMenuToggleChanged(object sender, ToggleEventArgs e) {
-        if (((ToggleButton)sender).Toggled == true) return;
+        if (((ToggleButton)sender).Toggled == true) {
+            e.Handled = true;
+            return;
+        }
 
         if (!ChildView?.CanExit() ?? false) e.Handled = true;
     }
