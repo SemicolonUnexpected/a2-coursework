@@ -1,7 +1,8 @@
 ﻿using a2_coursework.Theming;
 
-namespace a2_coursework.View.Interfaces; 
-public interface IEmergencyContactSettings : IThemeable, IChildView {
+namespace a2_coursework.View.Interfaces.Settings;
+public interface IEmergencyContactSettings : IThemeable, IChildView
+{
     public event EventHandler? ForenameChanged;
     public event EventHandler? SurnameChanged;
     public event EventHandler? PhoneNumberChanged;

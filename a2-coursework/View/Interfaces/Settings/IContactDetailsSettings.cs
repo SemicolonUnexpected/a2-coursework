@@ -1,13 +1,14 @@
 ﻿using a2_coursework.Theming;
 
-namespace a2_coursework.View.Interfaces; 
-public interface IContactDetailsSettings : IChildView, IThemeable {
+namespace a2_coursework.View.Interfaces.Settings;
+public interface IContactDetailsSettings : IChildView, IThemeable
+{
     public event EventHandler? SaveRequested;
     public event EventHandler? CancelRequested;
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;
-    
+
     // Data fields
     public string Email { get; set; }
     public string PhoneNumber { get; set; }

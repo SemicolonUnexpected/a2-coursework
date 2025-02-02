@@ -1,7 +1,8 @@
 ﻿using a2_coursework.Theming;
 
-namespace a2_coursework.View.Interfaces;
-public interface IPersonalInformationSettings : IThemeable {
+namespace a2_coursework.View.Interfaces.Settings;
+public interface IPersonalInformationSettings : IThemeable
+{
     public event EventHandler? SurnameChanged;
     public event EventHandler? ForenameChanged;
     public event EventHandler? DateOfBirthChanged;

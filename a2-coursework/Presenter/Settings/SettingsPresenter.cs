@@ -18,4 +18,55 @@ public abstract class SettingsPresenter<TView> where TView : ISettingsView {
 
     protected abstract void PopulateDefaultValues();
     protected abstract void UpdateStaff();
+    protected abstract bool AnyChanges();
+
+    protected virtual async void Save() {
+        if (!ValidateInputs()) return;
+        
+        try {
+            _view.IsLoading = true;
+            
+            if (await SaveChanges()) {
+                UpdateStaff();
+                _view.IsLoading = false;
+                _view.ShowMessageBox("Your changes have been successfully saved.", "Saved");
+            }
+            else {
+                _view.IsLoading = false;
+                _view.ShowMessageBox("Could not save your changes.", "Save failed");
+            }
+        }
+        catch {
+            _view.IsLoading = false;
+            _view.ShowMessageBox("Could not save your changes.", "Save failed");
+        }
+        finally {
+            SetApproveChangesBarVisibility();
+        }
+    }
+    
+    protected virtual bool ValidateInputs() => true;
+    
+    protected abstract Task<bool> SaveChanges();
+    
+    protected virtual void Cancel() {
+        PopulateDefaultValues();
+        SetApproveChangesBarVisibility();
+    }
+    
+    protected void SetApproveChangesBarVisibility() {
+        _view.SaveVisible = AnyChanges();
+    }
+
+    public virtual bool CanExit() {
+        if (_view.IsLoading) return false;
+
+        if (AnyChanges()) {
+            DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?");
+
+            return result == DialogResult.OK;
+        }
+
+        return true;
+    }
 }
