@@ -1,9 +1,9 @@
 ﻿using a2_coursework.CustomControls;
-using a2_coursework.Presenter;
+using a2_coursework.Presenter.Settings;
 using a2_coursework.Theming;
-using a2_coursework.View.Interfaces;
+using a2_coursework.View.Interfaces.Settings;
 
-namespace a2_coursework.View; 
+namespace a2_coursework.View;
 public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings {
     private ContactDetailsSettingsPresenter? _presenter;
 

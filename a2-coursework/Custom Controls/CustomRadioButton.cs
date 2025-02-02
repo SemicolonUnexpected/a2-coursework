@@ -17,7 +17,7 @@ public partial class CustomRadioButton : Control {
     public float CheckRadius {
         get => _checkRadius;
         set {
-            _checkRadius = Math.Clamp(value, 0, Math.Min(Width, Height));
+            _checkRadius = value;
             Invalidate();
         }
     }
@@ -68,4 +68,10 @@ public partial class CustomRadioButton : Control {
     }
 
     public event EventHandler? CheckChanged;
+
+    protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
+        CheckRadius *= factor.Width;
+
+        base.ScaleControl(factor, specified);
+    }
 }

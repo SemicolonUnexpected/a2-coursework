@@ -1,8 +1,9 @@
 ﻿using a2_coursework.Presenter;
 using a2_coursework.Model;
 using a2_coursework.View.Settings;
+using a2_coursework.Presenter.Settings;
 
-namespace a2_coursework.View; 
+namespace a2_coursework.View;
 public static class ViewFactory {
     public static (SplashView view, SplashPresenter presenter) CreateSplash() {
         SplashView view = new();
@@ -51,4 +52,13 @@ public static class ViewFactory {
 
         return (view, presenter);
     }
+    
+    public static (AppearanceSettingsView view, AppearanceSettingsPresenter presenter) CreateAppearanceSettings(Staff staff) {
+        AppearanceSettingsView view = new();
+        AppearanceSettingsPresenter presenter = new(view, staff);
+        view.SetPresenter(presenter);
+
+        return (view, presenter);
+    }
+
 }

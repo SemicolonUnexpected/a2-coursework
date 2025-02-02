@@ -1,4 +1,5 @@
-﻿using Microsoft.Data.SqlClient;
+﻿using a2_coursework.Theming;
+using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
@@ -72,7 +73,7 @@ internal static class StaffDAL {
                 emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
                 department: reader.GetString(reader.GetOrdinal("DepartmentName")),
                 privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
-                theme: reader.IsDBNull("UserAppearanceSettings") ? new Theming.Theme(Theming.AppearanceTheme.Dark, true) : Newtonsoft.Json.JsonConvert.DeserializeObject<Theming.Theme>(reader.GetString(reader.GetOrdinal("UserAppearanceSettings")))!
+                theme: reader.IsDBNull("AppearanceSettings") ? new Theming.Theme(Theming.AppearanceTheme.Dark, true, "Bahnshrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theming.Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
             );
         }
         return null;
@@ -126,6 +127,21 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
+    public static async Task<bool> UpdateAppearanceSettings(int staffId, Theme theme) {
+        string jsonTheme = Newtonsoft.Json.JsonConvert.SerializeObject(theme, Theme.JsonSettings);
+        
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffAppearanceSettings", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("appearanceSettings", jsonTheme);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
 
     public static async Task<string[]> GetDepartments() {
         await using SqlConnection connection = new(_connectionString);
