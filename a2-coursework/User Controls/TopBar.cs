@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using System.ComponentModel;
 
 namespace a2_coursework.UserControls;
@@ -36,4 +37,11 @@ public partial class TopBar : UserControl {
     }
 
     private void PositionUsernameText() => lblUsername.Location = new Point(Width - (lblUsername.Width + pnlRight.Width), lblUsername.Location.Y);
+
+    protected override void OnFontChanged(EventArgs e) {
+        base.OnFontChanged(e);
+
+        lblUsername.SetFontName(Font.Name);
+        PositionUsernameText();
+    }
 }

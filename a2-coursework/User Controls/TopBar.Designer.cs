@@ -45,7 +45,7 @@
             // 
             // lblUsername
             // 
-            lblUsername.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Right;
+            lblUsername.Anchor = AnchorStyles.None;
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Bahnschrift", 16F);
             lblUsername.ForeColor = Color.White;

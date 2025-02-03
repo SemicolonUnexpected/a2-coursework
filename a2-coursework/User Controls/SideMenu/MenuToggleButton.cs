@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using System.ComponentModel;
 
 namespace a2_coursework.UserControls.SideMenu;
@@ -44,5 +45,11 @@ public partial class MenuToggleButton : UserControl {
 
     public ToggleButton ToggleButton {
         get => btn;
+    }
+
+    protected override void OnFontChanged(EventArgs e) {
+        base.OnFontChanged(e);
+
+        btn.SetFontName(Font.Name);
     }
 }

@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 
 namespace a2_coursework.UserControls.SideMenu; 
 public partial class SideMenu : UserControl {
@@ -160,4 +161,14 @@ public partial class SideMenu : UserControl {
 
         SetupSizeAndScroll();
     }
+
+    protected override void OnFontChanged(EventArgs e) {
+        base.OnFontChanged(e);
+
+        foreach (Control ctrl in pnlMenuHolder.Controls) {
+            ctrl.SetFontName(Font.Name);
+        }
+    }
 }
+
+

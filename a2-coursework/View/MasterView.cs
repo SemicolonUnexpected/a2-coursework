@@ -1,4 +1,5 @@
-﻿using a2_coursework.Presenter;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Presenter;
 using a2_coursework.Theming;
 using a2_coursework.UserControls;
 using a2_coursework.UserControls.SideMenu;
@@ -15,6 +16,9 @@ public partial class MasterView : Form, IMaster {
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        SetFont();
+        Theming.Theme.FontNameChanged += (s, e) => SetFont();
     }
 
     public void SetPresenter(MasterPresenter presenter) {
@@ -27,6 +31,13 @@ public partial class MasterView : Form, IMaster {
         sideMenu.Theme();
         topBar.Theme();
         sb.Theme();
+    }
+
+    private void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        topBar.SetFontName(fontName);
+        sideMenu.SetFontName(fontName);
     }
 
     private void MasterView_Shown(object sender, EventArgs e) {

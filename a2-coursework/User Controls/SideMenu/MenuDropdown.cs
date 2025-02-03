@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using System.ComponentModel;
 
 namespace a2_coursework.UserControls.SideMenu;
@@ -83,6 +84,7 @@ public partial class MenuDropdown : UserControl {
                 Text = ChildNames[i],
                 Height = btn.Height,
                 Dock = DockStyle.Top,
+                Font = Font,
             };
 
             button.ToggleChanged += (s, e) => {
@@ -125,4 +127,10 @@ public partial class MenuDropdown : UserControl {
     }
 
     private void ResizeDropDown() => Size = new Size(Width, pnlDropDown.Visible ? pnlDropDown.Height + btn.Height : btn.Height);
+
+    protected override void OnFontChanged(EventArgs e) {
+        base.OnFontChanged(e);
+
+        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Font.Name));
+    }
 }

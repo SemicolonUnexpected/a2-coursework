@@ -25,8 +25,11 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
 
-        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+
+        SetFont();
+        Theming.Theme.FontNameChanged += (s, e) => SetFont();
     }
 
     public void SetPresenter(AppearanceSettingsPresenter presenter) {
@@ -63,6 +66,25 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         rbComicSans.Theme();
 
         approveChangesBar.Theme();
+    }
+
+    private void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        lblAppearance.SetFontName(fontName);
+        lblEditPromt.SetFontName(fontName);
+        lblDarkMode.SetFontName(fontName);
+        lblDarkModeDescription.SetFontName(fontName);
+        lblToolTips.SetFontName(fontName);
+        lblToolTipsDescription.SetFontName(fontName);
+        lblFont.SetFontName(fontName);
+        lblFontDescription.SetFontName(fontName);
+    }
+
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        approveChangesBar.ToolTipsActive = showToolTips;
     }
 
     public bool DarkModeChecked {

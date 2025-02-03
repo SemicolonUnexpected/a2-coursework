@@ -33,7 +33,7 @@
             btn.BorderThickness = 0F;
             btn.CornerRadii = new CustomControls.CornerRadiiF(5F, 5F, 5F, 5F);
             btn.Dock = DockStyle.Fill;
-            btn.Font = new Font("Bahnschrift", 10F);
+            btn.Font = new Font("Bahnschrift", 9.75F, FontStyle.Regular, GraphicsUnit.Point, 0);
             btn.ForeColor = Color.White;
             btn.HoverColor = Color.FromArgb(39, 39, 42);
             btn.Location = new Point(2, 2);

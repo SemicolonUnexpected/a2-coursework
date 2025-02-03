@@ -26,6 +26,9 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
 
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+
         ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
         Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
@@ -53,6 +56,13 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         SetPhoneNumberBorderError(_phoneNumberError);
 
         approveChangesBar.Theme();
+    }
+
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        tbEmergencyContactPhoneNumber.ToolTipsActive = showToolTips;
+        approveChangesBar.ToolTipsActive = showToolTips;
     }
 
     public string Forename {
