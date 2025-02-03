@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             tbForename = new CustomControls.CustomTextBox();
             lblPersonalInfo = new Label();
             lblDateOfBirthError = new Label();
@@ -34,6 +35,7 @@
             tbSurname = new CustomControls.CustomTextBox();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
             diDateOfBirth = new CustomControls.DateInput();
+            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // tbForename
@@ -46,10 +48,6 @@
             tbForename.Font = new Font("Bahnschrift", 12F);
             tbForename.ForeColor = Color.Empty;
             tbForename.HoverColor = Color.Empty;
-            tbForename.Lines = new string[]
-    {
-    "John"
-    };
             tbForename.Location = new Point(151, 145);
             tbForename.Margin = new Padding(5);
             tbForename.MaxLength = 256;
@@ -61,6 +59,7 @@
             tbForename.TabIndex = 1;
             tbForename.TextAlign = HorizontalAlignment.Left;
             tbForename.TextBoxInset = new Padding(10);
+            tbForename.ToolTipText = "Type in your forname";
             tbForename.UsePasswordChar = false;
             // 
             // lblPersonalInfo
@@ -81,9 +80,9 @@
             lblDateOfBirthError.Anchor = AnchorStyles.None;
             lblDateOfBirthError.Font = new Font("Bahnschrift", 12F);
             lblDateOfBirthError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblDateOfBirthError.Location = new Point(344, 378);
+            lblDateOfBirthError.Location = new Point(344, 374);
             lblDateOfBirthError.Name = "lblDateOfBirthError";
-            lblDateOfBirthError.Size = new Size(162, 37);
+            lblDateOfBirthError.Size = new Size(200, 41);
             lblDateOfBirthError.TabIndex = 10;
             lblDateOfBirthError.TextAlign = ContentAlignment.MiddleLeft;
             // 
@@ -160,10 +159,6 @@
             tbSurname.Font = new Font("Bahnschrift", 12F);
             tbSurname.ForeColor = Color.Empty;
             tbSurname.HoverColor = Color.Empty;
-            tbSurname.Lines = new string[]
-    {
-    "Doe"
-    };
             tbSurname.Location = new Point(151, 228);
             tbSurname.Margin = new Padding(5);
             tbSurname.MaxLength = 256;
@@ -175,6 +170,7 @@
             tbSurname.TabIndex = 3;
             tbSurname.TextAlign = HorizontalAlignment.Left;
             tbSurname.TextBoxInset = new Padding(10);
+            tbSurname.ToolTipText = "Type in your surname";
             tbSurname.UsePasswordChar = false;
             // 
             // approveChangesBar
@@ -186,6 +182,7 @@
             approveChangesBar.Name = "approveChangesBar";
             approveChangesBar.Size = new Size(654, 41);
             approveChangesBar.TabIndex = 11;
+            approveChangesBar.ToolTipsActive = true;
             approveChangesBar.Visible = false;
             // 
             // diDateOfBirth
@@ -195,18 +192,22 @@
             diDateOfBirth.BorderErrorColor = Color.Red;
             diDateOfBirth.BorderThickness = 1F;
             diDateOfBirth.Day = null;
+            diDateOfBirth.DayToolTip = "";
             diDateOfBirth.Location = new Point(151, 347);
             diDateOfBirth.MaxDate = null;
             diDateOfBirth.MaximumSize = new Size(180, 68);
             diDateOfBirth.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             diDateOfBirth.MinimumSize = new Size(180, 68);
             diDateOfBirth.Month = null;
+            diDateOfBirth.MonthToolTip = "";
             diDateOfBirth.Name = "diDateOfBirth";
             diDateOfBirth.NullValid = true;
             diDateOfBirth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             diDateOfBirth.Size = new Size(180, 68);
             diDateOfBirth.TabIndex = 12;
+            diDateOfBirth.ToolTipsActive = true;
             diDateOfBirth.Year = null;
+            diDateOfBirth.YearToolTip = "";
             // 
             // PersonalInformationSettingsView
             // 
@@ -246,5 +247,6 @@
         private Label lblDateOfBirthError;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
         private CustomControls.DateInput diDateOfBirth;
+        private ToolTip toolTip;
     }
 }

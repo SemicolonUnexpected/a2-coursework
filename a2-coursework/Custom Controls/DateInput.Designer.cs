@@ -23,14 +23,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
             tbDay = new CustomTextBox();
             tbMonth = new CustomTextBox();
             tbYear = new CustomTextBox();
             lblDay = new Label();
             lblMonth = new Label();
             lblYear = new Label();
-            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // tbDay
@@ -45,6 +43,7 @@
             tbDay.Location = new Point(0, 28);
             tbDay.Margin = new Padding(10);
             tbDay.MaxLength = 2;
+            tbDay.MultiLine = false;
             tbDay.Name = "tbDay";
             tbDay.PlaceholderText = "23";
             tbDay.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
@@ -69,6 +68,7 @@
             tbMonth.Location = new Point(60, 28);
             tbMonth.Margin = new Padding(10);
             tbMonth.MaxLength = 2;
+            tbMonth.MultiLine = false;
             tbMonth.Name = "tbMonth";
             tbMonth.PlaceholderText = "06";
             tbMonth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
@@ -93,6 +93,7 @@
             tbYear.Location = new Point(120, 28);
             tbYear.Margin = new Padding(10);
             tbYear.MaxLength = 4;
+            tbYear.MultiLine = false;
             tbYear.Name = "tbYear";
             tbYear.PlaceholderText = "1986";
             tbYear.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
@@ -168,6 +169,5 @@
         private Label lblDay;
         private Label lblMonth;
         private Label lblYear;
-        private ToolTip toolTip;
     }
 }

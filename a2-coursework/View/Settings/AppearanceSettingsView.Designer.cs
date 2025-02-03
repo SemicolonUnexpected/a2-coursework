@@ -83,6 +83,7 @@
             approveChangesBar.Name = "approveChangesBar";
             approveChangesBar.Size = new Size(654, 41);
             approveChangesBar.TabIndex = 15;
+            approveChangesBar.ToolTipsActive = true;
             approveChangesBar.Visible = false;
             // 
             // pnlDarkMode
@@ -167,7 +168,7 @@
             lblToolTipsDescription.Name = "lblToolTipsDescription";
             lblToolTipsDescription.Size = new Size(298, 38);
             lblToolTipsDescription.TabIndex = 17;
-            lblToolTipsDescription.Text = "If enabled, tool tips will be shown on all controls";
+            lblToolTipsDescription.Text = "If enabled, tool tips will be shown on some controls";
             // 
             // rbToolTips
             // 
@@ -255,9 +256,9 @@
             lblBahnschrift.Location = new Point(37, 58);
             lblBahnschrift.Margin = new Padding(5);
             lblBahnschrift.Name = "lblBahnschrift";
-            lblBahnschrift.Size = new Size(92, 19);
+            lblBahnschrift.Size = new Size(157, 19);
             lblBahnschrift.TabIndex = 23;
-            lblBahnschrift.Text = "Bahnschrift";
+            lblBahnschrift.Text = "Bahnschrift (default)";
             lblBahnschrift.Click += lblBahnschrift_Click;
             // 
             // rbComicSans

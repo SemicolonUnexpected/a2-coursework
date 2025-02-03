@@ -1,4 +1,5 @@
-﻿using a2_coursework.CustomControls;
+﻿using a2_coursework._Helpers;
+using a2_coursework.CustomControls;
 using a2_coursework.Presenter.Settings;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
@@ -17,16 +18,22 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
     public PersonalInformationSettingsView() {
         InitializeComponent();
 
-        diDateOfBirth.MaxDate = DateTime.Now;
-
-        Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
-
         tbForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
         tbSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
         diDateOfBirth.DateTextChanged += (s, e) => DateOfBirthChanged?.Invoke(this, EventArgs.Empty);
         approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
         approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
+
+        diDateOfBirth.MaxDate = DateTime.Now;
+
+        Theme();
+        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+
+        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(PersonalInformationSettingsPresenter presenter) {
@@ -45,9 +52,26 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         diDateOfBirth.Theme();
 
         lblPersonalInfo.ThemeTitle();
+        lblEditPromt.ThemeSubtitle();
 
-        lblNameError.ForeColor = ColorScheme.CurrentTheme.Danger;
-        lblDateOfBirthError.ForeColor = ColorScheme.CurrentTheme.Danger;
+        lblForenameTitle.ThemeTitle();
+        lblSurnameTitle.ThemeTitle();
+        lblDateOfBirthTitle.ThemeTitle();
+
+        lblNameError.ThemeError();
+        lblDateOfBirthError.ThemeError();
+
+        approveChangesBar.Theme();
+    }
+
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        toolTip.Active = showToolTips;
+        tbForename.ToolTipsActive = showToolTips;
+        tbSurname.ToolTipsActive = showToolTips;
+        diDateOfBirth.ToolTipsActive = showToolTips;
+        approveChangesBar.ToolTipsActive = showToolTips;
     }
 
     public bool SaveVisible {

@@ -2,6 +2,7 @@
 using a2_coursework.Theming;
 using a2_coursework.Presenter.Settings;
 using a2_coursework.View.Interfaces.Settings;
+using a2_coursework._Helpers;
 
 namespace a2_coursework.View.Settings;
 public partial class AppearanceSettingsView : Form, IAppearanceSettings {
@@ -23,6 +24,9 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(AppearanceSettingsPresenter presenter) {
@@ -31,6 +35,34 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
 
     public void Theme() {
         BackColor = ColorScheme.CurrentTheme.Background;
+
+        lblAppearance.ThemeTitle();
+        lblEditPromt.ThemeSubtitle();
+
+        lblDarkMode.ThemeTitle();
+        lblDarkModeDescription.ThemeSubtitle();
+        pnlDarkMode.Theme();
+        rbDarkMode.Theme();
+
+        lblToolTips.ThemeTitle();
+        lblToolTipsDescription.ThemeSubtitle();
+        pnlToolTips.Theme();
+        rbToolTips.Theme();
+
+        lblFont.ThemeTitle();
+        lblFontDescription.ThemeSubtitle();
+        pnlFont.Theme();
+        
+        lblBahnschrift.ThemeTitle();
+        rbBahnschrift.Theme();
+
+        lblCentury.ThemeTitle();
+        rbCentury.Theme();
+
+        lblComicSans.ThemeTitle();
+        rbComicSans.Theme();
+
+        approveChangesBar.Theme();
     }
 
     public bool DarkModeChecked {

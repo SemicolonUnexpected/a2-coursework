@@ -1,4 +1,5 @@
-﻿using a2_coursework.Presenter;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Presenter;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
 
@@ -47,6 +48,9 @@ public partial class LoginView : Form, ILogin {
 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+
+        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(LoginPresenter presenter) {

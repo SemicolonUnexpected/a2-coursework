@@ -223,4 +223,28 @@ public partial class DateInput {
             tbYear.Enabled = value;
         }
     }
+
+    public string DayToolTip {
+        get => tbDay.ToolTipText;
+        set => tbDay.ToolTipText = value;
+    }
+
+    public string MonthToolTip {
+        get => tbMonth.ToolTipText;
+        set => tbMonth.ToolTipText = value;
+    }
+
+    public string YearToolTip {
+        get => tbYear.ToolTipText;
+        set => tbYear.ToolTipText = value;
+    }
+
+    public bool ToolTipsActive {
+        get => tbDay.ToolTipsActive;
+        set {
+            tbDay.ToolTipsActive = value;
+            tbMonth.ToolTipsActive = value;
+            tbYear.ToolTipsActive = value;
+        }
+    }
 }

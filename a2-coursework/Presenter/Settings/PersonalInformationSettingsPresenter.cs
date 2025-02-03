@@ -7,8 +7,6 @@ public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalI
         _view.SurnameChanged += (s, e) => InputChanged();
         _view.ForenameChanged += (s, e) => InputChanged();
         _view.DateOfBirthChanged += (s, e) => InputChanged();
-        _view.Save += (s, e) => Save();
-        _view.Cancel += (s, e) => Cancel();
     }
 
     protected override void PopulateDefaultValues() {
@@ -48,7 +46,7 @@ public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalI
         if (dateOfBirthInvalid) _view.DateOfBirthErrorText = "Invalid date of birth";
         else _view.DateOfBirthErrorText = "";
 
-        return !(forenameEmpty || surnameEmpty || _view.DateOfBirthValid);
+        return !(forenameEmpty || surnameEmpty || !_view.DateOfBirthValid);
     }
 
     protected override bool AnyChanges() => _view.Forename != _staff.Forename || _view.Surname != _staff.Surname || _view.DateOfBirth != _staff.DateOfBirth;

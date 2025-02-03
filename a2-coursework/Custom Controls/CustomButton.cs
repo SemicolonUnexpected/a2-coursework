@@ -54,6 +54,11 @@ public partial class CustomButton : CustomPanel {
         }
     }
 
+    protected override void OnFontChanged(EventArgs e) {
+        CalculateTextPosition();
+        base.OnFontChanged(e);
+    }
+
     protected override void OnPaint(PaintEventArgs e) {
         if (!string.IsNullOrWhiteSpace(Text)) TextRenderer.DrawText(e.Graphics, Text, Font, _textPosition, ForeColor);
         if (Image is not null) e.Graphics.DrawImage(Image, ImageRectangle);

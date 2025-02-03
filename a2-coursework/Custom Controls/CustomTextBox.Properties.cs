@@ -127,6 +127,7 @@ public partial class CustomTextBox {
     }
 
     private string _toolTipText = "";
+    [DefaultValue("")]
     public string ToolTipText {
         get => _toolTipText;
         set {

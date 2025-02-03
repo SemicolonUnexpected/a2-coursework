@@ -1,4 +1,5 @@
-﻿using a2_coursework.CustomControls;
+﻿using a2_coursework._Helpers;
+using a2_coursework.CustomControls;
 using a2_coursework.Presenter.Settings;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Settings;
@@ -24,6 +25,12 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+
+        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(ContactDetailsSettingsPresenter presenter) {
@@ -45,6 +52,17 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
         tbEmail.Theme();
         tbPhoneNumber.Theme();
         tbAddress.Theme();
+
+        approveChangesBar.Theme();
+    }
+
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        tbEmail.ToolTipsActive = showToolTips;
+        tbPhoneNumber.ToolTipsActive = showToolTips;
+        tbAddress.ToolTipsActive = showToolTips;
+        approveChangesBar.ToolTipsActive = showToolTips;
     }
 
     public string Email {

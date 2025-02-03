@@ -21,7 +21,10 @@ public abstract class SettingsPresenter<TView> where TView : ISettingsView {
     protected abstract bool AnyChanges();
 
     protected virtual async void Save() {
-        if (!ValidateInputs()) _view.ShowMessageBox("Invalid information. Could not save your changes.", "Save failed");
+        if (!ValidateInputs()) {
+            _view.ShowMessageBox("Invalid information. Could not save your changes.", "Save failed");
+            return;
+        }
 
         try {
             _view.IsLoading = true;
@@ -62,7 +65,7 @@ public abstract class SettingsPresenter<TView> where TView : ISettingsView {
         if (_view.IsLoading) return false;
 
         if (AnyChanges()) {
-            DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?");
+            DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel);
 
             return result == DialogResult.OK;
         }

@@ -61,4 +61,9 @@ internal static class ThemingExtenders {
         dateInput.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
         dateInput.BorderErrorColor = ColorScheme.CurrentTheme.Danger;
     }
+
+    public static void Theme(this CustomRadioButton radioButton) {
+        radioButton.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        radioButton.CheckColor = ColorScheme.CurrentTheme.Foreground;
+    }
 }

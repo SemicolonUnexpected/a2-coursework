@@ -69,6 +69,7 @@
             tbEmail.TabIndex = 7;
             tbEmail.TextAlign = HorizontalAlignment.Left;
             tbEmail.TextBoxInset = new Padding(10);
+            tbEmail.ToolTipText = "This may be used to contact you in an emergency";
             tbEmail.UsePasswordChar = false;
             // 
             // tbPhoneNumber
@@ -92,6 +93,7 @@
             tbPhoneNumber.TabIndex = 9;
             tbPhoneNumber.TextAlign = HorizontalAlignment.Left;
             tbPhoneNumber.TextBoxInset = new Padding(10);
+            tbPhoneNumber.ToolTipText = "This may be used to contact you in an emergency";
             tbPhoneNumber.UsePasswordChar = false;
             // 
             // lblPhoneNumber
@@ -142,6 +144,7 @@
             approveChangesBar.Name = "approveChangesBar";
             approveChangesBar.Size = new Size(654, 41);
             approveChangesBar.TabIndex = 13;
+            approveChangesBar.ToolTipsActive = true;
             approveChangesBar.Visible = false;
             // 
             // tbAddress
@@ -176,9 +179,9 @@
             lblAddressTitle.Location = new Point(151, 316);
             lblAddressTitle.Margin = new Padding(5);
             lblAddressTitle.Name = "lblAddressTitle";
-            lblAddressTitle.Size = new Size(80, 23);
+            lblAddressTitle.Size = new Size(165, 23);
             lblAddressTitle.TabIndex = 15;
-            lblAddressTitle.Text = "Address";
+            lblAddressTitle.Text = "Address (optional)";
             // 
             // lblContactError
             // 

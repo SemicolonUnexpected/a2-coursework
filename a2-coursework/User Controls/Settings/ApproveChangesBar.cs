@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.User_Controls.Settings;
-public partial class ApproveChangesBar : UserControl, IThemeable {
+public partial class ApproveChangesBar : UserControl {
     private int _height = 41;
     public ApproveChangesBar() {
         InitializeComponent();
@@ -15,6 +15,8 @@ public partial class ApproveChangesBar : UserControl, IThemeable {
 
         btnSave.ThemeStrong();
         btnCancel.ThemeStrong();
+
+        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
     }
 
     protected override void OnResize(EventArgs e) {
@@ -48,6 +50,19 @@ public partial class ApproveChangesBar : UserControl, IThemeable {
                 btnSave.Enabled = true;
                 btnCancel.Enabled = true;
             }
+        }
+    }
+
+    public bool ToolTipsActive {
+        get => toolTip.Active;
+        set => toolTip.Active = value;
+    }
+
+    public override Font Font {
+        get => btnSave.Font;
+        set {
+            btnSave.Font = value;
+            btnCancel.Font = value;
         }
     }
 }

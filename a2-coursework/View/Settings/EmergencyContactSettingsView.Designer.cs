@@ -30,9 +30,9 @@
             lblEditPromt = new Label();
             lblEmergencyContactForenameTitle = new Label();
             tbEmergencyContactPhoneNumber = new CustomControls.CustomTextBox();
-            lblEmergencyContactPhoneNumber = new Label();
+            lblEmergencyContactPhoneNumberTitle = new Label();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
-            lblEmergencyPhoneNumberError = new Label();
+            lblEmergencyContactPhoneNumberError = new Label();
             SuspendLayout();
             // 
             // lblEmergencyContactTitle
@@ -58,10 +58,6 @@
             tbEmergencyContactForename.Font = new Font("Bahnschrift", 12F);
             tbEmergencyContactForename.ForeColor = Color.Empty;
             tbEmergencyContactForename.HoverColor = Color.Empty;
-            tbEmergencyContactForename.Lines = new string[]
-    {
-    "Jane"
-    };
             tbEmergencyContactForename.Location = new Point(145, 145);
             tbEmergencyContactForename.Margin = new Padding(5);
             tbEmergencyContactForename.MaxLength = 256;
@@ -85,10 +81,6 @@
             tbEmergencyContactSurname.Font = new Font("Bahnschrift", 12F);
             tbEmergencyContactSurname.ForeColor = Color.Empty;
             tbEmergencyContactSurname.HoverColor = Color.Empty;
-            tbEmergencyContactSurname.Lines = new string[]
-    {
-    "Doe"
-    };
             tbEmergencyContactSurname.Location = new Point(145, 228);
             tbEmergencyContactSurname.Margin = new Padding(5);
             tbEmergencyContactSurname.MaxLength = 256;
@@ -151,10 +143,6 @@
             tbEmergencyContactPhoneNumber.Font = new Font("Bahnschrift", 12F);
             tbEmergencyContactPhoneNumber.ForeColor = Color.Empty;
             tbEmergencyContactPhoneNumber.HoverColor = Color.Empty;
-            tbEmergencyContactPhoneNumber.Lines = new string[]
-    {
-    "+44 987 654 3210"
-    };
             tbEmergencyContactPhoneNumber.Location = new Point(145, 311);
             tbEmergencyContactPhoneNumber.Margin = new Padding(5);
             tbEmergencyContactPhoneNumber.MaxLength = 256;
@@ -166,20 +154,21 @@
             tbEmergencyContactPhoneNumber.TabIndex = 13;
             tbEmergencyContactPhoneNumber.TextAlign = HorizontalAlignment.Left;
             tbEmergencyContactPhoneNumber.TextBoxInset = new Padding(10);
+            tbEmergencyContactPhoneNumber.ToolTipText = "Provide a reliable phone number so your emergency contact can be reached";
             tbEmergencyContactPhoneNumber.UsePasswordChar = false;
             // 
-            // lblEmergencyContactPhoneNumber
+            // lblEmergencyContactPhoneNumberTitle
             // 
-            lblEmergencyContactPhoneNumber.Anchor = AnchorStyles.None;
-            lblEmergencyContactPhoneNumber.AutoSize = true;
-            lblEmergencyContactPhoneNumber.Font = new Font("Bahnschrift", 14F);
-            lblEmergencyContactPhoneNumber.ForeColor = Color.White;
-            lblEmergencyContactPhoneNumber.Location = new Point(145, 278);
-            lblEmergencyContactPhoneNumber.Margin = new Padding(5);
-            lblEmergencyContactPhoneNumber.Name = "lblEmergencyContactPhoneNumber";
-            lblEmergencyContactPhoneNumber.Size = new Size(390, 23);
-            lblEmergencyContactPhoneNumber.TabIndex = 14;
-            lblEmergencyContactPhoneNumber.Text = "Emergency Contact Phone Number (optional)";
+            lblEmergencyContactPhoneNumberTitle.Anchor = AnchorStyles.None;
+            lblEmergencyContactPhoneNumberTitle.AutoSize = true;
+            lblEmergencyContactPhoneNumberTitle.Font = new Font("Bahnschrift", 14F);
+            lblEmergencyContactPhoneNumberTitle.ForeColor = Color.White;
+            lblEmergencyContactPhoneNumberTitle.Location = new Point(145, 278);
+            lblEmergencyContactPhoneNumberTitle.Margin = new Padding(5);
+            lblEmergencyContactPhoneNumberTitle.Name = "lblEmergencyContactPhoneNumberTitle";
+            lblEmergencyContactPhoneNumberTitle.Size = new Size(390, 23);
+            lblEmergencyContactPhoneNumberTitle.TabIndex = 14;
+            lblEmergencyContactPhoneNumberTitle.Text = "Emergency Contact Phone Number (optional)";
             // 
             // approveChangesBar
             // 
@@ -190,18 +179,19 @@
             approveChangesBar.Name = "approveChangesBar";
             approveChangesBar.Size = new Size(654, 41);
             approveChangesBar.TabIndex = 15;
+            approveChangesBar.ToolTipsActive = true;
             approveChangesBar.Visible = false;
             // 
-            // lblEmergencyPhoneNumberError
+            // lblEmergencyContactPhoneNumberError
             // 
-            lblEmergencyPhoneNumberError.Anchor = AnchorStyles.None;
-            lblEmergencyPhoneNumberError.Font = new Font("Bahnschrift", 12F);
-            lblEmergencyPhoneNumberError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblEmergencyPhoneNumberError.Location = new Point(145, 356);
-            lblEmergencyPhoneNumberError.Name = "lblEmergencyPhoneNumberError";
-            lblEmergencyPhoneNumberError.Size = new Size(355, 38);
-            lblEmergencyPhoneNumberError.TabIndex = 18;
-            lblEmergencyPhoneNumberError.TextAlign = ContentAlignment.TopCenter;
+            lblEmergencyContactPhoneNumberError.Anchor = AnchorStyles.None;
+            lblEmergencyContactPhoneNumberError.Font = new Font("Bahnschrift", 12F);
+            lblEmergencyContactPhoneNumberError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblEmergencyContactPhoneNumberError.Location = new Point(145, 356);
+            lblEmergencyContactPhoneNumberError.Name = "lblEmergencyContactPhoneNumberError";
+            lblEmergencyContactPhoneNumberError.Size = new Size(355, 38);
+            lblEmergencyContactPhoneNumberError.TabIndex = 18;
+            lblEmergencyContactPhoneNumberError.TextAlign = ContentAlignment.TopCenter;
             // 
             // EmergencyContactSettingsView
             // 
@@ -209,10 +199,10 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
-            Controls.Add(lblEmergencyPhoneNumberError);
+            Controls.Add(lblEmergencyContactPhoneNumberError);
             Controls.Add(approveChangesBar);
             Controls.Add(tbEmergencyContactPhoneNumber);
-            Controls.Add(lblEmergencyContactPhoneNumber);
+            Controls.Add(lblEmergencyContactPhoneNumberTitle);
             Controls.Add(lblEmergencyContactTitle);
             Controls.Add(tbEmergencyContactForename);
             Controls.Add(tbEmergencyContactSurname);
@@ -235,8 +225,8 @@
         private Label lblEditPromt;
         private Label lblEmergencyContactForenameTitle;
         private CustomControls.CustomTextBox tbEmergencyContactPhoneNumber;
-        private Label lblEmergencyContactPhoneNumber;
+        private Label lblEmergencyContactPhoneNumberTitle;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
-        private Label lblEmergencyPhoneNumberError;
+        private Label lblEmergencyContactPhoneNumberError;
     }
 }

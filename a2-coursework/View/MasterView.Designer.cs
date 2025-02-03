@@ -86,7 +86,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, -14);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(138, 649);
+            pnlCover.Size = new Size(884, 649);
             pnlCover.TabIndex = 13;
             // 
             // MasterView

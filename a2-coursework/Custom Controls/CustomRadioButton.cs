@@ -48,7 +48,7 @@ public partial class CustomRadioButton : Control {
         g.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
         using Pen pen = new(ForeColor, BorderThickness);
-        g.DrawEllipse(pen, Rectangle.Inflate(DisplayRectangle, -(int)(BorderThickness / 2 + 1), -(int)(BorderThickness / 2 + 1)));
+        g.DrawEllipse(pen, Rectangle.Inflate(DisplayRectangle, -(int)(BorderThickness / 2 + 2), -(int)(BorderThickness / 2 + 2)));
 
         if (Checked) g.FillEllipse(new SolidBrush(CheckColor), Width / 2f - CheckRadius, Height / 2f - CheckRadius, CheckRadius * 2, CheckRadius * 2);
 

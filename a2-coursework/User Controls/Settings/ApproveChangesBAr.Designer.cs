@@ -23,10 +23,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             pnlDecor = new Panel();
             btnSave = new CustomControls.CustomButton();
             btnCancel = new CustomControls.CustomButton();
             flowLayoutPanel1 = new FlowLayoutPanel();
+            toolTip = new ToolTip(components);
             flowLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -93,6 +95,7 @@
             btnCancel.Text = "Cancel";
             btnCancel.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnCancel.TextPosition = new Point(20, 5);
+            toolTip.SetToolTip(btnCancel, "Reset any changes");
             btnCancel.Click += btnCancel_Click;
             // 
             // flowLayoutPanel1
@@ -125,5 +128,6 @@
         private CustomControls.CustomButton btnSave;
         private CustomControls.CustomButton btnCancel;
         private FlowLayoutPanel flowLayoutPanel1;
+        private ToolTip toolTip;
     }
 }

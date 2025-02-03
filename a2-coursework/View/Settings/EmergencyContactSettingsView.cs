@@ -1,4 +1,5 @@
-﻿using a2_coursework.CustomControls;
+﻿using a2_coursework._Helpers;
+using a2_coursework.CustomControls;
 using a2_coursework.Presenter.Settings;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Settings;
@@ -24,6 +25,9 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(EmergencyContactSettingsPresenter presenter) {
@@ -38,14 +42,17 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
 
         lblEmergencyContactForenameTitle.ThemeTitle();
         lblEmergencyContactSurnameTitle.ThemeTitle();
+        lblEmergencyContactPhoneNumberTitle.ThemeTitle();
 
-        lblEmergencyPhoneNumberError.ThemeError();
+        lblEmergencyContactPhoneNumberError.ThemeError();
 
         tbEmergencyContactForename.Theme();
         tbEmergencyContactSurname.Theme();
         tbEmergencyContactPhoneNumber.Theme();
 
         SetPhoneNumberBorderError(_phoneNumberError);
+
+        approveChangesBar.Theme();
     }
 
     public string Forename {
@@ -64,8 +71,8 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     }
 
     public string PhoneNumberErrorText {
-        get => lblEmergencyPhoneNumberError.Text;
-        set => lblEmergencyPhoneNumberError.Text = value;
+        get => lblEmergencyContactPhoneNumberError.Text;
+        set => lblEmergencyContactPhoneNumberError.Text = value;
     }
 
     public bool SaveVisible {
