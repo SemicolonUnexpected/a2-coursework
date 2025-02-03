@@ -44,6 +44,9 @@ public partial class LoginView : Form, ILogin {
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
     }
 
     public void SetPresenter(LoginPresenter presenter) {
@@ -56,6 +59,7 @@ public partial class LoginView : Form, ILogin {
         BackColor = ColorScheme.CurrentTheme.Background;
 
         pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        toolTip.SetToolTip(pbShowPassword, tbPassword.UsePasswordChar ? "Show your password" : "Hide your password");
 
         pnl.Theme();
 
@@ -71,6 +75,14 @@ public partial class LoginView : Form, ILogin {
 
         if (ColorScheme.CurrentTheme == ColorScheme.Dark) btnSwitchTheme.Image = IconTheme.Brightness;
         else btnSwitchTheme.Image = IconTheme.Moon;
+    }
+
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        toolTip.Active = showToolTips;
+        tbUsername.ToolTipsActive = showToolTips;
+        tbPassword.ToolTipsActive = showToolTips;
     }
 
     private void LoginView_Shown(object sender, EventArgs e) {
@@ -105,5 +117,10 @@ public partial class LoginView : Form, ILogin {
     private void pbShowPassword_Click(object sender, EventArgs e) {
         tbPassword.UsePasswordChar = !tbPassword.UsePasswordChar;
         pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        toolTip.SetToolTip(pbShowPassword, tbPassword.UsePasswordChar ? "Show your password" : "Hide your password");
+    }
+
+    private void tbUsername_MouseHover(object sender, EventArgs e) {
+        toolTip.Show("Type in your username", this);
     }
 }

@@ -3,105 +3,43 @@ using a2_coursework.Model;
 using a2_coursework.View.Interfaces.Settings;
 
 namespace a2_coursework.Presenter.Settings;
-public partial class EmergencyContactSettingsPresenter
-{
-    private readonly Staff _staff;
-    private readonly IEmergencyContactSettings _view;
-
-    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, Staff staff)
-    {
-        _staff = staff;
-        _view = view;
-
+public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmergencyContactSettings> {
+    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, Staff staff) : base(view, staff) {
         _view.SurnameChanged += (s, e) => SetApproveChangesBarVisibility();
         _view.ForenameChanged += (s, e) => SetApproveChangesBarVisibility();
         _view.PhoneNumberChanged += (s, e) => InputChanged();
-        _view.SaveRequested += (s, e) => Save();
-        _view.CancelRequested += (s, e) => Cancel();
-
-        PopulateDefaultValues();
     }
 
-    private void PopulateDefaultValues()
-    {
+    protected override void PopulateDefaultValues() {
         _view.Forename = _staff.EmergencyContactForename;
         _view.Surname = _staff.EmergencyContactSurname;
         _view.PhoneNumber = _staff.EmergencyContactPhoneNumber;
     }
 
-    private void InputChanged()
-    {
-        ValidateInputs();
-        SetApproveChangesBarVisibility();
-    }
-
-    private void ValidateInputs()
-    {
-        if (_view.PhoneNumber != "" && !Validators.IsValidPhoneNumber(_view.PhoneNumber))
-        {
-            _view.PhoneNumberErrorText = "Invalid phone number";
-            _view.SetPhoneNumberBorderError(true);
-        }
-        else
-        {
-            _view.PhoneNumberErrorText = "";
-            _view.SetPhoneNumberBorderError(false);
-        }
-    }
-
-    private void SetApproveChangesBarVisibility()
-    {
-        if (AnyChanges()) _view.SaveVisible = true;
-        else _view.SaveVisible = false;
-    }
-
-    public bool AnyChanges() => _view.Forename != _staff.EmergencyContactForename || _view.Surname != _staff.EmergencyContactSurname || _view.PhoneNumber != _staff.EmergencyContactPhoneNumber;
-
-    private async void Save()
-    {
-        ValidateInputs();
-
-        if (_view.PhoneNumber != "" && !Validators.IsValidPhoneNumber(_view.PhoneNumber))
-        {
-            _view.ShowError("Please ensure you fill in a valid phone number, or leave it blank.", "Invalid details");
-            return;
-        }
-
-        try
-        {
-            _view.IsLoading = true;
-
-            bool success = await StaffDAL.UpdateEmergencyContact(_staff.StaffID, _view.Forename, _view.Surname, _view.PhoneNumber);
-
-            _view.IsLoading = false;
-            if (success)
-            {
-                UpdateStaff();
-                _view.ShowSuccess("Your emergency contact has been successfully updated.", "Saved");
-            }
-            else _view.ShowError("Could not update your emergency contact.", "Save failed");
-        }
-        catch
-        {
-            _view.IsLoading = false;
-            _view.ShowError("Could not update your emergency contact.", "Save failed");
-        }
-        finally
-        {
-            SetApproveChangesBarVisibility();
-        }
-    }
-
-    private void UpdateStaff()
-    {
+    protected override void UpdateStaff() {
         _staff.EmergencyContactForename = _view.Forename;
         _staff.EmergencyContactSurname = _view.Surname;
         _staff.EmergencyContactPhoneNumber = _view.PhoneNumber;
     }
 
-    private void Cancel()
-    {
-        PopulateDefaultValues();
+    private void InputChanged() {
+        ValidateInputs();
         SetApproveChangesBarVisibility();
     }
+
+    protected override bool AnyChanges() => _view.Forename != _staff.EmergencyContactForename || _view.Surname != _staff.EmergencyContactSurname || _view.PhoneNumber != _staff.EmergencyContactPhoneNumber;
+
+    protected override bool ValidateInputs() {
+        if (_view.PhoneNumber != "" && !Validators.IsValidPhoneNumber(_view.PhoneNumber)) {
+            _view.PhoneNumberErrorText = "Invalid phone number";
+            _view.SetPhoneNumberBorderError(true);
+            return false;
+        }
+
+        _view.PhoneNumberErrorText = "";
+        _view.SetPhoneNumberBorderError(false);
+        return true;
+    }
+
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateEmergencyContact(_staff.StaffID, _view.Forename, _view.Surname, _view.PhoneNumber);
 }

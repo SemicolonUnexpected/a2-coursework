@@ -21,12 +21,12 @@ public abstract class SettingsPresenter<TView> where TView : ISettingsView {
     protected abstract bool AnyChanges();
 
     protected virtual async void Save() {
-        if (!ValidateInputs()) return;
-        
+        if (!ValidateInputs()) _view.ShowMessageBox("Invalid information. Could not save your changes.", "Save failed");
+
         try {
             _view.IsLoading = true;
             
-            if (await SaveChanges()) {
+            if (await UpdateDatabase()) {
                 UpdateStaff();
                 _view.IsLoading = false;
                 _view.ShowMessageBox("Your changes have been successfully saved.", "Saved");
@@ -47,7 +47,7 @@ public abstract class SettingsPresenter<TView> where TView : ISettingsView {
     
     protected virtual bool ValidateInputs() => true;
     
-    protected abstract Task<bool> SaveChanges();
+    protected abstract Task<bool> UpdateDatabase();
     
     protected virtual void Cancel() {
         PopulateDefaultValues();

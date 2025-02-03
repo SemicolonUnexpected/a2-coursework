@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
             pnl = new CustomControls.CustomPanel();
             lblError = new Label();
@@ -36,6 +37,7 @@
             tbFocusHolder = new CustomControls.ImprovedTextBox();
             btnSwitchTheme = new CustomControls.CustomButton();
             pnlCover = new Panel();
+            toolTip = new ToolTip(components);
             pnl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbShowPassword).BeginInit();
             ((System.ComponentModel.ISupportInitialize)pbLogoTitle).BeginInit();
@@ -85,6 +87,7 @@
             // 
             // lblSignIn
             // 
+            lblSignIn.AccessibleDescription = "Sign in below to access your account";
             lblSignIn.Font = new Font("Bahnschrift", 12F);
             lblSignIn.ForeColor = Color.FromArgb(168, 171, 174);
             lblSignIn.Location = new Point(28, 65);
@@ -96,6 +99,7 @@
             // 
             // lblWelcome
             // 
+            lblWelcome.AccessibleDescription = "Welcome";
             lblWelcome.AutoSize = true;
             lblWelcome.Font = new Font("Bahnschrift", 24F);
             lblWelcome.ForeColor = Color.White;
@@ -118,12 +122,16 @@
             tbPassword.Location = new Point(28, 167);
             tbPassword.Margin = new Padding(10);
             tbPassword.MaxLength = 32767;
+            tbPassword.MultiLine = false;
             tbPassword.Name = "tbPassword";
             tbPassword.PlaceholderText = "Password";
             tbPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbPassword.Size = new Size(282, 40);
             tbPassword.TabIndex = 1;
+            tbPassword.TextAlign = HorizontalAlignment.Left;
             tbPassword.TextBoxInset = new Padding(10, 10, 45, 10);
+            tbPassword.ToolTipsActive = true;
+            tbPassword.ToolTipText = "Type in a password";
             tbPassword.UsePasswordChar = true;
             tbPassword.TextChanged += tbPassword_TextChanged;
             tbPassword.KeyPress += tbPassword_KeyPress;
@@ -153,6 +161,7 @@
             btnSignIn.Text = "Sign in";
             btnSignIn.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnSignIn.TextPosition = new Point(112, 10);
+            toolTip.SetToolTip(btnSignIn, "Click here to sign in");
             btnSignIn.Click += btnSignIn_Click;
             // 
             // tbUsername
@@ -167,14 +176,19 @@
             tbUsername.Location = new Point(28, 107);
             tbUsername.Margin = new Padding(10);
             tbUsername.MaxLength = 256;
+            tbUsername.MultiLine = false;
             tbUsername.Name = "tbUsername";
             tbUsername.PlaceholderText = "Username";
             tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbUsername.Size = new Size(282, 40);
             tbUsername.TabIndex = 0;
+            tbUsername.TextAlign = HorizontalAlignment.Left;
             tbUsername.TextBoxInset = new Padding(10);
+            tbUsername.ToolTipsActive = true;
+            tbUsername.ToolTipText = "Type in your username";
             tbUsername.UsePasswordChar = false;
             tbUsername.TextChanged += tbUsername_TextChanged;
+            tbUsername.MouseHover += tbUsername_MouseHover;
             // 
             // pbLogoTitle
             // 
@@ -224,6 +238,7 @@
             btnSwitchTheme.Text = null;
             btnSwitchTheme.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnSwitchTheme.TextPosition = new Point(20, 20);
+            toolTip.SetToolTip(btnSwitchTheme, "Click here to toggle light and dark mode");
             btnSwitchTheme.MouseClick += btnSwitchTheme_MouseClick;
             // 
             // pnlCover
@@ -231,7 +246,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, 0);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(873, 462);
+            pnlCover.Size = new Size(155, 462);
             pnlCover.TabIndex = 4;
             // 
             // LoginView
@@ -275,5 +290,6 @@
         private CustomControls.CustomButton btnSwitchTheme;
         private Panel pnlCover;
         private PictureBox pbShowPassword;
+        private ToolTip toolTip;
     }
 }

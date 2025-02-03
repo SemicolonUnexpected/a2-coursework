@@ -5,14 +5,14 @@ using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Settings;
 
 namespace a2_coursework.View.Settings;
-public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings, IChildView {
+public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings {
     private PersonalInformationSettingsPresenter? _presenter;
 
     public event EventHandler? ForenameChanged;
     public event EventHandler? SurnameChanged;
     public event EventHandler? DateOfBirthChanged;
-    public event EventHandler? SaveRequested;
-    public event EventHandler? CancelRequested;
+    public event EventHandler? Save;
+    public event EventHandler? Cancel;
 
     public PersonalInformationSettingsView() {
         InitializeComponent();
@@ -25,8 +25,8 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         tbForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
         tbSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
         diDateOfBirth.DateTextChanged += (s, e) => DateOfBirthChanged?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Save += (s, e) => SaveRequested?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Cancel += (s, e) => CancelRequested?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetPresenter(PersonalInformationSettingsPresenter presenter) {
@@ -112,25 +112,11 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
 
     public bool DateOfBirthValid => diDateOfBirth.DateValid;
 
-    public void ShowError(string message, string caption) {
-        CustomMessageBox.Show(message, caption, MessageBoxButtons.OK);
-    }
-
-    public void ShowSuccess(string message, string caption) {
-        CustomMessageBox.Show(message, caption);
-    }
-
-    public bool CanExit() {
-        if (IsLoading) return false;
-
-        if (_presenter is not null && _presenter.AnyChanges()) {
-            DialogResult result = CustomMessageBox.Show("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave this page?", MessageBoxButtons.OKCancel);
-
-            return result == DialogResult.OK;
-        }
-
-        return true;    
-    }
-
     public bool DockInParent => true;
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
+        return CustomMessageBox.Show(text, caption, buttons);
+    }
+
+    public bool CanExit() => _presenter?.CanExit() ?? true;
 }

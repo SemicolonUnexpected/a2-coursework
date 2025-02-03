@@ -78,28 +78,8 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         }
     }
 
-    public bool DockInParent => true;
-
-    public void ShowMessageBox(string text, string caption) {
-        CustomMessageBox.Show(text, caption);
-    }
-
-    public bool CanExit() {
-        if (IsLoading) return false;
-
-        if (_presenter is not null && _presenter.AnyChanges()) {
-            DialogResult result = CustomMessageBox.Show("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave this page?", MessageBoxButtons.OKCancel);
-
-            return result == DialogResult.OK;
-        }
-
-        return true;
-    }
-
     bool _updatingToggles = false;
     private void rbFontName_CheckChanged(object? sender, EventArgs e) {
-        FontNameChanged?.Invoke(this, EventArgs.Empty);
-
         if (_updatingToggles) return;
 
         _updatingToggles = true;
@@ -115,6 +95,8 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         if (rb != rbCentury) rbCentury.Checked = false;
         if (rb != rbComicSans) rbComicSans.Checked = false;
 
+        FontNameChanged?.Invoke(this, EventArgs.Empty);
+
         _updatingToggles = false;
     }
 
@@ -129,4 +111,12 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
     private void lblComicSans_Click(object sender, EventArgs e) {
         rbComicSans.Checked = !rbComicSans.Checked;
     }
+
+    public bool DockInParent => true;
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
+        return CustomMessageBox.Show(text, caption, buttons);
+    }
+
+    public bool CanExit() => _presenter?.CanExit() ?? true;
 }

@@ -1,5 +1,4 @@
 ﻿using a2_coursework.Model;
-using a2_coursework.UserControls;
 using a2_coursework.View;
 using a2_coursework.View.Interfaces;
 
@@ -12,9 +11,6 @@ public class MasterPresenter {
         _view = view;
         _staff = staff;
 
-        _view.UsernameText = staff.Username;
-        Theming.Theme.CurrentTheme = staff.Theme;
-
         string[][] menuItems = staff.PrivilegeLevel switch {
             PrivilegeLevel.User =>      [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Appearance"]],
             PrivilegeLevel.Admin =>     [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Appearance"]],
@@ -23,6 +19,9 @@ public class MasterPresenter {
         };
 
         _view.GenerateMenu(menuItems);
+
+        _view.UsernameText = staff.Username;
+        Theming.Theme.CurrentTheme = staff.Theme;
     }
 
     public IChildView GetToggledView(string menuItemName) => menuItemName switch {

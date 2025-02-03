@@ -3,40 +3,33 @@ using a2_coursework.Model;
 using a2_coursework.View.Interfaces.Settings;
 
 namespace a2_coursework.Presenter.Settings;
-public class ContactDetailsSettingsPresenter
-{
-    private readonly Staff _staff;
-    private IContactDetailsSettings _view;
-
-    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, Staff staff)
-    {
-        _view = view;
-        _staff = staff;
-
+public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettings> {
+    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, Staff staff) : base(view, staff) {
         _view.EmailChanged += (s, e) => InputChanged();
         _view.PhoneNumberChanged += (s, e) => InputChanged();
         _view.AddressChanged += (s, e) => SetApproveChangesBarVisibility();
-        _view.SaveRequested += (s, e) => Save();
-        _view.CancelRequested += (s, e) => Cancel();
-
-        PopulateDefaultValues();
     }
 
-    private void PopulateDefaultValues()
-    {
+    protected override void PopulateDefaultValues() {
         _view.Email = _staff.Email;
         _view.PhoneNumber = _staff.PhoneNumber;
         _view.Address = _staff.Address;
     }
 
-    private void InputChanged()
-    {
+    protected override void UpdateStaff() {
+        _staff.Email = _view.Email;
+        _staff.PhoneNumber = _view.PhoneNumber;
+        _staff.Address = _view.Address;
+    }
+
+    protected override bool AnyChanges() => _view.Email != _staff.Email || _view.PhoneNumber != _staff.PhoneNumber || _view.Address != _staff.Address;
+
+    private void InputChanged() {
         ValidateInputs();
         SetApproveChangesBarVisibility();
     }
 
-    private void ValidateInputs()
-    {
+    protected override bool ValidateInputs() {
         bool emailInvalid = !Validators.IsValidEmail(_view.Email);
         bool phoneNumberInvalid = !Validators.IsValidPhoneNumber(_view.PhoneNumber);
 
@@ -50,72 +43,9 @@ public class ContactDetailsSettingsPresenter
         else if (emailInvalid) _view.ContactErrorText = "Invalid email";
         else if (phoneNumberInvalid) _view.ContactErrorText = "Invalid phone number";
         else _view.ContactErrorText = "";
+
+        return !(phoneNumberInvalid || emailInvalid);
     }
 
-    private void SetApproveChangesBarVisibility()
-    {
-        if (AnyChanges()) _view.SaveVisible = true;
-        else _view.SaveVisible = false;
-    }
-
-    public bool AnyChanges() => _view.Email != _staff.Email || _view.PhoneNumber != _staff.PhoneNumber || _view.Address != _staff.Address;
-
-    private async void Save()
-    {
-        ValidateInputs();
-
-        bool emailInvalid = !Validators.IsValidEmail(_view.Email);
-        bool phoneNumberInvalid = !Validators.IsValidPhoneNumber(_view.PhoneNumber);
-
-        if (emailInvalid || phoneNumberInvalid)
-        {
-            string errorMessage = (emailInvalid, phoneNumberInvalid) switch
-            {
-                (true, true) => "Please ensure you fill in a valid email and phone number.",
-                (true, false) => "Please ensure you fill in a valid email.",
-                (false, true) => "Please ensure you fill in a valid phone number.",
-                _ => throw new ArgumentException(),
-            };
-
-            _view.ShowError(errorMessage, "Invalid details");
-            return;
-        }
-
-        try
-        {
-            _view.IsLoading = true;
-
-            bool success = await StaffDAL.UpdateContactDetails(_staff.StaffID, _view.Email, _view.PhoneNumber, _view.Address);
-
-            _view.IsLoading = false;
-            if (success)
-            {
-                UpdateStaff();
-                _view.ShowSuccess("Your contact details have been successfully updated.", "Saved");
-            }
-            else _view.ShowError("Could not update your contact details", "Save failed");
-        }
-        catch
-        {
-            _view.IsLoading = false;
-            _view.ShowError("Could not update your contact details.", "Save failed");
-        }
-        finally
-        {
-            SetApproveChangesBarVisibility();
-        }
-    }
-
-    private void UpdateStaff()
-    {
-        _staff.Email = _view.Email;
-        _staff.PhoneNumber = _view.PhoneNumber;
-        _staff.Address = _view.Address;
-    }
-
-    private void Cancel()
-    {
-        PopulateDefaultValues();
-        SetApproveChangesBarVisibility();
-    }
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateContactDetails(_staff.StaffID, _view.Email, _view.PhoneNumber, _view.Address);
 }

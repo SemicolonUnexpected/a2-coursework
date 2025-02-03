@@ -10,20 +10,20 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;
-    public event EventHandler? SaveRequested;
-    public event EventHandler? CancelRequested;
+    public event EventHandler? Save;
+    public event EventHandler? Cancel;
 
     public ContactDetailsSettingsView() {
         InitializeComponent();
 
-        Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
-
         tbEmail.TextChanged += (s, e) => EmailChanged?.Invoke(this, EventArgs.Empty);
         tbPhoneNumber.TextChanged += (s, e) => PhoneNumberChanged?.Invoke(this, EventArgs.Empty);
         tbAddress.TextChanged += (s, e) => AddressChanged?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Save += (s, e) => SaveRequested?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Cancel += (s, e) => CancelRequested?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
+
+        Theme();
+        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
     }
 
     public void SetPresenter(ContactDetailsSettingsPresenter presenter) {
@@ -85,8 +85,6 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
         }
     }
 
-    public bool DockInParent => true;
-
     bool _emailError = false;
     public void SetEmailBorderError(bool isError) {
         _emailError = isError;
@@ -101,23 +99,11 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
         tbPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
     }
 
-    public void ShowError(string message, string caption) {
-        CustomMessageBox.Show(message, caption, MessageBoxButtons.OK);
+    public bool DockInParent => true;
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
+        return CustomMessageBox.Show(text, caption, buttons);
     }
 
-    public void ShowSuccess(string message, string caption) {
-        CustomMessageBox.Show(message, caption);
-    }
-
-    public bool CanExit() {
-        if (IsLoading) return false;
-
-        if (_presenter is not null && _presenter.AnyChanges()) {
-            DialogResult result = CustomMessageBox.Show("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave this page?", MessageBoxButtons.OKCancel);
-
-            return result == DialogResult.OK;
-        }
-
-        return true;    
-    }
+    public bool CanExit() => _presenter?.CanExit() ?? true;
 }

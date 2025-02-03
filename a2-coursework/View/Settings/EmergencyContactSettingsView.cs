@@ -10,8 +10,43 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     public event EventHandler? ForenameChanged;
     public event EventHandler? SurnameChanged;
     public event EventHandler? PhoneNumberChanged;
-    public event EventHandler? SaveRequested;
-    public event EventHandler? CancelRequested;
+    public event EventHandler? Save;
+    public event EventHandler? Cancel;
+
+    public EmergencyContactSettingsView() {
+        InitializeComponent();
+
+        tbEmergencyContactForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactPhoneNumber.TextChanged += (s, e) => PhoneNumberChanged?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
+
+        Theme();
+        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+    }
+
+    public void SetPresenter(EmergencyContactSettingsPresenter presenter) {
+        _presenter = presenter;
+    }
+
+    public void Theme() {
+        BackColor = ColorScheme.CurrentTheme.Background;
+
+        lblEmergencyContactTitle.ThemeTitle();
+        lblEditPromt.ThemeSubtitle();
+
+        lblEmergencyContactForenameTitle.ThemeTitle();
+        lblEmergencyContactSurnameTitle.ThemeTitle();
+
+        lblEmergencyPhoneNumberError.ThemeError();
+
+        tbEmergencyContactForename.Theme();
+        tbEmergencyContactSurname.Theme();
+        tbEmergencyContactPhoneNumber.Theme();
+
+        SetPhoneNumberBorderError(_phoneNumberError);
+    }
 
     public string Forename {
         get => tbEmergencyContactForename.Text;
@@ -51,66 +86,17 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         }
     }
 
-    public EmergencyContactSettingsView() {
-        InitializeComponent();
-
-        Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
-
-        tbEmergencyContactForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
-        tbEmergencyContactSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
-        tbEmergencyContactPhoneNumber.TextChanged += (s, e) => PhoneNumberChanged?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Save += (s, e) => SaveRequested?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Cancel += (s, e) => CancelRequested?.Invoke(this, EventArgs.Empty);
-    }
-
-    public void SetPresenter(EmergencyContactSettingsPresenter presenter) {
-        _presenter = presenter;
-    }
-
-    public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-
-        lblEmergencyContactTitle.ThemeTitle();
-        lblEditPromt.ThemeSubtitle();
-
-        lblEmergencyContactForenameTitle.ThemeTitle();
-        lblEmergencyContactSurnameTitle.ThemeTitle();
-
-        lblEmergencyPhoneNumberError.ThemeError();
-
-        tbEmergencyContactForename.Theme();
-        tbEmergencyContactSurname.Theme();
-        tbEmergencyContactPhoneNumber.Theme();
-
-        SetPhoneNumberBorderError(_phoneNumberError);
-    }
-
     private bool _phoneNumberError;
     public void SetPhoneNumberBorderError(bool isError) {
         _phoneNumberError = isError;
         tbEmergencyContactPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
     }
 
-    public void ShowError(string message, string caption) {
-        CustomMessageBox.Show(message, caption);
-    }
-
-    public void ShowSuccess(string message, string caption) {
-        CustomMessageBox.Show(message, caption);
-    }
-
-    public bool CanExit() {
-        if (IsLoading) return false;
-
-        if (_presenter is not null && _presenter.AnyChanges()) {
-            DialogResult result = CustomMessageBox.Show("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave this page?", MessageBoxButtons.OKCancel);
-
-            return result == DialogResult.OK;
-        }
-
-        return true;    
-    }
-
     public bool DockInParent => true;
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
+        return CustomMessageBox.Show(text, caption, buttons);
+    }
+
+    public bool CanExit() => _presenter?.CanExit() ?? true;
 }

@@ -31,4 +31,8 @@ public partial class CustomTextBox : UserControl {
     private void CustomTextBox_Click(object sender, EventArgs e) {
         tb.Focus();
     }
+
+    private void anyHover(object sender, EventArgs e) {
+        MouseHover?.Invoke(sender, e);
+    }
 }

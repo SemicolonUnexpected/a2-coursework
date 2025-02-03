@@ -120,9 +120,31 @@ public partial class CustomTextBox {
         set => tb.Multiline = value;
     }
 
+    [DesignerSerializationVisibilityAttribute(DesignerSerializationVisibility.Hidden)]
     public string[] Lines {
         get => tb.Lines;
         set => tb.Lines = value;
+    }
+
+    private string _toolTipText = "";
+    public string ToolTipText {
+        get => _toolTipText;
+        set {
+            _toolTipText = value;
+
+            if (_toolTipText != "") {
+                toolTip.SetToolTip(this, _toolTipText);
+                toolTip.SetToolTip(pnl, _toolTipText);
+                toolTip.SetToolTip(tb, _toolTipText);
+            }
+            else toolTip.RemoveAll();
+        }
+    }
+
+    [DefaultValue(true)]
+    public bool ToolTipsActive {
+        get => toolTip.Active;
+        set => toolTip.Active = value;
     }
 
     //private bool _enabled = true;
@@ -151,4 +173,6 @@ public partial class CustomTextBox {
         add => tb.Enter += value;
         remove => tb.Enter -= value;
     }
+
+    public new event EventHandler? MouseHover;
 }

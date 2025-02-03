@@ -23,8 +23,10 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             pnl = new CustomPanel();
             tb = new ImprovedTextBox();
+            toolTip = new ToolTip(components);
             pnl.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,6 +42,7 @@
             pnl.Padding = new Padding(10);
             pnl.Size = new Size(336, 36);
             pnl.TabIndex = 0;
+            pnl.MouseHover += anyHover;
             // 
             // tb
             // 
@@ -51,6 +54,7 @@
             tb.PlaceholderTextColor = Color.Empty;
             tb.Size = new Size(316, 16);
             tb.TabIndex = 0;
+            tb.MouseHover += anyHover;
             // 
             // CustomTextBox
             // 
@@ -70,5 +74,6 @@
 
         private CustomControls.CustomPanel pnl;
         private ImprovedTextBox tb;
+        private ToolTip toolTip;
     }
 }

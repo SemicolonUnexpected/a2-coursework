@@ -6,22 +6,31 @@ using System.Configuration;
 namespace a2_coursework.Theming; 
 public class Theme {
     static Theme() {
-        _currentTheme = new Theme(ConfigurationManager.AppSettings.Get("DefaultTheme") != "light" ? AppearanceTheme.Dark : AppearanceTheme.Light, true, "Bahnschrift");
+        _currentTheme = new Theme();
     }
 
-    public Theme(AppearanceTheme theme, bool showToolTips, string fontName) {
-        AppearanceTheme = theme;
-        ShowToolTips = showToolTips;
-        FontName = fontName;
+    public Theme(AppearanceTheme? theme, bool? showToolTips, string? fontName) {
+        AppearanceTheme = theme ?? AppearanceTheme.Dark;
+        ShowToolTips = showToolTips ?? true;
+        FontName = fontName ?? "Bahnschrift";
     }
 
-    public static event EventHandler? ThemeChanged;
+    public Theme() {
+        AppearanceTheme = ConfigurationManager.AppSettings.Get("DefaultTheme") != "light" ? AppearanceTheme.Dark : AppearanceTheme.Light;
+        ShowToolTips = true;
+        FontName = "Bahnschrift";
+    }
+
     private static Theme _currentTheme;
     public static Theme CurrentTheme {
         get => _currentTheme;
         set {
+            Theme oldTheme = _currentTheme;
             _currentTheme = value;
-            ThemeChanged?.Invoke(_currentTheme, EventArgs.Empty);
+
+            if (oldTheme.AppearanceTheme != _currentTheme.AppearanceTheme) AppearanceThemeChanged?.Invoke(_currentTheme, EventArgs.Empty);
+            if (oldTheme.ShowToolTips != _currentTheme.ShowToolTips) ShowToolTipsChanged?.Invoke(_currentTheme, EventArgs.Empty);
+            if (oldTheme.FontName != _currentTheme.FontName) FontNameChanged?.Invoke(_currentTheme, EventArgs.Empty);
         }
     }
 
@@ -55,7 +64,7 @@ public class Theme {
         }
     }
 
-    public bool IsDarkMode() => AppearanceTheme == AppearanceTheme.Dark;
+    public bool IsDarkMode => AppearanceTheme == AppearanceTheme.Dark;
 
     public static void ToggleTheme() {
         CurrentTheme.AppearanceTheme = CurrentTheme.AppearanceTheme != AppearanceTheme.Dark ? AppearanceTheme.Dark : AppearanceTheme.Light;
