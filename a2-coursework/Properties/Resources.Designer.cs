@@ -73,6 +73,26 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap check_dark {
+            get {
+                object obj = ResourceManager.GetObject("check-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap check_light {
+            get {
+                object obj = ResourceManager.GetObject("check-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap chevron_left_dark {
             get {
                 object obj = ResourceManager.GetObject("chevron-left-dark", resourceCulture);
@@ -106,6 +126,26 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap chevron_right_light {
             get {
                 object obj = ResourceManager.GetObject("chevron-right-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cross_dark {
+            get {
+                object obj = ResourceManager.GetObject("cross-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap cross_light {
+            get {
+                object obj = ResourceManager.GetObject("cross-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -276,6 +316,26 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap settings_sliders_light {
             get {
                 object obj = ResourceManager.GetObject("settings-sliders-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trash_dark {
+            get {
+                object obj = ResourceManager.GetObject("trash-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap trash_light {
+            get {
+                object obj = ResourceManager.GetObject("trash-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -2,11 +2,14 @@
 
 namespace a2_coursework.Model;
 
-public class Staff(int staffID, string username, bool active, PrivilegeLevel privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, string department, Theme theme) {
-    public int StaffID { get; private init; } = staffID;
-    public string Username { get; private init; } = username;
-    public bool Active { get; init; } = active;
-    public PrivilegeLevel PrivilegeLevel { get; init; } = privilegeLevel;
+public class Staff(int staffID, byte[] hashedPassword, byte[] salt, DateTime lastPasswordChange, string username, bool active, PrivilegeLevel privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, string department, Theme theme) {
+    public int StaffID { get; set; } = staffID;
+    public byte[] HashedPassword { get; set; } = hashedPassword;
+    public byte[] Salt { get; set; } = salt;
+    public DateTime LastPasswordChange { get; set; } = lastPasswordChange;
+    public string Username { get; set; } = username;
+    public bool Active { get;set; } = active;
+    public PrivilegeLevel PrivilegeLevel { get;set; } = privilegeLevel;
     public string Forename { get; set; } = forename;
     public string Surname { get; set; } = surname;
     public DateTime? DateOfBirth { get; set; } = dateOfBirth;

@@ -21,8 +21,8 @@ internal static class StaffDAL {
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
         if (await reader.ReadAsync()) {
-            hash = reader.IsDBNull(reader.GetOrdinal("HashedPassword")) ? null : Convert.FromHexString(reader["HashedPassword"].ToString()!);
-            salt = reader.IsDBNull(reader.GetOrdinal("Salt")) ? null : Convert.FromHexString(reader["Salt"].ToString()!);
+            hash = Convert.FromHexString(reader["HashedPassword"].ToString()!);
+            salt = Convert.FromHexString(reader["Salt"].ToString()!);
         }
         else {
             hash = null;
@@ -60,6 +60,9 @@ internal static class StaffDAL {
             // Handle potential null values safely
             return new Staff(
                 staffID: reader.GetInt32(reader.GetOrdinal("StaffID")),
+                hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
+                salt: Convert.FromHexString(reader.GetString(reader.GetOrdinal("Salt"))),
+                lastPasswordChange: reader.GetDateTime(reader.GetOrdinal("LastPasswordChange")),
                 username: reader.GetString(reader.GetOrdinal("Username")),
                 active: reader.GetBoolean(reader.GetOrdinal("Active")),
                 forename: reader.GetString(reader.GetOrdinal("Forename")),
@@ -158,6 +161,23 @@ internal static class StaffDAL {
         }
 
         return [.. rows];
+    }
+
+    public static async Task<bool> UpdatePassword(int staffId, string hashedPassword, string salt) {
+        
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffPasswor", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("staffId", staffId);
+        command.Parameters.AddWithValue("hashedPassword", hashedPassword);
+        command.Parameters.AddWithValue("salt", hashedPassword);
+        command.Parameters.AddWithValue("lastPasswordChange", DateTime.Now);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
     }
 
     private static PrivilegeLevel ConvertToPrivilegeLevel(string value) => value switch {

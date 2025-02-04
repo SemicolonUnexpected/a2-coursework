@@ -21,14 +21,15 @@ public abstract class SettingsPresenter<TView> where TView : ISettingsView {
     protected abstract bool AnyChanges();
 
     protected virtual async void Save() {
+        _view.IsLoading = true;
+
         if (!ValidateInputs()) {
             _view.ShowMessageBox("Invalid information. Could not save your changes.", "Save failed");
+            _view.IsLoading = false;
             return;
         }
 
         try {
-            _view.IsLoading = true;
-            
             if (await UpdateDatabase()) {
                 UpdateStaff();
                 _view.IsLoading = false;

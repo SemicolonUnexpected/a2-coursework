@@ -121,17 +121,20 @@
   <data name="chevron-right-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron-right-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="plus-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\plus-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="eye-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="settings-sliders-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\settings-sliders-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eye-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="Logo" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\Logo.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Logo Title Condensed" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\Logo Title Condensed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eye-crossed-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\eye-crossed-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -141,9 +144,6 @@
   </data>
   <data name="search-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\search-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="eye-crossed-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\eye-crossed-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="chevron-left-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron-left-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
@@ -166,22 +166,40 @@
   <data name="minus-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\minus-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="navigation-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\navigation-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="chevron-left-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\chevron-left-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="Logo Title Condensed" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\Logo Title Condensed.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="eye-crossed-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\eye-crossed-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="brightness" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\brightness.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="settings-sliders-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\settings-sliders-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="navigation-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\navigation-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="navigation-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\navigation-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="plus-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\plus-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cross-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cross-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="cross-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\cross-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash-dark" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trash-dark.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="trash-light" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\trash-light.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

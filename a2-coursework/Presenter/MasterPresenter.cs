@@ -12,9 +12,9 @@ public class MasterPresenter {
         _staff = staff;
 
         string[][] menuItems = staff.PrivilegeLevel switch {
-            PrivilegeLevel.User =>      [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Appearance"]],
-            PrivilegeLevel.Admin =>     [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Appearance"]],
-            PrivilegeLevel.Manager =>   [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Appearance"]],
+            PrivilegeLevel.User =>      [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
+            PrivilegeLevel.Admin =>     [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
+            PrivilegeLevel.Manager =>   [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
             _ => throw new NotImplementedException(),
         };
 
@@ -29,6 +29,7 @@ public class MasterPresenter {
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
         "Appearance" => GetAppearanceSettings(),
+        "Security" => GetSecuritySettings(),
         _ => throw new NotImplementedException(),
     };
 
@@ -40,4 +41,5 @@ public class MasterPresenter {
     private IChildView GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff).view;
     private IChildView GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff).view;
     private IChildView GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff).view;
+    private IChildView GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff).view;
 }

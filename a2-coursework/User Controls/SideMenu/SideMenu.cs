@@ -150,7 +150,7 @@ public partial class SideMenu : UserControl {
     }
     
     protected override void OnMouseWheel(MouseEventArgs e) {
-        sb.Value -= e.Delta;
+        if (pnlHolder.Height < pnlMenuHolder.Height) sb.Value -= e.Delta;
         Update();
 
         base.OnMouseWheel(e);

@@ -61,4 +61,12 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
+    public static (SecuritySettingsView view, SecuritySettingsPresenter presenter) CreateSecuritySettings(Staff staff) {
+        SecuritySettingsView view = new();
+        SecuritySettingsPresenter presenter = new(view, staff);
+        view.SetPresenter(presenter);
+
+        return (view, presenter);
+    }
+
 }

@@ -130,7 +130,6 @@
             tbPassword.TabIndex = 1;
             tbPassword.TextAlign = HorizontalAlignment.Left;
             tbPassword.TextBoxInset = new Padding(10, 10, 45, 10);
-            tbPassword.ToolTipsActive = true;
             tbPassword.ToolTipText = "Type in a password";
             tbPassword.UsePasswordChar = true;
             tbPassword.TextChanged += tbPassword_TextChanged;
@@ -184,7 +183,6 @@
             tbUsername.TabIndex = 0;
             tbUsername.TextAlign = HorizontalAlignment.Left;
             tbUsername.TextBoxInset = new Padding(10);
-            tbUsername.ToolTipsActive = true;
             tbUsername.ToolTipText = "Type in your username";
             tbUsername.UsePasswordChar = false;
             tbUsername.TextChanged += tbUsername_TextChanged;
@@ -246,7 +244,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, 0);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(155, 462);
+            pnlCover.Size = new Size(1086, 462);
             pnlCover.TabIndex = 4;
             // 
             // LoginView

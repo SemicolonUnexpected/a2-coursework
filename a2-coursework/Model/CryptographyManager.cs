@@ -19,6 +19,10 @@ internal static class CryptographyManager {
         // Generate a cryptographically secure salt
         salt = RandomNumberGenerator.GetBytes(SIZE);
 
+        return GetHash(text, salt);
+    }
+
+    public static byte[] GetHash(string text, byte[] salt) {
         // Convert the text to an array of bytes
         byte[] textBytes = Encoding.UTF8.GetBytes(text);
 
@@ -27,6 +31,7 @@ internal static class CryptographyManager {
 
         return hash;
     }
+
 
     public static bool VerifyHashEquality(string text, byte[] hash, byte[] salt) {
         // Convert the text to an array of bytes

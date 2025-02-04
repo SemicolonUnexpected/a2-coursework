@@ -128,6 +128,7 @@ public partial class CustomTextBox {
 
     private string _toolTipText = "";
     [DefaultValue("")]
+    [Editor(typeof(MultilineStringEditor), typeof(UITypeEditor))]
     public string ToolTipText {
         get => _toolTipText;
         set {
@@ -146,6 +147,11 @@ public partial class CustomTextBox {
     public bool ToolTipsActive {
         get => toolTip.Active;
         set => toolTip.Active = value;
+    }
+
+    public bool ReadOnly {
+        get => tb.ReadOnly;
+        set => tb.ReadOnly = value;
     }
 
     //private bool _enabled = true;

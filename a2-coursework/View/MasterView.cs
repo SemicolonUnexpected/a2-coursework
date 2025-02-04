@@ -88,7 +88,9 @@ public partial class MasterView : Form, IMaster {
     }
 
     private void OnChildMouseWheel(object? sender, MouseEventArgs e) {
-        sb.Value -= e.Delta;
+        if (ChildView is null) return;
+
+        if (pnlHolder.Height < ChildView.Height) sb.Value -= e.Delta;
         Update();
     }
 
