@@ -87,7 +87,7 @@
             pnlChangePassword.Name = "pnlChangePassword";
             pnlChangePassword.Padding = new Padding(5);
             pnlChangePassword.Size = new Size(355, 509);
-            pnlChangePassword.TabIndex = 19;
+            pnlChangePassword.TabIndex = 2;
             // 
             // pnlPasswordValidation
             // 
@@ -225,7 +225,7 @@
             tbConfirmPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbConfirmPassword.ReadOnly = false;
             tbConfirmPassword.Size = new Size(330, 40);
-            tbConfirmPassword.TabIndex = 22;
+            tbConfirmPassword.TabIndex = 2;
             tbConfirmPassword.TextAlign = HorizontalAlignment.Left;
             tbConfirmPassword.TextBoxInset = new Padding(10);
             tbConfirmPassword.UsePasswordChar = true;
@@ -249,7 +249,7 @@
             tbNewPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbNewPassword.ReadOnly = false;
             tbNewPassword.Size = new Size(330, 40);
-            tbNewPassword.TabIndex = 22;
+            tbNewPassword.TabIndex = 1;
             tbNewPassword.TextAlign = HorizontalAlignment.Left;
             tbNewPassword.TextBoxInset = new Padding(10);
             tbNewPassword.ToolTipText = "Include a special character, number and uppercase and lowercase";
@@ -274,7 +274,7 @@
             tbCurrentPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbCurrentPassword.ReadOnly = false;
             tbCurrentPassword.Size = new Size(330, 40);
-            tbCurrentPassword.TabIndex = 22;
+            tbCurrentPassword.TabIndex = 0;
             tbCurrentPassword.TextAlign = HorizontalAlignment.Left;
             tbCurrentPassword.TextBoxInset = new Padding(10);
             tbCurrentPassword.UsePasswordChar = true;
@@ -409,10 +409,10 @@
             pnlHolder.Controls.Add(lblEditPromt);
             pnlHolder.Controls.Add(pnlChangePassword);
             pnlHolder.Controls.Add(lblUsername);
-            pnlHolder.Location = new Point(86, -46);
+            pnlHolder.Location = new Point(86, 0);
             pnlHolder.Name = "pnlHolder";
             pnlHolder.Size = new Size(483, 885);
-            pnlHolder.TabIndex = 26;
+            pnlHolder.TabIndex = 0;
             // 
             // pbShowNewPassword
             // 
@@ -473,7 +473,7 @@
             btnChangePassword.Margin = new Padding(10);
             btnChangePassword.Name = "btnChangePassword";
             btnChangePassword.Size = new Size(282, 40);
-            btnChangePassword.TabIndex = 28;
+            btnChangePassword.TabIndex = 3;
             btnChangePassword.Text = "Change password";
             btnChangePassword.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnChangePassword.TextPosition = new Point(71, 10);
@@ -497,7 +497,7 @@
             tbJobTitle.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbJobTitle.ReadOnly = true;
             tbJobTitle.Size = new Size(355, 40);
-            tbJobTitle.TabIndex = 22;
+            tbJobTitle.TabIndex = 1;
             tbJobTitle.TextAlign = HorizontalAlignment.Left;
             tbJobTitle.TextBoxInset = new Padding(10);
             tbJobTitle.ToolTipText = "Ask an admin to change your job title";
@@ -522,7 +522,7 @@
             tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbUsername.ReadOnly = true;
             tbUsername.Size = new Size(355, 40);
-            tbUsername.TabIndex = 22;
+            tbUsername.TabIndex = 0;
             tbUsername.TextAlign = HorizontalAlignment.Left;
             tbUsername.TextBoxInset = new Padding(10);
             tbUsername.ToolTipText = "Ask an admin to change your username";
@@ -539,7 +539,7 @@
             sb.MinimumThumbHeight = 30;
             sb.Name = "sb";
             sb.Padding = new Padding(2);
-            sb.Size = new Size(10, 840);
+            sb.Size = new Size(10, 500);
             sb.SmallChange = 10;
             sb.TabIndex = 27;
             sb.Text = "customScrollBar1";
@@ -555,7 +555,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 840);
+            ClientSize = new Size(654, 500);
             Controls.Add(sb);
             Controls.Add(pnlHolder);
             FormBorderStyle = FormBorderStyle.None;

@@ -72,13 +72,23 @@ public partial class ImprovedTextBox : TextBox {
     }
 
     protected override void OnEnter(EventArgs e) {
-        TryRemovePlaceholderText();
         base.OnEnter(e);
+        TryRemovePlaceholderText();
+    }
+
+    protected override void OnGotFocus(EventArgs e) {
+        base.OnGotFocus(e);
+        TryRemovePlaceholderText();
     }
 
     protected override void OnLeave(EventArgs e) {
-        TrySetPlaceholderText();
         base.OnLeave(e);
+        TrySetPlaceholderText();
+    }
+
+    protected override void OnLostFocus(EventArgs e) {
+        base.OnLostFocus(e);
+        TrySetPlaceholderText();
     }
 
     private void TrySetPlaceholderText() {

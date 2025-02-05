@@ -199,12 +199,19 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
     private void sb_ValueChanged(object sender, EventArgs e) {
         if (pnlHolder is null) return;
 
-        pnlHolder.Location = new Point(pnlHolder.Location.X, -sb.Value);
+        if (Height < pnlHolder.Height) pnlHolder.Location = new Point(pnlHolder.Location.X, -sb.Value);
     }
 
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
         SetScrollOptions();
+
+        if (Height < pnlHolder.Height) {
+            pnlHolder.Location = new Point(pnlHolder.Location.X, -sb.Value);
+        }
+        else {
+            pnlHolder.Location = new(pnlHolder.Location.X, (Height - pnlHolder.Height) / 2);
+        }
     }
 
     #endregion
