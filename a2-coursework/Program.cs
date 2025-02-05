@@ -15,6 +15,6 @@ internal static class Program {
         Application.EnableVisualStyles();
 
         // Start the application
-        Application.Run(new AppContext());
+        Application.Run(new TestView());
     }
 }

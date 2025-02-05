@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Properties;
 
 namespace a2_coursework.Theming;
-internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image plus, Image minus, Image navigation, Image search, Image cross, Image tick) {
+internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image doubleBackArrow, Image doubleForwardArrow, Image plus, Image minus, Image navigation, Image search, Image cross, Image tick, Image edit, Image delete) {
     public static IconTheme CurrentTheme {
         get {
             if (Theme.CurrentTheme.AppearanceTheme == AppearanceTheme.Dark) return Dark;
@@ -15,12 +15,16 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
         settings: Resources.settings_sliders_light,
         backArrow: Resources.chevron_left_light,
         forwardArrow: Resources.chevron_right_light,
+        doubleBackArrow: Resources.chevrons_left_light,
+        doubleForwardArrow: Resources.chevrons_right_light,
         plus: Resources.plus_light,
         minus: Resources.minus_light,
         navigation: Resources.navigation_light,
         search: Resources.search_light,
         cross: Resources.cross_light,
-        tick: Resources.check_light
+        tick: Resources.check_light,
+        edit: Resources.pencil_light,
+        delete: Resources.trash_light
         );
 
     public static IconTheme Light { get; } = new(
@@ -29,12 +33,16 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
         settings: Resources.settings_sliders_dark,
         backArrow: Resources.chevron_left_dark,
         forwardArrow: Resources.chevron_right_dark,
+        doubleBackArrow: Resources.chevrons_left_dark,
+        doubleForwardArrow: Resources.chevrons_right_dark,
         plus: Resources.plus_dark,
         minus: Resources.minus_dark,
         navigation: Resources.navigation_dark,
         search: Resources.search_dark,
         cross: Resources.cross_dark,
-        tick: Resources.check_dark
+        tick: Resources.check_dark,
+        edit: Resources.pencil_dark,
+        delete: Resources.trash_dark
         );
 
     #region Static Icons
@@ -49,11 +57,15 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
     public Image Settings { get; } = settings;
     public Image BackArrow { get; } = backArrow;
     public Image ForwardArrow { get; } = forwardArrow;
+    public Image DoubleBackArrow { get; } = doubleBackArrow;
+    public Image DoubleForwardArrow { get; } = doubleForwardArrow;
     public Image Plus { get; } = plus;
     public Image Minus { get; } = minus;
     public Image Navigation { get; } = navigation;
     public Image Search { get; } = search;
     public Image Cross { get; } = cross;
     public Image Tick { get; } = tick;
+    public Image Edit { get; } = edit;
+    public Image Delete { get; } = delete;
     #endregion
 }

@@ -66,4 +66,35 @@ internal static class ThemingExtenders {
         radioButton.ForeColor = ColorScheme.CurrentTheme.Foreground;
         radioButton.CheckColor = ColorScheme.CurrentTheme.Foreground;
     }
+
+    public static void Theme(this DataGridView dataGridView) {
+        dataGridView.ColumnHeadersDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
+        dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
+        dataGridView.ColumnHeadersDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+
+        dataGridView.AdvancedColumnHeadersBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
+        dataGridView.AdvancedColumnHeadersBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
+        dataGridView.AdvancedColumnHeadersBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+        dataGridView.AdvancedColumnHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Single;
+
+        dataGridView.RowHeadersDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
+        dataGridView.RowHeadersDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.RowHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
+        dataGridView.RowHeadersDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+
+        dataGridView.AdvancedRowHeadersBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
+        dataGridView.AdvancedRowHeadersBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
+        dataGridView.AdvancedRowHeadersBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
+        dataGridView.AdvancedRowHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Single;
+
+        dataGridView.GridColor = ColorScheme.CurrentTheme.Primary;
+        dataGridView.DefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
+        dataGridView.DefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.DefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
+        dataGridView.DefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+
+        dataGridView.BackgroundColor = ColorScheme.CurrentTheme.Background;
+        dataGridView.ForeColor = ColorScheme.CurrentTheme.Foreground;
+    }
 }

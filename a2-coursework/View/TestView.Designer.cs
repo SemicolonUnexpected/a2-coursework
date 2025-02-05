@@ -23,36 +23,124 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            customComboBox1 = new Custom_Controls.CustomComboBox();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            Column3 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column1 = new DataGridViewTextBoxColumn();
+            dataGridView1 = new DataGridView();
+            pnlChangePassword = new CustomControls.CustomPanel();
+            rbDarkMode = new CustomControls.CustomRadioButton();
+            paginator1 = new Custom_Controls.Paginator();
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
+            pnlChangePassword.SuspendLayout();
             SuspendLayout();
             // 
-            // customComboBox1
+            // Column3
             // 
-            customComboBox1.BackColor = Color.Black;
-            customComboBox1.DrawMode = DrawMode.OwnerDrawFixed;
-            customComboBox1.DropDownStyle = ComboBoxStyle.DropDownList;
-            customComboBox1.Font = new Font("Segoe UI", 12F);
-            customComboBox1.ForeColor = Color.White;
-            customComboBox1.FormattingEnabled = true;
-            customComboBox1.Location = new Point(181, 49);
-            customComboBox1.Name = "customComboBox1";
-            customComboBox1.Size = new Size(140, 30);
-            customComboBox1.TabIndex = 0;
+            Column3.HeaderText = "Column3";
+            Column3.Name = "Column3";
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Column2";
+            Column2.Name = "Column2";
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Column1";
+            Column1.Name = "Column1";
+            // 
+            // dataGridView1
+            // 
+            dataGridView1.AllowUserToDeleteRows = false;
+            dataGridView1.AllowUserToOrderColumns = true;
+            dataGridView1.AllowUserToResizeColumns = false;
+            dataGridView1.AllowUserToResizeRows = false;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.BackgroundColor = Color.FromArgb(9, 9, 10);
+            dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EnableHeadersVisualStyles = false;
+            dataGridView1.Location = new Point(5, 5);
+            dataGridView1.Name = "dataGridView1";
+            dataGridView1.Size = new Size(477, 416);
+            dataGridView1.TabIndex = 0;
+            // 
+            // pnlChangePassword
+            // 
+            pnlChangePassword.Anchor = AnchorStyles.Top;
+            pnlChangePassword.BorderColor = Color.FromArgb(39, 39, 42);
+            pnlChangePassword.BorderThickness = 1F;
+            pnlChangePassword.Controls.Add(rbDarkMode);
+            pnlChangePassword.Controls.Add(dataGridView1);
+            pnlChangePassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlChangePassword.Location = new Point(14, 14);
+            pnlChangePassword.Margin = new Padding(5);
+            pnlChangePassword.Name = "pnlChangePassword";
+            pnlChangePassword.Padding = new Padding(5);
+            pnlChangePassword.Size = new Size(487, 426);
+            pnlChangePassword.TabIndex = 3;
+            // 
+            // rbDarkMode
+            // 
+            rbDarkMode.Anchor = AnchorStyles.Right;
+            rbDarkMode.BorderThickness = 1.7F;
+            rbDarkMode.CheckColor = Color.White;
+            rbDarkMode.Checked = true;
+            rbDarkMode.CheckRadius = 5F;
+            rbDarkMode.ForeColor = Color.White;
+            rbDarkMode.Location = new Point(744, 403);
+            rbDarkMode.Margin = new Padding(5);
+            rbDarkMode.Name = "rbDarkMode";
+            rbDarkMode.Size = new Size(17, 17);
+            rbDarkMode.TabIndex = 0;
+            rbDarkMode.Text = "customRadioButton1";
+            // 
+            // paginator1
+            // 
+            paginator1.BackColor = Color.Red;
+            paginator1.CurrentPage = 0;
+            paginator1.Location = new Point(19, 455);
+            paginator1.Name = "paginator1";
+            paginator1.NumberOfPages = 20;
+            paginator1.Padding = new Padding(2);
+            paginator1.Size = new Size(482, 44);
+            paginator1.TabIndex = 4;
             // 
             // TestView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 242);
-            Controls.Add(customComboBox1);
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.FromArgb(9, 9, 10);
+            ClientSize = new Size(1253, 511);
+            Controls.Add(paginator1);
+            Controls.Add(pnlChangePassword);
             FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "TestView";
             Text = "TestView";
+            ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
+            pnlChangePassword.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private Custom_Controls.CustomComboBox customComboBox1;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridView dataGridView1;
+        private CustomControls.CustomPanel pnlChangePassword;
+        private CustomControls.CustomRadioButton rbDarkMode;
+        private Custom_Controls.Paginator paginator1;
     }
 }

@@ -133,6 +133,46 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap chevrons_left_dark {
+            get {
+                object obj = ResourceManager.GetObject("chevrons-left-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevrons_left_light {
+            get {
+                object obj = ResourceManager.GetObject("chevrons-left-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevrons_right_dark {
+            get {
+                object obj = ResourceManager.GetObject("chevrons-right-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap chevrons_right_light {
+            get {
+                object obj = ResourceManager.GetObject("chevrons-right-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap cross_dark {
             get {
                 object obj = ResourceManager.GetObject("cross-dark", resourceCulture);
@@ -146,6 +186,26 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap cross_light {
             get {
                 object obj = ResourceManager.GetObject("cross-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ellipsis_dark {
+            get {
+                object obj = ResourceManager.GetObject("ellipsis-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap ellipsis_light {
+            get {
+                object obj = ResourceManager.GetObject("ellipsis-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -256,6 +316,26 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap navigation_light {
             get {
                 object obj = ResourceManager.GetObject("navigation-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pencil_dark {
+            get {
+                object obj = ResourceManager.GetObject("pencil-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap pencil_light {
+            get {
+                object obj = ResourceManager.GetObject("pencil-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

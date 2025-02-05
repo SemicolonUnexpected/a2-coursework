@@ -2,7 +2,6 @@
 using System.Windows.Forms.Design;
 
 namespace a2_coursework.CustomControls;
-[Designer(typeof(ParentControlDesigner))]
 public partial class CustomTextBox : UserControl {
     public CustomTextBox() {
         InitializeComponent();
