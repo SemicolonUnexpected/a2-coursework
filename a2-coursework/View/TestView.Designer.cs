@@ -28,6 +28,9 @@
             Column2 = new DataGridViewTextBoxColumn();
             Column1 = new DataGridViewTextBoxColumn();
             dataGridView1 = new DataGridView();
+            Column4 = new DataGridViewTextBoxColumn();
+            Column5 = new DataGridViewTextBoxColumn();
+            Column6 = new DataGridViewTextBoxColumn();
             pnlChangePassword = new CustomControls.CustomPanel();
             rbDarkMode = new CustomControls.CustomRadioButton();
             paginator1 = new Custom_Controls.Paginator();
@@ -39,28 +42,32 @@
             // 
             Column3.HeaderText = "Column3";
             Column3.Name = "Column3";
+            Column3.Width = 81;
             // 
             // Column2
             // 
             Column2.HeaderText = "Column2";
             Column2.Name = "Column2";
+            Column2.Width = 81;
             // 
             // Column1
             // 
             Column1.HeaderText = "Column1";
             Column1.Name = "Column1";
+            Column1.Width = 81;
             // 
             // dataGridView1
             // 
+            dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.AllowUserToOrderColumns = true;
             dataGridView1.AllowUserToResizeColumns = false;
             dataGridView1.AllowUserToResizeRows = false;
-            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.AllCells;
             dataGridView1.BackgroundColor = Color.FromArgb(9, 9, 10);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3 });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
             dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle1.BackColor = SystemColors.Window;
             dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
@@ -70,11 +77,34 @@
             dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.Dock = DockStyle.Fill;
+            dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.EnableHeadersVisualStyles = false;
             dataGridView1.Location = new Point(5, 5);
+            dataGridView1.MultiSelect = false;
             dataGridView1.Name = "dataGridView1";
+            dataGridView1.RowHeadersVisible = false;
+            dataGridView1.RowTemplate.Height = 100;
+            dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(477, 416);
             dataGridView1.TabIndex = 0;
+            // 
+            // Column4
+            // 
+            Column4.HeaderText = "Column4";
+            Column4.Name = "Column4";
+            Column4.Width = 81;
+            // 
+            // Column5
+            // 
+            Column5.HeaderText = "Column5";
+            Column5.Name = "Column5";
+            Column5.Width = 81;
+            // 
+            // Column6
+            // 
+            Column6.HeaderText = "Column6";
+            Column6.Name = "Column6";
+            Column6.Width = 81;
             // 
             // pnlChangePassword
             // 
@@ -142,5 +172,8 @@
         private CustomControls.CustomPanel pnlChangePassword;
         private CustomControls.CustomRadioButton rbDarkMode;
         private Custom_Controls.Paginator paginator1;
+        private DataGridViewTextBoxColumn Column4;
+        private DataGridViewTextBoxColumn Column5;
+        private DataGridViewTextBoxColumn Column6;
     }
 }

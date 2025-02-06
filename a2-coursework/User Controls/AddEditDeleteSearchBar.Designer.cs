@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             tbSearch = new CustomControls.CustomTextBox();
             pbSearchBtn = new PictureBox();
             pnlSpacer1 = new Panel();
@@ -31,6 +32,8 @@
             pnlSpacer3 = new Panel();
             btnDelete = new CustomControls.CustomButton();
             pnlSpacer2 = new Panel();
+            toolTip = new ToolTip(components);
+            btnClear = new CustomControls.CustomButton();
             ((System.ComponentModel.ISupportInitialize)pbSearchBtn).BeginInit();
             SuspendLayout();
             // 
@@ -53,20 +56,25 @@
             tbSearch.ReadOnly = false;
             tbSearch.Size = new Size(445, 40);
             tbSearch.TabIndex = 8;
+            tbSearch.Text = "sdfgusi\\gfpUIDFIUSGDDSFSDFSDFsdfsdfsdfsdfFIUSDGFUISD";
             tbSearch.TextAlign = HorizontalAlignment.Left;
-            tbSearch.TextBoxInset = new Padding(45, 10, 10, 10);
+            tbSearch.TextBoxInset = new Padding(45, 10, 45, 10);
+            tbSearch.ToolTipText = "Press enter to search";
             tbSearch.UsePasswordChar = false;
-            tbSearch.Load += tbSearch_Load;
+            tbSearch.TextChanged += tbSearch_TextChanged;
+            tbSearch.KeyPress += tbSearch_KeyPress;
             // 
             // pbSearchBtn
             // 
             pbSearchBtn.Image = Properties.Resources.search_light;
-            pbSearchBtn.Location = new Point(14, 9);
+            pbSearchBtn.Location = new Point(10, 9);
             pbSearchBtn.Name = "pbSearchBtn";
             pbSearchBtn.Size = new Size(27, 27);
             pbSearchBtn.SizeMode = PictureBoxSizeMode.Zoom;
             pbSearchBtn.TabIndex = 1;
             pbSearchBtn.TabStop = false;
+            toolTip.SetToolTip(pbSearchBtn, "Click to search");
+            pbSearchBtn.Click += pbSearchBtn_Click;
             // 
             // pnlSpacer1
             // 
@@ -98,6 +106,8 @@
             btnAdd.TabIndex = 14;
             btnAdd.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnAdd.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnAdd, "Add a record");
+            btnAdd.Click += btnAdd_Click;
             // 
             // btnEdit
             // 
@@ -122,6 +132,8 @@
             btnEdit.TabIndex = 13;
             btnEdit.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnEdit.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnEdit, "Edit the current record");
+            btnEdit.Click += btnEdit_Click;
             // 
             // pnlSpacer3
             // 
@@ -153,6 +165,8 @@
             btnDelete.TabIndex = 11;
             btnDelete.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnDelete.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnDelete, "Delete the current record");
+            btnDelete.Click += btnDelete_Click;
             // 
             // pnlSpacer2
             // 
@@ -162,11 +176,37 @@
             pnlSpacer2.Size = new Size(5, 40);
             pnlSpacer2.TabIndex = 9;
             // 
+            // btnClear
+            // 
+            btnClear.BackColor = Color.FromArgb(9, 9, 10);
+            btnClear.BorderColor = Color.FromArgb(39, 39, 42);
+            btnClear.BorderThickness = 0F;
+            btnClear.ClickedBorderColor = Color.FromArgb(39, 39, 42);
+            btnClear.ClickedColor = Color.FromArgb(39, 39, 42);
+            btnClear.CornerRadii = new CustomControls.CornerRadiiF(15F, 15F, 15F, 15F);
+            btnClear.DisabledBorderColor = Color.Empty;
+            btnClear.DisabledColor = Color.Empty;
+            btnClear.ForeColor = Color.FromArgb(250, 250, 250);
+            btnClear.HoverBorderColor = Color.FromArgb(39, 39, 42);
+            btnClear.HoverColor = Color.FromArgb(39, 39, 42);
+            btnClear.Image = Properties.Resources.cross_light;
+            btnClear.ImageRectangle = new Rectangle(3, 4, 24, 24);
+            btnClear.Location = new Point(411, 7);
+            btnClear.Name = "btnClear";
+            btnClear.Size = new Size(30, 30);
+            btnClear.TabIndex = 16;
+            btnClear.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
+            btnClear.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnClear, "Clear search");
+            btnClear.Visible = false;
+            btnClear.Click += btnClear_Click;
+            // 
             // AddEditDeleteSearchBar
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
+            Controls.Add(btnClear);
             Controls.Add(pbSearchBtn);
             Controls.Add(tbSearch);
             Controls.Add(pnlSpacer1);
@@ -192,5 +232,7 @@
         private CustomControls.CustomButton btnDelete;
         private Panel pnlSpacer2;
         private PictureBox pbSearchBtn;
+        private ToolTip toolTip;
+        private CustomControls.CustomButton btnClear;
     }
 }

@@ -42,7 +42,7 @@
             pnl.Padding = new Padding(10);
             pnl.Size = new Size(336, 36);
             pnl.TabIndex = 0;
-            pnl.MouseHover += anyHover;
+            pnl.MouseHover += AnyHover;
             // 
             // tb
             // 
@@ -54,7 +54,7 @@
             tb.PlaceholderTextColor = Color.Empty;
             tb.Size = new Size(316, 16);
             tb.TabIndex = 0;
-            tb.MouseHover += anyHover;
+            tb.MouseHover += AnyHover;
             // 
             // CustomTextBox
             // 

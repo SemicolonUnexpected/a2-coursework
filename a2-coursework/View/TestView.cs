@@ -9,7 +9,7 @@ public partial class TestView : Form {
 
         dataGridView1.ColumnHeadersDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
         dataGridView1.ColumnHeadersDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
+        dataGridView1.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Background;
         dataGridView1.ColumnHeadersDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
 
         dataGridView1.AdvancedColumnHeadersBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
@@ -41,6 +41,13 @@ public partial class TestView : Form {
         dataGridView1.Rows.Add("item two",   false, DateTime.Now);
         dataGridView1.Rows.Add("item three", false, DateTime.Now);
         dataGridView1.Rows.Add("item four",  false, DateTime.Now);
+        for (int i = 0; i < 100; i++) {
+            dataGridView1.Rows.Add($"item {i}", false, DateTime.Now, "This is a realy really really long an dbadly spetl message");
+        }
+
+        foreach (DataGridViewRow row in dataGridView1.Rows) {
+            row.Height = 50;
+        }
 
         //dataGridView1.Columns["Column2"].CellTemplate = new DataGridViewCheckBoxCell();
     }

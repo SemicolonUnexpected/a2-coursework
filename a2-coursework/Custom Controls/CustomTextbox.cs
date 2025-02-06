@@ -1,7 +1,4 @@
-﻿using System.ComponentModel;
-using System.Windows.Forms.Design;
-
-namespace a2_coursework.CustomControls;
+﻿namespace a2_coursework.CustomControls;
 public partial class CustomTextBox : UserControl {
     public CustomTextBox() {
         InitializeComponent();
@@ -31,7 +28,7 @@ public partial class CustomTextBox : UserControl {
         tb.Focus();
     }
 
-    private void anyHover(object sender, EventArgs e) {
+    private void AnyHover(object sender, EventArgs e) {
         MouseHover?.Invoke(sender, e);
     }
 }
