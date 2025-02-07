@@ -63,6 +63,26 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap archive_dark {
+            get {
+                object obj = ResourceManager.GetObject("archive-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap archive_light {
+            get {
+                object obj = ResourceManager.GetObject("archive-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap brightness {
             get {
                 object obj = ResourceManager.GetObject("brightness", resourceCulture);

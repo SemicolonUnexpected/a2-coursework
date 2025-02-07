@@ -33,6 +33,7 @@
             tbAddress = new CustomControls.CustomTextBox();
             lblAddressTitle = new Label();
             lblContactError = new Label();
+            lblCharacterLimit = new Label();
             SuspendLayout();
             // 
             // lblContactInformation
@@ -41,7 +42,7 @@
             lblContactInformation.AutoSize = true;
             lblContactInformation.Font = new Font("Bahnschrift", 24F);
             lblContactInformation.ForeColor = Color.White;
-            lblContactInformation.Location = new Point(151, 19);
+            lblContactInformation.Location = new Point(151, 10);
             lblContactInformation.Margin = new Padding(10);
             lblContactInformation.Name = "lblContactInformation";
             lblContactInformation.Size = new Size(299, 39);
@@ -58,13 +59,14 @@
             tbEmail.Font = new Font("Bahnschrift", 12F);
             tbEmail.ForeColor = Color.Empty;
             tbEmail.HoverColor = Color.Empty;
-            tbEmail.Location = new Point(151, 145);
+            tbEmail.Location = new Point(151, 136);
             tbEmail.Margin = new Padding(5);
             tbEmail.MaxLength = 256;
             tbEmail.MultiLine = false;
             tbEmail.Name = "tbEmail";
             tbEmail.PlaceholderText = "johndoe@example.com";
             tbEmail.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbEmail.ReadOnly = false;
             tbEmail.Size = new Size(355, 40);
             tbEmail.TabIndex = 7;
             tbEmail.TextAlign = HorizontalAlignment.Left;
@@ -82,13 +84,14 @@
             tbPhoneNumber.Font = new Font("Bahnschrift", 12F);
             tbPhoneNumber.ForeColor = Color.Empty;
             tbPhoneNumber.HoverColor = Color.Empty;
-            tbPhoneNumber.Location = new Point(151, 228);
+            tbPhoneNumber.Location = new Point(151, 219);
             tbPhoneNumber.Margin = new Padding(5);
             tbPhoneNumber.MaxLength = 256;
             tbPhoneNumber.MultiLine = false;
             tbPhoneNumber.Name = "tbPhoneNumber";
             tbPhoneNumber.PlaceholderText = "+441234567890";
             tbPhoneNumber.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbPhoneNumber.ReadOnly = false;
             tbPhoneNumber.Size = new Size(355, 40);
             tbPhoneNumber.TabIndex = 9;
             tbPhoneNumber.TextAlign = HorizontalAlignment.Left;
@@ -102,7 +105,7 @@
             lblPhoneNumber.AutoSize = true;
             lblPhoneNumber.Font = new Font("Bahnschrift", 14F);
             lblPhoneNumber.ForeColor = Color.White;
-            lblPhoneNumber.Location = new Point(151, 195);
+            lblPhoneNumber.Location = new Point(151, 186);
             lblPhoneNumber.Margin = new Padding(5);
             lblPhoneNumber.Name = "lblPhoneNumber";
             lblPhoneNumber.Size = new Size(137, 23);
@@ -115,7 +118,7 @@
             lblEditPromt.AutoSize = true;
             lblEditPromt.Font = new Font("Bahnschrift", 12F);
             lblEditPromt.ForeColor = Color.FromArgb(168, 171, 174);
-            lblEditPromt.Location = new Point(153, 68);
+            lblEditPromt.Location = new Point(153, 59);
             lblEditPromt.Margin = new Padding(10, 0, 10, 20);
             lblEditPromt.Name = "lblEditPromt";
             lblEditPromt.Size = new Size(267, 19);
@@ -128,7 +131,7 @@
             lblEmailTitle.AutoSize = true;
             lblEmailTitle.Font = new Font("Bahnschrift", 14F);
             lblEmailTitle.ForeColor = Color.White;
-            lblEmailTitle.Location = new Point(153, 112);
+            lblEmailTitle.Location = new Point(153, 103);
             lblEmailTitle.Margin = new Padding(5);
             lblEmailTitle.Name = "lblEmailTitle";
             lblEmailTitle.Size = new Size(67, 23);
@@ -157,18 +160,20 @@
             tbAddress.Font = new Font("Bahnschrift", 12F);
             tbAddress.ForeColor = Color.Empty;
             tbAddress.HoverColor = Color.Empty;
-            tbAddress.Location = new Point(151, 349);
+            tbAddress.Location = new Point(151, 338);
             tbAddress.Margin = new Padding(5);
             tbAddress.MaxLength = 256;
             tbAddress.MultiLine = true;
             tbAddress.Name = "tbAddress";
             tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn\r\nDown";
             tbAddress.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbAddress.Size = new Size(355, 102);
+            tbAddress.ReadOnly = false;
+            tbAddress.Size = new Size(355, 79);
             tbAddress.TabIndex = 14;
             tbAddress.TextAlign = HorizontalAlignment.Left;
             tbAddress.TextBoxInset = new Padding(10);
             tbAddress.UsePasswordChar = false;
+            tbAddress.TextChanged += tbAddress_TextChanged;
             // 
             // lblAddressTitle
             // 
@@ -176,7 +181,7 @@
             lblAddressTitle.AutoSize = true;
             lblAddressTitle.Font = new Font("Bahnschrift", 14F);
             lblAddressTitle.ForeColor = Color.White;
-            lblAddressTitle.Location = new Point(151, 316);
+            lblAddressTitle.Location = new Point(151, 307);
             lblAddressTitle.Margin = new Padding(5);
             lblAddressTitle.Name = "lblAddressTitle";
             lblAddressTitle.Size = new Size(165, 23);
@@ -188,11 +193,24 @@
             lblContactError.Anchor = AnchorStyles.None;
             lblContactError.Font = new Font("Bahnschrift", 12F);
             lblContactError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblContactError.Location = new Point(151, 273);
+            lblContactError.Location = new Point(151, 264);
             lblContactError.Name = "lblContactError";
             lblContactError.Size = new Size(355, 38);
             lblContactError.TabIndex = 16;
             lblContactError.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lblCharacterLimit
+            // 
+            lblCharacterLimit.Anchor = AnchorStyles.None;
+            lblCharacterLimit.Font = new Font("Bahnschrift", 12F);
+            lblCharacterLimit.ForeColor = Color.FromArgb(168, 171, 174);
+            lblCharacterLimit.Location = new Point(356, 429);
+            lblCharacterLimit.Margin = new Padding(10, 0, 10, 20);
+            lblCharacterLimit.Name = "lblCharacterLimit";
+            lblCharacterLimit.Size = new Size(150, 24);
+            lblCharacterLimit.TabIndex = 10;
+            lblCharacterLimit.Text = "Edit your contact information below";
+            lblCharacterLimit.TextAlign = ContentAlignment.BottomRight;
             // 
             // ContactDetailsSettingsView
             // 
@@ -208,6 +226,7 @@
             Controls.Add(tbEmail);
             Controls.Add(tbPhoneNumber);
             Controls.Add(lblPhoneNumber);
+            Controls.Add(lblCharacterLimit);
             Controls.Add(lblEditPromt);
             Controls.Add(lblEmailTitle);
             FormBorderStyle = FormBorderStyle.None;
@@ -229,5 +248,6 @@
         private CustomControls.CustomTextBox tbAddress;
         private Label lblAddressTitle;
         private Label lblContactError;
+        private Label lblCharacterLimit;
     }
 }

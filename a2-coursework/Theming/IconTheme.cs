@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Properties;
 
 namespace a2_coursework.Theming;
-internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image doubleBackArrow, Image doubleForwardArrow, Image plus, Image minus, Image navigation, Image search, Image cross, Image tick, Image edit, Image delete) {
+internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image doubleBackArrow, Image doubleForwardArrow, Image plus, Image minus, Image navigation, Image search, Image cross, Image tick, Image edit, Image delete, Image archive) {
     public static IconTheme CurrentTheme {
         get {
             if (Theme.CurrentTheme.AppearanceTheme == AppearanceTheme.Dark) return Dark;
@@ -24,7 +24,8 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
         cross: Resources.cross_light,
         tick: Resources.check_light,
         edit: Resources.pencil_light,
-        delete: Resources.trash_light
+        delete: Resources.trash_light,
+        archive: Resources.archive_light
         );
 
     public static IconTheme Light { get; } = new(
@@ -42,7 +43,8 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
         cross: Resources.cross_dark,
         tick: Resources.check_dark,
         edit: Resources.pencil_dark,
-        delete: Resources.trash_dark
+        delete: Resources.trash_dark,
+        archive: Resources.archive_dark
         );
 
     #region Static Icons
@@ -67,5 +69,6 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
     public Image Tick { get; } = tick;
     public Image Edit { get; } = edit;
     public Image Delete { get; } = delete;
+    public Image Archive { get; } = archive;
     #endregion
 }

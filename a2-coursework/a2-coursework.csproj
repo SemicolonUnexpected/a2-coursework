@@ -41,8 +41,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="User Controls\DataGrid\" />
-  </ItemGroup>
-
 </Project>

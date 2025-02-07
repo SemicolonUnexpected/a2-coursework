@@ -47,10 +47,10 @@ public partial class LoginView : Form, ILogin {
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        //Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
 
-        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        //ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        //Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(LoginPresenter presenter) {

@@ -31,6 +31,8 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
 
         ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
         Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+
+        lblCharacterLimit.Text = $"{tbAddress.Text.Length} / {tbAddress.MaxLength}";
     }
 
     public void SetPresenter(ContactDetailsSettingsPresenter presenter) {
@@ -124,4 +126,8 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
     }
 
     public bool CanExit() => _presenter?.CanExit() ?? true;
+
+    private void tbAddress_TextChanged(object sender, EventArgs e) {
+        lblCharacterLimit.Text = $"{tbAddress.Text.Length} / {tbAddress.MaxLength}";
+    }
 }
