@@ -14,7 +14,7 @@ internal static class StaffDAL {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("GetUserCredentials", connection);
+        await using SqlCommand command = new("GetStock", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("username", username);
 
