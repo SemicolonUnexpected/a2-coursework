@@ -2,8 +2,6 @@
 public partial class CustomTextBox : UserControl {
     public CustomTextBox() {
         InitializeComponent();
-
-        tb.TextChanged += (s, e) => TextChanged?.Invoke(s, e);
     }
 
     protected override void OnResize(EventArgs e) {
@@ -21,6 +19,7 @@ public partial class CustomTextBox : UserControl {
             TextBoxInset = new Padding((int)(TextBoxInset.Left * factor.Width), (int)(TextBoxInset.Top * factor.Height), (int)(TextBoxInset.Right * factor.Width), (int)(TextBoxInset.Bottom * factor.Height));
             BorderThickness *= factor.Width;
         }
+
         base.ScaleControl(factor, specified);
     }
 

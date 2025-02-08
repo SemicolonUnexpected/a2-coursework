@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.Custom_Controls; 
+﻿namespace a2_coursework.CustomControls; 
 public partial class CustomComboBox : ComboBox {
     public CustomComboBox()
     {

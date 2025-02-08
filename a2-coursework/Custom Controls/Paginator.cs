@@ -1,6 +1,6 @@
 ﻿using a2_coursework.Theming;
 
-namespace a2_coursework.Custom_Controls;
+namespace a2_coursework.CustomControls;
 public partial class Paginator : UserControl {
     public event EventHandler? PageChanged;
 

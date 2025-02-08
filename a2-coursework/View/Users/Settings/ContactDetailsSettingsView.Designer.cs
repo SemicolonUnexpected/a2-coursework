@@ -209,7 +209,7 @@
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
             lblCharacterLimit.TabIndex = 10;
-            lblCharacterLimit.Text = "Edit your contact information below";
+            lblCharacterLimit.Text = "0/256";
             lblCharacterLimit.TextAlign = ContentAlignment.BottomRight;
             // 
             // ContactDetailsSettingsView

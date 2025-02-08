@@ -165,10 +165,24 @@ public partial class CustomTextBox {
     //}
 
     [Browsable(true)]
-    public new event EventHandler? TextChanged;
+    public new event EventHandler? TextChanged {
+        add => tb.TextChanged += value;
+        remove => tb.TextChanged -= value;
+    }
+
     public new event KeyPressEventHandler? KeyPress {
         add => tb.KeyPress += value;
         remove => tb.KeyPress -= value;
+    }
+
+    public new event KeyEventHandler? KeyDown {
+        add => tb.KeyDown += value;
+        remove => tb.KeyDown -= value;
+    }
+
+    public new event PreviewKeyDownEventHandler? PreviewKeyDown {
+        add => tb.PreviewKeyDown += value;
+        remove => tb.PreviewKeyDown -= value;
     }
 
     public new event EventHandler? Leave {

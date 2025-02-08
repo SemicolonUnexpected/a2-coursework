@@ -23,10 +23,28 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            flp = new FlowLayoutPanel();
+            SuspendLayout();
+            // 
+            // flp
+            // 
+            flp.Dock = DockStyle.Fill;
+            flp.Location = new Point(0, 0);
+            flp.Name = "flp";
+            flp.Size = new Size(533, 150);
+            flp.TabIndex = 1;
+            // 
+            // TopMenu
+            // 
+            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleMode = AutoScaleMode.Font;
+            Controls.Add(flp);
+            Name = "TopMenu";
+            Size = new Size(533, 150);
+            ResumeLayout(false);
         }
 
         #endregion
+        private FlowLayoutPanel flp;
     }
 }

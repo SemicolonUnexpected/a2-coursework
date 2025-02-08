@@ -33,7 +33,8 @@
             Column6 = new DataGridViewTextBoxColumn();
             pnlChangePassword = new CustomControls.CustomPanel();
             rbDarkMode = new CustomControls.CustomRadioButton();
-            paginator1 = new Custom_Controls.Paginator();
+            paginator1 = new CustomControls.Paginator();
+            customNumericUpDown1 = new CustomControls.CustomNumericUpDown();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlChangePassword.SuspendLayout();
             SuspendLayout();
@@ -147,12 +148,21 @@
             paginator1.Size = new Size(482, 44);
             paginator1.TabIndex = 4;
             // 
+            // customNumericUpDown1
+            // 
+            customNumericUpDown1.Location = new Point(545, 19);
+            customNumericUpDown1.Name = "customNumericUpDown1";
+            customNumericUpDown1.Size = new Size(174, 41);
+            customNumericUpDown1.TabIndex = 5;
+            customNumericUpDown1.Value = 4;
+            // 
             // TestView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(1253, 511);
+            Controls.Add(customNumericUpDown1);
             Controls.Add(paginator1);
             Controls.Add(pnlChangePassword);
             FormBorderStyle = FormBorderStyle.FixedSingle;
@@ -171,9 +181,10 @@
         private DataGridView dataGridView1;
         private CustomControls.CustomPanel pnlChangePassword;
         private CustomControls.CustomRadioButton rbDarkMode;
-        private Custom_Controls.Paginator paginator1;
+        private CustomControls.Paginator paginator1;
         private DataGridViewTextBoxColumn Column4;
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
+        private CustomControls.CustomNumericUpDown customNumericUpDown1;
     }
 }

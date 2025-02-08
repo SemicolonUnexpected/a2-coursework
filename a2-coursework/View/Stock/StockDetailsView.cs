@@ -9,17 +9,9 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace a2_coursework.View.Stock {
-    public partial class AddEditStock : Form {
-        public AddEditStock() {
+    public partial class StockDetailsView : Form {
+        public StockDetailsView() {
             InitializeComponent();
-        }
-
-        private void tbJobTitle_Load(object sender, EventArgs e) {
-
-        }
-
-        private void lblStockName_Click(object sender, EventArgs e) {
-
         }
     }
 }

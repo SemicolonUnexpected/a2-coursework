@@ -32,7 +32,7 @@
             dataGridView1 = new DataGridView();
             rbDarkMode = new CustomControls.CustomRadioButton();
             lblStock = new Label();
-            paginator = new Custom_Controls.Paginator();
+            paginator = new CustomControls.Paginator();
             topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             columnID = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
@@ -237,7 +237,7 @@
         private CustomControls.CustomPanel pnlData;
         private CustomControls.CustomRadioButton rbDarkMode;
         private Label lblStock;
-        private Custom_Controls.Paginator paginator;
+        private CustomControls.Paginator paginator;
         private User_Controls.DataGrid.AddEditArchiveSearchBar topBar;
         private DataGridView dataGridView1;
         private DataGridViewTextBoxColumn columnID;
