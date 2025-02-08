@@ -126,6 +126,7 @@
             tbPassword.Name = "tbPassword";
             tbPassword.PlaceholderText = "Password";
             tbPassword.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbPassword.ReadOnly = false;
             tbPassword.Size = new Size(282, 40);
             tbPassword.TabIndex = 1;
             tbPassword.TextAlign = HorizontalAlignment.Left;
@@ -179,6 +180,7 @@
             tbUsername.Name = "tbUsername";
             tbUsername.PlaceholderText = "Username";
             tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbUsername.ReadOnly = false;
             tbUsername.Size = new Size(282, 40);
             tbUsername.TabIndex = 0;
             tbUsername.TextAlign = HorizontalAlignment.Left;

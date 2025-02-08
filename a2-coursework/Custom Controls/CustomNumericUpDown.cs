@@ -22,15 +22,20 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
         tbValue.Theme();
     }
 
-    private void tbCurrentPassword_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
-        if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) e.IsInputKey = true;
+    private void tbValue_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
+        //if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) e.IsInputKey = true;
     }
 
-    private void tbCurrentPassword_KeyPress(object sender, KeyPressEventArgs e) {
-        if (!char.IsAsciiDigit(e.KeyChar)) e.Handled = true;
+    private void tbValue_KeyPress(object sender, KeyPressEventArgs e) {
+        if (e.KeyChar == 13) SetValue();
+        if (!char.IsAsciiDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
     }
 
-    private void tbValue_Leave(object sender, MouseEventArgs e) {
+    private void tbValue_Leave(object sender, EventArgs e) {
+        SetValue();
+    }
+
+    private void tbValue_TextChanged(object sender, EventArgs e) {
     }
 
     private void tbValue_KeyDown(object sender, KeyEventArgs e) {
@@ -80,4 +85,11 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
 
     public void Increment(int i = 1) => Value += i;
     public void Decrement(int i = 1) => Value -= i;
+
+    private void SetValue() {
+        bool validNumber = int.TryParse(tbValue.Text, out int number);
+
+        if (!validNumber) tbValue.Text = Value.ToString();
+        else Value = number;
+    }
 }

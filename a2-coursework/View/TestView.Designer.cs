@@ -35,8 +35,10 @@
             rbDarkMode = new CustomControls.CustomRadioButton();
             paginator1 = new CustomControls.Paginator();
             customNumericUpDown1 = new CustomControls.CustomNumericUpDown();
+            numericUpDown1 = new NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlChangePassword.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
             // 
             // Column3
@@ -150,11 +152,19 @@
             // 
             // customNumericUpDown1
             // 
+            customNumericUpDown1.BackColor = Color.FromArgb(9, 9, 10);
             customNumericUpDown1.Location = new Point(545, 19);
             customNumericUpDown1.Name = "customNumericUpDown1";
             customNumericUpDown1.Size = new Size(174, 41);
             customNumericUpDown1.TabIndex = 5;
             customNumericUpDown1.Value = 4;
+            // 
+            // numericUpDown1
+            // 
+            numericUpDown1.Location = new Point(545, 85);
+            numericUpDown1.Name = "numericUpDown1";
+            numericUpDown1.Size = new Size(120, 23);
+            numericUpDown1.TabIndex = 6;
             // 
             // TestView
             // 
@@ -162,6 +172,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(1253, 511);
+            Controls.Add(numericUpDown1);
             Controls.Add(customNumericUpDown1);
             Controls.Add(paginator1);
             Controls.Add(pnlChangePassword);
@@ -170,6 +181,7 @@
             Text = "TestView";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             pnlChangePassword.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)numericUpDown1).EndInit();
             ResumeLayout(false);
         }
 
@@ -186,5 +198,6 @@
         private DataGridViewTextBoxColumn Column5;
         private DataGridViewTextBoxColumn Column6;
         private CustomControls.CustomNumericUpDown customNumericUpDown1;
+        private NumericUpDown numericUpDown1;
     }
 }

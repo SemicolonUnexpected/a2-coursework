@@ -88,15 +88,17 @@
             tbValue.Name = "tbValue";
             tbValue.PlaceholderText = "";
             tbValue.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbValue.ReadOnly = true;
+            tbValue.ReadOnly = false;
             tbValue.Size = new Size(75, 40);
             tbValue.TabIndex = 21;
             tbValue.TextAlign = HorizontalAlignment.Center;
             tbValue.TextBoxInset = new Padding(10);
             tbValue.UsePasswordChar = false;
-            tbValue.KeyPress += tbCurrentPassword_KeyPress;
+            tbValue.TextChanged += tbValue_TextChanged;
+            tbValue.KeyPress += tbValue_KeyPress;
             tbValue.KeyDown += tbValue_KeyDown;
-            tbValue.PreviewKeyDown += tbCurrentPassword_PreviewKeyDown;
+            tbValue.PreviewKeyDown += tbValue_PreviewKeyDown;
+            tbValue.Leave += tbValue_Leave;
             // 
             // CustomNumericUpDown
             // 
@@ -107,7 +109,6 @@
             Controls.Add(tbValue);
             Name = "CustomNumericUpDown";
             Size = new Size(174, 41);
-            Leave += this.CustomNumericUpDown_Leave;
             ResumeLayout(false);
         }
 

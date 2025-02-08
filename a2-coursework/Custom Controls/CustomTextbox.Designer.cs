@@ -49,6 +49,7 @@
             tb.BackColor = Color.FromArgb(9, 9, 10);
             tb.BorderStyle = BorderStyle.None;
             tb.Dock = DockStyle.Fill;
+            tb.ForeColor = Color.White;
             tb.Location = new Point(10, 10);
             tb.Name = "tb";
             tb.PlaceholderTextColor = Color.Empty;

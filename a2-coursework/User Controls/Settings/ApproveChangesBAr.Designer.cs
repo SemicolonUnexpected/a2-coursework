@@ -64,9 +64,9 @@
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(100, 30);
             btnSave.TabIndex = 13;
-            btnSave.Text = "Save";
+            btnSave.Text = "Done";
             btnSave.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
-            btnSave.TextPosition = new Point(27, 5);
+            btnSave.TextPosition = new Point(26, 5);
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
