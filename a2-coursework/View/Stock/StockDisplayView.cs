@@ -10,14 +10,8 @@ public partial class StockDisplayView : Form, IStockDisplay {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;
-    public event EventHandler? ShowArchivedToggled;
+    public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;
-    public event EventHandler? PageChanged;
-    public event EventHandler? SelectedRowChanged;
-    public event EventHandler? DataGridResized;
-    public event ColumnClickEventHandler ColumnClick;
-    public event EventHandler? NameOrder;
-    public event EventHandler? QuantityLevelOrder;
 
     public StockDisplayView() {
         InitializeComponent();
@@ -36,9 +30,12 @@ public partial class StockDisplayView : Form, IStockDisplay {
         topBar.Add += (s, e) => Add?.Invoke(this, EventArgs.Empty);
         topBar.Edit += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
         topBar.ArchiveToggled += (s, e) => ArchiveToggled?.Invoke(this, EventArgs.Empty);
-        topBar.ShowArchivedToggled += (s, e) => ShowArchivedToggled?.Invoke(this, EventArgs.Empty);
+        topBar.ShowArchivedToggled += (s, e) => ShowArchivedChanged?.Invoke(this, EventArgs.Empty);
+        topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
 
-        paginator.PageChanged += (s, e) => PageChanged?.Invoke(this, EventArgs.Empty);
+        dataGridView.MouseWheel += (s, e) => {
+            sb.Value += e.Delta;
+        };
     }
 
     public void SetPresenter(StockDisplayPresenter presenter) => _presenter = presenter;
@@ -47,12 +44,12 @@ public partial class StockDisplayView : Form, IStockDisplay {
         BackColor = ColorScheme.CurrentTheme.Background;
 
         lblStock.ThemeTitle();
-        lblStockResult.ThemeSubtitle();
+        lblError.ThemeSubtitle();
 
         topBar.Theme();
         pnlData.Theme();
         dataGridView.Theme();
-        paginator.Theme();
+        sb.Theme();
     }
 
     private void SetFont() {
@@ -60,9 +57,8 @@ public partial class StockDisplayView : Form, IStockDisplay {
 
         topBar.SetFontName(fontName);
         dataGridView.SetFontName(fontName);
-        paginator.SetFontName(fontName);
         lblStock.SetFontName(fontName);
-        lblStockResult.SetFontName(fontName);
+        lblError.SetFontName(fontName);
     }
 
     public string SearchText {
@@ -70,58 +66,54 @@ public partial class StockDisplayView : Form, IStockDisplay {
         set => topBar.SearchText = value;
     }
 
-    public string StockResultText {
-        get => lblStockResult.Text;
-        set => lblStockResult.Text = value;
-    }
-
-    public bool ShowNoStocksToDisplay {
-        get => lblStockResult.Visible;
-        set => lblStockResult.Visible = value;
-    }
-
-    public int CurrentPageNumber {
-        get => paginator.CurrentPageNumber;
-        set => paginator.CurrentPageNumber = value;
-    }
-
-    public int NumberOfPages {
-        get => paginator.NumberOfPages;
-        set => paginator.NumberOfPages = value;
-    }
-
     public int SelectedRow {
         get => dataGridView.SelectedRows[0].Index;
         set => dataGridView.Rows[value].Selected = true;
     }
 
-    public bool EditVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public bool ArchiveVisible { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public bool ShowArchived {
+        get => topBar.ShowArchived;
+    }
 
-    public int DisplayHeight => dataGridView.Height - dataGridView.ColumnHeadersHeight;
-
-    public int RowHeight => dataGridView.RowTemplate.Height;
-
-    public bool EditEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public bool ArchiveEnabled { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-    public bool ShowArchived { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+    public string ErrorText {
+        get => lblError.Text;
+    }
 
     public void DisplayStock(List<object[]> data) {
         dataGridView.Rows.Clear();
         foreach (object[] row in data) {
             dataGridView.Rows.Add(row);
         }
+
+        lblError.Visible = data.Count == 0;
+
+        SetScrollOptions();
+    }
+
+    private void SetScrollOptions() {
+        int numberOfVisibleRows = (dataGridView.Height - dataGridView.ColumnHeadersHeight) / dataGridView.RowTemplate.Height;
+
+        sb.Maximum = dataGridView.RowCount - numberOfVisibleRows - 1;
+        sb.LargeChange = numberOfVisibleRows;
     }
 
     private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
         // Quantiity level is at index 4, row indexes start at 0 with the column header being index -1. Tiny bit odd
         if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
             if (e.Value is string quantityLevel) {
-                if (quantityLevel == "Low") e.CellStyle.ForeColor = ColorScheme.CurrentTheme.Danger;
-                else if (quantityLevel == "Medium") e.CellStyle.ForeColor = ColorScheme.CurrentTheme.Warning;
-                else if (quantityLevel == "High") e.CellStyle.ForeColor = ColorScheme.CurrentTheme.Info;
-                
+                if (quantityLevel == "Low") e.CellStyle!.ForeColor = ColorScheme.CurrentTheme.Danger;
+                else if (quantityLevel == "Medium") e.CellStyle!.ForeColor = ColorScheme.CurrentTheme.Warning;
+                else if (quantityLevel == "High") e.CellStyle!.ForeColor = ColorScheme.CurrentTheme.Info;
+
             }
         }
+    }
+
+    private void sb_ValueChanged(object sender, EventArgs e) {
+        dataGridView.FirstDisplayedScrollingRowIndex = sb.Value;
+    }
+
+    private void dataGridView_Resize(object sender, EventArgs e) {
+        SetScrollOptions();
     }
 }

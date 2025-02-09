@@ -23,14 +23,12 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
-            Column3 = new DataGridViewTextBoxColumn();
-            Column2 = new DataGridViewTextBoxColumn();
-            Column1 = new DataGridViewTextBoxColumn();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             dataGridView1 = new DataGridView();
+            Column1 = new DataGridViewTextBoxColumn();
+            Column2 = new DataGridViewTextBoxColumn();
+            Column3 = new DataGridViewTextBoxColumn();
             Column4 = new DataGridViewTextBoxColumn();
-            Column5 = new DataGridViewTextBoxColumn();
-            Column6 = new DataGridViewTextBoxColumn();
             pnlChangePassword = new CustomControls.CustomPanel();
             rbDarkMode = new CustomControls.CustomRadioButton();
             paginator1 = new CustomControls.Paginator();
@@ -41,24 +39,6 @@
             pnlChangePassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
             SuspendLayout();
-            // 
-            // Column3
-            // 
-            Column3.HeaderText = "Column3";
-            Column3.Name = "Column3";
-            Column3.Width = 81;
-            // 
-            // Column2
-            // 
-            Column2.HeaderText = "Column2";
-            Column2.Name = "Column2";
-            Column2.Width = 81;
-            // 
-            // Column1
-            // 
-            Column1.HeaderText = "Column1";
-            Column1.Name = "Column1";
-            Column1.Width = 81;
             // 
             // dataGridView1
             // 
@@ -71,15 +51,15 @@
             dataGridView1.BackgroundColor = Color.FromArgb(9, 9, 10);
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4, Column5, Column6 });
-            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = SystemColors.Window;
-            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = SystemColors.Window;
+            dataGridViewCellStyle2.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -88,27 +68,35 @@
             dataGridView1.Name = "dataGridView1";
             dataGridView1.RowHeadersVisible = false;
             dataGridView1.RowTemplate.Height = 100;
+            dataGridView1.ScrollBars = ScrollBars.None;
             dataGridView1.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView1.Size = new Size(477, 416);
             dataGridView1.TabIndex = 0;
+            dataGridView1.Scroll += dataGridView1_Scroll;
+            // 
+            // Column1
+            // 
+            Column1.HeaderText = "Column1";
+            Column1.Name = "Column1";
+            Column1.Width = 81;
+            // 
+            // Column2
+            // 
+            Column2.HeaderText = "Column2";
+            Column2.Name = "Column2";
+            Column2.Width = 81;
+            // 
+            // Column3
+            // 
+            Column3.HeaderText = "Column3";
+            Column3.Name = "Column3";
+            Column3.Width = 81;
             // 
             // Column4
             // 
             Column4.HeaderText = "Column4";
             Column4.Name = "Column4";
             Column4.Width = 81;
-            // 
-            // Column5
-            // 
-            Column5.HeaderText = "Column5";
-            Column5.Name = "Column5";
-            Column5.Width = 81;
-            // 
-            // Column6
-            // 
-            Column6.HeaderText = "Column6";
-            Column6.Name = "Column6";
-            Column6.Width = 81;
             // 
             // pnlChangePassword
             // 
@@ -159,6 +147,8 @@
             customNumericUpDown1.Size = new Size(174, 41);
             customNumericUpDown1.TabIndex = 5;
             customNumericUpDown1.Value = 4;
+            customNumericUpDown1.ValueChanged += customNumericUpDown1_ValueChanged;
+            customNumericUpDown1.Load += customNumericUpDown1_Load;
             // 
             // numericUpDown1
             // 
@@ -202,19 +192,16 @@
         }
 
         #endregion
-
-        private DataGridViewTextBoxColumn Column3;
-        private DataGridViewTextBoxColumn Column2;
-        private DataGridViewTextBoxColumn Column1;
         private DataGridView dataGridView1;
         private CustomControls.CustomPanel pnlChangePassword;
         private CustomControls.CustomRadioButton rbDarkMode;
         private CustomControls.Paginator paginator1;
-        private DataGridViewTextBoxColumn Column4;
-        private DataGridViewTextBoxColumn Column5;
-        private DataGridViewTextBoxColumn Column6;
         private CustomControls.CustomNumericUpDown customNumericUpDown1;
         private NumericUpDown numericUpDown1;
         private User_Controls.DataGrid.AddEditArchiveSearchBar addEditArchiveSearchBar1;
+        private DataGridViewTextBoxColumn Column1;
+        private DataGridViewTextBoxColumn Column2;
+        private DataGridViewTextBoxColumn Column3;
+        private DataGridViewTextBoxColumn Column4;
     }
 }

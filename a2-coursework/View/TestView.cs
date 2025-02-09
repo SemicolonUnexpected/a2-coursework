@@ -37,12 +37,12 @@ public partial class TestView : Form {
         dataGridView1.ForeColor = ColorScheme.CurrentTheme.Foreground;
 
 
-        dataGridView1.Rows.Add("item one",   false, DateTime.Now);
-        dataGridView1.Rows.Add("item two",   false, DateTime.Now);
+        dataGridView1.Rows.Add("item one", false, DateTime.Now);
+        dataGridView1.Rows.Add("item two", false, DateTime.Now);
         dataGridView1.Rows.Add("item three", false, DateTime.Now);
-        dataGridView1.Rows.Add("item four",  false, DateTime.Now);
+        dataGridView1.Rows.Add("item four", false, DateTime.Now);
         for (int i = 0; i < 100; i++) {
-            dataGridView1.Rows.Add($"item {i}", false, DateTime.Now, "This is a realy really really long an dbadly spetl message");
+            dataGridView1.Rows.Add($"item {i}", false, DateTime.Now, "abc");
         }
 
         foreach (DataGridViewRow row in dataGridView1.Rows) {
@@ -50,5 +50,17 @@ public partial class TestView : Form {
         }
 
         //dataGridView1.Columns["Column2"].CellTemplate = new DataGridViewCheckBoxCell();
+    }
+
+    private void dataGridView1_Scroll(object sender, ScrollEventArgs e) {
+        MessageBox.Show($"{e.OldValue}, {e.NewValue}");
+    }
+
+    private void customNumericUpDown1_Load(object sender, EventArgs e) {
+
+    }
+
+    private void customNumericUpDown1_ValueChanged(object sender, EventArgs e) {
+        dataGridView1.FirstDisplayedScrollingRowIndex += 1;
     }
 }

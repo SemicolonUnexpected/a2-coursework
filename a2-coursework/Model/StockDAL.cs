@@ -17,14 +17,14 @@ public static class StockDAL {
 
         List<StockItem> stock = [];
 
-        throw new NotImplementedException("Need an inner join ");
-
         if (await reader.ReadAsync()) {
             stock.Add(new StockItem(
-                stockId: reader.GetInt32(reader.GetOrdinal("")),
+                Id: reader.GetInt32(reader.GetOrdinal("")),
                 name: reader.GetString(reader.GetOrdinal("")),
                 description: reader.GetString(reader.GetOrdinal("")),
+                SKU: reader.GetString(reader.GetOrdinal("")),
                 quantity: reader.GetInt32(reader.GetOrdinal("")),
+                archived: reader.GetBoolean(reader.GetOrdinal("")),
                 lowQuantity: reader.GetInt32(reader.GetOrdinal("")),
                 highQuantity: reader.GetInt32(reader.GetOrdinal(""))));
         }
