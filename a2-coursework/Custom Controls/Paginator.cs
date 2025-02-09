@@ -46,7 +46,7 @@ public partial class Paginator : UserControl {
     }
 
     private int _currentPage;
-    public int CurrentPage {
+    public int CurrentPageNumber {
         get => _currentPage;
         set {
             if (_currentPage == value) return;
@@ -60,22 +60,22 @@ public partial class Paginator : UserControl {
     }
 
     private void btnFirst_Click(object sender, EventArgs e) {
-        CurrentPage = 1;
+        CurrentPageNumber = 1;
         ClearFocus();
     }
 
     private void btnPrevious_Click(object sender, EventArgs e) {
-        CurrentPage = Math.Max(1, CurrentPage - 1);
+        CurrentPageNumber = Math.Max(1, CurrentPageNumber - 1);
         ClearFocus();
     }
 
     private void btnLast_Click(object sender, EventArgs e) {
-        CurrentPage = NumberOfPages;
+        CurrentPageNumber = NumberOfPages;
         ClearFocus();
     }
 
     private void btnNext_Click(object sender, EventArgs e) {
-        CurrentPage = Math.Min(NumberOfPages, CurrentPage + 1);
+        CurrentPageNumber = Math.Min(NumberOfPages, CurrentPageNumber + 1);
         ClearFocus();
     }
 
@@ -87,7 +87,7 @@ public partial class Paginator : UserControl {
 
             if (!valid) tbPage.Text = _currentPage.ToString();
 
-            CurrentPage = Math.Clamp(1, NumberOfPages, page);
+            CurrentPageNumber = Math.Clamp(1, NumberOfPages, page);
         }
     }
 
@@ -96,7 +96,7 @@ public partial class Paginator : UserControl {
 
         if (!valid) tbPage.Text = _currentPage.ToString();
 
-        CurrentPage = Math.Clamp(1, NumberOfPages, page);
+        CurrentPageNumber = Math.Clamp(1, NumberOfPages, page);
     }
 
     private void Paginator_Click(object sender, EventArgs e) {

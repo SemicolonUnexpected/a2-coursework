@@ -23,24 +23,23 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlData = new CustomControls.CustomPanel();
+            lblStockResult = new Label();
             dataGridView = new DataGridView();
-            rbDarkMode = new CustomControls.CustomRadioButton();
-            lblStock = new Label();
-            paginator = new CustomControls.Paginator();
-            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             columnID = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnSKU = new DataGridViewTextBoxColumn();
             columnQuantity = new DataGridViewTextBoxColumn();
             columnQuantityLevel = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
-            lblStockResult = new Label();
+            rbDarkMode = new CustomControls.CustomRadioButton();
+            lblStock = new Label();
+            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -54,12 +53,25 @@
             pnlData.Controls.Add(dataGridView);
             pnlData.Controls.Add(rbDarkMode);
             pnlData.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlData.Location = new Point(14, 123);
+            pnlData.Location = new Point(14, 127);
             pnlData.Margin = new Padding(5);
             pnlData.Name = "pnlData";
             pnlData.Padding = new Padding(5);
-            pnlData.Size = new Size(621, 309);
+            pnlData.Size = new Size(621, 359);
             pnlData.TabIndex = 4;
+            // 
+            // lblStockResult
+            // 
+            lblStockResult.Anchor = AnchorStyles.Top;
+            lblStockResult.Font = new Font("Bahnschrift", 20F);
+            lblStockResult.ForeColor = Color.FromArgb(168, 171, 174);
+            lblStockResult.Location = new Point(5, 128);
+            lblStockResult.Margin = new Padding(10, 0, 10, 20);
+            lblStockResult.Name = "lblStockResult";
+            lblStockResult.Size = new Size(594, 103);
+            lblStockResult.TabIndex = 26;
+            lblStockResult.Text = "No items to display";
+            lblStockResult.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // dataGridView
             // 
@@ -73,26 +85,26 @@
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.Single;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle6.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 30;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnID, columnName, columnSKU, columnQuantity, columnQuantityLevel, columnArchived });
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle9.Font = new Font("Bahnschrift", 10F);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle9;
-            dataGridView.Dock = DockStyle.Fill;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.Font = new Font("Bahnschrift", 10F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridView.Dock = DockStyle.Left;
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView.EnableHeadersVisualStyles = false;
             dataGridView.GridColor = Color.FromArgb(39, 39, 42);
@@ -102,87 +114,37 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 30;
             dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle10.SelectionForeColor = Color.White;
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle5.SelectionForeColor = Color.White;
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridView.RowTemplate.Height = 30;
             dataGridView.ScrollBars = ScrollBars.None;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(611, 299);
+            dataGridView.Size = new Size(594, 349);
             dataGridView.TabIndex = 1;
             dataGridView.VirtualMode = true;
-            // 
-            // rbDarkMode
-            // 
-            rbDarkMode.Anchor = AnchorStyles.Right;
-            rbDarkMode.BorderThickness = 1.7F;
-            rbDarkMode.CheckColor = Color.White;
-            rbDarkMode.Checked = true;
-            rbDarkMode.CheckRadius = 5F;
-            rbDarkMode.ForeColor = Color.White;
-            rbDarkMode.Location = new Point(1160, 507);
-            rbDarkMode.Margin = new Padding(5);
-            rbDarkMode.Name = "rbDarkMode";
-            rbDarkMode.Size = new Size(17, 17);
-            rbDarkMode.TabIndex = 0;
-            rbDarkMode.Text = "customRadioButton1";
-            // 
-            // lblStock
-            // 
-            lblStock.Anchor = AnchorStyles.Top;
-            lblStock.AutoSize = true;
-            lblStock.Font = new Font("Bahnschrift", 24F);
-            lblStock.ForeColor = Color.White;
-            lblStock.Location = new Point(276, 19);
-            lblStock.Margin = new Padding(10);
-            lblStock.Name = "lblStock";
-            lblStock.Size = new Size(97, 39);
-            lblStock.TabIndex = 9;
-            lblStock.Text = "Stock";
-            // 
-            // paginator
-            // 
-            paginator.Anchor = AnchorStyles.Bottom;
-            paginator.BackColor = Color.FromArgb(9, 9, 10);
-            paginator.CurrentPage = 0;
-            paginator.Location = new Point(44, 444);
-            paginator.Name = "paginator";
-            paginator.NumberOfPages = 20;
-            paginator.Padding = new Padding(0, 2, 0, 2);
-            paginator.Size = new Size(561, 44);
-            paginator.TabIndex = 10;
-            // 
-            // topBar
-            // 
-            topBar.AddEnabled = true;
-            topBar.Anchor = AnchorStyles.Top;
-            topBar.ArchiveEnabled = true;
-            topBar.BackColor = Color.FromArgb(9, 9, 10);
-            topBar.EditEnabled = true;
-            topBar.Location = new Point(19, 78);
-            topBar.Name = "topBar";
-            topBar.Padding = new Padding(0, 2, 0, 2);
-            topBar.SearchText = "";
-            topBar.Size = new Size(611, 44);
-            topBar.TabIndex = 11;
+            dataGridView.CellFormatting += dataGridView_CellFormatting;
             // 
             // columnID
             // 
             columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             columnID.HeaderText = "ID";
             columnID.Name = "columnID";
+            columnID.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnID.Width = 40;
             // 
             // columnName
             // 
             columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
             columnName.HeaderText = "Name";
             columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // columnSKU
             // 
@@ -195,6 +157,7 @@
             columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
             columnQuantity.HeaderText = "Quantity";
             columnQuantity.Name = "columnQuantity";
+            columnQuantity.SortMode = DataGridViewColumnSortMode.NotSortable;
             columnQuantity.Width = 90;
             // 
             // columnQuantityLevel
@@ -208,24 +171,55 @@
             // columnArchived
             // 
             columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.TopRight;
-            columnArchived.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
+            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
             columnArchived.HeaderText = "Archived";
             columnArchived.Name = "columnArchived";
+            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnArchived.Width = 90;
             // 
-            // lblStockResult
+            // rbDarkMode
             // 
-            lblStockResult.Anchor = AnchorStyles.Top;
-            lblStockResult.Font = new Font("Bahnschrift", 20F);
-            lblStockResult.ForeColor = Color.FromArgb(168, 171, 174);
-            lblStockResult.Location = new Point(5, 103);
-            lblStockResult.Margin = new Padding(10, 0, 10, 20);
-            lblStockResult.Name = "lblStockResult";
-            lblStockResult.Size = new Size(611, 103);
-            lblStockResult.TabIndex = 26;
-            lblStockResult.Text = "No items to display";
-            lblStockResult.TextAlign = ContentAlignment.MiddleCenter;
+            rbDarkMode.Anchor = AnchorStyles.Right;
+            rbDarkMode.BorderThickness = 1.7F;
+            rbDarkMode.CheckColor = Color.White;
+            rbDarkMode.Checked = true;
+            rbDarkMode.CheckRadius = 5F;
+            rbDarkMode.ForeColor = Color.White;
+            rbDarkMode.Location = new Point(1160, 532);
+            rbDarkMode.Margin = new Padding(5);
+            rbDarkMode.Name = "rbDarkMode";
+            rbDarkMode.Size = new Size(17, 17);
+            rbDarkMode.TabIndex = 0;
+            rbDarkMode.Text = "customRadioButton1";
+            // 
+            // lblStock
+            // 
+            lblStock.Anchor = AnchorStyles.Top;
+            lblStock.AutoSize = true;
+            lblStock.Font = new Font("Bahnschrift", 24F);
+            lblStock.ForeColor = Color.White;
+            lblStock.Location = new Point(276, 23);
+            lblStock.Margin = new Padding(10);
+            lblStock.Name = "lblStock";
+            lblStock.Size = new Size(97, 39);
+            lblStock.TabIndex = 9;
+            lblStock.Text = "Stock";
+            // 
+            // topBar
+            // 
+            topBar.AddEnabled = true;
+            topBar.Anchor = AnchorStyles.Top;
+            topBar.ArchiveEnabled = true;
+            topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.EditEnabled = true;
+            topBar.Location = new Point(12, 75);
+            topBar.Name = "topBar";
+            topBar.Padding = new Padding(0, 2, 0, 2);
+            topBar.SearchText = "";
+            topBar.ShowArchivedEnabled = true;
+            topBar.Size = new Size(625, 44);
+            topBar.TabIndex = 11;
             // 
             // StockDisplayView
             // 
@@ -234,13 +228,11 @@
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(649, 500);
             Controls.Add(topBar);
-            Controls.Add(paginator);
             Controls.Add(lblStock);
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "StockDisplayView";
             Text = "StockDisplayView";
-            Load += StockDisplayView_Load;
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
@@ -252,15 +244,14 @@
         private CustomControls.CustomPanel pnlData;
         private CustomControls.CustomRadioButton rbDarkMode;
         private Label lblStock;
-        private CustomControls.Paginator paginator;
         private User_Controls.DataGrid.AddEditArchiveSearchBar topBar;
         private DataGridView dataGridView;
+        private Label lblStockResult;
         private DataGridViewTextBoxColumn columnID;
         private DataGridViewTextBoxColumn columnName;
         private DataGridViewTextBoxColumn columnSKU;
         private DataGridViewTextBoxColumn columnQuantity;
         private DataGridViewTextBoxColumn columnQuantityLevel;
         private DataGridViewTextBoxColumn columnArchived;
-        private Label lblStockResult;
     }
 }

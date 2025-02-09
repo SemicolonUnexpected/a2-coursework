@@ -23,22 +23,22 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StockWarningView));
             numericUpDown1 = new CustomControls.CustomNumericUpDown();
             lblName = new Label();
-            label1 = new Label();
-            customNumericUpDown1 = new CustomControls.CustomNumericUpDown();
             label2 = new Label();
             customNumericUpDown2 = new CustomControls.CustomNumericUpDown();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
+            lblStaffLink = new Label();
             SuspendLayout();
             // 
             // numericUpDown1
             // 
             numericUpDown1.BackColor = Color.FromArgb(9, 9, 10);
-            numericUpDown1.Location = new Point(148, 45);
+            numericUpDown1.Location = new Point(151, 156);
             numericUpDown1.Maximum = 1000000;
             numericUpDown1.Name = "numericUpDown1";
-            numericUpDown1.Size = new Size(174, 41);
+            numericUpDown1.Size = new Size(250, 41);
             numericUpDown1.TabIndex = 22;
             // 
             // lblName
@@ -47,34 +47,12 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Bahnschrift", 14F);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(148, 14);
+            lblName.Location = new Point(151, 125);
             lblName.Margin = new Padding(5, 10, 5, 5);
             lblName.Name = "lblName";
             lblName.Size = new Size(173, 23);
             lblName.TabIndex = 21;
             lblName.Text = "Low Quantity Level";
-            // 
-            // label1
-            // 
-            label1.Anchor = AnchorStyles.None;
-            label1.AutoSize = true;
-            label1.Font = new Font("Bahnschrift", 14F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(148, 99);
-            label1.Margin = new Padding(5, 10, 5, 5);
-            label1.Name = "label1";
-            label1.Size = new Size(204, 23);
-            label1.TabIndex = 21;
-            label1.Text = "Medium Quantity Level";
-            // 
-            // customNumericUpDown1
-            // 
-            customNumericUpDown1.BackColor = Color.FromArgb(9, 9, 10);
-            customNumericUpDown1.Location = new Point(148, 130);
-            customNumericUpDown1.Maximum = 1000000;
-            customNumericUpDown1.Name = "customNumericUpDown1";
-            customNumericUpDown1.Size = new Size(174, 41);
-            customNumericUpDown1.TabIndex = 22;
             // 
             // label2
             // 
@@ -82,7 +60,7 @@
             label2.AutoSize = true;
             label2.Font = new Font("Bahnschrift", 14F);
             label2.ForeColor = Color.White;
-            label2.Location = new Point(148, 184);
+            label2.Location = new Point(148, 210);
             label2.Margin = new Padding(5, 10, 5, 5);
             label2.Name = "label2";
             label2.Size = new Size(176, 23);
@@ -92,10 +70,10 @@
             // customNumericUpDown2
             // 
             customNumericUpDown2.BackColor = Color.FromArgb(9, 9, 10);
-            customNumericUpDown2.Location = new Point(148, 215);
+            customNumericUpDown2.Location = new Point(148, 241);
             customNumericUpDown2.Maximum = 1000000;
             customNumericUpDown2.Name = "customNumericUpDown2";
-            customNumericUpDown2.Size = new Size(174, 41);
+            customNumericUpDown2.Size = new Size(250, 41);
             customNumericUpDown2.TabIndex = 22;
             // 
             // approveChangesBar
@@ -109,18 +87,29 @@
             approveChangesBar.TabIndex = 23;
             approveChangesBar.ToolTipsActive = true;
             // 
+            // lblStaffLink
+            // 
+            lblStaffLink.Anchor = AnchorStyles.Top;
+            lblStaffLink.Font = new Font("Bahnschrift", 12F);
+            lblStaffLink.ForeColor = Color.FromArgb(168, 171, 174);
+            lblStaffLink.Location = new Point(151, 9);
+            lblStaffLink.Margin = new Padding(10, 0, 10, 20);
+            lblStaffLink.Name = "lblStaffLink";
+            lblStaffLink.Size = new Size(391, 98);
+            lblStaffLink.TabIndex = 26;
+            lblStaffLink.Text = resources.GetString("lblStaffLink.Text");
+            // 
             // StockWarningView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
+            Controls.Add(lblStaffLink);
             Controls.Add(approveChangesBar);
             Controls.Add(customNumericUpDown2);
-            Controls.Add(customNumericUpDown1);
             Controls.Add(numericUpDown1);
             Controls.Add(label2);
-            Controls.Add(label1);
             Controls.Add(lblName);
             FormBorderStyle = FormBorderStyle.None;
             Name = "StockWarningView";
@@ -133,10 +122,9 @@
 
         private CustomControls.CustomNumericUpDown numericUpDown1;
         private Label lblName;
-        private Label label1;
-        private CustomControls.CustomNumericUpDown customNumericUpDown1;
         private Label label2;
         private CustomControls.CustomNumericUpDown customNumericUpDown2;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
+        private Label lblStaffLink;
     }
 }

@@ -36,6 +36,7 @@
             paginator1 = new CustomControls.Paginator();
             customNumericUpDown1 = new CustomControls.CustomNumericUpDown();
             numericUpDown1 = new NumericUpDown();
+            addEditArchiveSearchBar1 = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlChangePassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -142,7 +143,7 @@
             // paginator1
             // 
             paginator1.BackColor = Color.Red;
-            paginator1.CurrentPage = 0;
+            paginator1.CurrentPageNumber = 0;
             paginator1.Location = new Point(19, 455);
             paginator1.Name = "paginator1";
             paginator1.NumberOfPages = 20;
@@ -166,12 +167,27 @@
             numericUpDown1.Size = new Size(120, 23);
             numericUpDown1.TabIndex = 6;
             // 
+            // addEditArchiveSearchBar1
+            // 
+            addEditArchiveSearchBar1.AddEnabled = true;
+            addEditArchiveSearchBar1.ArchiveEnabled = true;
+            addEditArchiveSearchBar1.BackColor = Color.FromArgb(9, 9, 10);
+            addEditArchiveSearchBar1.EditEnabled = true;
+            addEditArchiveSearchBar1.Location = new Point(565, 181);
+            addEditArchiveSearchBar1.Name = "addEditArchiveSearchBar1";
+            addEditArchiveSearchBar1.Padding = new Padding(2);
+            addEditArchiveSearchBar1.SearchText = "";
+            addEditArchiveSearchBar1.ShowArchivedEnabled = true;
+            addEditArchiveSearchBar1.Size = new Size(433, 44);
+            addEditArchiveSearchBar1.TabIndex = 7;
+            // 
             // TestView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(1253, 511);
+            Controls.Add(addEditArchiveSearchBar1);
             Controls.Add(numericUpDown1);
             Controls.Add(customNumericUpDown1);
             Controls.Add(paginator1);
@@ -199,5 +215,6 @@
         private DataGridViewTextBoxColumn Column6;
         private CustomControls.CustomNumericUpDown customNumericUpDown1;
         private NumericUpDown numericUpDown1;
+        private User_Controls.DataGrid.AddEditArchiveSearchBar addEditArchiveSearchBar1;
     }
 }

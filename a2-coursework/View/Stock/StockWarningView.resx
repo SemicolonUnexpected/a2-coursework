@@ -117,4 +117,7 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="lblStaffLink.Text" xml:space="preserve">
+    <value>If the stock quantity is less that or equal to the low quantity level, "Low" will be displayed. If the stock quantity  is greater than or equal to the high quantity level, "High" will be displayed. Otherwise, "Medium" will be displayed.</value>
+  </data>
 </root>

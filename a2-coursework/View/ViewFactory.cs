@@ -69,27 +69,27 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    public static (StockDisplayView view, StockDisplayPresenter presenter) CreateStockDisplay(Stock stock) {
-        StockDisplayView view = new();
-        StockDisplayPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
+    //public static (StockDisplayView view, StockDisplayPresenter presenter) CreateStockDisplay(Stock stock) {
+    //    StockDisplayView view = new();
+    //    StockDisplayPresenter presenter = new(view, staff);
+    //    view.SetPresenter(presenter);
 
-        return (view, presenter);
-    }
+    //    return (view, presenter);
+    //}
 
-    public static (StockAddView view, StockAddPresenter presenter) CreateStockAdd(Staff staff) {
-        StockAddView view = new();
-        StockAddPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
+    //public static (StockAddView view, StockAddPresenter presenter) CreateStockAdd(Staff staff) {
+    //    StockAddView view = new();
+    //    StockAddPresenter presenter = new(view, staff);
+    //    view.SetPresenter(presenter);
 
-        return (view, presenter);
-    }
+    //    return (view, presenter);
+    //}
 
-    public static (StockEditView view, StockEditPresenter presenter) CreateStockEdit(Staff staff) {
-        StockEditView view = new();
-        StockEditPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
+    //public static (StockEditView view, StockEditPresenter presenter) CreateStockEdit(Staff staff) {
+    //    StockEditView view = new();
+    //    StockEditPresenter presenter = new(view, staff);
+    //    view.SetPresenter(presenter);
 
-        return (view, presenter);
-    }
+    //    return (view, presenter);
+    //}
 }

@@ -1,8 +1,8 @@
 ﻿using a2_coursework.CustomControls;
 using a2_coursework.Theming;
 using a2_coursework.Presenter.Settings;
-using a2_coursework.View.Interfaces.Settings;
 using a2_coursework._Helpers;
+using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
 public partial class AppearanceSettingsView : Form, IAppearanceSettings {

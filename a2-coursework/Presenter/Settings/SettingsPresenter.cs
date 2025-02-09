@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Model;
-using a2_coursework.View.Interfaces.Settings;
+using a2_coursework.View.Interfaces.Users.Settings;
 
-namespace a2_coursework.Presenter.Settings; 
+namespace a2_coursework.Presenter.Settings;
 public abstract class SettingsPresenter<TView> where TView : ISettingsView {
     protected readonly TView _view;
     protected readonly Staff _staff;

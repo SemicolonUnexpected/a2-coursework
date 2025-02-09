@@ -83,6 +83,26 @@ namespace a2_coursework.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap archive_restore_dark {
+            get {
+                object obj = ResourceManager.GetObject("archive-restore-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap archive_restore_light {
+            get {
+                object obj = ResourceManager.GetObject("archive-restore-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap brightness {
             get {
                 object obj = ResourceManager.GetObject("brightness", resourceCulture);
@@ -336,6 +356,46 @@ namespace a2_coursework.Properties {
         internal static System.Drawing.Bitmap navigation_light {
             get {
                 object obj = ResourceManager.GetObject("navigation-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap package_dark {
+            get {
+                object obj = ResourceManager.GetObject("package-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap package_light {
+            get {
+                object obj = ResourceManager.GetObject("package-light", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap package_open_dark {
+            get {
+                object obj = ResourceManager.GetObject("package-open-dark", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap package_open_light {
+            get {
+                object obj = ResourceManager.GetObject("package-open-light", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

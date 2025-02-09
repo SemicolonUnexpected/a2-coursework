@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Model;
-using a2_coursework.View.Interfaces.Settings;
+using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Settings;
 public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmergencyContactSettings> {

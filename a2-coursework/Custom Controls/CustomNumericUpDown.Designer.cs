@@ -30,6 +30,7 @@
             // 
             // btnDecrement
             // 
+            btnDecrement.Anchor = AnchorStyles.Right;
             btnDecrement.BackColor = Color.FromArgb(9, 9, 10);
             btnDecrement.BorderColor = Color.FromArgb(39, 39, 42);
             btnDecrement.BorderThickness = 1F;
@@ -43,7 +44,7 @@
             btnDecrement.HoverColor = Color.FromArgb(39, 39, 42);
             btnDecrement.Image = Properties.Resources.minus_light;
             btnDecrement.ImageRectangle = new Rectangle(7, 7, 26, 26);
-            btnDecrement.Location = new Point(131, 0);
+            btnDecrement.Location = new Point(224, 0);
             btnDecrement.Name = "btnDecrement";
             btnDecrement.Size = new Size(40, 40);
             btnDecrement.TabIndex = 23;
@@ -52,6 +53,7 @@
             // 
             // btnIncrement
             // 
+            btnIncrement.Anchor = AnchorStyles.Left;
             btnIncrement.BackColor = Color.FromArgb(9, 9, 10);
             btnIncrement.BorderColor = Color.FromArgb(39, 39, 42);
             btnIncrement.BorderThickness = 1F;
@@ -74,6 +76,7 @@
             // 
             // tbValue
             // 
+            tbValue.Anchor = AnchorStyles.Left | AnchorStyles.Right;
             tbValue.BackColor = Color.FromArgb(9, 9, 10);
             tbValue.BorderColor = Color.FromArgb(39, 39, 42);
             tbValue.BorderThickness = 1F;
@@ -89,7 +92,7 @@
             tbValue.PlaceholderText = "";
             tbValue.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbValue.ReadOnly = false;
-            tbValue.Size = new Size(75, 40);
+            tbValue.Size = new Size(168, 40);
             tbValue.TabIndex = 21;
             tbValue.TextAlign = HorizontalAlignment.Center;
             tbValue.TextBoxInset = new Padding(10);
@@ -108,7 +111,7 @@
             Controls.Add(btnIncrement);
             Controls.Add(tbValue);
             Name = "CustomNumericUpDown";
-            Size = new Size(174, 41);
+            Size = new Size(267, 41);
             ResumeLayout(false);
         }
 

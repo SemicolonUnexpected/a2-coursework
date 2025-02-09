@@ -41,8 +41,4 @@
     </None>
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="View\Interfaces\Stock\" />
-  </ItemGroup>
-
 </Project>

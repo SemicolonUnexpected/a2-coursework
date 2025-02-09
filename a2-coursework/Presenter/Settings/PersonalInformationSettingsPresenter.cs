@@ -1,5 +1,5 @@
 ﻿using a2_coursework.Model;
-using a2_coursework.View.Interfaces.Settings;
+using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Settings;
 public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings> {
