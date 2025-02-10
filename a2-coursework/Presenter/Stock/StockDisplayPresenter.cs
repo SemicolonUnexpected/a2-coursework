@@ -17,6 +17,7 @@ public class StockDisplayPresenter {
 
         _view.ShowArchivedChanged += (s, e) => DisplayData();
         _view.Search += (s, e) => Search();
+        _view.SelectedId
     }
 
     public async void LoadData() {

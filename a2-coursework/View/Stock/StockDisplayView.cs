@@ -3,6 +3,7 @@ using a2_coursework.Presenter.Stock;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Stock;
 using System.ComponentModel;
+using System.Diagnostics;
 namespace a2_coursework.View;
 public partial class StockDisplayView : Form, IStockDisplay {
     private StockDisplayPresenter? _presenter;
@@ -12,6 +13,7 @@ public partial class StockDisplayView : Form, IStockDisplay {
     public event EventHandler? ArchiveToggled;
     public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;
+    public event EventHandler? SelectionChanged;
 
     public StockDisplayView() {
         InitializeComponent();
@@ -20,6 +22,10 @@ public partial class StockDisplayView : Form, IStockDisplay {
         columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnQuantityLevel.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+        float scalingFactor = DeviceDpi / 96f;
+        dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);
+        dataGridView.RowTemplate.Height = (int)(30 * scalingFactor);
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
@@ -35,9 +41,11 @@ public partial class StockDisplayView : Form, IStockDisplay {
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
 
         dataGridView.MouseWheel += (s, e) => {
-            sb.Value -= e.Delta;
+            sb.Value -= Math.Sign(e.Delta);
             sb.Refresh();
         };
+
+        dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetPresenter(StockDisplayPresenter presenter) => _presenter = presenter;
@@ -68,7 +76,7 @@ public partial class StockDisplayView : Form, IStockDisplay {
         set => topBar.SearchText = value;
     }
 
-    public int? SelectedRow {
+    public int? SelectedId {
         get {
             try {
                 return dataGridView.SelectedRows[0].Index;
@@ -76,11 +84,6 @@ public partial class StockDisplayView : Form, IStockDisplay {
             catch (ArgumentOutOfRangeException) {
                 return null;
             }
-        }
-        set {
-            if (value is null) return;
-
-            dataGridView.Rows[(int)value].Selected = true;
         }
     }
 

@@ -11,7 +11,7 @@ public interface IStockDisplay : IThemeable, IChildView {
     public string SearchText { get; set; }
     public string DataGridText { set; }
     public bool ShowArchived { get; }
-    public int? SelectedRow { get; set; }
+    public int? SelectedId { get; set; }
 
     public void DisplayData(List<object[]> data);
     public void ClearData();
