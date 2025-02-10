@@ -68,6 +68,15 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
         set => btnShowArchived.Enabled = value;
     }
 
+    public bool SearchEnabled {
+        get => tbSearch.Enabled;
+        set {
+            tbSearch.Enabled = value;
+            pbSearchBtn.Enabled = value;
+            btnClear.Enabled = value;
+        }
+    }
+
     private bool _restore = false;
     [DefaultValue(false)]
     public bool Restore {

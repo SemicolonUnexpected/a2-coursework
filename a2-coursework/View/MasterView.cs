@@ -125,7 +125,6 @@ public partial class MasterView : Form, IMaster {
         pnlHolder.Controls.Clear();
         if (ChildView is not null) {
             ChildView.MouseWheel -= OnChildMouseWheel;
-            ChildView.Dispose();
         }
 
         ChildView = childView;

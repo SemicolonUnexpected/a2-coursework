@@ -13,7 +13,7 @@ public class MasterPresenter {
 
         string[][] menuItems = staff.PrivilegeLevel switch {
             PrivilegeLevel.User =>      [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
-            PrivilegeLevel.Admin =>     [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
+            PrivilegeLevel.Admin =>     [["Dashboard"], ["Stock"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
             PrivilegeLevel.Manager =>   [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
             _ => throw new NotImplementedException(),
         };
@@ -30,6 +30,7 @@ public class MasterPresenter {
         "Contact details" => GetContactDetailsSettings(),
         "Appearance" => GetAppearanceSettings(),
         "Security" => GetSecuritySettings(),
+        "Stock" => GetStockDisplayView(),
         _ => throw new NotImplementedException(),
     };
 
@@ -42,4 +43,5 @@ public class MasterPresenter {
     private IChildView GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff).view;
     private IChildView GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff).view;
     private IChildView GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff).view;
+    private IChildView GetStockDisplayView() => ViewFactory.CreateStockDisplay().view;
 }

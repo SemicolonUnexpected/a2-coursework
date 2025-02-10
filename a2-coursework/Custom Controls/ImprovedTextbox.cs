@@ -51,8 +51,7 @@ public partial class ImprovedTextBox : TextBox {
 
     public new string Text {
         get {
-            if (_isPlaceholderText) return "";
-            return base.Text;
+            return _isPlaceholderText ? "" : base.Text;
         }
         set {
             TryRemovePlaceholderText();
@@ -67,7 +66,7 @@ public partial class ImprovedTextBox : TextBox {
         get => _usePasswordChar;
         set {
             _usePasswordChar = value;
-            if (!_isPlaceholderText) UseSystemPasswordChar = _usePasswordChar;
+            if (!_isPlaceholderText) base.UseSystemPasswordChar = _usePasswordChar;
         }
     }
 
@@ -83,12 +82,12 @@ public partial class ImprovedTextBox : TextBox {
 
     protected override void OnLeave(EventArgs e) {
         base.OnLeave(e);
-        TrySetPlaceholderText();
+        BeginInvoke(TrySetPlaceholderText);
     }
 
     protected override void OnLostFocus(EventArgs e) {
         base.OnLostFocus(e);
-        TrySetPlaceholderText();
+        BeginInvoke(TrySetPlaceholderText);
     }
 
     private void TrySetPlaceholderText() {

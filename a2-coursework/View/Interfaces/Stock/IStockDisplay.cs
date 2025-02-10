@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces.Stock;
-public interface IStockDisplay : IThemeable {
+public interface IStockDisplay : IThemeable, IChildView {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;
@@ -9,8 +9,11 @@ public interface IStockDisplay : IThemeable {
     public event EventHandler? Search;
 
     public string SearchText { get; set; }
-    public bool ShowArchived { get; set; }
-    public int SelectedRow { get; set; }
+    public string DataGridText { set; }
+    public bool ShowArchived { get; }
+    public int? SelectedRow { get; set; }
 
-    public void DisplayStock(List<object[]> data);
+    public void DisplayData(List<object[]> data);
+    public void ClearData();
+    public void DisableAll();
 }

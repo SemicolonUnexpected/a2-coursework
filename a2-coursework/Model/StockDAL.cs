@@ -17,16 +17,16 @@ public static class StockDAL {
 
         List<StockItem> stock = [];
 
-        if (await reader.ReadAsync()) {
+        while (await reader.ReadAsync()) {
             stock.Add(new StockItem(
-                Id: reader.GetInt32(reader.GetOrdinal("")),
-                name: reader.GetString(reader.GetOrdinal("")),
-                description: reader.GetString(reader.GetOrdinal("")),
-                SKU: reader.GetString(reader.GetOrdinal("")),
-                quantity: reader.GetInt32(reader.GetOrdinal("")),
-                archived: reader.GetBoolean(reader.GetOrdinal("")),
-                lowQuantity: reader.GetInt32(reader.GetOrdinal("")),
-                highQuantity: reader.GetInt32(reader.GetOrdinal(""))));
+                Id: reader.GetInt32(reader.GetOrdinal("Id")),
+                name: reader.GetString(reader.GetOrdinal("Name")),
+                description: reader.GetString(reader.GetOrdinal("Description")),
+                SKU: reader.GetString(reader.GetOrdinal("SKU")),
+                quantity: reader.GetInt32(reader.GetOrdinal("Quantity")),
+                archived: reader.GetBoolean(reader.GetOrdinal("Archived")),
+                lowQuantity: reader.GetInt32(reader.GetOrdinal("LowQuantity")),
+                highQuantity: reader.GetInt32(reader.GetOrdinal("HighQuantity"))));
         }
 
         return stock;
