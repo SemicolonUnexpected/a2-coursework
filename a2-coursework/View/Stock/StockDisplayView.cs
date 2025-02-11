@@ -76,10 +76,10 @@ public partial class StockDisplayView : Form, IStockDisplay {
         set => topBar.SearchText = value;
     }
 
-    public int? SelectedId {
+    public DataGridViewRow? SelectedRow {
         get {
             try {
-                return dataGridView.SelectedRows[0].Index;
+                return dataGridView.SelectedRows[0];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -87,7 +87,7 @@ public partial class StockDisplayView : Form, IStockDisplay {
         }
     }
 
-    public bool ShowArchived {
+    public bool ShowArchivedStockItem {
         get => topBar.ShowArchived;
     }
 
@@ -97,6 +97,11 @@ public partial class StockDisplayView : Form, IStockDisplay {
             lblError.Text = value;
             lblError.Visible = lblError.Text != "";
         }
+    }
+
+    public bool StockItemArchived {
+        get => topBar.Restore;
+        set => topBar.Restore = value;
     }
 
     public void DisplayData(List<object[]> data) {
@@ -109,13 +114,25 @@ public partial class StockDisplayView : Form, IStockDisplay {
         SetScrollOptions();
     }
 
+    public void RemoveRow(DataGridViewRow row) {
+        dataGridView.Rows.Remove(row);
+    }
+
     public void ClearData() {
         dataGridView.Rows.Clear();
 
         SetScrollOptions();
     }
 
-    public void DisableAll() => topBar.Enabled = false;
+    public void DisableAll() {
+        topBar.Enabled = false;
+        dataGridView.ReadOnly = true;
+    }
+
+    public void EnableAll() {
+        topBar.Enabled = true;
+        dataGridView.ReadOnly = false;
+    }
 
     private void SetScrollOptions() {
         int numberOfVisibleRows = (dataGridView.Height - dataGridView.ColumnHeadersHeight) / dataGridView.RowTemplate.Height;

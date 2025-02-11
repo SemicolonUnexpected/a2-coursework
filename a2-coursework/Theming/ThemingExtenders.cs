@@ -82,6 +82,11 @@ internal static class ThemingExtenders {
         dataGridView.RowHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
         dataGridView.RowHeadersDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
 
+        dataGridView.RowsDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
+        dataGridView.RowsDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.RowsDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
+        dataGridView.RowsDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+
         dataGridView.AdvancedRowHeadersBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
         dataGridView.AdvancedRowHeadersBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
         dataGridView.AdvancedRowHeadersBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;

@@ -7,13 +7,17 @@ public interface IStockDisplay : IThemeable, IChildView {
     public event EventHandler? ArchiveToggled;
     public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;
+    public event EventHandler? SelectionChanged;
 
     public string SearchText { get; set; }
     public string DataGridText { set; }
-    public bool ShowArchived { get; }
-    public int? SelectedId { get; set; }
+    public bool ShowArchivedStockItem { get; }
+    public bool StockItemArchived { set; get; }
+    public DataGridViewRow? SelectedRow { get; }
 
     public void DisplayData(List<object[]> data);
+    public void RemoveRow(DataGridViewRow row);
     public void ClearData();
     public void DisableAll();
+    public void EnableAll();
 }
