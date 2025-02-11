@@ -3,6 +3,7 @@ A2 Coursework, yay!
 
 ## Todo
 
+- Decide on best way to do db query
 
 ## Things that are semi-fixed (i.e. I don't know what went wrong, but its gone now after some code that i dont trust)
 
@@ -50,3 +51,12 @@ A2 Coursework, yay!
 - Performace
 - Logs
 
+##### Stock
+
+- Dashboard
+
+##### Bookings
+
+- Dashboard
+- Upcoming bookings
+- 

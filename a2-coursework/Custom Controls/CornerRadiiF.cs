@@ -4,10 +4,16 @@ using System.Diagnostics;
 
 namespace a2_coursework.CustomControls;
 
+/// <summary>
+/// Represents a rounded corner radii for a control 
+///</summary>
 [TypeConverter(typeof(CornerRadiiFConverter))]
 public struct CornerRadiiF : IEquatable<CornerRadiiF> {
 
-    public static CornerRadiiF Empty;
+  /// <summary>
+  /// Represents a rounded corner radii for a control 
+  ///</summary>
+    public static CornerRadiiF Empty = new(0);
 
     public CornerRadiiF(float all) => All = all;
 

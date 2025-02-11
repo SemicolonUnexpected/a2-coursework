@@ -13,7 +13,23 @@ public class MasterPresenter {
 
         string[][] menuItems = staff.PrivilegeLevel switch {
             PrivilegeLevel.User =>      [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
-            PrivilegeLevel.Admin =>     [["Dashboard"], ["Stock"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
+            PrivilegeLevel.Admin =>     [
+              ["Dashboard"],
+              ["Stock",
+              "Manage stock",
+              "Request stock",
+              "Upcoming deliveries"],
+              ["Security",
+              "Manage Staff",
+              "Login attempts",
+              "Change password"],
+              ["Settings",
+              "Personal information",
+              "Contact details",
+              "Emergency contact",
+              "Security",
+              "Appearance"]
+            ],
             PrivilegeLevel.Manager =>   [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
             _ => throw new NotImplementedException(),
         };
