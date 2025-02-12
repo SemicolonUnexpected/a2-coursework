@@ -4,6 +4,8 @@ using a2_coursework.View.Settings;
 using a2_coursework.Presenter.Stock;
 using a2_coursework.View.Stock;
 using a2_coursework.Presenter.Users.Settings;
+using a2_coursework.Presenter.Users;
+using a2_coursework.View.Users;
 
 namespace a2_coursework.View;
 public static class ViewFactory {
@@ -26,7 +28,6 @@ public static class ViewFactory {
     public static (MasterView view, MasterPresenter presenter) CreateMaster(Staff staff) {
         MasterView view = new();
         MasterPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }
@@ -100,6 +101,13 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
+    public static (ChangePasswordView view, ChangePasswordPresenter presenter) CreateChangePassword(Staff staff) {
+        ChangePasswordView view = new();
+        ChangePasswordPresenter presenter = new(view, staff);
+        view.SetPresenter(presenter);
+
+        return (view, presenter);
+    }
     //public static (StockAddView view, StockAddPresenter presenter) CreateStockAdd(Staff staff) {
     //    StockAddView view = new();
     //    StockAddPresenter presenter = new(view, staff);

@@ -54,7 +54,7 @@ public class LoginPresenter {
         byte[]? salt;
 
         try {
-            Task<(byte[]?, byte[]?)> getUserData = StaffDAL.GetUserCredentialsAsync(username);
+            Task<(byte[]?, byte[]?)> getUserData = StaffDAL.GetStaffCredentials(username);
             await Task.WhenAll(getUserData, Task.Delay(1500));
 
             (hash, salt) = await getUserData;
@@ -70,7 +70,7 @@ public class LoginPresenter {
             }
 
             if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) {
-                LoginSuccessful?.Invoke(this, (await StaffDAL.GetUser(username))!);
+                LoginSuccessful?.Invoke(this, (await StaffDAL.GetStaff(username))!);
                 await StaffDAL.LogLoginAttempt(username, DateTime.UtcNow, true);
             }
             else {

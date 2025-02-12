@@ -31,12 +31,6 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettings> {
         bool newPasswordEmpty = _view.NewPassword.Length == 0;
         bool confirmPasswordEmpty = _view.ConfirmPassword.Length == 0;
 
-        // The new password does not meet the requirements
-        if (!ValidatePassword()) {
-            _view.PasswordError = "Password does not satisfy the requirements";
-            return false;
-        }
-
         // Something is missing
         if (currentPasswordEmpty || newPasswordEmpty || confirmPasswordEmpty) {
             _view.PasswordError = (currentPasswordEmpty, newPasswordEmpty, confirmPasswordEmpty) switch {
@@ -49,6 +43,12 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettings> {
                 (false, true, true) => "New and confirm password are required",
                 _ => throw new NotImplementedException(),
             };
+            return false;
+        }
+
+        // The new password does not meet the requirements
+        if (!ValidatePassword()) {
+            _view.PasswordError = "Password does not satisfy the requirements";
             return false;
         }
 
@@ -85,7 +85,7 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettings> {
         _view.PrivilegeLevel = _staff.PrivilegeLevel.ToString();
     }
 
-    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdatePassword(_staff.StaffID, Convert.ToHexString(_newHash!), Convert.ToHexString(_newSalt!));
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdatePassword(_staff.Id, Convert.ToHexString(_newHash!), Convert.ToHexString(_newSalt!));
 
     protected override void UpdateStaff() {
         _staff.HashedPassword = _newHash!;

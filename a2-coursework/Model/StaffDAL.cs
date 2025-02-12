@@ -7,22 +7,22 @@ namespace a2_coursework.Model;
 internal static class StaffDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-    public static async Task<(byte[]? hash, byte[]? salt)> GetUserCredentialsAsync(string username) {
+    public static async Task<(byte[]? hash, byte[]? salt)> GetStaffCredentials(string username) {
         byte[]? hash;
         byte[]? salt;
 
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("GetUserCredentials", connection);
+        await using SqlCommand command = new("GetStaffCredentials", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("username", username);
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
         if (await reader.ReadAsync()) {
-            hash = Convert.FromHexString(reader["HashedPassword"].ToString()!);
-            salt = Convert.FromHexString(reader["Salt"].ToString()!);
+            hash = Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword")));
+            salt = Convert.FromHexString(reader.GetString(reader.GetOrdinal("Salt")));
         }
         else {
             hash = null;
@@ -47,7 +47,7 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<Staff?> GetUser(string username) {
+    public static async Task<Staff?> GetStaff(string username) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -60,7 +60,7 @@ internal static class StaffDAL {
             // Handle potential null values safely
             return new Staff(
                 staffID: reader.GetInt32(reader.GetOrdinal("StaffID")),
-                hashedPassword: Convert.FromHexString(reader["HashedPassword"].ToString()!),
+                hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
                 salt: Convert.FromHexString(reader["Salt"].ToString()!),
                 lastPasswordChange: reader.GetDateTime(reader.GetOrdinal("LastPasswordChange")),
                 username: reader.GetString(reader.GetOrdinal("Username")),
@@ -143,23 +143,6 @@ internal static class StaffDAL {
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
-    }
-
-    public static async Task<string[]> GetDepartments() {
-        await using SqlConnection connection = new(_connectionString);
-        await connection.OpenAsync();
-
-        await using SqlCommand command = new("GetDepartments", connection);
-        command.CommandType = CommandType.StoredProcedure;
-
-        using SqlDataReader reader = command.ExecuteReader();
-
-        List<string> rows = new();
-        while (await reader.ReadAsync()) {
-            rows.Add(reader["Departments"].ToString()!);
-        }
-
-        return [.. rows];
     }
 
     public static async Task<bool> UpdatePassword(int staffId, string hashedPassword, string salt) {

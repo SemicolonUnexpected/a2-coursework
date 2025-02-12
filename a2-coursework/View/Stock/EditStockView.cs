@@ -4,6 +4,6 @@ public partial class EditStockView : Form {
         InitializeComponent();
     }
 
-
-
+    public void DisplayView() {
+    }
 }

@@ -7,7 +7,8 @@ using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
 public partial class MasterView : Form, IMasterView {
-    private MasterPresenter? _presenter;
+    public event EventHandler<string>? ToggleChanged;
+    public event EventHandler? SignOut;
 
     public MasterView() {
         InitializeComponent();
@@ -19,10 +20,10 @@ public partial class MasterView : Form, IMasterView {
 
         SetFont();
         Theming.Theme.FontNameChanged += (s, e) => SetFont();
-    }
 
-    public void SetPresenter(MasterPresenter presenter) {
-        _presenter = presenter;
+        topBar.SignOut += (s, e) => SignOut?.Invoke(this, EventArgs.Empty);
+        sideMenu.SideMenuToggleChanged += (s, e) => ToggleChanged?.Invoke(this, ((ToggleButton)s!).Text);
+
     }
 
     public void Theme() {
@@ -44,10 +45,7 @@ public partial class MasterView : Form, IMasterView {
         pnlCover.Visible = false;
     }
 
-    #region Interface members
-    public void GenerateMenu(string[][] menuItems) {
-        sideMenu.GenerateMenu(menuItems);
-    }
+    public void GenerateMenu(string[][] menuItems) => sideMenu.GenerateMenu(menuItems);
 
     private IChildView? _childForm;
     public IChildView? ChildView {
@@ -68,10 +66,6 @@ public partial class MasterView : Form, IMasterView {
             dropdown.ToggleButtons[j].Toggled = toggled;
         }
     }
-
-    #endregion
-
-    #region Scrolling
 
     private void SetScrollOptions() {
         if (ChildView is null) return;
@@ -100,25 +94,12 @@ public partial class MasterView : Form, IMasterView {
         ChildView.Location = new Point(0, -sb.Value);
     }
 
-    #endregion
-
-    #region Sizing
-
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
         SetScrollOptions();
 
         if (ChildView is not null) ChildView.Width = pnlHolder.Width;
     }
-
-    protected override void OnDockChanged(EventArgs e) {
-        SetScrollOptions();
-        base.OnDockChanged(e);
-    }
-
-    #endregion
-
-    #region Navigation
 
     public void DisplayChildForm(IChildView childView) {
         // Remove the previous child form
@@ -151,12 +132,4 @@ public partial class MasterView : Form, IMasterView {
 
         if (!ChildView?.CanExit() ?? false) e.Handled = true;
     }
-
-    private void sideMenu_SideMenuToggleChanged(object sender, EventArgs e) {
-        IChildView nextView = _presenter!.GetToggledView(((ToggleButton)sender).Text);
-
-        DisplayChildForm(nextView);
-    }
-
-    #endregion
 }

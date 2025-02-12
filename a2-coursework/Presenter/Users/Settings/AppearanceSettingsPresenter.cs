@@ -27,5 +27,5 @@ public class AppearanceSettingsPresenter : SettingsPresenter<IAppearanceSettings
 
     protected override bool AnyChanges() => _view.DarkModeChecked != _staff.Theme.IsDarkMode || _view.ToolTipsChecked != _staff.Theme.ShowToolTips || _view.FontName != _staff.Theme.FontName;
 
-    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateAppearanceSettings(_staff.StaffID, new Theming.Theme(_view.DarkModeChecked ? Theming.AppearanceTheme.Dark : Theming.AppearanceTheme.Light, _view.ToolTipsChecked, _view.FontName));
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateAppearanceSettings(_staff.Id, new Theming.Theme(_view.DarkModeChecked ? Theming.AppearanceTheme.Dark : Theming.AppearanceTheme.Light, _view.ToolTipsChecked, _view.FontName));
 }

@@ -34,6 +34,7 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
         btnShowArchived.Image = _showArchived ? IconTheme.CurrentTheme.OpenBox : IconTheme.CurrentTheme.ClosedBox;
         btnClear.ThemeWeak();
         btnClear.Image = IconTheme.CurrentTheme.Cross;
+        pbSearchBtn.Image = IconTheme.CurrentTheme.Search;
     }
 
     public void SetToolTipVisibility() {

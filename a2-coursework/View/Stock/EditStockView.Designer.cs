@@ -24,15 +24,17 @@
         /// </summary>
         private void InitializeComponent() {
             topMenu = new UserControls.TopMenu();
-            panel1 = new Panel();
-            approveChangesBar1 = new User_Controls.Settings.ApproveChangesBar();
+            pnlHolder = new Panel();
+            approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
+            pnlMenu = new Panel();
+            pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
             // topMenu
             // 
-            topMenu.Dock = DockStyle.Top;
-            topMenu.Location = new Point(0, 0);
-            topMenu.Margin = new Padding(0);
+            topMenu.Anchor = AnchorStyles.None;
+            topMenu.Location = new Point(100, 0);
+            topMenu.Margin = new Padding(100);
             topMenu.MenuItems = new string[]
     {
     "Stock Details",
@@ -41,40 +43,50 @@
     };
             topMenu.Name = "topMenu";
             topMenu.SelectedIndex = 0;
-            topMenu.Size = new Size(654, 40);
+            topMenu.Size = new Size(516, 34);
             topMenu.TabIndex = 24;
             // 
-            // panel1
+            // pnlHolder
             // 
-            panel1.Dock = DockStyle.Fill;
-            panel1.Location = new Point(0, 40);
-            panel1.Name = "panel1";
-            panel1.Size = new Size(654, 419);
-            panel1.TabIndex = 25;
+            pnlHolder.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlHolder.Location = new Point(0, 34);
+            pnlHolder.Name = "pnlHolder";
+            pnlHolder.Size = new Size(716, 425);
+            pnlHolder.TabIndex = 25;
             // 
-            // approveChangesBar1
+            // approveChangesBar
             // 
-            approveChangesBar1.BackColor = Color.FromArgb(9, 9, 10);
-            approveChangesBar1.Dock = DockStyle.Bottom;
-            approveChangesBar1.IsLoading = false;
-            approveChangesBar1.Location = new Point(0, 459);
-            approveChangesBar1.Name = "approveChangesBar1";
-            approveChangesBar1.Size = new Size(654, 41);
-            approveChangesBar1.TabIndex = 0;
-            approveChangesBar1.ToolTipsActive = true;
+            approveChangesBar.BackColor = Color.FromArgb(9, 9, 10);
+            approveChangesBar.Dock = DockStyle.Bottom;
+            approveChangesBar.IsLoading = false;
+            approveChangesBar.Location = new Point(0, 459);
+            approveChangesBar.Name = "approveChangesBar";
+            approveChangesBar.Size = new Size(716, 41);
+            approveChangesBar.TabIndex = 0;
+            approveChangesBar.ToolTipsActive = true;
+            // 
+            // pnlMenu
+            // 
+            pnlMenu.Controls.Add(topMenu);
+            pnlMenu.Dock = DockStyle.Top;
+            pnlMenu.Location = new Point(0, 0);
+            pnlMenu.Name = "pnlMenu";
+            pnlMenu.Size = new Size(716, 34);
+            pnlMenu.TabIndex = 26;
             // 
             // EditStockView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 500);
-            Controls.Add(panel1);
-            Controls.Add(topMenu);
-            Controls.Add(approveChangesBar1);
+            ClientSize = new Size(716, 500);
+            Controls.Add(pnlHolder);
+            Controls.Add(approveChangesBar);
+            Controls.Add(pnlMenu);
             FormBorderStyle = FormBorderStyle.None;
             Name = "EditStockView";
             Text = "AddEditStock";
+            pnlMenu.ResumeLayout(false);
             ResumeLayout(false);
         }
 
@@ -89,7 +101,8 @@
         private Label lblDarkMode;
         private CustomControls.CustomRadioButton customRadioButton1;
         private UserControls.TopMenu topMenu;
-        private Panel panel1;
-        private User_Controls.Settings.ApproveChangesBar approveChangesBar1;
+        private Panel pnlHolder;
+        private User_Controls.Settings.ApproveChangesBar approveChangesBar;
+        private Panel pnlMenu;
     }
 }

@@ -43,13 +43,13 @@
             lblUppercaseLowercase = new Label();
             lblEightLong = new Label();
             tbNewPassword = new CustomControls.CustomTextBox();
-            tbUsername = new CustomControls.CustomTextBox();
             lblPasswordError = new Label();
             lblNewPassword = new Label();
-            lblUsername = new Label();
             rbDarkMode = new CustomControls.CustomRadioButton();
-            toolTip = new ToolTip(components);
+            lblUsername = new Label();
+            tbUsername = new CustomControls.CustomTextBox();
             lblUsernameError = new Label();
+            toolTip = new ToolTip(components);
             pnlHolder.SuspendLayout();
             pnlChangePassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)pbShowNewPassword).BeginInit();
@@ -80,9 +80,11 @@
             sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
             sb.Visible = false;
+            sb.ValueChanged += sb_ValueChanged;
             // 
             // pnlHolder
             // 
+            pnlHolder.Anchor = AnchorStyles.None;
             pnlHolder.Controls.Add(btnChangePassword);
             pnlHolder.Controls.Add(lblChangePassword);
             pnlHolder.Controls.Add(lblEditPromt);
@@ -113,7 +115,7 @@
             btnChangePassword.HoverColor = Color.FromArgb(226, 226, 226);
             btnChangePassword.Image = null;
             btnChangePassword.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnChangePassword.Location = new Point(87, 646);
+            btnChangePassword.Location = new Point(105, 649);
             btnChangePassword.Margin = new Padding(10);
             btnChangePassword.Name = "btnChangePassword";
             btnChangePassword.Size = new Size(282, 40);
@@ -165,7 +167,7 @@
             pnlChangePassword.Margin = new Padding(5);
             pnlChangePassword.Name = "pnlChangePassword";
             pnlChangePassword.Padding = new Padding(5);
-            pnlChangePassword.Size = new Size(355, 399);
+            pnlChangePassword.Size = new Size(355, 412);
             pnlChangePassword.TabIndex = 2;
             // 
             // pbShowNewPassword
@@ -359,6 +361,58 @@
             tbNewPassword.ToolTipText = "Include a special character, number and uppercase and lowercase";
             tbNewPassword.UsePasswordChar = true;
             // 
+            // lblPasswordError
+            // 
+            lblPasswordError.Anchor = AnchorStyles.Top;
+            lblPasswordError.Font = new Font("Bahnschrift", 12F);
+            lblPasswordError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblPasswordError.Location = new Point(10, 351);
+            lblPasswordError.Name = "lblPasswordError";
+            lblPasswordError.Size = new Size(330, 53);
+            lblPasswordError.TabIndex = 25;
+            lblPasswordError.TextAlign = ContentAlignment.TopCenter;
+            // 
+            // lblNewPassword
+            // 
+            lblNewPassword.Anchor = AnchorStyles.Top;
+            lblNewPassword.AutoSize = true;
+            lblNewPassword.Font = new Font("Bahnschrift", 14F);
+            lblNewPassword.ForeColor = Color.White;
+            lblNewPassword.Location = new Point(10, 12);
+            lblNewPassword.Margin = new Padding(5);
+            lblNewPassword.Name = "lblNewPassword";
+            lblNewPassword.Size = new Size(138, 23);
+            lblNewPassword.TabIndex = 23;
+            lblNewPassword.Text = "New Password";
+            // 
+            // rbDarkMode
+            // 
+            rbDarkMode.Anchor = AnchorStyles.Right;
+            rbDarkMode.BorderThickness = 1.7F;
+            rbDarkMode.CheckColor = Color.White;
+            rbDarkMode.Checked = true;
+            rbDarkMode.CheckRadius = 5F;
+            rbDarkMode.ForeColor = Color.White;
+            rbDarkMode.Location = new Point(612, 396);
+            rbDarkMode.Margin = new Padding(5);
+            rbDarkMode.Name = "rbDarkMode";
+            rbDarkMode.Size = new Size(17, 17);
+            rbDarkMode.TabIndex = 0;
+            rbDarkMode.Text = "customRadioButton1";
+            // 
+            // lblUsername
+            // 
+            lblUsername.Anchor = AnchorStyles.Top;
+            lblUsername.AutoSize = true;
+            lblUsername.Font = new Font("Bahnschrift", 14F);
+            lblUsername.ForeColor = Color.White;
+            lblUsername.Location = new Point(69, 111);
+            lblUsername.Margin = new Padding(5);
+            lblUsername.Name = "lblUsername";
+            lblUsername.Size = new Size(97, 23);
+            lblUsername.TabIndex = 23;
+            lblUsername.Text = "Username";
+            // 
             // tbUsername
             // 
             tbUsername.Anchor = AnchorStyles.Top;
@@ -383,58 +437,6 @@
             tbUsername.TextBoxInset = new Padding(10);
             tbUsername.UsePasswordChar = true;
             // 
-            // lblPasswordError
-            // 
-            lblPasswordError.Anchor = AnchorStyles.Top;
-            lblPasswordError.Font = new Font("Bahnschrift", 12F);
-            lblPasswordError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblPasswordError.Location = new Point(10, 351);
-            lblPasswordError.Name = "lblPasswordError";
-            lblPasswordError.Size = new Size(330, 38);
-            lblPasswordError.TabIndex = 25;
-            lblPasswordError.TextAlign = ContentAlignment.TopCenter;
-            // 
-            // lblNewPassword
-            // 
-            lblNewPassword.Anchor = AnchorStyles.Top;
-            lblNewPassword.AutoSize = true;
-            lblNewPassword.Font = new Font("Bahnschrift", 14F);
-            lblNewPassword.ForeColor = Color.White;
-            lblNewPassword.Location = new Point(10, 12);
-            lblNewPassword.Margin = new Padding(5);
-            lblNewPassword.Name = "lblNewPassword";
-            lblNewPassword.Size = new Size(138, 23);
-            lblNewPassword.TabIndex = 23;
-            lblNewPassword.Text = "New Password";
-            // 
-            // lblUsername
-            // 
-            lblUsername.Anchor = AnchorStyles.Top;
-            lblUsername.AutoSize = true;
-            lblUsername.Font = new Font("Bahnschrift", 14F);
-            lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(69, 111);
-            lblUsername.Margin = new Padding(5);
-            lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(97, 23);
-            lblUsername.TabIndex = 23;
-            lblUsername.Text = "Username";
-            // 
-            // rbDarkMode
-            // 
-            rbDarkMode.Anchor = AnchorStyles.Right;
-            rbDarkMode.BorderThickness = 1.7F;
-            rbDarkMode.CheckColor = Color.White;
-            rbDarkMode.Checked = true;
-            rbDarkMode.CheckRadius = 5F;
-            rbDarkMode.ForeColor = Color.White;
-            rbDarkMode.Location = new Point(612, 389);
-            rbDarkMode.Margin = new Padding(5);
-            rbDarkMode.Name = "rbDarkMode";
-            rbDarkMode.Size = new Size(17, 17);
-            rbDarkMode.TabIndex = 0;
-            rbDarkMode.Text = "customRadioButton1";
-            // 
             // lblUsernameError
             // 
             lblUsernameError.Anchor = AnchorStyles.Top;
@@ -448,8 +450,8 @@
             // 
             // ChangePasswordView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 807);
             Controls.Add(sb);

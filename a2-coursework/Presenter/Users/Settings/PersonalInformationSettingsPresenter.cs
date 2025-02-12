@@ -57,5 +57,5 @@ public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalI
 
     protected override bool AnyChanges() => _view.Forename != _staff.Forename || _view.Surname != _staff.Surname || _view.DateOfBirth != _staff.DateOfBirth;
 
-    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdatePersonalDetails(_staff.StaffID, _view.Forename, _view.Surname, _view.DateOfBirth);
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdatePersonalDetails(_staff.Id, _view.Forename, _view.Surname, _view.DateOfBirth);
 }

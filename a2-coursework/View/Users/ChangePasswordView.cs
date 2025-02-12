@@ -8,6 +8,10 @@ namespace a2_coursework.View.Users;
 public partial class ChangePasswordView : Form, IChangePasswordView {
     private ChangePasswordPresenter? _presenter;
 
+    public event EventHandler? UsernameChanged;
+    public event EventHandler? NewPasswordChanged;
+    public event EventHandler? ChangePassword;
+
     public ChangePasswordView() {
         InitializeComponent();
 
@@ -19,6 +23,10 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
 
         SetFont();
         Theming.Theme.FontNameChanged += (s, e) => SetFont();
+
+        tbUsername.TextChanged += (s, e) => UsernameChanged?.Invoke(this, EventArgs.Empty);
+        tbNewPassword.TextChanged += (s, e) => NewPasswordChanged?.Invoke(this, EventArgs.Empty);
+        btnChangePassword.Click += (s, e) => ChangePassword?.Invoke(this, EventArgs.Empty);
     }
 
     public void SetPresenter(ChangePasswordPresenter presenter) => _presenter = presenter;
@@ -113,6 +121,12 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
 
     public string ConfirmPassword => tbConfirmPassword.Text;
 
+    public void Reset() {
+        tbUsername.Text = "";
+        tbNewPassword.Text = "";
+        tbConfirmPassword.Text = "";
+    }
+
     private bool _eightLong;
     public bool EightLong {
         get => _eightLong;
@@ -196,7 +210,6 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
 
         if (Height < pnlHolder.Height) sb.Value -= e.Delta;
         Update();
-
     }
 
     private void sb_ValueChanged(object sender, EventArgs e) {
