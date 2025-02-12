@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Presenter.Settings;
+using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
@@ -44,8 +44,8 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
         lblUsername.ThemeTitle();
         tbUsername.Theme();
 
-        lblJobTitle.ThemeTitle();
-        tbJobTitle.Theme();
+        lblPrivilegeLevel.ThemeTitle();
+        tbPrivilegeLevel.Theme();
 
         pnlChangePassword.Theme();
         lblChangePassword.ThemeTitle();
@@ -63,6 +63,8 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
         lblSpecialCharacter.ThemeSubtitle();
         lblNumber.ThemeSubtitle();
 
+        lblPasswordError.ThemeError();
+
         pbEightLong.Image = EightLong ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
         pbNumber.Image = Number ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
         pbSpecialCharacter.Image = SpecialCharacter ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
@@ -78,13 +80,13 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
 
         toolTip.Active = showToolTips;
         tbUsername.ToolTipsActive = showToolTips;
-        tbJobTitle.ToolTipsActive = showToolTips;
+        tbPrivilegeLevel.ToolTipsActive = showToolTips;
         tbNewPassword.ToolTipsActive = showToolTips;
         tbCurrentPassword.ToolTipsActive = showToolTips;
         tbConfirmPassword.ToolTipsActive = showToolTips;
     }
 
-    public bool SaveVisible { set => throw new NotImplementedException(); }
+    public bool SaveVisible { set { } }
 
     private bool _isLoading = false;
     public bool IsLoading {
@@ -104,8 +106,8 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
         set => tbUsername.Text = value;
     }
 
-    public string JobTitle {
-        set => tbJobTitle.Text = value;
+    public string PrivilegeLevel {
+        set => tbPrivilegeLevel.Text = value;
     }
 
     public string CurrentPassword => tbCurrentPassword.Text;
@@ -152,6 +154,12 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
 
     public string PasswordError {
         set => lblPasswordError.Text = value;
+    }
+
+    public void Reset() {
+        tbCurrentPassword.Text = "";
+        tbNewPassword.Text = "";
+        tbConfirmPassword.Text = "";
     }
 
     private bool _currentPasswordError = false;
@@ -231,7 +239,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
     }
 
     private void pbShowNewPassword_Click(object sender, EventArgs e) {
-        tbNewPassword.UsePasswordChar = !tbCurrentPassword.UsePasswordChar;
+        tbNewPassword.UsePasswordChar = !tbNewPassword.UsePasswordChar;
         pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
         toolTip.SetToolTip(pbShowNewPassword, tbNewPassword.UsePasswordChar ? "Show your password" : "Hide your password");
     }

@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.CustomControls; 
+namespace a2_coursework.CustomControls;
 public partial class CustomNumericUpDown : UserControl, IThemeable {
     public event EventHandler? ValueChanged;
 
@@ -9,9 +9,6 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
         InitializeComponent();
 
         Theme();
-
-        btnIncrement.Click += (s, e) => Increment();
-        btnDecrement.Click += (s, e) => Decrement();
     }
 
     public void Theme() {
@@ -22,20 +19,21 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
         tbValue.Theme();
     }
 
-    private void tbValue_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e) {
-        //if (e.KeyCode == Keys.Up || e.KeyCode == Keys.Down) e.IsInputKey = true;
-    }
-
     private void tbValue_KeyPress(object sender, KeyPressEventArgs e) {
-        if (e.KeyChar == 13) SetValue();
         if (!char.IsAsciiDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
     }
 
     private void tbValue_Leave(object sender, EventArgs e) {
-        SetValue();
+        bool validNumber = long.TryParse(tbValue.Text, out long number);
+
+        if (!validNumber) tbValue.Text = Value.ToString();
+        else Value = (int)Math.Clamp(number, Minimum, Maximum);
     }
 
     private void tbValue_TextChanged(object sender, EventArgs e) {
+        bool validNumber = int.TryParse(tbValue.Text, out int number);
+
+        if (validNumber) Value = number;
     }
 
     private void tbValue_KeyDown(object sender, KeyEventArgs e) {
@@ -86,10 +84,20 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
     public void Increment(int i = 1) => Value += i;
     public void Decrement(int i = 1) => Value -= i;
 
-    private void SetValue() {
-        bool validNumber = int.TryParse(tbValue.Text, out int number);
+    protected override void OnResize(EventArgs e) {
+        base.OnResize(e);
 
-        if (!validNumber) tbValue.Text = Value.ToString();
-        else Value = number;
+        tbValue.Width = Width - btnIncrement.Width - btnDecrement.Width;
+        int inset = (Height - tbValue.InnerTextboxHeight) / 2;
+        tbValue.TextBoxInset = new Padding(tbValue.TextBoxInset.Left, inset, tbValue.TextBoxInset.Right, inset);
+        tbValue.Location = new Point(btnIncrement.Width, (Height - tbValue.Height) / 2);
+    }
+
+    private void btnIncrement_Click(object sender, EventArgs e) {
+        Increment();
+    }
+
+    private void btnDecrement_Click(object sender, EventArgs e) {
+        Decrement();
     }
 }

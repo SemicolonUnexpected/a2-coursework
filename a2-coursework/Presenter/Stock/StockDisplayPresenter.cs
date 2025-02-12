@@ -20,6 +20,8 @@ public class StockDisplayPresenter {
         _view.Search += (s, e) => Search();
         _view.SelectionChanged += (s, e) => SelectionChanged();
         _view.ArchiveToggled += (s, e) => ArchiveToggled();
+        _view.Edit += (s, e) => Edit();
+        _view.Add += (s, e) => Add();
     }
 
     public async void LoadData() {
@@ -83,8 +85,7 @@ public class StockDisplayPresenter {
             });
 
             await Task.WhenAll(searchTask, Task.Delay(500, token));
-
-            if (token.IsCancellationRequested) throw new OperationCanceledException();
+            token.ThrowIfCancellationRequested();
             _view.DataGridText = "";
             DisplayData();
         }
@@ -132,5 +133,11 @@ public class StockDisplayPresenter {
         for (int i = 0; i < values.Length; i++) {
             row.Cells[i].Value = values[i];
         }
+    }
+
+    private void Edit() {
+    }
+
+    private void Add() {
     }
 }

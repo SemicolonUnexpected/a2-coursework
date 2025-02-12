@@ -54,12 +54,16 @@ public partial class CustomTextBox {
     public override Font Font {
         get => tb.Font;
         set {
+            if (MultiLine) return;
+
             int newHeight = TextRenderer.MeasureText("Text", value).Height;
             int oldHeight = TextRenderer.MeasureText("Text", tb.Font).Height;
 
             Height += newHeight - oldHeight;
 
             tb.Font = value;
+
+            Height = tb.Height + TextBoxInset.Vertical;
         }
     }
 
@@ -154,15 +158,15 @@ public partial class CustomTextBox {
         set => tb.ReadOnly = value;
     }
 
-    //private bool _enabled = true;
-    //[DefaultValue(true)]
-    //public new bool Enabled {
-    //    get => _enabled;
-    //    set {
-    //        _enabled = value;
-    //        ;
-    //    }
-    //}
+    [DefaultValue(false)]
+    public bool AllowPaste {
+        get => tb.AllowPaste;
+        set => tb.AllowPaste = value;
+    }
+
+    [DesignerSerializationVisibility(DesignerSerializationVisibility.Hidden)]
+    [Browsable(false)]
+    public int InnerTextboxHeight => tb.Height;
 
     [Browsable(true)]
     public new event EventHandler? TextChanged {

@@ -4,10 +4,10 @@ using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.Presenter;
 public class MasterPresenter {
-    private IMaster _view;
+    private IMasterView _view;
     private Staff _staff;
 
-    public MasterPresenter(IMaster view, Staff staff) {
+    public MasterPresenter(IMasterView view, Staff staff) {
         _view = view;
         _staff = staff;
 
@@ -30,6 +30,7 @@ public class MasterPresenter {
               "Security",
               "Appearance"]
             ],
+
             PrivilegeLevel.Manager =>   [["Dashboard"], ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
             _ => throw new NotImplementedException(),
         };
@@ -60,4 +61,8 @@ public class MasterPresenter {
     private IChildView GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff).view;
     private IChildView GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff).view;
     private IChildView GetStockDisplayView() => ViewFactory.CreateStockDisplay().view;
+
+    private void SignOut() {
+        Application.Restart();
+    }
 }

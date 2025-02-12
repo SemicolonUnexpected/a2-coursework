@@ -28,7 +28,9 @@
             pnlDecor = new Panel();
             pnlLeft = new Panel();
             pnlRight = new Panel();
+            btnSignOut = new CustomControls.CustomButton();
             ((System.ComponentModel.ISupportInitialize)pbLogo).BeginInit();
+            pnlRight.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogo
@@ -45,16 +47,15 @@
             // 
             // lblUsername
             // 
-            lblUsername.Anchor = AnchorStyles.None;
-            lblUsername.AutoSize = true;
+            lblUsername.Dock = DockStyle.Right;
             lblUsername.Font = new Font("Bahnschrift", 16F);
             lblUsername.ForeColor = Color.White;
-            lblUsername.Location = new Point(669, 6);
+            lblUsername.Location = new Point(323, 0);
             lblUsername.Margin = new Padding(5, 5, 10, 5);
             lblUsername.Name = "lblUsername";
-            lblUsername.Size = new Size(0, 27);
+            lblUsername.Size = new Size(366, 40);
             lblUsername.TabIndex = 3;
-            lblUsername.TextAlign = ContentAlignment.MiddleLeft;
+            lblUsername.TextAlign = ContentAlignment.MiddleRight;
             // 
             // pnlDecor
             // 
@@ -76,11 +77,41 @@
             // 
             // pnlRight
             // 
+            pnlRight.Controls.Add(btnSignOut);
             pnlRight.Dock = DockStyle.Right;
-            pnlRight.Location = new Point(779, 0);
+            pnlRight.Location = new Point(689, 0);
             pnlRight.Name = "pnlRight";
-            pnlRight.Size = new Size(14, 40);
+            pnlRight.Padding = new Padding(5);
+            pnlRight.Size = new Size(104, 40);
             pnlRight.TabIndex = 8;
+            // 
+            // btnSignOut
+            // 
+            btnSignOut.BackColor = SystemColors.Control;
+            btnSignOut.BorderColor = Color.Empty;
+            btnSignOut.BorderThickness = 0F;
+            btnSignOut.ClickedBorderColor = Color.Empty;
+            btnSignOut.ClickedColor = Color.FromArgb(226, 226, 226);
+            btnSignOut.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnSignOut.Cursor = Cursors.Hand;
+            btnSignOut.DisabledBorderColor = Color.Empty;
+            btnSignOut.DisabledColor = Color.FromArgb(226, 226, 226);
+            btnSignOut.Dock = DockStyle.Fill;
+            btnSignOut.Font = new Font("Bahnschrift", 12F);
+            btnSignOut.ForeColor = Color.FromArgb(9, 9, 10);
+            btnSignOut.HoverBorderColor = Color.Empty;
+            btnSignOut.HoverColor = Color.FromArgb(226, 226, 226);
+            btnSignOut.Image = null;
+            btnSignOut.ImageRectangle = new Rectangle(0, 0, 0, 0);
+            btnSignOut.Location = new Point(5, 5);
+            btnSignOut.Margin = new Padding(10);
+            btnSignOut.Name = "btnSignOut";
+            btnSignOut.Size = new Size(94, 30);
+            btnSignOut.TabIndex = 9;
+            btnSignOut.Text = "Sign out";
+            btnSignOut.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
+            btnSignOut.TextPosition = new Point(13, 5);
+            btnSignOut.Click += btnLogOut_Click;
             // 
             // TopBar
             // 
@@ -95,8 +126,8 @@
             Name = "TopBar";
             Size = new Size(793, 41);
             ((System.ComponentModel.ISupportInitialize)pbLogo).EndInit();
+            pnlRight.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -106,5 +137,6 @@
         private Panel pnlDecor;
         private Panel pnlLeft;
         private Panel pnlRight;
+        private CustomControls.CustomButton btnSignOut;
     }
 }

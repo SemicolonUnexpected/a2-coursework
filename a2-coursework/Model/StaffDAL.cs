@@ -60,8 +60,8 @@ internal static class StaffDAL {
             // Handle potential null values safely
             return new Staff(
                 staffID: reader.GetInt32(reader.GetOrdinal("StaffID")),
-                hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
-                salt: Convert.FromHexString(reader.GetString(reader.GetOrdinal("Salt"))),
+                hashedPassword: Convert.FromHexString(reader["HashedPassword"].ToString()!),
+                salt: Convert.FromHexString(reader["Salt"].ToString()!),
                 lastPasswordChange: reader.GetDateTime(reader.GetOrdinal("LastPasswordChange")),
                 username: reader.GetString(reader.GetOrdinal("Username")),
                 active: reader.GetBoolean(reader.GetOrdinal("Active")),
@@ -74,7 +74,6 @@ internal static class StaffDAL {
                 emergencyContactForename: reader.GetString(reader.GetOrdinal("EmergencyContactForename")),
                 emergencyContactSurname: reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
                 emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
-                department: reader.GetString(reader.GetOrdinal("DepartmentName")),
                 privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
                 theme: reader.IsDBNull("AppearanceSettings") ? new Theming.Theme(Theming.AppearanceTheme.Dark, true, "Bahnshrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theming.Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
             );
@@ -168,11 +167,11 @@ internal static class StaffDAL {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("UpdateStaffPasswor", connection);
+        await using SqlCommand command = new("UpdateStaffPassword", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("staffId", staffId);
         command.Parameters.AddWithValue("hashedPassword", hashedPassword);
-        command.Parameters.AddWithValue("salt", hashedPassword);
+        command.Parameters.AddWithValue("salt", salt);
         command.Parameters.AddWithValue("lastPasswordChange", DateTime.Now);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();

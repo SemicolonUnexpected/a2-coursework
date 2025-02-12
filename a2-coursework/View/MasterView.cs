@@ -6,7 +6,7 @@ using a2_coursework.UserControls.SideMenu;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class MasterView : Form, IMaster {
+public partial class MasterView : Form, IMasterView {
     private MasterPresenter? _presenter;
 
     public MasterView() {

@@ -1,8 +1,9 @@
 ﻿using a2_coursework.Presenter;
 using a2_coursework.Model;
 using a2_coursework.View.Settings;
-using a2_coursework.Presenter.Settings;
 using a2_coursework.Presenter.Stock;
+using a2_coursework.View.Stock;
+using a2_coursework.Presenter.Users.Settings;
 
 namespace a2_coursework.View;
 public static class ViewFactory {
@@ -74,6 +75,27 @@ public static class ViewFactory {
         StockDisplayView view = new();
         StockDisplayPresenter presenter = new(view);
         view.SetPresenter(presenter);
+
+        return (view, presenter);
+    }
+
+    public static (ManageStockQuantityView view, ManageStockQuantityPresenter presenter) CreateManageStockQuantity() {
+        ManageStockQuantityView view = new();
+        ManageStockQuantityPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) CreateManageStockDetails() {
+        ManageStockDetailsView view = new();
+        ManageStockDetailsPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (ManageStockWarningView view, ManageStockWarningPresenter presenter) CreateManageStockWarning() {
+        ManageStockWarningView view = new();
+        ManageStockWarningPresenter presenter = new(view);
 
         return (view, presenter);
     }

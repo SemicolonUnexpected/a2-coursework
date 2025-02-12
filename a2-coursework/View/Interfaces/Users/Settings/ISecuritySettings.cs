@@ -1,10 +1,9 @@
 ﻿namespace a2_coursework.View.Interfaces.Users.Settings;
-public interface ISecuritySettings : ISettingsView
-{
+public interface ISecuritySettings : ISettingsView {
     public event EventHandler? NewPasswordChanged;
 
     public string Username { set; }
-    public string JobTitle { set; }
+    public string PrivilegeLevel { set; }
     public string CurrentPassword { get; }
     public string NewPassword { get; }
     public string ConfirmPassword { get; }
@@ -19,4 +18,6 @@ public interface ISecuritySettings : ISettingsView
     public bool UppercaseLowercase { get; set; }
 
     public string PasswordError { set; }
+
+    public void Reset();
 }

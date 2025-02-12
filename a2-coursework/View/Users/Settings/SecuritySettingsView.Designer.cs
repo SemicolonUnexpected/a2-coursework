@@ -48,10 +48,10 @@
             lblUsername = new Label();
             pnlHolder = new Panel();
             pbShowNewPassword = new PictureBox();
-            lblJobTitle = new Label();
+            lblPrivilegeLevel = new Label();
             pbShowCurrentPassword = new PictureBox();
             btnChangePassword = new CustomControls.CustomButton();
-            tbJobTitle = new CustomControls.CustomTextBox();
+            tbPrivilegeLevel = new CustomControls.CustomTextBox();
             tbUsername = new CustomControls.CustomTextBox();
             sb = new CustomControls.CustomScrollBar();
             toolTip = new ToolTip(components);
@@ -86,7 +86,7 @@
             pnlChangePassword.Margin = new Padding(5);
             pnlChangePassword.Name = "pnlChangePassword";
             pnlChangePassword.Padding = new Padding(5);
-            pnlChangePassword.Size = new Size(355, 509);
+            pnlChangePassword.Size = new Size(355, 538);
             pnlChangePassword.TabIndex = 2;
             // 
             // pnlPasswordValidation
@@ -286,7 +286,7 @@
             lblPasswordError.ForeColor = Color.FromArgb(168, 171, 174);
             lblPasswordError.Location = new Point(10, 465);
             lblPasswordError.Name = "lblPasswordError";
-            lblPasswordError.Size = new Size(330, 38);
+            lblPasswordError.Size = new Size(330, 68);
             lblPasswordError.TabIndex = 25;
             lblPasswordError.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -337,7 +337,7 @@
             rbDarkMode.Checked = true;
             rbDarkMode.CheckRadius = 5F;
             rbDarkMode.ForeColor = Color.White;
-            rbDarkMode.Location = new Point(462, 240);
+            rbDarkMode.Location = new Point(462, 255);
             rbDarkMode.Margin = new Padding(5);
             rbDarkMode.Name = "rbDarkMode";
             rbDarkMode.Size = new Size(17, 17);
@@ -400,16 +400,16 @@
             // 
             pnlHolder.Anchor = AnchorStyles.None;
             pnlHolder.Controls.Add(pbShowNewPassword);
-            pnlHolder.Controls.Add(lblJobTitle);
+            pnlHolder.Controls.Add(lblPrivilegeLevel);
             pnlHolder.Controls.Add(pbShowCurrentPassword);
             pnlHolder.Controls.Add(btnChangePassword);
             pnlHolder.Controls.Add(lblSecurity);
-            pnlHolder.Controls.Add(tbJobTitle);
+            pnlHolder.Controls.Add(tbPrivilegeLevel);
             pnlHolder.Controls.Add(tbUsername);
             pnlHolder.Controls.Add(lblEditPromt);
             pnlHolder.Controls.Add(pnlChangePassword);
             pnlHolder.Controls.Add(lblUsername);
-            pnlHolder.Location = new Point(86, 0);
+            pnlHolder.Location = new Point(86, -400);
             pnlHolder.Name = "pnlHolder";
             pnlHolder.Size = new Size(483, 885);
             pnlHolder.TabIndex = 0;
@@ -426,18 +426,18 @@
             pbShowNewPassword.TabStop = false;
             pbShowNewPassword.Click += pbShowNewPassword_Click;
             // 
-            // lblJobTitle
+            // lblPrivilegeLevel
             // 
-            lblJobTitle.Anchor = AnchorStyles.Top;
-            lblJobTitle.AutoSize = true;
-            lblJobTitle.Font = new Font("Bahnschrift", 14F);
-            lblJobTitle.ForeColor = Color.White;
-            lblJobTitle.Location = new Point(64, 195);
-            lblJobTitle.Margin = new Padding(5);
-            lblJobTitle.Name = "lblJobTitle";
-            lblJobTitle.Size = new Size(81, 23);
-            lblJobTitle.TabIndex = 23;
-            lblJobTitle.Text = "Job Title";
+            lblPrivilegeLevel.Anchor = AnchorStyles.Top;
+            lblPrivilegeLevel.AutoSize = true;
+            lblPrivilegeLevel.Font = new Font("Bahnschrift", 14F);
+            lblPrivilegeLevel.ForeColor = Color.White;
+            lblPrivilegeLevel.Location = new Point(64, 195);
+            lblPrivilegeLevel.Margin = new Padding(5);
+            lblPrivilegeLevel.Name = "lblPrivilegeLevel";
+            lblPrivilegeLevel.Size = new Size(138, 23);
+            lblPrivilegeLevel.TabIndex = 23;
+            lblPrivilegeLevel.Text = "Privilege Level";
             // 
             // pbShowCurrentPassword
             // 
@@ -469,7 +469,7 @@
             btnChangePassword.HoverColor = Color.FromArgb(226, 226, 226);
             btnChangePassword.Image = null;
             btnChangePassword.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnChangePassword.Location = new Point(97, 818);
+            btnChangePassword.Location = new Point(97, 835);
             btnChangePassword.Margin = new Padding(10);
             btnChangePassword.Name = "btnChangePassword";
             btnChangePassword.Size = new Size(282, 40);
@@ -478,30 +478,30 @@
             btnChangePassword.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnChangePassword.TextPosition = new Point(71, 10);
             // 
-            // tbJobTitle
+            // tbPrivilegeLevel
             // 
-            tbJobTitle.Anchor = AnchorStyles.Top;
-            tbJobTitle.BackColor = Color.FromArgb(9, 9, 10);
-            tbJobTitle.BorderColor = Color.FromArgb(39, 39, 42);
-            tbJobTitle.BorderThickness = 1F;
-            tbJobTitle.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbJobTitle.Font = new Font("Bahnschrift", 12F);
-            tbJobTitle.ForeColor = Color.Empty;
-            tbJobTitle.HoverColor = Color.Empty;
-            tbJobTitle.Location = new Point(64, 228);
-            tbJobTitle.Margin = new Padding(5);
-            tbJobTitle.MaxLength = 256;
-            tbJobTitle.MultiLine = false;
-            tbJobTitle.Name = "tbJobTitle";
-            tbJobTitle.PlaceholderText = "Manager";
-            tbJobTitle.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbJobTitle.ReadOnly = true;
-            tbJobTitle.Size = new Size(355, 40);
-            tbJobTitle.TabIndex = 1;
-            tbJobTitle.TextAlign = HorizontalAlignment.Left;
-            tbJobTitle.TextBoxInset = new Padding(10);
-            tbJobTitle.ToolTipText = "Ask an admin to change your job title";
-            tbJobTitle.UsePasswordChar = false;
+            tbPrivilegeLevel.Anchor = AnchorStyles.Top;
+            tbPrivilegeLevel.BackColor = Color.FromArgb(9, 9, 10);
+            tbPrivilegeLevel.BorderColor = Color.FromArgb(39, 39, 42);
+            tbPrivilegeLevel.BorderThickness = 1F;
+            tbPrivilegeLevel.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbPrivilegeLevel.Font = new Font("Bahnschrift", 12F);
+            tbPrivilegeLevel.ForeColor = Color.Empty;
+            tbPrivilegeLevel.HoverColor = Color.Empty;
+            tbPrivilegeLevel.Location = new Point(64, 228);
+            tbPrivilegeLevel.Margin = new Padding(5);
+            tbPrivilegeLevel.MaxLength = 256;
+            tbPrivilegeLevel.MultiLine = false;
+            tbPrivilegeLevel.Name = "tbPrivilegeLevel";
+            tbPrivilegeLevel.PlaceholderText = "Manager";
+            tbPrivilegeLevel.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbPrivilegeLevel.ReadOnly = true;
+            tbPrivilegeLevel.Size = new Size(355, 40);
+            tbPrivilegeLevel.TabIndex = 1;
+            tbPrivilegeLevel.TextAlign = HorizontalAlignment.Left;
+            tbPrivilegeLevel.TextBoxInset = new Padding(10);
+            tbPrivilegeLevel.ToolTipText = "Only admins can change privilege levels";
+            tbPrivilegeLevel.UsePasswordChar = false;
             // 
             // tbUsername
             // 
@@ -606,8 +606,8 @@
         private PictureBox pbNumber;
         private PictureBox pbUppercaseLowercase;
         private PictureBox pbEightLong;
-        private Label lblJobTitle;
-        private CustomControls.CustomTextBox tbJobTitle;
+        private Label lblPrivilegeLevel;
+        private CustomControls.CustomTextBox tbPrivilegeLevel;
         private ToolTip toolTip;
     }
 }

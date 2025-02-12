@@ -8,6 +8,7 @@ public partial class ImprovedTextBox : TextBox {
 
     // WndProc flags
     private const int EM_SHOWBALLOONTIP = 0x1503;
+    private const int WM_PASTE = 0x0302;
 
     protected override void WndProc(ref Message m) {
         // If the textbox recieves the show tooltip message return
@@ -16,8 +17,16 @@ public partial class ImprovedTextBox : TextBox {
             return;
         }
 
+        // Prevent pasting
+        if (!AllowPaste && m.Msg == WM_PASTE) {
+            return;
+        }
+
         base.WndProc(ref m);
     }
+
+    [DefaultValue(false)]
+    public bool AllowPaste { get; set; }
 
     private bool _isPlaceholderText = false;
     private string _placeholderText = "";

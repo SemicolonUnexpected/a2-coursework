@@ -6,6 +6,8 @@ namespace a2_coursework.UserControls;
 public partial class TopBar : UserControl {
     private readonly int _height;
 
+    public event EventHandler? SignOut;
+
     public TopBar() {
         InitializeComponent();
 
@@ -17,6 +19,8 @@ public partial class TopBar : UserControl {
         BackColor = ColorScheme.CurrentTheme.Background;
         lblUsername.ForeColor = ColorScheme.CurrentTheme.Foreground;
         pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+
+        btnSignOut.ThemeStrong();
     }
 
     [DefaultValue("")]
@@ -24,24 +28,22 @@ public partial class TopBar : UserControl {
         get => lblUsername.Text;
         set {
             lblUsername.Text = value;
-
-            PositionUsernameText();
         }
     }
 
     protected override void OnResize(EventArgs e) {
         Height = _height;
-        PositionUsernameText();
 
         base.OnResize(e);
     }
-
-    private void PositionUsernameText() => lblUsername.Location = new Point(Width - (lblUsername.Width + pnlRight.Width), lblUsername.Location.Y);
 
     protected override void OnFontChanged(EventArgs e) {
         base.OnFontChanged(e);
 
         lblUsername.SetFontName(Font.Name);
-        PositionUsernameText();
+    }
+
+    private void btnLogOut_Click(object sender, EventArgs e) {
+        SignOut?.Invoke(this, EventArgs.Empty);
     }
 }
