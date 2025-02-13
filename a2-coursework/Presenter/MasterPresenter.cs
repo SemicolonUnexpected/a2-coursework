@@ -3,12 +3,10 @@ using a2_coursework.View;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.Presenter;
-public class MasterPresenter {
-    private IMasterView _view;
+public class MasterPresenter : BasePresenter<IMasterView> {
     private Staff _staff;
 
-    public MasterPresenter(IMasterView view, Staff staff) {
-        _view = view;
+    public MasterPresenter(IMasterView view, Staff staff) : base(view) {
         _staff = staff;
 
         string[][] menuItems = staff.PrivilegeLevel switch {
@@ -42,9 +40,11 @@ public class MasterPresenter {
 
         _view.ToggleChanged += (s, e) => Navigate(e);
         _view.SignOut += (s, e) => SignOut();
+
+        BasePresenter p = ViewFactory.CreateSignIn().presenter;
     }
 
-    public IChildView GetToggledView(string menuItemName) => menuItemName switch {
+    public IMasterChildView GetToggledView(string menuItemName) => menuItemName switch {
         "Personal information" => GetPersonalInformationSettings(),
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
@@ -55,25 +55,29 @@ public class MasterPresenter {
         _ => throw new NotImplementedException(),
     };
 
-    private IChildView GetDashboard() {
+    private IMasterChildView GetDashboard() {
         throw new NotImplementedException();
     }
 
-    private IChildView GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff).view;
-    private IChildView GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff).view;
-    private IChildView GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff).view;
-    private IChildView GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff).view;
-    private IChildView GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff).view;
-    private IChildView GetStockDisplayView() => ViewFactory.CreateStockDisplay().view;
-    private IChildView GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff).view;
+    private (IMasterChildView view, BasePresenter presenter) GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff);
+    private IMasterChildView GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff).view;
+    private IMasterChildView GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff).view;
+    private IMasterChildView GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff).view;
+    private IMasterChildView GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff).view;
+    private IMasterChildView GetStockDisplayView() => ViewFactory.CreateStockDisplay().view;
+    private IMasterChildView GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff).view;
 
     private void SignOut() {
         Application.Restart();
     }
 
     private void Navigate(string toggledItem) {
-        IChildView nextView = GetToggledView(toggledItem);
+        IMasterChildView nextView = GetToggledView(toggledItem);
 
         _view.DisplayChildForm(nextView);
+    }
+
+    public override void CleanUp() {
+        base.CleanUp();
     }
 }

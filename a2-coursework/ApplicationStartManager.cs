@@ -4,51 +4,52 @@ using a2_coursework.View;
 
 namespace a2_coursework;
 internal class ApplicationStartupManager {
-    private SplashView? _splashView;
     private SplashPresenter? _splashPresenter;
 
-    private LoginView? _loginView;
-    private LoginPresenter? _loginPresenter;
+    private SignInPresenter? _signInPresenter;
 
-    private MasterView? _masterView;
     private MasterPresenter? _masterPresenter;
 
     public async void StartApplicationAsync() {
-        (_splashView, _splashPresenter) = ViewFactory.CreateSplash();
-        _splashView.FormClosed += OnFormExit;
-        _splashView.Show();
-        _splashPresenter.FinishedLoading += DisplayLogin;
+        _splashPresenter = ViewFactory.CreateSplash().presenter;
+        _splashPresenter.FormClosed += OnFormExit;
+        _splashPresenter.Show();
+        _splashPresenter.FinishedLoading += DisplaySignIn;
 
         // Start the loading
         await _splashPresenter.ShowLoading();
     }
 
-    private void DisplayLogin(object? sender, EventArgs e) {
-        (_loginView, _loginPresenter) = ViewFactory.CreateLogin();
+    private void DisplaySignIn(object? sender, EventArgs e) {
+        _signInPresenter = ViewFactory.CreateSignIn().presenter;
 
-        _loginView.FormClosed += OnFormExit;
-        _loginPresenter.LoginSuccessful += LoginSuccessful;
+        _signInPresenter.FormClosed += OnFormExit;
+        _signInPresenter.SignInSuccessful += SignInSuccessful;
 
-        _splashView!.FormClosed -= OnFormExit;
-        _splashView.Close();
+        _splashPresenter!.FormClosed -= OnFormExit;
+        _splashPresenter.Close();
+        _splashPresenter.CleanUp();
+        _splashPresenter = null; // Clear the splash from memory
 
-        _loginView.Show();
+        _signInPresenter.Show();
     }
 
-    private void LoginSuccessful(object? sender, Staff staff) {
+    private void SignInSuccessful(object? sender, Staff staff) {
         // Create the main page after a successful login
-        (_masterView, _masterPresenter) = ViewFactory.CreateMaster(staff);
+        _masterPresenter = ViewFactory.CreateMaster(staff).presenter;
 
-        _masterView.FormClosed += OnFormExit;
+        //_masterView.FormClosed += OnFormExit;
 
         // Clean up after a successful login
-        _loginPresenter!.LoginSuccessful -= LoginSuccessful;
-        _loginView!.FormClosed -= OnFormExit;
-        _loginView.Close();
+        _signInPresenter!.SignInSuccessful -= SignInSuccessful;
+        _signInPresenter.FormClosed -= OnFormExit;
+        _signInPresenter.Close();
+        _signInPresenter.CleanUp();
+        _signInPresenter = null;
 
-        _masterView.Show();
+        _masterPresenter.Show();
     }
 
     // If the user closes any windows, ensure the application exits
-    private void OnFormExit(object? sender, FormClosedEventArgs e) => Application.Exit();
+    private void OnFormExit() => Application.Exit();
 }

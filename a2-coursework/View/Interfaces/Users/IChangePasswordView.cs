@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces.Users; 
-public interface IChangePasswordView : IThemeable, IChildView {
+public interface IChangePasswordView : IThemeable, IMasterChildView {
     public event EventHandler? NewPasswordChanged;
     public event EventHandler? UsernameChanged;
     public event EventHandler? ChangePassword;

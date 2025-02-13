@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces.Stock;
-public interface IStockDisplay : IThemeable, IChildView {
+public interface IStockDisplay : IThemeable, IMasterChildView {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;

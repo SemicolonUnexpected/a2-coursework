@@ -16,7 +16,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         InitializeComponent();
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();

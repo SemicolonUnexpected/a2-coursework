@@ -8,6 +8,7 @@ public class ManageStockDetailsPresenter {
     private bool _skuValid;
 
     public event EventHandler<ValidationRequestEventArgs<string>>? ValidateSKU;
+    public event EventHandler? DetailsChanged;
 
     public ManageStockDetailsPresenter(IManageStockDetailsView view) {
         _view = view;
@@ -15,6 +16,7 @@ public class ManageStockDetailsPresenter {
         _view.DescriptionChanged += (s, e) => DescriptionChanged();
         _view.SKUChanged += (s, e) => Validate();
         _view.NameChanged += (s, e) => Validate();
+        //_view.DetailsChanged += (s, e) => DetailsChanged();
     }
 
     public bool TryGetName(out string? name) {
@@ -52,7 +54,7 @@ public class ManageStockDetailsPresenter {
 
         ValidationRequestEventArgs<string> validationRequestEventArgs = new(_view.SKU);
         ValidateSKU?.Invoke(this, validationRequestEventArgs);
-        _skuValid = await validationRequestEventArgs.Valid!;
+        _skuValid = validationRequestEventArgs.Valid ?? await validationRequestEventArgs.ValidationTask!;
 
         _view.SetNameBorderError(!_nameValid);
         _view.SetSKUBorderError(!_skuValid);

@@ -19,7 +19,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
         btnChangePassword.Click += (s, e) => Save?.Invoke(this, EventArgs.Empty);
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();

@@ -28,19 +28,19 @@ public class Theme {
             Theme oldTheme = _currentTheme;
             _currentTheme = value;
 
-            if (oldTheme.AppearanceTheme != _currentTheme.AppearanceTheme) AppearanceThemeChanged?.Invoke(_currentTheme, EventArgs.Empty);
+            if (oldTheme.AppearanceTheme != _currentTheme.AppearanceTheme) AppearanceThemeChanged?.Invoke();
             if (oldTheme.ShowToolTips != _currentTheme.ShowToolTips) ShowToolTipsChanged?.Invoke(_currentTheme, EventArgs.Empty);
             if (oldTheme.FontName != _currentTheme.FontName) FontNameChanged?.Invoke(_currentTheme, EventArgs.Empty);
         }
     }
 
-    public static event EventHandler? AppearanceThemeChanged;
+    public static event Action? AppearanceThemeChanged;
     private AppearanceTheme _appearanceTheme;
     public AppearanceTheme AppearanceTheme {
         get =>_appearanceTheme;
         set {
             _appearanceTheme = value;
-            AppearanceThemeChanged?.Invoke(this, EventArgs.Empty);
+            AppearanceThemeChanged?.Invoke();
         }
     }
 

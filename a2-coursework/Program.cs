@@ -1,3 +1,5 @@
+using a2_coursework.Theming;
+
 namespace a2_coursework;
 internal static class Program {
     /// <summary>

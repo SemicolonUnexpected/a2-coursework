@@ -11,7 +11,7 @@ public partial class ManageStockWarningView : Form, IManageStockWarningView {
         InitializeComponent();
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
         Theming.Theme.FontNameChanged += (s, e) => SetFont();

@@ -16,7 +16,7 @@ public partial class MasterView : Form, IMasterView {
         pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
         Theming.Theme.FontNameChanged += (s, e) => SetFont();
@@ -47,8 +47,8 @@ public partial class MasterView : Form, IMasterView {
 
     public void GenerateMenu(string[][] menuItems) => sideMenu.GenerateMenu(menuItems);
 
-    private IChildView? _childForm;
-    public IChildView? ChildView {
+    private IMasterChildView? _childForm;
+    public IMasterChildView? ChildView {
         get => _childForm;
         set => _childForm = value;
     }
@@ -101,7 +101,7 @@ public partial class MasterView : Form, IMasterView {
         if (ChildView is not null) ChildView.Width = pnlHolder.Width;
     }
 
-    public void DisplayChildForm(IChildView childView) {
+    public void DisplayChildForm(IMasterChildView childView) {
         // Remove the previous child form
         pnlHolder.Controls.Clear();
         if (ChildView is not null) {

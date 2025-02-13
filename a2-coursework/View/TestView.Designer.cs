@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dataGridView1 = new DataGridView();
             Column1 = new DataGridViewTextBoxColumn();
             Column2 = new DataGridViewTextBoxColumn();
@@ -35,6 +35,7 @@
             customNumericUpDown1 = new CustomControls.CustomNumericUpDown();
             numericUpDown1 = new NumericUpDown();
             addEditArchiveSearchBar1 = new User_Controls.DataGrid.AddEditArchiveSearchBar();
+            topMenu1 = new UserControls.TopMenu();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             pnlChangePassword.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)numericUpDown1).BeginInit();
@@ -52,14 +53,14 @@
             dataGridView1.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView1.Columns.AddRange(new DataGridViewColumn[] { Column1, Column2, Column3, Column4 });
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = SystemColors.Window;
-            dataGridViewCellStyle2.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dataGridViewCellStyle2.ForeColor = SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = SystemColors.Highlight;
-            dataGridViewCellStyle2.SelectionForeColor = SystemColors.HighlightText;
-            dataGridViewCellStyle2.WrapMode = DataGridViewTriState.False;
-            dataGridView1.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Window;
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dataGridViewCellStyle1.ForeColor = SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView1.DefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.Dock = DockStyle.Fill;
             dataGridView1.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView1.EnableHeadersVisualStyles = false;
@@ -166,10 +167,26 @@
             addEditArchiveSearchBar1.Location = new Point(565, 181);
             addEditArchiveSearchBar1.Name = "addEditArchiveSearchBar1";
             addEditArchiveSearchBar1.Padding = new Padding(2);
+            addEditArchiveSearchBar1.SearchEnabled = true;
             addEditArchiveSearchBar1.SearchText = "";
             addEditArchiveSearchBar1.ShowArchivedEnabled = true;
             addEditArchiveSearchBar1.Size = new Size(433, 44);
             addEditArchiveSearchBar1.TabIndex = 7;
+            // 
+            // topMenu1
+            // 
+            topMenu1.Location = new Point(545, 259);
+            topMenu1.MenuItems = new string[]
+    {
+    "one",
+    "two",
+    "three"
+    };
+            topMenu1.Name = "topMenu1";
+            topMenu1.SelectedIndex = 0;
+            topMenu1.Size = new Size(533, 94);
+            topMenu1.TabIndex = 8;
+            topMenu1.SelectedIndexChanged += topMenu1_SelectedIndexChanged;
             // 
             // TestView
             // 
@@ -177,6 +194,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(1253, 511);
+            Controls.Add(topMenu1);
             Controls.Add(addEditArchiveSearchBar1);
             Controls.Add(numericUpDown1);
             Controls.Add(customNumericUpDown1);
@@ -203,5 +221,6 @@
         private DataGridViewTextBoxColumn Column2;
         private DataGridViewTextBoxColumn Column3;
         private DataGridViewTextBoxColumn Column4;
+        private UserControls.TopMenu topMenu1;
     }
 }

@@ -2,16 +2,18 @@
 using System.Diagnostics;
 
 namespace a2_coursework.Presenter;
-public class SplashPresenter {
+public class SplashPresenter : BasePresenter<ISplashView> {
     private const int FRAME_DELAY = 1;
     private const int PROGRESS_PAUSE = 200;
-    private ISplash _view;
 
     public event EventHandler? FinishedLoading;
+    public event Action? FormClosed;
 
-    public SplashPresenter(ISplash view) {
-        _view = view;
+    public SplashPresenter(ISplashView view) :base (view) {
+        _view.FormClosed += OnFormClosed;
     }
+
+    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke();
 
     public async Task ShowLoading(int duration = 1000) {
         // Create the stopwatch and start it
@@ -30,6 +32,15 @@ public class SplashPresenter {
         // Pause with the loading bar full
         await Task.Delay(PROGRESS_PAUSE);
 
-        _view.Invoke(() => FinishedLoading?.Invoke(this , EventArgs.Empty));
+        FinishedLoading?.Invoke(this, EventArgs.Empty);
+    }
+
+    public void Show() => _view.Show();
+    public void Close() => _view.Close();
+
+    public override void CleanUp() {
+        _view.FormClosed -= OnFormClosed;
+
+        base.CleanUp();
     }
 }

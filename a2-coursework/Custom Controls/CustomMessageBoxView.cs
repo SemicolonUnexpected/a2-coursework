@@ -11,7 +11,7 @@ public partial class CustomMessageBoxView : Form, IThemeable {
         SetupButtons(buttons);
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
     }
 
     public void Theme() {

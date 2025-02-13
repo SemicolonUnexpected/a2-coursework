@@ -1,21 +1,13 @@
-﻿using a2_coursework.Presenter;
-using a2_coursework.Theming;
+﻿using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
 
-public partial class SplashView : Form, ISplash {
-    private SplashPresenter? _presenter;
-
+public partial class SplashView : Form, ISplashView {
     public SplashView() {
         InitializeComponent();
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
-    }
-
-    public void SetPresenter(SplashPresenter presenter) {
-        _presenter = presenter;
     }
 
     public void Theme() {
@@ -36,4 +28,6 @@ public partial class SplashView : Form, ISplash {
             pnlProgress.Width = (int)(Width * value);
         }
     }
+
+    public void CleanUp() { }
 }

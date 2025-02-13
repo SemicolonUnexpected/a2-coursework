@@ -28,7 +28,7 @@ public partial class StockDisplayView : Form, IStockDisplay {
         dataGridView.RowTemplate.Height = (int)(30 * scalingFactor);
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
         Theming.Theme.FontNameChanged += (s, e) => SetFont();

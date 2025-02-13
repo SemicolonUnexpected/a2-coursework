@@ -54,5 +54,19 @@ public static class StockDAL {
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
+    
+    }
+
+    public static async Task<bool> SKUExists(string sku) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetStockBySKU", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("sku", sku);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        return reader.HasRows;
     }
 }

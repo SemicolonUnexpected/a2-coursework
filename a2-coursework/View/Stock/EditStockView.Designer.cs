@@ -92,14 +92,6 @@
 
         #endregion
 
-        private Label lblStock;
-        private Label lblEditPromt;
-        private CustomControls.CustomTextBox customTextBox2;
-        private CustomControls.CustomPanel pnlDarkMode;
-        private Label lblDarkModeDescription;
-        private CustomControls.CustomRadioButton rbDarkMode;
-        private Label lblDarkMode;
-        private CustomControls.CustomRadioButton customRadioButton1;
         private UserControls.TopMenu topMenu;
         private Panel pnlHolder;
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;

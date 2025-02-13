@@ -1,60 +1,22 @@
-﻿using a2_coursework._Helpers;
-using a2_coursework.Presenter;
-using a2_coursework.Theming;
+﻿using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class LoginView : Form, ILogin {
-    private LoginPresenter? _presenter;
+public partial class SignInView : Form, ISignInView {
+    public event Action? AttemptSignIn;
+    public event Action? UsernameChanged;
+    public event Action? PasswordChanged;
 
-    public string Username {
-        get => tbUsername.Text;
-        set => tbUsername.Text = value;
-    }
-
-    public string Password {
-        get => tbPassword.Text;
-        set => tbPassword.Text = value;
-    }
-
-    public string ErrorText {
-        get => lblError.Text;
-        set => lblError.Text = value;
-    }
-
-    public string ButtonSignInText {
-        get => btnSignIn.Text;
-        set => btnSignIn.Text = value;
-    }
-
-    public bool ButtonSignInEnabled {
-        get => btnSignIn.Enabled;
-        set => btnSignIn.Enabled = value;
-    }
-
-    public bool TextBoxesEnabled {
-        get => tbUsername.Enabled;
-        set {
-            tbUsername.Enabled = value;
-            tbPassword.Enabled = value;
-        }
-    }
-
-    public LoginView() {
+    public SignInView() {
         InitializeComponent();
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
-
+        Theming.Theme.AppearanceThemeChanged += Theme;
         SetToolTipVisibility();
-        //Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
 
-        //ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        //Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-    }
-
-    public void SetPresenter(LoginPresenter presenter) {
-        _presenter = presenter;
+        btnSignIn.Click += (s, e) => AttemptSignIn?.Invoke();
+        tbUsername.TextChanged += (s, e) => UsernameChanged?.Invoke();
+        tbPassword.TextChanged += (s, e) => PasswordChanged?.Invoke();
     }
 
     public void Theme() {
@@ -89,20 +51,34 @@ public partial class LoginView : Form, ILogin {
         tbPassword.ToolTipsActive = showToolTips;
     }
 
+    public string Username {
+        get => tbUsername.Text;
+        set => tbUsername.Text = value;
+    }
+
+    public string Password {
+        get => tbPassword.Text;
+        set => tbPassword.Text = value;
+    }
+
+    public string ErrorText {
+        get => lblError.Text;
+        set => lblError.Text = value;
+    }
+
+    public bool Loading {
+        set {
+            bool _isLoading = value;
+
+            btnSignIn.Text = _isLoading ? "Signing you in..." : "Sign in";
+            btnSignIn.Enabled = !_isLoading;
+            tbUsername.Enabled = !_isLoading;
+            tbPassword.Enabled = !_isLoading;
+        }
+    }
+
     private void LoginView_Shown(object sender, EventArgs e) {
         pnlCover.Hide();
-    }
-
-    private void btnSignIn_Click(object sender, EventArgs e) {
-        _presenter?.LoginAttempt();
-    }
-
-    private void tbUsername_TextChanged(object sender, EventArgs e) {
-        _presenter?.UsernameTextChanged();
-    }
-
-    private void tbPassword_TextChanged(object sender, EventArgs e) {
-        _presenter?.PasswordTextChanged();
     }
 
     private void btnSwitchTheme_MouseClick(object sender, MouseEventArgs e) {
@@ -115,7 +91,7 @@ public partial class LoginView : Form, ILogin {
 
     private void tbPassword_KeyPress(object sender, KeyPressEventArgs e) {
         // If enter is pressed in the password box, attempt to sign in
-        if (e.KeyChar == (char)13) _presenter?.LoginAttempt();
+        if (e.KeyChar == (char)13) AttemptSignIn?.Invoke();
     }
 
     private void pbShowPassword_Click(object sender, EventArgs e) {
@@ -126,5 +102,9 @@ public partial class LoginView : Form, ILogin {
 
     private void tbUsername_MouseHover(object sender, EventArgs e) {
         toolTip.Show("Type in your username", this);
+    }
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
     }
 }

@@ -12,15 +12,13 @@ public static class ViewFactory {
     public static (SplashView view, SplashPresenter presenter) CreateSplash() {
         SplashView view = new();
         SplashPresenter presenter = new(view);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }
 
-    public static (LoginView view, LoginPresenter presenter) CreateLogin() {
-        LoginView view = new();
-        LoginPresenter presenter = new(view);
-        view.SetPresenter(presenter);
+    public static (SignInView view, SignInPresenter presenter) CreateSignIn() {
+        SignInView view = new();
+        SignInPresenter presenter = new(view);
 
         return (view, presenter);
     }
@@ -108,6 +106,7 @@ public static class ViewFactory {
 
         return (view, presenter);
     }
+
     //public static (StockAddView view, StockAddPresenter presenter) CreateStockAdd(Staff staff) {
     //    StockAddView view = new();
     //    StockAddPresenter presenter = new(view, staff);

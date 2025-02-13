@@ -1,12 +1,18 @@
 ﻿using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.User_Controls.Menu; 
+namespace a2_coursework.User_Controls.Menu;
 public partial class TopMenuItem : UserControl {
+    public new event EventHandler? Click;
+
     public TopMenuItem() {
         InitializeComponent();
 
         Theme();
+
+        base.Click += (s, e) => Click?.Invoke(this, EventArgs.Empty);
+        lbl.Click += (s, e) => Click?.Invoke(this, EventArgs.Empty);
+        pnlDecor.Click += (s, e) => Click?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
@@ -26,7 +32,7 @@ public partial class TopMenuItem : UserControl {
         }
     }
 
-    private bool _selected; 
+    private bool _selected;
     public bool Selected {
         get => _selected;
         set {

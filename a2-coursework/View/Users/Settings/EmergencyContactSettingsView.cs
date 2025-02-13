@@ -24,7 +24,7 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();

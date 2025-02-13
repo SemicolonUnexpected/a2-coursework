@@ -7,12 +7,13 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;
     public event EventHandler? SKUChanged;
+    public event EventHandler? DetailsChanged;
 
     public ManageStockDetailsView() {
         InitializeComponent();
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
         Theming.Theme.FontNameChanged += (s, e) => SetFont();
@@ -20,6 +21,8 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
         tbStockDescription.TextChanged += (s, e) => DescriptionChanged?.Invoke(this, EventArgs.Empty);
         tbSKU.TextChanged += (s, e) => SKUChanged?.Invoke(this, EventArgs.Empty);
         tbStockName.TextChanged += (s, e) => NameChanged?.Invoke(this, EventArgs.Empty);
+
+        tbStockName.TextChanged += (s, e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {

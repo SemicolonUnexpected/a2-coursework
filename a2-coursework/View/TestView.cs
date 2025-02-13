@@ -63,4 +63,8 @@ public partial class TestView : Form {
     private void customNumericUpDown1_ValueChanged(object sender, EventArgs e) {
         dataGridView1.FirstDisplayedScrollingRowIndex += 1;
     }
+
+    private void topMenu1_SelectedIndexChanged(object sender, EventArgs e) {
+        MessageBox.Show(topMenu1.SelectedIndex.ToString());
+    }
 }

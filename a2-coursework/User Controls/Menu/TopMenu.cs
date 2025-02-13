@@ -3,11 +3,14 @@ using a2_coursework.User_Controls.Menu;
 
 namespace a2_coursework.UserControls; 
 public partial class TopMenu : UserControl {
+    public event EventHandler? SelectedIndexChanged;
+    public event EventHandler<ToggleEventArgs>? PreviewSelectedIndexChanged;
+
     public TopMenu() {
         InitializeComponent();
     }
 
-    private string[] _menuItems;
+    private string[] _menuItems = [];
     public string[] MenuItems {
         get => _menuItems;
         set {
@@ -19,6 +22,10 @@ public partial class TopMenu : UserControl {
     public void Theme() {
         BackColor = ColorScheme.CurrentTheme.Background;
         flp.BackColor = ColorScheme.CurrentTheme.Background;
+
+        foreach (TopMenuItem item in flp.Controls) {
+            item.Theme();
+        }
     }
 
     private void GenerateMenu() {
@@ -26,12 +33,18 @@ public partial class TopMenu : UserControl {
 
         flp.Controls.Clear();
 
-        foreach (string itemName in _menuItems) {
+        for (int i = 0; i < _menuItems.Length; i++) {
+            string itemName = _menuItems[i];
             TopMenuItem menuItem = new() {
                 Text = itemName,
                 Width = Width / _menuItems.Length,
                 Height = Height,
                 Margin = new Padding(0, 0, 0, 0),
+            };
+
+            int valueToSelect = i;
+            menuItem.Click += (s, e) => {
+                SelectedIndex = valueToSelect;
             };
 
             flp.Controls.Add(menuItem);
@@ -53,11 +66,20 @@ public partial class TopMenu : UserControl {
     public int SelectedIndex {
         get => _selectedIndex;
         set {
+            if (value == _selectedIndex) return;
+
+            ToggleEventArgs e = new();
+            PreviewSelectedIndexChanged?.Invoke(this, e);
+
+            if (e.Handled) return;
+
             ((TopMenuItem)flp.Controls[_selectedIndex]).Selected = false;
 
             _selectedIndex = value;
 
             ((TopMenuItem)flp.Controls[_selectedIndex]).Selected = true;
+
+            SelectedIndexChanged?.Invoke(this, EventArgs.Empty);
         }
     }
 }

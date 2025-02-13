@@ -27,7 +27,7 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         diDateOfBirth.MaxDate = DateTime.Now;
 
         Theme();
-        Theming.Theme.AppearanceThemeChanged += (s, e) => Theme();
+        Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();

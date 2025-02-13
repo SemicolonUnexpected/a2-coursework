@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View {
-    partial class LoginView {
+    partial class SignInView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -24,7 +24,7 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginView));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInView));
             pnl = new CustomControls.CustomPanel();
             lblError = new Label();
             pbShowPassword = new PictureBox();
@@ -133,7 +133,6 @@
             tbPassword.TextBoxInset = new Padding(10, 10, 45, 10);
             tbPassword.ToolTipText = "Type in a password";
             tbPassword.UsePasswordChar = true;
-            tbPassword.TextChanged += tbPassword_TextChanged;
             tbPassword.KeyPress += tbPassword_KeyPress;
             // 
             // btnSignIn
@@ -162,7 +161,6 @@
             btnSignIn.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
             btnSignIn.TextPosition = new Point(112, 10);
             toolTip.SetToolTip(btnSignIn, "Click here to sign in");
-            btnSignIn.Click += btnSignIn_Click;
             // 
             // tbUsername
             // 
@@ -187,7 +185,6 @@
             tbUsername.TextBoxInset = new Padding(10);
             tbUsername.ToolTipText = "Type in your username";
             tbUsername.UsePasswordChar = false;
-            tbUsername.TextChanged += tbUsername_TextChanged;
             tbUsername.MouseHover += tbUsername_MouseHover;
             // 
             // pbLogoTitle
