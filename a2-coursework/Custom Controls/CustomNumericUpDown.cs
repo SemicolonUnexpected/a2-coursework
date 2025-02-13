@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using System.ComponentModel;
 
 namespace a2_coursework.CustomControls;
@@ -99,5 +100,18 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
 
     private void btnDecrement_Click(object sender, EventArgs e) {
         Decrement();
+    }
+
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        toolTip.Active = showToolTips;
+        tbValue.ToolTipsActive = showToolTips;
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        tbValue.SetFontName(fontName);
     }
 }

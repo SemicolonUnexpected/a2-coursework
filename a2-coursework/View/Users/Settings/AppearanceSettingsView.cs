@@ -5,7 +5,7 @@ using a2_coursework.View.Interfaces.Users.Settings;
 using a2_coursework.Presenter.Users.Settings;
 
 namespace a2_coursework.View.Settings;
-public partial class AppearanceSettingsView : Form, IAppearanceSettings {
+public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemeable {
     private AppearanceSettingsPresenter? _presenter;
 
     public event EventHandler? DarkModeCheckedChanged;
@@ -26,10 +26,10 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
     }
 
     public void SetPresenter(AppearanceSettingsPresenter presenter) {
@@ -68,7 +68,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         approveChangesBar.Theme();
     }
 
-    private void SetFont() {
+    public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
         lblAppearance.SetFontName(fontName);
@@ -166,11 +166,13 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings {
         rbComicSans.Checked = !rbComicSans.Checked;
     }
 
-    public bool DockInParent => true;
-
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
         return CustomMessageBox.Show(text, caption, buttons);
     }
 
-    public bool CanExit() => _presenter?.CanExit() ?? true;
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
+    }
 }

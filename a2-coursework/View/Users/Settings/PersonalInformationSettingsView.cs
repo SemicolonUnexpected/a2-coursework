@@ -30,10 +30,10 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
         ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += () => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(PersonalInformationSettingsPresenter presenter) {

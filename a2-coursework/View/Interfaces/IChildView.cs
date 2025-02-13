@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.Interfaces; 
-public interface IChildView {
+public interface IChildView : IView {
     public event MouseEventHandler? MouseWheel;
     public bool TopLevel { set; }
     public int Width { set; }
@@ -8,5 +8,4 @@ public interface IChildView {
     public AnchorStyles Anchor { set; }
     public void Show();
     public DockStyle Dock { get; set; }
-    public void Dispose();
 }

@@ -2,37 +2,31 @@
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>
-{
-    public PersonalInformationSettingsPresenter(IPersonalInformationSettings view, Staff staff) : base(view, staff)
-    {
+public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>, IMasterPresenter {
+    public PersonalInformationSettingsPresenter(IPersonalInformationSettings view, Staff staff) : base(view, staff) {
         _view.SurnameChanged += (s, e) => InputChanged();
         _view.ForenameChanged += (s, e) => InputChanged();
         _view.DateOfBirthChanged += (s, e) => InputChanged();
     }
 
-    protected override void PopulateDefaultValues()
-    {
+    protected override void PopulateDefaultValues() {
         _view.Forename = _staff.Forename;
         _view.Surname = _staff.Surname;
         _view.DateOfBirth = _staff.DateOfBirth;
     }
 
-    protected override void UpdateStaff()
-    {
+    protected override void UpdateStaff() {
         _staff.Forename = _view.Forename;
         _staff.Surname = _view.Surname;
         _staff.DateOfBirth = _view.DateOfBirth;
     }
 
-    private void InputChanged()
-    {
+    private void InputChanged() {
         ValidateInputs();
         SetApproveChangesBarVisibility();
     }
 
-    protected override bool ValidateInputs()
-    {
+    protected override bool ValidateInputs() {
         bool forenameEmpty = string.IsNullOrWhiteSpace(_view.Forename);
         bool surnameEmpty = string.IsNullOrWhiteSpace(_view.Surname);
 

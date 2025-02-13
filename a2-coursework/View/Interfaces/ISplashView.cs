@@ -1,8 +1,6 @@
-﻿using a2_coursework.Theming;
+﻿namespace a2_coursework.View.Interfaces;
 
-namespace a2_coursework.View.Interfaces;
-
-public interface ISplashView : IThemeable, IView {
+public interface ISplashView : IView {
     public event FormClosedEventHandler? FormClosed;
 
     public double Progress { get; set; }

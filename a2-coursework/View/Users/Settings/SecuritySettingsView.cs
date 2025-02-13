@@ -5,7 +5,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
-public partial class SecuritySettingsView : Form, ISecuritySettings {
+public partial class SecuritySettingsView : Form, ISecuritySettingsView {
     public SecuritySettingsPresenter? _presenter;
 
     public event EventHandler? Save;
@@ -22,10 +22,10 @@ public partial class SecuritySettingsView : Form, ISecuritySettings {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
         ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        Theming.Theme.FontNameChanged += () => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
     }
 
     public void SetPresenter(SecuritySettingsPresenter presenter) {

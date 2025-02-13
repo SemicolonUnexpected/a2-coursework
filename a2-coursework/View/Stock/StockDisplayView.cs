@@ -31,7 +31,7 @@ public partial class StockDisplayView : Form, IStockDisplay {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         topBar.Add += (s, e) => Add?.Invoke(this, EventArgs.Empty);
         topBar.Edit += (s, e) => Edit?.Invoke(this, EventArgs.Empty);

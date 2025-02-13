@@ -5,13 +5,10 @@ using a2_coursework.View;
 namespace a2_coursework;
 internal class ApplicationStartupManager {
     private SplashPresenter? _splashPresenter;
-
     private SignInPresenter? _signInPresenter;
 
-    private MasterPresenter? _masterPresenter;
-
     public async void StartApplicationAsync() {
-        _splashPresenter = ViewFactory.CreateSplash().presenter;
+        _splashPresenter = ViewFactory.CreateSplash();
         _splashPresenter.FormClosed += OnFormExit;
         _splashPresenter.Show();
         _splashPresenter.FinishedLoading += DisplaySignIn;
@@ -21,7 +18,7 @@ internal class ApplicationStartupManager {
     }
 
     private void DisplaySignIn(object? sender, EventArgs e) {
-        _signInPresenter = ViewFactory.CreateSignIn().presenter;
+        _signInPresenter = ViewFactory.CreateSignIn();
 
         _signInPresenter.FormClosed += OnFormExit;
         _signInPresenter.SignInSuccessful += SignInSuccessful;
@@ -36,9 +33,9 @@ internal class ApplicationStartupManager {
 
     private void SignInSuccessful(object? sender, Staff staff) {
         // Create the main page after a successful login
-        _masterPresenter = ViewFactory.CreateMaster(staff).presenter;
+        MasterPresenter masterPresenter = ViewFactory.CreateMaster(staff);
 
-        //_masterView.FormClosed += OnFormExit;
+        masterPresenter.FormClosed += OnFormExit;
 
         // Clean up after a successful login
         _signInPresenter!.SignInSuccessful -= SignInSuccessful;
@@ -47,7 +44,7 @@ internal class ApplicationStartupManager {
         _signInPresenter.CleanUp();
         _signInPresenter = null;
 
-        _masterPresenter.Show();
+        masterPresenter.Show();
     }
 
     // If the user closes any windows, ensure the application exits

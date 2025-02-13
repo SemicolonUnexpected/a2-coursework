@@ -5,7 +5,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View;
-public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings {
+public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings, IThemeable {
     private ContactDetailsSettingsPresenter? _presenter;
 
     public event EventHandler? EmailChanged;
@@ -27,10 +27,10 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
-        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         lblCharacterLimit.Text = $"{tbAddress.Text.Length} / {tbAddress.MaxLength}";
     }
@@ -65,6 +65,22 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
         tbPhoneNumber.ToolTipsActive = showToolTips;
         tbAddress.ToolTipsActive = showToolTips;
         approveChangesBar.ToolTipsActive = showToolTips;
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        lblContactInformation.SetFontName(fontName);
+        lblContactError.SetFontName(fontName);
+        lblEmailTitle.SetFontName(fontName);
+        lblPhoneNumber.SetFontName(fontName);
+        lblAddressTitle.SetFontName(fontName);
+        lblCharacterLimit.SetFontName(fontName);
+        tbAddress.SetFontName(fontName);
+        tbEmail.SetFontName(fontName);
+        tbPhoneNumber.SetFontName(fontName);
+        lblEditPromt.SetFontName(fontName);
+        approveChangesBar.SetFontName(fontName);
     }
 
     public string Email {
@@ -119,15 +135,17 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings 
         tbPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
     }
 
-    public bool DockInParent => true;
-
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
         return CustomMessageBox.Show(text, caption, buttons);
     }
 
-    public bool CanExit() => _presenter?.CanExit() ?? true;
-
     private void tbAddress_TextChanged(object sender, EventArgs e) {
         lblCharacterLimit.Text = $"{tbAddress.Text.Length} / {tbAddress.MaxLength}";
+    }
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
     }
 }

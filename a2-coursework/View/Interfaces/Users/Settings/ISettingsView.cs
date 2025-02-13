@@ -1,8 +1,5 @@
-﻿using a2_coursework.Theming;
-
-namespace a2_coursework.View.Interfaces.Users.Settings;
-public interface ISettingsView : IMasterChildView, IThemeable
-{
+﻿namespace a2_coursework.View.Interfaces.Users.Settings;
+public interface ISettingsView : IChildView {
     public event EventHandler? Save;
     public event EventHandler? Cancel;
 

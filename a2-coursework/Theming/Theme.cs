@@ -29,8 +29,8 @@ public class Theme {
             _currentTheme = value;
 
             if (oldTheme.AppearanceTheme != _currentTheme.AppearanceTheme) AppearanceThemeChanged?.Invoke();
-            if (oldTheme.ShowToolTips != _currentTheme.ShowToolTips) ShowToolTipsChanged?.Invoke(_currentTheme, EventArgs.Empty);
-            if (oldTheme.FontName != _currentTheme.FontName) FontNameChanged?.Invoke(_currentTheme, EventArgs.Empty);
+            if (oldTheme.ShowToolTips != _currentTheme.ShowToolTips) ShowToolTipsChanged?.Invoke();
+            if (oldTheme.FontName != _currentTheme.FontName) FontNameChanged?.Invoke();
         }
     }
 
@@ -44,23 +44,23 @@ public class Theme {
         }
     }
 
-    public static event EventHandler? ShowToolTipsChanged;
+    public static event Action? ShowToolTipsChanged;
     private bool _showToolTips;
     public bool ShowToolTips {
         get => _showToolTips;
         set {
             _showToolTips = value;
-            ShowToolTipsChanged?.Invoke(this, EventArgs.Empty);
+            ShowToolTipsChanged?.Invoke();
         }
     }
 
-    public static event EventHandler? FontNameChanged;
+    public static event Action? FontNameChanged;
     private string _fontName = "";
     public string FontName {
         get => _fontName;
         set {
             _fontName = value;
-            FontNameChanged?.Invoke(this, EventArgs.Empty);
+            FontNameChanged?.Invoke();
         }
     }
 

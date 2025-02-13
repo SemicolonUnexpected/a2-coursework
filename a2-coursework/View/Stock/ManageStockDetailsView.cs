@@ -3,7 +3,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.View.Stock; 
-public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
+public partial class ManageStockDetailsView : Form, IManageStockDetailsView, IThemeable {
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;
     public event EventHandler? SKUChanged;
@@ -16,7 +16,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         tbStockDescription.TextChanged += (s, e) => DescriptionChanged?.Invoke(this, EventArgs.Empty);
         tbSKU.TextChanged += (s, e) => SKUChanged?.Invoke(this, EventArgs.Empty);
@@ -46,7 +46,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
         rbArchived.Theme();
     }
 
-    private void SetFont() {
+    public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
         lblStockName.SetFontName(fontName);
@@ -59,6 +59,8 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
         lblCharacterLimit.SetFontName(fontName);
         lblArchived.SetFontName(fontName);
     }
+
+    public void SetToolTipVisibility() { }
 
     public string StockName {
         get => tbStockName.Text;
@@ -114,4 +116,9 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView {
     private void ClearFocus() => tbFocusHolder.Focus();
 
     private void ClearFocusOnClick(object? sender, EventArgs e) => ClearFocus();
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.FontNameChanged -= SetFont;
+    }
 }

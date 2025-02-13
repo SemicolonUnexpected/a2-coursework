@@ -26,7 +26,6 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterView));
             topBar = new UserControls.TopBar();
             sideMenu = new UserControls.SideMenu.SideMenu();
-            sb = new CustomControls.CustomScrollBar();
             pnlHolder = new Panel();
             pnlCover = new Panel();
             SuspendLayout();
@@ -50,34 +49,12 @@
             sideMenu.TabIndex = 1;
             sideMenu.PreviewSideMenuToggleChanged += sideMenu_PreviewSideMenuToggleChanged;
             // 
-            // sb
-            // 
-            sb.BackColor = Color.FromArgb(9, 9, 10);
-            sb.Dock = DockStyle.Right;
-            sb.LargeChange = 50;
-            sb.Location = new Point(874, 40);
-            sb.Maximum = 100;
-            sb.Minimum = 0;
-            sb.MinimumThumbHeight = 30;
-            sb.Name = "sb";
-            sb.Padding = new Padding(2);
-            sb.Size = new Size(10, 571);
-            sb.SmallChange = 10;
-            sb.TabIndex = 11;
-            sb.Text = "customScrollBar1";
-            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
-            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
-            sb.Visible = false;
-            sb.ValueChanged += sb_ValueChanged;
-            // 
             // pnlHolder
             // 
             pnlHolder.Dock = DockStyle.Fill;
             pnlHolder.Location = new Point(230, 40);
             pnlHolder.Name = "pnlHolder";
-            pnlHolder.Size = new Size(644, 571);
+            pnlHolder.Size = new Size(654, 571);
             pnlHolder.TabIndex = 12;
             // 
             // pnlCover
@@ -85,7 +62,7 @@
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             pnlCover.Location = new Point(0, -14);
             pnlCover.Name = "pnlCover";
-            pnlCover.Size = new Size(1010, 649);
+            pnlCover.Size = new Size(172, 649);
             pnlCover.TabIndex = 13;
             // 
             // MasterView
@@ -96,7 +73,6 @@
             ClientSize = new Size(884, 611);
             Controls.Add(pnlCover);
             Controls.Add(pnlHolder);
-            Controls.Add(sb);
             Controls.Add(sideMenu);
             Controls.Add(topBar);
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -111,7 +87,6 @@
         private UserControls.SideMenu.MenuDropdown sideMenuDropDown1;
         private UserControls.TopBar topBar;
         private UserControls.SideMenu.SideMenu sideMenu;
-        private CustomControls.CustomScrollBar sb;
         private Panel pnlHolder;
         private Panel pnlCover;
     }

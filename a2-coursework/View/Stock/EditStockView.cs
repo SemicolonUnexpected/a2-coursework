@@ -19,7 +19,7 @@ public partial class EditStockView : Form, IEditStockView {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         topMenu.SelectedIndexChanged += (s, e) => SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
     }

@@ -9,25 +9,25 @@ using a2_coursework.View.Users;
 
 namespace a2_coursework.View;
 public static class ViewFactory {
-    public static (SplashView view, SplashPresenter presenter) CreateSplash() {
+    public static SplashPresenter CreateSplash() {
         SplashView view = new();
         SplashPresenter presenter = new(view);
 
-        return (view, presenter);
+        return presenter;
     }
 
-    public static (SignInView view, SignInPresenter presenter) CreateSignIn() {
+    public static SignInPresenter CreateSignIn() {
         SignInView view = new();
         SignInPresenter presenter = new(view);
 
-        return (view, presenter);
+        return presenter;
     }
 
-    public static (MasterView view, MasterPresenter presenter) CreateMaster(Staff staff) {
+    public static MasterPresenter  CreateMaster(Staff staff) {
         MasterView view = new();
         MasterPresenter presenter = new(view, staff);
 
-        return (view, presenter);
+        return presenter;
     }
 
     public static (PersonalInformationSettingsView view, PersonalInformationSettingsPresenter presenter) CreatePersonalInformationSettings(Staff staff) {

@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces.Stock; 
-public interface IManageStockDetailsView : IThemeable, IChildView {
+public interface IManageStockDetailsView : IChildView {
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;
     public event EventHandler? SKUChanged;

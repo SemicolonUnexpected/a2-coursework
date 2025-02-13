@@ -19,10 +19,10 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         tbUsername.TextChanged += (s, e) => UsernameChanged?.Invoke(this, EventArgs.Empty);
         tbNewPassword.TextChanged += (s, e) => NewPasswordChanged?.Invoke(this, EventArgs.Empty);
@@ -81,7 +81,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         tbConfirmPassword.ToolTipsActive = showToolTips;
     }
 
-    private void SetFont() {
+    public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
         lblChangePassword.SetFontName(fontName);
@@ -244,5 +244,9 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         tbNewPassword.UsePasswordChar = !tbNewPassword.UsePasswordChar;
         pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
         toolTip.SetToolTip(pbShowNewPassword, tbNewPassword.UsePasswordChar ? "Show the password" : "Hide the password");
+    }
+
+    public void CleanUp() {
+        throw new NotImplementedException();
     }
 }

@@ -23,9 +23,11 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             btnDecrement = new CustomButton();
             btnIncrement = new CustomButton();
             tbValue = new CustomTextBox();
+            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // btnDecrement
@@ -50,6 +52,7 @@
             btnDecrement.TabIndex = 23;
             btnDecrement.TextAlign = CustomButtonAlign.TopLeft;
             btnDecrement.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnDecrement, "Take away one");
             btnDecrement.Click += btnDecrement_Click;
             // 
             // btnIncrement
@@ -74,6 +77,7 @@
             btnIncrement.TabIndex = 22;
             btnIncrement.TextAlign = CustomButtonAlign.TopLeft;
             btnIncrement.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnIncrement, "Add one");
             btnIncrement.Click += btnIncrement_Click;
             // 
             // tbValue
@@ -99,6 +103,7 @@
             tbValue.Text = "0";
             tbValue.TextAlign = HorizontalAlignment.Center;
             tbValue.TextBoxInset = new Padding(10);
+            tbValue.ToolTipText = "Use the up and down keys to change the value";
             tbValue.UsePasswordChar = false;
             tbValue.TextChanged += tbValue_TextChanged;
             tbValue.KeyPress += tbValue_KeyPress;
@@ -122,5 +127,6 @@
         private CustomControls.CustomButton btnDecrement;
         private CustomControls.CustomButton btnIncrement;
         private CustomControls.CustomTextBox tbValue;
+        private ToolTip toolTip;
     }
 }

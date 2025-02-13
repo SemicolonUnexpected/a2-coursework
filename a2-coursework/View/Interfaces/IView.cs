@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.Interfaces;
-public interface IView : IDisposable {
-    public void CleanUp();
-}
+﻿using a2_coursework.Presenter;
+
+namespace a2_coursework.View.Interfaces;
+public interface IView : IDisposable, ICleanable { }

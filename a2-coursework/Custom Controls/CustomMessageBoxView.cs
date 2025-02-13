@@ -1,7 +1,9 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
+using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.CustomControls;
-public partial class CustomMessageBoxView : Form, IThemeable {
+public partial class CustomMessageBoxView : Form, IThemeable, IView {
     public CustomMessageBoxView(string text, string caption, MessageBoxButtons buttons) {
         InitializeComponent();
 
@@ -12,6 +14,9 @@ public partial class CustomMessageBoxView : Form, IThemeable {
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
+
+        SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
     }
 
     public void Theme() {
@@ -26,6 +31,17 @@ public partial class CustomMessageBoxView : Form, IThemeable {
 
         btnOk.ThemeStrong();
         btnCancel.ThemeStrong();
+    }
+
+    public void SetToolTipVisibility() { }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        lblTitle.SetFontName(fontName);
+        lblText.SetFontName(fontName);
+        btnCancel.SetFontName(fontName);
+        btnOk.SetFontName(fontName);
     }
 
     private void SetupButtons(MessageBoxButtons buttons) {
@@ -50,5 +66,10 @@ public partial class CustomMessageBoxView : Form, IThemeable {
         DialogResult = DialogResult.OK;
 
         Close();
+    }
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.FontNameChanged -= SetFont;
     }
 }

@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using System.ComponentModel;
 
 namespace a2_coursework.User_Controls.DataGrid;
@@ -135,5 +136,11 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
             e.Handled = true;
             Search?.Invoke(this, EventArgs.Empty);
         }
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        tbSearch.SetFontName(fontName);
     }
 }

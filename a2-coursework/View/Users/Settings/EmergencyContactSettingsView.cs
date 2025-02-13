@@ -5,7 +5,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
-public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettings {
+public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettings, IThemeable {
     private EmergencyContactSettingsPresenter? _presenter;
     
     public event EventHandler? ForenameChanged;
@@ -27,10 +27,10 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetToolTipVisibility();
-        Theming.Theme.ShowToolTipsChanged += (s, e) => SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
-        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += (s, e) => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
+        SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
     }
 
     public void SetPresenter(EmergencyContactSettingsPresenter presenter) {
@@ -63,6 +63,20 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
 
         tbEmergencyContactPhoneNumber.ToolTipsActive = showToolTips;
         approveChangesBar.ToolTipsActive = showToolTips;
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        lblEmergencyContactTitle.SetFontName(fontName);
+        lblEditPromt.SetFontName(fontName);
+        lblEmergencyContactForenameTitle.SetFontName(fontName);
+        tbEmergencyContactForename.SetFontName(fontName);
+        lblEmergencyContactSurnameTitle.SetFontName(fontName);
+        tbEmergencyContactSurname.SetFontName(fontName);
+        lblEmergencyContactPhoneNumberTitle.SetFontName(fontName);
+        lblEmergencyContactPhoneNumberError.SetFontName(fontName);
+        approveChangesBar.SetFontName(fontName);
     }
 
     public string Forename {
@@ -109,11 +123,12 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         tbEmergencyContactPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
     }
 
-    public bool DockInParent => true;
-
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
         return CustomMessageBox.Show(text, caption, buttons);
     }
 
-    public bool CanExit() => _presenter?.CanExit() ?? true;
+    public void CleanUp() {
+
+    }
+
 }

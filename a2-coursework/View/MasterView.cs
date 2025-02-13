@@ -1,12 +1,13 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Presenter;
+using a2_coursework.CustomControls;
 using a2_coursework.Theming;
 using a2_coursework.UserControls;
 using a2_coursework.UserControls.SideMenu;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class MasterView : Form, IMasterView {
+public partial class MasterView : Form, IMasterView, IThemeable {
+    public event EventHandler<ToggleEventArgs>? PreviewToggleChanged;
     public event EventHandler<string>? ToggleChanged;
     public event EventHandler? SignOut;
 
@@ -19,11 +20,10 @@ public partial class MasterView : Form, IMasterView {
         Theming.Theme.AppearanceThemeChanged += Theme;
 
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         topBar.SignOut += (s, e) => SignOut?.Invoke(this, EventArgs.Empty);
         sideMenu.SideMenuToggleChanged += (s, e) => ToggleChanged?.Invoke(this, ((ToggleButton)s!).Text);
-
     }
 
     public void Theme() {
@@ -31,10 +31,11 @@ public partial class MasterView : Form, IMasterView {
 
         sideMenu.Theme();
         topBar.Theme();
-        sb.Theme();
     }
 
-    private void SetFont() {
+    public void SetToolTipVisibility() { }
+
+    public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
         topBar.SetFontName(fontName);
@@ -47,14 +48,13 @@ public partial class MasterView : Form, IMasterView {
 
     public void GenerateMenu(string[][] menuItems) => sideMenu.GenerateMenu(menuItems);
 
-    private IMasterChildView? _childForm;
-    public IMasterChildView? ChildView {
-        get => _childForm;
-        set => _childForm = value;
+    private IChildView? _childView;
+    public IChildView? ChildView {
+        get => _childView;
+        set => _childView = value;
     }
 
     public string UsernameText {
-        get => topBar.UsernameText;
         set => topBar.UsernameText = value;
     }
 
@@ -67,46 +67,10 @@ public partial class MasterView : Form, IMasterView {
         }
     }
 
-    private void SetScrollOptions() {
-        if (ChildView is null) return;
 
-        if (pnlHolder.Height < ChildView.Height) {
-            sb.Visible = true;
-            sb.LargeChange = pnlHolder.Height;
-            sb.Maximum = ChildView.Height - pnlHolder.Height;
-        }
-        else {
-            sb.Visible = false;
-            sb.Value = 0;
-        }
-    }
-
-    private void OnChildMouseWheel(object? sender, MouseEventArgs e) {
-        if (ChildView is null) return;
-
-        if (pnlHolder.Height < ChildView.Height) sb.Value -= e.Delta;
-        Update();
-    }
-
-    private void sb_ValueChanged(object sender, EventArgs e) {
-        if (ChildView is null) return;
-
-        ChildView.Location = new Point(0, -sb.Value);
-    }
-
-    protected override void OnResize(EventArgs e) {
-        base.OnResize(e);
-        SetScrollOptions();
-
-        if (ChildView is not null) ChildView.Width = pnlHolder.Width;
-    }
-
-    public void DisplayChildForm(IMasterChildView childView) {
+    public void DisplayChildForm(IChildView childView) {
         // Remove the previous child form
         pnlHolder.Controls.Clear();
-        if (ChildView is not null) {
-            ChildView.MouseWheel -= OnChildMouseWheel;
-        }
 
         ChildView = childView;
 
@@ -114,14 +78,11 @@ public partial class MasterView : Form, IMasterView {
         ChildView.TopLevel = false;
         ChildView.Width = pnlHolder.Width;
         ChildView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
-        ChildView.MouseWheel += OnChildMouseWheel;
-        if (ChildView.DockInParent) ChildView.Dock = DockStyle.Fill;
+        ChildView.Dock = DockStyle.Fill;
 
         // Display the form
         pnlHolder.Controls.Add(ChildView as Form);
         ChildView.Show();
-
-        SetScrollOptions();
     }
 
     private void sideMenu_PreviewSideMenuToggleChanged(object sender, ToggleEventArgs e) {
@@ -130,6 +91,15 @@ public partial class MasterView : Form, IMasterView {
             return;
         }
 
-        if (!ChildView?.CanExit() ?? false) e.Handled = true;
+        PreviewToggleChanged?.Invoke(this, e);
+    }
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
+        return CustomMessageBox.Show(text, caption, buttons);
+    }
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.FontNameChanged -= SetFont;
     }
 }

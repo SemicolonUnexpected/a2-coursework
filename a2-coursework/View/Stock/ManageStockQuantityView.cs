@@ -3,7 +3,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.View.Stock;
-public partial class ManageStockQuantityView : Form, IManageStockQuantityView {
+public partial class ManageStockQuantityView : Form, IManageStockQuantityView, IThemeable {
     public event EventHandler? BulkAdd;
     public event EventHandler? BulkRemove;
     public event EventHandler? ReasonForQuantityChangeChanged;
@@ -14,8 +14,11 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView {
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
 
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
+
         SetFont();
-        Theming.Theme.FontNameChanged += (s, e) => SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         btnAdd.Click += (s, e) => BulkAdd?.Invoke(this, EventArgs.Empty);
         btnRemove.Click += (s, e) => BulkRemove?.Invoke(this, EventArgs.Empty);
@@ -42,7 +45,7 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView {
         btnRemove.ThemeStrong();
     }
 
-    private void SetFont() {
+    public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
         lblQuantity.SetFontName(fontName);
@@ -56,6 +59,12 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView {
         lblReasonForChange.SetFontName(fontName);
         lblCharacterLimit.SetFontName(fontName);
         lblStaffLink.SetFontName(fontName);
+    }
+
+    public void SetToolTipVisibility() {
+        nudQuantity.SetToolTipVisibility();
+        nudBulkAdd.SetToolTipVisibility();
+        nudBulkRemove.SetToolTipVisibility();
     }
 
     public int Quantity {
@@ -77,4 +86,10 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView {
     private void ClearFocus() => tbFocusHolder.Focus();
 
     private void ClearFocusOnClick(object sender, EventArgs e) => ClearFocus();
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
+    }
 }

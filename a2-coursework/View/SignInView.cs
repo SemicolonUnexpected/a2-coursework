@@ -1,8 +1,9 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
-public partial class SignInView : Form, ISignInView {
+public partial class SignInView : Form, ISignInView, IThemeable {
     public event Action? AttemptSignIn;
     public event Action? UsernameChanged;
     public event Action? PasswordChanged;
@@ -12,7 +13,12 @@ public partial class SignInView : Form, ISignInView {
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
+
         SetToolTipVisibility();
+        Theming.Theme.FontNameChanged += SetToolTipVisibility;
+
+        SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
 
         btnSignIn.Click += (s, e) => AttemptSignIn?.Invoke();
         tbUsername.TextChanged += (s, e) => UsernameChanged?.Invoke();
@@ -49,6 +55,16 @@ public partial class SignInView : Form, ISignInView {
         toolTip.Active = showToolTips;
         tbUsername.ToolTipsActive = showToolTips;
         tbPassword.ToolTipsActive = showToolTips;
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        lblWelcome.SetFontName(fontName);
+        lblSignIn.SetFontName(fontName);
+        tbUsername.SetFontName(fontName);
+        tbPassword.SetFontName(fontName);
+        lblError.SetFontName(fontName);
     }
 
     public string Username {
@@ -106,5 +122,7 @@ public partial class SignInView : Form, ISignInView {
 
     public void CleanUp() {
         Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.FontNameChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
     }
 }
