@@ -2,10 +2,8 @@
 using a2_coursework.Presenter.Stock;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Stock;
-using System.ComponentModel;
-using System.Diagnostics;
 namespace a2_coursework.View;
-public partial class StockDisplayView : Form, IStockDisplay {
+public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
     private StockDisplayPresenter? _presenter;
 
     public event EventHandler? Add;
@@ -62,7 +60,13 @@ public partial class StockDisplayView : Form, IStockDisplay {
         sb.Theme();
     }
 
-    private void SetFont() {
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        topBar.SetToolTipVisibility();
+    }
+
+    public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
         topBar.SetFontName(fontName);
@@ -176,7 +180,9 @@ public partial class StockDisplayView : Form, IStockDisplay {
         SetScrollOptions();
     }
 
-    public bool DockInParent => true;
-
-    public bool CanExit() => true;
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
+    }
 }

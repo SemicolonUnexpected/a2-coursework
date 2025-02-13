@@ -4,9 +4,9 @@ using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.View;
 public partial class SignInView : Form, ISignInView, IThemeable {
-    public event Action? AttemptSignIn;
-    public event Action? UsernameChanged;
-    public event Action? PasswordChanged;
+    public event EventHandler? AttemptSignIn;
+    public event EventHandler? UsernameChanged;
+    public event EventHandler? PasswordChanged;
 
     public SignInView() {
         InitializeComponent();
@@ -20,9 +20,9 @@ public partial class SignInView : Form, ISignInView, IThemeable {
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
 
-        btnSignIn.Click += (s, e) => AttemptSignIn?.Invoke();
-        tbUsername.TextChanged += (s, e) => UsernameChanged?.Invoke();
-        tbPassword.TextChanged += (s, e) => PasswordChanged?.Invoke();
+        btnSignIn.Click += (s, e) => AttemptSignIn?.Invoke(this, EventArgs.Empty);
+        tbUsername.TextChanged += (s, e) => UsernameChanged?.Invoke(this, EventArgs.Empty);
+        tbPassword.TextChanged += (s, e) => PasswordChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
@@ -107,7 +107,7 @@ public partial class SignInView : Form, ISignInView, IThemeable {
 
     private void tbPassword_KeyPress(object sender, KeyPressEventArgs e) {
         // If enter is pressed in the password box, attempt to sign in
-        if (e.KeyChar == (char)13) AttemptSignIn?.Invoke();
+        if (e.KeyChar == (char)13) AttemptSignIn?.Invoke(this, EventArgs.Empty);
     }
 
     private void pbShowPassword_Click(object sender, EventArgs e) {

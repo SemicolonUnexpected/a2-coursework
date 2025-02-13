@@ -33,7 +33,6 @@ public static class ViewFactory {
     public static (PersonalInformationSettingsView view, PersonalInformationSettingsPresenter presenter) CreatePersonalInformationSettings(Staff staff) {
         PersonalInformationSettingsView view = new();
         PersonalInformationSettingsPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }
@@ -41,7 +40,6 @@ public static class ViewFactory {
     public static (ContactDetailsSettingsView view, ContactDetailsSettingsPresenter presenter) CreateContactDetailsSettingsView(Staff staff) {
         ContactDetailsSettingsView view = new();
         ContactDetailsSettingsPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
 
         return (view, presenter);        
     }
@@ -49,7 +47,6 @@ public static class ViewFactory {
     public static (EmergencyContactSettingsView view, EmergencyContactSettingsPresenter presenter) CreateEmergencyContactSettings(Staff staff) {
         EmergencyContactSettingsView view = new();
         EmergencyContactSettingsPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }
@@ -57,7 +54,6 @@ public static class ViewFactory {
     public static (AppearanceSettingsView view, AppearanceSettingsPresenter presenter) CreateAppearanceSettings(Staff staff) {
         AppearanceSettingsView view = new();
         AppearanceSettingsPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }
@@ -65,7 +61,6 @@ public static class ViewFactory {
     public static (SecuritySettingsView view, SecuritySettingsPresenter presenter) CreateSecuritySettings(Staff staff) {
         SecuritySettingsView view = new();
         SecuritySettingsPresenter presenter = new(view, staff);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }

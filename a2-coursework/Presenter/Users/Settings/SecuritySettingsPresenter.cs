@@ -8,8 +8,10 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView
     private byte[]? _newSalt;
 
     public SecuritySettingsPresenter(ISecuritySettingsView view, Staff staff) : base(view, staff) {
-        _view.NewPasswordChanged += (s, e) => ValidatePassword();
+        _view.NewPasswordChanged += OnNewPasswordChanged;
     }
+
+    private void OnNewPasswordChanged(object? sender, EventArgs e) => ValidatePassword();
 
     private bool ValidatePassword() {
         _view.EightLong = _view.NewPassword.Length >= 8;
@@ -92,5 +94,11 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView
         _staff.Salt = _newSalt!;
 
         _view.Reset();
+    }
+
+    public override void CleanUp() {
+        _view.NewPasswordChanged -= OnNewPasswordChanged;
+
+        base.CleanUp();
     }
 }

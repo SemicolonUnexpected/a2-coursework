@@ -1,4 +1,5 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework._Helpers;
+using a2_coursework.Theming;
 using System.ComponentModel;
 
 namespace a2_coursework.UserControls.SideMenu;
@@ -14,6 +15,12 @@ public partial class MenuButton : UserControl, IThemeable {
         btn.HoverColor = ColorScheme.CurrentTheme.Primary;
         btn.ClickedColor = ColorScheme.CurrentTheme.Primary;
         btn.ForeColor = ColorScheme.CurrentTheme.Foreground;
+    }
+
+    public void SetToolTipVisibility() { }
+
+    public void SetFont() {
+        btn.SetFontName(Theming.Theme.CurrentTheme.FontName);
     }
 
     public new event EventHandler? Click;

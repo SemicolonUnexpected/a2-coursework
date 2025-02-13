@@ -1,9 +1,9 @@
 ﻿namespace a2_coursework.View.Interfaces;
 
 public interface ISignInView : IView {
-    public event Action? AttemptSignIn;
-    public event Action? UsernameChanged;
-    public event Action? PasswordChanged;
+    public event EventHandler? AttemptSignIn;
+    public event EventHandler? UsernameChanged;
+    public event EventHandler? PasswordChanged;
     public event FormClosedEventHandler? FormClosed;
 
     public string Username { get; set; }

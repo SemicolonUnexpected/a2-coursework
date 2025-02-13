@@ -2,12 +2,14 @@
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>, IMasterPresenter {
+public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>, IMasterChildPresenter {
     public PersonalInformationSettingsPresenter(IPersonalInformationSettings view, Staff staff) : base(view, staff) {
-        _view.SurnameChanged += (s, e) => InputChanged();
-        _view.ForenameChanged += (s, e) => InputChanged();
-        _view.DateOfBirthChanged += (s, e) => InputChanged();
+        _view.SurnameChanged += InputChanged;
+        _view.ForenameChanged += InputChanged;
+        _view.DateOfBirthChanged += InputChanged;
     }
+
+    private void InputChanged(object? sender, EventArgs e) => InputChanged();
 
     protected override void PopulateDefaultValues() {
         _view.Forename = _staff.Forename;
@@ -52,4 +54,12 @@ public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalI
     protected override bool AnyChanges() => _view.Forename != _staff.Forename || _view.Surname != _staff.Surname || _view.DateOfBirth != _staff.DateOfBirth;
 
     protected override Task<bool> UpdateDatabase() => StaffDAL.UpdatePersonalDetails(_staff.Id, _view.Forename, _view.Surname, _view.DateOfBirth);
+
+    public override void CleanUp() {
+        _view.SurnameChanged -= InputChanged;
+        _view.ForenameChanged -= InputChanged;
+        _view.DateOfBirthChanged -= InputChanged;
+
+        base.CleanUp();
+    }
 }

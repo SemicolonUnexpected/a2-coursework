@@ -3,18 +3,20 @@ using a2_coursework.View.Interfaces.Users;
 using AS_Coursework.Model.Security;
 
 namespace a2_coursework.Presenter.Users;
-public class ChangePasswordPresenter {
-    private readonly IChangePasswordView _view;
+public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IMasterChildPresenter {
     private readonly Staff _staff;
 
-    public ChangePasswordPresenter(IChangePasswordView view, Staff staff) {
-        _view = view;
+    public ChangePasswordPresenter(IChangePasswordView view, Staff staff) : base(view) {
         _staff = staff;
 
-        _view.UsernameChanged += (s, e) => _ = ValidateUsername();
-        _view.NewPasswordChanged += (s, e) => ValidatePasswordRequirements();
-        _view.ChangePassword += (s, e) => ChangePassword();
+        _view.UsernameChanged += OnUsernameChanged;
+        _view.NewPasswordChanged += OnNewPasswordChanged;
+        _view.ChangePassword += OnChangePassword;
     }
+
+    private void OnUsernameChanged(object? sender, EventArgs e) => ValidateUsername();
+    private void OnNewPasswordChanged(object? sender, EventArgs e) => ValidatePasswordRequirements();
+    private void OnChangePassword(object? sender, EventArgs e) => ChangePassword();
 
     private bool ValidatePasswordRequirements() {
         _view.EightLong = _view.NewPassword.Length >= 8;
@@ -116,4 +118,12 @@ public class ChangePasswordPresenter {
     }
 
     public bool CanExit() => true;
+
+    public override void CleanUp() {
+        _view.UsernameChanged -= OnUsernameChanged;
+        _view.NewPasswordChanged -= OnNewPasswordChanged;
+        _view.ChangePassword -= OnChangePassword;
+
+        base.CleanUp();
+    }
 }

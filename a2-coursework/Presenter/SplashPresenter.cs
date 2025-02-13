@@ -7,13 +7,13 @@ public class SplashPresenter : BasePresenter<ISplashView> {
     private const int PROGRESS_PAUSE = 200;
 
     public event EventHandler? FinishedLoading;
-    public event Action? FormClosed;
+    public event EventHandler? FormClosed;
 
     public SplashPresenter(ISplashView view) :base (view) {
         _view.FormClosed += OnFormClosed;
     }
 
-    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke();
+    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
 
     public async Task ShowLoading(int duration = 1000) {
         // Create the stopwatch and start it

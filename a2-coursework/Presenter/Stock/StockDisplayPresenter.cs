@@ -3,25 +3,22 @@ using a2_coursework.Model;
 using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.Presenter.Stock;
-public class StockDisplayPresenter {
-    private readonly IStockDisplay _view;
+public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IMasterChildPresenter {
     private List<StockItem>? _stockItems;
     private Dictionary<int, StockItem>? _stockItemsDictionary;
 
     private CancellationTokenSource? _cancellationTokenSource;
     private Task? _searchTask;
 
-    public StockDisplayPresenter(IStockDisplay view) {
-        _view = view;
-
+    public StockDisplayPresenter(IStockDisplay view) : base(view) {
         LoadData();
 
-        _view.ShowArchivedChanged += (s, e) => DisplayData();
-        _view.Search += (s, e) => Search();
-        _view.SelectionChanged += (s, e) => SelectionChanged();
-        _view.ArchiveToggled += (s, e) => ArchiveToggled();
-        _view.Edit += (s, e) => Edit();
-        _view.Add += (s, e) => Add();
+        _view.ShowArchivedChanged += DisplayData;
+        _view.Search += Search;
+        _view.SelectionChanged += SelectionChanged;
+        _view.ArchiveToggled += ArchiveToggled;
+        _view.Edit += Edit;
+        _view.Add += Add;
     }
 
     public async void LoadData() {
@@ -34,7 +31,7 @@ public class StockDisplayPresenter {
 
             _view.DataGridText = "";
 
-            DisplayData();
+            DisplayData(null, EventArgs.Empty);
         }
         catch {
             _view.DataGridText = "Error getting data from the database";
@@ -51,7 +48,7 @@ public class StockDisplayPresenter {
         return [stockItem.Id, stockItem.Name, stockItem.SKU, stockItem.Quantity, quantityLevel, stockItem.Archived ? "Yes" : "No"];
     }
 
-    private void DisplayData() {
+    private void DisplayData(object? sender, EventArgs e) {
         _view.ClearData();
 
         if (_stockItems is null) return;
@@ -60,7 +57,7 @@ public class StockDisplayPresenter {
         else _view.DisplayData(_stockItems.FindAll(stockItem => !stockItem.Archived).ConvertAll(ConvertStockItemForDisplay));
     }
 
-    private async void Search() {
+    private async void Search(object? sender, EventArgs e) {
         _view.ClearData();
         _view.DataGridText = "Loading...";
 
@@ -87,12 +84,12 @@ public class StockDisplayPresenter {
             await Task.WhenAll(searchTask, Task.Delay(500, token));
             token.ThrowIfCancellationRequested();
             _view.DataGridText = "";
-            DisplayData();
+            DisplayData(null, EventArgs.Empty);
         }
         catch (OperationCanceledException) { }
     }
 
-    private void SelectionChanged() {
+    private void SelectionChanged(object? sender, EventArgs e) {
         if (_view.SelectedRow is DataGridViewRow row) {
             _view.StockItemArchived = _stockItemsDictionary![Convert.ToInt32(row.Cells[0].Value)]!.Archived;
         }
@@ -101,7 +98,7 @@ public class StockDisplayPresenter {
         }
     }
 
-    private async void ArchiveToggled() {
+    private async void ArchiveToggled(object? sender, EventArgs e) {
         if (_view.SelectedRow is null) {
             _view.StockItemArchived = false;
             return;
@@ -135,9 +132,22 @@ public class StockDisplayPresenter {
         }
     }
 
-    private void Edit() {
+    private void Edit(object? sender, EventArgs e) {
     }
 
-    private void Add() {
+    private void Add(object? sender, EventArgs e) {
+    }
+
+    public bool CanExit() => true;
+
+    public override void CleanUp() {
+        _view.ShowArchivedChanged -= DisplayData;
+        _view.Search -= Search;
+        _view.SelectionChanged -= SelectionChanged;
+        _view.ArchiveToggled -= ArchiveToggled;
+        _view.Edit -= Edit;
+        _view.Add -= Add;
+
+        base.CleanUp();
     }
 }

@@ -1,13 +1,10 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View;
 public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings, IThemeable {
-    private ContactDetailsSettingsPresenter? _presenter;
-
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;
@@ -33,10 +30,6 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings,
         Theming.Theme.FontNameChanged += SetFont;
 
         lblCharacterLimit.Text = $"{tbAddress.Text.Length} / {tbAddress.MaxLength}";
-    }
-
-    public void SetPresenter(ContactDetailsSettingsPresenter presenter) {
-        _presenter = presenter;
     }
 
     public void Theme() {

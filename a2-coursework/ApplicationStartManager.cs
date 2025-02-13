@@ -19,7 +19,6 @@ internal class ApplicationStartupManager {
 
     private void DisplaySignIn(object? sender, EventArgs e) {
         _signInPresenter = ViewFactory.CreateSignIn();
-
         _signInPresenter.FormClosed += OnFormExit;
         _signInPresenter.SignInSuccessful += SignInSuccessful;
 
@@ -34,19 +33,18 @@ internal class ApplicationStartupManager {
     private void SignInSuccessful(object? sender, Staff staff) {
         // Create the main page after a successful login
         MasterPresenter masterPresenter = ViewFactory.CreateMaster(staff);
-
         masterPresenter.FormClosed += OnFormExit;
 
         // Clean up after a successful login
-        _signInPresenter!.SignInSuccessful -= SignInSuccessful;
-        _signInPresenter.FormClosed -= OnFormExit;
+        _signInPresenter!.FormClosed -= OnFormExit;
+        _signInPresenter.SignInSuccessful -= SignInSuccessful;
         _signInPresenter.Close();
         _signInPresenter.CleanUp();
-        _signInPresenter = null;
+        _signInPresenter = null; // Clear the sign in presenter from memory
 
         masterPresenter.Show();
     }
 
     // If the user closes any windows, ensure the application exits
-    private void OnFormExit() => Application.Exit();
+    private void OnFormExit(object? sender, EventArgs e) => Application.Exit();
 }

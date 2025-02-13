@@ -1,4 +1,4 @@
 ﻿namespace a2_coursework.Presenter; 
-public interface IMasterPresenter : ICleanable {
+public interface IMasterChildPresenter : ICleanable {
     public bool CanExit();
 }

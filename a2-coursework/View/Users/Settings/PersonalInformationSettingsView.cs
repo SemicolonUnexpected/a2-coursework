@@ -2,13 +2,10 @@
 using a2_coursework.CustomControls;
 using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.Theming;
-using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
-public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings {
-    private PersonalInformationSettingsPresenter? _presenter;
-
+public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings, IThemeable {
     public event EventHandler? ForenameChanged;
     public event EventHandler? SurnameChanged;
     public event EventHandler? DateOfBirthChanged;
@@ -32,12 +29,8 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
-        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += () => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-    }
-
-    public void SetPresenter(PersonalInformationSettingsPresenter presenter) {
-        _presenter = presenter;
+        SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
     }
 
     public void Theme() {
@@ -72,6 +65,23 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         tbSurname.ToolTipsActive = showToolTips;
         diDateOfBirth.ToolTipsActive = showToolTips;
         approveChangesBar.ToolTipsActive = showToolTips;
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        lblPersonalInfo.SetFontName(fontName);
+        lblEditPromt.SetFontName(fontName);
+        lblForenameTitle.SetFontName(fontName);
+        tbForename.SetFontName(fontName);
+        lblSurnameTitle.SetFontName(fontName);
+        tbSurname.SetFontName(fontName);
+        lblDateOfBirthTitle.SetFontName(fontName);
+        lblNameError.SetFontName(fontName);
+        lblDateOfBirthError.SetFontName(fontName);
+        diDateOfBirth.SetFontName(fontName);
+        lblDateOfBirthError.SetFontName(fontName);
+        approveChangesBar.SetFontName(fontName);
     }
 
     public bool SaveVisible {
@@ -136,11 +146,13 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
 
     public bool DateOfBirthValid => diDateOfBirth.DateValid;
 
-    public bool DockInParent => true;
-
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
         return CustomMessageBox.Show(text, caption, buttons);
     }
 
-    public bool CanExit() => _presenter?.CanExit() ?? true;
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
+    }
 }

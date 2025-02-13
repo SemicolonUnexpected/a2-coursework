@@ -1,6 +1,5 @@
 ﻿namespace a2_coursework.View.Interfaces.Users.Settings;
-public interface IAppearanceSettings : ISettingsView
-{
+public interface IAppearanceSettings : ISettingsView {
     public event EventHandler? DarkModeCheckedChanged;
     public event EventHandler? ToolTipsCheckedChanged;
     public event EventHandler? FontNameChanged;

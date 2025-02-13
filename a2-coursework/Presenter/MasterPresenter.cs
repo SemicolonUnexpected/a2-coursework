@@ -6,7 +6,9 @@ using a2_coursework.View.Interfaces;
 namespace a2_coursework.Presenter;
 public class MasterPresenter : BasePresenter<IMasterView> {
     private Staff _staff;
-    private IMasterPresenter? _presenter;
+    private IMasterChildPresenter? _childPresenter;
+
+    public event EventHandler? FormClosed;
 
     public MasterPresenter(IMasterView view, Staff staff) : base(view) {
         _staff = staff;
@@ -15,10 +17,16 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _view.UsernameText = staff.Username;
         Theming.Theme.CurrentTheme = staff.Theme;
 
-        _view.PreviewToggleChanged += PreNavigate;
-        _view.ToggleChanged += Navigate;
-        _view.SignOut += SignOut;
+        _view.PreviewToggleChanged += OnPreviewToggleChanged;
+        _view.ToggleChanged += OnToggleChanged;
+        _view.SignOut += OnSignOut;
+        _view.FormClosed += OnFormClosed;
     }
+
+    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
+    private void OnToggleChanged(object? sender, string selectedItem) => Navigate(selectedItem);
+    private void OnSignOut(object? sender, EventArgs e) => SignOut();
+    private void OnPreviewToggleChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
 
     private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch {
         PrivilegeLevel.User => [
@@ -38,8 +46,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _ => throw new NotImplementedException(),
     };
 
-
-    public (IChildView view, IMasterPresenter presenter) GetToggledView(string menuItemName) => menuItemName switch {
+    public (IChildView view, IMasterChildPresenter presenter) GetToggledView(string menuItemName) => menuItemName switch {
         "Personal information" => GetPersonalInformationSettings(),
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
@@ -50,36 +57,38 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _ => throw new NotImplementedException(),
     };
 
-    private (IChildView view, IMasterPresenter presenter) GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff);
-    private (IChildView view, IMasterPresenter presenter) GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff);
-    private (IChildView view, IMasterPresenter presenter) GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff);
-    private (IChildView view, IMasterPresenter presenter) GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff);
-    private (IChildView view, IMasterPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
-    private (IChildView view, IMasterPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay();
-    private (IChildView view, IMasterPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
+    private (IChildView view, IMasterChildPresenter presenter) GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff);
+    private (IChildView view, IMasterChildPresenter presenter) GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff);
+    private (IChildView view, IMasterChildPresenter presenter) GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff);
+    private (IChildView view, IMasterChildPresenter presenter) GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff);
+    private (IChildView view, IMasterChildPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
+    private (IChildView view, IMasterChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay();
+    private (IChildView view, IMasterChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
 
-    private void SignOut(object? sender, EventArgs e) {
+    private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {
             Application.Restart();
         }
     }
-    private void PreNavigate(object? sender, ToggleEventArgs e) {
-        if (_presenter is null) return;
-        else if (!_presenter.CanExit()) e.Handled = true;
-    }
 
-    private void Navigate(object? sender, string toggledItem) {
-        (IChildView nextView, IMasterPresenter presenter) = GetToggledView(toggledItem);
+    private bool CanNavigate() => _childPresenter is null || _childPresenter.CanExit();
+
+    private void Navigate(string toggledItem) {
+        (IChildView nextView, IMasterChildPresenter presenter) = GetToggledView(toggledItem);
 
         _view.DisplayChildForm(nextView);
 
-        _presenter?.CleanUp();
-        _presenter = presenter;
+        _childPresenter?.CleanUp();
+        _childPresenter = presenter;
     }
 
+    public void Show() => _view.Show();
+
     public override void CleanUp() {
-        _view.ToggleChanged -= Navigate;
-        _view.SignOut -= SignOut;
+        _view.PreviewToggleChanged -= OnPreviewToggleChanged;
+        _view.ToggleChanged -= OnToggleChanged;
+        _view.SignOut -= OnSignOut;
+        _view.FormClosed -= OnFormClosed;
 
         base.CleanUp();
     }

@@ -5,9 +5,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
-public partial class SecuritySettingsView : Form, ISecuritySettingsView {
-    public SecuritySettingsPresenter? _presenter;
-
+public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemeable {
     public event EventHandler? Save;
     public event EventHandler? Cancel;
     public event EventHandler? NewPasswordChanged;
@@ -24,12 +22,8 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView {
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
-        ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-        Theming.Theme.FontNameChanged += () => ControlHelpers.ExecuteRecursive(this, (ctrl) => ctrl.SetFontName(Theming.Theme.CurrentTheme.FontName));
-    }
-
-    public void SetPresenter(SecuritySettingsPresenter presenter) {
-        _presenter = presenter;
+        SetFont();
+        Theming.Theme.FontNameChanged += SetFont;
     }
 
     public void Theme() {
@@ -84,6 +78,12 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView {
         tbNewPassword.ToolTipsActive = showToolTips;
         tbCurrentPassword.ToolTipsActive = showToolTips;
         tbConfirmPassword.ToolTipsActive = showToolTips;
+    }
+
+    public void SetFont() {
+        string fontName = Theming.Theme.CurrentTheme.FontName;
+
+        ControlHelpers.ExecuteRecursive(this, ctrl => ctrl.SetFontName(fontName));
     }
 
     public bool SaveVisible { set { } }
@@ -224,14 +224,9 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView {
 
     #endregion
 
-    public bool DockInParent => true;
-
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
         return CustomMessageBox.Show(text, caption, buttons);
     }
-
-    public bool CanExit() => _presenter?.CanExit() ?? true;
-
     private void pbShowCurrentPassword_Click(object sender, EventArgs e) {
         tbCurrentPassword.UsePasswordChar = !tbCurrentPassword.UsePasswordChar;
         pbShowCurrentPassword.Image = tbCurrentPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
@@ -242,5 +237,11 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView {
         tbNewPassword.UsePasswordChar = !tbNewPassword.UsePasswordChar;
         pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
         toolTip.SetToolTip(pbShowNewPassword, tbNewPassword.UsePasswordChar ? "Show your password" : "Hide your password");
+    }
+
+    public void CleanUp() {
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
     }
 }

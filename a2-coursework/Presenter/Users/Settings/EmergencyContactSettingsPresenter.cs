@@ -3,41 +3,37 @@ using a2_coursework.Model;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmergencyContactSettings>
-{
-    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, Staff staff) : base(view, staff)
-    {
-        _view.SurnameChanged += (s, e) => SetApproveChangesBarVisibility();
-        _view.ForenameChanged += (s, e) => SetApproveChangesBarVisibility();
-        _view.PhoneNumberChanged += (s, e) => InputChanged();
+public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmergencyContactSettings> {
+    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, Staff staff) : base(view, staff) {
+        _view.EmergencyContactSurnameChanged += OnEmergencyContactNameChanged;
+        _view.EmergencyContactForenameChanged += OnEmergencyContactNameChanged;
+        _view.EmergencyContactPhoneNumberChanged += OnEmergencyContactPhoneNumberChanged;
     }
 
-    protected override void PopulateDefaultValues()
-    {
-        _view.Forename = _staff.EmergencyContactForename;
-        _view.Surname = _staff.EmergencyContactSurname;
-        _view.PhoneNumber = _staff.EmergencyContactPhoneNumber;
+    private void OnEmergencyContactNameChanged(object? sender, EventArgs e) => SetApproveChangesBarVisibility();
+    private void OnEmergencyContactPhoneNumberChanged(object? sender, EventArgs e) => InputChanged();
+
+    protected override void PopulateDefaultValues() {
+        _view.EmergencyContactForename = _staff.EmergencyContactForename;
+        _view.EmergencyContactSurname = _staff.EmergencyContactSurname;
+        _view.EmergencyContactPhoneNumber = _staff.EmergencyContactPhoneNumber;
     }
 
-    protected override void UpdateStaff()
-    {
-        _staff.EmergencyContactForename = _view.Forename;
-        _staff.EmergencyContactSurname = _view.Surname;
-        _staff.EmergencyContactPhoneNumber = _view.PhoneNumber;
+    protected override void UpdateStaff() {
+        _staff.EmergencyContactForename = _view.EmergencyContactForename;
+        _staff.EmergencyContactSurname = _view.EmergencyContactSurname;
+        _staff.EmergencyContactPhoneNumber = _view.EmergencyContactPhoneNumber;
     }
 
-    private void InputChanged()
-    {
+    private void InputChanged() {
         ValidateInputs();
         SetApproveChangesBarVisibility();
     }
 
-    protected override bool AnyChanges() => _view.Forename != _staff.EmergencyContactForename || _view.Surname != _staff.EmergencyContactSurname || _view.PhoneNumber != _staff.EmergencyContactPhoneNumber;
+    protected override bool AnyChanges() => _view.EmergencyContactForename != _staff.EmergencyContactForename || _view.EmergencyContactSurname != _staff.EmergencyContactSurname || _view.EmergencyContactPhoneNumber != _staff.EmergencyContactPhoneNumber;
 
-    protected override bool ValidateInputs()
-    {
-        if (_view.PhoneNumber != "" && !Validators.IsValidPhoneNumber(_view.PhoneNumber))
-        {
+    protected override bool ValidateInputs() {
+        if (_view.EmergencyContactPhoneNumber != "" && !Validators.IsValidPhoneNumber(_view.EmergencyContactPhoneNumber)) {
             _view.PhoneNumberErrorText = "Invalid phone number";
             _view.SetPhoneNumberBorderError(true);
             return false;
@@ -48,5 +44,13 @@ public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmer
         return true;
     }
 
-    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateEmergencyContact(_staff.Id, _view.Forename, _view.Surname, _view.PhoneNumber);
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateEmergencyContact(_staff.Id, _view.EmergencyContactForename, _view.EmergencyContactSurname, _view.EmergencyContactPhoneNumber);
+
+    public override void CleanUp() {
+        _view.EmergencyContactSurnameChanged -= OnEmergencyContactNameChanged;
+        _view.EmergencyContactForenameChanged -= OnEmergencyContactNameChanged;
+        _view.EmergencyContactPhoneNumberChanged -= OnEmergencyContactPhoneNumberChanged;
+
+        base.CleanUp();
+    }
 }

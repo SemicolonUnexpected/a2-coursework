@@ -3,13 +3,13 @@
 namespace a2_coursework.View.Interfaces.Users.Settings;
 public interface IEmergencyContactSettings : ISettingsView
 {
-    public event EventHandler? ForenameChanged;
-    public event EventHandler? SurnameChanged;
-    public event EventHandler? PhoneNumberChanged;
+    public event EventHandler? EmergencyContactForenameChanged;
+    public event EventHandler? EmergencyContactSurnameChanged;
+    public event EventHandler? EmergencyContactPhoneNumberChanged;
 
-    public string Forename { get; set; }
-    public string Surname { get; set; }
-    public string PhoneNumber { get; set; }
+    public string EmergencyContactForename { get; set; }
+    public string EmergencyContactSurname { get; set; }
+    public string EmergencyContactPhoneNumber { get; set; }
 
     public void SetPhoneNumberBorderError(bool isError);
     public string PhoneNumberErrorText { set; }

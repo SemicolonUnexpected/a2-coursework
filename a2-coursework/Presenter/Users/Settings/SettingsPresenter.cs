@@ -2,7 +2,7 @@
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public abstract class SettingsPresenter<TView> : BasePresenter<TView> where TView : ISettingsView {
+public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IMasterChildPresenter where TView : ISettingsView {
     protected readonly Staff _staff;
 
     public SettingsPresenter(TView view, Staff staff) : base(view) {
@@ -10,9 +10,12 @@ public abstract class SettingsPresenter<TView> : BasePresenter<TView> where TVie
 
         PopulateDefaultValues();
 
-        _view.Save += (s, e) => Save();
-        _view.Cancel += (s, e) => Cancel();
+        _view.Save += OnSave;
+        _view.Cancel += OnCancel;
     }
+
+    private void OnSave(object? sender, EventArgs e) => Save();
+    private void OnCancel(object? sender, EventArgs e) => Cancel();
 
     protected abstract void PopulateDefaultValues();
     protected abstract void UpdateStaff();
@@ -73,8 +76,8 @@ public abstract class SettingsPresenter<TView> : BasePresenter<TView> where TVie
     }
 
     public override void CleanUp() {
-        _view.Save -= (s, e) => Save();
-        _view.Cancel -= (s, e) => Cancel();
+        _view.Save -= OnSave;
+        _view.Cancel -= OnCancel;
 
         base.CleanUp();
     }

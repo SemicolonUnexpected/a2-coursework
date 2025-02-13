@@ -1,25 +1,22 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
 public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettings, IThemeable {
-    private EmergencyContactSettingsPresenter? _presenter;
-    
-    public event EventHandler? ForenameChanged;
-    public event EventHandler? SurnameChanged;
-    public event EventHandler? PhoneNumberChanged;
+    public event EventHandler? EmergencyContactForenameChanged;
+    public event EventHandler? EmergencyContactSurnameChanged;
+    public event EventHandler? EmergencyContactPhoneNumberChanged;
     public event EventHandler? Save;
     public event EventHandler? Cancel;
 
     public EmergencyContactSettingsView() {
         InitializeComponent();
 
-        tbEmergencyContactForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
-        tbEmergencyContactSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
-        tbEmergencyContactPhoneNumber.TextChanged += (s, e) => PhoneNumberChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactForename.TextChanged += (s, e) => EmergencyContactForenameChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactSurname.TextChanged += (s, e) => EmergencyContactSurnameChanged?.Invoke(this, EventArgs.Empty);
+        tbEmergencyContactPhoneNumber.TextChanged += (s, e) => EmergencyContactPhoneNumberChanged?.Invoke(this, EventArgs.Empty);
         approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
         approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
 
@@ -31,10 +28,6 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
 
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
-    }
-
-    public void SetPresenter(EmergencyContactSettingsPresenter presenter) {
-        _presenter = presenter;
     }
 
     public void Theme() {
@@ -79,17 +72,17 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         approveChangesBar.SetFontName(fontName);
     }
 
-    public string Forename {
+    public string EmergencyContactForename {
         get => tbEmergencyContactForename.Text;
         set => tbEmergencyContactForename.Text = value;
     }
 
-    public string Surname {
+    public string EmergencyContactSurname {
         get => tbEmergencyContactSurname.Text;
         set => tbEmergencyContactSurname.Text = value;
     }
 
-    public string PhoneNumber {
+    public string EmergencyContactPhoneNumber {
         get => tbEmergencyContactPhoneNumber.Text;
         set => tbEmergencyContactPhoneNumber.Text = value;
     }
@@ -128,7 +121,8 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     }
 
     public void CleanUp() {
-
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
+        Theming.Theme.FontNameChanged -= SetFont;
     }
-
 }

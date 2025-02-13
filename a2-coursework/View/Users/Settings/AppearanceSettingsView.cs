@@ -2,12 +2,9 @@
 using a2_coursework.Theming;
 using a2_coursework._Helpers;
 using a2_coursework.View.Interfaces.Users.Settings;
-using a2_coursework.Presenter.Users.Settings;
 
 namespace a2_coursework.View.Settings;
 public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemeable {
-    private AppearanceSettingsPresenter? _presenter;
-
     public event EventHandler? DarkModeCheckedChanged;
     public event EventHandler? ToolTipsCheckedChanged;
     public event EventHandler? FontNameChanged;
@@ -30,10 +27,6 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
 
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
-    }
-
-    public void SetPresenter(AppearanceSettingsPresenter presenter) {
-        _presenter = presenter;
     }
 
     public void Theme() {

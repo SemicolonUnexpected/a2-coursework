@@ -7,18 +7,21 @@ using Microsoft.IdentityModel.Tokens;
 namespace a2_coursework.Presenter;
 public class SignInPresenter : BasePresenter<ISignInView> {
     public event EventHandler<Staff>? SignInSuccessful;
-    public event Action? FormClosed;
+    public event EventHandler? FormClosed;
 
     public SignInPresenter(ISignInView view) : base(view) {
-        _view.AttemptSignIn += AttemptSignIn;
-        _view.UsernameChanged += UsernameChanged;
-        _view.PasswordChanged += PasswordChanged;
+        _view.AttemptSignIn += OnAttemptSignIn;
+        _view.UsernameChanged += OnUsernameChanged;
+        _view.PasswordChanged += OnPasswordChanged;
         _view.FormClosed += OnFormClosed;
     }
 
-    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke();
+    private void OnAttemptSignIn(object? sender, EventArgs e) => AttemptSignIn();
+    private void OnUsernameChanged(object? sender, EventArgs e) => UsernameChanged();
+    private void OnPasswordChanged(object? sender, EventArgs e) => PasswordChanged();
+    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
 
-    public async void AttemptSignIn() {
+    private async void AttemptSignIn() {
         string username = _view.Username;
         string password = _view.Password;
 
@@ -82,14 +85,14 @@ public class SignInPresenter : BasePresenter<ISignInView> {
     }
 
     // Update the username error text when the text changes
-    public void UsernameChanged() {
+    private void UsernameChanged() {
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a password";
         if (!_view.Username.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username") _view.ErrorText = "";
         if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
     }
 
     // Update the password error text when the text changes
-    public void PasswordChanged() {
+    private void PasswordChanged() {
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a password") _view.ErrorText = "";
         if (!_view.Password.IsNullOrEmpty() && _view.ErrorText == "Please fill in a username and password") _view.ErrorText = "Please fill in a username";
         if (_view.ErrorText == "Username or password incorrect") _view.ErrorText = "";
@@ -99,6 +102,11 @@ public class SignInPresenter : BasePresenter<ISignInView> {
     public void Close() => _view.Close();
 
     public override void CleanUp() {
+        _view.AttemptSignIn -= OnAttemptSignIn;
+        _view.UsernameChanged -= OnUsernameChanged;
+        _view.PasswordChanged -= OnPasswordChanged;
+        _view.FormClosed -= OnFormClosed;
+
         base.CleanUp();
     }
 }

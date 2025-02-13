@@ -3,24 +3,23 @@ using a2_coursework.Model;
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettings>
-{
-    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, Staff staff) : base(view, staff)
-    {
-        _view.EmailChanged += (s, e) => InputChanged();
-        _view.PhoneNumberChanged += (s, e) => InputChanged();
-        _view.AddressChanged += (s, e) => SetApproveChangesBarVisibility();
+public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettings> {
+    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, Staff staff) : base(view, staff) {
+        _view.EmailChanged += OnContactInformationChanged;
+        _view.PhoneNumberChanged += OnContactInformationChanged;
+        _view.AddressChanged += OnAddressChanged;
     }
 
-    protected override void PopulateDefaultValues()
-    {
+    private void OnContactInformationChanged(object? sender, EventArgs e) => InputChanged();
+    private void OnAddressChanged(object? sender, EventArgs e) => SetApproveChangesBarVisibility();
+
+    protected override void PopulateDefaultValues() {
         _view.Email = _staff.Email;
         _view.PhoneNumber = _staff.PhoneNumber;
         _view.Address = _staff.Address;
     }
 
-    protected override void UpdateStaff()
-    {
+    protected override void UpdateStaff() {
         _staff.Email = _view.Email;
         _staff.PhoneNumber = _view.PhoneNumber;
         _staff.Address = _view.Address;
@@ -28,14 +27,12 @@ public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetails
 
     protected override bool AnyChanges() => _view.Email != _staff.Email || _view.PhoneNumber != _staff.PhoneNumber || _view.Address != _staff.Address;
 
-    private void InputChanged()
-    {
+    private void InputChanged() {
         ValidateInputs();
         SetApproveChangesBarVisibility();
     }
 
-    protected override bool ValidateInputs()
-    {
+    protected override bool ValidateInputs() {
         bool emailInvalid = !Validators.IsValidEmail(_view.Email);
         bool phoneNumberInvalid = !Validators.IsValidPhoneNumber(_view.PhoneNumber);
 
@@ -54,4 +51,12 @@ public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetails
     }
 
     protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateContactDetails(_staff.Id, _view.Email, _view.PhoneNumber, _view.Address);
+
+    public override void CleanUp() {
+        _view.EmailChanged -= OnContactInformationChanged;
+        _view.PhoneNumberChanged -= OnContactInformationChanged;
+        _view.AddressChanged -= OnAddressChanged;
+
+        base.CleanUp();
+    }
 }

@@ -5,11 +5,13 @@ public interface IMasterView : IView {
     public event EventHandler<ToggleEventArgs>? PreviewToggleChanged;
     public event EventHandler<string>? ToggleChanged;
     public event EventHandler? SignOut;
+    public event FormClosedEventHandler? FormClosed;
 
     public IChildView? ChildView { get; set; }
     public string UsernameText { set; }
     public void DisplayChildForm(IChildView childForm);
     public void GenerateMenu(string[][] menuItems);
+    public void Show();
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);
 }
