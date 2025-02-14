@@ -31,17 +31,28 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch {
         PrivilegeLevel.User => [
             ["Dashboard"],
-            ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
+            ["Cleaning", "Manage cleaning", "Manage customers"],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
+
+        PrivilegeLevel.Cleaner => [
+            ["Dashboard"],
+            ["Cleaning", "Upcoming jobs", "File report"],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
+
+        PrivilegeLevel.CleaningManager => [
+            ["Dashboard"],
+            ["Stock", "Manage stock", "Request stock", "Upcoming deliveries"],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Admin => [
             ["Dashboard"],
-            ["Stock", "Manage stock", "Request stock", "Upcoming deliveries"],
             ["Security", "Manage Staff", "Login attempts", "Change password"],
-            ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"] ],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Manager => [
             ["Dashboard"],
-            ["Settings", "Personal information", "Contact details", "Emergency contact", "Security", "Appearance"]],
+            ["Reports", "Stock usage", "Cleaning"],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         _ => throw new NotImplementedException(),
     };
@@ -51,7 +62,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
         "Appearance" => GetAppearanceSettings(),
-        "Security" => GetSecuritySettings(),
+        "Account security" => GetSecuritySettings(),
         "Manage stock" => GetStockDisplayView(),
         "Change password" => GetChangePasswordView(),
         _ => throw new NotImplementedException(),
