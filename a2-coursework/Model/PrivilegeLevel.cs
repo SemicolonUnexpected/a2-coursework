@@ -1,2 +1,8 @@
 ﻿namespace a2_coursework.Model;
-public enum PrivilegeLevel { User, Admin, Manager }
+public enum PrivilegeLevel {
+    User,
+    Cleaner,
+    CleaningManager,
+    Admin, 
+    Manager
+}
