@@ -3,7 +3,7 @@ using a2_coursework.View.Interfaces.Users;
 using AS_Coursework.Model.Security;
 
 namespace a2_coursework.Presenter.Users;
-public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IMasterChildPresenter {
+public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IChildPresenter {
     private readonly Staff _staff;
 
     public ChangePasswordPresenter(IChangePasswordView view, Staff staff) : base(view) {

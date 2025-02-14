@@ -1,34 +1,66 @@
 ﻿using a2_coursework.Model;
+using a2_coursework.UserControls;
 using a2_coursework.View;
 using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Stock;
 using a2_coursework.View.Stock;
 
 namespace a2_coursework.Presenter.Stock;
-public class EditStockPresenter {
-    private readonly IEditStockView _view;
+public class EditStockPresenter  : BasePresenter<IEditStockView> {
     private readonly StockItem _stockItem;
 
-    public EditStockPresenter(IEditStockView view, StockItem stockItem) {
-        _view = view;
+    private IChildPresenter? _childPresenter;
+
+    public EditStockPresenter(IEditStockView view, StockItem stockItem) : base(view) {
         _stockItem = stockItem;
+
+        _view.SelectedMenuItemChanged += OnSelectedMenuItemChanged;
+        _view.PreviewSelectedMenuItemChanged += OnPreviewSelectedMenuItemChanged;
+        _view.Save += OnSave;
+        _view.Cancel += OnCancel;
     }
 
-    private void PreviewSelectedIndexChanged() {
+    private void OnSelectedMenuItemChanged(object? sender, EventArgs e) => DisplayView();
+    private void OnPreviewSelectedMenuItemChanged(object? sender, ToggleEventArgs e) => DisplayView();
+    private void OnValidateSKU(object? sender, EventArgs e) => DisplayView();
+    private void OnSave(object? sender, EventArgs e) => DisplayView();
+    private void OnCancel(object? sender, EventArgs e) => DisplayView();
+
+    private bool CanExit() {
+        if (_view.IsLoading) return false;
+
+        if (AnyChanges()) {
+            DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel);
+
+            return result == DialogResult.OK;
+        }
+
+        return true;
     }
 
-    private void SelectedIndexChanged() => _view.DisplayView(GetNextView(_view.SelectedMenuItem)); 
+    private void DisplayView() {
+        (IChildView childView, IChildPresenter childPresenter) = GetNextPresenterView(_view.SelectedMenuItem);
+        _view.DisplayView(childView);
 
-    private IChildView GetNextView(string selectedItem) => selectedItem switch {
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) {
+            manageStockDetailsPresenter.ValidateSKU -= ValidateSKU;
+        }
+        else if (_childPresenter is ManageStockQuantityPresenter manageQuantityPresenter) {
+            manageQuantityPresenter.ValidateCanExit -= 
+        }
+
+        if (_childPresenter is not null) _childPresenter.CleanUp();
+    }
+
+    private (IChildView view, IChildPresenter childPresenter) GetNextPresenterView(string selectedItem) => selectedItem switch {
         "Stock details" => GetStockDetails(),
-        //"Quantity" => GetStockQuantity(),
+        "Quantity" => GetStockQuantity(),
         //"Warnings" => GetStockWarnings(),
         _ => throw new NotImplementedException(),
     };
 
-    private IChildView? _stockDetailsView;
     private ManageStockDetailsPresenter? _stockDetailsPresenter;
-    private IChildView GetStockDetails() {
+    private (IChildView view, IChildPresenter childPresenter) GetStockDetails() {
         (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) =  ViewFactory.CreateManageStockDetails();
 
         presenter.SetName(_stockItem.Name);
@@ -36,13 +68,12 @@ public class EditStockPresenter {
         presenter.Description = _stockItem.Description;
         presenter.Archived = _stockItem.Archived;
 
-        presenter.ValidateSKU += ValidateSKU;
+        presenter.ValidateSKU += OnValidateSKU;
 
-        _stockDetailsView = view;
-        return _stockDetailsView;
+        return (view, presenter);
     }
 
-    private void ValidateSKU(object? sender, ValidationRequestEventArgs<string> e) {
+    private async Task<bool> IsValidSKU(object? sender, ValidationRequestEventArgs<string> e) {
         string sku = e.Value;
 
         if (string.IsNullOrWhiteSpace(sku)) {
@@ -50,7 +81,7 @@ public class EditStockPresenter {
             e.ErrorMessage = "Please fill in an SKU";
         }
         else {
-            e.ValidationTask = StockDAL.SKUExists(sku).ContinueWith(x => !x.Result);
+            e.ValidationTask = await StockDAL.SKUExists(sku);
             e.ErrorMessage = "This SKU already exists. Please pick a different one";
         }
     }

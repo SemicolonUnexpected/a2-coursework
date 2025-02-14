@@ -2,7 +2,7 @@
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IMasterChildPresenter where TView : ISettingsView {
+public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IChildPresenter where TView : ISettingsView {
     protected readonly Staff _staff;
 
     public SettingsPresenter(TView view, Staff staff) : base(view) {

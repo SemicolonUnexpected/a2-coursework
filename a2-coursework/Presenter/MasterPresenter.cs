@@ -6,7 +6,7 @@ using a2_coursework.View.Interfaces;
 namespace a2_coursework.Presenter;
 public class MasterPresenter : BasePresenter<IMasterView> {
     private Staff _staff;
-    private IMasterChildPresenter? _childPresenter;
+    private IChildPresenter? _childPresenter;
 
     public event EventHandler? FormClosed;
 
@@ -24,7 +24,8 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     }
 
     private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
-    private void OnToggleChanged(object? sender, string selectedItem) => Navigate(selectedItem);
+    private void OnToggleChanged(object? sender, string selectedItem) => Navigate(GetToggledView(selectedItem));
+    private void OnNavigateRequested(object? sender, (IChildView view, IChildPresenter presenter) presenterViewPair) => Navigate(presenterViewPair);
     private void OnSignOut(object? sender, EventArgs e) => SignOut();
     private void OnPreviewToggleChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
 
@@ -46,7 +47,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _ => throw new NotImplementedException(),
     };
 
-    public (IChildView view, IMasterChildPresenter presenter) GetToggledView(string menuItemName) => menuItemName switch {
+    public (IChildView view, IChildPresenter presenter) GetToggledView(string menuItemName) => menuItemName switch {
         "Personal information" => GetPersonalInformationSettings(),
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
@@ -57,13 +58,13 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _ => throw new NotImplementedException(),
     };
 
-    private (IChildView view, IMasterChildPresenter presenter) GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff);
-    private (IChildView view, IMasterChildPresenter presenter) GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff);
-    private (IChildView view, IMasterChildPresenter presenter) GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff);
-    private (IChildView view, IMasterChildPresenter presenter) GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff);
-    private (IChildView view, IMasterChildPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
-    private (IChildView view, IMasterChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay();
-    private (IChildView view, IMasterChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
+    private (IChildView view, IChildPresenter presenter) GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff);
+    private (IChildView view, IChildPresenter presenter) GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay();
+    private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {
@@ -73,13 +74,16 @@ public class MasterPresenter : BasePresenter<IMasterView> {
 
     private bool CanNavigate() => _childPresenter is null || _childPresenter.CanExit();
 
-    private void Navigate(string toggledItem) {
-        (IChildView nextView, IMasterChildPresenter presenter) = GetToggledView(toggledItem);
+    private void Navigate((IChildView view, IChildPresenter presenter) viewPresenterPair) {
+        // Display the next view
+        _view.DisplayChildForm(viewPresenterPair.view);
 
-        _view.DisplayChildForm(nextView);
+        // If the view can request to navigate to another view, listen for the request
+        if (_childPresenter is INavigatingPresenter oldNavigatingPresenter) oldNavigatingPresenter.Navigating -= OnNavigateRequested;
+        if (viewPresenterPair.presenter is INavigatingPresenter navigatingPresenter) navigatingPresenter.Navigating += OnNavigateRequested;
 
         _childPresenter?.CleanUp();
-        _childPresenter = presenter;
+        _childPresenter = viewPresenterPair.presenter;
     }
 
     public void Show() => _view.Show();

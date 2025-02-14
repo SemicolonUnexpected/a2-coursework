@@ -2,7 +2,7 @@
 using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>, IMasterChildPresenter {
+public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>, IChildPresenter {
     public PersonalInformationSettingsPresenter(IPersonalInformationSettings view, Staff staff) : base(view, staff) {
         _view.SurnameChanged += InputChanged;
         _view.ForenameChanged += InputChanged;

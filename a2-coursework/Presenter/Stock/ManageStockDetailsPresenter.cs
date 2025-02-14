@@ -1,23 +1,23 @@
 ﻿using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.Presenter.Stock;
-public class ManageStockDetailsPresenter {
-    private readonly IManageStockDetailsView _view;
-
+public class ManageStockDetailsPresenter : BasePresenter<IManageStockDetailsView>, IChildPresenter {
     private bool _nameValid;
     private bool _skuValid;
 
+    public event EventHandler<CanExitEventArgs>? ValidateCanExit;
     public event EventHandler<ValidationRequestEventArgs<string>>? ValidateSKU;
     public event EventHandler? DetailsChanged;
 
-    public ManageStockDetailsPresenter(IManageStockDetailsView view) {
-        _view = view;
-
-        _view.DescriptionChanged += (s, e) => DescriptionChanged();
-        _view.SKUChanged += (s, e) => Validate();
-        _view.NameChanged += (s, e) => Validate();
-        //_view.DetailsChanged += (s, e) => DetailsChanged();
+    public ManageStockDetailsPresenter(IManageStockDetailsView view) : base(view) {
+        _view.DescriptionChanged += OnDescriptionChanged;
+        _view.SKUChanged += OnNameChanged;
+        _view.NameChanged += OnSKUChanged;
     }
+
+    private void OnDescriptionChanged(object? sender, EventArgs e) => DescriptionChanged();
+    private void OnNameChanged(object? sender, EventArgs e) => Validate();
+    private void OnSKUChanged(object? sender, EventArgs e) => Validate();
 
     public bool TryGetName(out string? name) {
         if (_nameValid) name = _view.StockName;
@@ -62,5 +62,15 @@ public class ManageStockDetailsPresenter {
         if (!_skuValid && !_nameValid) _view.NameSKUError = $"Fill in a name. {validationRequestEventArgs.ErrorMessage}";
         else if (!_skuValid) _view.NameSKUError = validationRequestEventArgs.ErrorMessage;
         else if (!_nameValid) _view.NameSKUError = "Fill in a name";
+    }
+
+    public bool CanExit() {
+        _skuValid && _nameValid;
+    }
+
+    public override void CleanUp() {
+        _view.DescriptionChanged -= OnDescriptionChanged;
+        _view.SKUChanged -= OnNameChanged;
+        _view.NameChanged -= OnSKUChanged;
     }
 }

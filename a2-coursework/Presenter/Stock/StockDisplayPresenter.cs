@@ -3,7 +3,7 @@ using a2_coursework.Model;
 using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.Presenter.Stock;
-public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IMasterChildPresenter {
+public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresenter {
     private List<StockItem>? _stockItems;
     private Dictionary<int, StockItem>? _stockItemsDictionary;
 
