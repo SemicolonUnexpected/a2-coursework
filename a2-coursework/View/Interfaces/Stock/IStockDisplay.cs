@@ -9,6 +9,7 @@ public interface IStockDisplay : IChildView {
     public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
+    public event EventHandler<SortRequestEventArgs>? SortRequested;
 
     public string SearchText { get; set; }
     public string DataGridText { set; }

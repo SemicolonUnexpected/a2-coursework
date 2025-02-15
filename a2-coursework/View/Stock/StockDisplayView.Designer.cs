@@ -31,15 +31,15 @@
             pnlData = new CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            sb = new CustomControls.CustomScrollBar();
-            lblStock = new Label();
-            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             columnID = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnSKU = new DataGridViewTextBoxColumn();
             columnQuantity = new DataGridViewTextBoxColumn();
             columnQuantityLevel = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
+            sb = new CustomControls.CustomScrollBar();
+            lblStock = new Label();
+            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -128,7 +128,55 @@
             dataGridView.Size = new Size(601, 349);
             dataGridView.TabIndex = 1;
             dataGridView.CellFormatting += dataGridView_CellFormatting;
+            dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
+            // 
+            // columnID
+            // 
+            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnID.HeaderText = "ID";
+            columnID.Name = "columnID";
+            columnID.Width = 47;
+            // 
+            // columnName
+            // 
+            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
+            columnName.HeaderText = "Name";
+            columnName.Name = "columnName";
+            // 
+            // columnSKU
+            // 
+            columnSKU.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnSKU.HeaderText = "SKU";
+            columnSKU.Name = "columnSKU";
+            columnSKU.Width = 62;
+            // 
+            // columnQuantity
+            // 
+            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnQuantity.HeaderText = "Quantity";
+            columnQuantity.Name = "columnQuantity";
+            columnQuantity.Width = 92;
+            // 
+            // columnQuantityLevel
+            // 
+            columnQuantityLevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnQuantityLevel.HeaderText = "Quantity Level";
+            columnQuantityLevel.Name = "columnQuantityLevel";
+            columnQuantityLevel.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnQuantityLevel.Width = 124;
+            // 
+            // columnArchived
+            // 
+            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnArchived.DataPropertyName = "IsArchived";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
+            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
+            columnArchived.HeaderText = "Archived";
+            columnArchived.Name = "columnArchived";
+            columnArchived.Width = 96;
             // 
             // sb
             // 
@@ -180,53 +228,6 @@
             topBar.ShowArchivedEnabled = true;
             topBar.Size = new Size(625, 44);
             topBar.TabIndex = 11;
-            // 
-            // columnID
-            // 
-            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnID.HeaderText = "ID";
-            columnID.Name = "columnID";
-            columnID.Width = 47;
-            // 
-            // columnName
-            // 
-            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle2;
-            columnName.HeaderText = "Name";
-            columnName.Name = "columnName";
-            // 
-            // columnSKU
-            // 
-            columnSKU.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnSKU.HeaderText = "SKU";
-            columnSKU.Name = "columnSKU";
-            columnSKU.Width = 62;
-            // 
-            // columnQuantity
-            // 
-            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantity.HeaderText = "Quantity";
-            columnQuantity.Name = "columnQuantity";
-            columnQuantity.Width = 92;
-            // 
-            // columnQuantityLevel
-            // 
-            columnQuantityLevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantityLevel.HeaderText = "Quantity Level";
-            columnQuantityLevel.Name = "columnQuantityLevel";
-            columnQuantityLevel.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantityLevel.Width = 124;
-            // 
-            // columnArchived
-            // 
-            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnArchived.DataPropertyName = "IsArchived";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
-            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
-            columnArchived.HeaderText = "Archived";
-            columnArchived.Name = "columnArchived";
-            columnArchived.Width = 96;
             // 
             // StockDisplayView
             // 

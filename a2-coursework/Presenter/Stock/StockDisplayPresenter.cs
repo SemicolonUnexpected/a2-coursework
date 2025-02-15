@@ -1,6 +1,5 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Model;
-using a2_coursework.View;
 using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Stock;
 using a2_coursework.View.Stock;
@@ -27,14 +26,16 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
         _view.ShowArchivedChanged += OnShowArchivedChanged;
         _view.Search += OnSearch;
         _view.SelectionChanged += OnSelectionChanged;
+        _view.SortRequested += OnSortRequested;
     }
 
     private void OnAdd(object? sender, EventArgs e) => Add();
     private void OnEdit(object? sender, EventArgs e) => Edit();
-    private void OnShowArchivedChanged(object? sender, EventArgs e) => DisplayItems(_stockItems);
+    private void OnShowArchivedChanged(object? sender, EventArgs e) => DisplayItems();
     private void OnArchiveToggled(object? sender, EventArgs e) => ToggleArchived();
     private void OnSearch(object? sender, EventArgs e) => Search();
     private void OnSelectionChanged(object? sender, EventArgs e) => Search();
+    private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -69,10 +70,10 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
         }
     }
 
-    private void DisplayItems(List<StockItem> stockItems) {
+    private void DisplayItems() {
         _displayItems.Clear();
 
-        foreach (StockItem stockItem in stockItems) {
+        foreach (StockItem stockItem in _stockItems) {
             if (!_view.ShowArchivedItems && stockItem.IsArchived) continue;
 
             DisplayStockItem displayStockItem = new(stockItem);
@@ -90,20 +91,17 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
         try {
             Task searchTask = Task.Run(() => {
                 if (string.IsNullOrWhiteSpace(_view.SearchText)) {
-                    _stockItems = _stockItems.OrderBy(stockItem => {
-                        token.ThrowIfCancellationRequested();
-                        return stockItem.Id;
-                    }).ToList();
+                    SortById(true);
                 }
                 else {
-                    _stockItems = _stockItems.OrderBy(stockItem => {
+                    _stockItems = [.. _stockItems.OrderBy(stockItem => {
                         token.ThrowIfCancellationRequested();
                         return MathF.Min((float)GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.SKU.ToLower()), 2) + 1) / MathF.Pow(stockItem.SKU.Length, 2));
-                    }).ToList();
+                    })];
                 }
 
                 token.ThrowIfCancellationRequested();
-                DisplayItems(_stockItems);
+                DisplayItems();
             }, token);
         }
         catch (OperationCanceledException) { }
@@ -145,14 +143,55 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
     private void Edit() {
         if (_view.SelectedItem is null) return;
 
-        Navigate?.Invoke(this, ViewFactory.CreateEditStock(_stockItemMap[_view.SelectedItem.Id]));
+        //Navigate?.Invoke(this, ViewFactory.CreateEditStock(_stockItemMap[_view.SelectedItem.Id]));
     }
 
     private void Add() {
         if (_view.SelectedItem is null) return;
 
-        Navigate?.Invoke(this, ViewFactory.CreateEditStock(_stockItemMap[_view.SelectedItem.Id]));
+        //Navigate?.Invoke(this, ViewFactory.CreateEditStock(_stockItemMap[_view.SelectedItem.Id]));
     }
+
+    private void SortByColumn(string columnName, bool sortAscending) {
+        switch (columnName) {
+            case "Id":
+                SortById(sortAscending);
+                break;
+            case "Name":
+                SortByName(sortAscending);
+                break;
+            case "SKU":
+                SortBySKU(sortAscending);
+                break;
+            case "Quantity":
+                SortByQuantity(sortAscending);
+                break;
+            case "Quantity Level":
+                SortByQuantityLevel(sortAscending);
+                break;
+            case "Archived":
+                SortByArchived(sortAscending);
+                break;
+
+            default:
+                throw new NotImplementedException("Invalid column name");
+        }
+
+        DisplayItems();
+    }
+
+    private void SortBy<T>(Func<StockItem, T> comparer, bool sortAscending) where T : IComparable {
+        if (sortAscending) _stockItems.Sort((a, b) => a.Id.CompareTo(b.Id));
+        else _stockItems.Sort((a, b) => b.Id.CompareTo(a.Id));
+    }
+
+    private void SortByName(bool sortAscending) {
+        if (sortAscending) _stockItems.Sort((a, b) => a.Name.CompareTo(b.Name));
+        else _stockItems.Sort((a, b) => b.Name.CompareTo(a.Name));
+    }
+
+    private void SortBySKU
+
 
     public bool CanExit() {
         _cancellationTokenSource.Cancel();
@@ -169,6 +208,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
         _view.ShowArchivedChanged -= OnShowArchivedChanged;
         _view.Search -= OnSearch;
         _view.SelectionChanged -= OnSelectionChanged;
+        _view.SortRequested -= OnSortRequested;
 
         base.CleanUp();
     }

@@ -14,6 +14,7 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
     public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
+    public event EventHandler<SortRequestEventArgs>? SortRequested;
 
     public StockDisplayView() {
         InitializeComponent();
@@ -180,6 +181,13 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
 
             }
         }
+
+        // Format the archived
+        if (e.ColumnIndex == 5 && e.RowIndex >= 0) {
+            if (e.Value is bool isArchived) {
+                e.Value = isArchived ? "Yes" : "No";
+            }
+        }
     }
 
     private void sb_ValueChanged(object sender, EventArgs e) {
@@ -194,5 +202,10 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
         Theming.Theme.AppearanceThemeChanged -= Theme;
         Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
         Theming.Theme.FontNameChanged -= SetFont;
+    }
+
+    private void dataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
+        SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, e.Button == MouseButtons.Left);
+        SortRequested?.Invoke(this, sortRequestEventArgs);
     }
 }
