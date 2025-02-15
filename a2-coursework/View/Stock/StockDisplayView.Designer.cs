@@ -221,6 +221,7 @@
             // columnArchived
             // 
             columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnArchived.DataPropertyName = "IsArchived";
             dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
             columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
             columnArchived.HeaderText = "Archived";

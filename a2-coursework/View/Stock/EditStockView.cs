@@ -66,6 +66,7 @@ public partial class EditStockView : Form, IEditStockView {
             _isLoading = value;
 
             topMenu.Enabled = !_isLoading;
+            pnlHolder.Enabled = !_isLoading;
             approveChangesBar.IsLoading = _isLoading;
         }
     }

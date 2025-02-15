@@ -1,7 +1,8 @@
-﻿using a2_coursework.Theming;
+﻿using a2_coursework.View.Stock;
+using System.ComponentModel;
 
 namespace a2_coursework.View.Interfaces.Stock;
-public interface IStockDisplay :  IChildView {
+public interface IStockDisplay : IChildView {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;
@@ -11,13 +12,11 @@ public interface IStockDisplay :  IChildView {
 
     public string SearchText { get; set; }
     public string DataGridText { set; }
-    public bool ShowArchivedStockItem { get; }
-    public bool StockItemArchived { set; get; }
-    public DataGridViewRow? SelectedRow { get; }
+    public bool ShowArchivedItems { get; }
+    public bool SelectedItemArchived { set; get; }
+    public DisplayStockItem? SelectedItem { get; }
 
-    public void DisplayData(List<object[]> data);
-    public void RemoveRow(DataGridViewRow row);
-    public void ClearData();
+    public void DisplayItems(BindingList<DisplayStockItem> items);
     public void DisableAll();
     public void EnableAll();
 }

@@ -1,10 +1,12 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Presenter.Stock;
 using a2_coursework.Theming;
 using a2_coursework.View.Interfaces.Stock;
+using a2_coursework.View.Stock;
+using System.ComponentModel;
+
 namespace a2_coursework.View;
 public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
-    private StockDisplayPresenter? _presenter;
+    private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? Add;
     public event EventHandler? Edit;
@@ -15,15 +17,6 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
 
     public StockDisplayView() {
         InitializeComponent();
-
-        columnID.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnQuantityLevel.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-
-        float scalingFactor = DeviceDpi / 96f;
-        dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);
-        dataGridView.RowTemplate.Height = (int)(30 * scalingFactor);
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
@@ -37,16 +30,10 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
         topBar.ShowArchivedToggled += (s, e) => ShowArchivedChanged?.Invoke(this, EventArgs.Empty);
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
-
-        dataGridView.MouseWheel += (s, e) => {
-            sb.Value -= Math.Sign(e.Delta);
-            sb.Refresh();
-        };
-
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
-    }
 
-    public void SetPresenter(StockDisplayPresenter presenter) => _presenter = presenter;
+        SetupDataGrid();
+    }
 
     public void Theme() {
         BackColor = ColorScheme.CurrentTheme.Background;
@@ -75,15 +62,52 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
         lblError.SetFontName(fontName);
     }
 
+    private void SetupDataGrid() {
+        dataGridView.AutoGenerateColumns = false;
+        columnID.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        columnQuantityLevel.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+
+        float scalingFactor = DeviceDpi / 96f;
+        dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);
+        dataGridView.RowTemplate.Height = (int)(30 * scalingFactor);
+
+        dataGridView.MouseWheel += (s, e) => {
+            sb.Value -= Math.Sign(e.Delta);
+            sb.Refresh();
+        };
+
+        SetupDataBindings();
+    }
+
+    private void SetupDataBindings() {
+        dataGridView.DataSource = _bindingSource;
+
+        _bindingSource.ListChanged += (s, e) => {
+            if (e.ListChangedType is ListChangedType.Reset or ListChangedType.ItemAdded or ListChangedType.ItemDeleted) {
+                SetScrollOptions();
+            }
+        };
+
+        columnID.DataPropertyName = nameof(DisplayStockItem.Id);
+        columnName.DataPropertyName = nameof(DisplayStockItem.Name);
+        columnSKU.DataPropertyName = nameof(DisplayStockItem.SKU);
+        columnQuantity.DataPropertyName = nameof(DisplayStockItem.Quantity);
+        columnQuantityLevel.DataPropertyName = nameof(DisplayStockItem.QuantityLevel);
+        columnArchived.DataPropertyName = nameof(DisplayStockItem.IsArchived);
+        throw new NotImplementedException("pls format me");
+    }
+
     public string SearchText {
         get => topBar.SearchText;
         set => topBar.SearchText = value;
     }
 
-    public DataGridViewRow? SelectedRow {
+    public DisplayStockItem? SelectedItem {
         get {
             try {
-                return dataGridView.SelectedRows[0];
+                return ((BindingList<DisplayStockItem>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -91,7 +115,7 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
         }
     }
 
-    public bool ShowArchivedStockItem {
+    public bool ShowArchivedItems {
         get => topBar.ShowArchived;
     }
 
@@ -103,29 +127,15 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
         }
     }
 
-    public bool StockItemArchived {
+    public bool SelectedItemArchived {
         get => topBar.Restore;
         set => topBar.Restore = value;
     }
 
-    public void DisplayData(List<object[]> data) {
+    public void DisplayItems(BindingList<DisplayStockItem> items) {
         dataGridView.SuspendLayout();
-        foreach (object[] row in data) {
-            dataGridView.Rows.Add(row);
-        }
+        _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();
-
-        SetScrollOptions();
-    }
-
-    public void RemoveRow(DataGridViewRow row) {
-        dataGridView.Rows.Remove(row);
-    }
-
-    public void ClearData() {
-        dataGridView.Rows.Clear();
-
-        SetScrollOptions();
     }
 
     public void DisableAll() {

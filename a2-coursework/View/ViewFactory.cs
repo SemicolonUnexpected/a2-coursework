@@ -110,11 +110,10 @@ public static class ViewFactory {
     //    return (view, presenter);
     //}
 
-    //public static (StockEditView view, StockEditPresenter presenter) CreateStockEdit(Staff staff) {
-    //    StockEditView view = new();
-    //    StockEditPresenter presenter = new(view, staff);
-    //    view.SetPresenter(presenter);
+    public static (EditStockView view, EditStockPresenter presenter) CreateEditStock(StockItem stockItem) {
+        EditStockView view = new();
+        EditStockPresenter presenter = new(view, stockItem);
 
-    //    return (view, presenter);
-    //}
+        return (view, presenter);
+    }
 }

@@ -164,8 +164,10 @@ internal static class StaffDAL {
 
     private static PrivilegeLevel ConvertToPrivilegeLevel(string value) => value switch {
         "admin" => PrivilegeLevel.Admin,
-        "user" => PrivilegeLevel.User,
+        "office" => PrivilegeLevel.Office,
         "manager" => PrivilegeLevel.Manager,
+        "cleaner" => PrivilegeLevel.Cleaner,
+        "cleaningmanager" => PrivilegeLevel.CleaningManager,
         _ => throw new NotImplementedException("Not a valid user priviledge level"),
     };
 }

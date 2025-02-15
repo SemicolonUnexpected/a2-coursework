@@ -66,7 +66,7 @@ public class EditStockPresenter  : BasePresenter<IEditStockView> {
         presenter.SetName(_stockItem.Name);
         presenter.SetSKU(_stockItem.SKU);
         presenter.Description = _stockItem.Description;
-        presenter.Archived = _stockItem.Archived;
+        presenter.Archived = _stockItem.IsArchived;
 
         presenter.ValidateSKU += OnValidateSKU;
 

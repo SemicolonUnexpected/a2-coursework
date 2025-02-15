@@ -6,7 +6,7 @@ namespace a2_coursework.Model;
 public static class StockDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-    public static async Task<Dictionary<int, StockItem>> GetStock() {
+    public static async Task<List<StockItem>> GetStock() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -15,12 +15,11 @@ public static class StockDAL {
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
-        Dictionary<int, StockItem> stock = [];
+        List<StockItem> stock = [];
 
         while (await reader.ReadAsync()) {
             int id = reader.GetInt32(reader.GetOrdinal("Id"));
             stock.Add(
-                id,
                 new StockItem(Id: id,
                     name: reader.GetString(reader.GetOrdinal("Name")),
                     description: reader.GetString(reader.GetOrdinal("Description")),
@@ -54,7 +53,6 @@ public static class StockDAL {
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
-    
     }
 
     public static async Task<bool> SKUExists(string sku) {

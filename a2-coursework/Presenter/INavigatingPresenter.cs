@@ -2,5 +2,5 @@
 
 namespace a2_coursework.Presenter; 
 public interface INavigatingPresenter {
-    public event EventHandler<(IChildView view, IChildPresenter presenter)>? Navigating;
+    public event EventHandler<(IChildView view, IChildPresenter presenter)>? Navigate;
 }

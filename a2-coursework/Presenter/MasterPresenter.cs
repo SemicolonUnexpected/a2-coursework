@@ -30,7 +30,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private void OnPreviewToggleChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
 
     private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch {
-        PrivilegeLevel.User => [
+        PrivilegeLevel.Office => [
             ["Dashboard"],
             ["Cleaning", "Manage cleaning", "Manage customers"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
@@ -90,8 +90,8 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _view.DisplayChildForm(viewPresenterPair.view);
 
         // If the view can request to navigate to another view, listen for the request
-        if (_childPresenter is INavigatingPresenter oldNavigatingPresenter) oldNavigatingPresenter.Navigating -= OnNavigateRequested;
-        if (viewPresenterPair.presenter is INavigatingPresenter navigatingPresenter) navigatingPresenter.Navigating += OnNavigateRequested;
+        if (_childPresenter is INavigatingPresenter oldNavigatingPresenter) oldNavigatingPresenter.Navigate -= OnNavigateRequested;
+        if (viewPresenterPair.presenter is INavigatingPresenter navigatingPresenter) navigatingPresenter.Navigate += OnNavigateRequested;
 
         _childPresenter?.CleanUp();
         _childPresenter = viewPresenterPair.presenter;

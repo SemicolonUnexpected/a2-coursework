@@ -64,9 +64,8 @@ public class ManageStockDetailsPresenter : BasePresenter<IManageStockDetailsView
         else if (!_nameValid) _view.NameSKUError = "Fill in a name";
     }
 
-    public bool CanExit() {
-        _skuValid && _nameValid;
-    }
+    public bool CanExit() => _skuValid && _nameValid;
+    
 
     public override void CleanUp() {
         _view.DescriptionChanged -= OnDescriptionChanged;
