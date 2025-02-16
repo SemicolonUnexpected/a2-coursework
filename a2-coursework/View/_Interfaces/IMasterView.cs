@@ -6,10 +6,11 @@ public interface IMasterView : IView {
     public event EventHandler<string>? ToggleChanged;
     public event EventHandler? SignOut;
     public event FormClosedEventHandler? FormClosed;
+    public event FormClosingEventHandler? FormClosing;
 
     public IChildView? ChildView { get; set; }
     public string UsernameText { set; }
-    public void DisplayChildForm(IChildView childForm);
+    public void DisplayChildView(IChildView childForm);
     public void GenerateMenu(string[][] menuItems);
     public void Show();
 

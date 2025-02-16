@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.User_Controls.CRUD {
-    partial class BackNextDoneBar {
+    partial class PreviousNextDoneBar {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -55,7 +55,7 @@
             btnBack.TabIndex = 13;
             btnBack.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnBack.TextPosition = new Point(0, 0);
-            toolTip.SetToolTip(btnBack, "Back");
+            toolTip.SetToolTip(btnBack, "Previous");
             btnBack.Click += btnBack_Click;
             // 
             // pnlSpacer1
@@ -124,7 +124,7 @@
             pnlSpacer2.Size = new Size(5, 37);
             pnlSpacer2.TabIndex = 18;
             // 
-            // BackNextDoneBar
+            // PreviousNextDoneBar
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -134,7 +134,7 @@
             Controls.Add(btnNext);
             Controls.Add(pnlSpacer2);
             Controls.Add(btnDone);
-            Name = "BackNextDoneBar";
+            Name = "PreviousNextDoneBar";
             Padding = new Padding(2);
             Size = new Size(633, 41);
             ResumeLayout(false);

@@ -247,4 +247,13 @@ public partial class DateInput {
             tbYear.ToolTipsActive = value;
         }
     }
+
+    public bool ReadOnly {
+        get => tbDay.ReadOnly;
+        set {
+            tbDay.ReadOnly = value;
+            tbMonth.ReadOnly = value;
+            tbYear.ReadOnly = value;
+        }
+    }
 }

@@ -1,10 +1,9 @@
-﻿using a2_coursework.Theming;
-
-namespace a2_coursework.View.Interfaces.Stock; 
+﻿namespace a2_coursework.View.Interfaces.Stock;
 public interface IManageStockQuantityView : IChildView {
     public event EventHandler? BulkAdd;
     public event EventHandler? BulkRemove;
     public event EventHandler? ReasonForQuantityChangeChanged;
+    public event EventHandler? QuantityChanged;
 
     public int Quantity { get; set; }
     public int BulkAddQuantity { get; }

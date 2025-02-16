@@ -40,23 +40,24 @@
             // 
             // lbl
             // 
-            lbl.Anchor = AnchorStyles.Left | AnchorStyles.Right;
+            lbl.Dock = DockStyle.Fill;
             lbl.Font = new Font("Bahnschrift", 14F);
             lbl.ForeColor = Color.White;
-            lbl.Location = new Point(0, 12);
+            lbl.Location = new Point(0, 0);
             lbl.Margin = new Padding(5);
             lbl.Name = "lbl";
-            lbl.Size = new Size(263, 23);
+            lbl.Size = new Size(263, 45);
             lbl.TabIndex = 19;
             lbl.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // TopMenuItem
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             Controls.Add(lbl);
             Controls.Add(pnlDecor);
+            Cursor = Cursors.Hand;
             Name = "TopMenuItem";
             Size = new Size(263, 47);
             ResumeLayout(false);

@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces.Users.Settings;
-public interface IContactDetailsSettings : ISettingsView
+public interface IContactDetailsSettings : IEditView
 {
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;

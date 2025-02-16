@@ -96,7 +96,7 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings,
         set => lblContactError.Text = value;
     }
 
-    public bool SaveVisible {
+    public bool SaveCancelVisible {
         set => approveChangesBar.Visible = value;
     }
 

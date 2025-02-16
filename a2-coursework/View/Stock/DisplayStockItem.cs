@@ -64,7 +64,7 @@ public class DisplayStockItem : INotifyPropertyChanged {
         SKU = stockItem.SKU;
         Quantity = stockItem.Quantity;
         QuantityLevel = stockItem.Quantity >= stockItem.HighQuantity ? "High" : stockItem.Quantity <= stockItem.LowQuantity ? "Low" : "Medium"; 
-        Archived = stockItem.IsArchived;
+        Archived = stockItem.Archived;
     }
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {

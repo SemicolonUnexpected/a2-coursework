@@ -7,7 +7,9 @@ using a2_coursework.View.Stock;
 using System.ComponentModel;
 
 namespace a2_coursework.Presenter.Stock;
-public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPresenter, INavigatingPresenter {
+public class DisplayStockPresenter : BasePresenter<IStockDisplayView>, IChildPresenter, INavigatingPresenter {
+    private readonly Staff _staff;
+
     private List<StockItem> _stockItems = [];
     private BindingList<DisplayStockItem> _displayItems = [];
     private Dictionary<int, StockItem> _stockItemMap = [];
@@ -16,9 +18,11 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
 
     private CancellationTokenSource _cancellationTokenSource = new();
 
-    public event EventHandler<(IChildView view, IChildPresenter presenter)>? Navigate;
+    public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public StockDisplayPresenter(IStockDisplayView view) : base(view) {
+    public DisplayStockPresenter(IStockDisplayView view, Staff staff) : base(view) {
+        _staff = staff;
+
         LoadData();
 
         _view.Add += OnAdd;
@@ -53,7 +57,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
             foreach (StockItem stockItem in _stockItems) {
                 _stockItemMap.Add(stockItem.Id, stockItem);
 
-                if (!_view.ShowArchivedItems && stockItem.IsArchived) continue;
+                if (!_view.ShowArchivedItems && stockItem.Archived) continue;
 
                 DisplayStockItem displayStockItem = new(stockItem);
                 _displayItems.Add(displayStockItem);
@@ -77,7 +81,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
         _displayItems.Clear();
 
         foreach (StockItem stockItem in _stockItems) {
-            if (!_view.ShowArchivedItems && stockItem.IsArchived) continue;
+            if (!_view.ShowArchivedItems && stockItem.Archived) continue;
 
             DisplayStockItem displayStockItem = new(stockItem);
             _displayItems.Add(displayStockItem);
@@ -123,7 +127,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
 
     private void SelectionChanged() {
         if (_view.SelectedItem is null) return;
-        _view.SelectedItemArchived = _stockItemMap[_view.SelectedItem.Id].IsArchived;
+        _view.SelectedItemArchived = _stockItemMap[_view.SelectedItem.Id].Archived;
     }
 
     private async void ToggleArchived() {
@@ -141,11 +145,11 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
         try {
             _isAsyncRunning = true;
 
-            bool success = await StockDAL.UpdateArchived(stockItem.Id, !stockItem.IsArchived);
+            bool success = await StockDAL.UpdateArchived(stockItem.Id, !stockItem.Archived);
 
             if (success) {
-                stockItem.IsArchived = !stockItem.IsArchived;
-                _view.SelectedItem.Archived = stockItem.IsArchived;
+                stockItem.Archived = !stockItem.Archived;
+                _view.SelectedItem.Archived = stockItem.Archived;
                 if (!_view.ShowArchivedItems && _view.SelectedItem.Archived) _displayItems.Remove(_view.SelectedItem);
             }
         }
@@ -159,7 +163,10 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
     private void Edit() {
         if (_view.SelectedItem is null) return;
 
-        //Navigate?.Invoke(this, ViewFactory.CreateEditStock(_stockItemMap[_view.SelectedItem.Id]));
+        _cancellationTokenSource.Cancel();
+
+        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateEditStock(_stockItemMap[_view.SelectedItem.Id], _staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
@@ -188,7 +195,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPre
                 SortBy(ConvertQuantityLevelToInt, sortAscending);
                 break;
             case "columnArchived":
-                SortBy(x => x.IsArchived, sortAscending);
+                SortBy(x => x.Archived, sortAscending);
                 break;
 
             default:

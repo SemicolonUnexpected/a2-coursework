@@ -7,6 +7,7 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView, I
     public event EventHandler? BulkAdd;
     public event EventHandler? BulkRemove;
     public event EventHandler? ReasonForQuantityChangeChanged;
+    public event EventHandler? QuantityChanged;
 
     public ManageStockQuantityView() {
         InitializeComponent();
@@ -23,8 +24,7 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView, I
         btnAdd.Click += (s, e) => BulkAdd?.Invoke(this, EventArgs.Empty);
         btnRemove.Click += (s, e) => BulkRemove?.Invoke(this, EventArgs.Empty);
         tbReasonForQuantityChange.TextChanged += (s, e) => ReasonForQuantityChangeChanged?.Invoke(this, EventArgs.Empty);
-
-        MessageBox.Show(tbReasonForQuantityChange.Height.ToString());
+        nudQuantity.ValueChanged += (s, e) => QuantityChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {

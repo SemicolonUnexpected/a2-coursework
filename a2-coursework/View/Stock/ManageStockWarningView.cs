@@ -4,8 +4,8 @@ using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.View.Stock; 
 public partial class ManageStockWarningView : Form, IManageStockWarningView, IThemeable {
-    public event EventHandler? Save;
-    public event EventHandler? Cancel;
+    public event EventHandler? LowQuantityChanged;
+    public event EventHandler? HighQuantityChanged;
 
     public ManageStockWarningView() {
         InitializeComponent();
@@ -18,6 +18,9 @@ public partial class ManageStockWarningView : Form, IManageStockWarningView, ITh
 
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
+
+        nudLowQuantity.ValueChanged += (s, e) => LowQuantityChanged?.Invoke(this, EventArgs.Empty);
+        nudHighQuantity.ValueChanged += (s, e) => HighQuantityChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {

@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.Interfaces.Users.Settings;
-public interface IPersonalInformationSettings : ISettingsView
+public interface IPersonalInformationSettings : IEditView
 {
     public event EventHandler? SurnameChanged;
     public event EventHandler? ForenameChanged;

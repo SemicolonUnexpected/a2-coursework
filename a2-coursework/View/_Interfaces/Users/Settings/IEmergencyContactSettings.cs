@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.View.Interfaces.Users.Settings;
-public interface IEmergencyContactSettings : ISettingsView
+public interface IEmergencyContactSettings : IEditView
 {
     public event EventHandler? EmergencyContactForenameChanged;
     public event EventHandler? EmergencyContactSurnameChanged;

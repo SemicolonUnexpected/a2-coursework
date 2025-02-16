@@ -7,7 +7,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;
     public event EventHandler? SKUChanged;
-    public event EventHandler? DetailsChanged;
+    public event EventHandler? ArchivedChanged;
 
     public ManageStockDetailsView() {
         InitializeComponent();
@@ -21,8 +21,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
         tbStockDescription.TextChanged += (s, e) => DescriptionChanged?.Invoke(this, EventArgs.Empty);
         tbSKU.TextChanged += (s, e) => SKUChanged?.Invoke(this, EventArgs.Empty);
         tbStockName.TextChanged += (s, e) => NameChanged?.Invoke(this, EventArgs.Empty);
-
-        tbStockName.TextChanged += (s, e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+        rbArchived.CheckChanged += (s, e) => ArchivedChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {

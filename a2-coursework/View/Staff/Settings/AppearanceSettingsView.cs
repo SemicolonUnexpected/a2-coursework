@@ -104,7 +104,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
         }
     }
 
-    public bool SaveVisible {
+    public bool SaveCancelVisible {
         get => approveChangesBar.Visible;
         set => approveChangesBar.Visible = value;
     }

@@ -1,18 +1,11 @@
 ﻿using a2_coursework.UserControls;
+using a2_coursework.View.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Interfaces.Stock; 
-public interface IEditStockView : IChildView {
-    public event EventHandler? SelectedMenuItemChanged;
+public interface IEditStockView : IChildView, IEditView {
+    public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
-    public event EventHandler? Save;
-    public event EventHandler? Cancel;
     public event EventHandler? Back;
 
-    public string SelectedMenuItem { get; }
-    public bool IsLoading { get; set; }
-    public bool SaveCancelVisible { get; set; }
-
-    public void DisplayView(IChildView childView);
-
-    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);
+    public void DisplayChildView(IChildView childView);
 }

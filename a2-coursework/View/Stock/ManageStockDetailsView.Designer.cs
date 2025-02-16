@@ -129,7 +129,7 @@
             tbStockDescription.HoverColor = Color.Empty;
             tbStockDescription.Location = new Point(135, 247);
             tbStockDescription.Margin = new Padding(5);
-            tbStockDescription.MaximumSize = new Size(355, 93);
+            tbStockDescription.MaximumSize = new Size(355, 83);
             tbStockDescription.MaxLength = 1000;
             tbStockDescription.MultiLine = true;
             tbStockDescription.Name = "tbStockDescription";
@@ -151,9 +151,9 @@
             lblStockDescription.Location = new Point(135, 214);
             lblStockDescription.Margin = new Padding(5);
             lblStockDescription.Name = "lblStockDescription";
-            lblStockDescription.Size = new Size(156, 23);
+            lblStockDescription.Size = new Size(241, 23);
             lblStockDescription.TabIndex = 12;
-            lblStockDescription.Text = "Stock description";
+            lblStockDescription.Text = "Stock description (optional)";
             lblStockDescription.Click += ClearFocusOnClick;
             // 
             // lblArchived

@@ -21,11 +21,21 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _view.ToggleChanged += OnToggleChanged;
         _view.SignOut += OnSignOut;
         _view.FormClosed += OnFormClosed;
+        _view.FormClosing += OnFormClosing;
     }
 
-    private void OnFormClosed(object? sender, EventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
-    private void OnToggleChanged(object? sender, string selectedItem) => Navigate(GetToggledView(selectedItem));
-    private void OnNavigateRequested(object? sender, (IChildView view, IChildPresenter presenter) presenterViewPair) => Navigate(presenterViewPair);
+    private void OnFormClosing(object? sender, FormClosingEventArgs e) {
+        if (_childPresenter is null) return;
+
+        e.Cancel = !_childPresenter.CanExit();
+    }
+
+    private void OnFormClosed(object? sender, FormClosedEventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
+    private void OnToggleChanged(object? sender, string selectedItem) {
+        (IChildView view, IChildPresenter presenter) = GetView(selectedItem);
+        Navigate(view, presenter);
+    }
+    private void OnNavigateRequested(object? sender, NavigationEventArgs e) => Navigate(e.View, e.Presenter);
     private void OnSignOut(object? sender, EventArgs e) => SignOut();
     private void OnPreviewToggleChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
 
@@ -58,7 +68,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _ => throw new NotImplementedException(),
     };
 
-    public (IChildView view, IChildPresenter presenter) GetToggledView(string menuItemName) => menuItemName switch {
+    public (IChildView view, IChildPresenter presenter) GetView(string menuItemName) => menuItemName switch {
         "Personal information" => GetPersonalInformationSettings(),
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
@@ -74,7 +84,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff);
     private (IChildView view, IChildPresenter presenter) GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff);
     private (IChildView view, IChildPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
-    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay();
+    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay(_staff);
     private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
 
     private void SignOut() {
@@ -85,16 +95,16 @@ public class MasterPresenter : BasePresenter<IMasterView> {
 
     private bool CanNavigate() => _childPresenter is null || _childPresenter.CanExit();
 
-    private void Navigate((IChildView view, IChildPresenter presenter) viewPresenterPair) {
+    private void Navigate(IChildView view, IChildPresenter presenter) {
         // Display the next view
-        _view.DisplayChildForm(viewPresenterPair.view);
+        _view.DisplayChildView(view);
 
         // If the view can request to navigate to another view, listen for the request
-        if (_childPresenter is INavigatingPresenter oldNavigatingPresenter) oldNavigatingPresenter.Navigate -= OnNavigateRequested;
-        if (viewPresenterPair.presenter is INavigatingPresenter navigatingPresenter) navigatingPresenter.Navigate += OnNavigateRequested;
+        if (_childPresenter is INavigatingPresenter oldNavigatingPresenter) oldNavigatingPresenter.NavigationRequest -= OnNavigateRequested;
+        if (presenter is INavigatingPresenter navigatingPresenter) navigatingPresenter.NavigationRequest += OnNavigateRequested;
 
         _childPresenter?.CleanUp();
-        _childPresenter = viewPresenterPair.presenter;
+        _childPresenter = presenter;
     }
 
     public void Show() => _view.Show();
@@ -104,6 +114,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _view.ToggleChanged -= OnToggleChanged;
         _view.SignOut -= OnSignOut;
         _view.FormClosed -= OnFormClosed;
+        _view.FormClosing -= OnFormClosing;
 
         base.CleanUp();
     }

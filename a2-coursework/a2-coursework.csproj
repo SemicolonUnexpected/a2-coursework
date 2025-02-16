@@ -27,6 +27,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -43,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="View\Customers\" />
     <Folder Include="View\Deliveries\" />
     <Folder Include="View\Bookings\" />
   </ItemGroup>

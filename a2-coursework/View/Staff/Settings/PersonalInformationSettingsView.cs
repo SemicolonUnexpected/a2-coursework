@@ -84,7 +84,7 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
         approveChangesBar.SetFontName(fontName);
     }
 
-    public bool SaveVisible {
+    public bool SaveCancelVisible {
         set => approveChangesBar.Visible = value;
     }
 

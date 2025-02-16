@@ -68,7 +68,7 @@ public partial class MasterView : Form, IMasterView, IThemeable {
     }
 
 
-    public void DisplayChildForm(IChildView childView) {
+    public void DisplayChildView(IChildView childView) {
         // Remove the previous child form
         pnlHolder.Controls.Clear();
 

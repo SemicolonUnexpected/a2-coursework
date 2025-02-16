@@ -65,9 +65,9 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    public static (StockDisplayView view, StockDisplayPresenter presenter) CreateStockDisplay() {
+    public static (StockDisplayView view, DisplayStockPresenter presenter) CreateStockDisplay(Staff staff) {
         StockDisplayView view = new();
-        StockDisplayPresenter presenter = new(view);
+        DisplayStockPresenter presenter = new(view, staff);
 
         return (view, presenter);
     }
@@ -109,9 +109,9 @@ public static class ViewFactory {
     //    return (view, presenter);
     //}
 
-    public static (EditStockView view, EditStockPresenter presenter) CreateEditStock(StockItem stockItem) {
+    public static (EditStockView view, EditStockPresenter presenter) CreateEditStock(StockItem stockItem, Staff staff) {
         EditStockView view = new();
-        EditStockPresenter presenter = new(view, stockItem);
+        EditStockPresenter presenter = new(view, stockItem, staff);
 
         return (view, presenter);
     }

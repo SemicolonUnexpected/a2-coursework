@@ -1,12 +1,12 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.User_Controls.CRUD;
-public partial class BackNextDoneBar : UserControl, IThemeable {
-    public event EventHandler? Back;
+public partial class PreviousNextDoneBar : UserControl, IThemeable {
+    public event EventHandler? Previous;
     public event EventHandler? Next;
     public event EventHandler? Done;
 
-    public BackNextDoneBar() {
+    public PreviousNextDoneBar() {
         InitializeComponent();
 
         Theme();
@@ -34,15 +34,15 @@ public partial class BackNextDoneBar : UserControl, IThemeable {
     public void SetFont() { }
 
     private void btnNext_Click(object sender, EventArgs e) => Next?.Invoke(this, EventArgs.Empty);
-    private void btnBack_Click(object sender, EventArgs e) => Back?.Invoke(this, EventArgs.Empty);
+    private void btnBack_Click(object sender, EventArgs e) => Previous?.Invoke(this, EventArgs.Empty);
     private void btnDone_Click(object sender, EventArgs e) => Done?.Invoke(this, EventArgs.Empty);
 
-    public bool ShowBack {
+    public bool PreviousVisible {
         get => btnBack.Visible;
         set => btnBack.Visible = value;
     }
 
-    public bool ShowNext {
+    public bool NextVisible {
         get => btnNext.Visible;
         set {
             btnNext.Visible = value;
@@ -50,7 +50,7 @@ public partial class BackNextDoneBar : UserControl, IThemeable {
         }
     }
 
-    public bool ShowDone {
+    public bool DoneVisible {
         get => btnDone.Visible;
         set {
             btnDone.Visible = value;

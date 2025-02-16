@@ -8,7 +8,7 @@ public class StockItem(string name, string description, int Id, string SKU, int 
     public int Quantity {get; set; } = quantity;
     public int LowQuantity { get; set; } = lowQuantity;
     public int HighQuantity { get; set; } = highQuantity;
-    public bool IsArchived { get; set; } = archived;
+    public bool Archived { get; set; } = archived;
     public string SKU { get; set; } = SKU;
 
     public string GetSKU() {

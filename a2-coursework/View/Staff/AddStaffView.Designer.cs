@@ -23,7 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            backNextDoneBar1 = new User_Controls.CRUD.BackNextDoneBar();
+            backNextDoneBar = new User_Controls.CRUD.PreviousNextDoneBar();
             pnlHolder = new Panel();
             pnlMenu = new Panel();
             lblAppearance = new Label();
@@ -33,17 +33,17 @@
             // 
             // backNextDoneBar1
             // 
-            backNextDoneBar1.BackColor = Color.FromArgb(9, 9, 10);
-            backNextDoneBar1.Dock = DockStyle.Bottom;
-            backNextDoneBar1.Location = new Point(0, 459);
-            backNextDoneBar1.Margin = new Padding(0);
-            backNextDoneBar1.Name = "backNextDoneBar1";
-            backNextDoneBar1.Padding = new Padding(2);
-            backNextDoneBar1.ShowBack = true;
-            backNextDoneBar1.ShowDone = true;
-            backNextDoneBar1.ShowNext = true;
-            backNextDoneBar1.Size = new Size(654, 41);
-            backNextDoneBar1.TabIndex = 33;
+            backNextDoneBar.BackColor = Color.FromArgb(9, 9, 10);
+            backNextDoneBar.Dock = DockStyle.Bottom;
+            backNextDoneBar.Location = new Point(0, 459);
+            backNextDoneBar.Margin = new Padding(0);
+            backNextDoneBar.Name = "backNextDoneBar1";
+            backNextDoneBar.Padding = new Padding(2);
+            backNextDoneBar.PreviousVisible = true;
+            backNextDoneBar.DoneVisible = true;
+            backNextDoneBar.NextVisible = true;
+            backNextDoneBar.Size = new Size(654, 41);
+            backNextDoneBar.TabIndex = 33;
             // 
             // pnlHolder
             // 
@@ -108,7 +108,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
-            Controls.Add(backNextDoneBar1);
+            Controls.Add(backNextDoneBar);
             Controls.Add(pnlHolder);
             Controls.Add(pnlMenu);
             FormBorderStyle = FormBorderStyle.None;
@@ -121,7 +121,7 @@
 
         #endregion
 
-        private User_Controls.CRUD.BackNextDoneBar backNextDoneBar1;
+        private User_Controls.CRUD.PreviousNextDoneBar backNextDoneBar;
         private Panel pnlHolder;
         private Panel pnlMenu;
         private Label lblAppearance;

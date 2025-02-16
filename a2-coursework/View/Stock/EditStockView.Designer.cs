@@ -23,18 +23,20 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             topMenu = new UserControls.TopMenu();
             pnlHolder = new Panel();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
             pnlMenu = new Panel();
             btnBack = new CustomControls.CustomButton();
+            toolTip = new ToolTip(components);
             pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
             // topMenu
             // 
-            topMenu.Anchor = AnchorStyles.None;
-            topMenu.Location = new Point(69, 3);
+            topMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
+            topMenu.Location = new Point(132, 3);
             topMenu.Margin = new Padding(100);
             topMenu.MenuItems = new string[]
     {
@@ -44,7 +46,7 @@
     };
             topMenu.Name = "topMenu";
             topMenu.SelectedIndex = 0;
-            topMenu.Size = new Size(516, 34);
+            topMenu.Size = new Size(390, 34);
             topMenu.TabIndex = 24;
             // 
             // pnlHolder
@@ -78,7 +80,6 @@
             pnlMenu.Name = "pnlMenu";
             pnlMenu.Size = new Size(654, 40);
             pnlMenu.TabIndex = 26;
-            pnlMenu.Paint += pnlMenu_Paint;
             // 
             // btnBack
             // 
@@ -89,25 +90,27 @@
             btnBack.ClickedBorderColor = Color.FromArgb(39, 39, 42);
             btnBack.ClickedColor = Color.FromArgb(39, 39, 42);
             btnBack.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnBack.Cursor = Cursors.Hand;
             btnBack.DisabledBorderColor = Color.Empty;
             btnBack.DisabledColor = Color.Empty;
-            btnBack.Dock = DockStyle.Left;
             btnBack.ForeColor = Color.FromArgb(250, 250, 250);
             btnBack.HoverBorderColor = Color.FromArgb(39, 39, 42);
             btnBack.HoverColor = Color.FromArgb(39, 39, 42);
             btnBack.Image = Properties.Resources.chevron_left_light;
-            btnBack.ImageRectangle = new Rectangle(7, 7, 26, 26);
-            btnBack.Location = new Point(0, 0);
+            btnBack.ImageRectangle = new Rectangle(6, 6, 24, 24);
+            btnBack.Location = new Point(4, 4);
+            btnBack.Margin = new Padding(2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(40, 40);
+            btnBack.Size = new Size(36, 36);
             btnBack.TabIndex = 25;
             btnBack.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnBack.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnBack, "Back");
             // 
             // EditStockView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
             Controls.Add(pnlHolder);
@@ -127,5 +130,6 @@
         private User_Controls.Settings.ApproveChangesBar approveChangesBar;
         private Panel pnlMenu;
         private CustomControls.CustomButton btnBack;
+        private ToolTip toolTip;
     }
 }

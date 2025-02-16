@@ -92,7 +92,7 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
         set => lblEmergencyContactPhoneNumberError.Text = value;
     }
 
-    public bool SaveVisible {
+    public bool SaveCancelVisible {
         get => approveChangesBar.Visible;
         set => approveChangesBar.Visible = value;
     }

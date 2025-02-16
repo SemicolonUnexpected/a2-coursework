@@ -20,5 +20,4 @@ public interface IStockDisplayView : IChildView {
     public void DisplayItems(BindingList<DisplayStockItem> items);
     public void DisableAll();
     public void EnableAll();
-    public void Invoke(Action a);
  }

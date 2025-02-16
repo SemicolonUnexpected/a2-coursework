@@ -6,8 +6,8 @@ using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Stock;
 
 namespace a2_coursework.View.Stock;
-public partial class EditStockView : Form, IEditStockView {
-    public event EventHandler? SelectedMenuItemChanged;
+public partial class EditStockView : Form, IEditStockView, IThemeable {
+    public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
     public event EventHandler? Save;
     public event EventHandler? Cancel;
@@ -22,7 +22,14 @@ public partial class EditStockView : Form, IEditStockView {
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
 
-        topMenu.SelectedIndexChanged += (s, e) => SelectedMenuItemChanged?.Invoke(this, EventArgs.Empty);
+        SetToolTipVisibility();
+        Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
+
+        topMenu.SelectedIndexChanged += (s, e) => SelectedMenuItemChanged?.Invoke(this, topMenu.MenuItems[topMenu.SelectedIndex]);
+        btnBack.Click += (s, e) => Back?.Invoke(this, EventArgs.Empty);
+
+        approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
@@ -33,6 +40,13 @@ public partial class EditStockView : Form, IEditStockView {
         approveChangesBar.Theme();
     }
 
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+
+        approveChangesBar.ToolTipsActive = showToolTips;
+        toolTip.Active = showToolTips;
+    }
+
     public void SetFont() {
         string fontName = Theming.Theme.CurrentTheme.FontName;
 
@@ -41,7 +55,7 @@ public partial class EditStockView : Form, IEditStockView {
     }
 
     private IChildView? _childView;
-    public void DisplayView(IChildView childView) {
+    public void DisplayChildView(IChildView childView) {
         // Remove the previous child form
         pnlHolder.Controls.Clear();
 
@@ -57,8 +71,6 @@ public partial class EditStockView : Form, IEditStockView {
         pnlHolder.Controls.Add(_childView as Form);
         _childView.Show();
     }
-
-    public string SelectedMenuItem => topMenu.MenuItems[topMenu.SelectedIndex];
 
     private bool _isLoading = false;
     public bool IsLoading {
@@ -82,10 +94,14 @@ public partial class EditStockView : Form, IEditStockView {
     }
 
     public void CleanUp() {
-        throw new NotImplementedException();
+        Theming.Theme.AppearanceThemeChanged -= Theme;
+        Theming.Theme.FontNameChanged -= SetFont;
+        Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
     }
 
-    private void pnlMenu_Paint(object sender, PaintEventArgs e) {
+    protected override void OnResize(EventArgs e) {
+        base.OnResize(e);
 
+        topMenu.Location = new Point((pnlMenu.Width - topMenu.Width) / 2, 0);
     }
 }

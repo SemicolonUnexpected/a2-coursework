@@ -86,7 +86,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
         ControlHelpers.ExecuteRecursive(this, ctrl => ctrl.SetFontName(fontName));
     }
 
-    public bool SaveVisible { set { } }
+    public bool SaveCancelVisible { set { } }
 
     private bool _isLoading = false;
     public bool IsLoading {
