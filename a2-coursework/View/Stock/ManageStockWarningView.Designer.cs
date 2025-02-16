@@ -35,7 +35,7 @@
             // 
             nudLowQuantity.Anchor = AnchorStyles.None;
             nudLowQuantity.BackColor = Color.FromArgb(9, 9, 10);
-            nudLowQuantity.Location = new Point(202, 156);
+            nudLowQuantity.Location = new Point(202, 155);
             nudLowQuantity.Maximum = 1000000;
             nudLowQuantity.Name = "nudLowQuantity";
             nudLowQuantity.Size = new Size(250, 41);
@@ -47,7 +47,7 @@
             lblLowQuantity.AutoSize = true;
             lblLowQuantity.Font = new Font("Bahnschrift", 14F);
             lblLowQuantity.ForeColor = Color.White;
-            lblLowQuantity.Location = new Point(202, 125);
+            lblLowQuantity.Location = new Point(202, 124);
             lblLowQuantity.Margin = new Padding(5, 10, 5, 5);
             lblLowQuantity.Name = "lblLowQuantity";
             lblLowQuantity.Size = new Size(173, 23);
@@ -60,7 +60,7 @@
             lblHighQuantity.AutoSize = true;
             lblHighQuantity.Font = new Font("Bahnschrift", 14F);
             lblHighQuantity.ForeColor = Color.White;
-            lblHighQuantity.Location = new Point(202, 210);
+            lblHighQuantity.Location = new Point(202, 209);
             lblHighQuantity.Margin = new Padding(5, 10, 5, 5);
             lblHighQuantity.Name = "lblHighQuantity";
             lblHighQuantity.Size = new Size(176, 23);
@@ -71,7 +71,7 @@
             // 
             nudHighQuantity.Anchor = AnchorStyles.None;
             nudHighQuantity.BackColor = Color.FromArgb(9, 9, 10);
-            nudHighQuantity.Location = new Point(202, 241);
+            nudHighQuantity.Location = new Point(202, 240);
             nudHighQuantity.Maximum = 1000000;
             nudHighQuantity.Name = "nudHighQuantity";
             nudHighQuantity.Size = new Size(250, 41);
@@ -82,7 +82,7 @@
             lblInfo.Anchor = AnchorStyles.None;
             lblInfo.Font = new Font("Bahnschrift", 12F);
             lblInfo.ForeColor = Color.FromArgb(168, 171, 174);
-            lblInfo.Location = new Point(132, 9);
+            lblInfo.Location = new Point(132, 8);
             lblInfo.Margin = new Padding(10, 0, 10, 20);
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(391, 98);
@@ -94,7 +94,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 420);
+            ClientSize = new Size(654, 419);
             Controls.Add(lblInfo);
             Controls.Add(nudHighQuantity);
             Controls.Add(nudLowQuantity);

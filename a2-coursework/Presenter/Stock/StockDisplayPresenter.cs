@@ -1,12 +1,13 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Model;
+using a2_coursework.View;
 using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Stock;
 using a2_coursework.View.Stock;
 using System.ComponentModel;
 
 namespace a2_coursework.Presenter.Stock;
-public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresenter, INavigatingPresenter {
+public class StockDisplayPresenter : BasePresenter<IStockDisplayView>, IChildPresenter, INavigatingPresenter {
     private List<StockItem> _stockItems = [];
     private BindingList<DisplayStockItem> _displayItems = [];
     private Dictionary<int, StockItem> _stockItemMap = [];
@@ -17,7 +18,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
 
     public event EventHandler<(IChildView view, IChildPresenter presenter)>? Navigate;
 
-    public StockDisplayPresenter(IStockDisplay view) : base(view) {
+    public StockDisplayPresenter(IStockDisplayView view) : base(view) {
         LoadData();
 
         _view.Add += OnAdd;
@@ -34,7 +35,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
     private void OnShowArchivedChanged(object? sender, EventArgs e) => DisplayItems();
     private void OnArchiveToggled(object? sender, EventArgs e) => ToggleArchived();
     private void OnSearch(object? sender, EventArgs e) => Search();
-    private void OnSelectionChanged(object? sender, EventArgs e) => Search();
+    private void OnSelectionChanged(object? sender, EventArgs e) => SelectionChanged();
     private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
 
     public async void LoadData() {
@@ -50,11 +51,12 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
             _stockItemMap.Clear();
 
             foreach (StockItem stockItem in _stockItems) {
+                _stockItemMap.Add(stockItem.Id, stockItem);
+
                 if (!_view.ShowArchivedItems && stockItem.IsArchived) continue;
 
                 DisplayStockItem displayStockItem = new(stockItem);
                 _displayItems.Add(displayStockItem);
-                _stockItemMap.Add(stockItem.Id, stockItem);
             }
 
             _view.DisplayItems(_displayItems);
@@ -63,6 +65,7 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
             _view.EnableAll();
         }
         catch {
+            _displayItems.Clear();
             _view.DataGridText = "Error getting stock from the database";
         }
         finally {
@@ -79,9 +82,13 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
             DisplayStockItem displayStockItem = new(stockItem);
             _displayItems.Add(displayStockItem);
         }
+
+        _view.DisplayItems(_displayItems);
     }
 
-    private void Search() {
+    private async void Search() {
+        if (_isAsyncRunning) return;
+
         _displayItems.Clear();
 
         _cancellationTokenSource.Cancel();
@@ -89,30 +96,39 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
         CancellationToken token = _cancellationTokenSource.Token;
 
         try {
-            Task searchTask = Task.Run(() => {
+            _stockItems = await Task.Run(() => {
+                List<StockItem> stockItems = _stockItems.ToList();
+                string searchText = _view.SearchText.ToLower();
+
                 if (string.IsNullOrWhiteSpace(_view.SearchText)) {
-                    SortById(true);
+                    stockItems = stockItems.OrderBy(x => x.Id).ToList();
                 }
                 else {
-                    _stockItems = [.. _stockItems.OrderBy(stockItem => {
+                    stockItems = [.. stockItems.OrderBy(stockItem => {
                         token.ThrowIfCancellationRequested();
-                        return MathF.Min((float)GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.SKU.ToLower()), 2) + 1) / MathF.Pow(stockItem.SKU.Length, 2));
+                        return Rank(searchText, stockItem);
                     })];
                 }
 
                 token.ThrowIfCancellationRequested();
-                DisplayItems();
+                return stockItems;
             }, token);
+
+            DisplayItems();
         }
         catch (OperationCanceledException) { }
     }
 
-    private void SelectionChanged(object? sender, EventArgs e) {
+    private float Rank(string searchText, StockItem stockItem) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.SKU.ToLower()), 2) + 1) / MathF.Pow(stockItem.SKU.Length, 2));
+
+    private void SelectionChanged() {
         if (_view.SelectedItem is null) return;
         _view.SelectedItemArchived = _stockItemMap[_view.SelectedItem.Id].IsArchived;
     }
 
     private async void ToggleArchived() {
+        if (_isAsyncRunning) return;
+
         if (_view.SelectedItem is null) {
             _view.SelectedItemArchived = false;
             return;
@@ -129,8 +145,8 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
 
             if (success) {
                 stockItem.IsArchived = !stockItem.IsArchived;
-                _view.SelectedItem.IsArchived = stockItem.IsArchived;
-                if (!_view.ShowArchivedItems && _view.SelectedItem.IsArchived) _displayItems.Remove(_view.SelectedItem);
+                _view.SelectedItem.Archived = stockItem.IsArchived;
+                if (!_view.ShowArchivedItems && _view.SelectedItem.Archived) _displayItems.Remove(_view.SelectedItem);
             }
         }
         catch { }
@@ -153,24 +169,26 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
     }
 
     private void SortByColumn(string columnName, bool sortAscending) {
+        if (_isAsyncRunning) return;
+
         switch (columnName) {
-            case "Id":
-                SortById(sortAscending);
+            case "columnID":
+                SortBy(x => x.Id, sortAscending);
                 break;
-            case "Name":
-                SortByName(sortAscending);
+            case "columnName":
+                SortBy(x => x.Name, sortAscending);
                 break;
-            case "SKU":
-                SortBySKU(sortAscending);
+            case "columnSKU":
+                SortBy(x => x.SKU, sortAscending);
                 break;
-            case "Quantity":
-                SortByQuantity(sortAscending);
+            case "columnQuantity":
+                SortBy(x => x.Quantity, sortAscending);
                 break;
-            case "Quantity Level":
-                SortByQuantityLevel(sortAscending);
+            case "columnQuantityLevel":
+                SortBy(ConvertQuantityLevelToInt, sortAscending);
                 break;
-            case "Archived":
-                SortByArchived(sortAscending);
+            case "columnArchived":
+                SortBy(x => x.IsArchived, sortAscending);
                 break;
 
             default:
@@ -180,18 +198,16 @@ public class StockDisplayPresenter : BasePresenter<IStockDisplay>, IChildPresent
         DisplayItems();
     }
 
-    private void SortBy<T>(Func<StockItem, T> comparer, bool sortAscending) where T : IComparable {
-        if (sortAscending) _stockItems.Sort((a, b) => a.Id.CompareTo(b.Id));
-        else _stockItems.Sort((a, b) => b.Id.CompareTo(a.Id));
+    private void SortBy<T>(Func<StockItem, T> property, bool sortAscending) where T : IComparable {
+        if (sortAscending) _stockItems.Sort((a, b) => property(a).CompareTo(property(b)));
+        else _stockItems.Sort((a, b) => property(b).CompareTo(property(a)));
     }
 
-    private void SortByName(bool sortAscending) {
-        if (sortAscending) _stockItems.Sort((a, b) => a.Name.CompareTo(b.Name));
-        else _stockItems.Sort((a, b) => b.Name.CompareTo(a.Name));
+    private int ConvertQuantityLevelToInt(StockItem stockItem) {
+        if (stockItem.Quantity >= stockItem.HighQuantity) return 1;
+        else if (stockItem.Quantity <= stockItem.LowQuantity) return 3;
+        else return 2;
     }
-
-    private void SortBySKU
-
 
     public bool CanExit() {
         _cancellationTokenSource.Cancel();

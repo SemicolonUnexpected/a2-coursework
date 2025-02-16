@@ -27,34 +27,23 @@ public class EditStockPresenter  : BasePresenter<IEditStockView> {
     private void OnCancel(object? sender, EventArgs e) => DisplayView();
 
     private bool CanExit() {
-        if (_view.IsLoading) return false;
+        //if (_view.IsLoading) return false;
 
-        if (AnyChanges()) {
-            DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel);
+        //if (AnyChanges()) {
+        //    DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel);
 
-            return result == DialogResult.OK;
-        }
+        //    return result == DialogResult.OK;
+        //}
 
         return true;
     }
 
     private void DisplayView() {
-        (IChildView childView, IChildPresenter childPresenter) = GetNextPresenterView(_view.SelectedMenuItem);
-        _view.DisplayView(childView);
-
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) {
-            manageStockDetailsPresenter.ValidateSKU -= ValidateSKU;
-        }
-        else if (_childPresenter is ManageStockQuantityPresenter manageQuantityPresenter) {
-            manageQuantityPresenter.ValidateCanExit -= 
-        }
-
-        if (_childPresenter is not null) _childPresenter.CleanUp();
     }
 
     private (IChildView view, IChildPresenter childPresenter) GetNextPresenterView(string selectedItem) => selectedItem switch {
         "Stock details" => GetStockDetails(),
-        "Quantity" => GetStockQuantity(),
+        //"Quantity" => GetStockQuantity(),
         //"Warnings" => GetStockWarnings(),
         _ => throw new NotImplementedException(),
     };
@@ -81,9 +70,11 @@ public class EditStockPresenter  : BasePresenter<IEditStockView> {
             e.ErrorMessage = "Please fill in an SKU";
         }
         else {
-            e.ValidationTask = await StockDAL.SKUExists(sku);
+            //e.ValidationTask = await StockDAL.SKUExists(sku);
             e.ErrorMessage = "This SKU already exists. Please pick a different one";
         }
+
+        return true;
     }
 
 }

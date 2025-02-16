@@ -44,7 +44,7 @@
             lblQuantity.AutoSize = true;
             lblQuantity.Font = new Font("Bahnschrift", 14F);
             lblQuantity.ForeColor = Color.White;
-            lblQuantity.Location = new Point(135, 4);
+            lblQuantity.Location = new Point(135, 3);
             lblQuantity.Margin = new Padding(5);
             lblQuantity.Name = "lblQuantity";
             lblQuantity.Size = new Size(80, 23);
@@ -58,7 +58,7 @@
             lblBulkAdd.AutoSize = true;
             lblBulkAdd.Font = new Font("Bahnschrift", 14F);
             lblBulkAdd.ForeColor = Color.White;
-            lblBulkAdd.Location = new Point(135, 84);
+            lblBulkAdd.Location = new Point(135, 83);
             lblBulkAdd.Margin = new Padding(5);
             lblBulkAdd.Name = "lblBulkAdd";
             lblBulkAdd.Size = new Size(86, 23);
@@ -72,7 +72,7 @@
             lblBulkRemove.AutoSize = true;
             lblBulkRemove.Font = new Font("Bahnschrift", 14F);
             lblBulkRemove.ForeColor = Color.White;
-            lblBulkRemove.Location = new Point(135, 167);
+            lblBulkRemove.Location = new Point(135, 166);
             lblBulkRemove.Margin = new Padding(5);
             lblBulkRemove.Name = "lblBulkRemove";
             lblBulkRemove.Size = new Size(122, 23);
@@ -86,7 +86,7 @@
             lblReasonForChange.AutoSize = true;
             lblReasonForChange.Font = new Font("Bahnschrift", 14F);
             lblReasonForChange.ForeColor = Color.White;
-            lblReasonForChange.Location = new Point(135, 250);
+            lblReasonForChange.Location = new Point(135, 249);
             lblReasonForChange.Margin = new Padding(5);
             lblReasonForChange.Name = "lblReasonForChange";
             lblReasonForChange.Size = new Size(331, 23);
@@ -100,7 +100,7 @@
             lblStaffLink.AutoSize = true;
             lblStaffLink.Font = new Font("Bahnschrift", 12F);
             lblStaffLink.ForeColor = Color.FromArgb(168, 171, 174);
-            lblStaffLink.Location = new Point(135, 278);
+            lblStaffLink.Location = new Point(135, 277);
             lblStaffLink.Margin = new Padding(10, 0, 10, 20);
             lblStaffLink.Name = "lblStaffLink";
             lblStaffLink.Size = new Size(366, 19);
@@ -112,7 +112,7 @@
             // 
             nudQuantity.Anchor = AnchorStyles.None;
             nudQuantity.BackColor = Color.FromArgb(9, 9, 10);
-            nudQuantity.Location = new Point(135, 35);
+            nudQuantity.Location = new Point(135, 34);
             nudQuantity.Maximum = 999999999;
             nudQuantity.Name = "nudQuantity";
             nudQuantity.Size = new Size(267, 41);
@@ -122,7 +122,7 @@
             // 
             nudBulkAdd.Anchor = AnchorStyles.None;
             nudBulkAdd.BackColor = Color.FromArgb(9, 9, 10);
-            nudBulkAdd.Location = new Point(135, 115);
+            nudBulkAdd.Location = new Point(135, 114);
             nudBulkAdd.Maximum = 999999999;
             nudBulkAdd.Name = "nudBulkAdd";
             nudBulkAdd.Size = new Size(267, 41);
@@ -132,7 +132,7 @@
             // 
             nudBulkRemove.Anchor = AnchorStyles.None;
             nudBulkRemove.BackColor = Color.FromArgb(9, 9, 10);
-            nudBulkRemove.Location = new Point(135, 198);
+            nudBulkRemove.Location = new Point(135, 197);
             nudBulkRemove.Maximum = 999999999;
             nudBulkRemove.Name = "nudBulkRemove";
             nudBulkRemove.Size = new Size(267, 41);
@@ -156,7 +156,7 @@
             btnRemove.HoverColor = Color.FromArgb(226, 226, 226);
             btnRemove.Image = null;
             btnRemove.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnRemove.Location = new Point(415, 198);
+            btnRemove.Location = new Point(415, 197);
             btnRemove.Margin = new Padding(10);
             btnRemove.Name = "btnRemove";
             btnRemove.Size = new Size(86, 40);
@@ -184,7 +184,7 @@
             btnAdd.HoverColor = Color.FromArgb(226, 226, 226);
             btnAdd.Image = null;
             btnAdd.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnAdd.Location = new Point(415, 115);
+            btnAdd.Location = new Point(415, 114);
             btnAdd.Margin = new Padding(10);
             btnAdd.Name = "btnAdd";
             btnAdd.Size = new Size(86, 41);
@@ -204,7 +204,7 @@
             tbReasonForQuantityChange.Font = new Font("Bahnschrift", 12F);
             tbReasonForQuantityChange.ForeColor = Color.Empty;
             tbReasonForQuantityChange.HoverColor = Color.Empty;
-            tbReasonForQuantityChange.Location = new Point(135, 308);
+            tbReasonForQuantityChange.Location = new Point(135, 307);
             tbReasonForQuantityChange.Margin = new Padding(5);
             tbReasonForQuantityChange.MaximumSize = new Size(366, 80);
             tbReasonForQuantityChange.MaxLength = 1000;
@@ -224,7 +224,7 @@
             lblCharacterLimit.Anchor = AnchorStyles.None;
             lblCharacterLimit.Font = new Font("Bahnschrift", 12F);
             lblCharacterLimit.ForeColor = Color.FromArgb(168, 171, 174);
-            lblCharacterLimit.Location = new Point(351, 393);
+            lblCharacterLimit.Location = new Point(351, 392);
             lblCharacterLimit.Margin = new Padding(10, 0, 10, 20);
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
@@ -246,7 +246,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 420);
+            ClientSize = new Size(654, 419);
             Controls.Add(tbReasonForQuantityChange);
             Controls.Add(btnAdd);
             Controls.Add(btnRemove);

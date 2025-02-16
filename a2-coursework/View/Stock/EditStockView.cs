@@ -5,12 +5,13 @@ using a2_coursework.UserControls;
 using a2_coursework.View.Interfaces;
 using a2_coursework.View.Interfaces.Stock;
 
-namespace a2_coursework.View.Stock; 
+namespace a2_coursework.View.Stock;
 public partial class EditStockView : Form, IEditStockView {
     public event EventHandler? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
     public event EventHandler? Save;
     public event EventHandler? Cancel;
+    public event EventHandler? Back;
 
     public EditStockView() {
         InitializeComponent();
@@ -78,5 +79,13 @@ public partial class EditStockView : Form, IEditStockView {
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
         return CustomMessageBox.Show(text, caption, buttons);
+    }
+
+    public void CleanUp() {
+        throw new NotImplementedException();
+    }
+
+    private void pnlMenu_Paint(object sender, PaintEventArgs e) {
+
     }
 }

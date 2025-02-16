@@ -93,7 +93,7 @@
             dataGridViewCellStyle1.NullValue = null;
             dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(9, 9, 10);
             dataGridViewCellStyle1.SelectionForeColor = Color.White;
-            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
             dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 60;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
@@ -136,6 +136,7 @@
             columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             columnID.HeaderText = "ID";
             columnID.Name = "columnID";
+            columnID.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnID.Width = 47;
             // 
             // columnName
@@ -145,12 +146,14 @@
             columnName.DefaultCellStyle = dataGridViewCellStyle2;
             columnName.HeaderText = "Name";
             columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // columnSKU
             // 
             columnSKU.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             columnSKU.HeaderText = "SKU";
             columnSKU.Name = "columnSKU";
+            columnSKU.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnSKU.Width = 62;
             // 
             // columnQuantity
@@ -158,6 +161,7 @@
             columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             columnQuantity.HeaderText = "Quantity";
             columnQuantity.Name = "columnQuantity";
+            columnQuantity.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnQuantity.Width = 92;
             // 
             // columnQuantityLevel
@@ -166,7 +170,7 @@
             columnQuantityLevel.HeaderText = "Quantity Level";
             columnQuantityLevel.Name = "columnQuantityLevel";
             columnQuantityLevel.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantityLevel.Width = 124;
+            columnQuantityLevel.Width = 136;
             // 
             // columnArchived
             // 
@@ -176,6 +180,7 @@
             columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
             columnArchived.HeaderText = "Archived";
             columnArchived.Name = "columnArchived";
+            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnArchived.Width = 96;
             // 
             // sb

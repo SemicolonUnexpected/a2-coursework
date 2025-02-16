@@ -49,17 +49,13 @@ public class DisplayStockItem : INotifyPropertyChanged {
         }
     }
 
-    private bool _isArchived;
-    public bool IsArchived {
-        get => _isArchived;
+    private bool _archived;
+    public bool Archived {
+        get => _archived;
         set {
-            _isArchived = value;
+            _archived = value;
             NotifyPropertyChanged();
         }
-    }
-
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     public DisplayStockItem(StockItem stockItem) {
@@ -68,7 +64,11 @@ public class DisplayStockItem : INotifyPropertyChanged {
         SKU = stockItem.SKU;
         Quantity = stockItem.Quantity;
         QuantityLevel = stockItem.Quantity >= stockItem.HighQuantity ? "High" : stockItem.Quantity <= stockItem.LowQuantity ? "Low" : "Medium"; 
-        IsArchived = stockItem.IsArchived;
+        Archived = stockItem.IsArchived;
+    }
+
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {
+        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

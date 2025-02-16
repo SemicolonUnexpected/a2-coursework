@@ -42,4 +42,10 @@
     </None>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="View\Customers\" />
+    <Folder Include="View\Deliveries\" />
+    <Folder Include="View\Bookings\" />
+  </ItemGroup>
+
 </Project>

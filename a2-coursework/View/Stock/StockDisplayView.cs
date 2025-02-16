@@ -5,7 +5,7 @@ using a2_coursework.View.Stock;
 using System.ComponentModel;
 
 namespace a2_coursework.View;
-public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
+public partial class StockDisplayView : Form, IStockDisplayView, IThemeable {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? Add;
@@ -96,8 +96,7 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
         columnSKU.DataPropertyName = nameof(DisplayStockItem.SKU);
         columnQuantity.DataPropertyName = nameof(DisplayStockItem.Quantity);
         columnQuantityLevel.DataPropertyName = nameof(DisplayStockItem.QuantityLevel);
-        columnArchived.DataPropertyName = nameof(DisplayStockItem.IsArchived);
-        throw new NotImplementedException("pls format me");
+        columnArchived.DataPropertyName = nameof(DisplayStockItem.Archived);
     }
 
     public string SearchText {
@@ -141,12 +140,12 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
 
     public void DisableAll() {
         topBar.Enabled = false;
-        dataGridView.ReadOnly = true;
+        dataGridView.Enabled = false;
     }
 
     public void EnableAll() {
         topBar.Enabled = true;
-        dataGridView.ReadOnly = false;
+        dataGridView.Enabled = true;
     }
 
     private void SetScrollOptions() {
@@ -205,7 +204,14 @@ public partial class StockDisplayView : Form, IStockDisplay, IThemeable {
     }
 
     private void dataGridView_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e) {
-        SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, e.Button == MouseButtons.Left);
+        foreach (DataGridViewColumn column in dataGridView.Columns) {
+            column.HeaderCell.SortGlyphDirection = SortOrder.None;
+        }
+
+        bool isAscending = e.Button == MouseButtons.Left;
+        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
+
+        SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, isAscending);
         SortRequested?.Invoke(this, sortRequestEventArgs);
     }
 }

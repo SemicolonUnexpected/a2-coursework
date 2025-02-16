@@ -49,7 +49,7 @@
             tbStockName.Font = new Font("Bahnschrift", 12F);
             tbStockName.ForeColor = Color.Empty;
             tbStockName.HoverColor = Color.Empty;
-            tbStockName.Location = new Point(135, 44);
+            tbStockName.Location = new Point(135, 43);
             tbStockName.Margin = new Padding(5);
             tbStockName.MaxLength = 256;
             tbStockName.MultiLine = false;
@@ -69,7 +69,7 @@
             lblStockName.AutoSize = true;
             lblStockName.Font = new Font("Bahnschrift", 14F);
             lblStockName.ForeColor = Color.White;
-            lblStockName.Location = new Point(135, 11);
+            lblStockName.Location = new Point(135, 10);
             lblStockName.Margin = new Padding(5);
             lblStockName.Name = "lblStockName";
             lblStockName.Size = new Size(109, 23);
@@ -83,7 +83,7 @@
             lblSKU.AutoSize = true;
             lblSKU.Font = new Font("Bahnschrift", 14F);
             lblSKU.ForeColor = Color.White;
-            lblSKU.Location = new Point(135, 94);
+            lblSKU.Location = new Point(135, 93);
             lblSKU.Margin = new Padding(5);
             lblSKU.Name = "lblSKU";
             lblSKU.Size = new Size(45, 23);
@@ -102,7 +102,7 @@
             tbSKU.Font = new Font("Bahnschrift", 12F);
             tbSKU.ForeColor = Color.Empty;
             tbSKU.HoverColor = Color.Empty;
-            tbSKU.Location = new Point(135, 127);
+            tbSKU.Location = new Point(135, 126);
             tbSKU.Margin = new Padding(5);
             tbSKU.MaxLength = 15;
             tbSKU.MultiLine = false;
@@ -127,7 +127,7 @@
             tbStockDescription.Font = new Font("Bahnschrift", 12F);
             tbStockDescription.ForeColor = Color.Empty;
             tbStockDescription.HoverColor = Color.Empty;
-            tbStockDescription.Location = new Point(135, 248);
+            tbStockDescription.Location = new Point(135, 247);
             tbStockDescription.Margin = new Padding(5);
             tbStockDescription.MaximumSize = new Size(355, 93);
             tbStockDescription.MaxLength = 1000;
@@ -148,7 +148,7 @@
             lblStockDescription.AutoSize = true;
             lblStockDescription.Font = new Font("Bahnschrift", 14F);
             lblStockDescription.ForeColor = Color.White;
-            lblStockDescription.Location = new Point(135, 215);
+            lblStockDescription.Location = new Point(135, 214);
             lblStockDescription.Margin = new Padding(5);
             lblStockDescription.Name = "lblStockDescription";
             lblStockDescription.Size = new Size(156, 23);
@@ -175,7 +175,7 @@
             lblNameSKUError.Anchor = AnchorStyles.None;
             lblNameSKUError.Font = new Font("Bahnschrift", 12F);
             lblNameSKUError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblNameSKUError.Location = new Point(135, 172);
+            lblNameSKUError.Location = new Point(135, 171);
             lblNameSKUError.Name = "lblNameSKUError";
             lblNameSKUError.Size = new Size(355, 38);
             lblNameSKUError.TabIndex = 19;
@@ -187,7 +187,7 @@
             lblCharacterLimit.Anchor = AnchorStyles.None;
             lblCharacterLimit.Font = new Font("Bahnschrift", 12F);
             lblCharacterLimit.ForeColor = Color.FromArgb(168, 171, 174);
-            lblCharacterLimit.Location = new Point(340, 336);
+            lblCharacterLimit.Location = new Point(340, 335);
             lblCharacterLimit.Margin = new Padding(10, 0, 10, 20);
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
@@ -220,7 +220,7 @@
             pnlArchived.Controls.Add(lblArchived);
             pnlArchived.Controls.Add(rbArchived);
             pnlArchived.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlArchived.Location = new Point(135, 365);
+            pnlArchived.Location = new Point(135, 364);
             pnlArchived.Margin = new Padding(5);
             pnlArchived.Name = "pnlArchived";
             pnlArchived.Padding = new Padding(5);
@@ -241,7 +241,7 @@
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 420);
+            ClientSize = new Size(654, 419);
             Controls.Add(tbFocusHolder);
             Controls.Add(pnlArchived);
             Controls.Add(lblCharacterLimit);

@@ -68,7 +68,6 @@ public static class ViewFactory {
     public static (StockDisplayView view, StockDisplayPresenter presenter) CreateStockDisplay() {
         StockDisplayView view = new();
         StockDisplayPresenter presenter = new(view);
-        view.SetPresenter(presenter);
 
         return (view, presenter);
     }
