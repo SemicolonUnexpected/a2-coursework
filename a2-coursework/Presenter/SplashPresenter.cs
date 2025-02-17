@@ -1,4 +1,4 @@
-﻿using a2_coursework.View.Interfaces;
+﻿using a2_coursework.Interfaces;
 using System.Diagnostics;
 
 namespace a2_coursework.Presenter;

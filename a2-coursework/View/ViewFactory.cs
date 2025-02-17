@@ -1,11 +1,13 @@
 ﻿using a2_coursework.Presenter;
-using a2_coursework.Model;
 using a2_coursework.View.Settings;
-using a2_coursework.Presenter.Stock;
 using a2_coursework.View.Stock;
 using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.Presenter.Users;
 using a2_coursework.View.Users;
+using a2_coursework.Presenter.Stock.StockManagement;
+using a2_coursework.Model.StaffModel;
+using a2_coursework.Model.StockModel;
+using a2_coursework.Presenter.Stock.StockQuantityChanges;
 
 namespace a2_coursework.View;
 public static class ViewFactory {
@@ -65,8 +67,8 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    public static (StockDisplayView view, DisplayStockPresenter presenter) CreateStockDisplay(Staff staff) {
-        StockDisplayView view = new();
+    public static (DisplayStockView view, DisplayStockPresenter presenter) CreateStockDisplay(Staff staff) {
+        DisplayStockView view = new();
         DisplayStockPresenter presenter = new(view, staff);
 
         return (view, presenter);
@@ -101,17 +103,23 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    //public static (StockAddView view, StockAddPresenter presenter) CreateStockAdd(Staff staff) {
-    //    StockAddView view = new();
-    //    StockAddPresenter presenter = new(view, staff);
-    //    view.SetPresenter(presenter);
+    public static (AddStockView view, AddStockPresenter presenter) CreateAddStock(Staff staff) {
+        AddStockView view = new();
+        AddStockPresenter presenter = new(view, staff);
 
-    //    return (view, presenter);
-    //}
+        return (view, presenter);
+    }
 
     public static (EditStockView view, EditStockPresenter presenter) CreateEditStock(StockItem stockItem, Staff staff) {
         EditStockView view = new();
         EditStockPresenter presenter = new(view, stockItem, staff);
+
+        return (view, presenter);
+    }
+
+    public static (DisplayStockQuantityChangesView view, DisplayStockQuantityChangesPresenter presenter) CreateDisplayStockQuantityChanges() {
+        DisplayStockQuantityChangesView view = new();
+        DisplayStockQuantityChangesPresenter presenter = new(view);
 
         return (view, presenter);
     }

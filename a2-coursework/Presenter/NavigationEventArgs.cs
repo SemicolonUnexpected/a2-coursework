@@ -1,6 +1,6 @@
-﻿using a2_coursework.View.Interfaces;
+﻿using a2_coursework.Interfaces;
 
-namespace a2_coursework.Presenter; 
+namespace a2_coursework.Presenter;
 public class NavigationEventArgs : EventArgs {
     public IChildView View { get; init; }
     public IChildPresenter Presenter { get; init; }

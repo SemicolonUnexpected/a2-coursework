@@ -1,5 +1,5 @@
-﻿using a2_coursework.Theming;
-using a2_coursework.View.Interfaces;
+﻿using a2_coursework.Interfaces;
+using a2_coursework.Theming;
 
 namespace a2_coursework.View;
 

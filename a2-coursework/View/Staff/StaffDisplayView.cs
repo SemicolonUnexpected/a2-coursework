@@ -1,4 +1,4 @@
-﻿using a2_coursework.View.Interfaces.Users;
+﻿using a2_coursework.Interfaces.Users;
 
 namespace a2_coursework.View.Users;
 public partial class StaffDisplayView : Form, IDisplayStaffView {

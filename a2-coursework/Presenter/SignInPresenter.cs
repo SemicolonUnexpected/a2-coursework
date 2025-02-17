@@ -1,5 +1,5 @@
-﻿using a2_coursework.Model;
-using a2_coursework.View.Interfaces;
+﻿using a2_coursework.Interfaces;
+using a2_coursework.Model.StaffModel;
 using AS_Coursework.Model.Security;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;

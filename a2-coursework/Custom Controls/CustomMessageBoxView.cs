@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Interfaces;
 using a2_coursework.Theming;
-using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.CustomControls;
 public partial class CustomMessageBoxView : Form, IThemeable, IView {

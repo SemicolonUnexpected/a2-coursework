@@ -1,8 +1,8 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
+using a2_coursework.Interfaces.Users;
 using a2_coursework.Presenter.Users;
 using a2_coursework.Theming;
-using a2_coursework.View.Interfaces.Users;
 
 namespace a2_coursework.View.Users;
 public partial class ChangePasswordView : Form, IChangePasswordView {

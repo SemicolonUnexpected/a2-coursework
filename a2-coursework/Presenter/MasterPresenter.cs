@@ -1,7 +1,7 @@
-﻿using a2_coursework.Model;
+﻿using a2_coursework.Interfaces;
+using a2_coursework.Model.StaffModel;
 using a2_coursework.UserControls;
 using a2_coursework.View;
-using a2_coursework.View.Interfaces;
 
 namespace a2_coursework.Presenter;
 public class MasterPresenter : BasePresenter<IMasterView> {
@@ -52,7 +52,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
 
         PrivilegeLevel.CleaningManager => [
             ["Dashboard"],
-            ["Stock", "Manage stock", "Request stock", "Upcoming deliveries"],
+            ["Stock", "Manage stock", "Request stock", "Quantity changes", "Upcoming deliveries"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Admin => [
@@ -76,6 +76,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Account security" => GetSecuritySettings(),
         "Manage stock" => GetStockDisplayView(),
         "Change password" => GetChangePasswordView(),
+        "Quantity changes" => GetDisplayStockQuantityChangesView(),
         _ => throw new NotImplementedException(),
     };
 
@@ -86,6 +87,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
     private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay(_staff);
     private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
+    private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => ViewFactory.CreateDisplayStockQuantityChanges();
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {
