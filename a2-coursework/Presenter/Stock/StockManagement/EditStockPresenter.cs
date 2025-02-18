@@ -1,22 +1,20 @@
 ﻿using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockManagement;
-using a2_coursework.Model.StaffModel;
-using a2_coursework.Model.StockModel;
+using a2_coursework.Model.Staff;
+using a2_coursework.Model.Stock;
 using a2_coursework.UserControls;
 using a2_coursework.View;
 using a2_coursework.View.Stock;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
-public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>, IChildPresenter, INavigatingPresenter
-{
-    private readonly Staff _staff;
+public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel>, IChildPresenter, INavigatingPresenter {
+    private readonly StaffModel _staff;
 
     private INotifyingChildPresenter? _childPresenter;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public EditStockPresenter(IEditStockView view, StockItem stockItem, Staff staff) : base(view, stockItem)
-    {
+    public EditStockPresenter(IEditStockView view, StockModel stockItem, StaffModel staff) : base(view, stockItem) {
         _staff = staff;
 
         _view.SelectedMenuItemChanged += OnSelectedMenuItemChanged;
@@ -32,8 +30,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
     private void OnBack(object? sender, EventArgs e) => NavigateBack();
     private void OnDetailsChanged(object? sender, EventArgs e) => SetApproveChangesBarVisibility();
 
-    private void NavigateBack()
-    {
+    private void NavigateBack() {
         if (!CanExit()) return;
         (IChildView view, IChildPresenter presenter) = ViewFactory.CreateStockDisplay(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
@@ -41,16 +38,14 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
 
     private bool CanNavigate() => _childPresenter is null || _childPresenter.CanExit();
 
-    protected override void Navigate(IChildView view, INotifyingChildPresenter presenter)
-    {
+    protected override void Navigate(IChildView view, INotifyingChildPresenter presenter) {
         presenter.DetailsChanged += OnDetailsChanged;
         // Display the next view
         _view.DisplayChildView(view);
 
         if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSKU -= OnValidateSKU;
 
-        if (_childPresenter is not null)
-        {
+        if (_childPresenter is not null) {
             _childPresenter.DetailsChanged -= OnDetailsChanged;
             _childPresenter.CleanUp();
         }
@@ -62,8 +57,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
         SetApproveChangesBarVisibility();
     }
 
-    private (IChildView view, INotifyingChildPresenter childPresenter) GetView(string selectedItem) => selectedItem switch
-    {
+    private (IChildView view, INotifyingChildPresenter childPresenter) GetView(string selectedItem) => selectedItem switch {
         "Stock Details" => GetStockDetails(),
         "Quantity" => GetStockQuantity(),
         "Warnings" => GetStockWarning(),
@@ -72,8 +66,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
 
     #region Stock Quantity
 
-    private (IChildView view, INotifyingChildPresenter childPresenter) GetStockQuantity()
-    {
+    private (IChildView view, INotifyingChildPresenter childPresenter) GetStockQuantity() {
         (ManageStockQuantityView view, ManageStockQuantityPresenter presenter) = ViewFactory.CreateManageStockQuantity();
 
         presenter.Quantity = _model.Quantity;
@@ -87,8 +80,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
         return (view, presenter);
     }
 
-    private void PopulateDefaultValuesStockQuantity(ManageStockQuantityPresenter presenter)
-    {
+    private void PopulateDefaultValuesStockQuantity(ManageStockQuantityPresenter presenter) {
         presenter.Quantity = _model.Quantity;
         presenter.ReasonForQuantityChange = "";
     }
@@ -97,8 +89,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
 
     private Task<bool> UpdateDatabaseStockQuantity(ManageStockQuantityPresenter presenter) => StockDAL.UpdateQuantity(_model.Id, _staff.Id, presenter.Quantity, DateTime.Now, presenter.ReasonForQuantityChange);
 
-    private void UpdateModelStockQuantity(ManageStockQuantityPresenter presenter)
-    {
+    private void UpdateModelStockQuantity(ManageStockQuantityPresenter presenter) {
         _model.Quantity = presenter.Quantity;
 
         PopulateDefaultValuesStockQuantity(presenter);
@@ -108,8 +99,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
 
     #region Stock Details
 
-    private (IChildView view, INotifyingChildPresenter childPresenter) GetStockDetails()
-    {
+    private (IChildView view, INotifyingChildPresenter childPresenter) GetStockDetails() {
         (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) = ViewFactory.CreateManageStockDetails();
 
         presenter.ValidateSKU += OnValidateSKU;
@@ -123,16 +113,14 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
         return (view, presenter);
     }
 
-    private void PopulateDefaultValuesStockDetails(ManageStockDetailsPresenter presenter)
-    {
+    private void PopulateDefaultValuesStockDetails(ManageStockDetailsPresenter presenter) {
         presenter.SetName(_model.Name);
         presenter.SetSKU(_model.SKU);
         presenter.Description = _model.Description;
         presenter.Archived = _model.Archived;
     }
 
-    private bool AnyChangesStockDetails(ManageStockDetailsPresenter presenter)
-    {
+    private bool AnyChangesStockDetails(ManageStockDetailsPresenter presenter) {
         bool nameValid = presenter.TryGetName(out string? name);
         bool skuValid = presenter.TryGetSKU(out string? sku);
 
@@ -143,16 +131,14 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
 
     private bool ValidateInputsStockDetails(ManageStockDetailsPresenter presenter) => presenter.TryGetSKU(out _) && presenter.TryGetName(out _);
 
-    private Task<bool> UpdateDatabaseStockDetails(ManageStockDetailsPresenter presenter)
-    {
+    private Task<bool> UpdateDatabaseStockDetails(ManageStockDetailsPresenter presenter) {
         bool nameValid = presenter.TryGetName(out string? name);
         bool skuValid = presenter.TryGetSKU(out string? sku);
 
         return StockDAL.UpdateDetails(_model.Id, name!, presenter.Description, sku!, presenter.Archived);
     }
 
-    private void UpdateModelStockDetails(ManageStockDetailsPresenter presenter)
-    {
+    private void UpdateModelStockDetails(ManageStockDetailsPresenter presenter) {
         bool nameValid = presenter.TryGetName(out string? name);
         bool skuValid = presenter.TryGetSKU(out string? sku);
 
@@ -162,12 +148,10 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
         _model.Archived = _model.Archived;
     }
 
-    private void IsValidSKU(ValidationRequestEventArgs<string> validateSKURequest)
-    {
+    private void IsValidSKU(ValidationRequestEventArgs<string> validateSKURequest) {
         string sku = validateSKURequest.Value;
 
-        if (sku == _model.SKU)
-        {
+        if (sku == _model.SKU) {
             validateSKURequest.SetValidation(true);
             return;
         }
@@ -179,8 +163,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
     #endregion
 
     #region Stock Warning
-    private (IChildView view, INotifyingChildPresenter childPresenter) GetStockWarning()
-    {
+    private (IChildView view, INotifyingChildPresenter childPresenter) GetStockWarning() {
         (ManageStockWarningView view, ManageStockWarningPresenter presenter) = ViewFactory.CreateManageStockWarning();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesStockWarning(presenter);
@@ -192,8 +175,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
         return (view, presenter);
     }
 
-    private void PopulateDefaultValuesStockWarning(ManageStockWarningPresenter presenter)
-    {
+    private void PopulateDefaultValuesStockWarning(ManageStockWarningPresenter presenter) {
         presenter.HighQuantity = _model.HighQuantity;
         presenter.LowQuantity = _model.LowQuantity;
     }
@@ -202,23 +184,20 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockItem>
 
     private Task<bool> UpdateDatabaseStockWarning(ManageStockWarningPresenter presenter) => StockDAL.UpdateWarnings(_model.Id, presenter.HighQuantity, presenter.LowQuantity);
 
-    private void UpdateModelStockWarning(ManageStockWarningPresenter presenter)
-    {
+    private void UpdateModelStockWarning(ManageStockWarningPresenter presenter) {
         _model.HighQuantity = presenter.HighQuantity;
         _model.LowQuantity = presenter.LowQuantity;
     }
 
     #endregion
 
-    public override void CleanUp()
-    {
+    public override void CleanUp() {
         _view.SelectedMenuItemChanged -= OnSelectedMenuItemChanged;
         _view.PreviewSelectedMenuItemChanged -= OnPreviewSelectedMenuItemChanged;
 
         if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSKU -= OnValidateSKU;
 
-        if (_childPresenter is not null)
-        {
+        if (_childPresenter is not null) {
             _childPresenter.DetailsChanged -= OnDetailsChanged;
             _childPresenter.CleanUp();
         }

@@ -1,6 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Stock.StockManagement;
-public interface IManageStockWarningView : IChildView
-{
+public interface IManageStockWarningView : IChildView {
     public event EventHandler? LowQuantityChanged;
     public event EventHandler? HighQuantityChanged;
 

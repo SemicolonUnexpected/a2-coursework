@@ -1,5 +1,5 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Interfaces.Users;
+using a2_coursework.Interfaces.Staff;
 using a2_coursework.Theming;
 using a2_coursework.View.StaffView.StaffManagement;
 using System.ComponentModel;
@@ -40,7 +40,7 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblStaff.ThemeTitle();
         lblError.ThemeSubtitle();
@@ -52,7 +52,7 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         foreach (DataGridViewColumn column in dataGridView.Columns) {
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
@@ -62,7 +62,7 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         topBar.SetFontName(fontName);
         dataGridView.SetFontName(fontName);

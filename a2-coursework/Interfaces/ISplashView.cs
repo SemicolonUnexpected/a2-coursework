@@ -1,7 +1,6 @@
 ﻿namespace a2_coursework.Interfaces;
 
-public interface ISplashView : IView
-{
+public interface ISplashView : IView {
     public event FormClosedEventHandler? FormClosed;
 
     public double Progress { get; set; }

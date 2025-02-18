@@ -1,10 +1,8 @@
-﻿using System.Configuration;
-
-namespace a2_coursework.Theming;
+﻿namespace a2_coursework.Theming;
 internal class ColorScheme(Color background, Color foreground, Color primary, Color primaryForeground, Color secondary, Color secondaryForeground, Color danger, Color warning, Color info) {
-    public static ColorScheme CurrentTheme {
+    public static ColorScheme Current {
         get {
-            if (Theme.CurrentTheme.AppearanceTheme == AppearanceTheme.Dark) return Dark;
+            if (Theme.Current.AppearanceTheme == AppearanceTheme.Dark) return Dark;
             else return Light;
         }
     }

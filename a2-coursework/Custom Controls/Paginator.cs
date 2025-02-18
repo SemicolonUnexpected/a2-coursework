@@ -11,7 +11,7 @@ public partial class Paginator : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         btnFirst.ThemeWeak();
         btnLast.ThemeWeak();
@@ -30,7 +30,7 @@ public partial class Paginator : UserControl {
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
     }

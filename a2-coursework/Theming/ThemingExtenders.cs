@@ -4,23 +4,23 @@ namespace a2_coursework.Theming;
 internal static class ThemingExtenders {
 
     public static void Theme(this Form form) {
-        form.BackColor = ColorScheme.CurrentTheme.Background;
-        form.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        form.BackColor = ColorScheme.Current.Background;
+        form.ForeColor = ColorScheme.Current.Foreground;
     }
 
     public static void Theme(this CustomTextBox customTextBox) {
-        customTextBox.BackColor = ColorScheme.CurrentTheme.Background;
-        customTextBox.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        customTextBox.BorderColor = ColorScheme.CurrentTheme.Primary;
-        customTextBox.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
+        customTextBox.BackColor = ColorScheme.Current.Background;
+        customTextBox.ForeColor = ColorScheme.Current.Foreground;
+        customTextBox.BorderColor = ColorScheme.Current.Primary;
+        customTextBox.PlaceholderTextColor = ColorScheme.Current.PrimaryForeground;
     }
 
     public static void ThemeTitle(this Label label) {
-        label.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        label.ForeColor = ColorScheme.Current.Foreground;
     }
 
     public static void ThemeSubtitle(this Label label) {
-        label.ForeColor = ColorScheme.CurrentTheme.PrimaryForeground;
+        label.ForeColor = ColorScheme.Current.PrimaryForeground;
     }
 
     public static void ThemeError(this Label label) {
@@ -28,77 +28,77 @@ internal static class ThemingExtenders {
     }
 
     public static void ThemeStrong(this CustomButton button) {
-        button.BackColor = ColorScheme.CurrentTheme.Foreground;
-        button.ForeColor = ColorScheme.CurrentTheme.Background;
-        button.HoverColor = ColorScheme.CurrentTheme.SecondaryForeground;
-        button.ClickedColor = ColorScheme.CurrentTheme.SecondaryForeground;
-        button.DisabledColor = ColorScheme.CurrentTheme.SecondaryForeground;
+        button.BackColor = ColorScheme.Current.Foreground;
+        button.ForeColor = ColorScheme.Current.Background;
+        button.HoverColor = ColorScheme.Current.SecondaryForeground;
+        button.ClickedColor = ColorScheme.Current.SecondaryForeground;
+        button.DisabledColor = ColorScheme.Current.SecondaryForeground;
     }
 
     public static void ThemeWeak(this CustomButton button) {
-        button.BackColor = ColorScheme.CurrentTheme.Background;
-        button.HoverColor = ColorScheme.CurrentTheme.Primary;
-        button.BorderColor = ColorScheme.CurrentTheme.Primary;
-        button.ClickedColor = ColorScheme.CurrentTheme.Primary;
+        button.BackColor = ColorScheme.Current.Background;
+        button.HoverColor = ColorScheme.Current.Primary;
+        button.BorderColor = ColorScheme.Current.Primary;
+        button.ClickedColor = ColorScheme.Current.Primary;
     }
 
     public static void Theme(this CustomPanel panel) {
-        panel.BackColor = ColorScheme.CurrentTheme.Background;
-        panel.BorderColor = ColorScheme.CurrentTheme.Primary;
+        panel.BackColor = ColorScheme.Current.Background;
+        panel.BorderColor = ColorScheme.Current.Primary;
     }
 
     public static void Theme(this CustomScrollBar scrollBar) {
-        scrollBar.BackColor = ColorScheme.CurrentTheme.Background;
-        scrollBar.ThumbColor = ColorScheme.CurrentTheme.Secondary;
-        scrollBar.ThumbClickedColor = ColorScheme.CurrentTheme.Primary;
-        scrollBar.ThumbHoverColor = ColorScheme.CurrentTheme.Primary;
+        scrollBar.BackColor = ColorScheme.Current.Background;
+        scrollBar.ThumbColor = ColorScheme.Current.Secondary;
+        scrollBar.ThumbClickedColor = ColorScheme.Current.Primary;
+        scrollBar.ThumbHoverColor = ColorScheme.Current.Primary;
     }
 
     public static void Theme(this DateInput dateInput) {
-        dateInput.BackColor = ColorScheme.CurrentTheme.Background;
-        dateInput.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        dateInput.BorderColor = ColorScheme.CurrentTheme.Primary;
-        dateInput.PlaceholderTextColor = ColorScheme.CurrentTheme.PrimaryForeground;
-        dateInput.BorderErrorColor = ColorScheme.CurrentTheme.Danger;
+        dateInput.BackColor = ColorScheme.Current.Background;
+        dateInput.ForeColor = ColorScheme.Current.Foreground;
+        dateInput.BorderColor = ColorScheme.Current.Primary;
+        dateInput.PlaceholderTextColor = ColorScheme.Current.PrimaryForeground;
+        dateInput.BorderErrorColor = ColorScheme.Current.Danger;
     }
 
     public static void Theme(this CustomRadioButton radioButton) {
-        radioButton.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        radioButton.CheckColor = ColorScheme.CurrentTheme.Foreground;
+        radioButton.ForeColor = ColorScheme.Current.Foreground;
+        radioButton.CheckColor = ColorScheme.Current.Foreground;
     }
 
     public static void Theme(this DataGridView dataGridView) {
-        dataGridView.ColumnHeadersDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
-        dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Background;
+        dataGridView.ColumnHeadersDefaultCellStyle.BackColor = ColorScheme.Current.Background;
+        dataGridView.ColumnHeadersDefaultCellStyle.ForeColor = ColorScheme.Current.Foreground;
+        dataGridView.ColumnHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.Current.Background;
 
         dataGridView.AdvancedColumnHeadersBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.None;
         dataGridView.AdvancedColumnHeadersBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
         dataGridView.AdvancedColumnHeadersBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
         dataGridView.AdvancedColumnHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Single;
 
-        dataGridView.RowHeadersDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
-        dataGridView.RowHeadersDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        dataGridView.RowHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
-        dataGridView.RowHeadersDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.RowHeadersDefaultCellStyle.BackColor = ColorScheme.Current.Background;
+        dataGridView.RowHeadersDefaultCellStyle.ForeColor = ColorScheme.Current.Foreground;
+        dataGridView.RowHeadersDefaultCellStyle.SelectionBackColor = ColorScheme.Current.Primary;
+        dataGridView.RowHeadersDefaultCellStyle.SelectionForeColor = ColorScheme.Current.Foreground;
 
-        dataGridView.RowsDefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
-        dataGridView.RowsDefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        dataGridView.RowsDefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
-        dataGridView.RowsDefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.RowsDefaultCellStyle.BackColor = ColorScheme.Current.Background;
+        dataGridView.RowsDefaultCellStyle.ForeColor = ColorScheme.Current.Foreground;
+        dataGridView.RowsDefaultCellStyle.SelectionBackColor = ColorScheme.Current.Primary;
+        dataGridView.RowsDefaultCellStyle.SelectionForeColor = ColorScheme.Current.Foreground;
 
         dataGridView.AdvancedRowHeadersBorderStyle.Top = DataGridViewAdvancedCellBorderStyle.Single;
         dataGridView.AdvancedRowHeadersBorderStyle.Left = DataGridViewAdvancedCellBorderStyle.None;
         dataGridView.AdvancedRowHeadersBorderStyle.Right = DataGridViewAdvancedCellBorderStyle.None;
         dataGridView.AdvancedRowHeadersBorderStyle.Bottom = DataGridViewAdvancedCellBorderStyle.Single;
 
-        dataGridView.GridColor = ColorScheme.CurrentTheme.Primary;
-        dataGridView.DefaultCellStyle.BackColor = ColorScheme.CurrentTheme.Background;
-        dataGridView.DefaultCellStyle.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        dataGridView.DefaultCellStyle.SelectionBackColor = ColorScheme.CurrentTheme.Primary;
-        dataGridView.DefaultCellStyle.SelectionForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.GridColor = ColorScheme.Current.Primary;
+        dataGridView.DefaultCellStyle.BackColor = ColorScheme.Current.Background;
+        dataGridView.DefaultCellStyle.ForeColor = ColorScheme.Current.Foreground;
+        dataGridView.DefaultCellStyle.SelectionBackColor = ColorScheme.Current.Primary;
+        dataGridView.DefaultCellStyle.SelectionForeColor = ColorScheme.Current.Foreground;
 
-        dataGridView.BackgroundColor = ColorScheme.CurrentTheme.Background;
-        dataGridView.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        dataGridView.BackgroundColor = ColorScheme.Current.Background;
+        dataGridView.ForeColor = ColorScheme.Current.Foreground;
     }
 }

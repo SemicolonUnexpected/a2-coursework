@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Users.Settings;
+using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View;
@@ -33,7 +33,7 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings,
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblContactInformation.ThemeTitle();
         lblEditPromt.ThemeSubtitle();
@@ -52,7 +52,7 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings,
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         tbEmail.ToolTipsActive = showToolTips;
         tbPhoneNumber.ToolTipsActive = showToolTips;
@@ -61,7 +61,7 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings,
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblContactInformation.SetFontName(fontName);
         lblContactError.SetFontName(fontName);
@@ -114,18 +114,18 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings,
         }
     }
 
-    bool _emailError = false;
+    private bool _emailError = false;
     public void SetEmailBorderError(bool isError) {
         _emailError = isError;
 
-        tbEmail.BorderColor = _emailError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbEmail.BorderColor = _emailError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
-    bool _phoneNumberError = false;
+    private bool _phoneNumberError = false;
     public void SetPhoneNumberBorderError(bool isError) {
         _phoneNumberError = isError;
 
-        tbPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {

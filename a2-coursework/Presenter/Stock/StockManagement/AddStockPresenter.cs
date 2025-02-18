@@ -1,25 +1,23 @@
 ﻿using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockManagement;
-using a2_coursework.Model.StaffModel;
-using a2_coursework.Model.StockModel;
+using a2_coursework.Model.Staff;
+using a2_coursework.Model.Stock;
 using a2_coursework.View;
 using a2_coursework.View.Stock;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
 
-public class AddStockPresenter : IChildPresenter, INavigatingPresenter
-{
+public class AddStockPresenter : IChildPresenter, INavigatingPresenter {
     private readonly IAddStockView _view;
     private int _index = 0;
-    private StockItem _model = new("", "", -1, "", 0, 0, 0, false);
+    private readonly StockModel _model = new("", "", -1, "", 0, 0, 0, false);
     private string _reason = "Initial stock";
-    private readonly Staff _staff;
+    private readonly StaffModel _staff;
     private INotifyingChildPresenter? _childPresenter;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public AddStockPresenter(IAddStockView view, Staff staff)
-    {
+    public AddStockPresenter(IAddStockView view, StaffModel staff) {
         _view = view;
         _staff = staff;
 
@@ -34,15 +32,13 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
     private void OnDone(object? sender, EventArgs e) => CreateStock();
     private void OnBack(object? sender, EventArgs e) => NavigateBack();
 
-    private void OnNext(object? sender, EventArgs e)
-    {
+    private void OnNext(object? sender, EventArgs e) {
         UpdateModel();
         _index++;
         Navigate(GetView(_index));
     }
 
-    private void OnPrevious(object? sender, EventArgs e)
-    {
+    private void OnPrevious(object? sender, EventArgs e) {
         UpdateModel();
         _index--;
         Navigate(GetView(_index));
@@ -51,29 +47,24 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
     private void OnValidateSKU(object? sender, ValidationRequestEventArgs<string> e) => IsValidSKU(e);
     private void OnDetailsChanged(object? sender, EventArgs e) => UpdatePreviousNextDoneBarVisibility();
 
-    private void NavigateBack()
-    {
+    private void NavigateBack() {
         (IChildView view, IChildPresenter presenter) = ViewFactory.CreateStockDisplay(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
-    private void Navigate((IChildView view, INotifyingChildPresenter presenter) pair)
-    {
+    private void Navigate((IChildView view, INotifyingChildPresenter presenter) pair) {
         Navigate(pair.view, pair.presenter);
     }
 
-    private void Navigate(IChildView view, INotifyingChildPresenter presenter)
-    {
+    private void Navigate(IChildView view, INotifyingChildPresenter presenter) {
         presenter.DetailsChanged += OnDetailsChanged;
         _view.DisplayChildView(view);
 
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter)
-        {
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) {
             manageStockDetailsPresenter.ValidateSKU -= OnValidateSKU;
         }
 
-        if (_childPresenter is not null)
-        {
+        if (_childPresenter is not null) {
             _childPresenter.DetailsChanged -= OnDetailsChanged;
             _childPresenter.CleanUp();
         }
@@ -83,24 +74,21 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
         UpdatePreviousNextDoneBarVisibility();
     }
 
-    private (IChildView view, INotifyingChildPresenter presenter) GetView(int index) => index switch
-    {
+    private (IChildView view, INotifyingChildPresenter presenter) GetView(int index) => index switch {
         0 => GetStockDetails(),
         1 => GetStockQuantity(),
         2 => GetStockWarning(),
         _ => throw new NotImplementedException()
     };
 
-    private (IChildView view, INotifyingChildPresenter presenter) GetStockQuantity()
-    {
+    private (IChildView view, INotifyingChildPresenter presenter) GetStockQuantity() {
         (ManageStockQuantityView view, ManageStockQuantityPresenter presenter) = ViewFactory.CreateManageStockQuantity();
         presenter.Quantity = _model.Quantity;
         presenter.ReasonForQuantityChange = _reason;
         return (view, presenter);
     }
 
-    private (IChildView view, INotifyingChildPresenter presenter) GetStockDetails()
-    {
+    private (IChildView view, INotifyingChildPresenter presenter) GetStockDetails() {
         (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) = ViewFactory.CreateManageStockDetails();
         presenter.ValidateSKU += OnValidateSKU;
         presenter.SetName(_model.Name);
@@ -110,23 +98,19 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
         return (view, presenter);
     }
 
-    private (IChildView view, INotifyingChildPresenter presenter) GetStockWarning()
-    {
+    private (IChildView view, INotifyingChildPresenter presenter) GetStockWarning() {
         (ManageStockWarningView view, ManageStockWarningPresenter presenter) = ViewFactory.CreateManageStockWarning();
         presenter.HighQuantity = _model.HighQuantity;
         presenter.LowQuantity = _model.LowQuantity;
         return (view, presenter);
     }
 
-    private void IsValidSKU(ValidationRequestEventArgs<string> validateSKURequest)
-    {
+    private void IsValidSKU(ValidationRequestEventArgs<string> validateSKURequest) {
         string sku = validateSKURequest.Value;
-        if (string.IsNullOrWhiteSpace(sku))
-        {
+        if (string.IsNullOrWhiteSpace(sku)) {
             validateSKURequest.SetValidation(false, "Please fill in an SKU");
         }
-        else
-        {
+        else {
             validateSKURequest.SetValidation(
                 StockDAL.SKUExists(sku).ContinueWith(x => !x.Result),
                 "This SKU already exists. Please pick a different one"
@@ -134,66 +118,54 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
         }
     }
 
-    private void PopulateDefaultValues()
-    {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter)
-        {
+    private void PopulateDefaultValues() {
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) {
             manageStockDetailsPresenter.SetName(_model.Name);
             manageStockDetailsPresenter.SetSKU(_model.SKU);
             manageStockDetailsPresenter.Description = _model.Description;
             manageStockDetailsPresenter.Archived = _model.Archived;
         }
-        else if (_childPresenter is ManageStockQuantityPresenter manageStockQuantityPresenter)
-        {
+        else if (_childPresenter is ManageStockQuantityPresenter manageStockQuantityPresenter) {
             manageStockQuantityPresenter.Quantity = _model.Quantity;
         }
-        else if (_childPresenter is ManageStockWarningPresenter manageStockWarningPresenter)
-        {
+        else if (_childPresenter is ManageStockWarningPresenter manageStockWarningPresenter) {
             manageStockWarningPresenter.HighQuantity = _model.HighQuantity;
             manageStockWarningPresenter.LowQuantity = _model.LowQuantity;
         }
     }
 
-    private void UpdateModel()
-    {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter)
-        {
+    private void UpdateModel() {
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) {
             bool nameValid = manageStockDetailsPresenter.TryGetName(out string? name);
             bool skuValid = manageStockDetailsPresenter.TryGetSKU(out string? sku);
 
-            if (nameValid && skuValid)
-            {
+            if (nameValid && skuValid) {
                 _model.Name = name!;
                 _model.SKU = sku!;
                 _model.Description = manageStockDetailsPresenter.Description;
                 _model.Archived = manageStockDetailsPresenter.Archived;
             }
         }
-        else if (_childPresenter is ManageStockQuantityPresenter manageStockQuantityPresenter)
-        {
+        else if (_childPresenter is ManageStockQuantityPresenter manageStockQuantityPresenter) {
             _model.Quantity = manageStockQuantityPresenter.Quantity;
             _reason = manageStockQuantityPresenter.ReasonForQuantityChange;
         }
-        else if (_childPresenter is ManageStockWarningPresenter manageStockWarningPresenter)
-        {
+        else if (_childPresenter is ManageStockWarningPresenter manageStockWarningPresenter) {
             _model.HighQuantity = manageStockWarningPresenter.HighQuantity;
             _model.LowQuantity = manageStockWarningPresenter.LowQuantity;
         }
     }
 
-    private void UpdatePreviousNextDoneBarVisibility()
-    {
+    private void UpdatePreviousNextDoneBarVisibility() {
         _view.PreviousVisible = _index > 0;
         _view.NextVisible = _index < 2;
         _view.DoneVisible = _index == 2;
     }
 
-    private async void CreateStock()
-    {
+    private async void CreateStock() {
         UpdateModel();
 
-        try
-        {
+        try {
             bool success = await StockDAL.CreateStock(
                 _model,
                 _staff.Id,
@@ -203,26 +175,22 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
             _view.ShowMessageBox("Stock item created successfully.", "Success");
             NavigateBack();
         }
-        catch
-        {
+        catch {
             _view.ShowMessageBox("Failed to create stock item.", "Error");
         }
     }
 
-    public void CleanUp()
-    {
+    public void CleanUp() {
         _view.Back -= OnBack;
         _view.Next -= OnNext;
         _view.Previous -= OnPrevious;
         _view.Done -= OnDone;
 
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter)
-        {
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) {
             manageStockDetailsPresenter.ValidateSKU -= OnValidateSKU;
         }
 
-        if (_childPresenter is not null)
-        {
+        if (_childPresenter is not null) {
             _childPresenter.DetailsChanged -= OnDetailsChanged;
             _childPresenter.CleanUp();
         }
@@ -230,9 +198,8 @@ public class AddStockPresenter : IChildPresenter, INavigatingPresenter
         _childPresenter = null;
     }
 
-    private bool _stockCreated = false;
-    public bool CanExit()
-    {
+    private readonly bool _stockCreated = false;
+    public bool CanExit() {
         if (_stockCreated) return true;
         if (_view.IsLoading) return false;
 

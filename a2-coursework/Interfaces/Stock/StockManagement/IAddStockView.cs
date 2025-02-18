@@ -1,6 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Stock.StockManagement;
-public interface IAddStockView : IView
-{
+public interface IAddStockView : IView {
     public event EventHandler? Back;
     public event EventHandler? Next;
     public event EventHandler? Previous;

@@ -9,18 +9,18 @@ public partial class MenuButton : UserControl, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
-        btn.BackColor = ColorScheme.CurrentTheme.Background;
-        btn.HoverColor = ColorScheme.CurrentTheme.Primary;
-        btn.ClickedColor = ColorScheme.CurrentTheme.Primary;
-        btn.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        btn.BackColor = ColorScheme.Current.Background;
+        btn.HoverColor = ColorScheme.Current.Primary;
+        btn.ClickedColor = ColorScheme.Current.Primary;
+        btn.ForeColor = ColorScheme.Current.Foreground;
     }
 
     public void SetToolTipVisibility() { }
 
     public void SetFont() {
-        btn.SetFontName(Theming.Theme.CurrentTheme.FontName);
+        btn.SetFontName(Theming.Theme.Current.FontName);
     }
 
     public new event EventHandler? Click;

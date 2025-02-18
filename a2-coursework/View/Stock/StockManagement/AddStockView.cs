@@ -29,22 +29,22 @@ public partial class AddStockView : Form, IAddStockView, IThemeable, IChildView 
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        pnlHolder.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlTop.BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
+        pnlHolder.BackColor = ColorScheme.Current.Background;
+        pnlTop.BackColor = ColorScheme.Current.Background;
         lblTitle.ThemeTitle();
         previousNextDoneBar.Theme();
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         previousNextDoneBar.SetToolTipVisibility();
         toolTip.Active = showToolTips;
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblTitle.SetFontName(fontName);
     }

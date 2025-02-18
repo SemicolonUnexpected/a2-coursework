@@ -15,10 +15,10 @@ public partial class PreviousNextDoneBar : UserControl, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
-        pnlSpacer1.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlSpacer2.BackColor = ColorScheme.CurrentTheme.Background;
+        pnlSpacer1.BackColor = ColorScheme.Current.Background;
+        pnlSpacer2.BackColor = ColorScheme.Current.Background;
 
         btnBack.ThemeWeak();
         btnNext.ThemeWeak();
@@ -26,7 +26,7 @@ public partial class PreviousNextDoneBar : UserControl, IThemeable {
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTip = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTip = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTip;
     }

@@ -46,7 +46,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Interfaces\Staff\StaffManagement\" />
     <Folder Include="View\Deliveries\" />
     <Folder Include="View\Bookings\" />
   </ItemGroup>

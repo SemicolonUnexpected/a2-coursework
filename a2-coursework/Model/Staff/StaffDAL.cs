@@ -3,7 +3,7 @@ using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
-namespace a2_coursework.Model.StaffModel;
+namespace a2_coursework.Model.Staff;
 internal static class StaffDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -47,7 +47,7 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<Staff?> GetStaffByUsername(string username) {
+    public static async Task<StaffModel?> GetStaffByUsername(string username) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -58,7 +58,7 @@ internal static class StaffDAL {
         await using SqlDataReader reader = command.ExecuteReader();
         if (await reader.ReadAsync()) {
             // Handle potential null values safely
-            return new Staff(
+            return new StaffModel(
                 staffID: reader.GetInt32(reader.GetOrdinal("StaffID")),
                 hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
                 salt: Convert.FromHexString(reader["Salt"].ToString()!),
@@ -162,7 +162,7 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<List<Staff>> GetStaff() {
+    public static async Task<List<StaffModel>> GetStaff() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -171,10 +171,10 @@ internal static class StaffDAL {
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
-        var staffList = new List<Staff>();
+        var staffList = new List<StaffModel>();
 
         while (await reader.ReadAsync()) {
-            staffList.Add(new Staff(
+            staffList.Add(new StaffModel(
                 staffID: reader.GetInt32(reader.GetOrdinal("StaffID")),
                 hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
                 salt: Convert.FromHexString(reader.GetString(reader.GetOrdinal("Salt"))),

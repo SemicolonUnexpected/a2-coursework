@@ -26,9 +26,9 @@ public partial class SignInView : Form, ISignInView, IThemeable {
     }
 
     public void Theme() {
-        pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
+        pnlCover.BackColor = ColorScheme.Current.Background;
 
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
         toolTip.SetToolTip(pbShowPassword, tbPassword.UsePasswordChar ? "Show your password" : "Hide your password");
@@ -45,12 +45,12 @@ public partial class SignInView : Form, ISignInView, IThemeable {
         btnSignIn.ThemeStrong();
         btnSwitchTheme.ThemeWeak();
 
-        if (ColorScheme.CurrentTheme == ColorScheme.Dark) btnSwitchTheme.Image = IconTheme.Brightness;
+        if (ColorScheme.Current == ColorScheme.Dark) btnSwitchTheme.Image = IconTheme.Brightness;
         else btnSwitchTheme.Image = IconTheme.Moon;
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
         tbUsername.ToolTipsActive = showToolTips;
@@ -58,7 +58,7 @@ public partial class SignInView : Form, ISignInView, IThemeable {
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblWelcome.SetFontName(fontName);
         lblSignIn.SetFontName(fontName);

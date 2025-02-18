@@ -23,12 +23,12 @@ public partial class MenuDropdown : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        pnlChildHolder.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlSpacer.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlDropDown.BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
+        pnlChildHolder.BackColor = ColorScheme.Current.Background;
+        pnlSpacer.BackColor = ColorScheme.Current.Background;
+        pnlDropDown.BackColor = ColorScheme.Current.Background;
 
-        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+        pnlDecor.BackColor = ColorScheme.Current.Primary;
 
         btn.Theme();
         btn.IconImage = pnlDropDown.Visible ? IconTheme.CurrentTheme.Minus : IconTheme.CurrentTheme.Plus;

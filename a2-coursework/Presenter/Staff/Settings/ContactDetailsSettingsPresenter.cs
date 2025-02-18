@@ -1,10 +1,10 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Model.StaffModel;
+using a2_coursework.Interfaces.Staff.Settings;
+using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;
 public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettings> {
-    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, Staff staff) : base(view, staff) {
+    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, StaffModel staff) : base(view, staff) {
         _view.EmailChanged += OnContactInformationChanged;
         _view.PhoneNumberChanged += OnContactInformationChanged;
         _view.AddressChanged += OnAddressChanged;

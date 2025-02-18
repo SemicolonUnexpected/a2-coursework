@@ -1,21 +1,21 @@
 ﻿using a2_coursework.Interfaces;
-using a2_coursework.Model.StaffModel;
+using a2_coursework.Model.Staff;
 using a2_coursework.UserControls;
 using a2_coursework.View;
 
 namespace a2_coursework.Presenter;
 public class MasterPresenter : BasePresenter<IMasterView> {
-    private Staff _staff;
+    private StaffModel _staff;
     private IChildPresenter? _childPresenter;
 
     public event EventHandler? FormClosed;
 
-    public MasterPresenter(IMasterView view, Staff staff) : base(view) {
+    public MasterPresenter(IMasterView view, StaffModel staff) : base(view) {
         _staff = staff;
 
         _view.GenerateMenu(GetMenuItems(_staff.PrivilegeLevel));
         _view.UsernameText = staff.Username;
-        Theming.Theme.CurrentTheme = staff.Theme;
+        Theming.Theme.Current = staff.Theme;
 
         _view.PreviewToggleChanged += OnPreviewToggleChanged;
         _view.ToggleChanged += OnToggleChanged;

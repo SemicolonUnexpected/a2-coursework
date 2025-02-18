@@ -1,7 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Presenter.Users.Settings;
+using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Settings;
@@ -30,7 +29,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
         pbShowCurrentPassword.Image = tbCurrentPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
         pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
 
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblSecurity.ThemeTitle();
         lblEditPromt.ThemeSubtitle();
@@ -70,7 +69,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
         tbUsername.ToolTipsActive = showToolTips;
@@ -81,7 +80,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         ControlHelpers.ExecuteRecursive(this, ctrl => ctrl.SetFontName(fontName));
     }
@@ -165,19 +164,19 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
     private bool _currentPasswordError = false;
     public void SetCurrentPasswordBorderError(bool isError) {
         _currentPasswordError = isError;
-        tbCurrentPassword.BorderColor = _currentPasswordError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbCurrentPassword.BorderColor = _currentPasswordError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _newPasswordError = false;
     public void SetNewPasswordBorderError(bool isError) {
         _newPasswordError = isError;
-        tbNewPassword.BorderColor = _newPasswordError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbNewPassword.BorderColor = _newPasswordError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _confirmPasswordError = false;
     public void SetConfirmPasswordBorderError(bool isError) {
         _confirmPasswordError = isError;
-        tbConfirmPassword.BorderColor = _confirmPasswordError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbConfirmPassword.BorderColor = _confirmPasswordError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     #region Scrolling

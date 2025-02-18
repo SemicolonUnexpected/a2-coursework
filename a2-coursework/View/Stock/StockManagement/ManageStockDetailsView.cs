@@ -25,19 +25,19 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblStockName.ThemeTitle();
         tbStockName.Theme();
 
         lblSKU.ThemeTitle();
         tbSKU.Theme();
-        tbSKU.BorderColor = _skuError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbSKU.BorderColor = _skuError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
         lblNameSKUError.ThemeError();
 
         lblStockDescription.ThemeTitle();
         tbStockDescription.Theme();
-        tbStockName.BorderColor = _nameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbStockName.BorderColor = _nameError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
         lblCharacterLimit.ThemeSubtitle();
 
         pnlArchived.Theme();
@@ -46,7 +46,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblStockName.SetFontName(fontName);
         tbStockName.SetFontName(fontName);
@@ -103,13 +103,13 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
     private bool _nameError = false;
     public void SetNameBorderError(bool isError) {
         _nameError = isError;
-        tbStockName.BorderColor = _nameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbStockName.BorderColor = _nameError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _skuError = false;
     public void SetSKUBorderError(bool isError) {
         _skuError = isError;
-        tbSKU.BorderColor = _skuError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbSKU.BorderColor = _skuError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private void ClearFocus() => tbFocusHolder.Focus();

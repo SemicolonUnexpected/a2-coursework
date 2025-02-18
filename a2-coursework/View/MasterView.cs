@@ -14,7 +14,7 @@ public partial class MasterView : Form, IMasterView, IThemeable {
     public MasterView() {
         InitializeComponent();
 
-        pnlCover.BackColor = ColorScheme.CurrentTheme.Background;
+        pnlCover.BackColor = ColorScheme.Current.Background;
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
@@ -27,7 +27,7 @@ public partial class MasterView : Form, IMasterView, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         sideMenu.Theme();
         topBar.Theme();
@@ -36,7 +36,7 @@ public partial class MasterView : Form, IMasterView, IThemeable {
     public void SetToolTipVisibility() { }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         topBar.SetFontName(fontName);
         sideMenu.SetFontName(fontName);

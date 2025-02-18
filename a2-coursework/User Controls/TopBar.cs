@@ -16,9 +16,9 @@ public partial class TopBar : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        lblUsername.ForeColor = ColorScheme.CurrentTheme.Foreground;
-        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+        BackColor = ColorScheme.Current.Background;
+        lblUsername.ForeColor = ColorScheme.Current.Foreground;
+        pnlDecor.BackColor = ColorScheme.Current.Primary;
 
         btnSignOut.ThemeStrong();
     }

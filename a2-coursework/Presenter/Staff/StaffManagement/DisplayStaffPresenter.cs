@@ -1,12 +1,12 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Interfaces.Users;
-using a2_coursework.Model.StaffModel;
+using a2_coursework.Interfaces.Staff;
+using a2_coursework.Model.Staff;
 using a2_coursework.View;
 using a2_coursework.View.StaffView.StaffManagement;
 
 namespace a2_coursework.Presenter.StaffPresenters.ManageStaff;
 
-public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, Staff, DisplayStaff>, IChildPresenter, INavigatingPresenter {
+public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffModel, DisplayStaff>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
     public DisplayStaffPresenter(IDisplayStaffView view) : base(view) {
@@ -37,11 +37,11 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, Staff, 
         _displayModels.Clear();
         _modelDisplayMap.Clear();
 
-        IEnumerable<Staff> models;
+        IEnumerable<StaffModel> models;
         if (!_view.ShowArchivedItems) models = FilterOutArchived(_models);
         else models = _models;
 
-        foreach (Staff staff in models) {
+        foreach (StaffModel staff in models) {
             DisplayStaff displayStaff = CreateDisplayItem(staff);
             _modelDisplayMap.Add(displayStaff, staff);
             _displayModels.Add(displayStaff);
@@ -50,7 +50,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, Staff, 
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayStaff CreateDisplayItem(Staff staff) => new DisplayStaff(staff);
+    protected override DisplayStaff CreateDisplayItem(StaffModel staff) => new DisplayStaff(staff);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -75,9 +75,9 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, Staff, 
         }
     }
 
-    private IEnumerable<Staff> FilterOutArchived(IEnumerable<Staff> staffItems) => staffItems.Where(x => !x.Archived);
+    private IEnumerable<StaffModel> FilterOutArchived(IEnumerable<StaffModel> staffItems) => staffItems.Where(x => !x.Archived);
 
-    protected override IComparable RankSearch(string searchText, Staff staff) {
+    protected override IComparable RankSearch(string searchText, StaffModel staff) {
         string staffNames = $"{staff.Forename} {staff.Surname}";
 
         return MathF.Min(
@@ -86,7 +86,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, Staff, 
         );
     }
 
-    protected override List<Staff> OrderDefault(List<Staff> models) => models.OrderBy(model => model.Id).ToList();
+    protected override List<StaffModel> OrderDefault(List<StaffModel> models) => models.OrderBy(model => model.Id).ToList();
 
     private async void ToggleArchived() {
         if (_isAsyncRunning) return;
@@ -98,7 +98,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, Staff, 
 
         _view.DisableAll();
 
-        Staff staff = _modelDisplayMap[_view.SelectedItem];
+        StaffModel staff = _modelDisplayMap[_view.SelectedItem];
 
         try {
             _isAsyncRunning = true;

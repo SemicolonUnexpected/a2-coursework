@@ -1,4 +1,3 @@
 ﻿namespace a2_coursework.Presenter.Stock.StockManagement;
-public class ManageStockPresenter
-{
+public class ManageStockPresenter {
 }

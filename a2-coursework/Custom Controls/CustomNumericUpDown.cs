@@ -13,7 +13,7 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         btnIncrement.ThemeWeak();
         btnDecrement.ThemeWeak();
@@ -103,14 +103,14 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
         tbValue.ToolTipsActive = showToolTips;
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         tbValue.SetFontName(fontName);
     }

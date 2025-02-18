@@ -1,12 +1,10 @@
 ﻿using a2_coursework.Interfaces.Stock.StockManagement;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
-public class ManageStockQuantityPresenter : BasePresenter<IManageStockQuantityView>, INotifyingChildPresenter
-{
+public class ManageStockQuantityPresenter : BasePresenter<IManageStockQuantityView>, INotifyingChildPresenter {
     public event EventHandler? DetailsChanged;
 
-    public ManageStockQuantityPresenter(IManageStockQuantityView view) : base(view)
-    {
+    public ManageStockQuantityPresenter(IManageStockQuantityView view) : base(view) {
         _view.BulkAdd += OnBulkAdd;
         _view.BulkRemove += OnBulkRemove;
         _view.ReasonForQuantityChangeChanged += OnReasonForQuantityChangeChanged;
@@ -15,27 +13,23 @@ public class ManageStockQuantityPresenter : BasePresenter<IManageStockQuantityVi
 
     private void OnBulkAdd(object? sender, EventArgs e) => BulkAdd();
     private void OnBulkRemove(object? sender, EventArgs e) => BulkRemove();
-    private void OnReasonForQuantityChangeChanged(object? sender, EventArgs e)
-    {
+    private void OnReasonForQuantityChangeChanged(object? sender, EventArgs e) {
         ReasonForQuantityChangeChanged();
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
     private void OnQuantityChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
 
-    public int Quantity
-    {
+    public int Quantity {
         get => _view.Quantity;
         set => _view.Quantity = value;
     }
 
-    public string ReasonForQuantityChange
-    {
+    public string ReasonForQuantityChange {
         get => _view.ReasonForQuantityChange;
         set => _view.ReasonForQuantityChange = value;
     }
 
-    public void ResetBulkEdit()
-    {
+    public void ResetBulkEdit() {
         _view.BulkAddQuantity = 0;
         _view.BulkRemoveQuantity = 0;
     }
@@ -48,8 +42,7 @@ public class ManageStockQuantityPresenter : BasePresenter<IManageStockQuantityVi
 
     public bool CanExit() => true;
 
-    public override void CleanUp()
-    {
+    public override void CleanUp() {
         _view.BulkAdd -= OnBulkAdd;
         _view.BulkRemove -= OnBulkRemove;
         _view.ReasonForQuantityChangeChanged -= OnReasonForQuantityChangeChanged;

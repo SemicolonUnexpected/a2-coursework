@@ -2,8 +2,7 @@
 using a2_coursework.View.Stock.StockQuantityChanges;
 
 namespace a2_coursework.Interfaces.Stock.StockQuantityChanges;
-public interface IDisplayStockQuantityChangesView : IDisplayView<DisplayStockQuantityChange>, IView
-{
+public interface IDisplayStockQuantityChangesView : IDisplayView<DisplayStockQuantityChange>, IView {
     public event EventHandler? View;
     public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;

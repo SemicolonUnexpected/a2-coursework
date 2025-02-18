@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Users;
+using a2_coursework.Interfaces.Staff;
 using a2_coursework.Presenter.Users;
 using a2_coursework.Theming;
 
@@ -34,7 +34,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
     public void Theme() {
         pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
 
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblChangePassword.ThemeTitle();
         lblEditPromt.ThemeSubtitle();
@@ -72,7 +72,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
         tbUsername.ToolTipsActive = showToolTips;
@@ -82,7 +82,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblChangePassword.SetFontName(fontName);
         lblEditPromt.SetFontName(fontName);
@@ -174,19 +174,19 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
     private bool _usernameError = false;
     public void SetUsernameBorderError(bool isError) {
         _usernameError = isError;
-        tbUsername.BorderColor = _usernameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbUsername.BorderColor = _usernameError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _newPasswordError = false;
     public void SetNewPasswordBorderError(bool isError) {
         _newPasswordError = isError;
-        tbNewPassword.BorderColor = _newPasswordError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbNewPassword.BorderColor = _newPasswordError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _confirmPasswordError = false;
     public void SetConfirmPasswordBorderError(bool isError) {
         _confirmPasswordError = isError;
-        tbConfirmPassword.BorderColor = _confirmPasswordError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbConfirmPassword.BorderColor = _confirmPasswordError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     #region Scrolling

@@ -1,6 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Stock.StockManagement;
-public interface IManageStockDetailsView : IChildView
-{
+public interface IManageStockDetailsView : IChildView {
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;
     public event EventHandler? SKUChanged;

@@ -41,7 +41,7 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblStock.ThemeTitle();
         lblError.ThemeSubtitle();
@@ -53,7 +53,7 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         foreach (DataGridViewColumn column in dataGridView.Columns) {
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
@@ -63,7 +63,7 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         topBar.SetFontName(fontName);
         dataGridView.SetFontName(fontName);
@@ -174,16 +174,16 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
         if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
             if (e.Value is string quantityLevel) {
                 if (quantityLevel == "Low") {
-                    e.CellStyle!.ForeColor = ColorScheme.CurrentTheme.Danger;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.CurrentTheme.Danger;
+                    e.CellStyle!.ForeColor = ColorScheme.Current.Danger;
+                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Danger;
                 }
                 else if (quantityLevel == "Medium") {
-                    e.CellStyle!.ForeColor = ColorScheme.CurrentTheme.Warning;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.CurrentTheme.Warning;
+                    e.CellStyle!.ForeColor = ColorScheme.Current.Warning;
+                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Warning;
                 }
                 else if (quantityLevel == "High") {
-                    e.CellStyle!.ForeColor = ColorScheme.CurrentTheme.Info;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.CurrentTheme.Info;
+                    e.CellStyle!.ForeColor = ColorScheme.Current.Info;
+                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Info;
                 }
 
             }

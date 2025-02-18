@@ -1,5 +1,5 @@
-﻿using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Model.StaffModel;
+﻿using a2_coursework.Interfaces.Staff.Settings;
+using a2_coursework.Model.Staff;
 using AS_Coursework.Model.Security;
 
 namespace a2_coursework.Presenter.Users.Settings;
@@ -7,7 +7,7 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView
     private byte[]? _newHash;
     private byte[]? _newSalt;
 
-    public SecuritySettingsPresenter(ISecuritySettingsView view, Staff staff) : base(view, staff) {
+    public SecuritySettingsPresenter(ISecuritySettingsView view, StaffModel staff) : base(view, staff) {
         _view.NewPasswordChanged += OnNewPasswordChanged;
     }
 

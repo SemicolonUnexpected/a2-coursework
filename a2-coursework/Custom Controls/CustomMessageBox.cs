@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.CustomControls; 
+﻿namespace a2_coursework.CustomControls;
 public static class CustomMessageBox {
 
     public static DialogResult Show(string text, string caption) {

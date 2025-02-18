@@ -20,14 +20,14 @@ public partial class CustomMessageBoxView : Form, IThemeable, IView {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblTitle.ThemeTitle();
         lblText.ThemeSubtitle();
 
-        pnlBottom.BackColor = ColorScheme.CurrentTheme.Background;
-        flp.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+        pnlBottom.BackColor = ColorScheme.Current.Background;
+        flp.BackColor = ColorScheme.Current.Background;
+        pnlDecor.BackColor = ColorScheme.Current.Primary;
 
         btnOk.ThemeStrong();
         btnCancel.ThemeStrong();
@@ -36,7 +36,7 @@ public partial class CustomMessageBoxView : Form, IThemeable, IView {
     public void SetToolTipVisibility() { }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblTitle.SetFontName(fontName);
         lblText.SetFontName(fontName);

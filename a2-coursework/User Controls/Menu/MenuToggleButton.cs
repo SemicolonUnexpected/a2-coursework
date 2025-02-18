@@ -9,11 +9,11 @@ public partial class MenuToggleButton : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        btn.BackColor = ColorScheme.CurrentTheme.Background;
-        btn.HoverColor = ColorScheme.CurrentTheme.Primary;
-        btn.ToggledColor = ColorScheme.CurrentTheme.Primary;
-        btn.ForeColor = ColorScheme.CurrentTheme.Foreground;
+        BackColor = ColorScheme.Current.Background;
+        btn.BackColor = ColorScheme.Current.Background;
+        btn.HoverColor = ColorScheme.Current.Primary;
+        btn.ToggledColor = ColorScheme.Current.Primary;
+        btn.ForeColor = ColorScheme.Current.Foreground;
     }
 
     public event EventHandler? ToggleChanged;

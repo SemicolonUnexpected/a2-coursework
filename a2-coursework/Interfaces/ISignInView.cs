@@ -1,7 +1,6 @@
 ﻿namespace a2_coursework.Interfaces;
 
-public interface ISignInView : IView
-{
+public interface ISignInView : IView {
     public event EventHandler? AttemptSignIn;
     public event EventHandler? UsernameChanged;
     public event EventHandler? PasswordChanged;

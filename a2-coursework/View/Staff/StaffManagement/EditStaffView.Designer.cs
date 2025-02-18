@@ -23,11 +23,13 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             pnlHolder = new Panel();
             approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
             pnlMenu = new Panel();
-            btnBack = new CustomControls.CustomButton();
             topMenu = new UserControls.TopMenu();
+            btnBack = new CustomControls.CustomButton();
+            toolTip = new ToolTip(components);
             pnlMenu.SuspendLayout();
             SuspendLayout();
             // 
@@ -54,14 +56,32 @@
             // 
             // pnlMenu
             // 
-            pnlMenu.Controls.Add(btnBack);
             pnlMenu.Controls.Add(topMenu);
+            pnlMenu.Controls.Add(btnBack);
             pnlMenu.Dock = DockStyle.Top;
             pnlMenu.Location = new Point(0, 0);
             pnlMenu.Margin = new Padding(0);
             pnlMenu.Name = "pnlMenu";
             pnlMenu.Size = new Size(654, 40);
             pnlMenu.TabIndex = 29;
+            // 
+            // topMenu
+            // 
+            topMenu.Anchor = AnchorStyles.None;
+            topMenu.Location = new Point(40, 3);
+            topMenu.Margin = new Padding(100);
+            topMenu.MenuItems = new string[]
+    {
+    "Credentials",
+    "Details",
+    "Contact",
+    "Emergency",
+    "Appearance"
+    };
+            topMenu.Name = "topMenu";
+            topMenu.SelectedIndex = 0;
+            topMenu.Size = new Size(614, 34);
+            topMenu.TabIndex = 24;
             // 
             // btnBack
             // 
@@ -74,37 +94,19 @@
             btnBack.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnBack.DisabledBorderColor = Color.Empty;
             btnBack.DisabledColor = Color.Empty;
-            btnBack.Dock = DockStyle.Left;
             btnBack.ForeColor = Color.FromArgb(250, 250, 250);
             btnBack.HoverBorderColor = Color.FromArgb(39, 39, 42);
             btnBack.HoverColor = Color.FromArgb(39, 39, 42);
             btnBack.Image = Properties.Resources.chevron_left_light;
-            btnBack.ImageRectangle = new Rectangle(7, 7, 26, 26);
-            btnBack.Location = new Point(0, 0);
+            btnBack.ImageRectangle = new Rectangle(6, 6, 24, 24);
+            btnBack.Location = new Point(4, 4);
             btnBack.Margin = new Padding(0);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(40, 40);
+            btnBack.Size = new Size(36, 36);
             btnBack.TabIndex = 25;
             btnBack.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnBack.TextPosition = new Point(0, 0);
-            // 
-            // topMenu
-            // 
-            topMenu.Anchor = AnchorStyles.None;
-            topMenu.Location = new Point(55, 3);
-            topMenu.Margin = new Padding(100);
-            topMenu.MenuItems = new string[]
-    {
-    "Credentials",
-    "Personal Details",
-    "Contact",
-    "Emergency Contact",
-    "Appearance"
-    };
-            topMenu.Name = "topMenu";
-            topMenu.SelectedIndex = 0;
-            topMenu.Size = new Size(574, 34);
-            topMenu.TabIndex = 24;
+            toolTip.SetToolTip(btnBack, "Back");
             // 
             // EditStaffView
             // 
@@ -129,5 +131,6 @@
         private Panel pnlMenu;
         private CustomControls.CustomButton btnBack;
         private UserControls.TopMenu topMenu;
+        private ToolTip toolTip;
     }
 }

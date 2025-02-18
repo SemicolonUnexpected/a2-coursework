@@ -1,6 +1,6 @@
 ﻿using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockQuantityChanges;
-using a2_coursework.Model.StockModel;
+using a2_coursework.Model.Stock;
 using a2_coursework.View;
 
 namespace a2_coursework.Presenter.StockPresenter.StockQuantityChanges;

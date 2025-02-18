@@ -1,7 +1,7 @@
-﻿using a2_coursework.CustomControls;
+﻿using a2_coursework._Helpers;
+using a2_coursework.CustomControls;
+using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
-using a2_coursework._Helpers;
-using a2_coursework.Interfaces.Users.Settings;
 
 namespace a2_coursework.View.Settings;
 public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemeable {
@@ -14,11 +14,6 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
     public AppearanceSettingsView() {
         InitializeComponent();
 
-        rbDarkMode.CheckChanged += (s, e) => DarkModeCheckedChanged?.Invoke(this, EventArgs.Empty);
-        rbToolTips.CheckChanged += (s, e) => ToolTipsCheckedChanged?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
-        approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
-
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
 
@@ -27,10 +22,15 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
 
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
+
+        rbDarkMode.CheckChanged += (s, e) => DarkModeCheckedChanged?.Invoke(this, EventArgs.Empty);
+        rbToolTips.CheckChanged += (s, e) => ToolTipsCheckedChanged?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Save += (s, e) => Save?.Invoke(this, EventArgs.Empty);
+        approveChangesBar.Cancel += (s, e) => Cancel?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblAppearance.ThemeTitle();
         lblEditPromt.ThemeSubtitle();
@@ -48,7 +48,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
         lblFont.ThemeTitle();
         lblFontDescription.ThemeSubtitle();
         pnlFont.Theme();
-        
+
         lblBahnschrift.ThemeTitle();
         rbBahnschrift.Theme();
 
@@ -62,7 +62,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblAppearance.SetFontName(fontName);
         lblEditPromt.SetFontName(fontName);
@@ -75,7 +75,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         approveChangesBar.ToolTipsActive = showToolTips;
     }
@@ -85,7 +85,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
         set => rbDarkMode.Checked = value;
     }
 
-    public bool ToolTipsChecked {
+    public bool ShowToolTipsChecked {
         get => rbToolTips.Checked;
         set => rbToolTips.Checked = value;
     }
@@ -125,7 +125,7 @@ public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemea
         }
     }
 
-    bool _updatingToggles = false;
+    private bool _updatingToggles = false;
     private void rbFontName_CheckChanged(object? sender, EventArgs e) {
         if (_updatingToggles) return;
 

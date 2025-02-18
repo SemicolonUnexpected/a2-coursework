@@ -1,4 +1,4 @@
-﻿using a2_coursework.Model.StaffModel;
+﻿using a2_coursework.Model.Staff;
 using a2_coursework.Presenter;
 using a2_coursework.View;
 
@@ -30,7 +30,7 @@ internal class ApplicationStartupManager {
         _signInPresenter.Show();
     }
 
-    private void SignInSuccessful(object? sender, Staff staff) {
+    private void SignInSuccessful(object? sender, StaffModel staff) {
         // Create the main page after a successful login
         MasterPresenter masterPresenter = ViewFactory.CreateMaster(staff);
         masterPresenter.FormClosed += OnFormExit;

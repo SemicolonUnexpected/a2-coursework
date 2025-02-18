@@ -28,7 +28,7 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView, I
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblQuantity.ThemeTitle();
         lblBulkAdd.ThemeTitle();
@@ -47,7 +47,7 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView, I
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblQuantity.SetFontName(fontName);
         nudQuantity.SetFontName(fontName);

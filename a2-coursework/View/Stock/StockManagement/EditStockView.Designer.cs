@@ -98,6 +98,7 @@
             btnBack.HoverColor = Color.FromArgb(39, 39, 42);
             btnBack.Image = Properties.Resources.chevron_left_light;
             btnBack.ImageRectangle = new Rectangle(6, 6, 24, 24);
+            btnBack.ImeMode = ImeMode.Close;
             btnBack.Location = new Point(4, 4);
             btnBack.Margin = new Padding(2);
             btnBack.Name = "btnBack";

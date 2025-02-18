@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Theming;
 using a2_coursework.User_Controls.Menu;
 
-namespace a2_coursework.UserControls; 
+namespace a2_coursework.UserControls;
 public partial class TopMenu : UserControl {
     public event EventHandler? SelectedIndexChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedIndexChanged;
@@ -20,8 +20,8 @@ public partial class TopMenu : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        flp.BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
+        flp.BackColor = ColorScheme.Current.Background;
 
         foreach (TopMenuItem item in flp.Controls) {
             item.Theme();
@@ -49,7 +49,7 @@ public partial class TopMenu : UserControl {
 
             flp.Controls.Add(menuItem);
         }
-            
+
         ((TopMenuItem)flp.Controls[_selectedIndex]).Selected = true;
     }
 

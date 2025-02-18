@@ -2,13 +2,11 @@
 using System.Configuration;
 using System.Data;
 
-namespace a2_coursework.Model.StockModel;
-public static class StockDAL
-{
+namespace a2_coursework.Model.Stock;
+public static class StockDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-    public static async Task<List<StockItem>> GetStock()
-    {
+    public static async Task<List<StockModel>> GetStock() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -17,13 +15,12 @@ public static class StockDAL
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
-        List<StockItem> stock = [];
+        List<StockModel> stock = [];
 
-        while (await reader.ReadAsync())
-        {
+        while (await reader.ReadAsync()) {
             int id = reader.GetInt32(reader.GetOrdinal("Id"));
             stock.Add(
-                new StockItem(Id: id,
+                new StockModel(Id: id,
                     name: reader.GetString(reader.GetOrdinal("Name")),
                     description: reader.GetString(reader.GetOrdinal("Description")),
                     SKU: reader.GetString(reader.GetOrdinal("SKU")),
@@ -38,8 +35,7 @@ public static class StockDAL
         return stock;
     }
 
-    public static async Task<bool> CreateStock(StockItem stock, int staffId, DateTime date, string reasonForQuantityChange)
-    {
+    public static async Task<bool> CreateStock(StockModel stock, int staffId, DateTime date, string reasonForQuantityChange) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -61,8 +57,7 @@ public static class StockDAL
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateQuantity(int stockId, int staffId, int quantity, DateTime date, string reasonForQuantityChange)
-    {
+    public static async Task<bool> UpdateQuantity(int stockId, int staffId, int quantity, DateTime date, string reasonForQuantityChange) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -79,8 +74,7 @@ public static class StockDAL
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateArchived(int id, bool archived)
-    {
+    public static async Task<bool> UpdateArchived(int id, bool archived) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -94,8 +88,7 @@ public static class StockDAL
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> SKUExists(string sku)
-    {
+    public static async Task<bool> SKUExists(string sku) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -108,8 +101,7 @@ public static class StockDAL
         return reader.HasRows;
     }
 
-    public static async Task<bool> UpdateDetails(int id, string name, string description, string sku, bool archived)
-    {
+    public static async Task<bool> UpdateDetails(int id, string name, string description, string sku, bool archived) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -126,8 +118,7 @@ public static class StockDAL
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateWarnings(int id, int highQuantity, int lowQuantity)
-    {
+    public static async Task<bool> UpdateWarnings(int id, int highQuantity, int lowQuantity) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 

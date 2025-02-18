@@ -1,8 +1,5 @@
-﻿using a2_coursework.Theming;
-
-namespace a2_coursework.Interfaces.Users.Settings;
-public interface IContactDetailsSettings : IEditView
-{
+﻿namespace a2_coursework.Interfaces.Staff.Settings;
+public interface IContactDetailsSettings : IEditView {
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;

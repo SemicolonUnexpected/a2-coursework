@@ -4,16 +4,15 @@ using System.ComponentModel;
 namespace a2_coursework.Presenter;
 public abstract class DisplayPresenter<TView, TModel, TDisplayModel> : BasePresenter<TView>, IChildPresenter
     where TView : notnull, IView, IDisplayView<TDisplayModel>
-    where TDisplayModel : notnull, INotifyPropertyChanged
-    {
+    where TDisplayModel : notnull, INotifyPropertyChanged {
     protected List<TModel> _models = [];
     protected BindingList<TDisplayModel> _displayModels = [];
     protected Dictionary<TDisplayModel, TModel> _modelDisplayMap = [];
 
     protected bool _isAsyncRunning;
-    
+
     protected CancellationTokenSource _cancellationTokenSource = new();
-    
+
     protected DisplayPresenter(TView view) : base(view) { }
 
     protected abstract void DisplayItems();

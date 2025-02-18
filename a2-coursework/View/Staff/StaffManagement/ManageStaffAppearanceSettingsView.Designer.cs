@@ -24,6 +24,9 @@
         /// </summary>
         private void InitializeComponent() {
             pnlFont = new CustomControls.CustomPanel();
+            rbComicSans = new CustomControls.CustomRadioButton();
+            rbCentury = new CustomControls.CustomRadioButton();
+            rbBahnschrift = new CustomControls.CustomRadioButton();
             lblComicSans = new Label();
             lblCentury = new Label();
             lblBahnschrift = new Label();
@@ -32,11 +35,8 @@
             rbDarkMode = new CustomControls.CustomRadioButton();
             lblDarkMode = new Label();
             customPanel2 = new CustomControls.CustomPanel();
-            customRadioButton1 = new CustomControls.CustomRadioButton();
+            rbShowToolTips = new CustomControls.CustomRadioButton();
             lblToolTips = new Label();
-            rbComicSans = new CustomControls.CustomRadioButton();
-            rbCentury = new CustomControls.CustomRadioButton();
-            rbBahnschrift = new CustomControls.CustomRadioButton();
             pnlFont.SuspendLayout();
             pnlDarkMode.SuspendLayout();
             customPanel2.SuspendLayout();
@@ -61,6 +61,52 @@
             pnlFont.Padding = new Padding(5);
             pnlFont.Size = new Size(339, 122);
             pnlFont.TabIndex = 22;
+            // 
+            // rbComicSans
+            // 
+            rbComicSans.Anchor = AnchorStyles.Right;
+            rbComicSans.BorderThickness = 1.7F;
+            rbComicSans.CheckColor = Color.White;
+            rbComicSans.CheckRadius = 5F;
+            rbComicSans.ForeColor = Color.White;
+            rbComicSans.Location = new Point(10, 95);
+            rbComicSans.Margin = new Padding(5);
+            rbComicSans.Name = "rbComicSans";
+            rbComicSans.Size = new Size(17, 17);
+            rbComicSans.TabIndex = 28;
+            rbComicSans.Text = "customRadioButton1";
+            rbComicSans.CheckChanged += rbFontName_CheckChanged;
+            // 
+            // rbCentury
+            // 
+            rbCentury.Anchor = AnchorStyles.Right;
+            rbCentury.BorderThickness = 1.7F;
+            rbCentury.CheckColor = Color.White;
+            rbCentury.CheckRadius = 5F;
+            rbCentury.ForeColor = Color.White;
+            rbCentury.Location = new Point(10, 68);
+            rbCentury.Margin = new Padding(5);
+            rbCentury.Name = "rbCentury";
+            rbCentury.Size = new Size(17, 17);
+            rbCentury.TabIndex = 27;
+            rbCentury.Text = "customRadioButton1";
+            rbCentury.CheckChanged += rbFontName_CheckChanged;
+            // 
+            // rbBahnschrift
+            // 
+            rbBahnschrift.Anchor = AnchorStyles.Right;
+            rbBahnschrift.BorderThickness = 1.7F;
+            rbBahnschrift.CheckColor = Color.White;
+            rbBahnschrift.Checked = true;
+            rbBahnschrift.CheckRadius = 5F;
+            rbBahnschrift.ForeColor = Color.White;
+            rbBahnschrift.Location = new Point(10, 43);
+            rbBahnschrift.Margin = new Padding(5);
+            rbBahnschrift.Name = "rbBahnschrift";
+            rbBahnschrift.Size = new Size(17, 17);
+            rbBahnschrift.TabIndex = 26;
+            rbBahnschrift.Text = "customRadioButton1";
+            rbBahnschrift.CheckChanged += rbFontName_CheckChanged;
             // 
             // lblComicSans
             // 
@@ -162,7 +208,7 @@
             customPanel2.Anchor = AnchorStyles.None;
             customPanel2.BorderColor = Color.FromArgb(39, 39, 42);
             customPanel2.BorderThickness = 1F;
-            customPanel2.Controls.Add(customRadioButton1);
+            customPanel2.Controls.Add(rbShowToolTips);
             customPanel2.Controls.Add(lblToolTips);
             customPanel2.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             customPanel2.Location = new Point(158, 64);
@@ -172,20 +218,20 @@
             customPanel2.Size = new Size(339, 40);
             customPanel2.TabIndex = 21;
             // 
-            // customRadioButton1
+            // rbShowToolTips
             // 
-            customRadioButton1.Anchor = AnchorStyles.Right;
-            customRadioButton1.BorderThickness = 1.7F;
-            customRadioButton1.CheckColor = Color.White;
-            customRadioButton1.Checked = true;
-            customRadioButton1.CheckRadius = 5F;
-            customRadioButton1.ForeColor = Color.White;
-            customRadioButton1.Location = new Point(312, 12);
-            customRadioButton1.Margin = new Padding(5);
-            customRadioButton1.Name = "customRadioButton1";
-            customRadioButton1.Size = new Size(17, 17);
-            customRadioButton1.TabIndex = 0;
-            customRadioButton1.Text = "customRadioButton1";
+            rbShowToolTips.Anchor = AnchorStyles.Right;
+            rbShowToolTips.BorderThickness = 1.7F;
+            rbShowToolTips.CheckColor = Color.White;
+            rbShowToolTips.Checked = true;
+            rbShowToolTips.CheckRadius = 5F;
+            rbShowToolTips.ForeColor = Color.White;
+            rbShowToolTips.Location = new Point(312, 12);
+            rbShowToolTips.Margin = new Padding(5);
+            rbShowToolTips.Name = "rbShowToolTips";
+            rbShowToolTips.Size = new Size(17, 17);
+            rbShowToolTips.TabIndex = 0;
+            rbShowToolTips.Text = "customRadioButton1";
             // 
             // lblToolTips
             // 
@@ -199,49 +245,6 @@
             lblToolTips.Size = new Size(83, 23);
             lblToolTips.TabIndex = 18;
             lblToolTips.Text = "Tool Tips";
-            // 
-            // rbComicSans
-            // 
-            rbComicSans.Anchor = AnchorStyles.Right;
-            rbComicSans.BorderThickness = 1.7F;
-            rbComicSans.CheckColor = Color.White;
-            rbComicSans.CheckRadius = 5F;
-            rbComicSans.ForeColor = Color.White;
-            rbComicSans.Location = new Point(10, 95);
-            rbComicSans.Margin = new Padding(5);
-            rbComicSans.Name = "rbComicSans";
-            rbComicSans.Size = new Size(17, 17);
-            rbComicSans.TabIndex = 28;
-            rbComicSans.Text = "customRadioButton1";
-            // 
-            // rbCentury
-            // 
-            rbCentury.Anchor = AnchorStyles.Right;
-            rbCentury.BorderThickness = 1.7F;
-            rbCentury.CheckColor = Color.White;
-            rbCentury.CheckRadius = 5F;
-            rbCentury.ForeColor = Color.White;
-            rbCentury.Location = new Point(10, 68);
-            rbCentury.Margin = new Padding(5);
-            rbCentury.Name = "rbCentury";
-            rbCentury.Size = new Size(17, 17);
-            rbCentury.TabIndex = 27;
-            rbCentury.Text = "customRadioButton1";
-            // 
-            // rbBahnschrift
-            // 
-            rbBahnschrift.Anchor = AnchorStyles.Right;
-            rbBahnschrift.BorderThickness = 1.7F;
-            rbBahnschrift.CheckColor = Color.White;
-            rbBahnschrift.Checked = true;
-            rbBahnschrift.CheckRadius = 5F;
-            rbBahnschrift.ForeColor = Color.White;
-            rbBahnschrift.Location = new Point(10, 43);
-            rbBahnschrift.Margin = new Padding(5);
-            rbBahnschrift.Name = "rbBahnschrift";
-            rbBahnschrift.Size = new Size(17, 17);
-            rbBahnschrift.TabIndex = 26;
-            rbBahnschrift.Text = "customRadioButton1";
             // 
             // ManageStaffAppearanceSettingsView
             // 
@@ -275,7 +278,7 @@
         private CustomControls.CustomRadioButton rbDarkMode;
         private Label lblDarkMode;
         private CustomControls.CustomPanel customPanel2;
-        private CustomControls.CustomRadioButton customRadioButton1;
+        private CustomControls.CustomRadioButton rbShowToolTips;
         private Label lblToolTips;
         private CustomControls.CustomRadioButton rbComicSans;
         private CustomControls.CustomRadioButton rbCentury;

@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.Stock.StockQuantityChanges;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Stock; 
+namespace a2_coursework.View.Stock;
 public partial class ViewStockQuantityChangeView : Form, IThemeable, IViewStockQuantityChangeView {
     public event EventHandler? Back;
 
@@ -22,7 +22,7 @@ public partial class ViewStockQuantityChangeView : Form, IThemeable, IViewStockQ
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblStockName.ThemeTitle();
         lblQuantity.ThemeTitle();
@@ -39,7 +39,7 @@ public partial class ViewStockQuantityChangeView : Form, IThemeable, IViewStockQ
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblStockName.SetFontName(fontName);
         lblQuantity.SetFontName(fontName);

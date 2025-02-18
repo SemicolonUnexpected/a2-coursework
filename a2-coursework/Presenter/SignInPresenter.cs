@@ -1,12 +1,12 @@
 ﻿using a2_coursework.Interfaces;
-using a2_coursework.Model.StaffModel;
+using a2_coursework.Model.Staff;
 using AS_Coursework.Model.Security;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;
 
 namespace a2_coursework.Presenter;
 public class SignInPresenter : BasePresenter<ISignInView> {
-    public event EventHandler<Model.StaffModel.Staff>? SignInSuccessful;
+    public event EventHandler<Model.Staff.StaffModel>? SignInSuccessful;
     public event EventHandler? FormClosed;
 
     public SignInPresenter(ISignInView view) : base(view) {

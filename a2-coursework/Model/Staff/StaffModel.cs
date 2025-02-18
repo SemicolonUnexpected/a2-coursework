@@ -1,9 +1,8 @@
 ﻿using a2_coursework.Theming;
 
-namespace a2_coursework.Model.StaffModel;
+namespace a2_coursework.Model.Staff;
 
-public class Staff(int staffID, byte[] hashedPassword, byte[] salt, DateTime lastPasswordChange, string username, bool archived, PrivilegeLevel privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, Theme theme)
-{
+public class StaffModel(int staffID, byte[] hashedPassword, byte[] salt, DateTime lastPasswordChange, string username, bool archived, PrivilegeLevel privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, Theme theme) {
     public int Id { get; set; } = staffID;
     public byte[] HashedPassword { get; set; } = hashedPassword;
     public byte[] Salt { get; set; } = salt;

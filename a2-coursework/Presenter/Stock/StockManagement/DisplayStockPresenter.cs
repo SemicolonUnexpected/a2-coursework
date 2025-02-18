@@ -1,18 +1,18 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockManagement;
-using a2_coursework.Model.StaffModel;
-using a2_coursework.Model.StockModel;
+using a2_coursework.Model.Staff;
+using a2_coursework.Model.Stock;
 using a2_coursework.View;
 using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
-public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockItem, DisplayStockItem>, IChildPresenter, INavigatingPresenter {
-    private readonly Staff _staff;
+public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockModel, DisplayStockItem>, IChildPresenter, INavigatingPresenter {
+    private readonly StaffModel _staff;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public DisplayStockPresenter(IDisplayStockView view, Staff staff) : base(view) {
+    public DisplayStockPresenter(IDisplayStockView view, StaffModel staff) : base(view) {
         _staff = staff;
 
         LoadData();
@@ -42,11 +42,11 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockIt
         _displayModels.Clear();
         _modelDisplayMap.Clear();
 
-        IEnumerable<StockItem> models;
+        IEnumerable<StockModel> models;
         if (!_view.ShowArchivedItems) models = FilterOutArchived(_models);
         else models = _models;
 
-        foreach (StockItem stockItem in models) {
+        foreach (StockModel stockItem in models) {
             DisplayStockItem displayStockItem = CreateDisplayItem(stockItem);
             _modelDisplayMap.Add(displayStockItem, stockItem);
             _displayModels.Add(displayStockItem);
@@ -55,7 +55,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockIt
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayStockItem CreateDisplayItem(StockItem stockItem) => new DisplayStockItem(stockItem);
+    protected override DisplayStockItem CreateDisplayItem(StockModel stockItem) => new DisplayStockItem(stockItem);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -80,10 +80,10 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockIt
         }
     }
 
-    private IEnumerable<StockItem> FilterOutArchived(IEnumerable<StockItem> stockItems) => stockItems.Where(x => !x.Archived);
+    private IEnumerable<StockModel> FilterOutArchived(IEnumerable<StockModel> stockItems) => stockItems.Where(x => !x.Archived);
 
-    protected override IComparable RankSearch(string searchText, StockItem stockItem) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.SKU.ToLower()), 2) + 1) / MathF.Pow(stockItem.SKU.Length, 2));
-    protected override List<StockItem> OrderDefault(List<StockItem> models) => models.OrderBy(model => model.Id).ToList();
+    protected override IComparable RankSearch(string searchText, StockModel stockItem) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.SKU.ToLower()), 2) + 1) / MathF.Pow(stockItem.SKU.Length, 2));
+    protected override List<StockModel> OrderDefault(List<StockModel> models) => models.OrderBy(model => model.Id).ToList();
 
     private void SelectionChanged() {
         if (_view.SelectedItem is null) return;
@@ -100,7 +100,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockIt
 
         _view.DisableAll();
 
-        StockItem stockItem = _modelDisplayMap[_view.SelectedItem];
+        StockModel stockItem = _modelDisplayMap[_view.SelectedItem];
 
         try {
             _isAsyncRunning = true;
@@ -166,7 +166,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockIt
         DisplayItems();
     }
 
-    private int ConvertQuantityLevelToInt(StockItem stockItem) {
+    private int ConvertQuantityLevelToInt(StockModel stockItem) {
         if (stockItem.Quantity >= stockItem.HighQuantity) return 1;
         else if (stockItem.Quantity <= stockItem.LowQuantity) return 3;
         else return 2;

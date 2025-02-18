@@ -1,7 +1,7 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Theming;
 
-namespace a2_coursework.UserControls.SideMenu; 
+namespace a2_coursework.UserControls.SideMenu;
 public partial class SideMenu : UserControl {
     public SideMenu(string[][] items) {
         InitializeComponent();
@@ -28,10 +28,10 @@ public partial class SideMenu : UserControl {
             }
         }
 
-        BackColor = ColorScheme.CurrentTheme.Background;
-        pnlHolder.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlMenuHolder.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+        BackColor = ColorScheme.Current.Background;
+        pnlHolder.BackColor = ColorScheme.Current.Background;
+        pnlMenuHolder.BackColor = ColorScheme.Current.Background;
+        pnlDecor.BackColor = ColorScheme.Current.Primary;
         sb.Theme();
     }
 
@@ -72,7 +72,7 @@ public partial class SideMenu : UserControl {
             }
             else if (control is MenuDropdown dropdown) {
                 foreach (MenuToggleButton internalButton in dropdown.ToggleButtons) {
-                    anyToggled |= internalButton.Toggled; 
+                    anyToggled |= internalButton.Toggled;
                 }
             }
             else throw new NotImplementedException("side menus can only contain toggles and dropdowns");
@@ -148,7 +148,7 @@ public partial class SideMenu : UserControl {
             sb.Value = 0;
         }
     }
-    
+
     protected override void OnMouseWheel(MouseEventArgs e) {
         if (pnlHolder.Height < pnlMenuHolder.Height) sb.Value -= e.Delta;
         Update();

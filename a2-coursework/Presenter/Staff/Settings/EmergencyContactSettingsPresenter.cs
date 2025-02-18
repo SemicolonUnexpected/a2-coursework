@@ -1,10 +1,10 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Model.StaffModel;
+using a2_coursework.Interfaces.Staff.Settings;
+using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;
 public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmergencyContactSettings> {
-    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, Staff staff) : base(view, staff) {
+    public EmergencyContactSettingsPresenter(IEmergencyContactSettings view, StaffModel staff) : base(view, staff) {
         _view.EmergencyContactSurnameChanged += OnEmergencyContactNameChanged;
         _view.EmergencyContactForenameChanged += OnEmergencyContactNameChanged;
         _view.EmergencyContactPhoneNumberChanged += OnEmergencyContactPhoneNumberChanged;

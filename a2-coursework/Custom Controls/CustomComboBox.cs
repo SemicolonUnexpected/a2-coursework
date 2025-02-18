@@ -1,15 +1,13 @@
-﻿namespace a2_coursework.CustomControls; 
+﻿namespace a2_coursework.CustomControls;
 public partial class CustomComboBox : ComboBox {
-    public CustomComboBox()
-    {
+    public CustomComboBox() {
         DrawMode = DrawMode.OwnerDrawFixed;
         DropDownStyle = ComboBoxStyle.DropDownList;
         BackColor = Color.Black;
         ForeColor = Color.White;
     }
 
-    protected override void OnDrawItem(DrawItemEventArgs e)
-    {
+    protected override void OnDrawItem(DrawItemEventArgs e) {
         if (e.Index < 0) return;
 
         e.DrawBackground();
@@ -18,21 +16,19 @@ public partial class CustomComboBox : ComboBox {
         e.DrawFocusRectangle();
     }
 
-    protected override void WndProc(ref Message m)
-    {
+    protected override void WndProc(ref Message m) {
         base.WndProc(ref m);
 
         // Intercept WM_PAINT to customize border and arrow
         if (m.Msg == 0xF) // WM_PAINT
         {
-            using (Graphics g = Graphics.FromHwnd(Handle))
-            {
+            using (Graphics g = Graphics.FromHwnd(Handle)) {
                 // Draw custom border
 
                 // Draw custom dropdown arrow
                 int arrowX = Width - 20;
                 int arrowY = (Height / 2) - 2;
-                Point[] arrowPoints = 
+                Point[] arrowPoints =
                 {
                     new Point(arrowX, arrowY),
                     new Point(arrowX + 10, arrowY),

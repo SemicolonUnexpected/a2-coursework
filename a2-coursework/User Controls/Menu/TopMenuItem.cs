@@ -16,9 +16,9 @@ public partial class TopMenuItem : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
-        ForeColor = ColorScheme.CurrentTheme.Foreground;
+        BackColor = ColorScheme.Current.Background;
+        pnlDecor.BackColor = ColorScheme.Current.Primary;
+        ForeColor = ColorScheme.Current.Foreground;
 
         lbl.ThemeTitle();
     }

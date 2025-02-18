@@ -2,7 +2,7 @@
 
 namespace a2_coursework.User_Controls.Settings;
 public partial class ApproveChangesBar : UserControl {
-    private int _height = 41;
+    private readonly int _height = 41;
     public ApproveChangesBar() {
         InitializeComponent();
 
@@ -11,12 +11,12 @@ public partial class ApproveChangesBar : UserControl {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         btnSave.ThemeStrong();
         btnCancel.ThemeStrong();
 
-        pnlDecor.BackColor = ColorScheme.CurrentTheme.Primary;
+        pnlDecor.BackColor = ColorScheme.Current.Primary;
     }
 
     protected override void OnResize(EventArgs e) {

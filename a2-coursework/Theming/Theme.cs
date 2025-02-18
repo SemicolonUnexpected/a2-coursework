@@ -3,7 +3,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using System.Configuration;
 
-namespace a2_coursework.Theming; 
+namespace a2_coursework.Theming;
 public class Theme {
     static Theme() {
         _currentTheme = new Theme();
@@ -22,7 +22,7 @@ public class Theme {
     }
 
     private static Theme _currentTheme;
-    public static Theme CurrentTheme {
+    public static Theme Current {
         get => _currentTheme;
         set {
             Theme oldTheme = _currentTheme;
@@ -37,7 +37,7 @@ public class Theme {
     public static event Action? AppearanceThemeChanged;
     private AppearanceTheme _appearanceTheme;
     public AppearanceTheme AppearanceTheme {
-        get =>_appearanceTheme;
+        get => _appearanceTheme;
         set {
             _appearanceTheme = value;
             AppearanceThemeChanged?.Invoke();
@@ -67,7 +67,7 @@ public class Theme {
     public bool IsDarkMode => AppearanceTheme == AppearanceTheme.Dark;
 
     public static void ToggleTheme() {
-        CurrentTheme.AppearanceTheme = CurrentTheme.AppearanceTheme != AppearanceTheme.Dark ? AppearanceTheme.Dark : AppearanceTheme.Light;
+        Current.AppearanceTheme = Current.AppearanceTheme != AppearanceTheme.Dark ? AppearanceTheme.Dark : AppearanceTheme.Light;
     }
 
     public static readonly JsonSerializerSettings JsonSettings = new JsonSerializerSettings {

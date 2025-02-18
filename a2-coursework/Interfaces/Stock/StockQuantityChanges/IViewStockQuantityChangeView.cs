@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.Interfaces.Stock.StockQuantityChanges; 
+﻿namespace a2_coursework.Interfaces.Stock.StockQuantityChanges;
 public interface IViewStockQuantityChangeView : IChildView {
     public event EventHandler? Back;
 

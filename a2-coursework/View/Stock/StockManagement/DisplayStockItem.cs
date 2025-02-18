@@ -1,78 +1,64 @@
-﻿using a2_coursework.Model.StockModel;
+﻿using a2_coursework.Model.Stock;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace a2_coursework.View.Stock.StockManagement;
-public class DisplayStockItem : INotifyPropertyChanged
-{
+public class DisplayStockItem : INotifyPropertyChanged {
     private int _id;
-    public int Id
-    {
+    public int Id {
         get => _id;
-        set
-        {
+        set {
             _id = value;
             NotifyPropertyChanged();
         }
     }
 
     private string _name = "";
-    public string Name
-    {
+    public string Name {
         get => _name;
-        set
-        {
+        set {
             _name = value;
             NotifyPropertyChanged();
         }
     }
 
     private string _sku = "";
-    public string SKU
-    {
+    public string SKU {
         get => _sku;
-        set
-        {
+        set {
             _sku = value;
             NotifyPropertyChanged();
         }
     }
 
     private int _quantity;
-    public int Quantity
-    {
+    public int Quantity {
         get => _quantity;
-        set
-        {
+        set {
             _quantity = value;
             NotifyPropertyChanged();
         }
     }
 
     private string _quantityLevel = "";
-    public string QuantityLevel
-    {
+    public string QuantityLevel {
         get => _quantityLevel;
-        set
-        {
+        set {
             _quantityLevel = value;
             NotifyPropertyChanged();
         }
     }
 
     private bool _archived;
-    public bool Archived
-    {
+    public bool Archived {
         get => _archived;
-        set
-        {
+        set {
             _archived = value;
             NotifyPropertyChanged();
         }
     }
 
-    public DisplayStockItem(StockItem stockItem)
-    {
+    public DisplayStockItem(StockModel stockItem) {
         Id = stockItem.Id;
         Name = stockItem.Name;
         SKU = stockItem.SKU;
@@ -81,8 +67,7 @@ public class DisplayStockItem : INotifyPropertyChanged
         Archived = stockItem.Archived;
     }
 
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "")
-    {
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
     }
 

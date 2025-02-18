@@ -1,12 +1,12 @@
-﻿using a2_coursework.Interfaces.Users;
-using a2_coursework.Model.StaffModel;
+﻿using a2_coursework.Interfaces.Staff;
+using a2_coursework.Model.Staff;
 using AS_Coursework.Model.Security;
 
 namespace a2_coursework.Presenter.Users;
 public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IChildPresenter {
-    private readonly Staff _staff;
+    private readonly StaffModel _staff;
 
-    public ChangePasswordPresenter(IChangePasswordView view, Staff staff) : base(view) {
+    public ChangePasswordPresenter(IChangePasswordView view, StaffModel staff) : base(view) {
         _staff = staff;
 
         _view.UsernameChanged += OnUsernameChanged;
@@ -73,7 +73,7 @@ public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IChil
 
         if (!usernameValid) return false;
 
-        Staff? staff = await StaffDAL.GetStaffByUsername(_view.Username);
+        StaffModel? staff = await StaffDAL.GetStaffByUsername(_view.Username);
         usernameValid = staff is not null;
         _view.SetUsernameBorderError(!usernameValid);
         _view.UsernameError = usernameValid ? "" : "The username does not exist";
@@ -93,7 +93,7 @@ public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IChil
 
         try {
 
-            Staff staff = (await StaffDAL.GetStaffByUsername(_view.Username))!;
+            StaffModel staff = (await StaffDAL.GetStaffByUsername(_view.Username))!;
             byte[] hash = CryptographyManager.GetHash(_view.NewPassword, out byte[] salt);
 
             if (await StaffDAL.UpdatePassword(staff.Id, Convert.ToHexString(hash), Convert.ToHexString(salt))) {

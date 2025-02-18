@@ -1,11 +1,11 @@
 ﻿using System.ComponentModel;
 
-namespace a2_coursework.CustomControls; 
+namespace a2_coursework.CustomControls;
 public partial class DateInput {
-    private bool _dayError = false;
-    private bool _monthEmptyError = false;
-    private bool _yearEmptyError = false;
-    private bool _invalidDateError = false;
+    private readonly bool _dayError = false;
+    private readonly bool _monthEmptyError = false;
+    private readonly bool _yearEmptyError = false;
+    private readonly bool _invalidDateError = false;
 
     public event EventHandler? DateTextChanged;
 
@@ -17,7 +17,7 @@ public partial class DateInput {
 
     public int? Day {
         get {
-            if(int.TryParse(tbDay.Text, out int day)) return day;
+            if (int.TryParse(tbDay.Text, out int day)) return day;
             else return null;
         }
         set {
@@ -32,7 +32,7 @@ public partial class DateInput {
 
     public int? Month {
         get {
-            if(int.TryParse(tbMonth.Text, out int month)) return month;
+            if (int.TryParse(tbMonth.Text, out int month)) return month;
             else return null;
         }
         set {
@@ -42,10 +42,10 @@ public partial class DateInput {
             else tbMonth.Text = value.ToString() ?? "";
         }
     }
-    
+
     public int? Year {
         get {
-            if(int.TryParse(tbYear.Text, out int year)) return year;
+            if (int.TryParse(tbYear.Text, out int year)) return year;
             else return null;
         }
         set {

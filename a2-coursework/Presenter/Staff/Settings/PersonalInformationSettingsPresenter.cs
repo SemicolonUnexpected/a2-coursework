@@ -1,9 +1,9 @@
-﻿using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Model.StaffModel;
+﻿using a2_coursework.Interfaces.Staff.Settings;
+using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;
 public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalInformationSettings>, IChildPresenter {
-    public PersonalInformationSettingsPresenter(IPersonalInformationSettings view, Staff staff) : base(view, staff) {
+    public PersonalInformationSettingsPresenter(IPersonalInformationSettings view, StaffModel staff) : base(view, staff) {
         _view.SurnameChanged += InputChanged;
         _view.ForenameChanged += InputChanged;
         _view.DateOfBirthChanged += InputChanged;

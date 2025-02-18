@@ -1,6 +1,6 @@
 ﻿
 using a2_coursework.Interfaces;
-using a2_coursework.Interfaces.Users.Settings;
+using a2_coursework.Interfaces.Staff.Settings;
 
 namespace a2_coursework.Presenter;
 public abstract class ParentEditPresenter<TView, TModel> : EditPresenter<TView, TModel> where TView : IEditView {

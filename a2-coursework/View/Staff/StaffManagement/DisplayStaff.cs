@@ -1,4 +1,4 @@
-﻿using a2_coursework.Model.StaffModel;
+﻿using a2_coursework.Model.Staff;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
@@ -58,7 +58,7 @@ public class DisplayStaff : INotifyPropertyChanged {
         }
     }
 
-    public DisplayStaff(Staff staff) {
+    public DisplayStaff(StaffModel staff) {
         Id = staff.Id;
         Username = staff.Username;
         Names = $"{staff.Forename} {staff.Surname}";

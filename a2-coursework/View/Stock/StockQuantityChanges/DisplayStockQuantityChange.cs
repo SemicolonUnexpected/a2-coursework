@@ -1,4 +1,4 @@
-﻿using a2_coursework.Model.StockModel;
+﻿using a2_coursework.Model.Stock;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 

@@ -21,7 +21,7 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         tbSearch.Theme();
 
@@ -39,7 +39,7 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
         tbSearch.ToolTipsActive = showToolTips;
@@ -139,7 +139,7 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         tbSearch.SetFontName(fontName);
     }

@@ -1,7 +1,7 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockQuantityChanges;
-using a2_coursework.Model.StockModel;
+using a2_coursework.Model.Stock;
 using a2_coursework.View;
 using a2_coursework.View.Stock.StockQuantityChanges;
 
@@ -79,7 +79,7 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
         float staffUsernameDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StaffUsername) / model.StaffUsername.Length;
         float dateDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.Date.ToString()) / model.StaffUsername.Length;
 
-        float minDistance = Math.Min( Math.Min(stockNameDistance, stockSKUDistance), Math.Min(staffUsernameDistance, dateDistance));
+        float minDistance = Math.Min(Math.Min(stockNameDistance, stockSKUDistance), Math.Min(staffUsernameDistance, dateDistance));
 
         return minDistance;
     }

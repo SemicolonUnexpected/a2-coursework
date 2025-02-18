@@ -1,11 +1,11 @@
-﻿using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Model.StaffModel;
+﻿using a2_coursework.Interfaces.Staff.Settings;
+using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;
 public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IChildPresenter where TView : IEditView {
-    protected readonly Staff _staff;
+    protected readonly StaffModel _staff;
 
-    public SettingsPresenter(TView view, Staff staff) : base(view) {
+    public SettingsPresenter(TView view, StaffModel staff) : base(view) {
         _staff = staff;
 
         PopulateDefaultValues();

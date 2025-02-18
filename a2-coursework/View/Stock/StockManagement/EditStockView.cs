@@ -33,23 +33,23 @@ public partial class EditStockView : Form, IEditStockView, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
-        pnlHolder.BackColor = ColorScheme.CurrentTheme.Background;
-        pnlMenu.BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
+        pnlHolder.BackColor = ColorScheme.Current.Background;
+        pnlMenu.BackColor = ColorScheme.Current.Background;
 
         topMenu.Theme();
         approveChangesBar.Theme();
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         approveChangesBar.ToolTipsActive = showToolTips;
         toolTip.Active = showToolTips;
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         approveChangesBar.SetFontName(fontName);
         topMenu.SetFontName(fontName);

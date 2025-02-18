@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace a2_coursework.CustomControls; 
+namespace a2_coursework.CustomControls;
 public partial class CustomRadioButton : Control {
     private float _borderThickness = 1;
     [DefaultValue(1)]

@@ -1,7 +1,7 @@
 ﻿using PhoneNumbers;
 using System.Net.Mail;
 
-namespace a2_coursework._Helpers; 
+namespace a2_coursework._Helpers;
 public static class Validators {
     public static bool IsValidPhoneNumber(string number) {
         PhoneNumberUtil util = PhoneNumberUtil.GetInstance();

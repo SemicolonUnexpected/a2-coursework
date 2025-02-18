@@ -1,7 +1,7 @@
 ﻿using a2_coursework.View;
 using a2_coursework.View.StaffView.StaffManagement;
 
-namespace a2_coursework.Interfaces.Users;
+namespace a2_coursework.Interfaces.Staff;
 public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaff> {
     public event EventHandler? Add;
     public event EventHandler? Edit;

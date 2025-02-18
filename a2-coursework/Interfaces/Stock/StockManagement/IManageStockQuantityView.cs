@@ -1,6 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Stock.StockManagement;
-public interface IManageStockQuantityView : IChildView
-{
+public interface IManageStockQuantityView : IChildView {
     public event EventHandler? BulkAdd;
     public event EventHandler? BulkRemove;
     public event EventHandler? ReasonForQuantityChangeChanged;

@@ -9,7 +9,7 @@ public class SplashPresenter : BasePresenter<ISplashView> {
     public event EventHandler? FinishedLoading;
     public event EventHandler? FormClosed;
 
-    public SplashPresenter(ISplashView view) :base (view) {
+    public SplashPresenter(ISplashView view) : base(view) {
         _view.FormClosed += OnFormClosed;
     }
 

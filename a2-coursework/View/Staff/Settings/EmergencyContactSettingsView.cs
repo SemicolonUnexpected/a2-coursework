@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Users.Settings;
+using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Settings;
@@ -31,7 +31,7 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblEmergencyContactTitle.ThemeTitle();
         lblEditPromt.ThemeSubtitle();
@@ -52,14 +52,14 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         tbEmergencyContactPhoneNumber.ToolTipsActive = showToolTips;
         approveChangesBar.ToolTipsActive = showToolTips;
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblEmergencyContactTitle.SetFontName(fontName);
         lblEditPromt.SetFontName(fontName);
@@ -113,7 +113,7 @@ public partial class EmergencyContactSettingsView : Form, IEmergencyContactSetti
     private bool _phoneNumberError;
     public void SetPhoneNumberBorderError(bool isError) {
         _phoneNumberError = isError;
-        tbEmergencyContactPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbEmergencyContactPhoneNumber.BorderColor = _phoneNumberError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {

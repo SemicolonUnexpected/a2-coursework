@@ -24,7 +24,7 @@ public partial class ManageStockWarningView : Form, IManageStockWarningView, ITh
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         lblInfo.ThemeSubtitle();
         lblLowQuantity.ThemeTitle();
@@ -40,7 +40,7 @@ public partial class ManageStockWarningView : Form, IManageStockWarningView, ITh
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblInfo.SetFontName(fontName);
         lblHighQuantity.SetFontName(fontName);

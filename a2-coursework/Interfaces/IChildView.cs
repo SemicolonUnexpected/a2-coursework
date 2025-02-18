@@ -1,6 +1,5 @@
 ﻿namespace a2_coursework.Interfaces;
-public interface IChildView : IView
-{
+public interface IChildView : IView {
     public event MouseEventHandler? MouseWheel;
     public bool TopLevel { set; }
     public int Width { set; }

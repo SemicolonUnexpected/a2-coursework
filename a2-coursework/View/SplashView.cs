@@ -12,9 +12,9 @@ public partial class SplashView : Form, ISplashView, IThemeable {
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
-        pnlProgress.BackColor = ColorScheme.CurrentTheme.Foreground;
+        pnlProgress.BackColor = ColorScheme.Current.Foreground;
     }
 
     public void SetToolTipVisibility() { }

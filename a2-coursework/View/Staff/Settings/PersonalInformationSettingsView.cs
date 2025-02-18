@@ -1,7 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Users.Settings;
-using a2_coursework.Presenter.Users.Settings;
+using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Settings;
@@ -34,7 +33,7 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
     }
 
     public void Theme() {
-        BackColor = ColorScheme.CurrentTheme.Background;
+        BackColor = ColorScheme.Current.Background;
 
         tbForename.Theme();
         SetForenameBorderError(_forenameError);
@@ -58,7 +57,7 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
     }
 
     public void SetToolTipVisibility() {
-        bool showToolTips = Theming.Theme.CurrentTheme.ShowToolTips;
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
 
         toolTip.Active = showToolTips;
         tbForename.ToolTipsActive = showToolTips;
@@ -68,7 +67,7 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
     }
 
     public void SetFont() {
-        string fontName = Theming.Theme.CurrentTheme.FontName;
+        string fontName = Theming.Theme.Current.FontName;
 
         lblPersonalInfo.SetFontName(fontName);
         lblEditPromt.SetFontName(fontName);
@@ -114,13 +113,13 @@ public partial class PersonalInformationSettingsView : Form, IPersonalInformatio
     private bool _forenameError = false;
     public void SetForenameBorderError(bool isError) {
         _forenameError = isError;
-        tbForename.BorderColor = _forenameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbForename.BorderColor = _forenameError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _surnameError = false;
     public void SetSurnameBorderError(bool isError) {
         _surnameError = isError;
-        tbSurname.BorderColor = _surnameError ? ColorScheme.CurrentTheme.Danger : ColorScheme.CurrentTheme.Primary;
+        tbSurname.BorderColor = _surnameError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _isLoading = false;
