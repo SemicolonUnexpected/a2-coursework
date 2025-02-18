@@ -1,0 +1,59 @@
+﻿using a2_coursework.Interfaces.Staff.StaffManagement;
+using a2_coursework.Model.Staff;
+
+namespace a2_coursework.Presenter.Staff.StaffManagement;
+public class ManageStaffCredentialsPresenter : BasePresenter<IManageStaffCredentialsView>, IChildPresenter, INotifyingChildPresenter {
+    public event EventHandler? DetailsChanged;
+
+    public event EventHandler<ValidationRequestEventArgs<string>>? ValidateUsernameRequest;
+
+    public ManageStaffCredentialsPresenter(IManageStaffCredentialsView view) : base(view) {
+        _view.PrivilegeLevels = Enum.GetNames(typeof(PrivilegeLevel));
+
+        _view.PrivilegeLevelChanged += OnPrivilegeLevelChanged;
+        _view.UsernameChanged += OnUsernameChanged;
+    }
+
+    private void OnUsernameChanged(object? sender, EventArgs e) {
+        ValidateUsername();
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void OnPrivilegeLevelChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+
+    public string SetSuggestedUsername(string suggestedUsername) => _view.SuggestedUsername = suggestedUsername;
+
+    public void SetUsername(string username) => _view.Username = username;
+
+    public bool TryGetUsername(out string? username) {
+        username = _usernameValid ? _view.Username : null;
+        return _usernameValid;
+    }
+
+    public PrivilegeLevel PrivilegeLevel {
+        get => (PrivilegeLevel)Enum.Parse(typeof(PrivilegeLevel), _view.SelectedPrivilegeLevel);
+        set => _view.SelectedPrivilegeLevel = value.ToString();
+    }
+
+    private bool _usernameValid = true;
+    private async void ValidateUsername() {
+        ValidationRequestEventArgs<string> validationRequestEventArgs = new(_view.Username);
+        ValidateUsernameRequest?.Invoke(this, validationRequestEventArgs);
+        if (validationRequestEventArgs.Valid is null && validationRequestEventArgs.ValidationTask is null) return;
+        _usernameValid = validationRequestEventArgs.Valid ?? await validationRequestEventArgs.ValidationTask!;
+
+        _view.SetUsernameBorderError(!_usernameValid);
+
+        if (!_usernameValid) _view.UsernameError = validationRequestEventArgs.ErrorMessage;
+        else _view.UsernameError = "";
+    }
+
+    public bool CanExit() => true;
+
+    public override void CleanUp() {
+        _view.PrivilegeLevelChanged -= OnPrivilegeLevelChanged;
+        _view.UsernameChanged -= OnUsernameChanged;
+
+        base.CleanUp();
+    }
+}

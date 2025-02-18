@@ -6,7 +6,7 @@ public interface IManageStaffCredentialsView : IChildView {
     public string SuggestedUsername { set; }
     public string Username { get; set; }
     public string[] PrivilegeLevels { get; set; }
-    public int SelectedPrivilegeLevel { get; set; }
+    public string SelectedPrivilegeLevel { get; set; }
 
     public string UsernameError { set; }
     public void SetUsernameBorderError(bool isError);

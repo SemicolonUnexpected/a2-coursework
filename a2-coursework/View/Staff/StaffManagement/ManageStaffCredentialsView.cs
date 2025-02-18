@@ -63,9 +63,9 @@ public partial class ManageStaffCredentialsView : Form, IThemeable, IManageStaff
         set => cbPrivilegeLevel.Items.AddRange(value);
     }
 
-    public int SelectedPrivilegeLevel {
-        get => cbPrivilegeLevel.SelectedIndex;
-        set => cbPrivilegeLevel.SelectedIndex = value;
+    public string SelectedPrivilegeLevel {
+        get => (string)cbPrivilegeLevel.SelectedItem!;
+        set => cbPrivilegeLevel.SelectedItem = value;
     }
 
     public string UsernameError {

@@ -3,7 +3,7 @@ using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.StaffView;
-public partial class ManageStaffEmergencyContactView : Form, IManageStaffEmergencyContactView, IThemeable {
+public partial class ManageStaffEmergencyContactView : Form, Interfaces.Staff.StaffManagement.IManageStaffEmergencyContactDetailsView, IThemeable {
     public event EventHandler? EmergencyContactForenameChanged;
     public event EventHandler? EmergencyContactSurnameChanged;
     public event EventHandler? EmergencyContactPhoneNumberChanged;

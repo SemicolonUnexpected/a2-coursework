@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Staff;
+using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Presenter.Users;
 using a2_coursework.Theming;
 

@@ -30,18 +30,14 @@ public class ManageStockDetailsPresenter : BasePresenter<IManageStockDetailsView
     }
 
     public bool TryGetName(out string? name) {
-        if (_nameValid) name = _view.StockName;
-        else name = null;
-
+        name = _nameValid ? _view.StockName : null;
         return _nameValid;
     }
 
     public void SetName(string name) => _view.StockName = name;
 
     public bool TryGetSKU(out string? sku) {
-        if (_skuValid) sku = _view.SKU;
-        else sku = null;
-
+        sku = _skuValid ? _view.SKU : null;
         return _skuValid;
     }
 

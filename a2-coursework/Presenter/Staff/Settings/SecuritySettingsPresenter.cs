@@ -1,6 +1,6 @@
 ﻿using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Model.Staff;
-using AS_Coursework.Model.Security;
+using a2_coursework.Model.Security;
 
 namespace a2_coursework.Presenter.Users.Settings;
 public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView> {

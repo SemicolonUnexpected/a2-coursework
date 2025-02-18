@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.StaffView {
-    partial class ManageStaffEmergencyContactView {
+    partial class IManageStaffEmergencyContactDetailsView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
