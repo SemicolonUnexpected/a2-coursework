@@ -29,12 +29,3 @@ jobs:
 
       - name: Run tests
         run: dotnet test a2-coursework/a2-coursework.sln --configuration Release --no-build --verbosity normal
-
-      - name: Publish
-        run: dotnet publish a2-coursework/a2-coursework.csproj --configuration Release --output ./publish
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v3
-        with:
-          name: a2-coursework
-          path: ./publish
