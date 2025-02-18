@@ -22,19 +22,19 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore src/MyWinFormsProject.sln
+        run: dotnet restore a2-coursework/a2-coursework.sln
 
       - name: Build
-        run: dotnet build src/MyWinFormsProject.sln --configuration Release --no-restore
+        run: dotnet build a2-coursework/a2-coursework.sln --configuration Release --no-restore
 
       - name: Run tests
-        run: dotnet test src/MyWinFormsProject.sln --configuration Release --no-build --verbosity normal
+        run: dotnet test a2-coursework/a2-coursework.sln --configuration Release --no-build --verbosity normal
 
       - name: Publish
-        run: dotnet publish src/MyWinFormsProject/MyWinFormsProject.csproj --configuration Release --output ./publish
+        run: dotnet publish a2-coursework/a2-coursework.csproj --configuration Release --output ./publish
 
       - name: Upload artifact
         uses: actions/upload-artifact@v3
         with:
-          name: winforms-app
+          name: a2-coursework
           path: ./publish
