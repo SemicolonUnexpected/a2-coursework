@@ -75,7 +75,7 @@
             lblQuantity.TabIndex = 12;
             lblQuantity.Text = "Quantity";
             // 
-            // tbStockDescription
+            // tbReasonForQuantityChange
             // 
             tbReasonForQuantityChange.AllowPaste = true;
             tbReasonForQuantityChange.Anchor = AnchorStyles.None;
@@ -90,7 +90,7 @@
             tbReasonForQuantityChange.Margin = new Padding(5);
             tbReasonForQuantityChange.MaxLength = 1000;
             tbReasonForQuantityChange.MultiLine = true;
-            tbReasonForQuantityChange.Name = "tbStockDescription";
+            tbReasonForQuantityChange.Name = "tbReasonForQuantityChange";
             tbReasonForQuantityChange.PlaceholderText = "";
             tbReasonForQuantityChange.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbReasonForQuantityChange.ReadOnly = true;
@@ -171,7 +171,7 @@
             tbUsername.TextBoxInset = new Padding(9, 10, 9, 10);
             tbUsername.UsePasswordChar = false;
             // 
-            // lblName
+            // lblStockName
             // 
             lblStockName.Anchor = AnchorStyles.None;
             lblStockName.AutoSize = true;
@@ -179,7 +179,7 @@
             lblStockName.ForeColor = Color.White;
             lblStockName.Location = new Point(144, 23);
             lblStockName.Margin = new Padding(5);
-            lblStockName.Name = "lblName";
+            lblStockName.Name = "lblStockName";
             lblStockName.Size = new Size(111, 23);
             lblStockName.TabIndex = 12;
             lblStockName.Text = "Stock Name";
@@ -263,8 +263,8 @@
             // 
             // ViewStockQuantityChangeView
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 419);
             Controls.Add(btnBack);

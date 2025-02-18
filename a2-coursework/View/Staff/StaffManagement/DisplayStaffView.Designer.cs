@@ -1,0 +1,269 @@
+﻿namespace a2_coursework.View.Users {
+    partial class DisplayStaffView {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing) {
+            if (disposing && (components != null)) {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent() {
+            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            pnlData = new CustomControls.CustomPanel();
+            lblError = new Label();
+            dataGridView = new DataGridView();
+            columnID = new DataGridViewTextBoxColumn();
+            columnUsername = new DataGridViewTextBoxColumn();
+            columnName = new DataGridViewTextBoxColumn();
+            columnPhoneNumber = new DataGridViewTextBoxColumn();
+            columnEmail = new DataGridViewTextBoxColumn();
+            columnArchived = new DataGridViewTextBoxColumn();
+            sb = new CustomControls.CustomScrollBar();
+            lblStaff = new Label();
+            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
+            pnlData.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            SuspendLayout();
+            // 
+            // pnlData
+            // 
+            pnlData.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlData.BorderColor = Color.FromArgb(39, 39, 42);
+            pnlData.BorderThickness = 1F;
+            pnlData.Controls.Add(lblError);
+            pnlData.Controls.Add(dataGridView);
+            pnlData.Controls.Add(sb);
+            pnlData.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlData.Location = new Point(14, 127);
+            pnlData.Margin = new Padding(5);
+            pnlData.Name = "pnlData";
+            pnlData.Padding = new Padding(5);
+            pnlData.Size = new Size(621, 359);
+            pnlData.TabIndex = 4;
+            // 
+            // lblError
+            // 
+            lblError.Anchor = AnchorStyles.Top;
+            lblError.Font = new Font("Bahnschrift", 20F);
+            lblError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblError.Location = new Point(5, 134);
+            lblError.Margin = new Padding(10, 0, 10, 20);
+            lblError.Name = "lblError";
+            lblError.Size = new Size(611, 103);
+            lblError.TabIndex = 26;
+            lblError.Text = "No items to display";
+            lblError.TextAlign = ContentAlignment.MiddleCenter;
+            lblError.Visible = false;
+            // 
+            // dataGridView
+            // 
+            dataGridView.AllowUserToAddRows = false;
+            dataGridView.AllowUserToDeleteRows = false;
+            dataGridView.AllowUserToResizeColumns = false;
+            dataGridView.AllowUserToResizeRows = false;
+            dataGridView.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+            dataGridView.BackgroundColor = Color.FromArgb(9, 9, 10);
+            dataGridView.BorderStyle = BorderStyle.None;
+            dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
+            dataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
+            dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
+            dataGridViewCellStyle6.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle6.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
+            dataGridViewCellStyle6.ForeColor = Color.White;
+            dataGridViewCellStyle6.Format = "N0";
+            dataGridViewCellStyle6.NullValue = null;
+            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle6.SelectionForeColor = Color.White;
+            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.True;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridView.ColumnHeadersHeight = 30;
+            dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnID, columnUsername, columnName, columnPhoneNumber, columnEmail, columnArchived });
+            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle9.Font = new Font("Bahnschrift", 10F);
+            dataGridViewCellStyle9.ForeColor = Color.White;
+            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle9.SelectionForeColor = Color.White;
+            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridView.Dock = DockStyle.Fill;
+            dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
+            dataGridView.EnableHeadersVisualStyles = false;
+            dataGridView.GridColor = Color.FromArgb(39, 39, 42);
+            dataGridView.Location = new Point(5, 5);
+            dataGridView.MultiSelect = false;
+            dataGridView.Name = "dataGridView";
+            dataGridView.RowHeadersVisible = false;
+            dataGridView.RowHeadersWidth = 30;
+            dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle10.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle10.ForeColor = Color.White;
+            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(39, 39, 42);
+            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridView.RowTemplate.Height = 30;
+            dataGridView.ScrollBars = ScrollBars.None;
+            dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridView.Size = new Size(601, 349);
+            dataGridView.TabIndex = 1;
+            dataGridView.CellFormatting += dataGridView_CellFormatting;
+            dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
+            dataGridView.Resize += dataGridView_Resize;
+            // 
+            // columnID
+            // 
+            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnID.HeaderText = "ID";
+            columnID.Name = "columnID";
+            columnID.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnID.Width = 47;
+            // 
+            // columnUsername
+            // 
+            columnUsername.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnUsername.DefaultCellStyle = dataGridViewCellStyle7;
+            columnUsername.HeaderText = "Username";
+            columnUsername.Name = "columnUsername";
+            columnUsername.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnUsername.Width = 107;
+            // 
+            // columnName
+            // 
+            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnName.HeaderText = "Name";
+            columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnPhoneNumber
+            // 
+            columnPhoneNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnPhoneNumber.HeaderText = "Phone Number";
+            columnPhoneNumber.Name = "columnPhoneNumber";
+            columnPhoneNumber.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnPhoneNumber.Width = 141;
+            // 
+            // columnEmail
+            // 
+            columnEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnEmail.HeaderText = "Email";
+            columnEmail.Name = "columnEmail";
+            columnEmail.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnArchived
+            // 
+            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnArchived.DataPropertyName = "IsArchived";
+            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.TopRight;
+            columnArchived.DefaultCellStyle = dataGridViewCellStyle8;
+            columnArchived.HeaderText = "Archived";
+            columnArchived.Name = "columnArchived";
+            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnArchived.Width = 96;
+            // 
+            // sb
+            // 
+            sb.BackColor = Color.FromArgb(9, 9, 10);
+            sb.Dock = DockStyle.Right;
+            sb.LargeChange = 50;
+            sb.Location = new Point(606, 5);
+            sb.Maximum = 100;
+            sb.Minimum = 0;
+            sb.MinimumThumbHeight = 30;
+            sb.Name = "sb";
+            sb.Padding = new Padding(2);
+            sb.Size = new Size(10, 349);
+            sb.SmallChange = 10;
+            sb.TabIndex = 28;
+            sb.Text = "customScrollBar1";
+            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
+            sb.Visible = false;
+            sb.ValueChanged += sb_ValueChanged;
+            // 
+            // lblStaff
+            // 
+            lblStaff.Anchor = AnchorStyles.Top;
+            lblStaff.AutoSize = true;
+            lblStaff.Font = new Font("Bahnschrift", 24F);
+            lblStaff.ForeColor = Color.White;
+            lblStaff.Location = new Point(281, 23);
+            lblStaff.Margin = new Padding(10);
+            lblStaff.Name = "lblStaff";
+            lblStaff.Size = new Size(86, 39);
+            lblStaff.TabIndex = 9;
+            lblStaff.Text = "User";
+            // 
+            // topBar
+            // 
+            topBar.AddEnabled = true;
+            topBar.Anchor = AnchorStyles.Top;
+            topBar.ArchiveEnabled = true;
+            topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.EditEnabled = true;
+            topBar.Location = new Point(12, 75);
+            topBar.Name = "topBar";
+            topBar.Padding = new Padding(0, 2, 0, 2);
+            topBar.SearchEnabled = true;
+            topBar.SearchText = "";
+            topBar.ShowArchivedEnabled = true;
+            topBar.Size = new Size(625, 44);
+            topBar.TabIndex = 11;
+            // 
+            // DisplayStaffView
+            // 
+            AutoScaleDimensions = new SizeF(96F, 96F);
+            AutoScaleMode = AutoScaleMode.Dpi;
+            BackColor = Color.FromArgb(9, 9, 10);
+            ClientSize = new Size(649, 500);
+            Controls.Add(topBar);
+            Controls.Add(lblStaff);
+            Controls.Add(pnlData);
+            FormBorderStyle = FormBorderStyle.None;
+            Name = "DisplayStaffView";
+            Text = "UserDisplayView";
+            pnlData.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            ResumeLayout(false);
+            PerformLayout();
+        }
+
+        #endregion
+
+        private CustomControls.CustomPanel pnlData;
+        private Label lblStaff;
+        private User_Controls.DataGrid.AddEditArchiveSearchBar topBar;
+        private DataGridView dataGridView;
+        private Label lblError;
+        private CustomControls.CustomScrollBar sb;
+        private DataGridViewTextBoxColumn columnID;
+        private DataGridViewTextBoxColumn columnUsername;
+        private DataGridViewTextBoxColumn columnName;
+        private DataGridViewTextBoxColumn columnPhoneNumber;
+        private DataGridViewTextBoxColumn columnEmail;
+        private DataGridViewTextBoxColumn columnArchived;
+    }
+}

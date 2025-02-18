@@ -1,6 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
-using a2_coursework.Interfaces.Stock;
+using a2_coursework.Interfaces.Stock.StockQuantityChanges;
 using a2_coursework.Model.StockModel;
 using a2_coursework.Theming;
 using a2_coursework.View.Stock.StockManagement;

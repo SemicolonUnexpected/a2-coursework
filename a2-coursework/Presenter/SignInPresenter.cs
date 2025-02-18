@@ -6,7 +6,7 @@ using Microsoft.IdentityModel.Tokens;
 
 namespace a2_coursework.Presenter;
 public class SignInPresenter : BasePresenter<ISignInView> {
-    public event EventHandler<Staff>? SignInSuccessful;
+    public event EventHandler<Model.StaffModel.Staff>? SignInSuccessful;
     public event EventHandler? FormClosed;
 
     public SignInPresenter(ISignInView view) : base(view) {
@@ -59,7 +59,7 @@ public class SignInPresenter : BasePresenter<ISignInView> {
             }
 
             if (CryptographyManager.VerifyHashEquality(password, hash!, salt!)) {
-                SignInSuccessful?.Invoke(this, (await StaffDAL.GetStaff(username))!);
+                SignInSuccessful?.Invoke(this, (await StaffDAL.GetStaffByUsername(username))!);
                 await StaffDAL.LogLoginAttempt(username, DateTime.UtcNow, true);
             }
             else {

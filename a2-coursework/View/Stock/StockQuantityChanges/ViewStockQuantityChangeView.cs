@@ -17,6 +17,8 @@ public partial class ViewStockQuantityChangeView : Form, IThemeable, IViewStockQ
 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
+
+        btnBack.Click += (s, e) => Back?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {

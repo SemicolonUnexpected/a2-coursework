@@ -8,6 +8,8 @@ using a2_coursework.Presenter.Stock.StockManagement;
 using a2_coursework.Model.StaffModel;
 using a2_coursework.Model.StockModel;
 using a2_coursework.Presenter.Stock.StockQuantityChanges;
+using a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
+using a2_coursework.Presenter.StaffPresenters.ManageStaff;
 
 namespace a2_coursework.View;
 public static class ViewFactory {
@@ -120,6 +122,20 @@ public static class ViewFactory {
     public static (DisplayStockQuantityChangesView view, DisplayStockQuantityChangesPresenter presenter) CreateDisplayStockQuantityChanges() {
         DisplayStockQuantityChangesView view = new();
         DisplayStockQuantityChangesPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (ViewStockQuantityChangeView view, ViewStockQuantityChangePresenter presenter) CreateViewStockQuantityChange(StockQuantityChange stockQuantityChange) {
+        ViewStockQuantityChangeView view = new();
+        ViewStockQuantityChangePresenter presenter = new(view, stockQuantityChange);
+
+        return (view, presenter);
+    }
+
+    public static (DisplayStaffView view, DisplayStaffPresenter presenter) CreateDisplayStaff() {
+        DisplayStaffView view = new();
+        DisplayStaffPresenter presenter = new(view);
 
         return (view, presenter);
     }

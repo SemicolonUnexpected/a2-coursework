@@ -53,11 +53,12 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         PrivilegeLevel.CleaningManager => [
             ["Dashboard"],
             ["Stock", "Manage stock", "Request stock", "Quantity changes", "Upcoming deliveries"],
+            ["Security", "Manage staff", "Login attempts", "Change password"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Admin => [
             ["Dashboard"],
-            ["Security", "Manage Staff", "Login attempts", "Change password"],
+            ["Security", "Manage staff", "Login attempts", "Change password"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Manager => [
@@ -77,6 +78,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Manage stock" => GetStockDisplayView(),
         "Change password" => GetChangePasswordView(),
         "Quantity changes" => GetDisplayStockQuantityChangesView(),
+        "Manage staff" => GetDisplayStaff(),
         _ => throw new NotImplementedException(),
     };
 
@@ -88,6 +90,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay(_staff);
     private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
     private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => ViewFactory.CreateDisplayStockQuantityChanges();
+    private (IChildView view, IChildPresenter presenter) GetDisplayStaff() => ViewFactory.CreateDisplayStaff();
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

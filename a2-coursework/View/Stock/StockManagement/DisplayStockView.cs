@@ -6,7 +6,7 @@ using a2_coursework.View.Stock.StockManagement;
 using System.ComponentModel;
 
 namespace a2_coursework.View;
-public partial class DisplayStockView : Form, IStockDisplayView, IThemeable, IDisplayView<DisplayStockItem> {
+public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDisplayView<DisplayStockItem> {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? Add;
