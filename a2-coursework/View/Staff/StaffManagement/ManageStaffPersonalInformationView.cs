@@ -89,13 +89,13 @@ public partial class ManageStaffPersonalInformationView : Form, IManageStaffPers
     private bool _forenameBorderError = false;
     public void SetForenameBorderError(bool isError) {
         _forenameBorderError = isError;
-        tbForename.BorderColor = _forenameBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbForename.BorderColor = _forenameBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _surnameBorderError = false;
     public void SetSurnameBorderError(bool isError) {
         _surnameBorderError = isError;
-        tbForename.BorderColor = _surnameBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbSurname.BorderColor = _surnameBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public void CleanUp() {

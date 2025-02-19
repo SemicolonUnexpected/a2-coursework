@@ -44,7 +44,7 @@ public partial class EmergencyContactSettingsPresenter : SettingsPresenter<IEmer
         return true;
     }
 
-    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateEmergencyContact(_staff.Id, _view.EmergencyContactForename, _view.EmergencyContactSurname, _view.EmergencyContactPhoneNumber);
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateEmergencyContactInformation(_staff.Id, _view.EmergencyContactForename, _view.EmergencyContactSurname, _view.EmergencyContactPhoneNumber);
 
     public override void CleanUp() {
         _view.EmergencyContactSurnameChanged -= OnEmergencyContactNameChanged;

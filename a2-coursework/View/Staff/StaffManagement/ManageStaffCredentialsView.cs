@@ -30,7 +30,7 @@ public partial class ManageStaffCredentialsView : Form, IThemeable, IManageStaff
         tbUsername.Theme();
         lblUsernameError.ThemeError();
 
-        tbUsername.BorderColor = _usernameBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbUsername.BorderColor = _usernameBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public void SetToolTipVisibility() {
@@ -47,6 +47,7 @@ public partial class ManageStaffCredentialsView : Form, IThemeable, IManageStaff
         lblSuggestedUsername.SetFontName(fontName);
         tbUsername.SetFontName(fontName);
         lblUsernameError.SetFontName(fontName);
+        cbPrivilegeLevel.SetFontName(fontName);
     }
 
     public string Username {
@@ -75,7 +76,7 @@ public partial class ManageStaffCredentialsView : Form, IThemeable, IManageStaff
     private bool _usernameBorderError = false;
     public void SetUsernameBorderError(bool isError) {
         _usernameBorderError = isError;
-        tbUsername.BorderColor = _usernameBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbUsername.BorderColor = _usernameBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public void CleanUp() {

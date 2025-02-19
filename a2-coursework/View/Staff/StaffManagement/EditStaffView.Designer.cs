@@ -39,7 +39,7 @@
             pnlHolder.Location = new Point(0, 40);
             pnlHolder.Margin = new Padding(0);
             pnlHolder.Name = "pnlHolder";
-            pnlHolder.Size = new Size(654, 419);
+            pnlHolder.Size = new Size(654, 338);
             pnlHolder.TabIndex = 28;
             // 
             // approveChangesBar
@@ -47,7 +47,7 @@
             approveChangesBar.BackColor = Color.FromArgb(9, 9, 10);
             approveChangesBar.Dock = DockStyle.Bottom;
             approveChangesBar.IsLoading = false;
-            approveChangesBar.Location = new Point(0, 459);
+            approveChangesBar.Location = new Point(0, 378);
             approveChangesBar.Margin = new Padding(0);
             approveChangesBar.Name = "approveChangesBar";
             approveChangesBar.Size = new Size(654, 41);
@@ -67,9 +67,8 @@
             // 
             // topMenu
             // 
-            topMenu.Anchor = AnchorStyles.None;
-            topMenu.Location = new Point(40, 3);
-            topMenu.Margin = new Padding(100);
+            topMenu.Location = new Point(50, 0);
+            topMenu.Margin = new Padding(0);
             topMenu.MenuItems = new string[]
     {
     "Credentials",
@@ -80,7 +79,7 @@
     };
             topMenu.Name = "topMenu";
             topMenu.SelectedIndex = 0;
-            topMenu.Size = new Size(614, 34);
+            topMenu.Size = new Size(583, 40);
             topMenu.TabIndex = 24;
             // 
             // btnBack
@@ -100,7 +99,7 @@
             btnBack.Image = Properties.Resources.chevron_left_light;
             btnBack.ImageRectangle = new Rectangle(6, 6, 24, 24);
             btnBack.Location = new Point(4, 4);
-            btnBack.Margin = new Padding(0);
+            btnBack.Margin = new Padding(0, 0, 10, 0);
             btnBack.Name = "btnBack";
             btnBack.Size = new Size(36, 36);
             btnBack.TabIndex = 25;
@@ -113,7 +112,7 @@
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
-            ClientSize = new Size(654, 500);
+            ClientSize = new Size(654, 419);
             Controls.Add(pnlHolder);
             Controls.Add(approveChangesBar);
             Controls.Add(pnlMenu);

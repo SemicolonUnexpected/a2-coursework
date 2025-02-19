@@ -19,4 +19,6 @@ public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaff> {
 
     public void DisableAll();
     public void EnableAll();
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);
 }

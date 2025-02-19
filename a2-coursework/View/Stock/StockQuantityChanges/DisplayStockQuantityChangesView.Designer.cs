@@ -168,6 +168,7 @@
             // 
             // topBar
             // 
+            topBar.Anchor = AnchorStyles.Top;
             topBar.BackColor = Color.FromArgb(9, 9, 10);
             topBar.Location = new Point(14, 75);
             topBar.Name = "topBar";
@@ -187,11 +188,10 @@
             // 
             // columnStockName
             // 
-            columnStockName.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnStockName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             columnStockName.HeaderText = "Stock Name";
             columnStockName.Name = "columnStockName";
             columnStockName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnStockName.Width = 119;
             // 
             // columnSKU
             // 

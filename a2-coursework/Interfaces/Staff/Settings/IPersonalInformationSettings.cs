@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Staff.Settings;
-public interface IPersonalInformationSettings : IEditView {
+public interface IPersonalInformationSettings : ISaveCancelView {
     public event EventHandler? SurnameChanged;
     public event EventHandler? ForenameChanged;
     public event EventHandler? DateOfBirthChanged;

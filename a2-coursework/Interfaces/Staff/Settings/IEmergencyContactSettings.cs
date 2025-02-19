@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Staff.Settings;
-public interface IEmergencyContactSettings : IEditView {
+public interface IEmergencyContactSettings : ISaveCancelView {
     public event EventHandler? EmergencyContactForenameChanged;
     public event EventHandler? EmergencyContactSurnameChanged;
     public event EventHandler? EmergencyContactPhoneNumberChanged;

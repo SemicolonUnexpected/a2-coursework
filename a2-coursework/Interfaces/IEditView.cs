@@ -1,10 +1,9 @@
-﻿namespace a2_coursework.Interfaces;
-public interface IEditView : IChildView {
-    public event EventHandler? Save;
-    public event EventHandler? Cancel;
+﻿using a2_coursework.UserControls;
 
-    public bool SaveCancelVisible { set; }
-    public bool IsLoading { get; set; }
+namespace a2_coursework.Interfaces; 
+public interface IEditView : ISaveCancelView {
+    public event EventHandler<string>? SelectedMenuItemChanged;
+    public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
 
-    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);
+    public void DisplayChildView(IChildView childView);
 }

@@ -25,11 +25,11 @@ public class ManageStaffPersonalInformationPresenter : BasePresenter<IManageStaf
     private bool _forenameValid = true;
     private bool _surnameValid = true;
     private void ValidateNames() {
-        _forenameValid = string.IsNullOrWhiteSpace(_view.Forename);
-        _view.SetForenameBorderError(_forenameValid);
+        _forenameValid = !string.IsNullOrWhiteSpace(_view.Forename);
+        _view.SetForenameBorderError(!_forenameValid);
 
-        _surnameValid = string.IsNullOrWhiteSpace(_view.Surname);
-        _view.SetSurnameBorderError(_surnameValid);
+        _surnameValid = !string.IsNullOrWhiteSpace(_view.Surname);
+        _view.SetSurnameBorderError(!_surnameValid);
 
         _view.NameError = (_forenameValid, _surnameValid) switch {
             (true, true) => "",
@@ -59,7 +59,7 @@ public class ManageStaffPersonalInformationPresenter : BasePresenter<IManageStaf
         return _surnameValid;
     }
 
-    public void SetDateOfBirth(DateTime dateOfBirth) => _view.DateOfBirth = dateOfBirth;
+    public void SetDateOfBirth(DateTime? dateOfBirth) => _view.DateOfBirth = dateOfBirth;
 
     public bool TryGetDateOfBirth(out DateTime? dateOfBirth) {
         dateOfBirth = _dateOfBirthValid ? _view.DateOfBirth : null;

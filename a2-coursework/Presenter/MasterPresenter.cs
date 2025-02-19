@@ -90,7 +90,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay(_staff);
     private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
     private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => ViewFactory.CreateDisplayStockQuantityChanges();
-    private (IChildView view, IChildPresenter presenter) GetDisplayStaff() => ViewFactory.CreateDisplayStaff();
+    private (IChildView view, IChildPresenter presenter) GetDisplayStaff() => ViewFactory.CreateDisplayStaff(_staff);
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

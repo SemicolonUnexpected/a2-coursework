@@ -1,6 +1,8 @@
-﻿using a2_coursework.Model.Staff;
+﻿using a2_coursework.Interfaces.Staff.StaffManagement;
+using a2_coursework.Model.Staff;
 using a2_coursework.Model.Stock;
 using a2_coursework.Presenter;
+using a2_coursework.Presenter.Staff.StaffManagement;
 using a2_coursework.Presenter.StaffPresenters.ManageStaff;
 using a2_coursework.Presenter.Stock.StockManagement;
 using a2_coursework.Presenter.Stock.StockQuantityChanges;
@@ -8,6 +10,7 @@ using a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
 using a2_coursework.Presenter.Users;
 using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.View.Settings;
+using a2_coursework.View.StaffView;
 using a2_coursework.View.Stock;
 using a2_coursework.View.Users;
 
@@ -133,9 +136,53 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    public static (DisplayStaffView view, DisplayStaffPresenter presenter) CreateDisplayStaff() {
+    public static (DisplayStaffView view, DisplayStaffPresenter presenter) CreateDisplayStaff(StaffModel staff) {
         DisplayStaffView view = new();
-        DisplayStaffPresenter presenter = new(view);
+        DisplayStaffPresenter presenter = new(view, staff);
+
+        return (view, presenter);
+    }
+
+    public static (ManageStaffAppearanceSettingsView view, ManageStaffAppearanceSettingsPresenter presenter) CreateManageStaffAppearanceSettings() {
+        ManageStaffAppearanceSettingsView view = new();
+        ManageStaffAppearanceSettingsPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (EditStaffView view, EditStaffPresenter presenter) CreateEditStaff(StaffModel model, StaffModel staff) {
+        EditStaffView view = new();
+        EditStaffPresenter presenter = new(view, model, staff);
+
+        return (view, presenter);
+    }
+
+    // Add these methods to ViewFactory.cs
+
+    public static (IManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) CreateManageStaffPersonalInformation() {
+        ManageStaffPersonalInformationView view = new();
+        ManageStaffPersonalInformationPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (IManageStaffContactDetailsView view, ManageStaffContactDetailsPresenter presenter) CreateManageStaffContactDetails() {
+        ManageStaffContactDetailsView view = new();
+        ManageStaffContactDetailsPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (IManageStaffEmergencyContactDetailsView view, ManageStaffEmergencyContactDetailsPresenter presenter) CreateManageStaffEmergencyContactDetails() {
+        ManageStaffEmergencyContactDetailsView view = new();
+        ManageStaffEmergencyContactDetailsPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (IManageStaffCredentialsView view, ManageStaffCredentialsPresenter presenter) CreateManageStaffCredentials() {
+        ManageStaffCredentialsView view = new();
+        ManageStaffCredentialsPresenter presenter = new(view);
 
         return (view, presenter);
     }

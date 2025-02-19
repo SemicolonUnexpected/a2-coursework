@@ -56,6 +56,7 @@
             tbAddress.HoverColor = Color.Empty;
             tbAddress.Location = new Point(150, 249);
             tbAddress.Margin = new Padding(5);
+            tbAddress.MaximumSize = new Size(355, 79);
             tbAddress.MaxLength = 256;
             tbAddress.MultiLine = true;
             tbAddress.Name = "tbAddress";
@@ -155,7 +156,7 @@
             lblCharacterLimit.Size = new Size(150, 24);
             lblCharacterLimit.TabIndex = 19;
             lblCharacterLimit.Text = "0/256";
-            lblCharacterLimit.TextAlign = ContentAlignment.BottomRight;
+            lblCharacterLimit.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblEmailTitle
             // 

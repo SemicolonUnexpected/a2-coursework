@@ -1,5 +1,6 @@
 ﻿
 using a2_coursework.Interfaces;
+using a2_coursework.UserControls;
 
 namespace a2_coursework.Presenter;
 public abstract class ParentEditPresenter<TView, TModel> : EditPresenter<TView, TModel> where TView : IEditView {
@@ -9,21 +10,72 @@ public abstract class ParentEditPresenter<TView, TModel> : EditPresenter<TView, 
     protected Func<bool>? AnyChangesCurrent;
     protected Action? UpdateModelCurrent;
 
-    protected ParentEditPresenter(TView view, TModel model) : base(view, model) { }
+    protected INotifyingChildPresenter? _childPresenter;
 
-    protected override bool AnyChanges() => AnyChangesCurrent?.Invoke() ?? false;
-
-    protected override void PopulateDefaultValues() => PopulateDefaultValuesCurrent?.Invoke();
-
-    protected override Task<bool> UpdateDatabase() => UpdateDatabaseCurrent?.Invoke() ?? Task.FromResult(true);
-
-    protected override void UpdateModel() => UpdateModelCurrent?.Invoke();
-
-    protected override bool ValidateInputs() => ValidateInputsCurrent?.Invoke() ?? true;
-
-    protected void Navigate((IChildView view, INotifyingChildPresenter presenter) pair) {
-        Navigate(pair.view, pair.presenter);
+    protected ParentEditPresenter(TView view, TModel model) : base(view, model) {
+        _view.SelectedMenuItemChanged += OnSelectedMenuItemChanged;
+        _view.PreviewSelectedMenuItemChanged += OnPreviewSelectedMenuItemChanged;
     }
 
-    protected abstract void Navigate(IChildView view, INotifyingChildPresenter presenter);
+    private void OnDetailsChanged(object? sender, EventArgs e) => SetApproveChangesBarVisibility();
+    private void OnSelectedMenuItemChanged(object? sender, string selectedItem) => Navigate(GetView(selectedItem));
+    private void OnPreviewSelectedMenuItemChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
+
+    #region Delegate based validation
+
+    protected override bool AnyChanges() => AnyChangesCurrent?.Invoke() ?? false;
+    protected override void PopulateDefaultValues() => PopulateDefaultValuesCurrent?.Invoke();
+    protected override Task<bool> UpdateDatabase() => UpdateDatabaseCurrent?.Invoke() ?? Task.FromResult(true);
+    protected override void UpdateModel() => UpdateModelCurrent?.Invoke();
+    protected override bool ValidateInputs() => ValidateInputsCurrent?.Invoke() ?? true;
+
+    #endregion
+
+    protected abstract void BindValidation();
+
+    private bool CanNavigate() {
+        if (_view.IsLoading) return false;
+
+        if (AnyChanges()) {
+            DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel);
+
+            return result == DialogResult.OK;
+        }
+
+        return true;
+    }
+
+    protected abstract (IChildView childView, INotifyingChildPresenter childPresenter) GetView(string selectedItem);
+
+    protected virtual void Navigate(IChildView view, INotifyingChildPresenter presenter) {
+        presenter.DetailsChanged += OnDetailsChanged;
+
+        _view.DisplayChildView(view);
+
+        BindValidation();
+
+        if (_childPresenter is not null) {
+            _childPresenter.DetailsChanged -= OnDetailsChanged;
+            _childPresenter.CleanUp();
+        }
+
+        _childPresenter = presenter;
+
+        PopulateDefaultValues();
+        SetApproveChangesBarVisibility();
+    }
+
+    protected void Navigate((IChildView childView, INotifyingChildPresenter childPresenter) pair) => Navigate(pair.childView, pair.childPresenter);
+
+    public override bool CanExit() => CanNavigate();
+
+    public override void CleanUp() {
+        _view.SelectedMenuItemChanged -= OnSelectedMenuItemChanged;
+        _view.PreviewSelectedMenuItemChanged -= OnPreviewSelectedMenuItemChanged;
+
+        if (_childPresenter is not null) _childPresenter.CleanUp();
+        _childPresenter = null;
+
+        base.CleanUp();
+    }
 }

@@ -1,4 +1,5 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.CustomControls;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Theming;
 using a2_coursework.View.StaffView.StaffManagement;
@@ -152,6 +153,8 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
         topBar.Enabled = true;
         dataGridView.Enabled = true;
     }
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) => CustomMessageBox.Show(text, caption, buttons);
 
     private void SetScrollOptions() {
         int numberOfVisibleRows = (dataGridView.Height - dataGridView.ColumnHeadersHeight) / dataGridView.RowTemplate.Height;

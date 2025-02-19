@@ -33,6 +33,8 @@
             // 
             // cbPrivilegeLevel
             // 
+            cbPrivilegeLevel.Anchor = AnchorStyles.None;
+            cbPrivilegeLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPrivilegeLevel.Font = new Font("Comic Sans MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbPrivilegeLevel.FormattingEnabled = true;
             cbPrivilegeLevel.Location = new Point(156, 191);
@@ -43,7 +45,7 @@
             // 
             // lblPrivilegeLevel
             // 
-            lblPrivilegeLevel.Anchor = AnchorStyles.Top;
+            lblPrivilegeLevel.Anchor = AnchorStyles.None;
             lblPrivilegeLevel.AutoSize = true;
             lblPrivilegeLevel.Font = new Font("Bahnschrift", 14F);
             lblPrivilegeLevel.ForeColor = Color.White;
@@ -56,7 +58,7 @@
             // 
             // tbUsername
             // 
-            tbUsername.Anchor = AnchorStyles.Top;
+            tbUsername.Anchor = AnchorStyles.None;
             tbUsername.BackColor = Color.FromArgb(9, 9, 10);
             tbUsername.BorderColor = Color.FromArgb(39, 39, 42);
             tbUsername.BorderThickness = 1F;
@@ -71,17 +73,16 @@
             tbUsername.Name = "tbUsername";
             tbUsername.PlaceholderText = "jdoe1";
             tbUsername.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbUsername.ReadOnly = true;
+            tbUsername.ReadOnly = false;
             tbUsername.Size = new Size(355, 40);
             tbUsername.TabIndex = 0;
             tbUsername.TextAlign = HorizontalAlignment.Left;
             tbUsername.TextBoxInset = new Padding(10);
-            tbUsername.ToolTipText = "Ask an admin to change your username";
             tbUsername.UsePasswordChar = false;
             // 
             // lblUsernameError
             // 
-            lblUsernameError.Anchor = AnchorStyles.Top;
+            lblUsernameError.Anchor = AnchorStyles.None;
             lblUsernameError.Font = new Font("Bahnschrift", 12F);
             lblUsernameError.ForeColor = Color.FromArgb(168, 171, 174);
             lblUsernameError.Location = new Point(156, 115);
@@ -92,7 +93,7 @@
             // 
             // lblUsername
             // 
-            lblUsername.Anchor = AnchorStyles.Top;
+            lblUsername.Anchor = AnchorStyles.None;
             lblUsername.AutoSize = true;
             lblUsername.Font = new Font("Bahnschrift", 14F);
             lblUsername.ForeColor = Color.White;

@@ -22,7 +22,7 @@ public class ManageStaffEmergencyContactDetailsPresenter : BasePresenter<IManage
     private void ValidateEmergencyContactPhoneNumber() {
         bool _emergencyContactPhoneNumberValid = Validators.IsValidPhoneNumber(_view.EmergencyContactPhoneNumber) || _view.EmergencyContactPhoneNumber == "";
 
-        _view.SetEmergencyContactPhoneNumberBorderError(_emergencyContactPhoneNumberValid);
+        _view.SetEmergencyContactPhoneNumberBorderError(!_emergencyContactPhoneNumberValid);
         _view.EmergencyContactPhoneNumberError = _emergencyContactPhoneNumberValid ? "" : "Invalid phone number";
     }
 

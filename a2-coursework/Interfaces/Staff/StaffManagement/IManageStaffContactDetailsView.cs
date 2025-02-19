@@ -8,6 +8,7 @@ public interface IManageStaffContactDetailsView : IChildView {
     public string PhoneNumber { get; set; }
     public string Address { get; set; }
 
+    public string ContactError { get; set; }
     public void SetEmailBorderError(bool isError);
     public void SetPhoneNumberBorderError(bool isError);
 }

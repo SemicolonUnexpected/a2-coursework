@@ -2,7 +2,7 @@
 using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IChildPresenter where TView : IEditView {
+public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IChildPresenter where TView : ISaveCancelView {
     protected readonly StaffModel _staff;
 
     public SettingsPresenter(TView view, StaffModel staff) : base(view) {

@@ -11,45 +11,46 @@ public class ManageStaffContactDetailsPresenter : BasePresenter<IManageStaffCont
     }
 
     private void OnEmailChanged(object? sender, EventArgs e) {
-        ValidateEmail();
+        ValidateContactInformation();
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnPhoneNumberChanged(object? sender, EventArgs e) {
-        ValidatePhoneNumber();
+        ValidateContactInformation();
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnAddressChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
 
-    private void ValidateEmail() {
-        bool valid = _Helpers.Validators.IsValidEmail(_view.Email);
-        _view.SetEmailBorderError(!valid);
-    }
+    private bool _emailValid = true;
+    private bool _phoneNumberValid = true;
+    private void ValidateContactInformation() {
+        bool _emailValid = _Helpers.Validators.IsValidEmail(_view.Email);
+        _view.SetEmailBorderError(!_emailValid);
 
-    private void ValidatePhoneNumber() {
-        bool valid = _Helpers.Validators.IsValidPhoneNumber(_view.PhoneNumber);
-        _view.SetPhoneNumberBorderError(!valid);
+        bool _phoneNumberValid = _Helpers.Validators.IsValidPhoneNumber(_view.PhoneNumber);
+        _view.SetPhoneNumberBorderError(!_phoneNumberValid);
+
+        _view.ContactError = (_emailValid, _phoneNumberValid) switch {
+            (true, true) => "",
+            (true, false) => "Invalid phone number",
+            (false, true) => "Invalid email",
+            (false, false) => "Invalid email and phone number",
+        };
     }
 
     public void SetEmail(string email) => _view.Email = email;
 
     public bool TryGetEmail(out string? email) {
-        bool valid = _Helpers.Validators.IsValidEmail(_view.Email);
-
-        email = valid ? _view.Email : null;
-
-        return valid;
+        email = _emailValid ? _view.Email : null;
+        return _emailValid;
     }
 
     public void SetPhoneNumber(string phoneNumber) => _view.PhoneNumber = phoneNumber;
 
     public bool TryGetPhoneNumber(out string? phoneNumber) {
-        bool valid = _Helpers.Validators.IsValidPhoneNumber(_view.PhoneNumber);
-
-        phoneNumber = valid ? _view.PhoneNumber : null;
-
-        return valid;
+        phoneNumber = _emailValid ? _view.PhoneNumber : null;
+        return _phoneNumberValid;
     }
 
     public string Address {

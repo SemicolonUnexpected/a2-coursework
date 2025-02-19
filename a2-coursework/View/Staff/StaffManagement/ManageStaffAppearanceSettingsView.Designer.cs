@@ -34,12 +34,12 @@
             pnlDarkMode = new CustomControls.CustomPanel();
             rbDarkMode = new CustomControls.CustomRadioButton();
             lblDarkMode = new Label();
-            customPanel2 = new CustomControls.CustomPanel();
+            pnltoolTips = new CustomControls.CustomPanel();
             rbShowToolTips = new CustomControls.CustomRadioButton();
             lblToolTips = new Label();
             pnlFont.SuspendLayout();
             pnlDarkMode.SuspendLayout();
-            customPanel2.SuspendLayout();
+            pnltoolTips.SuspendLayout();
             SuspendLayout();
             // 
             // pnlFont
@@ -55,7 +55,7 @@
             pnlFont.Controls.Add(lblBahnschrift);
             pnlFont.Controls.Add(lblFont);
             pnlFont.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlFont.Location = new Point(158, 123);
+            pnlFont.Location = new Point(158, 182);
             pnlFont.Margin = new Padding(5);
             pnlFont.Name = "pnlFont";
             pnlFont.Padding = new Padding(5);
@@ -168,7 +168,7 @@
             pnlDarkMode.Controls.Add(rbDarkMode);
             pnlDarkMode.Controls.Add(lblDarkMode);
             pnlDarkMode.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlDarkMode.Location = new Point(158, 14);
+            pnlDarkMode.Location = new Point(158, 73);
             pnlDarkMode.Margin = new Padding(5);
             pnlDarkMode.Name = "pnlDarkMode";
             pnlDarkMode.Padding = new Padding(5);
@@ -203,20 +203,20 @@
             lblDarkMode.TabIndex = 18;
             lblDarkMode.Text = "Dark Mode";
             // 
-            // customPanel2
+            // pnltoolTips
             // 
-            customPanel2.Anchor = AnchorStyles.None;
-            customPanel2.BorderColor = Color.FromArgb(39, 39, 42);
-            customPanel2.BorderThickness = 1F;
-            customPanel2.Controls.Add(rbShowToolTips);
-            customPanel2.Controls.Add(lblToolTips);
-            customPanel2.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            customPanel2.Location = new Point(158, 64);
-            customPanel2.Margin = new Padding(5);
-            customPanel2.Name = "customPanel2";
-            customPanel2.Padding = new Padding(5);
-            customPanel2.Size = new Size(339, 40);
-            customPanel2.TabIndex = 21;
+            pnltoolTips.Anchor = AnchorStyles.None;
+            pnltoolTips.BorderColor = Color.FromArgb(39, 39, 42);
+            pnltoolTips.BorderThickness = 1F;
+            pnltoolTips.Controls.Add(rbShowToolTips);
+            pnltoolTips.Controls.Add(lblToolTips);
+            pnltoolTips.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnltoolTips.Location = new Point(158, 123);
+            pnltoolTips.Margin = new Padding(5);
+            pnltoolTips.Name = "pnltoolTips";
+            pnltoolTips.Padding = new Padding(5);
+            pnltoolTips.Size = new Size(339, 40);
+            pnltoolTips.TabIndex = 21;
             // 
             // rbShowToolTips
             // 
@@ -253,7 +253,7 @@
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 419);
             Controls.Add(pnlFont);
-            Controls.Add(customPanel2);
+            Controls.Add(pnltoolTips);
             Controls.Add(pnlDarkMode);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStaffAppearanceSettingsView";
@@ -262,8 +262,8 @@
             pnlFont.PerformLayout();
             pnlDarkMode.ResumeLayout(false);
             pnlDarkMode.PerformLayout();
-            customPanel2.ResumeLayout(false);
-            customPanel2.PerformLayout();
+            pnltoolTips.ResumeLayout(false);
+            pnltoolTips.PerformLayout();
             ResumeLayout(false);
         }
 
@@ -277,7 +277,7 @@
         private CustomControls.CustomPanel pnlDarkMode;
         private CustomControls.CustomRadioButton rbDarkMode;
         private Label lblDarkMode;
-        private CustomControls.CustomPanel customPanel2;
+        private CustomControls.CustomPanel pnltoolTips;
         private CustomControls.CustomRadioButton rbShowToolTips;
         private Label lblToolTips;
         private CustomControls.CustomRadioButton rbComicSans;

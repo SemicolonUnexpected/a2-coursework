@@ -34,9 +34,10 @@ public partial class ManageStaffContactDetailsView : Form, IManageStaffContactDe
         tbPhoneNumber.Theme();
         lblAddressTitle.ThemeTitle();
         tbAddress.Theme();
+        lblContactError.ThemeError();
 
-        tbEmail.BorderColor = _emailBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
-        tbPhoneNumber.BorderColor = _phoneNumberBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbEmail.BorderColor = _emailBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
+        tbPhoneNumber.BorderColor = _phoneNumberBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public void SetToolTipVisibility() { }
@@ -67,18 +68,23 @@ public partial class ManageStaffContactDetailsView : Form, IManageStaffContactDe
         set => tbAddress.Text = value;
     }
 
+    public string ContactError {
+        get => lblContactError.Text;
+        set => lblContactError.Text = value;
+    }
+
     private bool _emailBorderError = false;
     public void SetEmailBorderError(bool isError) {
         _emailBorderError = isError;
 
-        tbEmail.BorderColor = _emailBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbEmail.BorderColor = _emailBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private bool _phoneNumberBorderError = false;
     public void SetPhoneNumberBorderError(bool isError) {
         _phoneNumberBorderError = isError;
 
-        tbPhoneNumber.BorderColor = _phoneNumberBorderError ? ColorScheme.Current.Warning : ColorScheme.Current.Primary;
+        tbPhoneNumber.BorderColor = _phoneNumberBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     public void CleanUp() {

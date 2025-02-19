@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Staff.Settings;
-public interface IContactDetailsSettings : IEditView {
+public interface IContactDetailsSettings : ISaveCancelView {
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;

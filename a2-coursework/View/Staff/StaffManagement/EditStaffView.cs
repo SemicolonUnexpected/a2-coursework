@@ -25,6 +25,7 @@ public partial class EditStaffView : Form, IThemeable, IEditStaffView {
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
+        topMenu.PreviewSelectedIndexChanged += (s, e) => PreviewSelectedMenuItemChanged?.Invoke(this, e);
         topMenu.SelectedIndexChanged += (s, e) => SelectedMenuItemChanged?.Invoke(this, topMenu.MenuItems[topMenu.SelectedIndex]);
         btnBack.Click += (s, e) => Back?.Invoke(this, EventArgs.Empty);
 
@@ -103,7 +104,7 @@ public partial class EditStaffView : Form, IThemeable, IEditStaffView {
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
 
-        topMenu.Location = new Point((pnlMenu.Width - topMenu.Width) / 2, 0);
-        topMenu.Height = Height;
+        topMenu.Location = new Point(Math.Max(btnBack.Width + btnBack.Location.X + btnBack.Margin.Right, (pnlMenu.Width - topMenu.Width) / 2), 0);
+        topMenu.Height = pnlMenu.Height;
     }
 }

@@ -81,7 +81,7 @@ internal static class StaffDAL {
         return null;
     }
 
-    public static async Task<bool> UpdatePersonalDetails(int staffId, string forename, string surname, DateTime? dateOfBirth) {
+    public static async Task<bool> UpdatePersonalInformation(int staffId, string forename, string surname, DateTime? dateOfBirth) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -113,7 +113,7 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateEmergencyContact(int staffId, string forename, string surname, string phoneNumber) {
+    public static async Task<bool> UpdateEmergencyContactInformation(int staffId, string forename, string surname, string phoneNumber) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -206,6 +206,21 @@ internal static class StaffDAL {
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("staffId", staffId);
         command.Parameters.AddWithValue("archived", archived);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
+    public static async Task<bool> UpdateCredentials(int staffId, string username, PrivilegeLevel privilegeLevel) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStaffCredentials", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("Id", staffId);
+        command.Parameters.AddWithValue("username", username);
+        command.Parameters.AddWithValue("privilegeLevel", (int)privilegeLevel);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
 

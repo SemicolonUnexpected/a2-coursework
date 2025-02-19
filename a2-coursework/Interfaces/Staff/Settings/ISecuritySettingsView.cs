@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Staff.Settings;
-public interface ISecuritySettingsView : IEditView {
+public interface ISecuritySettingsView : ISaveCancelView {
     public event EventHandler? NewPasswordChanged;
 
     public string Username { set; }

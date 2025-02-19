@@ -52,6 +52,8 @@ public partial class ManageStaffAppearanceSettingsView : Form, IThemeable, IMana
 
         lblDarkMode.ThemeTitle();
         pnlDarkMode.Theme();
+        pnltoolTips.Theme();
+        rbShowToolTips.Theme();
         rbDarkMode.Theme();
         lblToolTips.ThemeTitle();
         lblFont.ThemeTitle();

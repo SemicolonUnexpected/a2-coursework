@@ -1,4 +1,5 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Staff;
 using a2_coursework.View;
@@ -7,9 +8,13 @@ using a2_coursework.View.StaffView.StaffManagement;
 namespace a2_coursework.Presenter.StaffPresenters.ManageStaff;
 
 public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffModel, DisplayStaff>, IChildPresenter, INavigatingPresenter {
+    private readonly StaffModel _staff;
+
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public DisplayStaffPresenter(IDisplayStaffView view) : base(view) {
+    public DisplayStaffPresenter(IDisplayStaffView view, StaffModel staff) : base(view) {
+        _staff = staff;
+
         LoadData();
 
         _view.Add += OnAdd;
@@ -96,6 +101,11 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
             return;
         }
 
+        if (_view.SelectedItem.Id == _staff.Id) {
+            _view.ShowMessageBox("Cannot change the archived status of your own account.", "Archiving error");
+            return;
+        }
+
         _view.DisableAll();
 
         StaffModel staff = _modelDisplayMap[_view.SelectedItem];
@@ -126,13 +136,22 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
     private void Edit() {
         if (_view.SelectedItem is null) return;
 
+        if (_view.SelectedItem.Id == _staff.Id) {
+            _view.ShowMessageBox("Cannot edit your own account. Go to settings to change your details", "Edit error");
+            return;
+        }
+
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = ViewFactory.CreateEditStaff(_modelDisplayMap[_view.SelectedItem]);
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateEditStaff(_modelDisplayMap[_view.SelectedItem], _staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
+        if (_view.SelectedItem is null) return;
+
+        _cancellationTokenSource.Cancel();
+
         //(IChildView view, IChildPresenter presenter) = ViewFactory.CreateAddStaff();
         //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
@@ -147,7 +166,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
             case "columnUsername":
                 SortBy(x => x.Username, sortAscending);
                 break;
-            case "columnNames":
+            case "columnName":
                 SortBy(x => $"{x.Forename} {x.Surname}", sortAscending);
                 break;
             case "columnPhoneNumber":

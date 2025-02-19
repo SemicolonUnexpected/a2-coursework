@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.Staff.Settings;
-public interface IAppearanceSettings : IEditView {
+public interface IAppearanceSettings : ISaveCancelView {
     public event EventHandler? DarkModeCheckedChanged;
     public event EventHandler? ToolTipsCheckedChanged;
     public event EventHandler? FontNameChanged;
