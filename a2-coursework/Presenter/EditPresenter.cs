@@ -1,4 +1,4 @@
-﻿using a2_coursework.Interfaces.Staff.Settings;
+﻿using a2_coursework.Interfaces;
 
 namespace a2_coursework.Presenter;
 public abstract class EditPresenter<TView, TModel> : BasePresenter<TView> where TView : IEditView {

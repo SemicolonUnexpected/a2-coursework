@@ -1,11 +1,12 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
 using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Theming;
 using a2_coursework.UserControls;
 
 namespace a2_coursework.View.StaffView;
-public partial class EditStaffView : Form, IThemeable {
+public partial class EditStaffView : Form, IThemeable, IEditStaffView {
     public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
     public event EventHandler? Save;

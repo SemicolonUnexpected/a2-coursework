@@ -1,7 +1,7 @@
 ﻿using a2_coursework.UserControls;
 
-namespace a2_coursework.Interfaces.Stock.StockManagement;
-public interface IEditStockView : IChildView, IEditView {
+namespace a2_coursework.Interfaces.Staff.StaffManagement;
+public interface IEditStaffView : IChildView, IEditView {
     public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
     public event EventHandler? Back;

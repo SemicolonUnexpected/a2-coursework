@@ -45,8 +45,7 @@ public class PersonalInformationSettingsPresenter : SettingsPresenter<IPersonalI
 
         bool dateOfBirthInvalid = !_view.DateOfBirthValid;
 
-        if (dateOfBirthInvalid) _view.DateOfBirthErrorText = "Invalid date of birth";
-        else _view.DateOfBirthErrorText = "";
+        _view.DateOfBirthErrorText = dateOfBirthInvalid ? "Invalid date of birth" : "";
 
         return !(forenameEmpty || surnameEmpty || !_view.DateOfBirthValid);
     }

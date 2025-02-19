@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.Interfaces.Staff.Settings;
+﻿namespace a2_coursework.Interfaces;
 public interface IEditView : IChildView {
     public event EventHandler? Save;
     public event EventHandler? Cancel;

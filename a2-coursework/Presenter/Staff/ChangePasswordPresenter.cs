@@ -1,6 +1,6 @@
-﻿using a2_coursework.Model.Staff;
+﻿using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Security;
-using a2_coursework.Interfaces.Staff.StaffManagement;
+using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users;
 public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IChildPresenter {

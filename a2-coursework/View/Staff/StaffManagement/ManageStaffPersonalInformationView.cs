@@ -84,6 +84,8 @@ public partial class ManageStaffPersonalInformationView : Form, IManageStaffPers
         set => lblDateOfBirthError.Text = value;
     }
 
+    public bool DateOfBirthValid => diDateOfBirth.DateValid;
+
     private bool _forenameBorderError = false;
     public void SetForenameBorderError(bool isError) {
         _forenameBorderError = isError;

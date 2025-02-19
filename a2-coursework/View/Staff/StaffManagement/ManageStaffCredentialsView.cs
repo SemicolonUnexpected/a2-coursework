@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Stock; 
+namespace a2_coursework.View.Stock;
 public partial class ManageStaffCredentialsView : Form, IThemeable, IManageStaffCredentialsView {
     public event EventHandler? UsernameChanged;
     public event EventHandler? PrivilegeLevelChanged;

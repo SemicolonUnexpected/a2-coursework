@@ -25,6 +25,7 @@ public partial class EditStockView : Form, IEditStockView, IThemeable {
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
+        topMenu.PreviewSelectedIndexChanged += (s, e) => PreviewSelectedMenuItemChanged?.Invoke(this, e);
         topMenu.SelectedIndexChanged += (s, e) => SelectedMenuItemChanged?.Invoke(this, topMenu.MenuItems[topMenu.SelectedIndex]);
         btnBack.Click += (s, e) => Back?.Invoke(this, EventArgs.Empty);
 

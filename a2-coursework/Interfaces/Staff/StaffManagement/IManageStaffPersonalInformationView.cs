@@ -8,6 +8,7 @@ public interface IManageStaffPersonalInformationView : IChildView {
     public string Surname { get; set; }
     public DateTime? DateOfBirth { get; set; }
 
+    public bool DateOfBirthValid { get; }
     public string NameError { get; set; }
     public string DateOfBirthError { get; set; }
     public void SetForenameBorderError(bool isError);

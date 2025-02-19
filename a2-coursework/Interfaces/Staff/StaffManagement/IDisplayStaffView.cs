@@ -2,8 +2,7 @@
 using a2_coursework.View.StaffView.StaffManagement;
 
 namespace a2_coursework.Interfaces.Staff.StaffManagement;
-public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaff>
-{
+public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaff> {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;

@@ -1,4 +1,4 @@
-﻿using a2_coursework.Interfaces.Staff.Settings;
+﻿using a2_coursework.Interfaces;
 using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;

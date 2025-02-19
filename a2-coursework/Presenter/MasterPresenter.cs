@@ -5,7 +5,7 @@ using a2_coursework.View;
 
 namespace a2_coursework.Presenter;
 public class MasterPresenter : BasePresenter<IMasterView> {
-    private StaffModel _staff;
+    private readonly StaffModel _staff;
     private IChildPresenter? _childPresenter;
 
     public event EventHandler? FormClosed;

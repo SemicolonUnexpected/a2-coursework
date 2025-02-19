@@ -1,5 +1,4 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.StaffView;

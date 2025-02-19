@@ -1,8 +1,7 @@
 ﻿using a2_coursework.Theming;
 
 namespace a2_coursework.Interfaces.Staff.StaffManagement;
-public interface IChangePasswordView : IThemeable, IChildView
-{
+public interface IChangePasswordView : IThemeable, IChildView {
     public event EventHandler? NewPasswordChanged;
     public event EventHandler? UsernameChanged;
     public event EventHandler? ChangePassword;
