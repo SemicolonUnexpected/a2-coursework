@@ -170,6 +170,25 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
     }
 
     private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
+        // Quantiity level is at index 4, row indexes start at 0 with the column header being index -1. Tiny bit odd
+        if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
+            if (e.Value is string quantityLevel) {
+                if (quantityLevel == "Low") {
+                    e.CellStyle!.ForeColor = ColorScheme.Current.Danger;
+                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Danger;
+                }
+                else if (quantityLevel == "Medium") {
+                    e.CellStyle!.ForeColor = ColorScheme.Current.Warning;
+                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Warning;
+                }
+                else if (quantityLevel == "High") {
+                    e.CellStyle!.ForeColor = ColorScheme.Current.Info;
+                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Info;
+                }
+
+            }
+        }
+
         // Format the archived
         if (e.ColumnIndex == 5 && e.RowIndex >= 0) {
             if (e.Value is bool isArchived) {

@@ -54,7 +54,10 @@ public partial class CustomTextBox {
     public override Font Font {
         get => tb.Font;
         set {
-            if (MultiLine) return;
+            if (MultiLine) {
+                tb.Font = value;
+                return;
+            }
 
             int newHeight = TextRenderer.MeasureText("Text", value).Height;
             int oldHeight = TextRenderer.MeasureText("Text", tb.Font).Height;

@@ -181,6 +181,7 @@
             pbShowNewPassword.TabIndex = 30;
             pbShowNewPassword.TabStop = false;
             toolTip.SetToolTip(pbShowNewPassword, "Show the password");
+            pbShowNewPassword.Click += pbShowNewPassword_Click;
             // 
             // tbConfirmPassword
             // 
@@ -448,7 +449,7 @@
             lblUsernameError.TabIndex = 25;
             lblUsernameError.TextAlign = ContentAlignment.TopCenter;
             // 
-            // ChangePasswordView
+            // ChangeStaffPasswordView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -457,7 +458,7 @@
             Controls.Add(sb);
             Controls.Add(pnlHolder);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "ChangePasswordView";
+            Name = "ChangeStaffPasswordView";
             Text = "ChangePasswordView";
             pnlHolder.ResumeLayout(false);
             pnlHolder.PerformLayout();

@@ -33,6 +33,18 @@
     <Compile Update="View\Customer\ManageCustomerContactDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\CleaningJobOptions\AddJobOptionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJobOptions\DisplayJobOptionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJobOptions\EditJobOptionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJobOptions\ManageCleaningJobOptionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -46,11 +58,6 @@
     <None Update="Database.mdf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="View\Deliveries\" />
-    <Folder Include="View\Bookings\" />
   </ItemGroup>
 
 </Project>

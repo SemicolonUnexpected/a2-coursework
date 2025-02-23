@@ -1,10 +1,11 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
 using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 using a2_coursework.UserControls;
 
-namespace a2_coursework.View.Customer; 
+namespace a2_coursework.View.Customer;
 public partial class EditCustomerView : Form, IThemeable, IEditCustomerView {
     public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;

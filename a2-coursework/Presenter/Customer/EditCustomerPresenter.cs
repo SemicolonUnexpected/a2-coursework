@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Factory;
 using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.Customer;
 using a2_coursework.Model.Customer;
-using a2_coursework.View.Customer;
 using a2_coursework.View.Customer;
 
 namespace a2_coursework.Presenter.Customer;

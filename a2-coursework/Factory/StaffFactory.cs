@@ -1,6 +1,5 @@
 ﻿using a2_coursework.Model.Staff;
 using a2_coursework.Model.Stock;
-using a2_coursework.Presenter;
 using a2_coursework.Presenter.Staff.StaffManagement;
 using a2_coursework.Presenter.StaffPresenters.ManageStaff;
 using a2_coursework.Presenter.Stock.StockManagement;

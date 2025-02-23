@@ -233,9 +233,7 @@ public partial class ChangeStaffPasswordView : Form, IChangePasswordView {
 
     public bool DockInParent => true;
 
-    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
-        return CustomMessageBox.Show(text, caption, buttons);
-    }
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) => CustomMessageBox.Show(text, caption, buttons);
 
     public bool CanExit() => _presenter?.CanExit() ?? true;
 
