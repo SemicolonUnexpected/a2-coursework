@@ -39,11 +39,11 @@ public static class StockDAL {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("CreateStock", connection); // Use the correct stored procedure name
+        await using SqlCommand command = new("CreateStock", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@name", stock.Name);
         command.Parameters.AddWithValue("@description", stock.Description);
-        command.Parameters.AddWithValue("@sku", stock.SKU);
+        command.Parameters.AddWithValue("@sku", stock.Sku);
         command.Parameters.AddWithValue("@quantity", stock.Quantity);
         command.Parameters.AddWithValue("@staffId", staffId);
         command.Parameters.AddWithValue("@date", date);
@@ -88,7 +88,7 @@ public static class StockDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> SKUExists(string sku) {
+    public static async Task<bool> SkuExists(string sku) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 

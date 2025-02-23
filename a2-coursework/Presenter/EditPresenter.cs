@@ -21,7 +21,7 @@ public abstract class EditPresenter<TView, TModel> : BasePresenter<TView> where 
     protected virtual async void Save() {
         _view.IsLoading = true;
 
-        if (!ValidateInputs()) {
+        if (!Validate()) {
             _view.ShowMessageBox("Invalid information. Could not save your changes.", "Save failed");
             _view.IsLoading = false;
             return;
@@ -47,7 +47,7 @@ public abstract class EditPresenter<TView, TModel> : BasePresenter<TView> where 
         }
     }
 
-    protected virtual bool ValidateInputs() => true;
+    protected virtual bool Validate() => true;
 
     protected abstract Task<bool> UpdateDatabase();
 

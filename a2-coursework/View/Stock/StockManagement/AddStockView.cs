@@ -6,10 +6,10 @@ using a2_coursework.Theming;
 
 namespace a2_coursework.View.Stock;
 public partial class AddStockView : Form, IAddStockView, IThemeable, IChildView {
-    public event EventHandler? Back;
-    public event EventHandler? Next;
     public event EventHandler? Previous;
+    public event EventHandler? Next;
     public event EventHandler? Done;
+    public event EventHandler? Back;
 
     public AddStockView() {
         InitializeComponent();
@@ -23,6 +23,7 @@ public partial class AddStockView : Form, IAddStockView, IThemeable, IChildView 
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
+        btnBack.Click += (s, e) => Back?.Invoke(this, EventArgs.Empty);
         previousNextDoneBar.Next += (s, e) => Next?.Invoke(this, EventArgs.Empty);
         previousNextDoneBar.Previous += (s, e) => Previous?.Invoke(this, EventArgs.Empty);
         previousNextDoneBar.Done += (s, e) => Done?.Invoke(this, EventArgs.Empty);
@@ -61,15 +62,14 @@ public partial class AddStockView : Form, IAddStockView, IThemeable, IChildView 
         _childView.Width = pnlHolder.Width;
         _childView.Anchor = AnchorStyles.Left | AnchorStyles.Right | AnchorStyles.Top;
         _childView.Dock = DockStyle.Fill;
+        lblTitle.Text = _childView.Text;
 
         // Display the form
         pnlHolder.Controls.Add(_childView as Form);
         _childView.Show();
     }
 
-    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) {
-        return CustomMessageBox.Show(text, caption, buttons);
-    }
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) => CustomMessageBox.Show(text, caption, buttons);
 
     public void CleanUp() {
         Theming.Theme.AppearanceThemeChanged -= Theme;

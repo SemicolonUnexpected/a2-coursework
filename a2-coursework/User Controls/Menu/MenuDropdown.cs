@@ -31,7 +31,7 @@ public partial class MenuDropdown : UserControl {
         pnlDecor.BackColor = ColorScheme.Current.Primary;
 
         btn.Theme();
-        btn.IconImage = pnlDropDown.Visible ? IconTheme.CurrentTheme.Minus : IconTheme.CurrentTheme.Plus;
+        btn.IconImage = pnlDropDown.Visible ? IconTheme.Current.Minus : IconTheme.Current.Plus;
 
         foreach (MenuToggleButton sideMenuToggleButton in ToggleButtons) {
             sideMenuToggleButton.Theme();
@@ -113,7 +113,7 @@ public partial class MenuDropdown : UserControl {
         get => pnlDropDown.Visible;
         set {
             pnlDropDown.Visible = value;
-            btn.IconImage = pnlDropDown.Visible ? IconTheme.CurrentTheme.Minus : IconTheme.CurrentTheme.Plus;
+            btn.IconImage = pnlDropDown.Visible ? IconTheme.Current.Minus : IconTheme.Current.Plus;
 
             ResizeDropDown();
             DropDownToggleChanged?.Invoke(this, EventArgs.Empty);

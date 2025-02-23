@@ -6,7 +6,7 @@ namespace a2_coursework.Presenter;
 public abstract class ParentEditPresenter<TView, TModel> : EditPresenter<TView, TModel> where TView : IEditView {
     protected Action? PopulateDefaultValuesCurrent;
     protected Func<Task<bool>>? UpdateDatabaseCurrent;
-    protected Func<bool>? ValidateInputsCurrent;
+    protected Func<bool>? ValidateCurrent;
     protected Func<bool>? AnyChangesCurrent;
     protected Action? UpdateModelCurrent;
 
@@ -27,11 +27,12 @@ public abstract class ParentEditPresenter<TView, TModel> : EditPresenter<TView, 
     protected override void PopulateDefaultValues() => PopulateDefaultValuesCurrent?.Invoke();
     protected override Task<bool> UpdateDatabase() => UpdateDatabaseCurrent?.Invoke() ?? Task.FromResult(true);
     protected override void UpdateModel() => UpdateModelCurrent?.Invoke();
-    protected override bool ValidateInputs() => ValidateInputsCurrent?.Invoke() ?? true;
+    protected override bool Validate() => ValidateCurrent?.Invoke() ?? true;
 
     #endregion
 
     protected abstract void BindValidation();
+    protected abstract void UnBindValidation();
 
     private bool CanNavigate() {
         if (_view.IsLoading) return false;
@@ -52,15 +53,15 @@ public abstract class ParentEditPresenter<TView, TModel> : EditPresenter<TView, 
 
         _view.DisplayChildView(view);
 
-        BindValidation();
-
         if (_childPresenter is not null) {
             _childPresenter.DetailsChanged -= OnDetailsChanged;
+            UnBindValidation();
             _childPresenter.CleanUp();
         }
 
         _childPresenter = presenter;
 
+        BindValidation();
         PopulateDefaultValues();
         SetApproveChangesBarVisibility();
     }

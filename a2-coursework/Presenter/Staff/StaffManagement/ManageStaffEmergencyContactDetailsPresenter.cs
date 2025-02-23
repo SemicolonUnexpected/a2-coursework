@@ -18,19 +18,24 @@ public class ManageStaffEmergencyContactDetailsPresenter : BasePresenter<IManage
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private readonly bool _emergencyContactPhoneNumberValid = true;
+    private bool _emergencyContactPhoneNumberValid = true;
     private void ValidateEmergencyContactPhoneNumber() {
-        bool _emergencyContactPhoneNumberValid = Validators.IsValidPhoneNumber(_view.EmergencyContactPhoneNumber) || _view.EmergencyContactPhoneNumber == "";
+        _emergencyContactPhoneNumberValid = Validators.IsValidPhoneNumber(_view.EmergencyContactPhoneNumber) || _view.EmergencyContactPhoneNumber == "";
 
         _view.SetEmergencyContactPhoneNumberBorderError(!_emergencyContactPhoneNumberValid);
         _view.EmergencyContactPhoneNumberError = _emergencyContactPhoneNumberValid ? "" : "Invalid phone number";
     }
 
-    public void SetEmergencyContactPhoneNumber(string emergencyContactPhoneNumber) => _view.EmergencyContactPhoneNumber = emergencyContactPhoneNumber;
+    public string EmergencyContactPhoneNumber {
+        get => _view.EmergencyContactPhoneNumber;
+        set => _view.EmergencyContactPhoneNumber = value;
+    }
 
-    public bool TryGetEmergencyContactPhoneNumber(out string? emergencyContactPhoneNumber) {
-        emergencyContactPhoneNumber = _emergencyContactPhoneNumberValid ? _view.EmergencyContactPhoneNumber : null;
-        return _emergencyContactPhoneNumberValid;
+    public bool EmergencyContactPhoneNumberValid {
+        get {
+            ValidateEmergencyContactPhoneNumber();
+            return _emergencyContactPhoneNumberValid;
+        }
     }
 
     public string EmergencyContactForename {

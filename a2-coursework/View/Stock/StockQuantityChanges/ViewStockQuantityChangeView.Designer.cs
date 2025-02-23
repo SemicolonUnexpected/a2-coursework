@@ -23,6 +23,7 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
+            components = new System.ComponentModel.Container();
             tbStockName = new CustomControls.CustomTextBox();
             lblQuantity = new Label();
             tbReasonForQuantityChange = new CustomControls.CustomTextBox();
@@ -35,6 +36,7 @@
             diDateOfChange = new CustomControls.DateInput();
             lblDateOfChange = new Label();
             btnBack = new CustomControls.CustomButton();
+            toolTip = new ToolTip(components);
             SuspendLayout();
             // 
             // tbStockName
@@ -260,6 +262,7 @@
             btnBack.TabIndex = 26;
             btnBack.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnBack.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnBack, "Back");
             // 
             // ViewStockQuantityChangeView
             // 
@@ -300,5 +303,6 @@
         private CustomControls.DateInput diDateOfChange;
         private Label lblDateOfChange;
         private CustomControls.CustomButton btnBack;
+        private ToolTip toolTip;
     }
 }

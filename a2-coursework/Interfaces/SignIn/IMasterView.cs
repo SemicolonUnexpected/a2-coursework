@@ -1,6 +1,6 @@
 ﻿using a2_coursework.UserControls;
 
-namespace a2_coursework.Interfaces;
+namespace a2_coursework.Interfaces.SignIn;
 public interface IMasterView : IView {
     public event EventHandler<ToggleEventArgs>? PreviewToggleChanged;
     public event EventHandler<string>? ToggleChanged;

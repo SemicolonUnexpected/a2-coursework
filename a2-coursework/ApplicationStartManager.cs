@@ -1,6 +1,6 @@
-﻿using a2_coursework.Model.Staff;
+﻿using a2_coursework.Factory;
+using a2_coursework.Model.Staff;
 using a2_coursework.Presenter;
-using a2_coursework.View;
 
 namespace a2_coursework;
 internal class ApplicationStartupManager {
@@ -8,7 +8,7 @@ internal class ApplicationStartupManager {
     private SignInPresenter? _signInPresenter;
 
     public async void StartApplicationAsync() {
-        _splashPresenter = ViewFactory.CreateSplash();
+        _splashPresenter = SignInFactory.CreateSplash();
         _splashPresenter.FormClosed += OnFormExit;
         _splashPresenter.Show();
         _splashPresenter.FinishedLoading += DisplaySignIn;
@@ -18,7 +18,7 @@ internal class ApplicationStartupManager {
     }
 
     private void DisplaySignIn(object? sender, EventArgs e) {
-        _signInPresenter = ViewFactory.CreateSignIn();
+        _signInPresenter = SignInFactory.CreateSignIn();
         _signInPresenter.FormClosed += OnFormExit;
         _signInPresenter.SignInSuccessful += SignInSuccessful;
 
@@ -32,7 +32,7 @@ internal class ApplicationStartupManager {
 
     private void SignInSuccessful(object? sender, StaffModel staff) {
         // Create the main page after a successful login
-        MasterPresenter masterPresenter = ViewFactory.CreateMaster(staff);
+        MasterPresenter masterPresenter = SignInFactory.CreateMaster(staff);
         masterPresenter.FormClosed += OnFormExit;
 
         // Clean up after a successful login

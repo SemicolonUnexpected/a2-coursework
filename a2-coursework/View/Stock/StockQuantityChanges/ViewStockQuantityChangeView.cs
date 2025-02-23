@@ -31,11 +31,14 @@ public partial class ViewStockQuantityChangeView : Form, IThemeable, IViewStockQ
         lblReasonForQuantityChange.ThemeTitle();
 
         btnBack.ThemeWeak();
+        btnBack.Image = IconTheme.Current.BackArrow;
+
         diDateOfChange.Theme();
 
         tbStockName.Theme();
         tbQuantity.Theme();
         tbUsername.Theme();
+        tbReasonForQuantityChange.Theme();
     }
 
     public void SetFont() {
@@ -55,7 +58,11 @@ public partial class ViewStockQuantityChangeView : Form, IThemeable, IViewStockQ
         tbUsername.SetFontName(fontName);
     }
 
-    public void SetToolTipVisibility() { }
+    public void SetToolTipVisibility() {
+        bool showToolTips = Theming.Theme.Current.ShowToolTips;
+
+        toolTip.Active = showToolTips;
+    }
 
     public string Username {
         set => tbUsername.Text = value;

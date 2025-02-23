@@ -262,7 +262,7 @@
             Controls.Add(tbFocusHolder);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStockQuantityView";
-            Text = "Stock_Details_view";
+            Text = "Stock Quantity";
             Click += ClearFocusOnClick;
             ResumeLayout(false);
             PerformLayout();

@@ -115,7 +115,7 @@
             Controls.Add(pnlTop);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddStockView";
-            Text = "AddStockView";
+            base.Text = "AddStockView";
             pnlTop.ResumeLayout(false);
             pnlTop.PerformLayout();
             ResumeLayout(false);

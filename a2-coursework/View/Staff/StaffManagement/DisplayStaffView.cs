@@ -73,7 +73,7 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
 
     private void SetupDataGrid() {
         dataGridView.AutoGenerateColumns = false;
-        columnID.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         float scalingFactor = DeviceDpi / 96f;
@@ -97,12 +97,12 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
             }
         };
 
-        columnID.DataPropertyName = nameof(DisplayStaff.Id);
-        columnUsername.DataPropertyName = nameof(DisplayStaff.Username);
-        columnName.DataPropertyName = nameof(DisplayStaff.Names);
-        columnPhoneNumber.DataPropertyName = nameof(DisplayStaff.PhoneNumber);
-        columnEmail.DataPropertyName = nameof(DisplayStaff.Email);
-        columnArchived.DataPropertyName = nameof(DisplayStaff.Archived);
+        columnId.DataPropertyName = nameof(DisplayStaffModel.Id);
+        columnUsername.DataPropertyName = nameof(DisplayStaffModel.Username);
+        columnName.DataPropertyName = nameof(DisplayStaffModel.Names);
+        columnPhoneNumber.DataPropertyName = nameof(DisplayStaffModel.PhoneNumber);
+        columnEmail.DataPropertyName = nameof(DisplayStaffModel.Email);
+        columnArchived.DataPropertyName = nameof(DisplayStaffModel.Archived);
     }
 
     public string SearchText {
@@ -110,10 +110,10 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
         set => topBar.SearchText = value;
     }
 
-    public DisplayStaff? SelectedItem {
+    public DisplayStaffModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayStaff>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayStaffModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -138,7 +138,7 @@ public partial class DisplayStaffView : Form, IDisplayStaffView, IThemeable {
         set => topBar.Restore = value;
     }
 
-    public void DisplayItems(BindingList<DisplayStaff> items) {
+    public void DisplayItems(BindingList<DisplayStaffModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();

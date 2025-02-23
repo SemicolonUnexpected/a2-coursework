@@ -2,7 +2,7 @@
 using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Interfaces.Stock.StockManagement;
-public interface IDisplayStockView : IChildView, IDisplayView<DisplayStockItem> {
+public interface IDisplayStockView : IChildView, IDisplayView<DisplayStockModel> {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;
@@ -15,7 +15,7 @@ public interface IDisplayStockView : IChildView, IDisplayView<DisplayStockItem> 
     public string DataGridText { set; }
     public bool ShowArchivedItems { get; }
     public bool SelectedItemArchived { set; get; }
-    public DisplayStockItem? SelectedItem { get; }
+    public DisplayStockModel? SelectedItem { get; }
 
     public void DisableAll();
     public void EnableAll();

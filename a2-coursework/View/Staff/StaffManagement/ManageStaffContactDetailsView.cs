@@ -87,6 +87,8 @@ public partial class ManageStaffContactDetailsView : Form, IManageStaffContactDe
         tbPhoneNumber.BorderColor = _phoneNumberBorderError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
+    public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{tbAddress.MaxLength}";
+
     public void CleanUp() {
         Theming.Theme.AppearanceThemeChanged -= Theme;
         Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;

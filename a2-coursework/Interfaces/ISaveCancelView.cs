@@ -1,6 +1,4 @@
-﻿using a2_coursework.UserControls;
-
-namespace a2_coursework.Interfaces;
+﻿namespace a2_coursework.Interfaces;
 public interface ISaveCancelView : IChildView {
     public event EventHandler? Save;
     public event EventHandler? Cancel;

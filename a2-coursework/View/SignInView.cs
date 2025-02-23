@@ -1,5 +1,5 @@
 ﻿using a2_coursework._Helpers;
-using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.SignIn;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View;
@@ -30,7 +30,7 @@ public partial class SignInView : Form, ISignInView, IThemeable {
 
         BackColor = ColorScheme.Current.Background;
 
-        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
         toolTip.SetToolTip(pbShowPassword, tbPassword.UsePasswordChar ? "Show your password" : "Hide your password");
 
         pnl.Theme();
@@ -112,7 +112,7 @@ public partial class SignInView : Form, ISignInView, IThemeable {
 
     private void pbShowPassword_Click(object sender, EventArgs e) {
         tbPassword.UsePasswordChar = !tbPassword.UsePasswordChar;
-        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowPassword.Image = tbPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
         toolTip.SetToolTip(pbShowPassword, tbPassword.UsePasswordChar ? "Show your password" : "Hide your password");
     }
 

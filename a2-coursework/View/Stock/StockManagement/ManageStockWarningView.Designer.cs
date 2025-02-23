@@ -102,7 +102,7 @@
             Controls.Add(lblLowQuantity);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStockWarningView";
-            Text = "StockWarningView";
+            Text = "Stock Warning";
             ResumeLayout(false);
             PerformLayout();
         }

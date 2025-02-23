@@ -20,15 +20,20 @@ public class ManageStaffContactDetailsPresenter : BasePresenter<IManageStaffCont
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
-    private void OnAddressChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+    private void OnAddressChanged(object? sender, EventArgs e) {
+        SetCharacterCount();
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void SetCharacterCount() => _view.SetCharacterCount(_view.Address.Length);
 
     private bool _emailValid = true;
     private bool _phoneNumberValid = true;
     private void ValidateContactInformation() {
-        bool _emailValid = _Helpers.Validators.IsValidEmail(_view.Email);
+        _emailValid = _Helpers.Validators.IsValidEmail(_view.Email);
         _view.SetEmailBorderError(!_emailValid);
 
-        bool _phoneNumberValid = _Helpers.Validators.IsValidPhoneNumber(_view.PhoneNumber);
+        _phoneNumberValid = _Helpers.Validators.IsValidPhoneNumber(_view.PhoneNumber);
         _view.SetPhoneNumberBorderError(!_phoneNumberValid);
 
         _view.ContactError = (_emailValid, _phoneNumberValid) switch {
@@ -39,18 +44,28 @@ public class ManageStaffContactDetailsPresenter : BasePresenter<IManageStaffCont
         };
     }
 
-    public void SetEmail(string email) => _view.Email = email;
-
-    public bool TryGetEmail(out string? email) {
-        email = _emailValid ? _view.Email : null;
-        return _emailValid;
+    public string Email {
+        get => _view.Email;
+        set => _view.Email = value;
     }
 
-    public void SetPhoneNumber(string phoneNumber) => _view.PhoneNumber = phoneNumber;
+    public bool EmailValid {
+        get {
+            ValidateContactInformation();
+            return _emailValid;
+        }
+    }
 
-    public bool TryGetPhoneNumber(out string? phoneNumber) {
-        phoneNumber = _emailValid ? _view.PhoneNumber : null;
-        return _phoneNumberValid;
+    public string PhoneNumber {
+        get => _view.PhoneNumber;
+        set => _view.PhoneNumber = value;
+    }
+
+    public bool PhoneNumberValid {
+        get {
+            ValidateContactInformation();
+            return _phoneNumberValid;
+        }
     }
 
     public string Address {

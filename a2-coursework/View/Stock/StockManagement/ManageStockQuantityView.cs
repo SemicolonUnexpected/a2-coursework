@@ -88,6 +88,11 @@ public partial class ManageStockQuantityView : Form, IManageStockQuantityView, I
         set => tbReasonForQuantityChange.Text = value;
     }
 
+    public bool ReasonForChangedReadOnly {
+        get => tbReasonForQuantityChange.ReadOnly;
+        set => tbReasonForQuantityChange.ReadOnly = value;
+    }
+
     public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{tbReasonForQuantityChange.MaxLength}";
 
     private void ClearFocus() => tbFocusHolder.Focus();

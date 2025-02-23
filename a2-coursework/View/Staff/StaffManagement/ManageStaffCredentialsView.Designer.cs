@@ -37,7 +37,7 @@
             cbPrivilegeLevel.DropDownStyle = ComboBoxStyle.DropDownList;
             cbPrivilegeLevel.Font = new Font("Comic Sans MS", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
             cbPrivilegeLevel.FormattingEnabled = true;
-            cbPrivilegeLevel.Location = new Point(156, 191);
+            cbPrivilegeLevel.Location = new Point(156, 216);
             cbPrivilegeLevel.MinimumSize = new Size(355, 0);
             cbPrivilegeLevel.Name = "cbPrivilegeLevel";
             cbPrivilegeLevel.Size = new Size(355, 31);
@@ -49,7 +49,7 @@
             lblPrivilegeLevel.AutoSize = true;
             lblPrivilegeLevel.Font = new Font("Bahnschrift", 14F);
             lblPrivilegeLevel.ForeColor = Color.White;
-            lblPrivilegeLevel.Location = new Point(156, 160);
+            lblPrivilegeLevel.Location = new Point(156, 185);
             lblPrivilegeLevel.Margin = new Padding(5);
             lblPrivilegeLevel.Name = "lblPrivilegeLevel";
             lblPrivilegeLevel.Size = new Size(138, 23);
@@ -87,7 +87,7 @@
             lblUsernameError.ForeColor = Color.FromArgb(168, 171, 174);
             lblUsernameError.Location = new Point(156, 115);
             lblUsernameError.Name = "lblUsernameError";
-            lblUsernameError.Size = new Size(355, 40);
+            lblUsernameError.Size = new Size(355, 65);
             lblUsernameError.TabIndex = 25;
             lblUsernameError.TextAlign = ContentAlignment.TopCenter;
             // 
@@ -131,7 +131,7 @@
             Controls.Add(lblUsernameError);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStaffCredentialsView";
-            Text = "ManageUserCredentialsView";
+            Text = "Credentials";
             ResumeLayout(false);
             PerformLayout();
         }

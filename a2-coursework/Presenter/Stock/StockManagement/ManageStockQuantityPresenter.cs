@@ -29,6 +29,11 @@ public class ManageStockQuantityPresenter : BasePresenter<IManageStockQuantityVi
         set => _view.ReasonForQuantityChange = value;
     }
 
+    public bool ReasonForQuantityChangeReadOnly {
+        get => _view.ReasonForChangedReadOnly;
+        set => _view.ReasonForChangedReadOnly = value;
+    }
+
     public void ResetBulkEdit() {
         _view.BulkAddQuantity = 0;
         _view.BulkRemoveQuantity = 0;

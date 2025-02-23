@@ -24,12 +24,12 @@ public partial class ViewSearchBar : UserControl, IThemeable {
         tbSearch.Theme();
 
         btnView.ThemeWeak();
-        btnView.Image = IconTheme.CurrentTheme.Eye;
+        btnView.Image = IconTheme.Current.Eye;
         btnShowArchived.ThemeWeak();
-        btnShowArchived.Image = _showArchived ? IconTheme.CurrentTheme.OpenBox : IconTheme.CurrentTheme.ClosedBox;
+        btnShowArchived.Image = _showArchived ? IconTheme.Current.OpenBox : IconTheme.Current.ClosedBox;
         btnClear.ThemeWeak();
-        btnClear.Image = IconTheme.CurrentTheme.Cross;
-        pbSearchBtn.Image = IconTheme.CurrentTheme.Search;
+        btnClear.Image = IconTheme.Current.Cross;
+        pbSearchBtn.Image = IconTheme.Current.Search;
     }
 
     public void SetToolTipVisibility() {
@@ -51,7 +51,7 @@ public partial class ViewSearchBar : UserControl, IThemeable {
         set {
             _showArchived = value;
 
-            btnShowArchived.Image = _showArchived ? IconTheme.CurrentTheme.OpenBox : IconTheme.CurrentTheme.ClosedBox;
+            btnShowArchived.Image = _showArchived ? IconTheme.Current.OpenBox : IconTheme.Current.ClosedBox;
             toolTip.SetToolTip(btnShowArchived, _showArchived ? "Hide archived" : "Show archived");
         }
     }

@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace a2_coursework.View.Stock.StockManagement;
-public class DisplayStockItem : INotifyPropertyChanged {
+public class DisplayStockModel : INotifyPropertyChanged {
     private int _id;
     public int Id {
         get => _id;
@@ -23,7 +23,7 @@ public class DisplayStockItem : INotifyPropertyChanged {
     }
 
     private string _sku = "";
-    public string SKU {
+    public string Sku {
         get => _sku;
         set {
             _sku = value;
@@ -58,10 +58,10 @@ public class DisplayStockItem : INotifyPropertyChanged {
         }
     }
 
-    public DisplayStockItem(StockModel stockItem) {
+    public DisplayStockModel(StockModel stockItem) {
         Id = stockItem.Id;
         Name = stockItem.Name;
-        SKU = stockItem.SKU;
+        Sku = stockItem.Sku;
         Quantity = stockItem.Quantity;
         QuantityLevel = stockItem.Quantity >= stockItem.HighQuantity ? "High" : stockItem.Quantity <= stockItem.LowQuantity ? "Low" : "Medium";
         Archived = stockItem.Archived;

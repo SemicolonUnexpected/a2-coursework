@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             pbSearchBtn = new PictureBox();
-            this.btnView = new CustomControls.CustomButton();
+            btnView = new CustomControls.CustomButton();
             pnlSpacer1 = new Panel();
             toolTip = new ToolTip(components);
             btnClear = new CustomControls.CustomButton();
@@ -49,28 +49,28 @@
             // 
             // btnView
             // 
-            this.btnView.BackColor = Color.FromArgb(9, 9, 10);
-            this.btnView.BorderColor = Color.FromArgb(39, 39, 42);
-            this.btnView.BorderThickness = 1F;
-            this.btnView.ClickedBorderColor = Color.FromArgb(39, 39, 42);
-            this.btnView.ClickedColor = Color.FromArgb(39, 39, 42);
-            this.btnView.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            this.btnView.DisabledBorderColor = Color.Empty;
-            this.btnView.DisabledColor = Color.Empty;
-            this.btnView.Dock = DockStyle.Right;
-            this.btnView.ForeColor = Color.FromArgb(250, 250, 250);
-            this.btnView.HoverBorderColor = Color.FromArgb(39, 39, 42);
-            this.btnView.HoverColor = Color.FromArgb(39, 39, 42);
-            this.btnView.Image = Properties.Resources.eye_light;
-            this.btnView.ImageRectangle = new Rectangle(7, 7, 26, 26);
-            this.btnView.Location = new Point(546, 2);
-            this.btnView.Name = "btnView";
-            this.btnView.Size = new Size(40, 40);
-            this.btnView.TabIndex = 11;
-            this.btnView.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
-            this.btnView.TextPosition = new Point(0, 0);
-            toolTip.SetToolTip(this.btnView, "Archive");
-            this.btnView.Click += this.btnView_Click;
+            btnView.BackColor = Color.FromArgb(9, 9, 10);
+            btnView.BorderColor = Color.FromArgb(39, 39, 42);
+            btnView.BorderThickness = 1F;
+            btnView.ClickedBorderColor = Color.FromArgb(39, 39, 42);
+            btnView.ClickedColor = Color.FromArgb(39, 39, 42);
+            btnView.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnView.DisabledBorderColor = Color.Empty;
+            btnView.DisabledColor = Color.Empty;
+            btnView.Dock = DockStyle.Right;
+            btnView.ForeColor = Color.FromArgb(250, 250, 250);
+            btnView.HoverBorderColor = Color.FromArgb(39, 39, 42);
+            btnView.HoverColor = Color.FromArgb(39, 39, 42);
+            btnView.Image = Properties.Resources.eye_light;
+            btnView.ImageRectangle = new Rectangle(7, 7, 26, 26);
+            btnView.Location = new Point(546, 2);
+            btnView.Name = "btnView";
+            btnView.Size = new Size(40, 40);
+            btnView.TabIndex = 11;
+            btnView.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
+            btnView.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnView, "View");
+            btnView.Click += btnView_Click;
             // 
             // pnlSpacer1
             // 
@@ -174,7 +174,7 @@
             Controls.Add(pbSearchBtn);
             Controls.Add(tbSearch);
             Controls.Add(pnlSpacer1);
-            Controls.Add(this.btnView);
+            Controls.Add(btnView);
             Controls.Add(pnlSpacer2);
             Controls.Add(btnShowArchived);
             Name = "ViewSearchBar";

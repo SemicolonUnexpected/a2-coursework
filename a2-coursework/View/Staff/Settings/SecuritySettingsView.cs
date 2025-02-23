@@ -26,8 +26,8 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
     }
 
     public void Theme() {
-        pbShowCurrentPassword.Image = tbCurrentPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
-        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowCurrentPassword.Image = tbCurrentPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
+        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
 
         BackColor = ColorScheme.Current.Background;
 
@@ -58,10 +58,10 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
 
         lblPasswordError.ThemeError();
 
-        pbEightLong.Image = EightLong ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
-        pbNumber.Image = Number ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
-        pbSpecialCharacter.Image = SpecialCharacter ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
-        pbUppercaseLowercase.Image = UppercaseLowercase ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+        pbEightLong.Image = EightLong ? IconTheme.Current.Tick : IconTheme.Current.Cross;
+        pbNumber.Image = Number ? IconTheme.Current.Tick : IconTheme.Current.Cross;
+        pbSpecialCharacter.Image = SpecialCharacter ? IconTheme.Current.Tick : IconTheme.Current.Cross;
+        pbUppercaseLowercase.Image = UppercaseLowercase ? IconTheme.Current.Tick : IconTheme.Current.Cross;
 
         btnChangePassword.ThemeStrong();
 
@@ -120,7 +120,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
         get => _eightLong;
         set {
             _eightLong = value;
-            pbEightLong.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbEightLong.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -129,7 +129,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
         get => _number;
         set {
             _number = value;
-            pbNumber.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbNumber.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -138,7 +138,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
         get => _specialCharacter;
         set {
             _specialCharacter = value;
-            pbSpecialCharacter.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbSpecialCharacter.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -147,7 +147,7 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
         get => _uppercaseLowercase;
         set {
             _uppercaseLowercase = value;
-            pbUppercaseLowercase.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbUppercaseLowercase.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -228,13 +228,13 @@ public partial class SecuritySettingsView : Form, ISecuritySettingsView, IThemea
     }
     private void pbShowCurrentPassword_Click(object sender, EventArgs e) {
         tbCurrentPassword.UsePasswordChar = !tbCurrentPassword.UsePasswordChar;
-        pbShowCurrentPassword.Image = tbCurrentPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowCurrentPassword.Image = tbCurrentPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
         toolTip.SetToolTip(pbShowCurrentPassword, tbCurrentPassword.UsePasswordChar ? "Show your password" : "Hide your password");
     }
 
     private void pbShowNewPassword_Click(object sender, EventArgs e) {
         tbNewPassword.UsePasswordChar = !tbNewPassword.UsePasswordChar;
-        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
         toolTip.SetToolTip(pbShowNewPassword, tbNewPassword.UsePasswordChar ? "Show your password" : "Hide your password");
     }
 

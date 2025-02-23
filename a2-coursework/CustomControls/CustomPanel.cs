@@ -48,20 +48,15 @@ public partial class CustomPanel : Panel {
     protected override void OnPaint(PaintEventArgs e) {
         Graphics graphics = e.Graphics;
 
-        // Scale the corners based on DPI
-        float scalingFactor = DeviceDpi / 96f;
-
-        // The rectangle of the control which is drawn
-        Rectangle rectangleSurface = ClientRectangle;
         // Get the correct size for the border
-        RectangleF borderRectangle = RectangleF.Inflate(rectangleSurface, -BorderThickness, -BorderThickness);
+        RectangleF borderRectangle = RectangleF.Inflate(ClientRectangle, -BorderThickness, -BorderThickness);
 
         // The size of the border to prevent a jagged edge
         int smoothSize = BorderThickness > 0 ? (int)BorderThickness : 2;
 
         if (CornerRadii.All != 0) {
-            using GraphicsPath pathSurface = CustomControlHelpers.GetRoundedRectGraphicPath(rectangleSurface, CornerRadii * scalingFactor);
-            using GraphicsPath pathBorder = CustomControlHelpers.GetRoundedRectGraphicPath(borderRectangle, (CornerRadii - BorderThickness) * scalingFactor);
+            using GraphicsPath pathSurface = CustomControlHelpers.GetRoundedRectGraphicPath(ClientRectangle, CornerRadii);
+            using GraphicsPath pathBorder = CustomControlHelpers.GetRoundedRectGraphicPath(borderRectangle, CornerRadii - BorderThickness);
             using Pen penSurface = new(Parent!.BackColor, smoothSize);
             using Pen penBorder = new(BorderColor, BorderThickness);
 
@@ -77,7 +72,7 @@ public partial class CustomPanel : Panel {
         else {
             graphics.SmoothingMode = SmoothingMode.None;
 
-            Region = new Region(rectangleSurface);
+            Region = new Region(ClientRectangle);
 
             if (BorderThickness < 1) return;
 
@@ -95,6 +90,7 @@ public partial class CustomPanel : Panel {
     protected override void ScaleControl(SizeF factor, BoundsSpecified specified) {
         if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
             BorderThickness *= factor.Width;
+            CornerRadii *= factor.Width;
         }
         base.ScaleControl(factor, specified);
     }

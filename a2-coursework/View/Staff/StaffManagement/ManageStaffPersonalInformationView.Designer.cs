@@ -51,6 +51,7 @@
             diDateOfBirth.Name = "diDateOfBirth";
             diDateOfBirth.NullValid = true;
             diDateOfBirth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            diDateOfBirth.ReadOnly = false;
             diDateOfBirth.Size = new Size(180, 68);
             diDateOfBirth.TabIndex = 20;
             diDateOfBirth.ToolTipsActive = true;
@@ -184,7 +185,7 @@
             Controls.Add(lblForenameTitle);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStaffPersonalInformationView";
-            Text = "ManageStaffPeronalInformation";
+            Text = "Personal Details";
             ResumeLayout(false);
             PerformLayout();
         }

@@ -187,7 +187,7 @@
             Controls.Add(lblEmailTitle);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStaffContactDetailsView";
-            Text = "ManageStaffContactDetailsView";
+            Text = "Contact Details";
             ResumeLayout(false);
             PerformLayout();
         }

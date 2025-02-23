@@ -24,6 +24,8 @@ public partial class ManageStaffCredentialsView : Form, IThemeable, IManageStaff
     }
 
     public void Theme() {
+        BackColor = ColorScheme.Current.Background;
+
         lblPrivilegeLevel.ThemeTitle();
         lblSuggestedUsername.ThemeSubtitle();
         lblUsername.ThemeTitle();

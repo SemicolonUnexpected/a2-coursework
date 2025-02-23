@@ -2,7 +2,7 @@
 using a2_coursework.View.StaffView.StaffManagement;
 
 namespace a2_coursework.Interfaces.Staff.StaffManagement;
-public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaff> {
+public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaffModel> {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;
@@ -15,7 +15,7 @@ public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaff> {
     public string DataGridText { set; }
     public bool ShowArchivedItems { get; }
     public bool SelectedItemArchived { set; get; }
-    public DisplayStaff? SelectedItem { get; }
+    public DisplayStaffModel? SelectedItem { get; }
 
     public void DisableAll();
     public void EnableAll();

@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.Customers {
-    partial class CustomerDisplayView {
+    partial class DisplayCustomerView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -23,23 +23,22 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             pnlData = new CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            columnID = new DataGridViewTextBoxColumn();
-            columnName = new DataGridViewTextBoxColumn();
-            columnSKU = new DataGridViewTextBoxColumn();
-            columnQuantity = new DataGridViewTextBoxColumn();
-            columnQuantityLevel = new DataGridViewTextBoxColumn();
-            columnArchived = new DataGridViewTextBoxColumn();
             sb = new CustomControls.CustomScrollBar();
             lblCustomers = new Label();
             topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
+            columnId = new DataGridViewTextBoxColumn();
+            columnName = new DataGridViewTextBoxColumn();
+            columnPhoneNumber = new DataGridViewTextBoxColumn();
+            columnEmail = new DataGridViewTextBoxColumn();
+            columnArchived = new DataGridViewTextBoxColumn();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -86,26 +85,26 @@
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle6.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle6.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
-            dataGridViewCellStyle6.ForeColor = Color.White;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            dataGridViewCellStyle6.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle6.SelectionForeColor = Color.White;
-            dataGridViewCellStyle6.WrapMode = DataGridViewTriState.False;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 60;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnID, columnName, columnSKU, columnQuantity, columnQuantityLevel, columnArchived });
-            dataGridViewCellStyle9.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle9.Font = new Font("Bahnschrift", 10F);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnId, columnName, columnPhoneNumber, columnEmail, columnArchived });
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.Font = new Font("Bahnschrift", 10F);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.SelectionForeColor = Color.White;
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle4;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView.EnableHeadersVisualStyles = false;
@@ -116,69 +115,17 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 30;
             dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle10.ForeColor = Color.White;
-            dataGridViewCellStyle10.SelectionBackColor = Color.FromArgb(39, 39, 42);
-            dataGridViewCellStyle10.WrapMode = DataGridViewTriState.False;
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle5.ForeColor = Color.White;
+            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(39, 39, 42);
+            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle5;
             dataGridView.RowTemplate.Height = 30;
             dataGridView.ScrollBars = ScrollBars.None;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(601, 349);
             dataGridView.TabIndex = 1;
-            // 
-            // columnID
-            // 
-            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnID.HeaderText = "ID";
-            columnID.Name = "columnID";
-            columnID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnID.Width = 47;
-            // 
-            // columnName
-            // 
-            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle7;
-            columnName.HeaderText = "Name";
-            columnName.Name = "columnName";
-            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnSKU
-            // 
-            columnSKU.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnSKU.HeaderText = "SKU";
-            columnSKU.Name = "columnSKU";
-            columnSKU.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnSKU.Width = 62;
-            // 
-            // columnQuantity
-            // 
-            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantity.HeaderText = "Quantity";
-            columnQuantity.Name = "columnQuantity";
-            columnQuantity.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantity.Width = 92;
-            // 
-            // columnQuantityLevel
-            // 
-            columnQuantityLevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantityLevel.HeaderText = "Quantity Level";
-            columnQuantityLevel.Name = "columnQuantityLevel";
-            columnQuantityLevel.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantityLevel.Width = 136;
-            // 
-            // columnArchived
-            // 
-            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnArchived.DataPropertyName = "IsArchived";
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.TopRight;
-            columnArchived.DefaultCellStyle = dataGridViewCellStyle8;
-            columnArchived.HeaderText = "Archived";
-            columnArchived.Name = "columnArchived";
-            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnArchived.Width = 96;
             // 
             // sb
             // 
@@ -230,6 +177,50 @@
             topBar.Size = new Size(625, 44);
             topBar.TabIndex = 11;
             // 
+            // columnId
+            // 
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnId";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
+            // 
+            // columnName
+            // 
+            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
+            columnName.HeaderText = "Name";
+            columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnPhoneNumber
+            // 
+            columnPhoneNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnPhoneNumber.HeaderText = "Phone Number";
+            columnPhoneNumber.Name = "columnPhoneNumber";
+            columnPhoneNumber.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnPhoneNumber.Width = 141;
+            // 
+            // columnEmail
+            // 
+            columnEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnEmail.HeaderText = "Email";
+            columnEmail.Name = "columnEmail";
+            columnEmail.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnEmail.Width = 74;
+            // 
+            // columnArchived
+            // 
+            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnArchived.DataPropertyName = "IsArchived";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
+            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
+            columnArchived.HeaderText = "Archived";
+            columnArchived.Name = "columnArchived";
+            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnArchived.Width = 96;
+            // 
             // CustomerDisplayView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -256,11 +247,10 @@
         private DataGridView dataGridView;
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
-        private DataGridViewTextBoxColumn columnID;
+        private DataGridViewTextBoxColumn columnId;
         private DataGridViewTextBoxColumn columnName;
-        private DataGridViewTextBoxColumn columnSKU;
-        private DataGridViewTextBoxColumn columnQuantity;
-        private DataGridViewTextBoxColumn columnQuantityLevel;
+        private DataGridViewTextBoxColumn columnPhoneNumber;
+        private DataGridViewTextBoxColumn columnEmail;
         private DataGridViewTextBoxColumn columnArchived;
     }
 }

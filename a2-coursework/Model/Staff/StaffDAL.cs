@@ -227,6 +227,29 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
+    public static async Task<bool> CreateStaff( string username, string hashedPassword, string salt, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string address, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, int privilegeLevelId) { await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("CreateStaff", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("Username", username);
+        command.Parameters.AddWithValue("HashedPassword", hashedPassword);
+        command.Parameters.AddWithValue("Salt", salt);
+        command.Parameters.AddWithValue("Forename", forename);
+        command.Parameters.AddWithValue("Surname", surname);
+        command.Parameters.AddWithValue("DateOfBirth", dateOfBirth);
+        command.Parameters.AddWithValue("Email", email);
+        command.Parameters.AddWithValue("PhoneNumber", phoneNumber);
+        command.Parameters.AddWithValue("Address", address);
+        command.Parameters.AddWithValue("EmergencyContactForename", emergencyContactForename);
+        command.Parameters.AddWithValue("EmergencyContactSurname", emergencyContactSurname);
+        command.Parameters.AddWithValue("EmergencyContactPhoneNumber", emergencyContactPhoneNumber);
+        command.Parameters.AddWithValue("PrivilegeLevelID", privilegeLevelId);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+        return rowsAffected > 0;
+    }
+
     private static PrivilegeLevel ConvertToPrivilegeLevel(string value) => value switch {
         "admin" => PrivilegeLevel.Admin,
         "office" => PrivilegeLevel.Office,

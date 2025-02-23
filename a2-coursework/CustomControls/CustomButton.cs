@@ -1,4 +1,6 @@
-﻿namespace a2_coursework.CustomControls;
+﻿using System.Drawing.Drawing2D;
+
+namespace a2_coursework.CustomControls;
 public partial class CustomButton : CustomPanel {
 
     public CustomButton() {
@@ -31,6 +33,25 @@ public partial class CustomButton : CustomPanel {
             base.BackColor = BackColor;
             base.BorderColor = BorderColor;
             base.OnMouseLeave(e);
+        }
+    }
+
+    public void CheckFocus() {
+        if (!Enabled) return;
+
+        GraphicsPath region = CustomControlHelpers.GetRoundedRectGraphicPath(ClientRectangle, CornerRadii);
+
+        if (!region.IsVisible(PointToClient(MousePosition))) {
+            base.BackColor = BackColor;
+            base.BorderColor = BorderColor;
+        }
+        else if ((MouseButtons & MouseButtons.Left) != 0) {
+            base.BackColor = ClickedColor;
+            base.BorderColor = ClickedBorderColor;
+        }
+        else {
+            base.BackColor = HoverColor;
+            base.BorderColor = HoverBorderColor;
         }
     }
 

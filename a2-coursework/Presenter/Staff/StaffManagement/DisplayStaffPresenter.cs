@@ -1,4 +1,5 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Staff;
@@ -7,7 +8,7 @@ using a2_coursework.View.StaffView.StaffManagement;
 
 namespace a2_coursework.Presenter.StaffPresenters.ManageStaff;
 
-public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffModel, DisplayStaff>, IChildPresenter, INavigatingPresenter {
+public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffModel, DisplayStaffModel>, IChildPresenter, INavigatingPresenter {
     private readonly StaffModel _staff;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
@@ -47,7 +48,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
         else models = _models;
 
         foreach (StaffModel staff in models) {
-            DisplayStaff displayStaff = CreateDisplayItem(staff);
+            DisplayStaffModel displayStaff = CreateDisplayItem(staff);
             _modelDisplayMap.Add(displayStaff, staff);
             _displayModels.Add(displayStaff);
         }
@@ -55,7 +56,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayStaff CreateDisplayItem(StaffModel staff) => new DisplayStaff(staff);
+    protected override DisplayStaffModel CreateDisplayItem(StaffModel staff) => new DisplayStaffModel(staff);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -143,7 +144,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateEditStaff(_modelDisplayMap[_view.SelectedItem], _staff);
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateEditStaff(_modelDisplayMap[_view.SelectedItem], _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
@@ -152,8 +153,8 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
 
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = ViewFactory.CreateAddStaff();
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateAddStaff(_staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     protected override void SortByColumn(string columnName, bool sortAscending) {

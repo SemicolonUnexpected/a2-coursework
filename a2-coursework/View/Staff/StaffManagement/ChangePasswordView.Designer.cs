@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.Users {
-    partial class ChangePasswordView {
+    partial class ChangeStaffPasswordView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -442,7 +442,7 @@
             lblUsernameError.Anchor = AnchorStyles.Top;
             lblUsernameError.Font = new Font("Bahnschrift", 12F);
             lblUsernameError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblUsernameError.Location = new Point(69, 189);
+            lblUsernameError.Location = new Point(81, 189);
             lblUsernameError.Name = "lblUsernameError";
             lblUsernameError.Size = new Size(330, 38);
             lblUsernameError.TabIndex = 25;

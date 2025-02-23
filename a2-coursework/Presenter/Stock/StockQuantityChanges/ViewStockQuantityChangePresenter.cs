@@ -1,7 +1,7 @@
-﻿using a2_coursework.Interfaces;
+﻿using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockQuantityChanges;
 using a2_coursework.Model.Stock;
-using a2_coursework.View;
 
 namespace a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
 public class ViewStockQuantityChangePresenter : BasePresenter<IViewStockQuantityChangeView>, INavigatingPresenter, IChildPresenter {
@@ -30,7 +30,7 @@ public class ViewStockQuantityChangePresenter : BasePresenter<IViewStockQuantity
     private void NavigateBack() {
         if (!CanExit()) return;
 
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateDisplayStockQuantityChanges();
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateDisplayStockQuantityChanges();
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

@@ -1,4 +1,5 @@
-﻿using a2_coursework.Interfaces;
+﻿using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Staff;
 using a2_coursework.View;
@@ -22,12 +23,16 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
 
     private void NavigateBack() {
         if (!CanExit()) return;
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateDisplayStaff(_staff);
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateDisplayStaff(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     protected override void BindValidation() {
         if (_childPresenter is ManageStaffCredentialsPresenter manageStaffCredentialsPresenter) manageStaffCredentialsPresenter.ValidateUsernameRequest += OnValidateUsername;
+    }
+
+    protected override void UnBindValidation() {
+        if (_childPresenter is ManageStaffCredentialsPresenter manageStaffCredentialsPresenter) manageStaffCredentialsPresenter.ValidateUsernameRequest -= OnValidateUsername;
     }
 
     protected override (IChildView childView, INotifyingChildPresenter childPresenter) GetView(string selectedItem) => selectedItem switch {
@@ -42,11 +47,11 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     #region Personal Information
 
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetPersonalInformation() {
-        (IManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) = ViewFactory.CreateManageStaffPersonalInformation();
+        (IManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) = StaffFactory.CreateManageStaffPersonalInformation();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesPersonalInformation(presenter);
         AnyChangesCurrent = () => AnyChangesPersonalInformation(presenter);
-        ValidateInputsCurrent = () => ValidateInputsPersonalInformation(presenter);
+        ValidateCurrent = () => ValidateInputsPersonalInformation(presenter);
         UpdateDatabaseCurrent = () => UpdateDatabasePersonalInformation(presenter);
         UpdateModelCurrent = () => UpdateModelPersonalInformation(presenter);
 
@@ -54,51 +59,33 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     }
 
     private void PopulateDefaultValuesPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
-        presenter.SetForname(_model.Forename);
-        presenter.SetSurname(_model.Surname);
-        presenter.SetDateOfBirth(_model.DateOfBirth);
+        presenter.Forename = _model.Forename;
+        presenter.Surname = _model.Surname;
+        presenter.DateOfBirth = _model.DateOfBirth;
     }
 
-    private bool AnyChangesPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
-        bool forenameValid = presenter.TryGetForename(out string? forename);
-        bool surnameValid = presenter.TryGetSurname(out string? surname);
-        bool dateOfBirthValid = presenter.TryGetDateOfBirth(out DateTime? dateOfBirth);
+    private bool AnyChangesPersonalInformation(ManageStaffPersonalInformationPresenter presenter) => presenter.Forename != _model.Forename || presenter.Surname != _model.Surname || presenter.DateOfBirth != _model.DateOfBirth;
 
-        if (!forenameValid || !surnameValid || !dateOfBirthValid) return true;
-
-        return forename != _model.Forename || surname != _model.Surname || dateOfBirth != _model.DateOfBirth;
-    }
-
-    private bool ValidateInputsPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
-        return presenter.TryGetForename(out _) && presenter.TryGetSurname(out _) && presenter.TryGetDateOfBirth(out _);
-    }
+    private bool ValidateInputsPersonalInformation(ManageStaffPersonalInformationPresenter presenter) => presenter.ForenameValid && presenter.ForenameValid && presenter.ForenameValid;
 
     private Task<bool> UpdateDatabasePersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
-        presenter.TryGetForename(out string? forename);
-        presenter.TryGetSurname(out string? surname);
-        presenter.TryGetDateOfBirth(out DateTime? dateOfBirth);
-
-        return StaffDAL.UpdatePersonalInformation(_model.Id, forename!, surname!, dateOfBirth!.Value);
+        return StaffDAL.UpdatePersonalInformation(_model.Id, presenter.Forename, presenter.Surname, presenter.DateOfBirth);
     }
 
     private void UpdateModelPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
-        presenter.TryGetForename(out string? forename);
-        presenter.TryGetSurname(out string? surname);
-        presenter.TryGetDateOfBirth(out DateTime? dateOfBirth);
-
-        _model.Forename = forename!;
-        _model.Surname = surname!;
-        _model.DateOfBirth = dateOfBirth!.Value;
+        _model.Forename = presenter.Forename;
+        _model.Surname = presenter.Surname;
+        _model.DateOfBirth = presenter.DateOfBirth;
     }
     #endregion
 
     #region Contact Details
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetContactDetails() {
-        (IManageStaffContactDetailsView view, ManageStaffContactDetailsPresenter presenter) = ViewFactory.CreateManageStaffContactDetails();
+        (IManageStaffContactDetailsView view, ManageStaffContactDetailsPresenter presenter) = StaffFactory.CreateManageStaffContactDetails();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesContactDetails(presenter);
         AnyChangesCurrent = () => AnyChangesContactDetails(presenter);
-        ValidateInputsCurrent = () => ValidateInputsContactDetails(presenter);
+        ValidateCurrent = () => ValidateInputsContactDetails(presenter);
         UpdateDatabaseCurrent = () => UpdateDatabaseContactDetails(presenter);
         UpdateModelCurrent = () => UpdateModelContactDetails(presenter);
 
@@ -106,48 +93,31 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     }
 
     private void PopulateDefaultValuesContactDetails(ManageStaffContactDetailsPresenter presenter) {
-        presenter.SetEmail(_model.Email);
-        presenter.SetPhoneNumber(_model.PhoneNumber);
+        presenter.Email = _model.Email;
+        presenter.PhoneNumber = _model.PhoneNumber;
         presenter.Address = _model.Address;
     }
 
-    private bool AnyChangesContactDetails(ManageStaffContactDetailsPresenter presenter) {
-        bool emailValid = presenter.TryGetEmail(out string? email);
-        bool phoneNumberValid = presenter.TryGetPhoneNumber(out string? phoneNumber);
+    private bool AnyChangesContactDetails(ManageStaffContactDetailsPresenter presenter) => presenter.Email != _model.Email || presenter.PhoneNumber != _model.PhoneNumber || presenter.Address != _model.Address;
 
-        if (!emailValid || !phoneNumberValid) return true;
+    private bool ValidateInputsContactDetails(ManageStaffContactDetailsPresenter presenter) => presenter.EmailValid && presenter.PhoneNumberValid;
 
-        return email != _model.Email || phoneNumber != _model.PhoneNumber || presenter.Address != _model.Address;
-    }
-
-    private bool ValidateInputsContactDetails(ManageStaffContactDetailsPresenter presenter) {
-        return presenter.TryGetEmail(out _) && presenter.TryGetPhoneNumber(out _);
-    }
-
-    private Task<bool> UpdateDatabaseContactDetails(ManageStaffContactDetailsPresenter presenter) {
-        presenter.TryGetEmail(out string? email);
-        presenter.TryGetPhoneNumber(out string? phoneNumber);
-
-        return StaffDAL.UpdateContactDetails(_model.Id, email!, phoneNumber!, presenter.Address);
-    }
+    private Task<bool> UpdateDatabaseContactDetails(ManageStaffContactDetailsPresenter presenter) => StaffDAL.UpdateContactDetails(_model.Id, presenter.Email, presenter.PhoneNumber, presenter.Address);
 
     private void UpdateModelContactDetails(ManageStaffContactDetailsPresenter presenter) {
-        presenter.TryGetEmail(out string? email);
-        presenter.TryGetPhoneNumber(out string? phoneNumber);
-
-        _model.Email = email!;
-        _model.PhoneNumber = phoneNumber!;
+        _model.Email = presenter.Email;
+        _model.PhoneNumber = presenter.PhoneNumber;
         _model.Address = presenter.Address;
     }
     #endregion
 
     #region Emergency Contact Details
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetEmergencyContactDetails() {
-        (IManageStaffEmergencyContactDetailsView view, ManageStaffEmergencyContactDetailsPresenter presenter) = ViewFactory.CreateManageStaffEmergencyContactDetails();
+        (IManageStaffEmergencyContactDetailsView view, ManageStaffEmergencyContactDetailsPresenter presenter) = StaffFactory.CreateManageStaffEmergencyContactDetails();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesEmergencyContactDetails(presenter);
         AnyChangesCurrent = () => AnyChangesEmergencyContactDetails(presenter);
-        ValidateInputsCurrent = () => ValidateInputsEmergencyContactDetails(presenter);
+        ValidateCurrent = () => ValidateInputsEmergencyContactDetails(presenter);
         UpdateDatabaseCurrent = () => UpdateDatabaseEmergencyContactDetails(presenter);
         UpdateModelCurrent = () => UpdateModelEmergencyContactDetails(presenter);
 
@@ -157,45 +127,29 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     private void PopulateDefaultValuesEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) {
         presenter.EmergencyContactForename = _model.EmergencyContactForename;
         presenter.EmergencyContactSurname = _model.EmergencyContactSurname;
-        presenter.SetEmergencyContactPhoneNumber(_model.EmergencyContactPhoneNumber);
+        presenter.EmergencyContactPhoneNumber = _model.EmergencyContactPhoneNumber;
     }
 
-    private bool AnyChangesEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) {
-        bool phoneNumberValid = presenter.TryGetEmergencyContactPhoneNumber(out string? phoneNumber);
+    private bool AnyChangesEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) => presenter.EmergencyContactForename != _model.EmergencyContactForename || presenter.EmergencyContactSurname != _model.EmergencyContactSurname || presenter.EmergencyContactPhoneNumber != _model.EmergencyContactPhoneNumber;
 
-        if (!phoneNumberValid) return true;
+    private bool ValidateInputsEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) => presenter.EmergencyContactPhoneNumberValid;
 
-        return presenter.EmergencyContactForename != _model.EmergencyContactForename ||
-               presenter.EmergencyContactSurname != _model.EmergencyContactSurname ||
-               phoneNumber != _model.EmergencyContactPhoneNumber;
-    }
-
-    private bool ValidateInputsEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) {
-        return presenter.TryGetEmergencyContactPhoneNumber(out _);
-    }
-
-    private Task<bool> UpdateDatabaseEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) {
-        presenter.TryGetEmergencyContactPhoneNumber(out string? phoneNumber);
-
-        return StaffDAL.UpdateEmergencyContactInformation(_model.Id, presenter.EmergencyContactForename, presenter.EmergencyContactSurname, phoneNumber!);
-    }
+    private Task<bool> UpdateDatabaseEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) => StaffDAL.UpdateEmergencyContactInformation(_model.Id, presenter.EmergencyContactForename, presenter.EmergencyContactSurname, presenter.EmergencyContactPhoneNumber);
 
     private void UpdateModelEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) {
-        presenter.TryGetEmergencyContactPhoneNumber(out string? phoneNumber);
-
         _model.EmergencyContactForename = presenter.EmergencyContactForename;
         _model.EmergencyContactSurname = presenter.EmergencyContactSurname;
-        _model.EmergencyContactPhoneNumber = phoneNumber!;
+        _model.EmergencyContactPhoneNumber = presenter.EmergencyContactPhoneNumber;
     }
     #endregion
 
     #region Appearance Settings
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetAppearanceSettings() {
-        (IManageStaffAppearanceSettingsView view, ManageStaffAppearanceSettingsPresenter presenter) = ViewFactory.CreateManageStaffAppearanceSettings();
+        (IManageStaffAppearanceSettingsView view, ManageStaffAppearanceSettingsPresenter presenter) = StaffFactory.CreateManageStaffAppearanceSettings();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesAppearanceSettings(presenter);
         AnyChangesCurrent = () => AnyChangesAppearanceSettings(presenter);
-        ValidateInputsCurrent = () => true;
+        ValidateCurrent = () => true;
         UpdateDatabaseCurrent = () => UpdateDatabaseAppearanceSettings(presenter);
         UpdateModelCurrent = () => UpdateModelAppearanceSettings(presenter);
 
@@ -231,13 +185,13 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
 
     #region Credentials
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetCredentials() {
-        (IManageStaffCredentialsView view, ManageStaffCredentialsPresenter presenter) = ViewFactory.CreateManageStaffCredentials();
+        (IManageStaffCredentialsView view, ManageStaffCredentialsPresenter presenter) = StaffFactory.CreateManageStaffCredentials();
 
         presenter.ValidateUsernameRequest += OnValidateUsername;
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesCredentials(presenter);
         AnyChangesCurrent = () => AnyChangesCredentials(presenter);
-        ValidateInputsCurrent = () => ValidateInputsCredentials(presenter);
+        ValidateCurrent = () => ValidateInputsCredentials(presenter);
         UpdateDatabaseCurrent = () => UpdateDatabaseCredentials(presenter);
         UpdateModelCurrent = () => UpdateModelCredentials(presenter);
 
@@ -248,32 +202,20 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
         string suggestedUsername = (_model.Forename[..1] + _model.Surname).ToLower() + _model.Id;
 
         presenter.PrivilegeLevel = _model.PrivilegeLevel;
-        presenter.SetUsername(_model.Username);
+        presenter.Username = _model.Username;
         presenter.SetSuggestedUsername(suggestedUsername);
     }
 
     private bool AnyChangesCredentials(ManageStaffCredentialsPresenter presenter) {
-        bool usernameValid = presenter.TryGetUsername(out string? username);
-
-        if (!usernameValid) return true;
-
-        return username != _model.Username || presenter.PrivilegeLevel != _model.PrivilegeLevel;
+        return presenter.Username != _model.Username || presenter.PrivilegeLevel != _model.PrivilegeLevel;
     }
 
-    private bool ValidateInputsCredentials(ManageStaffCredentialsPresenter presenter) {
-        return presenter.TryGetUsername(out _);
-    }
+    private bool ValidateInputsCredentials(ManageStaffCredentialsPresenter presenter) => presenter.UsernameValid;
 
-    private Task<bool> UpdateDatabaseCredentials(ManageStaffCredentialsPresenter presenter) {
-        presenter.TryGetUsername(out string? username);
-
-        return StaffDAL.UpdateCredentials(_model.Id, username!, presenter.PrivilegeLevel);
-    }
+    private Task<bool> UpdateDatabaseCredentials(ManageStaffCredentialsPresenter presenter) => StaffDAL.UpdateCredentials(_model.Id, presenter.Username, presenter.PrivilegeLevel);
 
     private void UpdateModelCredentials(ManageStaffCredentialsPresenter presenter) {
-        presenter.TryGetUsername(out string? username);
-
-        _model.Username = username!;
+        _model.Username = presenter.Username;
         _model.PrivilegeLevel = presenter.PrivilegeLevel;
     }
 

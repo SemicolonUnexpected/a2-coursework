@@ -1,4 +1,5 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockManagement;
 using a2_coursework.Model.Staff;
@@ -7,7 +8,7 @@ using a2_coursework.View;
 using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
-public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockModel, DisplayStockItem>, IChildPresenter, INavigatingPresenter {
+public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockModel, DisplayStockModel>, IChildPresenter, INavigatingPresenter {
     private readonly StaffModel _staff;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
@@ -47,7 +48,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
         else models = _models;
 
         foreach (StockModel stockItem in models) {
-            DisplayStockItem displayStockItem = CreateDisplayItem(stockItem);
+            DisplayStockModel displayStockItem = CreateDisplayItem(stockItem);
             _modelDisplayMap.Add(displayStockItem, stockItem);
             _displayModels.Add(displayStockItem);
         }
@@ -55,7 +56,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayStockItem CreateDisplayItem(StockModel stockItem) => new DisplayStockItem(stockItem);
+    protected override DisplayStockModel CreateDisplayItem(StockModel stockItem) => new DisplayStockModel(stockItem);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -82,7 +83,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
 
     private IEnumerable<StockModel> FilterOutArchived(IEnumerable<StockModel> stockItems) => stockItems.Where(x => !x.Archived);
 
-    protected override IComparable RankSearch(string searchText, StockModel stockItem) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.SKU.ToLower()), 2) + 1) / MathF.Pow(stockItem.SKU.Length, 2));
+    protected override IComparable RankSearch(string searchText, StockModel stockItem) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.Sku.ToLower()), 2) + 1) / MathF.Pow(stockItem.Sku.Length, 2));
     protected override List<StockModel> OrderDefault(List<StockModel> models) => models.OrderBy(model => model.Id).ToList();
 
     private void SelectionChanged() {
@@ -125,14 +126,14 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateEditStock(_modelDisplayMap[_view.SelectedItem], _staff);
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateEditStock(_modelDisplayMap[_view.SelectedItem], _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
         if (_view.SelectedItem is null) return;
 
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateAddStock(_staff);
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateAddStock(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
@@ -146,8 +147,8 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
             case "columnName":
                 SortBy(x => x.Name, sortAscending);
                 break;
-            case "columnSKU":
-                SortBy(x => x.SKU, sortAscending);
+            case "columnSku":
+                SortBy(x => x.Sku, sortAscending);
                 break;
             case "columnQuantity":
                 SortBy(x => x.Quantity, sortAscending);

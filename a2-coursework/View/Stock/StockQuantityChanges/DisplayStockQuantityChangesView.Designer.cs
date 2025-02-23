@@ -36,7 +36,7 @@
             topBar = new User_Controls.DataGrid.ViewSearchBar();
             columnUsername = new DataGridViewTextBoxColumn();
             columnStockName = new DataGridViewTextBoxColumn();
-            columnSKU = new DataGridViewTextBoxColumn();
+            columnSku = new DataGridViewTextBoxColumn();
             columnQuantity = new DataGridViewTextBoxColumn();
             columnDate = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
@@ -97,7 +97,7 @@
             dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 60;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnUsername, columnStockName, columnSKU, columnQuantity, columnDate, columnArchived });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnUsername, columnStockName, columnSku, columnQuantity, columnDate, columnArchived });
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
             dataGridViewCellStyle4.Font = new Font("Bahnschrift", 10F);
@@ -195,11 +195,11 @@
             // 
             // columnSKU
             // 
-            columnSKU.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnSKU.HeaderText = "SKU";
-            columnSKU.Name = "columnSKU";
-            columnSKU.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnSKU.Width = 62;
+            columnSku.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnSku.HeaderText = "SKU";
+            columnSku.Name = "columnSku";
+            columnSku.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnSku.Width = 62;
             // 
             // columnQuantity
             // 
@@ -255,7 +255,7 @@
         private User_Controls.DataGrid.ViewSearchBar topBar;
         private DataGridViewTextBoxColumn columnUsername;
         private DataGridViewTextBoxColumn columnStockName;
-        private DataGridViewTextBoxColumn columnSKU;
+        private DataGridViewTextBoxColumn columnSku;
         private DataGridViewTextBoxColumn columnQuantity;
         private DataGridViewTextBoxColumn columnDate;
         private DataGridViewTextBoxColumn columnArchived;

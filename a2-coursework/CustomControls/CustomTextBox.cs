@@ -18,6 +18,7 @@ public partial class CustomTextBox : UserControl {
         if (specified is BoundsSpecified.All or BoundsSpecified.Size) {
             TextBoxInset = new Padding((int)(TextBoxInset.Left * factor.Width), (int)(TextBoxInset.Top * factor.Height), (int)(TextBoxInset.Right * factor.Width), (int)(TextBoxInset.Bottom * factor.Height));
             BorderThickness *= factor.Width;
+            CornerRadii *= factor.Width;
         }
 
         base.ScaleControl(factor, specified);

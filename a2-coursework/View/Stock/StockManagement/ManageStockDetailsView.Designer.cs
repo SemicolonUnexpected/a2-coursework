@@ -25,12 +25,12 @@
         private void InitializeComponent() {
             tbStockName = new CustomControls.CustomTextBox();
             lblStockName = new Label();
-            lblSKU = new Label();
-            tbSKU = new CustomControls.CustomTextBox();
+            lblSku = new Label();
+            tbSku = new CustomControls.CustomTextBox();
             tbStockDescription = new CustomControls.CustomTextBox();
             lblStockDescription = new Label();
             lblArchived = new Label();
-            lblNameSKUError = new Label();
+            lblNameSkuError = new Label();
             lblCharacterLimit = new Label();
             rbArchived = new CustomControls.CustomRadioButton();
             pnlArchived = new CustomControls.CustomPanel();
@@ -49,7 +49,7 @@
             tbStockName.Font = new Font("Bahnschrift", 12F);
             tbStockName.ForeColor = Color.Empty;
             tbStockName.HoverColor = Color.Empty;
-            tbStockName.Location = new Point(135, 43);
+            tbStockName.Location = new Point(135, 38);
             tbStockName.Margin = new Padding(5);
             tbStockName.MaxLength = 256;
             tbStockName.MultiLine = false;
@@ -69,7 +69,7 @@
             lblStockName.AutoSize = true;
             lblStockName.Font = new Font("Bahnschrift", 14F);
             lblStockName.ForeColor = Color.White;
-            lblStockName.Location = new Point(135, 10);
+            lblStockName.Location = new Point(135, 5);
             lblStockName.Margin = new Padding(5);
             lblStockName.Name = "lblStockName";
             lblStockName.Size = new Size(109, 23);
@@ -79,42 +79,42 @@
             // 
             // lblSKU
             // 
-            lblSKU.Anchor = AnchorStyles.None;
-            lblSKU.AutoSize = true;
-            lblSKU.Font = new Font("Bahnschrift", 14F);
-            lblSKU.ForeColor = Color.White;
-            lblSKU.Location = new Point(135, 93);
-            lblSKU.Margin = new Padding(5);
-            lblSKU.Name = "lblSKU";
-            lblSKU.Size = new Size(45, 23);
-            lblSKU.TabIndex = 12;
-            lblSKU.Text = "SKU";
-            lblSKU.Click += ClearFocusOnClick;
+            lblSku.Anchor = AnchorStyles.None;
+            lblSku.AutoSize = true;
+            lblSku.Font = new Font("Bahnschrift", 14F);
+            lblSku.ForeColor = Color.White;
+            lblSku.Location = new Point(135, 88);
+            lblSku.Margin = new Padding(5);
+            lblSku.Name = "lblSKU";
+            lblSku.Size = new Size(45, 23);
+            lblSku.TabIndex = 12;
+            lblSku.Text = "SKU";
+            lblSku.Click += ClearFocusOnClick;
             // 
             // tbSKU
             // 
-            tbSKU.AllowPaste = true;
-            tbSKU.Anchor = AnchorStyles.None;
-            tbSKU.BackColor = Color.FromArgb(9, 9, 10);
-            tbSKU.BorderColor = Color.FromArgb(39, 39, 42);
-            tbSKU.BorderThickness = 1F;
-            tbSKU.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            tbSKU.Font = new Font("Bahnschrift", 12F);
-            tbSKU.ForeColor = Color.Empty;
-            tbSKU.HoverColor = Color.Empty;
-            tbSKU.Location = new Point(135, 126);
-            tbSKU.Margin = new Padding(5);
-            tbSKU.MaxLength = 15;
-            tbSKU.MultiLine = false;
-            tbSKU.Name = "tbSKU";
-            tbSKU.PlaceholderText = "DET-123";
-            tbSKU.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbSKU.ReadOnly = false;
-            tbSKU.Size = new Size(355, 40);
-            tbSKU.TabIndex = 2;
-            tbSKU.TextAlign = HorizontalAlignment.Left;
-            tbSKU.TextBoxInset = new Padding(9, 10, 9, 10);
-            tbSKU.UsePasswordChar = false;
+            tbSku.AllowPaste = true;
+            tbSku.Anchor = AnchorStyles.None;
+            tbSku.BackColor = Color.FromArgb(9, 9, 10);
+            tbSku.BorderColor = Color.FromArgb(39, 39, 42);
+            tbSku.BorderThickness = 1F;
+            tbSku.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbSku.Font = new Font("Bahnschrift", 12F);
+            tbSku.ForeColor = Color.Empty;
+            tbSku.HoverColor = Color.Empty;
+            tbSku.Location = new Point(135, 121);
+            tbSku.Margin = new Padding(5);
+            tbSku.MaxLength = 15;
+            tbSku.MultiLine = false;
+            tbSku.Name = "tbSKU";
+            tbSku.PlaceholderText = "DET-123";
+            tbSku.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbSku.ReadOnly = false;
+            tbSku.Size = new Size(355, 40);
+            tbSku.TabIndex = 2;
+            tbSku.TextAlign = HorizontalAlignment.Left;
+            tbSku.TextBoxInset = new Padding(9, 10, 9, 10);
+            tbSku.UsePasswordChar = false;
             // 
             // tbStockDescription
             // 
@@ -127,7 +127,7 @@
             tbStockDescription.Font = new Font("Bahnschrift", 12F);
             tbStockDescription.ForeColor = Color.Empty;
             tbStockDescription.HoverColor = Color.Empty;
-            tbStockDescription.Location = new Point(135, 247);
+            tbStockDescription.Location = new Point(135, 257);
             tbStockDescription.Margin = new Padding(5);
             tbStockDescription.MaximumSize = new Size(355, 83);
             tbStockDescription.MaxLength = 1000;
@@ -148,7 +148,7 @@
             lblStockDescription.AutoSize = true;
             lblStockDescription.Font = new Font("Bahnschrift", 14F);
             lblStockDescription.ForeColor = Color.White;
-            lblStockDescription.Location = new Point(135, 214);
+            lblStockDescription.Location = new Point(135, 224);
             lblStockDescription.Margin = new Padding(5);
             lblStockDescription.Name = "lblStockDescription";
             lblStockDescription.Size = new Size(241, 23);
@@ -172,22 +172,22 @@
             // 
             // lblNameSKUError
             // 
-            lblNameSKUError.Anchor = AnchorStyles.None;
-            lblNameSKUError.Font = new Font("Bahnschrift", 12F);
-            lblNameSKUError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblNameSKUError.Location = new Point(135, 171);
-            lblNameSKUError.Name = "lblNameSKUError";
-            lblNameSKUError.Size = new Size(355, 38);
-            lblNameSKUError.TabIndex = 19;
-            lblNameSKUError.TextAlign = ContentAlignment.TopCenter;
-            lblNameSKUError.Click += ClearFocusOnClick;
+            lblNameSkuError.Anchor = AnchorStyles.None;
+            lblNameSkuError.Font = new Font("Bahnschrift", 12F);
+            lblNameSkuError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblNameSkuError.Location = new Point(135, 166);
+            lblNameSkuError.Name = "lblNameSKUError";
+            lblNameSkuError.Size = new Size(355, 53);
+            lblNameSkuError.TabIndex = 19;
+            lblNameSkuError.TextAlign = ContentAlignment.TopCenter;
+            lblNameSkuError.Click += ClearFocusOnClick;
             // 
             // lblCharacterLimit
             // 
             lblCharacterLimit.Anchor = AnchorStyles.None;
             lblCharacterLimit.Font = new Font("Bahnschrift", 12F);
             lblCharacterLimit.ForeColor = Color.FromArgb(168, 171, 174);
-            lblCharacterLimit.Location = new Point(340, 335);
+            lblCharacterLimit.Location = new Point(340, 345);
             lblCharacterLimit.Margin = new Padding(10, 0, 10, 20);
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
@@ -220,7 +220,7 @@
             pnlArchived.Controls.Add(lblArchived);
             pnlArchived.Controls.Add(rbArchived);
             pnlArchived.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlArchived.Location = new Point(135, 364);
+            pnlArchived.Location = new Point(135, 374);
             pnlArchived.Margin = new Padding(5);
             pnlArchived.Name = "pnlArchived";
             pnlArchived.Padding = new Padding(5);
@@ -245,16 +245,16 @@
             Controls.Add(tbFocusHolder);
             Controls.Add(pnlArchived);
             Controls.Add(lblCharacterLimit);
-            Controls.Add(lblNameSKUError);
-            Controls.Add(lblSKU);
+            Controls.Add(lblNameSkuError);
+            Controls.Add(lblSku);
             Controls.Add(lblStockDescription);
             Controls.Add(lblStockName);
             Controls.Add(tbStockDescription);
-            Controls.Add(tbSKU);
+            Controls.Add(tbSku);
             Controls.Add(tbStockName);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStockDetailsView";
-            Text = "Stock_Details_view";
+            Text = "Stock Details";
             Click += ClearFocusOnClick;
             pnlArchived.ResumeLayout(false);
             pnlArchived.PerformLayout();
@@ -266,12 +266,12 @@
 
         private CustomControls.CustomTextBox tbStockName;
         private Label lblStockName;
-        private Label lblSKU;
-        private CustomControls.CustomTextBox tbSKU;
+        private Label lblSku;
+        private CustomControls.CustomTextBox tbSku;
         private CustomControls.CustomTextBox tbStockDescription;
         private Label lblStockDescription;
         private Label lblArchived;
-        private Label lblNameSKUError;
+        private Label lblNameSkuError;
         private Label lblCharacterLimit;
         private CustomControls.CustomRadioButton rbArchived;
         private CustomControls.CustomPanel pnlArchived;

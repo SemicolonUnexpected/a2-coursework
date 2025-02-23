@@ -96,7 +96,7 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
 
         columnUsername.DataPropertyName = nameof(DisplayStockQuantityChange.Username);
         columnStockName.DataPropertyName = nameof(DisplayStockQuantityChange.StockName);
-        columnSKU.DataPropertyName = nameof(DisplayStockQuantityChange.StockSKU);
+        columnSku.DataPropertyName = nameof(DisplayStockQuantityChange.StockSKU);
         columnQuantity.DataPropertyName = nameof(DisplayStockQuantityChange.Quantity);
         columnDate.DataPropertyName = nameof(DisplayStockQuantityChange.Date);
         columnArchived.DataPropertyName = nameof(DisplayStockQuantityChange.Archived);

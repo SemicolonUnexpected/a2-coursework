@@ -22,7 +22,10 @@ public partial class ManageStaffPersonalInformationView : Form, IManageStaffPers
 
         tbForename.TextChanged += (s, e) => ForenameChanged?.Invoke(this, EventArgs.Empty);
         tbSurname.TextChanged += (s, e) => SurnameChanged?.Invoke(this, EventArgs.Empty);
-        diDateOfBirth.TextChanged += (s, e) => DateOfBirthChanged?.Invoke(this, EventArgs.Empty);
+        diDateOfBirth.DateTextChanged += (s, e) => DateOfBirthChanged?.Invoke(this, EventArgs.Empty);
+
+        diDateOfBirth.MinDate = new(1900, 1, 1);
+        diDateOfBirth.MaxDate = DateTime.Today;
     }
 
     public void Theme() {

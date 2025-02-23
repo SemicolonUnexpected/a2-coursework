@@ -20,6 +20,7 @@ public class ManageStaffPersonalInformationPresenter : BasePresenter<IManageStaf
     }
     private void OnDateOfBirthChanged(object? sender, EventArgs e) {
         ValidateDateOfBirth();
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private bool _forenameValid = true;
@@ -45,25 +46,40 @@ public class ManageStaffPersonalInformationPresenter : BasePresenter<IManageStaf
         _view.DateOfBirthError = _dateOfBirthValid ? "" : "Invalid date of birth";
     }
 
-    public void SetForname(string forename) => _view.Forename = forename;
-
-    public bool TryGetForename(out string? forename) {
-        forename = _forenameValid ? _view.Forename : null;
-        return _forenameValid;
+    public string Forename {
+        get => _view.Forename;
+        set => _view.Forename = value;
     }
 
-    public void SetSurname(string surname) => _view.Surname = surname;
-
-    public bool TryGetSurname(out string? surname) {
-        surname = _surnameValid ? _view.Surname : null;
-        return _surnameValid;
+    public bool ForenameValid {
+        get {
+            ValidateNames();
+            return _forenameValid;
+        }
+    }
+    
+    public string Surname {
+        get => _view.Surname;
+        set => _view.Surname = value;
     }
 
-    public void SetDateOfBirth(DateTime? dateOfBirth) => _view.DateOfBirth = dateOfBirth;
+    public bool SurnameValid {
+        get {
+            ValidateNames();
+            return _surnameValid;
+        }
+    }
 
-    public bool TryGetDateOfBirth(out DateTime? dateOfBirth) {
-        dateOfBirth = _dateOfBirthValid ? _view.DateOfBirth : null;
-        return _dateOfBirthValid;
+    public DateTime? DateOfBirth {
+        get => _view.DateOfBirth;
+        set => _view.DateOfBirth = value;
+    }
+
+    public bool DateOfBirthValid {
+        get {
+            ValidateDateOfBirth();
+            return _dateOfBirthValid; 
+        }
     }
 
     public bool CanExit() => true;

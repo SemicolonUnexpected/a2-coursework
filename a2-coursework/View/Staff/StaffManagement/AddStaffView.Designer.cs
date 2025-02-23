@@ -23,27 +23,29 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            backNextDoneBar = new User_Controls.CRUD.PreviousNextDoneBar();
+            components = new System.ComponentModel.Container();
+            previousNextDoneBar = new User_Controls.CRUD.PreviousNextDoneBar();
             pnlHolder = new Panel();
-            pnlMenu = new Panel();
-            lblAppearance = new Label();
+            pnlTop = new Panel();
+            lblTitle = new Label();
             btnBack = new CustomControls.CustomButton();
-            pnlMenu.SuspendLayout();
+            toolTip = new ToolTip(components);
+            pnlTop.SuspendLayout();
             SuspendLayout();
             // 
-            // backNextDoneBar1
+            // previousNextDoneBar
             // 
-            backNextDoneBar.BackColor = Color.FromArgb(9, 9, 10);
-            backNextDoneBar.Dock = DockStyle.Bottom;
-            backNextDoneBar.Location = new Point(0, 459);
-            backNextDoneBar.Margin = new Padding(0);
-            backNextDoneBar.Name = "backNextDoneBar1";
-            backNextDoneBar.Padding = new Padding(2);
-            backNextDoneBar.PreviousVisible = true;
-            backNextDoneBar.DoneVisible = true;
-            backNextDoneBar.NextVisible = true;
-            backNextDoneBar.Size = new Size(654, 41);
-            backNextDoneBar.TabIndex = 33;
+            previousNextDoneBar.BackColor = Color.FromArgb(9, 9, 10);
+            previousNextDoneBar.Dock = DockStyle.Bottom;
+            previousNextDoneBar.DoneVisible = true;
+            previousNextDoneBar.Location = new Point(0, 459);
+            previousNextDoneBar.Margin = new Padding(0);
+            previousNextDoneBar.Name = "previousNextDoneBar";
+            previousNextDoneBar.NextVisible = true;
+            previousNextDoneBar.Padding = new Padding(2);
+            previousNextDoneBar.PreviousVisible = true;
+            previousNextDoneBar.Size = new Size(654, 41);
+            previousNextDoneBar.TabIndex = 33;
             // 
             // pnlHolder
             // 
@@ -54,29 +56,29 @@
             pnlHolder.Size = new Size(654, 419);
             pnlHolder.TabIndex = 31;
             // 
-            // pnlMenu
+            // pnlTop
             // 
-            pnlMenu.Controls.Add(lblAppearance);
-            pnlMenu.Controls.Add(btnBack);
-            pnlMenu.Dock = DockStyle.Top;
-            pnlMenu.Location = new Point(0, 0);
-            pnlMenu.Margin = new Padding(0);
-            pnlMenu.Name = "pnlMenu";
-            pnlMenu.Size = new Size(654, 40);
-            pnlMenu.TabIndex = 32;
+            pnlTop.Controls.Add(lblTitle);
+            pnlTop.Controls.Add(btnBack);
+            pnlTop.Dock = DockStyle.Top;
+            pnlTop.Location = new Point(0, 0);
+            pnlTop.Margin = new Padding(0);
+            pnlTop.Name = "pnlTop";
+            pnlTop.Size = new Size(654, 40);
+            pnlTop.TabIndex = 32;
             // 
-            // lblAppearance
+            // lblTitle
             // 
-            lblAppearance.Anchor = AnchorStyles.None;
-            lblAppearance.AutoSize = true;
-            lblAppearance.Font = new Font("Bahnschrift", 20F);
-            lblAppearance.ForeColor = Color.White;
-            lblAppearance.Location = new Point(248, 4);
-            lblAppearance.Margin = new Padding(10);
-            lblAppearance.Name = "lblAppearance";
-            lblAppearance.Size = new Size(158, 33);
-            lblAppearance.TabIndex = 26;
-            lblAppearance.Text = "Appearance";
+            lblTitle.Anchor = AnchorStyles.None;
+            lblTitle.Font = new Font("Bahnschrift", 20F);
+            lblTitle.ForeColor = Color.White;
+            lblTitle.Location = new Point(78, 0);
+            lblTitle.Margin = new Padding(10);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(499, 40);
+            lblTitle.TabIndex = 26;
+            lblTitle.Text = "Appearance";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnBack
             // 
@@ -89,18 +91,18 @@
             btnBack.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnBack.DisabledBorderColor = Color.Empty;
             btnBack.DisabledColor = Color.Empty;
-            btnBack.Dock = DockStyle.Left;
             btnBack.ForeColor = Color.FromArgb(250, 250, 250);
             btnBack.HoverBorderColor = Color.FromArgb(39, 39, 42);
             btnBack.HoverColor = Color.FromArgb(39, 39, 42);
             btnBack.Image = Properties.Resources.chevron_left_light;
-            btnBack.ImageRectangle = new Rectangle(7, 7, 26, 26);
-            btnBack.Location = new Point(0, 0);
+            btnBack.ImageRectangle = new Rectangle(6, 6, 24, 24);
+            btnBack.Location = new Point(2, 2);
             btnBack.Name = "btnBack";
-            btnBack.Size = new Size(40, 40);
+            btnBack.Size = new Size(36, 36);
             btnBack.TabIndex = 25;
             btnBack.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnBack.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnBack, "Back");
             // 
             // AddStaffView
             // 
@@ -108,23 +110,23 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 500);
-            Controls.Add(backNextDoneBar);
+            Controls.Add(previousNextDoneBar);
             Controls.Add(pnlHolder);
-            Controls.Add(pnlMenu);
+            Controls.Add(pnlTop);
             FormBorderStyle = FormBorderStyle.None;
             Name = "AddStaffView";
             Text = "AddStaffView";
-            pnlMenu.ResumeLayout(false);
-            pnlMenu.PerformLayout();
+            pnlTop.ResumeLayout(false);
             ResumeLayout(false);
         }
 
         #endregion
 
-        private User_Controls.CRUD.PreviousNextDoneBar backNextDoneBar;
+        private User_Controls.CRUD.PreviousNextDoneBar previousNextDoneBar;
         private Panel pnlHolder;
-        private Panel pnlMenu;
-        private Label lblAppearance;
+        private Panel pnlTop;
+        private Label lblTitle;
         private CustomControls.CustomButton btnBack;
+        private ToolTip toolTip;
     }
 }

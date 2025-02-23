@@ -1,5 +1,4 @@
-﻿using a2_coursework.Interfaces.Staff.StaffManagement;
-using a2_coursework.Model.Staff;
+﻿using a2_coursework.Model.Staff;
 using a2_coursework.Model.Stock;
 using a2_coursework.Presenter;
 using a2_coursework.Presenter.Staff.StaffManagement;
@@ -9,34 +8,15 @@ using a2_coursework.Presenter.Stock.StockQuantityChanges;
 using a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
 using a2_coursework.Presenter.Users;
 using a2_coursework.Presenter.Users.Settings;
+using a2_coursework.View;
 using a2_coursework.View.Settings;
+using a2_coursework.View.Staff.StaffManagement;
 using a2_coursework.View.StaffView;
 using a2_coursework.View.Stock;
 using a2_coursework.View.Users;
 
-namespace a2_coursework.View;
-public static class ViewFactory {
-    public static SplashPresenter CreateSplash() {
-        SplashView view = new();
-        SplashPresenter presenter = new(view);
-
-        return presenter;
-    }
-
-    public static SignInPresenter CreateSignIn() {
-        SignInView view = new();
-        SignInPresenter presenter = new(view);
-
-        return presenter;
-    }
-
-    public static MasterPresenter CreateMaster(StaffModel staff) {
-        MasterView view = new();
-        MasterPresenter presenter = new(view, staff);
-
-        return presenter;
-    }
-
+namespace a2_coursework.Factory;
+public static class StaffFactory {
     public static (PersonalInformationSettingsView view, PersonalInformationSettingsPresenter presenter) CreatePersonalInformationSettings(StaffModel staff) {
         PersonalInformationSettingsView view = new();
         PersonalInformationSettingsPresenter presenter = new(view, staff);
@@ -100,9 +80,9 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    public static (ChangePasswordView view, ChangePasswordPresenter presenter) CreateChangePassword(StaffModel staff) {
-        ChangePasswordView view = new();
-        ChangePasswordPresenter presenter = new(view, staff);
+    public static (ChangeStaffPasswordView view, ChangeStaffPasswordPresenter presenter) CreateChangeStaffPassword(StaffModel staff) {
+        ChangeStaffPasswordView view = new();
+        ChangeStaffPasswordPresenter presenter = new(view, staff);
         view.SetPresenter(presenter);
 
         return (view, presenter);
@@ -157,32 +137,44 @@ public static class ViewFactory {
         return (view, presenter);
     }
 
-    // Add these methods to ViewFactory.cs
-
-    public static (IManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) CreateManageStaffPersonalInformation() {
+    public static (ManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) CreateManageStaffPersonalInformation() {
         ManageStaffPersonalInformationView view = new();
         ManageStaffPersonalInformationPresenter presenter = new(view);
 
         return (view, presenter);
     }
 
-    public static (IManageStaffContactDetailsView view, ManageStaffContactDetailsPresenter presenter) CreateManageStaffContactDetails() {
+    public static (ManageStaffContactDetailsView view, ManageStaffContactDetailsPresenter presenter) CreateManageStaffContactDetails() {
         ManageStaffContactDetailsView view = new();
         ManageStaffContactDetailsPresenter presenter = new(view);
 
         return (view, presenter);
     }
 
-    public static (IManageStaffEmergencyContactDetailsView view, ManageStaffEmergencyContactDetailsPresenter presenter) CreateManageStaffEmergencyContactDetails() {
+    public static (ManageStaffEmergencyContactDetailsView view, ManageStaffEmergencyContactDetailsPresenter presenter) CreateManageStaffEmergencyContactDetails() {
         ManageStaffEmergencyContactDetailsView view = new();
         ManageStaffEmergencyContactDetailsPresenter presenter = new(view);
 
         return (view, presenter);
     }
 
-    public static (IManageStaffCredentialsView view, ManageStaffCredentialsPresenter presenter) CreateManageStaffCredentials() {
+    public static (ManageStaffCredentialsView view, ManageStaffCredentialsPresenter presenter) CreateManageStaffCredentials() {
         ManageStaffCredentialsView view = new();
         ManageStaffCredentialsPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (ManageStaffPasswordView view, ManageStaffPasswordPresenter presenter) CreateManageStaffPassword() {
+        ManageStaffPasswordView view = new();
+        ManageStaffPasswordPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (AddStaffView view, AddStaffPresenter presenter) CreateAddStaff(StaffModel staff) {
+        AddStaffView view = new();
+        AddStaffPresenter presenter = new(view, staff);
 
         return (view, presenter);
     }

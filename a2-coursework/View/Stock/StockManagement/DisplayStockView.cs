@@ -6,7 +6,7 @@ using a2_coursework.View.Stock.StockManagement;
 using System.ComponentModel;
 
 namespace a2_coursework.View;
-public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDisplayView<DisplayStockItem> {
+public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDisplayView<DisplayStockModel> {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? Add;
@@ -73,7 +73,7 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
 
     private void SetupDataGrid() {
         dataGridView.AutoGenerateColumns = false;
-        columnID.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnQuantityLevel.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
@@ -99,12 +99,12 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
             }
         };
 
-        columnID.DataPropertyName = nameof(DisplayStockItem.Id);
-        columnName.DataPropertyName = nameof(DisplayStockItem.Name);
-        columnSKU.DataPropertyName = nameof(DisplayStockItem.SKU);
-        columnQuantity.DataPropertyName = nameof(DisplayStockItem.Quantity);
-        columnQuantityLevel.DataPropertyName = nameof(DisplayStockItem.QuantityLevel);
-        columnArchived.DataPropertyName = nameof(DisplayStockItem.Archived);
+        columnId.DataPropertyName = nameof(DisplayStockModel.Id);
+        columnName.DataPropertyName = nameof(DisplayStockModel.Name);
+        columnSku.DataPropertyName = nameof(DisplayStockModel.Sku);
+        columnQuantity.DataPropertyName = nameof(DisplayStockModel.Quantity);
+        columnQuantityLevel.DataPropertyName = nameof(DisplayStockModel.QuantityLevel);
+        columnArchived.DataPropertyName = nameof(DisplayStockModel.Archived);
     }
 
     public string SearchText {
@@ -112,10 +112,10 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
         set => topBar.SearchText = value;
     }
 
-    public DisplayStockItem? SelectedItem {
+    public DisplayStockModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayStockItem>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayStockModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -140,7 +140,7 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
         set => topBar.Restore = value;
     }
 
-    public void DisplayItems(BindingList<DisplayStockItem> items) {
+    public void DisplayItems(BindingList<DisplayStockModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();
@@ -170,25 +170,6 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
     }
 
     private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
-        // Quantiity level is at index 4, row indexes start at 0 with the column header being index -1. Tiny bit odd
-        if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
-            if (e.Value is string quantityLevel) {
-                if (quantityLevel == "Low") {
-                    e.CellStyle!.ForeColor = ColorScheme.Current.Danger;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Danger;
-                }
-                else if (quantityLevel == "Medium") {
-                    e.CellStyle!.ForeColor = ColorScheme.Current.Warning;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Warning;
-                }
-                else if (quantityLevel == "High") {
-                    e.CellStyle!.ForeColor = ColorScheme.Current.Info;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Info;
-                }
-
-            }
-        }
-
         // Format the archived
         if (e.ColumnIndex == 5 && e.RowIndex >= 0) {
             if (e.Value is bool isArchived) {

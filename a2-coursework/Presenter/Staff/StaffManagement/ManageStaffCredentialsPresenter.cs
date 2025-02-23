@@ -18,16 +18,20 @@ public class ManageStaffCredentialsPresenter : BasePresenter<IManageStaffCredent
         ValidateUsername();
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
-
     private void OnPrivilegeLevelChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
 
     public string SetSuggestedUsername(string suggestedUsername) => _view.SuggestedUsername = suggestedUsername;
 
-    public void SetUsername(string username) => _view.Username = username;
+    public string Username {
+        get => _view.Username;
+        set => _view.Username = value;
+    }
 
-    public bool TryGetUsername(out string? username) {
-        username = _usernameValid ? _view.Username : null;
-        return _usernameValid;
+    public bool UsernameValid {
+        get {
+            ValidateUsername();
+            return _usernameValid;
+        }
     }
 
     public PrivilegeLevel PrivilegeLevel {

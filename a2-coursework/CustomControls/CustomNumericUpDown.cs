@@ -16,7 +16,10 @@ public partial class CustomNumericUpDown : UserControl, IThemeable {
         BackColor = ColorScheme.Current.Background;
 
         btnIncrement.ThemeWeak();
+        btnIncrement.Image = IconTheme.Current.Plus;
+
         btnDecrement.ThemeWeak();
+        btnDecrement.Image = IconTheme.Current.Minus;
         tbValue.Theme();
     }
 

@@ -8,4 +8,5 @@ public interface IChildView : IView {
     public AnchorStyles Anchor { set; }
     public void Show();
     public DockStyle Dock { get; set; }
+    public string Text { get; set; }
 }

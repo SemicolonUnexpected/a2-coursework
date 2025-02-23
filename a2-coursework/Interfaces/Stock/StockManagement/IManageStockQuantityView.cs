@@ -9,6 +9,7 @@ public interface IManageStockQuantityView : IChildView {
     public int BulkAddQuantity { get; set; }
     public int BulkRemoveQuantity { get; set; }
     public string ReasonForQuantityChange { get; set; }
+    public bool ReasonForChangedReadOnly { get; set; }
 
     public void SetCharacterCount(int number);
 }

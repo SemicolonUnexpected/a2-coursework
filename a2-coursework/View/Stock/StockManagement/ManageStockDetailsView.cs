@@ -6,7 +6,7 @@ namespace a2_coursework.View.Stock;
 public partial class ManageStockDetailsView : Form, IManageStockDetailsView, IThemeable {
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;
-    public event EventHandler? SKUChanged;
+    public event EventHandler? SkuChanged;
     public event EventHandler? ArchivedChanged;
 
     public ManageStockDetailsView() {
@@ -19,7 +19,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
         Theming.Theme.FontNameChanged += SetFont;
 
         tbStockDescription.TextChanged += (s, e) => DescriptionChanged?.Invoke(this, EventArgs.Empty);
-        tbSKU.TextChanged += (s, e) => SKUChanged?.Invoke(this, EventArgs.Empty);
+        tbSku.TextChanged += (s, e) => SkuChanged?.Invoke(this, EventArgs.Empty);
         tbStockName.TextChanged += (s, e) => NameChanged?.Invoke(this, EventArgs.Empty);
         rbArchived.CheckChanged += (s, e) => ArchivedChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -30,10 +30,10 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
         lblStockName.ThemeTitle();
         tbStockName.Theme();
 
-        lblSKU.ThemeTitle();
-        tbSKU.Theme();
-        tbSKU.BorderColor = _skuError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
-        lblNameSKUError.ThemeError();
+        lblSku.ThemeTitle();
+        tbSku.Theme();
+        tbSku.BorderColor = _skuError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
+        lblNameSkuError.ThemeError();
 
         lblStockDescription.ThemeTitle();
         tbStockDescription.Theme();
@@ -50,9 +50,9 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
 
         lblStockName.SetFontName(fontName);
         tbStockName.SetFontName(fontName);
-        lblSKU.SetFontName(fontName);
-        tbSKU.SetFontName(fontName);
-        lblNameSKUError.SetFontName(fontName);
+        lblSku.SetFontName(fontName);
+        tbSku.SetFontName(fontName);
+        lblNameSkuError.SetFontName(fontName);
         lblStockDescription.SetFontName(fontName);
         tbStockDescription.SetFontName(fontName);
         lblCharacterLimit.SetFontName(fontName);
@@ -71,9 +71,9 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
         set => tbStockDescription.Text = value;
     }
 
-    public string SKU {
-        get => tbSKU.Text;
-        set => tbSKU.Text = value;
+    public string Sku {
+        get => tbSku.Text;
+        set => tbSku.Text = value;
     }
 
     public bool Archived {
@@ -88,14 +88,14 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
             _isLoading = value;
 
             tbStockName.Enabled = !_isLoading;
-            tbSKU.Enabled = !_isLoading;
+            tbSku.Enabled = !_isLoading;
             tbStockDescription.Enabled = !_isLoading;
             rbArchived.Enabled = !_isLoading;
         }
     }
 
-    public string NameSKUError {
-        set => lblNameSKUError.Text = value;
+    public string NameSkuError {
+        set => lblNameSkuError.Text = value;
     }
 
     public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{tbStockDescription.MaxLength}";
@@ -109,7 +109,7 @@ public partial class ManageStockDetailsView : Form, IManageStockDetailsView, ITh
     private bool _skuError = false;
     public void SetSKUBorderError(bool isError) {
         _skuError = isError;
-        tbSKU.BorderColor = _skuError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
+        tbSku.BorderColor = _skuError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
     private void ClearFocus() => tbFocusHolder.Focus();

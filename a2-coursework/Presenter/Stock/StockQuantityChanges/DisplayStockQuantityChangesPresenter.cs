@@ -1,4 +1,5 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockQuantityChanges;
 using a2_coursework.Model.Stock;
@@ -94,7 +95,7 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
             case "columnStockName":
                 SortBy(x => x.StockName, sortAscending);
                 break;
-            case "columnSKU":
+            case "columnSku":
                 SortBy(x => x.StockSKU, sortAscending);
                 break;
             case "columnQuantity":
@@ -117,7 +118,7 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
     private void View() {
         if (_view.SelectedItem is null) return;
 
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateViewStockQuantityChange(_modelDisplayMap[_view.SelectedItem]);
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateViewStockQuantityChange(_modelDisplayMap[_view.SelectedItem]);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

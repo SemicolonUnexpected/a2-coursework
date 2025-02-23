@@ -3,10 +3,10 @@ using a2_coursework.Model.Security;
 using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users;
-public class ChangePasswordPresenter : BasePresenter<IChangePasswordView>, IChildPresenter {
+public class ChangeStaffPasswordPresenter : BasePresenter<IChangePasswordView>, IChildPresenter {
     private readonly StaffModel _staff;
 
-    public ChangePasswordPresenter(IChangePasswordView view, StaffModel staff) : base(view) {
+    public ChangeStaffPasswordPresenter(IChangePasswordView view, StaffModel staff) : base(view) {
         _staff = staff;
 
         _view.UsernameChanged += OnUsernameChanged;

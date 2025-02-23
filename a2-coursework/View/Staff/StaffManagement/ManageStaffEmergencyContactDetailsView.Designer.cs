@@ -170,7 +170,7 @@
             Controls.Add(lblEmergencyContactForenameTitle);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStaffEmergencyContactDetailsView";
-            Text = "ManageStaffEmergencyContactView";
+            Text = "Emergency Contact";
             ResumeLayout(false);
             PerformLayout();
         }

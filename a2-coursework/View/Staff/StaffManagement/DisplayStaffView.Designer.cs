@@ -34,7 +34,7 @@
             sb = new CustomControls.CustomScrollBar();
             lblStaff = new Label();
             topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
-            columnID = new DataGridViewTextBoxColumn();
+            columnId = new DataGridViewTextBoxColumn();
             columnUsername = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnEmail = new DataGridViewTextBoxColumn();
@@ -97,7 +97,7 @@
             dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 30;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnID, columnUsername, columnName, columnEmail, columnPhoneNumber, columnArchived });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnId, columnUsername, columnName, columnEmail, columnPhoneNumber, columnArchived });
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
             dataGridViewCellStyle4.Font = new Font("Bahnschrift", 10F);
@@ -184,11 +184,11 @@
             // 
             // columnID
             // 
-            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnID.HeaderText = "ID";
-            columnID.Name = "columnID";
-            columnID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnID.Width = 47;
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnID";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
             // 
             // columnUsername
             // 
@@ -260,7 +260,7 @@
         private DataGridView dataGridView;
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
-        private DataGridViewTextBoxColumn columnID;
+        private DataGridViewTextBoxColumn columnId;
         private DataGridViewTextBoxColumn columnUsername;
         private DataGridViewTextBoxColumn columnName;
         private DataGridViewTextBoxColumn columnPhoneNumber;

@@ -257,7 +257,7 @@
             Controls.Add(pnlDarkMode);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageStaffAppearanceSettingsView";
-            Text = "ManageStaffAppearanceSettingsView";
+            Text = "Appearance";
             pnlFont.ResumeLayout(false);
             pnlFont.PerformLayout();
             pnlDarkMode.ResumeLayout(false);

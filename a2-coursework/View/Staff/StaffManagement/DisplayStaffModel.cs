@@ -3,7 +3,7 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace a2_coursework.View.StaffView.StaffManagement;
-public class DisplayStaff : INotifyPropertyChanged {
+public class DisplayStaffModel : INotifyPropertyChanged {
     private int _id;
     public int Id {
         get => _id;
@@ -58,7 +58,7 @@ public class DisplayStaff : INotifyPropertyChanged {
         }
     }
 
-    public DisplayStaff(StaffModel staff) {
+    public DisplayStaffModel(StaffModel staff) {
         Id = staff.Id;
         Username = staff.Username;
         Names = $"{staff.Forename} {staff.Surname}";

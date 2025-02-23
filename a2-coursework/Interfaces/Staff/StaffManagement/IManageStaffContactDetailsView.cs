@@ -11,4 +11,6 @@ public interface IManageStaffContactDetailsView : IChildView {
     public string ContactError { get; set; }
     public void SetEmailBorderError(bool isError);
     public void SetPhoneNumberBorderError(bool isError);
+
+    public void SetCharacterCount(int number);
 }

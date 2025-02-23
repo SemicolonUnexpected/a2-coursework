@@ -9,8 +9,14 @@ public class ManageStockWarningPresenter : BasePresenter<IManageStockWarningView
         _view.HighQuantityChanged += OnHighQuantityChanged;
     }
 
-    private void OnLowQuantityChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
-    private void OnHighQuantityChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+    private void OnLowQuantityChanged(object? sender, EventArgs e) {
+        if (_view.LowQuantity > _view.HighQuantity) _view.HighQuantity = _view.LowQuantity;
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
+    private void OnHighQuantityChanged(object? sender, EventArgs e) {
+        if (_view.LowQuantity > _view.HighQuantity) _view.LowQuantity = _view.HighQuantity;
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     public int HighQuantity {
         get => _view.HighQuantity;

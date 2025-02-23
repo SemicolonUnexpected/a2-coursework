@@ -26,16 +26,16 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
         tbSearch.Theme();
 
         btnAdd.ThemeWeak();
-        btnAdd.Image = IconTheme.CurrentTheme.Plus;
+        btnAdd.Image = IconTheme.Current.Plus;
         btnEdit.ThemeWeak();
-        btnEdit.Image = IconTheme.CurrentTheme.Edit;
+        btnEdit.Image = IconTheme.Current.Edit;
         btnArchive.ThemeWeak();
-        btnArchive.Image = _restore ? IconTheme.CurrentTheme.Restore : IconTheme.CurrentTheme.Archive;
+        btnArchive.Image = _restore ? IconTheme.Current.Restore : IconTheme.Current.Archive;
         btnShowArchived.ThemeWeak();
-        btnShowArchived.Image = _showArchived ? IconTheme.CurrentTheme.OpenBox : IconTheme.CurrentTheme.ClosedBox;
+        btnShowArchived.Image = _showArchived ? IconTheme.Current.OpenBox : IconTheme.Current.ClosedBox;
         btnClear.ThemeWeak();
-        btnClear.Image = IconTheme.CurrentTheme.Cross;
-        pbSearchBtn.Image = IconTheme.CurrentTheme.Search;
+        btnClear.Image = IconTheme.Current.Cross;
+        pbSearchBtn.Image = IconTheme.Current.Search;
     }
 
     public void SetToolTipVisibility() {
@@ -86,7 +86,7 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
         set {
             _restore = value;
 
-            btnArchive.Image = _restore ? IconTheme.CurrentTheme.Restore : IconTheme.CurrentTheme.Archive;
+            btnArchive.Image = _restore ? IconTheme.Current.Restore : IconTheme.Current.Archive;
             toolTip.SetToolTip(btnArchive, _restore ? "Restore" : "Archive");
         }
     }
@@ -98,7 +98,7 @@ public partial class AddEditArchiveSearchBar : UserControl, IThemeable {
         set {
             _showArchived = value;
 
-            btnShowArchived.Image = _showArchived ? IconTheme.CurrentTheme.OpenBox : IconTheme.CurrentTheme.ClosedBox;
+            btnShowArchived.Image = _showArchived ? IconTheme.Current.OpenBox : IconTheme.Current.ClosedBox;
             toolTip.SetToolTip(btnShowArchived, _showArchived ? "Hide archived" : "Show archived");
         }
     }

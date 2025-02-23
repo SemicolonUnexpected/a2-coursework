@@ -5,14 +5,14 @@ using a2_coursework.Presenter.Users;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Users;
-public partial class ChangePasswordView : Form, IChangePasswordView {
-    private ChangePasswordPresenter? _presenter;
+public partial class ChangeStaffPasswordView : Form, IChangePasswordView {
+    private ChangeStaffPasswordPresenter? _presenter;
 
     public event EventHandler? UsernameChanged;
     public event EventHandler? NewPasswordChanged;
     public event EventHandler? ChangePassword;
 
-    public ChangePasswordView() {
+    public ChangeStaffPasswordView() {
         InitializeComponent();
 
         Theme();
@@ -29,10 +29,10 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         btnChangePassword.Click += (s, e) => ChangePassword?.Invoke(this, EventArgs.Empty);
     }
 
-    public void SetPresenter(ChangePasswordPresenter presenter) => _presenter = presenter;
+    public void SetPresenter(ChangeStaffPasswordPresenter presenter) => _presenter = presenter;
 
     public void Theme() {
-        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
 
         BackColor = ColorScheme.Current.Background;
 
@@ -58,10 +58,10 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         lblSpecialCharacter.ThemeSubtitle();
         lblNumber.ThemeSubtitle();
 
-        pbEightLong.Image = EightLong ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
-        pbNumber.Image = Number ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
-        pbSpecialCharacter.Image = SpecialCharacter ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
-        pbUppercaseLowercase.Image = UppercaseLowercase ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+        pbEightLong.Image = EightLong ? IconTheme.Current.Tick : IconTheme.Current.Cross;
+        pbNumber.Image = Number ? IconTheme.Current.Tick : IconTheme.Current.Cross;
+        pbSpecialCharacter.Image = SpecialCharacter ? IconTheme.Current.Tick : IconTheme.Current.Cross;
+        pbUppercaseLowercase.Image = UppercaseLowercase ? IconTheme.Current.Tick : IconTheme.Current.Cross;
 
         btnChangePassword.ThemeStrong();
 
@@ -77,7 +77,6 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         toolTip.Active = showToolTips;
         tbUsername.ToolTipsActive = showToolTips;
         tbNewPassword.ToolTipsActive = showToolTips;
-        tbUsername.ToolTipsActive = showToolTips;
         tbConfirmPassword.ToolTipsActive = showToolTips;
     }
 
@@ -132,7 +131,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         get => _eightLong;
         set {
             _eightLong = value;
-            pbEightLong.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbEightLong.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -141,7 +140,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         get => _number;
         set {
             _number = value;
-            pbNumber.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbNumber.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -150,7 +149,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         get => _specialCharacter;
         set {
             _specialCharacter = value;
-            pbSpecialCharacter.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbSpecialCharacter.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -159,7 +158,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
         get => _uppercaseLowercase;
         set {
             _uppercaseLowercase = value;
-            pbUppercaseLowercase.Image = value ? IconTheme.CurrentTheme.Tick : IconTheme.CurrentTheme.Cross;
+            pbUppercaseLowercase.Image = value ? IconTheme.Current.Tick : IconTheme.Current.Cross;
         }
     }
 
@@ -242,7 +241,7 @@ public partial class ChangePasswordView : Form, IChangePasswordView {
 
     private void pbShowNewPassword_Click(object sender, EventArgs e) {
         tbNewPassword.UsePasswordChar = !tbNewPassword.UsePasswordChar;
-        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.CurrentTheme.EyeCrossed : IconTheme.CurrentTheme.Eye;
+        pbShowNewPassword.Image = tbNewPassword.UsePasswordChar ? IconTheme.Current.EyeCrossed : IconTheme.Current.Eye;
         toolTip.SetToolTip(pbShowNewPassword, tbNewPassword.UsePasswordChar ? "Show the password" : "Hide the password");
     }
 

@@ -18,10 +18,10 @@ public partial class Paginator : UserControl {
         btnPrevious.ThemeWeak();
         btnNext.ThemeWeak();
 
-        btnFirst.Image = IconTheme.CurrentTheme.DoubleBackArrow;
-        btnLast.Image = IconTheme.CurrentTheme.DoubleForwardArrow;
-        btnPrevious.Image = IconTheme.CurrentTheme.BackArrow;
-        btnNext.Image = IconTheme.CurrentTheme.ForwardArrow;
+        btnFirst.Image = IconTheme.Current.DoubleBackArrow;
+        btnLast.Image = IconTheme.Current.DoubleForwardArrow;
+        btnPrevious.Image = IconTheme.Current.BackArrow;
+        btnNext.Image = IconTheme.Current.ForwardArrow;
 
         lblGoToPage.ThemeTitle();
         lblNumber.ThemeTitle();

@@ -1,7 +1,8 @@
-﻿using a2_coursework.Interfaces;
+﻿using a2_coursework.Factory;
+using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.SignIn;
 using a2_coursework.Model.Staff;
 using a2_coursework.UserControls;
-using a2_coursework.View;
 
 namespace a2_coursework.Presenter;
 public class MasterPresenter : BasePresenter<IMasterView> {
@@ -58,7 +59,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
 
         PrivilegeLevel.Admin => [
             ["Dashboard"],
-            ["Security", "Manage staff", "Login attempts", "Change password"],
+            ["Security", "Manage staff", "Change password"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Manager => [
@@ -82,15 +83,15 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         _ => throw new NotImplementedException(),
     };
 
-    private (IChildView view, IChildPresenter presenter) GetPersonalInformationSettings() => ViewFactory.CreatePersonalInformationSettings(_staff);
-    private (IChildView view, IChildPresenter presenter) GetEmergencyContactSettings() => ViewFactory.CreateEmergencyContactSettings(_staff);
-    private (IChildView view, IChildPresenter presenter) GetContactDetailsSettings() => ViewFactory.CreateContactDetailsSettingsView(_staff);
-    private (IChildView view, IChildPresenter presenter) GetAppearanceSettings() => ViewFactory.CreateAppearanceSettings(_staff);
-    private (IChildView view, IChildPresenter presenter) GetSecuritySettings() => ViewFactory.CreateSecuritySettings(_staff);
-    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => ViewFactory.CreateStockDisplay(_staff);
-    private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => ViewFactory.CreateChangePassword(_staff);
-    private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => ViewFactory.CreateDisplayStockQuantityChanges();
-    private (IChildView view, IChildPresenter presenter) GetDisplayStaff() => ViewFactory.CreateDisplayStaff(_staff);
+    private (IChildView view, IChildPresenter presenter) GetPersonalInformationSettings() => StaffFactory.CreatePersonalInformationSettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetEmergencyContactSettings() => StaffFactory.CreateEmergencyContactSettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetContactDetailsSettings() => StaffFactory.CreateContactDetailsSettingsView(_staff);
+    private (IChildView view, IChildPresenter presenter) GetAppearanceSettings() => StaffFactory.CreateAppearanceSettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetSecuritySettings() => StaffFactory.CreateSecuritySettings(_staff);
+    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => StaffFactory.CreateStockDisplay(_staff);
+    private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => StaffFactory.CreateChangeStaffPassword(_staff);
+    private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => StaffFactory.CreateDisplayStockQuantityChanges();
+    private (IChildView view, IChildPresenter presenter) GetDisplayStaff() => StaffFactory.CreateDisplayStaff(_staff);
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

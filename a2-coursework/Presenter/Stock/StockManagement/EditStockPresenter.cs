@@ -1,8 +1,8 @@
-﻿using a2_coursework.Interfaces;
+﻿using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockManagement;
 using a2_coursework.Model.Staff;
 using a2_coursework.Model.Stock;
-using a2_coursework.View;
 using a2_coursework.View.Stock;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
@@ -19,17 +19,21 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
         Navigate(GetStockDetails());
     }
 
-    private void OnValidateSKU(object? sender, ValidationRequestEventArgs<string> e) => IsValidSKU(e);
+    private void OnValidateSKU(object? sender, ValidationRequestEventArgs<string> e) => IsValidSku(e);
     private void OnBack(object? sender, EventArgs e) => NavigateBack();
 
     private void NavigateBack() {
         if (!CanExit()) return;
-        (IChildView view, IChildPresenter presenter) = ViewFactory.CreateStockDisplay(_staff);
+        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateStockDisplay(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     protected override void BindValidation() {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSKU -= OnValidateSKU;
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest += OnValidateSKU;
+    }
+
+    protected override void UnBindValidation() {
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest -= OnValidateSKU;
     }
 
     protected override (IChildView childView, INotifyingChildPresenter childPresenter) GetView(string selectedItem) => selectedItem switch {
@@ -42,13 +46,13 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     #region Stock Quantity
 
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetStockQuantity() {
-        (ManageStockQuantityView view, ManageStockQuantityPresenter presenter) = ViewFactory.CreateManageStockQuantity();
+        (ManageStockQuantityView view, ManageStockQuantityPresenter presenter) = StaffFactory.CreateManageStockQuantity();
 
         presenter.Quantity = _model.Quantity;
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesStockQuantity(presenter);
         AnyChangesCurrent = () => AnyChangesStockQuantity(presenter);
-        ValidateInputsCurrent = () => true;
+        ValidateCurrent = () => true;
         UpdateDatabaseCurrent = () => UpdateDatabaseStockQuantity(presenter);
         UpdateModelCurrent = () => UpdateModelStockQuantity(presenter);
 
@@ -75,13 +79,13 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     #region Stock Details
 
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetStockDetails() {
-        (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) = ViewFactory.CreateManageStockDetails();
+        (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) = StaffFactory.CreateManageStockDetails();
 
-        presenter.ValidateSKU += OnValidateSKU;
+        presenter.ValidateSkuRequest += OnValidateSKU;
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesStockDetails(presenter);
         AnyChangesCurrent = () => AnyChangesStockDetails(presenter);
-        ValidateInputsCurrent = () => ValidateInputsStockDetails(presenter);
+        ValidateCurrent = () => ValidateInputsStockDetails(presenter);
         UpdateDatabaseCurrent = () => UpdateDatabaseStockDetails(presenter);
         UpdateModelCurrent = () => UpdateModelStockDetails(presenter);
 
@@ -89,61 +93,48 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     }
 
     private void PopulateDefaultValuesStockDetails(ManageStockDetailsPresenter presenter) {
-        presenter.SetName(_model.Name);
-        presenter.SetSKU(_model.SKU);
+        presenter.Name = _model.Name;
+        presenter.Sku = _model.Sku;
         presenter.Description = _model.Description;
         presenter.Archived = _model.Archived;
     }
 
     private bool AnyChangesStockDetails(ManageStockDetailsPresenter presenter) {
-        bool nameValid = presenter.TryGetName(out string? name);
-        bool skuValid = presenter.TryGetSKU(out string? sku);
-
-        if (!nameValid || !skuValid) return true;
-
-        return name != _model.Name || sku != _model.SKU || presenter.Description != _model.Description || presenter.Archived != _model.Archived;
+        return presenter.Name != _model.Name || presenter.Sku != _model.Sku || presenter.Description != _model.Description || presenter.Archived != _model.Archived;
     }
 
-    private bool ValidateInputsStockDetails(ManageStockDetailsPresenter presenter) => presenter.TryGetSKU(out _) && presenter.TryGetName(out _);
+    private bool ValidateInputsStockDetails(ManageStockDetailsPresenter presenter) => presenter.NameValid && presenter.SkuValid;
 
-    private Task<bool> UpdateDatabaseStockDetails(ManageStockDetailsPresenter presenter) {
-        bool nameValid = presenter.TryGetName(out string? name);
-        bool skuValid = presenter.TryGetSKU(out string? sku);
-
-        return StockDAL.UpdateDetails(_model.Id, name!, presenter.Description, sku!, presenter.Archived);
-    }
+    private Task<bool> UpdateDatabaseStockDetails(ManageStockDetailsPresenter presenter) => StockDAL.UpdateDetails(_model.Id, _model.Name, presenter.Description, _model.Sku, presenter.Archived);
 
     private void UpdateModelStockDetails(ManageStockDetailsPresenter presenter) {
-        bool nameValid = presenter.TryGetName(out string? name);
-        bool skuValid = presenter.TryGetSKU(out string? sku);
-
-        _model.Name = name!;
-        _model.SKU = sku!;
+        _model.Name = presenter.Name;
+        _model.Sku = presenter.Sku;
         _model.Description = _model.Description;
         _model.Archived = _model.Archived;
     }
 
-    private void IsValidSKU(ValidationRequestEventArgs<string> validateSKURequest) {
+    private void IsValidSku(ValidationRequestEventArgs<string> validateSKURequest) {
         string sku = validateSKURequest.Value;
 
-        if (sku == _model.SKU) {
+        if (sku == _model.Sku) {
             validateSKURequest.SetValidation(true);
             return;
         }
 
         if (string.IsNullOrWhiteSpace(sku)) validateSKURequest.SetValidation(false, "Please fill in an SKU");
-        else validateSKURequest.SetValidation(StockDAL.SKUExists(sku).ContinueWith(x => !x.Result), "This SKU already exists. Please pick a different one");
+        else validateSKURequest.SetValidation(StockDAL.SkuExists(sku).ContinueWith(x => !x.Result), "This SKU already exists. Please pick a different one");
     }
 
     #endregion
 
     #region Stock Warning
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetStockWarning() {
-        (ManageStockWarningView view, ManageStockWarningPresenter presenter) = ViewFactory.CreateManageStockWarning();
+        (ManageStockWarningView view, ManageStockWarningPresenter presenter) = StaffFactory.CreateManageStockWarning();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesStockWarning(presenter);
         AnyChangesCurrent = () => AnyChangesStockWarning(presenter);
-        ValidateInputsCurrent = () => true;
+        ValidateCurrent = () => true;
         UpdateDatabaseCurrent = () => UpdateDatabaseStockWarning(presenter);
         UpdateModelCurrent = () => UpdateModelStockWarning(presenter);
 
@@ -167,7 +158,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     #endregion
 
     public override void CleanUp() {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSKU -= OnValidateSKU;
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest -= OnValidateSKU;
 
         base.CleanUp();
     }

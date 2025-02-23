@@ -32,9 +32,9 @@
             pnlData = new CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            columnID = new DataGridViewTextBoxColumn();
+            columnId = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
-            columnSKU = new DataGridViewTextBoxColumn();
+            columnSku = new DataGridViewTextBoxColumn();
             columnQuantity = new DataGridViewTextBoxColumn();
             columnQuantityLevel = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
@@ -99,7 +99,7 @@
             dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 60;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnID, columnName, columnSKU, columnQuantity, columnQuantityLevel, columnArchived });
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnId, columnName, columnSku, columnQuantity, columnQuantityLevel, columnArchived });
             dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
             dataGridViewCellStyle4.Font = new Font("Bahnschrift", 10F);
@@ -135,11 +135,11 @@
             // 
             // columnID
             // 
-            columnID.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnID.HeaderText = "ID";
-            columnID.Name = "columnID";
-            columnID.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnID.Width = 47;
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnID";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
             // 
             // columnName
             // 
@@ -152,11 +152,11 @@
             // 
             // columnSKU
             // 
-            columnSKU.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnSKU.HeaderText = "SKU";
-            columnSKU.Name = "columnSKU";
-            columnSKU.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnSKU.Width = 62;
+            columnSku.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnSku.HeaderText = "SKU";
+            columnSku.Name = "columnSku";
+            columnSku.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnSku.Width = 62;
             // 
             // columnQuantity
             // 
@@ -262,9 +262,9 @@
         private DataGridView dataGridView;
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
-        private DataGridViewTextBoxColumn columnID;
+        private DataGridViewTextBoxColumn columnId;
         private DataGridViewTextBoxColumn columnName;
-        private DataGridViewTextBoxColumn columnSKU;
+        private DataGridViewTextBoxColumn columnSku;
         private DataGridViewTextBoxColumn columnQuantity;
         private DataGridViewTextBoxColumn columnQuantityLevel;
         private DataGridViewTextBoxColumn columnArchived;
