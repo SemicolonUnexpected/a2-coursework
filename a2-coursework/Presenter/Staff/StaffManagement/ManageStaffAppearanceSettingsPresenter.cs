@@ -1,7 +1,8 @@
 ﻿using a2_coursework.Interfaces.Staff.StaffManagement;
+using a2_coursework.Presenter;
 
-namespace a2_coursework.Presenter.Staff.ManageStaff;
-public class ManageStaffAppearanceSettingsPresenter : BasePresenter<IManageStaffAppearanceSettingsView>, INotifyingChildPresenter {
+namespace a2_coursework.View;
+public class ManageStaffAppearanceSettingsPresenter : BasePresenter<IManageStaffAppearanceSettingsView>, INotifyingChildPresenter, IChildPresenter {
     public event EventHandler? DetailsChanged;
 
     public ManageStaffAppearanceSettingsPresenter(IManageStaffAppearanceSettingsView view) : base(view) {
@@ -30,12 +31,4 @@ public class ManageStaffAppearanceSettingsPresenter : BasePresenter<IManageStaff
     }
 
     public bool CanExit() => true;
-
-    public override void CleanUp() {
-        _view.DarkModeCheckedChanged -= OnDarkModeCheckedChanged;
-        _view.ToolTipsCheckedChanged -= OnToolTipsCheckedChanged;
-        _view.FontNameChanged -= OnFontNameChanged;
-
-        base.CleanUp();
-    }
 }

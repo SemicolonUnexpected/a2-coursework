@@ -56,7 +56,7 @@ public class AddStaffPresenter : AddPresenter<IAddStaffView, StaffModel>, IChild
 
     #region Personal Information
     private (IChildView childView, ICleanable childPresenter) GetPersonalInformation() {
-        (ManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) = StaffFactory.CreateManageStaffPersonalInformation();
+        (ManageStaffPersonalDetailsView view, ManageStaffPersonalDetailsPresenter presenter) = StaffFactory.CreateManageStaffPersonalInformation();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesPersonalInformation(presenter);
         ValidateCurrent = () => ValidateInputsPersonalInformation(presenter);
@@ -65,15 +65,15 @@ public class AddStaffPresenter : AddPresenter<IAddStaffView, StaffModel>, IChild
         return (view, presenter);
     }
 
-    private void PopulateDefaultValuesPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
+    private void PopulateDefaultValuesPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
         presenter.Surname = _model.Surname;
         presenter.Forename = _model.Forename;
         presenter.DateOfBirth = _model.DateOfBirth;
     }
 
-    private bool ValidateInputsPersonalInformation(ManageStaffPersonalInformationPresenter presenter) => presenter.SurnameValid && presenter.ForenameValid && presenter.DateOfBirthValid;
+    private bool ValidateInputsPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) => presenter.SurnameValid && presenter.ForenameValid && presenter.DateOfBirthValid;
 
-    private void UpdateModelPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
+    private void UpdateModelPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
         _model.Surname = presenter.Surname;
         _model.Forename = presenter.Forename;
         _model.DateOfBirth = presenter.DateOfBirth;

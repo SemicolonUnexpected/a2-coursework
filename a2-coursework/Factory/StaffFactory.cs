@@ -137,9 +137,9 @@ public static class StaffFactory {
         return (view, presenter);
     }
 
-    public static (ManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) CreateManageStaffPersonalInformation() {
-        ManageStaffPersonalInformationView view = new();
-        ManageStaffPersonalInformationPresenter presenter = new(view);
+    public static (ManageStaffPersonalDetailsView view, ManageStaffPersonalDetailsPresenter presenter) CreateManageStaffPersonalInformation() {
+        ManageStaffPersonalDetailsView view = new();
+        ManageStaffPersonalDetailsPresenter presenter = new(view);
 
         return (view, presenter);
     }

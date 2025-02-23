@@ -31,15 +31,15 @@
             pnlData = new CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            sb = new CustomControls.CustomScrollBar();
-            lblStockQuantityChanges = new Label();
-            topBar = new User_Controls.DataGrid.ViewSearchBar();
             columnUsername = new DataGridViewTextBoxColumn();
             columnStockName = new DataGridViewTextBoxColumn();
             columnSku = new DataGridViewTextBoxColumn();
             columnQuantity = new DataGridViewTextBoxColumn();
             columnDate = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
+            sb = new CustomControls.CustomScrollBar();
+            lblStockQuantityChanges = new Label();
+            topBar = new User_Controls.DataGrid.ViewSearchBar();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -131,6 +131,56 @@
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
+            // columnUsername
+            // 
+            columnUsername.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnUsername.DefaultCellStyle = dataGridViewCellStyle2;
+            columnUsername.HeaderText = "Username";
+            columnUsername.Name = "columnUsername";
+            columnUsername.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnStockName
+            // 
+            columnStockName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnStockName.HeaderText = "Stock Name";
+            columnStockName.Name = "columnStockName";
+            columnStockName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnSku
+            // 
+            columnSku.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnSku.HeaderText = "SKU";
+            columnSku.Name = "columnSku";
+            columnSku.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnSku.Width = 62;
+            // 
+            // columnQuantity
+            // 
+            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnQuantity.HeaderText = "Quantity";
+            columnQuantity.Name = "columnQuantity";
+            columnQuantity.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnQuantity.Width = 92;
+            // 
+            // columnDate
+            // 
+            columnDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnDate.HeaderText = "Date";
+            columnDate.Name = "columnDate";
+            columnDate.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnDate.Width = 66;
+            // 
+            // columnArchived
+            // 
+            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
+            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
+            columnArchived.HeaderText = "Archived";
+            columnArchived.Name = "columnArchived";
+            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnArchived.Width = 96;
+            // 
             // sb
             // 
             sb.BackColor = Color.FromArgb(9, 9, 10);
@@ -177,56 +227,6 @@
             topBar.Size = new Size(621, 44);
             topBar.TabIndex = 10;
             // 
-            // columnUsername
-            // 
-            columnUsername.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnUsername.DefaultCellStyle = dataGridViewCellStyle2;
-            columnUsername.HeaderText = "Username";
-            columnUsername.Name = "columnUsername";
-            columnUsername.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnStockName
-            // 
-            columnStockName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnStockName.HeaderText = "Stock Name";
-            columnStockName.Name = "columnStockName";
-            columnStockName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnSKU
-            // 
-            columnSku.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnSku.HeaderText = "SKU";
-            columnSku.Name = "columnSku";
-            columnSku.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnSku.Width = 62;
-            // 
-            // columnQuantity
-            // 
-            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantity.HeaderText = "Quantity";
-            columnQuantity.Name = "columnQuantity";
-            columnQuantity.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantity.Width = 92;
-            // 
-            // columnDate
-            // 
-            columnDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnDate.HeaderText = "Date";
-            columnDate.Name = "columnDate";
-            columnDate.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnDate.Width = 66;
-            // 
-            // columnArchived
-            // 
-            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
-            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
-            columnArchived.HeaderText = "Archived";
-            columnArchived.Name = "columnArchived";
-            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnArchived.Width = 96;
-            // 
             // DisplayStockQuantityChangesView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -238,7 +238,7 @@
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "DisplayStockQuantityChangesView";
-            Text = "StockDisplayView";
+            Text = "Stock DisplayView";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);

@@ -21,8 +21,13 @@ public partial class PreviousNextDoneBar : UserControl, IThemeable {
         pnlSpacer2.BackColor = ColorScheme.Current.Background;
 
         btnBack.ThemeWeak();
+        btnBack.Image = IconTheme.Current.BackArrow;
+
         btnNext.ThemeWeak();
+        btnNext.Image = IconTheme.Current.ForwardArrow;
+
         btnDone.ThemeWeak();
+        btnDone.Image = IconTheme.Current.Tick;
     }
 
     public void SetToolTipVisibility() {

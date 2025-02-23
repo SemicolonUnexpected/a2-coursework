@@ -30,6 +30,9 @@
     <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="View\Customer\ManageCustomerContactDetailsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>

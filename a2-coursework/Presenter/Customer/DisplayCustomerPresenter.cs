@@ -1,12 +1,12 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Customer;
-using a2_coursework.Interfaces.Stock.StockManagement;
 using a2_coursework.Model.Customer;
 using a2_coursework.View;
-using a2_coursework.View.Customers;
+using a2_coursework.View.Customer;
 
-namespace a2_coursework.Presenter.Customer; 
+namespace a2_coursework.Presenter.Customer;
 public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, CustomerModel, DisplayCustomerModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
@@ -60,7 +60,7 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
         try {
             _isAsyncRunning = true;
 
-            //_models = await StockDAL.GetStock();
+            _models = await CustomerDAL.GetCustomers();
 
             DisplayItems();
 
@@ -105,7 +105,7 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
         try {
             _isAsyncRunning = true;
 
-            //bool success = await StockDAL.UpdateArchived(model.Id, model.Archived);
+            bool success = await CustomerDAL.UpdateArchived(model.Id, model.Archived);
 
             if (success) {
                 model.Archived = !model.Archived;
@@ -125,14 +125,16 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = CustomerFactory.CreateEditStock(_modelDisplayMap[_view.SelectedItem]);
+        (IChildView view, IChildPresenter presenter) = CustomerFactory.CreateEditCustomer(_modelDisplayMap[_view.SelectedItem]);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
         if (_view.SelectedItem is null) return;
 
-        (IChildView view, IChildPresenter presenter) = CustomerFactory.CreateAddStock();
+        _cancellationTokenSource.Cancel();
+
+        (IChildView view, IChildPresenter presenter) = CustomerFactory.CreateAddCustomer();
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
@@ -140,7 +142,7 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
         if (_isAsyncRunning) return;
 
         switch (columnName) {
-            case "columnID":
+            case "columnId":
                 SortBy(x => x.Id, sortAscending);
                 break;
             case "columnName":

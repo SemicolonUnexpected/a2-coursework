@@ -47,7 +47,7 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     #region Personal Information
 
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetPersonalInformation() {
-        (IManageStaffPersonalInformationView view, ManageStaffPersonalInformationPresenter presenter) = StaffFactory.CreateManageStaffPersonalInformation();
+        (IManageStaffPersonalInformationView view, ManageStaffPersonalDetailsPresenter presenter) = StaffFactory.CreateManageStaffPersonalInformation();
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesPersonalInformation(presenter);
         AnyChangesCurrent = () => AnyChangesPersonalInformation(presenter);
@@ -58,21 +58,21 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
         return (view, presenter);
     }
 
-    private void PopulateDefaultValuesPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
+    private void PopulateDefaultValuesPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
         presenter.Forename = _model.Forename;
         presenter.Surname = _model.Surname;
         presenter.DateOfBirth = _model.DateOfBirth;
     }
 
-    private bool AnyChangesPersonalInformation(ManageStaffPersonalInformationPresenter presenter) => presenter.Forename != _model.Forename || presenter.Surname != _model.Surname || presenter.DateOfBirth != _model.DateOfBirth;
+    private bool AnyChangesPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) => presenter.Forename != _model.Forename || presenter.Surname != _model.Surname || presenter.DateOfBirth != _model.DateOfBirth;
 
-    private bool ValidateInputsPersonalInformation(ManageStaffPersonalInformationPresenter presenter) => presenter.ForenameValid && presenter.ForenameValid && presenter.ForenameValid;
+    private bool ValidateInputsPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) => presenter.ForenameValid && presenter.ForenameValid && presenter.ForenameValid;
 
-    private Task<bool> UpdateDatabasePersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
+    private Task<bool> UpdateDatabasePersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
         return StaffDAL.UpdatePersonalInformation(_model.Id, presenter.Forename, presenter.Surname, presenter.DateOfBirth);
     }
 
-    private void UpdateModelPersonalInformation(ManageStaffPersonalInformationPresenter presenter) {
+    private void UpdateModelPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
         _model.Forename = presenter.Forename;
         _model.Surname = presenter.Surname;
         _model.DateOfBirth = presenter.DateOfBirth;

@@ -88,11 +88,6 @@ public partial class AddStockView : Form, IAddStockView, IThemeable, IChildView 
         }
     }
 
-    public string Title {
-        get => lblTitle.Text;
-        set => lblTitle.Text = value;
-    }
-
     public bool NextVisible {
         get => previousNextDoneBar.NextVisible;
         set => previousNextDoneBar.NextVisible = value;

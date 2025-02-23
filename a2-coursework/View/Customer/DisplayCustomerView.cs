@@ -4,7 +4,7 @@ using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.View.Customers; 
+namespace a2_coursework.View.Customer; 
 public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerModel>, IChildView, IThemeable, IDisplayCustomerView {
     private readonly BindingSource _bindingSource = [];
 
@@ -17,6 +17,7 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
     public DisplayCustomerView() {
+        InitializeComponent();
 
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
@@ -72,9 +73,8 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
     private void SetupDataGrid() {
         dataGridView.AutoGenerateColumns = false;
         columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
+        columnPhoneNumber.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
         columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnQuantityLevel.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         float scalingFactor = DeviceDpi / 96f;
         dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);
@@ -101,6 +101,7 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
         columnName.DataPropertyName = nameof(DisplayCustomerModel.Name);
         columnEmail.DataPropertyName = nameof(DisplayCustomerModel.Email);
         columnPhoneNumber.DataPropertyName = nameof(DisplayCustomerModel.PhoneNumber);
+        columnArchived.DataPropertyName = nameof(DisplayCustomerModel.Archived);
     }
 
     public string SearchText {
@@ -111,7 +112,7 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
     public DisplayCustomerModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayStockItem>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayCustomerModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -166,27 +167,8 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
     }
 
     private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
-        // Quantiity level is at index 4, row indexes start at 0 with the column header being index -1. Tiny bit odd
-        if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
-            if (e.Value is string quantityLevel) {
-                if (quantityLevel == "Low") {
-                    e.CellStyle!.ForeColor = ColorScheme.Current.Danger;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Danger;
-                }
-                else if (quantityLevel == "Medium") {
-                    e.CellStyle!.ForeColor = ColorScheme.Current.Warning;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Warning;
-                }
-                else if (quantityLevel == "High") {
-                    e.CellStyle!.ForeColor = ColorScheme.Current.Info;
-                    e.CellStyle!.SelectionForeColor = ColorScheme.Current.Info;
-                }
-
-            }
-        }
-
         // Format the archived
-        if (e.ColumnIndex == 5 && e.RowIndex >= 0) {
+        if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
             if (e.Value is bool isArchived) {
                 e.Value = isArchived ? "Yes" : "No";
             }

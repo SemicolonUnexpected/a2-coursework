@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.Customers {
+﻿namespace a2_coursework.View.Customer {
     partial class DisplayCustomerView {
         /// <summary>
         /// Required designer variable.
@@ -31,14 +31,14 @@
             pnlData = new CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            sb = new CustomControls.CustomScrollBar();
-            lblCustomers = new Label();
-            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             columnId = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnPhoneNumber = new DataGridViewTextBoxColumn();
             columnEmail = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
+            sb = new CustomControls.CustomScrollBar();
+            lblCustomers = new Label();
+            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -126,56 +126,9 @@
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridView.Size = new Size(601, 349);
             dataGridView.TabIndex = 1;
-            // 
-            // sb
-            // 
-            sb.BackColor = Color.FromArgb(9, 9, 10);
-            sb.Dock = DockStyle.Right;
-            sb.LargeChange = 50;
-            sb.Location = new Point(606, 5);
-            sb.Maximum = 100;
-            sb.Minimum = 0;
-            sb.MinimumThumbHeight = 30;
-            sb.Name = "sb";
-            sb.Padding = new Padding(2);
-            sb.Size = new Size(10, 349);
-            sb.SmallChange = 10;
-            sb.TabIndex = 28;
-            sb.Text = "customScrollBar1";
-            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
-            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
-            sb.Visible = false;
-            // 
-            // lblCustomers
-            // 
-            lblCustomers.Anchor = AnchorStyles.Top;
-            lblCustomers.AutoSize = true;
-            lblCustomers.Font = new Font("Bahnschrift", 24F);
-            lblCustomers.ForeColor = Color.White;
-            lblCustomers.Location = new Point(237, 23);
-            lblCustomers.Margin = new Padding(10);
-            lblCustomers.Name = "lblCustomers";
-            lblCustomers.Size = new Size(174, 39);
-            lblCustomers.TabIndex = 9;
-            lblCustomers.Text = "Customers";
-            // 
-            // topBar
-            // 
-            topBar.AddEnabled = true;
-            topBar.Anchor = AnchorStyles.Top;
-            topBar.ArchiveEnabled = true;
-            topBar.BackColor = Color.FromArgb(9, 9, 10);
-            topBar.EditEnabled = true;
-            topBar.Location = new Point(12, 75);
-            topBar.Name = "topBar";
-            topBar.Padding = new Padding(0, 2, 0, 2);
-            topBar.SearchEnabled = true;
-            topBar.SearchText = "";
-            topBar.ShowArchivedEnabled = true;
-            topBar.Size = new Size(625, 44);
-            topBar.TabIndex = 11;
+            dataGridView.CellFormatting += dataGridView_CellFormatting;
+            dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
+            dataGridView.Resize += dataGridView_Resize;
             // 
             // columnId
             // 
@@ -221,7 +174,58 @@
             columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnArchived.Width = 96;
             // 
-            // CustomerDisplayView
+            // sb
+            // 
+            sb.BackColor = Color.FromArgb(9, 9, 10);
+            sb.Dock = DockStyle.Right;
+            sb.LargeChange = 50;
+            sb.Location = new Point(606, 5);
+            sb.Maximum = 100;
+            sb.Minimum = 0;
+            sb.MinimumThumbHeight = 30;
+            sb.Name = "sb";
+            sb.Padding = new Padding(2);
+            sb.Size = new Size(10, 349);
+            sb.SmallChange = 10;
+            sb.TabIndex = 28;
+            sb.Text = "customScrollBar1";
+            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
+            sb.Visible = false;
+            sb.ValueChanged += sb_ValueChanged;
+            // 
+            // lblCustomers
+            // 
+            lblCustomers.Anchor = AnchorStyles.Top;
+            lblCustomers.AutoSize = true;
+            lblCustomers.Font = new Font("Bahnschrift", 24F);
+            lblCustomers.ForeColor = Color.White;
+            lblCustomers.Location = new Point(237, 23);
+            lblCustomers.Margin = new Padding(10);
+            lblCustomers.Name = "lblCustomers";
+            lblCustomers.Size = new Size(174, 39);
+            lblCustomers.TabIndex = 9;
+            lblCustomers.Text = "Customers";
+            // 
+            // topBar
+            // 
+            topBar.AddEnabled = true;
+            topBar.Anchor = AnchorStyles.Top;
+            topBar.ArchiveEnabled = true;
+            topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.EditEnabled = true;
+            topBar.Location = new Point(12, 75);
+            topBar.Name = "topBar";
+            topBar.Padding = new Padding(0, 2, 0, 2);
+            topBar.SearchEnabled = true;
+            topBar.SearchText = "";
+            topBar.ShowArchivedEnabled = true;
+            topBar.Size = new Size(625, 44);
+            topBar.TabIndex = 11;
+            // 
+            // DisplayCustomerView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -231,7 +235,7 @@
             Controls.Add(lblCustomers);
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "CustomerDisplayView";
+            Name = "DisplayCustomerView";
             Text = "StockDisplayView";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
