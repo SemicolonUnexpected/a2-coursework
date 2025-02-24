@@ -53,11 +53,11 @@ internal class EditJobOptionPresenter : ParentEditPresenter<IEditCleaningJobOpti
         presenter.UnitCost = _model.UnitCost;
     }
 
-    private bool AnyChangesContactDetails(ManageJobOptionPresenter presenter) => presenter.Email != _model.Email || presenter.PhoneNumber != _model.PhoneNumber || presenter.Address != _model.Address;
+    private bool AnyChangesContactDetails(ManageJobOptionPresenter presenter) => presenter.Name != _model.Name || presenter.Description != _model.Description || presenter.UnitCost != _model.UnitCost;
 
-    private bool ValidateInputsContactDetails(ManageJobOptionPresenter presenter) => presenter.EmailValid && presenter.PhoneNumberValid;
+    private bool ValidateInputsContactDetails(ManageJobOptionPresenter presenter) => presenter.NameValid;
 
-    private Task<bool> UpdateDatabaseContactDetails(ManageJobOptionPresenter presenter) => CleaningJobOptionDAL.UpdateJobOptionDetails(_model.Id, presenter.Name, presenter.Description, presenter.UnitCost, presenter.Archived);
+    private Task<bool> UpdateDatabaseContactDetails(ManageJobOptionPresenter presenter) => CleaningJobOptionDAL.UpdateJobOptionDetails(_model.Id, presenter.Name, presenter.Description, presenter.UnitCost);
 
     private void UpdateModelContactDetails(ManageJobOptionPresenter presenter) {
         _model.Name = presenter.Name;

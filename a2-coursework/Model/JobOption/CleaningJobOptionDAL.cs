@@ -64,7 +64,7 @@ public static class CleaningJobOptionDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateJobOptionDetails(int id, string name, string description, int unitCost, bool archived) {
+    public static async Task<bool> UpdateJobOptionDetails(int id, string name, string description, decimal unitCost) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
