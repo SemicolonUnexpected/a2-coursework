@@ -1,3 +1,7 @@
+using a2_coursework.Model.Reports;
+using QuestPDF.Fluent;
+using QuestPDF.Infrastructure;
+
 namespace a2_coursework;
 internal static class Program {
     /// <summary>
@@ -11,7 +15,10 @@ internal static class Program {
         ApplicationConfiguration.Initialize();
         Application.EnableVisualStyles();
 
+        QuestPDF.Settings.License = LicenseType.Community;
+
         // Start the application
+        //File.WriteAllBytes("test.pdf", StaffReportGenerator.StaffSecurityReport().Result);
         Application.Run(new AppContext());
     }
 }

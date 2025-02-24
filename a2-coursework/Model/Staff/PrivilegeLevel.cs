@@ -6,3 +6,14 @@ public enum PrivilegeLevel {
     CleaningManager = 4,
     Cleaner = 5,
 }
+
+public static class PrivilegeLevelExtensions {
+    public static string ConvertToString(this PrivilegeLevel privilegeLevel) => privilegeLevel switch {
+        PrivilegeLevel.Office => "Office",
+        PrivilegeLevel.Admin => "Administrator",
+        PrivilegeLevel.Manager => "Manager",
+        PrivilegeLevel.CleaningManager => "Cleaning Manager",
+        PrivilegeLevel.Cleaner => "Cleaner",
+        _ => throw new NotImplementedException(),
+    };
+}

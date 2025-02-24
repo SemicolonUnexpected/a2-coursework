@@ -56,16 +56,18 @@ public class MasterPresenter : BasePresenter<IMasterView> {
             ["Stock", "Manage stock", "Request stock", "Quantity changes", "Upcoming deliveries"],
             ["Security", "Manage staff", "Login attempts", "Change password"],
             ["Cleaning", "Manage cleaning", "Manage customers", "Manage options"],
+            ["Reports", "Staff", "Stock"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Admin => [
             ["Dashboard"],
             ["Security", "Manage staff", "Change password"],
+            ["Reports", "Staff"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
         PrivilegeLevel.Manager => [
             ["Dashboard"],
-            ["Reports", "Stock usage", "Cleaning"],
+            ["Reports", "Staff", "Stock"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         _ => throw new NotImplementedException(),
