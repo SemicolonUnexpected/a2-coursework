@@ -105,7 +105,7 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
         try {
             _isAsyncRunning = true;
 
-            bool success = await CustomerDAL.UpdateArchived(model.Id, model.Archived);
+            bool success = await CustomerDAL.UpdateCustomerArchived(model.Id, model.Archived);
 
             if (success) {
                 model.Archived = !model.Archived;

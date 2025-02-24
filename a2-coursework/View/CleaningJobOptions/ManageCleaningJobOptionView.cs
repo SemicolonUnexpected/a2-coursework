@@ -36,6 +36,9 @@ public partial class ManageCleaningJobOptionView : Form, IManageCleaningJobOptio
         lblCharacterLimit.ThemeSubtitle();
         pnlUnitCost.Theme();
         lblUnitCost.ThemeTitle();
+
+        nudUnitCost.BackColor = ColorScheme.Light.Background;
+        nudUnitCost.ForeColor = ColorScheme.Light.Foreground;
     }
 
     public void SetToolTipVisibility() { }
@@ -80,7 +83,7 @@ public partial class ManageCleaningJobOptionView : Form, IManageCleaningJobOptio
         tbName.BorderColor = _nameError ? ColorScheme.Current.Danger : ColorScheme.Current.Primary;
     }
 
-    public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{lblCharacterLimit.MaximumSize}";
+    public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{tbDescription.MaxLength}";
     
     public void CleanUp() {
         Theming.Theme.AppearanceThemeChanged -= Theme;

@@ -1,13 +1,15 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJobOption;
 using a2_coursework.Model.JobOption;
 using a2_coursework.View;
 
 namespace a2_coursework.Presenter.Customer;
-public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayJobOptionView, CleaningJobOptionModel, DisplayJobOptionModel>, IChildPresenter, INavigatingPresenter {
+public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayCleaningJobOptionView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public DisplayJobOptionPresenter(IDisplayJobOptionView view) : base(view) {
+    public DisplayJobOptionPresenter(IDisplayCleaningJobOptionView view) : base(view) {
         LoadData();
 
         _view.Add += OnAdd;
@@ -40,7 +42,7 @@ public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayJobOptionView,
         else models = _models;
 
         foreach (CleaningJobOptionModel customerModel in models) {
-            DisplayJobOptionModel displayJobOptionModel = CreateDisplayItem(customerModel);
+            DisplayCleaningJobOptionModel displayJobOptionModel = CreateDisplayItem(customerModel);
             _modelDisplayMap.Add(displayJobOptionModel, customerModel);
             _displayModels.Add(displayJobOptionModel);
         }
@@ -48,7 +50,7 @@ public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayJobOptionView,
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayJobOptionModel CreateDisplayItem(CleaningJobOptionModel model) => new DisplayJobOptionModel(model);
+    protected override DisplayCleaningJobOptionModel CreateDisplayItem(CleaningJobOptionModel model) => new DisplayCleaningJobOptionModel(model);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -118,7 +120,7 @@ public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayJobOptionView,
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.Create(_modelDisplayMap[_view.SelectedItem]);
+        (IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateEditCleaningJobOption(_modelDisplayMap[_view.SelectedItem]);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
@@ -127,8 +129,8 @@ public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayJobOptionView,
 
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = CustomerFactory.CreateAddCustomer();
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateAddCleaningJobOption();
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     protected override void SortByColumn(string columnName, bool sortAscending) {

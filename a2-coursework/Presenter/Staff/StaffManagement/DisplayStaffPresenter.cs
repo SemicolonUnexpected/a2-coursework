@@ -114,7 +114,7 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
         try {
             _isAsyncRunning = true;
 
-            bool success = await StaffDAL.UpdateArchived(staff.Id, !staff.Archived);
+            bool success = await StaffDAL.UpdateStaffArchived(staff.Id, !staff.Archived);
 
             if (success) {
                 staff.Archived = !staff.Archived;

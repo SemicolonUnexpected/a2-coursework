@@ -50,7 +50,7 @@ public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetails
         return !(phoneNumberInvalid || emailInvalid);
     }
 
-    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateContactDetails(_staff.Id, _view.Email, _view.PhoneNumber, _view.Address);
+    protected override Task<bool> UpdateDatabase() => StaffDAL.UpdateStaffContactDetails(_staff.Id, _view.Email, _view.PhoneNumber, _view.Address);
 
     public override void CleanUp() {
         _view.EmailChanged -= OnContactInformationChanged;

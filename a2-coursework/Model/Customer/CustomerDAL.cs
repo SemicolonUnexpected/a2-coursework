@@ -52,7 +52,7 @@ public static class CustomerDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateArchived(int id, bool archived) {
+    public static async Task<bool> UpdateCustomerArchived(int id, bool archived) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -66,11 +66,11 @@ public static class CustomerDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdatePersonalDetails(int id, string forename, string surname, bool archived) {
+    public static async Task<bool> UpdateCustomerPersonalDetails(int id, string forename, string surname, bool archived) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("UpdateCustomerDetails", connection);
+        await using SqlCommand command = new("UpdateCustomerPersonalDetails", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@id", id);
         command.Parameters.AddWithValue("@forename", forename);
@@ -82,7 +82,7 @@ public static class CustomerDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateContact(int id, string phoneNumber, string email, string address) {
+    public static async Task<bool> UpdateCustomerContactDetails(int id, string phoneNumber, string email, string address) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 

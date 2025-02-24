@@ -56,7 +56,7 @@ public class EditCustomerPresenter : ParentEditPresenter<IEditCustomerView, Cust
 
     private bool ValidateInputsContactDetails(ManageCustomerContactDetailsPresenter presenter) => presenter.EmailValid && presenter.PhoneNumberValid;
 
-    private Task<bool> UpdateDatabaseContactDetails(ManageCustomerContactDetailsPresenter presenter) => CustomerDAL.UpdateContact(_model.Id, presenter.PhoneNumber, presenter.Email, presenter.Address);
+    private Task<bool> UpdateDatabaseContactDetails(ManageCustomerContactDetailsPresenter presenter) => CustomerDAL.UpdateCustomerContactDetails(_model.Id, presenter.PhoneNumber, presenter.Email, presenter.Address);
 
     private void UpdateModelContactDetails(ManageCustomerContactDetailsPresenter presenter) {
         _model.Email = presenter.Email;
@@ -89,7 +89,7 @@ public class EditCustomerPresenter : ParentEditPresenter<IEditCustomerView, Cust
 
     private bool ValidateInputsPersonalDetails(ManageCustomerPersonalDetailsPresenter presenter) => presenter.SurnameValid && presenter.ForenameValid;
 
-    private Task<bool> UpdateDatabasePersonalDetails(ManageCustomerPersonalDetailsPresenter presenter) => CustomerDAL.UpdatePersonalDetails(_model.Id, presenter.Forename, presenter.Surname, presenter.Archived);
+    private Task<bool> UpdateDatabasePersonalDetails(ManageCustomerPersonalDetailsPresenter presenter) => CustomerDAL.UpdateCustomerPersonalDetails(_model.Id, presenter.Forename, presenter.Surname, presenter.Archived);
 
     private void UpdateModelPersonalDetails(ManageCustomerPersonalDetailsPresenter presenter) {
         _model.Forename = presenter.Forename;

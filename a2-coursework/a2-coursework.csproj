@@ -15,10 +15,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="libphonenumber-csharp" Version="8.13.54" />
+    <PackageReference Include="libphonenumber-csharp" Version="8.13.55" />
     <PackageReference Include="LiveCharts.WinForms.NetCore3" Version="0.9.8" />
-    <PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.2" />
+    <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="PdfiumViewer" Version="2.13.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -27,22 +28,28 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="User Controls\CRUD\SearchBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="View\Customer\ManageCustomerContactDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\CleaningJobOptions\AddJobOptionView.cs">
+    <Compile Update="View\CleaningJobOptions\AddCleaningJobOptionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\CleaningJobOptions\DisplayJobOptionView.cs">
+    <Compile Update="View\CleaningJobOptions\DisplayCleaningJobOptionView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\CleaningJobOptions\EditJobOptionView.cs">
+    <Compile Update="View\CleaningJobOptions\EditCleaningJobOptionView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJobOptions\ManageCleaningJobOptionView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Staff\StaffManagement\DisplayLoginAttemptView.cs">
       <SubType>Form</SubType>
     </Compile>
   </ItemGroup>

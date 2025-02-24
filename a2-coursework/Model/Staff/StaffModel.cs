@@ -2,8 +2,8 @@
 
 namespace a2_coursework.Model.Staff;
 
-public class StaffModel(int staffID, byte[] hashedPassword, byte[] salt, DateTime lastPasswordChange, string username, bool archived, PrivilegeLevel privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, Theme theme) {
-    public int Id { get; set; } = staffID;
+public class StaffModel(int id, byte[] hashedPassword, byte[] salt, DateTime lastPasswordChange, string username, bool archived, PrivilegeLevel privilegeLevel, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, string address, Theme theme) {
+    public int Id { get; set; } = id;
     public byte[] HashedPassword { get; set; } = hashedPassword;
     public byte[] Salt { get; set; } = salt;
     public DateTime LastPasswordChange { get; set; } = lastPasswordChange;

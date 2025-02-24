@@ -46,7 +46,7 @@
             tbName.Font = new Font("Bahnschrift", 12F);
             tbName.ForeColor = Color.Empty;
             tbName.HoverColor = Color.Empty;
-            tbName.Location = new Point(150, 47);
+            tbName.Location = new Point(148, 47);
             tbName.Margin = new Padding(5);
             tbName.MaxLength = 256;
             tbName.MultiLine = false;
@@ -66,7 +66,7 @@
             lblName.AutoSize = true;
             lblName.Font = new Font("Bahnschrift", 14F);
             lblName.ForeColor = Color.White;
-            lblName.Location = new Point(150, 14);
+            lblName.Location = new Point(148, 14);
             lblName.Margin = new Padding(5);
             lblName.Name = "lblName";
             lblName.Size = new Size(59, 23);
@@ -83,7 +83,7 @@
             tbDescription.Font = new Font("Bahnschrift", 12F);
             tbDescription.ForeColor = Color.Empty;
             tbDescription.HoverColor = Color.Empty;
-            tbDescription.Location = new Point(150, 176);
+            tbDescription.Location = new Point(148, 176);
             tbDescription.Margin = new Padding(5);
             tbDescription.MaximumSize = new Size(355, 79);
             tbDescription.MaxLength = 256;
@@ -104,7 +104,7 @@
             lblDescription.AutoSize = true;
             lblDescription.Font = new Font("Bahnschrift", 14F);
             lblDescription.ForeColor = Color.White;
-            lblDescription.Location = new Point(150, 145);
+            lblDescription.Location = new Point(148, 145);
             lblDescription.Margin = new Padding(5);
             lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(191, 23);
@@ -116,7 +116,7 @@
             lblNameError.Anchor = AnchorStyles.None;
             lblNameError.Font = new Font("Bahnschrift", 12F);
             lblNameError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblNameError.Location = new Point(150, 92);
+            lblNameError.Location = new Point(148, 92);
             lblNameError.Name = "lblNameError";
             lblNameError.Size = new Size(355, 38);
             lblNameError.TabIndex = 16;
@@ -127,7 +127,7 @@
             lblCharacterLimit.Anchor = AnchorStyles.None;
             lblCharacterLimit.Font = new Font("Bahnschrift", 12F);
             lblCharacterLimit.ForeColor = Color.FromArgb(168, 171, 174);
-            lblCharacterLimit.Location = new Point(355, 260);
+            lblCharacterLimit.Location = new Point(353, 260);
             lblCharacterLimit.Margin = new Padding(10, 0, 10, 20);
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
@@ -137,13 +137,13 @@
             // 
             // nudUnitCost
             // 
-            nudUnitCost.BorderStyle = BorderStyle.None;
+            nudUnitCost.BorderStyle = BorderStyle.FixedSingle;
             nudUnitCost.DecimalPlaces = 2;
             nudUnitCost.Font = new Font("Segoe UI", 12F);
             nudUnitCost.Location = new Point(100, 13);
             nudUnitCost.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
             nudUnitCost.Name = "nudUnitCost";
-            nudUnitCost.Size = new Size(244, 25);
+            nudUnitCost.Size = new Size(244, 29);
             nudUnitCost.TabIndex = 17;
             nudUnitCost.TextAlign = HorizontalAlignment.Center;
             // 
@@ -162,12 +162,13 @@
             // 
             // pnlUnitCost
             // 
+            pnlUnitCost.Anchor = AnchorStyles.None;
             pnlUnitCost.BorderColor = Color.FromArgb(39, 39, 42);
             pnlUnitCost.BorderThickness = 1F;
             pnlUnitCost.Controls.Add(nudUnitCost);
             pnlUnitCost.Controls.Add(lblUnitCost);
             pnlUnitCost.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlUnitCost.Location = new Point(150, 307);
+            pnlUnitCost.Location = new Point(148, 307);
             pnlUnitCost.Name = "pnlUnitCost";
             pnlUnitCost.Size = new Size(355, 49);
             pnlUnitCost.TabIndex = 18;

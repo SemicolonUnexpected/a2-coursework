@@ -69,7 +69,7 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     private bool ValidateInputsPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) => presenter.ForenameValid && presenter.ForenameValid && presenter.ForenameValid;
 
     private Task<bool> UpdateDatabasePersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
-        return StaffDAL.UpdatePersonalInformation(_model.Id, presenter.Forename, presenter.Surname, presenter.DateOfBirth);
+        return StaffDAL.UpdateStaffPersonalInformation(_model.Id, presenter.Forename, presenter.Surname, presenter.DateOfBirth);
     }
 
     private void UpdateModelPersonalInformation(ManageStaffPersonalDetailsPresenter presenter) {
@@ -102,7 +102,7 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
 
     private bool ValidateInputsContactDetails(ManageStaffContactDetailsPresenter presenter) => presenter.EmailValid && presenter.PhoneNumberValid;
 
-    private Task<bool> UpdateDatabaseContactDetails(ManageStaffContactDetailsPresenter presenter) => StaffDAL.UpdateContactDetails(_model.Id, presenter.Email, presenter.PhoneNumber, presenter.Address);
+    private Task<bool> UpdateDatabaseContactDetails(ManageStaffContactDetailsPresenter presenter) => StaffDAL.UpdateStaffContactDetails(_model.Id, presenter.Email, presenter.PhoneNumber, presenter.Address);
 
     private void UpdateModelContactDetails(ManageStaffContactDetailsPresenter presenter) {
         _model.Email = presenter.Email;
@@ -134,7 +134,7 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
 
     private bool ValidateInputsEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) => presenter.EmergencyContactPhoneNumberValid;
 
-    private Task<bool> UpdateDatabaseEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) => StaffDAL.UpdateEmergencyContactInformation(_model.Id, presenter.EmergencyContactForename, presenter.EmergencyContactSurname, presenter.EmergencyContactPhoneNumber);
+    private Task<bool> UpdateDatabaseEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) => StaffDAL.UpdateStaffEmergencyContactInformation(_model.Id, presenter.EmergencyContactForename, presenter.EmergencyContactSurname, presenter.EmergencyContactPhoneNumber);
 
     private void UpdateModelEmergencyContactDetails(ManageStaffEmergencyContactDetailsPresenter presenter) {
         _model.EmergencyContactForename = presenter.EmergencyContactForename;
@@ -169,7 +169,7 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
     }
 
     private Task<bool> UpdateDatabaseAppearanceSettings(ManageStaffAppearanceSettingsPresenter presenter) {
-        return StaffDAL.UpdateAppearanceSettings(_model.Id, new Theming.Theme(
+        return StaffDAL.UpdateStaffAppearanceSettings(_model.Id, new Theming.Theme(
             presenter.DarkMode ? Theming.AppearanceTheme.Dark : Theming.AppearanceTheme.Light,
             presenter.ShowToolTips,
             presenter.FontName));
@@ -212,7 +212,7 @@ public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel
 
     private bool ValidateInputsCredentials(ManageStaffCredentialsPresenter presenter) => presenter.UsernameValid;
 
-    private Task<bool> UpdateDatabaseCredentials(ManageStaffCredentialsPresenter presenter) => StaffDAL.UpdateCredentials(_model.Id, presenter.Username, presenter.PrivilegeLevel);
+    private Task<bool> UpdateDatabaseCredentials(ManageStaffCredentialsPresenter presenter) => StaffDAL.UpdateStaffCredentials(_model.Id, presenter.Username, presenter.PrivilegeLevel);
 
     private void UpdateModelCredentials(ManageStaffCredentialsPresenter presenter) {
         _model.Username = presenter.Username;
