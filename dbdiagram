@@ -1,0 +1,178 @@
+Table "dbo"."CleaningJob" {
+  "Id" int [not null]
+  "Date" date [not null]
+  "Duration" datetime2(7) [not null]
+  "Address" nvarchar(500) [not null]
+  "CustomerId" int [not null]
+  "StaffId" int [not null]
+
+  Indexes {
+    Id [pk]
+  }
+}
+
+Table "dbo"."CleaningJob_CleaningJobOption" {
+  "CleaningJobId" int [not null]
+  "CleaningJobOptionId" int [not null]
+  "Quantity" int [not null, default: 1]
+  "UnitCostAtTime" decimal(10,2) [not null]
+
+  Indexes {
+    (CleaningJobId, CleaningJobOptionId) [pk]
+  }
+}
+
+Table "dbo"."CleaningJobOption" {
+  "Id" int [not null, increment]
+  "Name" nvarchar(255) [not null]
+  "Description" nvarchar(500) [not null, default: '']
+  "UnitCost" decimal(10,2) [not null]
+  "Archived" bit [not null, default: 0]
+
+  Indexes {
+    Id [pk]
+  }
+}
+
+Table "dbo"."CleaningJobStaff" {
+  "CleaningJobId" int [not null]
+  "StaffId" int [not null]
+
+  Indexes {
+    (CleaningJobId, StaffId) [pk]
+  }
+}
+
+Table "dbo"."Customer" {
+  "Id" int [not null, increment]
+  "Archived" bit [not null, default: 0]
+  "Forename" nvarchar(100) [not null]
+  "Surname" nvarchar(100) [not null]
+  "Email" nvarchar(255) [not null]
+  "PhoneNumber" nvarchar(20) [not null]
+  "Address" nvarchar(500) [not null, default: '']
+
+  Indexes {
+    Id [pk]
+    Email [unique]
+  }
+}
+
+Table "dbo"."LoginAttempt" {
+  "Username" nvarchar(255) [not null]
+  "AttemptTime" datetime2(7) [not null]
+  "Successful" bit [not null]
+
+  Indexes {
+    AttemptTime [pk]
+  }
+}
+
+Table "dbo"."Order" {
+  "Id" int [not null, increment]
+  "StaffId" int
+  "Description" nvarchar(500)
+  "Status" nvarchar(20)
+
+  Indexes {
+    Id [pk]
+  }
+}
+
+Table "dbo"."Order_Stock" {
+  "StockId" int [not null]
+  "OrderId" int [not null]
+  "Quantity" int [not null]
+  "UnitCostAtTime" decimal(10,2) [not null]
+
+  Indexes {
+    (OrderId, StockId) [pk]
+  }
+}
+
+Table "dbo"."Staff" {
+  "Id" int [not null, increment]
+  "Username" nvarchar(255) [not null]
+  "HashedPassword" nvarchar(128) [not null]
+  "Salt" nvarchar(128) [not null]
+  "LastPasswordChange" date [not null, default: `getdate()`]
+  "Archived" bit [not null, default: 0]
+  "Forename" nvarchar(255) [not null]
+  "Surname" nvarchar(255) [not null]
+  "DateOfBirth" date
+  "Email" nvarchar(255) [not null]
+  "PhoneNumber" nvarchar(20) [not null]
+  "Address" nvarchar(255) [not null]
+  "EmergencyContactForename" nvarchar(100) [not null, default: '']
+  "EmergencyContactSurname" nvarchar(100) [not null, default: '']
+  "EmergencyContactPhoneNumber" nvarchar(20) [not null, default: '']
+  "PrivilegeLevelId" int [not null]
+  "AppearanceSettings" nvarchar(max) [not null, default: `N,[object Object]`]
+
+  Indexes {
+    Id [pk]
+    Username [unique]
+  }
+}
+
+Table "dbo"."StaffPrivilege" {
+  "Id" int [not null]
+  "PrivilegeLevel" nvarchar(50) [not null]
+
+  Indexes {
+    Id [pk]
+    PrivilegeLevel [unique]
+  }
+}
+
+Table "dbo"."Stock" {
+  "Id" int [not null, increment]
+  "Name" nvarchar(255) [not null]
+  "Description" nvarchar(500) [not null]
+  "Archived" bit [not null, default: 0]
+  "HighQuantity" int [not null, default: 0]
+  "LowQuantity" int [not null, default: 0]
+  "Sku" nvarchar(20) [not null]
+  "UnitCost" decimal(10,2) [not null, default: 0]
+
+  Indexes {
+    Id [pk]
+    Sku [unique]
+  }
+}
+
+Table "dbo"."StockQuantity" {
+  "Id" int [not null, increment]
+  "StockId" int [not null]
+  "Date" date [not null]
+  "Quantity" int [not null]
+  "EditedByStaff" int [not null]
+  "ReasonForQuantityChange" nvarchar(500) [not null]
+
+  Indexes {
+    Id [pk]
+  }
+}
+
+
+Ref: "dbo"."CleaningJob"."Id" < "dbo"."CleaningJob_CleaningJobOption"."CleaningJobId"
+
+Ref: "dbo"."CleaningJobOption"."Id" < "dbo"."CleaningJob_CleaningJobOption"."CleaningJobOptionId"
+
+Ref: "dbo"."CleaningJob"."Id" < "dbo"."CleaningJobStaff"."CleaningJobId"
+
+Ref: "dbo"."Staff"."Id" < "dbo"."CleaningJobStaff"."StaffId"
+
+Ref: "dbo"."Customer"."Id" < "dbo"."CleaningJob"."CustomerId"
+
+Ref: "dbo"."StaffPrivilege"."Id" - "dbo"."Staff"."PrivilegeLevelId"
+
+Ref: "dbo"."Stock"."Id" < "dbo"."StockQuantity"."StockId"
+
+Ref: "dbo"."Stock"."Id" < "dbo"."Order_Stock"."StockId"
+
+Ref: "dbo"."Order"."Id" < "dbo"."Order_Stock"."OrderId"
+
+Ref: "dbo"."Staff"."Id" < "dbo"."StockQuantity"."EditedByStaff"
+
+Ref: "dbo"."Staff"."Id" < "dbo"."Order"."StaffId"

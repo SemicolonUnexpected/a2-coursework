@@ -29,11 +29,17 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Update="User Controls\CRUD\AddEditDeleteSearchBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="User Controls\CRUD\SearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
       <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\BookCleaningJobView.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Customer\ManageCustomerContactDetailsView.cs">
       <SubType>Form</SubType>
