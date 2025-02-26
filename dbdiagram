@@ -70,9 +70,9 @@ Table "dbo"."LoginAttempt" {
 
 Table "dbo"."Order" {
   "Id" int [not null, increment]
-  "StaffId" int
-  "Description" nvarchar(500)
-  "Status" nvarchar(20)
+  "StaffId" int [not null]
+  "Description" nvarchar(500) [not null]
+  "Status" nvarchar(20) [not null]
 
   Indexes {
     Id [pk]
@@ -142,7 +142,6 @@ Table "dbo"."Stock" {
 }
 
 Table "dbo"."StockQuantity" {
-  "Id" int [not null, increment]
   "StockId" int [not null]
   "Date" date [not null]
   "Quantity" int [not null]
@@ -150,7 +149,8 @@ Table "dbo"."StockQuantity" {
   "ReasonForQuantityChange" nvarchar(500) [not null]
 
   Indexes {
-    Id [pk]
+    StockId [pk]
+    Date [pk]
   }
 }
 
