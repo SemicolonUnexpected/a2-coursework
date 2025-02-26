@@ -7,7 +7,7 @@ using a2_coursework.View;
 using a2_coursework.View.Stock.StockQuantityChanges;
 
 namespace a2_coursework.Presenter.Stock.StockQuantityChanges;
-public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplayStockQuantityChangesView, StockQuantityChange, DisplayStockQuantityChange>, IChildPresenter, INavigatingPresenter {
+public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplayStockQuantityChangesView, StockQuantityChange, DisplayStockQuantityChangeModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
     public DisplayStockQuantityChangesPresenter(IDisplayStockQuantityChangesView view) : base(view) {
@@ -60,7 +60,7 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
         else models = _models;
 
         foreach (StockQuantityChange stockQuantityChange in models) {
-            DisplayStockQuantityChange displayStockQuantityChange = CreateDisplayItem(stockQuantityChange);
+            DisplayStockQuantityChangeModel displayStockQuantityChange = CreateDisplayItem(stockQuantityChange);
             _modelDisplayMap.Add(displayStockQuantityChange, stockQuantityChange);
             _displayModels.Add(displayStockQuantityChange);
         }
@@ -68,7 +68,7 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayStockQuantityChange CreateDisplayItem(StockQuantityChange model) => new DisplayStockQuantityChange(model);
+    protected override DisplayStockQuantityChangeModel CreateDisplayItem(StockQuantityChange model) => new DisplayStockQuantityChangeModel(model);
 
     private IEnumerable<StockQuantityChange> FilterOutArchived(IEnumerable<StockQuantityChange> stockItems) => stockItems.Where(x => !x.StockArchived);
 

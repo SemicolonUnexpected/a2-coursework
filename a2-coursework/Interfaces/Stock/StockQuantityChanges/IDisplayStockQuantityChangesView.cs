@@ -2,7 +2,7 @@
 using a2_coursework.View.Stock.StockQuantityChanges;
 
 namespace a2_coursework.Interfaces.Stock.StockQuantityChanges;
-public interface IDisplayStockQuantityChangesView : IDisplayView<DisplayStockQuantityChange>, IView {
+public interface IDisplayStockQuantityChangesView : IDisplayView<DisplayStockQuantityChangeModel>, IView {
     public event EventHandler? View;
     public event EventHandler? ShowArchivedChanged;
     public event EventHandler? Search;
@@ -12,7 +12,7 @@ public interface IDisplayStockQuantityChangesView : IDisplayView<DisplayStockQua
     public string SearchText { get; set; }
     public string DataGridText { set; }
     public bool ShowArchivedItems { get; }
-    public DisplayStockQuantityChange? SelectedItem { get; }
+    public DisplayStockQuantityChangeModel? SelectedItem { get; }
 
     public void DisableAll();
     public void EnableAll();

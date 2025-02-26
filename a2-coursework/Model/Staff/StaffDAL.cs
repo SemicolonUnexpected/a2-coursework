@@ -32,21 +32,6 @@ internal static class StaffDAL {
         return (hash, salt);
     }
 
-    public static async Task<bool> LogLoginAttempt(string username, DateTime attemptTime, bool success) {
-        await using SqlConnection connection = new(_connectionString);
-        await connection.OpenAsync();
-
-        await using SqlCommand command = new("LogLoginAttempt", connection);
-        command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@username", username);
-        command.Parameters.AddWithValue("@attemptTime", attemptTime);
-        command.Parameters.AddWithValue("@success", success);
-
-        int rowsAffected = await command.ExecuteNonQueryAsync();
-
-        return rowsAffected > 0;
-    }
-
     public static async Task<StaffModel?> GetStaffByUsername(string username) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
@@ -171,10 +156,10 @@ internal static class StaffDAL {
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
-        var staffList = new List<StaffModel>();
+        List<StaffModel> staff = [];
 
         while (await reader.ReadAsync()) {
-            staffList.Add(new StaffModel(
+            staff.Add(new StaffModel(
                 id: reader.GetInt32(reader.GetOrdinal("Id")),
                 hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
                 salt: Convert.FromHexString(reader.GetString(reader.GetOrdinal("Salt"))),
@@ -195,7 +180,7 @@ internal static class StaffDAL {
             ));
         }
 
-        return staffList;
+        return staff;
     }
 
     public static async Task<bool> UpdateStaffArchived(int id, bool archived) {

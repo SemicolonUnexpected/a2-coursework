@@ -1,12 +1,12 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.Staff.StaffManagement;
+using a2_coursework.Interfaces.LoginAttempt;
 using a2_coursework.Theming;
-using a2_coursework.View.StaffView.StaffManagement;
+using a2_coursework.View.LoginAttempt;
 using System.ComponentModel;
 
 namespace a2_coursework.View.Users;
-public partial class DisplayLoginAttemptView : Form, IThemeable {
+public partial class DisplayLoginAttemptView : Form, IThemeable, IDisplayLoginAttemptView {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? Search;
@@ -85,9 +85,9 @@ public partial class DisplayLoginAttemptView : Form, IThemeable {
             }
         };
 
-        columnUsername.DataPropertyName = nameof(DisplayStaffModel.Username);
-        columnAttemptTime.DataPropertyName = nameof(DisplayStaffModel.Names);
-        columnSuccessful.DataPropertyName = nameof(DisplayStaffModel.Id);
+        columnUsername.DataPropertyName = nameof(DisplayLoginAttemptModel.Username);
+        columnAttemptTime.DataPropertyName = nameof(DisplayLoginAttemptModel.AttemptTime);
+        columnSuccessful.DataPropertyName = nameof(DisplayLoginAttemptModel.Successful);
     }
 
     public string SearchText {
@@ -95,10 +95,10 @@ public partial class DisplayLoginAttemptView : Form, IThemeable {
         set => searchBar.SearchText = value;
     }
 
-    public DisplayStaffModel? SelectedItem {
+    public DisplayLoginAttemptModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayStaffModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayLoginAttemptModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -113,7 +113,7 @@ public partial class DisplayLoginAttemptView : Form, IThemeable {
         }
     }
 
-    public void DisplayItems(BindingList<DisplayStaffModel> items) {
+    public void DisplayItems(BindingList<DisplayLoginAttemptModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();
@@ -150,9 +150,8 @@ public partial class DisplayLoginAttemptView : Form, IThemeable {
             if (e.Value is bool isSuccess) {
                 e.Value = isSuccess ? "Yes" : "No";
 
-                e.CellStyle = new DataGridViewCellStyle() {
-                    ForeColor = isSuccess ? ColorScheme.Current.Info : ColorScheme.Current.Danger,
-                };
+                e.CellStyle!.ForeColor = isSuccess ? ColorScheme.Current.Info : ColorScheme.Current.Danger;
+                e.CellStyle!.SelectionForeColor = isSuccess ? ColorScheme.Current.Info : ColorScheme.Current.Danger;
             }
         }
     }

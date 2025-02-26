@@ -94,12 +94,12 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
             }
         };
 
-        columnUsername.DataPropertyName = nameof(DisplayStockQuantityChange.Username);
-        columnStockName.DataPropertyName = nameof(DisplayStockQuantityChange.StockName);
-        columnSku.DataPropertyName = nameof(DisplayStockQuantityChange.StockSKU);
-        columnQuantity.DataPropertyName = nameof(DisplayStockQuantityChange.Quantity);
-        columnDate.DataPropertyName = nameof(DisplayStockQuantityChange.Date);
-        columnArchived.DataPropertyName = nameof(DisplayStockQuantityChange.Archived);
+        columnUsername.DataPropertyName = nameof(DisplayStockQuantityChangeModel.Username);
+        columnStockName.DataPropertyName = nameof(DisplayStockQuantityChangeModel.StockName);
+        columnSku.DataPropertyName = nameof(DisplayStockQuantityChangeModel.StockSKU);
+        columnQuantity.DataPropertyName = nameof(DisplayStockQuantityChangeModel.Quantity);
+        columnDate.DataPropertyName = nameof(DisplayStockQuantityChangeModel.Date);
+        columnArchived.DataPropertyName = nameof(DisplayStockQuantityChangeModel.Archived);
     }
 
     public string SearchText {
@@ -107,10 +107,10 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
         set => topBar.SearchText = value;
     }
 
-    public DisplayStockQuantityChange? SelectedItem {
+    public DisplayStockQuantityChangeModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayStockQuantityChange>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayStockQuantityChangeModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -188,7 +188,7 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
         SortRequested?.Invoke(this, sortRequestEventArgs);
     }
 
-    public void DisplayItems(BindingList<DisplayStockQuantityChange> items) {
+    public void DisplayItems(BindingList<DisplayStockQuantityChangeModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();

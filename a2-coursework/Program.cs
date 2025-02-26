@@ -1,4 +1,6 @@
 using a2_coursework.Model.Reports;
+using Patagames.Pdf;
+using Patagames.Pdf.Net.Controls.WinForms;
 using QuestPDF.Fluent;
 using QuestPDF.Infrastructure;
 
@@ -17,8 +19,10 @@ internal static class Program {
 
         QuestPDF.Settings.License = LicenseType.Community;
 
+
+        byte[] value = StaffReportGenerator.StaffSecurityReport().Result;
+
         // Start the application
-        //File.WriteAllBytes("test.pdf", StaffReportGenerator.StaffSecurityReport().Result);
         Application.Run(new AppContext());
     }
 }
