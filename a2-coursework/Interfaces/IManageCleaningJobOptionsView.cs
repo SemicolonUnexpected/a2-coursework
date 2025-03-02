@@ -6,6 +6,7 @@ namespace a2_coursework.Interfaces;
 public interface IManageCleaningJobOptionsView : IDisplayView<DisplayCleaningJobOptionModel> {
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
+    public event EventHandler? QuantityChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
     public string SearchText { get; set; }

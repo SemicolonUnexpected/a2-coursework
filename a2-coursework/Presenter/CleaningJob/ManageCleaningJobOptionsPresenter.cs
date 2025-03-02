@@ -14,11 +14,44 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
 
         LoadData();
 
-        _view.SelectionChanged += OnSelectionChanged;
+        _view.SelectionChanged += OnSelectedItemChanged;
+        _view.QuantityChanged += OnQuantityChanged;
     }
 
-    private void OnSelectionChanged(object? sender, EventArgs e) {
+    private void OnSelectedItemChanged(object? sender, EventArgs e) {
+        LoadDetails(_modelDisplayMap[_view.SelectedItem!]);
+    }
+
+    private void OnQuantityChanged(object? sender, EventArgs e) {
+        ChangeQuantity();
         DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void ChangeQuantity() {
+        CleaningJobOptionModel model = _modelDisplayMap[_view.SelectedItem!];
+        model.Quantity = _view.Quantity;
+        _view.Subtotal = model.Quantity * model.CostAtTime;
+        _view.Total = CalculateTotal();
+    }
+
+    private decimal CalculateTotal() {
+        decimal sum = 0;
+        foreach (var model in _models) {
+            sum += model.Quantity * model.UnitCost;
+        }
+        return sum;
+    }
+
+    public List<CleaningJobOptionModel> Models {
+        get => _models;
+    }
+
+    private void LoadDetails(CleaningJobOptionModel model) {
+        _view.CleaningOptionName = model.Name;
+        _view.CleaningOptionDescription = model.Description;
+        _view.Quantity = model.Quantity;
+        _view.Subtotal = model.Quantity * model.CostAtTime;
+        _view.Total = CalculateTotal();
     }
 
     private async void LoadData() {
@@ -37,7 +70,7 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
         }
         catch {
             _displayModels.Clear();
-            _view.DataGridText = "Error getting stock from the database";
+            _view.DataGridText = "Error getting jobs from the database";
         }
         finally {
             _isAsyncRunning = false;

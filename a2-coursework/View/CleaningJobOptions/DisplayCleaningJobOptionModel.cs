@@ -48,12 +48,22 @@ public class DisplayCleaningJobOptionModel : INotifyPropertyChanged {
         }
     }
 
+    private decimal _costAtTime;
+    public decimal CostAtTime {
+        get => _costAtTime;
+        set {
+            _costAtTime = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     public DisplayCleaningJobOptionModel(CleaningJobOptionModel model) {
         Id = model.Id;
         Name = model.Name;
         Description = model.Description;
         UnitCost = model.UnitCost;
         Archived = model.Archived;
+        CostAtTime = model.CostAtTime;
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

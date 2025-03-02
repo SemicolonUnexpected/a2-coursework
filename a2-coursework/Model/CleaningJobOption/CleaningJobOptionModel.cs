@@ -6,5 +6,5 @@ public class CleaningJobOptionModel(int id, string name, string description, dec
     public decimal UnitCost { get; set; } = unitCost;
     public bool Archived { get; set; } = archived;
     public int Quantity { get; set; }
-    public decimal? CostAtTime { get; set; }
+    public decimal CostAtTime { get; set; }
 }

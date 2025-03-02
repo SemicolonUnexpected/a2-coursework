@@ -5,15 +5,16 @@ using a2_coursework.Theming;
 using System.ComponentModel;
 using System.Globalization;
 
-namespace a2_coursework.View.Customer; 
+namespace a2_coursework.View.Customer;
 public partial class DisplayCleaningJobView : Form, IDisplayView<DisplayCleaningJobOptionModel>, IChildView, IThemeable, IManageCleaningJobOptionsView {
     private readonly BindingSource _bindingSource = [];
 
+    public event EventHandler? QuantityChanged;
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
-    public DisplayCleaningJobView () {
+    public DisplayCleaningJobView() {
         InitializeComponent();
 
         Theme();
@@ -28,6 +29,7 @@ public partial class DisplayCleaningJobView : Form, IDisplayView<DisplayCleaning
         searchBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         searchBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
+        nudQuantity.ValueChanged += (s, e) => QuantityChanged?.Invoke(this, EventArgs.Empty);
 
         SetupDataGrid();
     }
@@ -114,7 +116,7 @@ public partial class DisplayCleaningJobView : Form, IDisplayView<DisplayCleaning
 
         columnId.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Id);
         columnName.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Name);
-        columnUnitCost.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Name);
+        columnUnitCost.DataPropertyName = nameof(DisplayCleaningJobOptionModel.CostAtTime);
     }
 
     public string SearchText {
