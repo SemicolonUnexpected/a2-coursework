@@ -1,13 +1,10 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Theming;
-using System.ComponentModel;
 
 namespace a2_coursework.User_Controls.DataGrid;
 public partial class SearchBar : UserControl, IThemeable {
     public event EventHandler? SearchTextChanged;
     public event EventHandler? Search;
-    public event EventHandler? View;
-    public event EventHandler? ShowArchivedToggled;
 
     public SearchBar() {
         InitializeComponent();

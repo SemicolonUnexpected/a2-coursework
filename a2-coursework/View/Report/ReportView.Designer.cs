@@ -27,6 +27,7 @@
             pdfViewer = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             btnDownload = new CustomControls.CustomButton();
             toolTip = new ToolTip(components);
+            btnBack = new CustomControls.CustomButton();
             saveFileDialog = new SaveFileDialog();
             SuspendLayout();
             // 
@@ -89,12 +90,37 @@
             btnDownload.TextPosition = new Point(0, 0);
             toolTip.SetToolTip(btnDownload, "Download");
             // 
+            // btnBack
+            // 
+            btnBack.BackColor = Color.FromArgb(9, 9, 10);
+            btnBack.BorderColor = Color.FromArgb(39, 39, 42);
+            btnBack.BorderThickness = 1F;
+            btnBack.ClickedBorderColor = Color.FromArgb(39, 39, 42);
+            btnBack.ClickedColor = Color.FromArgb(39, 39, 42);
+            btnBack.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnBack.DisabledBorderColor = Color.Empty;
+            btnBack.DisabledColor = Color.Empty;
+            btnBack.ForeColor = Color.FromArgb(250, 250, 250);
+            btnBack.HoverBorderColor = Color.FromArgb(39, 39, 42);
+            btnBack.HoverColor = Color.FromArgb(39, 39, 42);
+            btnBack.Image = Properties.Resources.chevron_left_light;
+            btnBack.ImageRectangle = new Rectangle(7, 7, 26, 26);
+            btnBack.Location = new Point(12, 12);
+            btnBack.Name = "btnBack";
+            btnBack.Size = new Size(40, 40);
+            btnBack.TabIndex = 18;
+            btnBack.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
+            btnBack.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btnBack, "Back");
+            btnBack.Visible = false;
+            // 
             // ReportView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(649, 500);
+            Controls.Add(btnBack);
             Controls.Add(btnDownload);
             Controls.Add(pdfViewer);
             FormBorderStyle = FormBorderStyle.None;
@@ -109,5 +135,6 @@
         private CustomControls.CustomButton btnDownload;
         private ToolTip toolTip;
         private SaveFileDialog saveFileDialog;
+        private CustomControls.CustomButton btnBack;
     }
 }

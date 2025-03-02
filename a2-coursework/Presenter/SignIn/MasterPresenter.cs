@@ -61,7 +61,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
             ["Dashboard"],
             ["Stock", "Manage stock", "Request stock", "Quantity changes", "Upcoming deliveries"],
             ["Security", "Manage staff", "Login attempts", "Change password"],
-            ["Cleaning", "Manage cleaning", "Manage customers", "Manage options"],
+            ["Cleaning", "Book cleaning", "Manage customers", "Manage options"],
             ["Reports", "Staff", "Stock"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
 
@@ -95,6 +95,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
         "Staff" => GetStaffReport(),
         "Stock" => GetStockReport(),
         "Login attempts" => GetLoginAttempts(),
+        "Book cleaning" => GetBookCleaning(),
         _ => throw new NotImplementedException(),
     };
 
@@ -113,6 +114,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
     private (IChildView view, IChildPresenter presenter) GetLoginAttempts() => SignInFactory.CreateDisplayLoginAttempt();
     private (IChildView view, IChildPresenter presenter) GetStaffReport() => ReportFactory.CreateReport("StaffReport", StaffReportGenerator.StaffSecurityReport());
     private (IChildView view, IChildPresenter presenter) GetStockReport() => ReportFactory.CreateReport("StockReport", StockReportGenerator.StockItemsReport());
+    private (IChildView view, IChildPresenter presenter) GetBookCleaning() => CleaningJobFactory.CreateBookCleaningJob();
 
     private void SignOut()
     {

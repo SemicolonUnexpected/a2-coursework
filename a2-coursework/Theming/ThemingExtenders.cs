@@ -101,4 +101,27 @@ internal static class ThemingExtenders {
         dataGridView.BackgroundColor = ColorScheme.Current.Background;
         dataGridView.ForeColor = ColorScheme.Current.Foreground;
     }
+
+    public static void Theme(this CustomMonthCalendar customMonthCalendar) {
+        customMonthCalendar.BackColor = ColorScheme.Current.Background;
+        customMonthCalendar.ForeColor = ColorScheme.Current.Foreground;
+        customMonthCalendar.ClickedColor = ColorScheme.Current.Primary;
+        customMonthCalendar.HoverColor = ColorScheme.Current.Primary;
+        customMonthCalendar.SelectedDateBackColor = ColorScheme.Current.Primary;
+        customMonthCalendar.DisabledForeColor = ColorScheme.Current.PrimaryForeground;
+
+        customMonthCalendar.NextButton.ThemeWeak();
+        customMonthCalendar.NextButton.Image = IconTheme.Current.ForwardArrow;
+
+        customMonthCalendar.PreviousButton.ThemeWeak();
+        customMonthCalendar.PreviousButton.Image = IconTheme.Current.BackArrow;
+    }
+
+    public static void Theme(this TimeInput timeInput) {
+        timeInput.BackColor = ColorScheme.Current.Background;
+        timeInput.ForeColor = ColorScheme.Current.Foreground;
+        timeInput.BorderColor = ColorScheme.Current.Primary;
+        timeInput.BorderErrorColor = ColorScheme.Current.Danger;
+        timeInput.PlaceholderColor = ColorScheme.Current.PrimaryForeground;
+    }
 }

@@ -2,11 +2,6 @@
 
 namespace a2_coursework.CustomControls;
 public partial class DateInput {
-    private readonly bool _dayError = false;
-    private readonly bool _monthEmptyError = false;
-    private readonly bool _yearEmptyError = false;
-    private readonly bool _invalidDateError = false;
-
     public event EventHandler? DateTextChanged;
 
     public string DayText => tbDay.Text;
@@ -22,7 +17,7 @@ public partial class DateInput {
         }
         set {
             if (value is null) tbDay.Text = "";
-            else if (value < 0) throw new ArgumentOutOfRangeException("value");
+            else if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
             else if (value < 10) tbDay.Text = "0" + value.ToString();
             else tbDay.Text = value.ToString() ?? "";
         }
@@ -37,7 +32,7 @@ public partial class DateInput {
         }
         set {
             if (value is null) tbMonth.Text = "";
-            else if (value < 0) throw new ArgumentOutOfRangeException("value");
+            else if (value < 0) throw new ArgumentOutOfRangeException(nameof(value));
             else if (value < 10) tbMonth.Text = "0" + value.ToString();
             else tbMonth.Text = value.ToString() ?? "";
         }

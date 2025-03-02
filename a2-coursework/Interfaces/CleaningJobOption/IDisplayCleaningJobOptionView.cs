@@ -1,4 +1,4 @@
-﻿using a2_coursework.Model.JobOption;
+﻿using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.View;
 
 namespace a2_coursework.Interfaces.CleaningJobOption; 

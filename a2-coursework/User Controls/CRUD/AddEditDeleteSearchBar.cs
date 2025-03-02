@@ -1,12 +1,12 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Theming;
-using System.ComponentModel;
 
 namespace a2_coursework.User_Controls.DataGrid;
 public partial class AddEditDeleteSearchBar : UserControl, IThemeable {
     public event EventHandler? SearchTextChanged;
     public event EventHandler? Search;
     public event EventHandler? Edit;
+    public event EventHandler? View;
     public event EventHandler? Add;
     public event EventHandler? Delete;
 
@@ -24,7 +24,7 @@ public partial class AddEditDeleteSearchBar : UserControl, IThemeable {
         btnAdd.ThemeWeak();
         btnAdd.Image = IconTheme.Current.Plus;
         btnEdit.ThemeWeak();
-        btnEdit.Image = IconTheme.Current.Edit;
+        btnEdit.Image = _viewMode ? IconTheme.Current.Eye : IconTheme.Current.Edit;
         btnDelete.ThemeWeak();
         btnDelete.Image = IconTheme.Current.Delete;
         btnClear.ThemeWeak();
@@ -68,9 +68,21 @@ public partial class AddEditDeleteSearchBar : UserControl, IThemeable {
         }
     }
 
+    private bool _viewMode = false;
+    public bool ViewMode {
+        get => _viewMode;
+        set {
+            _viewMode = value;
+            btnEdit.Image = _viewMode ? IconTheme.Current.Eye : IconTheme.Current.Edit;
+        }
+    }
+
     private void btnAdd_Click(object sender, EventArgs e) => Add?.Invoke(this, EventArgs.Empty);
 
-    private void btnEdit_Click(object sender, EventArgs e) => Edit?.Invoke(this, EventArgs.Empty);
+    private void btnEdit_Click(object sender, EventArgs e) {
+        if (!_viewMode) Edit?.Invoke(this, EventArgs.Empty);
+        else View?.Invoke(this, EventArgs.Empty);
+    }
 
     private void btnArchive_Click(object sender, EventArgs e) => Delete?.Invoke(this, EventArgs.Empty);
 

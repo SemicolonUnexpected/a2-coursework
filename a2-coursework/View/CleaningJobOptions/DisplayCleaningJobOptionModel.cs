@@ -1,10 +1,8 @@
 ﻿using System.ComponentModel;
 
-namespace a2_coursework.Model.JobOption;
+namespace a2_coursework.Model.CleaningJobOption;
 
 public class DisplayCleaningJobOptionModel : INotifyPropertyChanged {
-    public event PropertyChangedEventHandler? PropertyChanged;
-
     private int _id;
     public int Id {
         get => _id;
@@ -57,6 +55,8 @@ public class DisplayCleaningJobOptionModel : INotifyPropertyChanged {
         UnitCost = model.UnitCost;
         Archived = model.Archived;
     }
+
+    public event PropertyChangedEventHandler? PropertyChanged;
 
     private void NotifyPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string propertyName = "") {
         PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

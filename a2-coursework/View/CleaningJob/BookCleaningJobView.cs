@@ -1,18 +1,23 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
-using a2_coursework.Interfaces.LoginAttempt;
+using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
-using a2_coursework.View.LoginAttempt;
+using a2_coursework.View.CleaningJob;
 using System.ComponentModel;
 
 namespace a2_coursework.View.Users;
-public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemptView {
+public partial class BookCleaningJobView : Form, IThemeable, IBookCleaningJobView {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? Search;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
+    public event EventHandler? DateChanged;
+    public event EventHandler? Add;
+    public event EventHandler? Edit;
+    public event EventHandler? View;
+    public event EventHandler? Delete;
 
-    public BookCleaningJobView () {
+    public BookCleaningJobView() {
         InitializeComponent();
 
         Theme();
@@ -24,8 +29,13 @@ public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemp
         SetToolTipVisibility();
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
-        searchBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
-        searchBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
+        topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
+        topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
+        monthCalendar.DateChanged += (s, e) => DateChanged?.Invoke(this, EventArgs.Empty);
+        topBar.Add += (s, e) => Add?.Invoke(this, EventArgs.Empty);
+        topBar.Edit += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
+        topBar.View += (s, e) => View?.Invoke(this, EventArgs.Empty);
+        topBar.Delete += (s, e) => Delete?.Invoke(this, EventArgs.Empty);
 
         SetupDataGrid();
     }
@@ -36,10 +46,13 @@ public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemp
         lblCleaningJobs.ThemeTitle();
         lblError.ThemeSubtitle();
 
-        searchBar.Theme();
+        topBar.Theme();
         pnlData.Theme();
         dataGridView.Theme();
         sb.Theme();
+        dateInput.Theme();
+        monthCalendar.Theme();
+        pnlDate.Theme();
     }
 
     public void SetToolTipVisibility() {
@@ -49,13 +62,13 @@ public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemp
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
         }
 
-        searchBar.SetToolTipVisibility();
+        topBar.SetToolTipVisibility();
     }
 
     public void SetFont() {
         string fontName = Theming.Theme.Current.FontName;
 
-        searchBar.SetFontName(fontName);
+        topBar.SetFontName(fontName);
         dataGridView.SetFontName(fontName);
         lblCleaningJobs.SetFontName(fontName);
         lblError.SetFontName(fontName);
@@ -85,26 +98,27 @@ public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemp
             }
         };
 
-        columnUsername.DataPropertyName = nameof(DisplayLoginAttemptModel.Username);
-        columnAttemptTime.DataPropertyName = nameof(DisplayLoginAttemptModel.AttemptTime);
-        columnSuccessful.DataPropertyName = nameof(DisplayLoginAttemptModel.Successful);
+        columnJobId.DataPropertyName = nameof(DisplayCleaningJobModel.Id);
+        columnTime.DataPropertyName = nameof(DisplayCleaningJobModel.Times);
+        columnAddress.DataPropertyName = nameof(DisplayCleaningJobModel.Address);
     }
 
     public string SearchText {
-        get => searchBar.SearchText;
-        set => searchBar.SearchText = value;
+        get => topBar.SearchText;
+        set => topBar.SearchText = value;
     }
 
-    public DisplayLoginAttemptModel? SelectedItem {
+    public DisplayCleaningJobModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayLoginAttemptModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayCleaningJobModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
             }
         }
     }
+
     public string DataGridText {
         get => lblError.Text;
         set {
@@ -113,19 +127,42 @@ public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemp
         }
     }
 
-    public void DisplayItems(BindingList<DisplayLoginAttemptModel> items) {
+    public DateTime Date {
+        get => monthCalendar.Date;
+        set {
+            monthCalendar.Date = value;
+            monthCalendar.DisplayedDate = value;
+        }
+    }
+
+    public void DisplayItems(BindingList<DisplayCleaningJobModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();
     }
 
+    public bool AddEnabled {
+        get => topBar.AddEnabled;
+        set => topBar.AddEnabled = value;
+    }
+
+    public bool DeleteEnabled {
+        get => topBar.DeleteEnabled;
+        set => topBar.DeleteEnabled = value;
+    }
+
+    public bool ViewMode {
+        get => topBar.ViewMode;
+        set => topBar.ViewMode = value;
+    }
+
     public void DisableAll() {
-        searchBar.Enabled = false;
+        topBar.Enabled = false;
         dataGridView.Enabled = false;
     }
 
     public void EnableAll() {
-        searchBar.Enabled = true;
+        topBar.Enabled = true;
         dataGridView.Enabled = true;
     }
 
@@ -180,5 +217,34 @@ public partial class BookCleaningJobView : Form, IThemeable, IDisplayLoginAttemp
         Theming.Theme.AppearanceThemeChanged -= Theme;
         Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
         Theming.Theme.FontNameChanged -= SetFont;
+    }
+
+    private void customMonthCalendar_DateChanged(object? sender, EventArgs e) {
+        dateInput.DateTextChanged -= dateInput_DateTextChanged;
+        dateInput.Date = monthCalendar.Date;
+        dateInput.DateTextChanged += dateInput_DateTextChanged;
+    }
+
+    private void dateInput_DateTextChanged(object? sender, EventArgs e) {
+        if (!dateInput.DateValid) return;
+
+        monthCalendar.DateChanged -= customMonthCalendar_DateChanged;
+        monthCalendar.Date = (DateTime)dateInput.Date!;
+        monthCalendar.DisplayedDate = (DateTime)dateInput.Date!;
+        monthCalendar.DateChanged += customMonthCalendar_DateChanged;
+
+        DateChanged?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void dateInput_Leave(object sender, EventArgs e) {
+        dateInput.DateTextChanged -= dateInput_DateTextChanged;
+        dateInput.Date = monthCalendar.Date;
+        dateInput.DateTextChanged += dateInput_DateTextChanged;
+    }
+
+    private void pnlData_Resize(object sender, EventArgs e) {
+        topBar.Width = (pnlData.Width * 4) / 5;
+        topBar.Location = new Point(pnlData.Location.X + (pnlData.Width - topBar.Width) / 2, topBar.Location.Y);
+        Refresh();
     }
 }

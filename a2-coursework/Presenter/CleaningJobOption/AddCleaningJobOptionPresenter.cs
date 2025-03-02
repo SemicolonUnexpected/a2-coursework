@@ -2,7 +2,7 @@
 using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJobOption;
-using a2_coursework.Model.JobOption;
+using a2_coursework.Model.CleaningJobOption;
 
 namespace a2_coursework.Presenter.CleaningJobOption;
 public class AddCleaningJobOptionPresenter : AddPresenter<IAddCleaningJobOptionView, CleaningJobOptionModel>, IChildPresenter, INavigatingPresenter {

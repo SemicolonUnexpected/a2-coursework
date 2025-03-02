@@ -23,23 +23,25 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlData = new CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            columnUsername = new DataGridViewTextBoxColumn();
-            columnAttemptTime = new DataGridViewTextBoxColumn();
-            columnSuccessful = new DataGridViewTextBoxColumn();
+            columnJobId = new DataGridViewTextBoxColumn();
+            columnAddress = new DataGridViewTextBoxColumn();
+            columnTime = new DataGridViewTextBoxColumn();
             sb = new CustomControls.CustomScrollBar();
+            monthCalendar = new CustomControls.CustomMonthCalendar();
             lblCleaningJobs = new Label();
-            monthCalendar1 = new MonthCalendar();
-            dateInput1 = new CustomControls.DateInput();
-            searchBar = new User_Controls.DataGrid.AddEditDeleteSearchBar();
+            dateInput = new CustomControls.DateInput();
+            topBar = new User_Controls.DataGrid.AddEditDeleteSearchBar();
+            pnlDate = new CustomControls.CustomPanel();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            pnlDate.SuspendLayout();
             SuspendLayout();
             // 
             // pnlData
@@ -51,19 +53,20 @@
             pnlData.Controls.Add(dataGridView);
             pnlData.Controls.Add(sb);
             pnlData.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlData.Location = new Point(292, 127);
+            pnlData.Location = new Point(316, 127);
             pnlData.Margin = new Padding(5);
             pnlData.Name = "pnlData";
             pnlData.Padding = new Padding(5);
-            pnlData.Size = new Size(343, 359);
+            pnlData.Size = new Size(321, 359);
             pnlData.TabIndex = 4;
+            pnlData.Resize += pnlData_Resize;
             // 
             // lblError
             // 
             lblError.Anchor = AnchorStyles.Top;
             lblError.Font = new Font("Bahnschrift", 20F);
             lblError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblError.Location = new Point(15, 134);
+            lblError.Location = new Point(4, 134);
             lblError.Margin = new Padding(10, 0, 10, 20);
             lblError.Name = "lblError";
             lblError.Size = new Size(313, 103);
@@ -84,26 +87,26 @@
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle5.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.True;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 30;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnUsername, columnAttemptTime, columnSuccessful });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle7.Font = new Font("Bahnschrift", 10F);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnJobId, columnAddress, columnTime });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView.EnableHeadersVisualStyles = false;
@@ -114,50 +117,50 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 30;
             dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(39, 39, 42);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(39, 39, 42);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView.RowTemplate.Height = 30;
             dataGridView.ScrollBars = ScrollBars.None;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dataGridView.Size = new Size(323, 349);
+            dataGridView.Size = new Size(301, 349);
             dataGridView.TabIndex = 1;
             dataGridView.CellFormatting += dataGridView_CellFormatting;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
-            // columnUsername
+            // columnJobId
             // 
-            columnUsername.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnUsername.DefaultCellStyle = dataGridViewCellStyle6;
-            columnUsername.HeaderText = "Username";
-            columnUsername.Name = "columnUsername";
-            columnUsername.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnJobId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnJobId.DefaultCellStyle = dataGridViewCellStyle2;
+            columnJobId.HeaderText = "Job ID";
+            columnJobId.Name = "columnJobId";
+            columnJobId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnJobId.Width = 77;
             // 
-            // columnAttemptTime
+            // columnAddress
             // 
-            columnAttemptTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnAttemptTime.HeaderText = "Attempt Time";
-            columnAttemptTime.Name = "columnAttemptTime";
-            columnAttemptTime.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnAddress.HeaderText = "Address";
+            columnAddress.Name = "columnAddress";
             // 
-            // columnSuccessful
+            // columnTime
             // 
-            columnSuccessful.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnSuccessful.HeaderText = "Successful";
-            columnSuccessful.Name = "columnSuccessful";
-            columnSuccessful.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnTime.HeaderText = "Time";
+            columnTime.Name = "columnTime";
+            columnTime.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // sb
             // 
             sb.BackColor = Color.FromArgb(9, 9, 10);
             sb.Dock = DockStyle.Right;
             sb.LargeChange = 50;
-            sb.Location = new Point(328, 5);
+            sb.Location = new Point(306, 5);
             sb.Maximum = 100;
             sb.Minimum = 0;
             sb.MinimumThumbHeight = 30;
@@ -174,6 +177,24 @@
             sb.Visible = false;
             sb.ValueChanged += sb_ValueChanged;
             // 
+            // monthCalendar
+            // 
+            monthCalendar.BackColor = Color.FromArgb(9, 9, 10);
+            monthCalendar.ClickedColor = Color.Empty;
+            monthCalendar.Date = new DateTime(2025, 2, 28, 0, 0, 0, 0);
+            monthCalendar.DateCornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            monthCalendar.DisabledForeColor = Color.FromArgb(168, 171, 174);
+            monthCalendar.DisplayedDate = new DateTime(2025, 2, 8, 0, 0, 0, 0);
+            monthCalendar.Dock = DockStyle.Fill;
+            monthCalendar.ForeColor = Color.FromArgb(250, 250, 250);
+            monthCalendar.HoverColor = Color.FromArgb(64, 64, 64);
+            monthCalendar.Location = new Point(5, 5);
+            monthCalendar.Name = "monthCalendar";
+            monthCalendar.SelectedDateBackColor = Color.FromArgb(64, 64, 64);
+            monthCalendar.Size = new Size(280, 320);
+            monthCalendar.TabIndex = 15;
+            monthCalendar.DateChanged += customMonthCalendar_DateChanged;
+            // 
             // lblCleaningJobs
             // 
             lblCleaningJobs.Anchor = AnchorStyles.Top;
@@ -187,49 +208,60 @@
             lblCleaningJobs.TabIndex = 9;
             lblCleaningJobs.Text = "Cleaning Jobs";
             // 
-            // monthCalendar1
+            // dateInput
             // 
-            monthCalendar1.CalendarDimensions = new Size(1, 2);
-            monthCalendar1.Location = new Point(18, 157);
-            monthCalendar1.Name = "monthCalendar1";
-            monthCalendar1.TabIndex = 11;
+            dateInput.Anchor = AnchorStyles.Left;
+            dateInput.BorderColor = Color.FromArgb(39, 39, 42);
+            dateInput.BorderErrorColor = Color.Red;
+            dateInput.BorderThickness = 1F;
+            dateInput.Day = null;
+            dateInput.DayToolTip = "";
+            dateInput.Location = new Point(72, 78);
+            dateInput.MaxDate = null;
+            dateInput.MaximumSize = new Size(180, 70);
+            dateInput.MinDate = null;
+            dateInput.MinimumSize = new Size(180, 70);
+            dateInput.Month = null;
+            dateInput.MonthToolTip = "";
+            dateInput.Name = "dateInput";
+            dateInput.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            dateInput.ReadOnly = false;
+            dateInput.Size = new Size(180, 70);
+            dateInput.TabIndex = 12;
+            dateInput.ToolTipsActive = true;
+            dateInput.Year = null;
+            dateInput.YearToolTip = "";
+            dateInput.DateTextChanged += dateInput_DateTextChanged;
             // 
-            // dateInput1
+            // topBar
             // 
-            dateInput1.BorderColor = Color.Empty;
-            dateInput1.BorderErrorColor = Color.Red;
-            dateInput1.BorderThickness = 1F;
-            dateInput1.Day = null;
-            dateInput1.DayToolTip = "";
-            dateInput1.Location = new Point(18, 75);
-            dateInput1.MaxDate = null;
-            dateInput1.MaximumSize = new Size(180, 70);
-            dateInput1.MinDate = null;
-            dateInput1.MinimumSize = new Size(180, 70);
-            dateInput1.Month = null;
-            dateInput1.MonthToolTip = "";
-            dateInput1.Name = "dateInput1";
-            dateInput1.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            dateInput1.ReadOnly = false;
-            dateInput1.Size = new Size(180, 70);
-            dateInput1.TabIndex = 12;
-            dateInput1.ToolTipsActive = true;
-            dateInput1.Year = null;
-            dateInput1.YearToolTip = "";
+            topBar.AddEnabled = true;
+            topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.DeleteEnabled = true;
+            topBar.EditEnabled = true;
+            topBar.Location = new Point(316, 75);
+            topBar.MinimumSize = new Size(321, 44);
+            topBar.Name = "topBar";
+            topBar.Padding = new Padding(2);
+            topBar.SearchEnabled = true;
+            topBar.SearchText = "";
+            topBar.Size = new Size(321, 44);
+            topBar.TabIndex = 13;
+            topBar.ViewMode = true;
             // 
-            // searchBar
+            // pnlDate
             // 
-            searchBar.AddEnabled = true;
-            searchBar.BackColor = Color.FromArgb(9, 9, 10);
-            searchBar.DeleteEnabled = true;
-            searchBar.EditEnabled = true;
-            searchBar.Location = new Point(292, 75);
-            searchBar.Name = "searchBar";
-            searchBar.Padding = new Padding(2);
-            searchBar.SearchEnabled = true;
-            searchBar.SearchText = "";
-            searchBar.Size = new Size(343, 44);
-            searchBar.TabIndex = 13;
+            pnlDate.Anchor = AnchorStyles.Left;
+            pnlDate.BorderColor = Color.FromArgb(39, 39, 42);
+            pnlDate.BorderThickness = 1F;
+            pnlDate.Controls.Add(monthCalendar);
+            pnlDate.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlDate.Location = new Point(14, 156);
+            pnlDate.Margin = new Padding(5);
+            pnlDate.Name = "pnlDate";
+            pnlDate.Padding = new Padding(5);
+            pnlDate.Size = new Size(290, 330);
+            pnlDate.TabIndex = 16;
             // 
             // BookCleaningJobView
             // 
@@ -237,9 +269,9 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(649, 500);
-            Controls.Add(searchBar);
-            Controls.Add(dateInput1);
-            Controls.Add(monthCalendar1);
+            Controls.Add(pnlDate);
+            Controls.Add(topBar);
+            Controls.Add(dateInput);
             Controls.Add(lblCleaningJobs);
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
@@ -247,6 +279,7 @@
             Text = "UserDisplayView";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            pnlDate.ResumeLayout(false);
             ResumeLayout(false);
             PerformLayout();
         }
@@ -258,11 +291,12 @@
         private DataGridView dataGridView;
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
-        private DataGridViewTextBoxColumn columnUsername;
-        private DataGridViewTextBoxColumn columnAttemptTime;
-        private DataGridViewTextBoxColumn columnSuccessful;
-        private MonthCalendar monthCalendar1;
-        private CustomControls.DateInput dateInput1;
-        private User_Controls.DataGrid.AddEditDeleteSearchBar searchBar;
+        private CustomControls.DateInput dateInput;
+        private User_Controls.DataGrid.AddEditDeleteSearchBar topBar;
+        private CustomControls.CustomMonthCalendar monthCalendar;
+        private CustomControls.CustomPanel pnlDate;
+        private DataGridViewTextBoxColumn columnJobId;
+        private DataGridViewTextBoxColumn columnAddress;
+        private DataGridViewTextBoxColumn columnTime;
     }
 }

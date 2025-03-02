@@ -6,6 +6,7 @@ using Patagames.Pdf.Net;
 namespace a2_coursework.View;
 public partial class ReportView : Form, IThemeable, IReportView {
     public event EventHandler? Download;
+    public event EventHandler? Back;
 
     public ReportView() {
         InitializeComponent();
@@ -21,10 +22,17 @@ public partial class ReportView : Form, IThemeable, IReportView {
         Theming.Theme.ShowToolTipsChanged += SetToolTipVisibility;
 
         btnDownload.Click += (s, e) => Download?.Invoke(this, EventArgs.Empty);
+        btnBack.Click += (s, e) => Back?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
         BackColor = ColorScheme.Current.Background;
+
+        btnDownload.Theme();
+        btnDownload.Image = IconTheme.Current.Download;
+
+        btnDownload.Theme();
+        btnBack.Image = IconTheme.Current.BackArrow;
     }
 
     public void SetFont() { }
@@ -48,6 +56,10 @@ public partial class ReportView : Form, IThemeable, IReportView {
     public string ReportName {
         get => _reportName;
         set => _reportName = value;
+    }
+
+    public bool BackVisible {
+        set => btnBack.Visible = value;
     }
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) => CustomMessageBox.Show(text, caption, buttons);
@@ -92,8 +104,6 @@ public partial class ReportView : Form, IThemeable, IReportView {
             newZoom = Math.Max(0.1f, Math.Min(5.0f, newZoom)); 
 
             pdfViewer.Zoom = newZoom;
-
-            ((HandledMouseEventArgs)e).Handled = true; 
         }
     }
 }

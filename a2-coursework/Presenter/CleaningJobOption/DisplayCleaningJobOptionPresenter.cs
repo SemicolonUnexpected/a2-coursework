@@ -2,14 +2,14 @@
 using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJobOption;
-using a2_coursework.Model.JobOption;
+using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.View;
 
 namespace a2_coursework.Presenter.Customer;
-public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayCleaningJobOptionView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, IChildPresenter, INavigatingPresenter {
+public class DisplayCleaningJobOptionPresenter : DisplayPresenter<IDisplayCleaningJobOptionView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public DisplayJobOptionPresenter(IDisplayCleaningJobOptionView view) : base(view) {
+    public DisplayCleaningJobOptionPresenter(IDisplayCleaningJobOptionView view) : base(view) {
         LoadData();
 
         _view.Add += OnAdd;
@@ -52,14 +52,14 @@ public class DisplayJobOptionPresenter : DisplayPresenter<IDisplayCleaningJobOpt
 
     protected override DisplayCleaningJobOptionModel CreateDisplayItem(CleaningJobOptionModel model) => new DisplayCleaningJobOptionModel(model);
 
-    public async void LoadData() {
+    private async void LoadData() {
         _view.DataGridText = "Loading...";
         _view.DisableAll();
 
         try {
             _isAsyncRunning = true;
 
-            _models = await CleaningJobOptionDAL.GetJobOptions();
+            _models = await CleaningJobOptionDAL.GetCleaningJobOptions();
 
             DisplayItems();
 

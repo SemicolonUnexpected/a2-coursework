@@ -15,7 +15,18 @@ public abstract class DisplayPresenter<TView, TModel, TDisplayModel> : BasePrese
 
     protected DisplayPresenter(TView view) : base(view) { }
 
-    protected abstract void DisplayItems();
+    protected virtual void DisplayItems() {
+        _displayModels.Clear();
+        _modelDisplayMap.Clear();
+
+        foreach (TModel model in _models) {
+            TDisplayModel displayModel = CreateDisplayItem(model);
+            _modelDisplayMap.Add(displayModel, model);
+            _displayModels.Add(displayModel);
+        }
+
+        _view.DisplayItems(_displayModels);
+    }
 
     protected abstract TDisplayModel CreateDisplayItem(TModel model);
 

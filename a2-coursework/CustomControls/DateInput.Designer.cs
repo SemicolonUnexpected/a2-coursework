@@ -47,6 +47,7 @@
             tbDay.Name = "tbDay";
             tbDay.PlaceholderText = "23";
             tbDay.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbDay.ReadOnly = false;
             tbDay.Size = new Size(40, 40);
             tbDay.TabIndex = 0;
             tbDay.TextAlign = HorizontalAlignment.Center;
@@ -72,6 +73,7 @@
             tbMonth.Name = "tbMonth";
             tbMonth.PlaceholderText = "06";
             tbMonth.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbMonth.ReadOnly = false;
             tbMonth.Size = new Size(40, 40);
             tbMonth.TabIndex = 1;
             tbMonth.TextAlign = HorizontalAlignment.Center;
@@ -97,6 +99,7 @@
             tbYear.Name = "tbYear";
             tbYear.PlaceholderText = "1986";
             tbYear.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbYear.ReadOnly = false;
             tbYear.Size = new Size(60, 40);
             tbYear.TabIndex = 2;
             tbYear.TextAlign = HorizontalAlignment.Center;

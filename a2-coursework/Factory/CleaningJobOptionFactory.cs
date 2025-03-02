@@ -1,4 +1,4 @@
-﻿using a2_coursework.Model.JobOption;
+﻿using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Presenter.CleaningJobOption;
 using a2_coursework.Presenter.Customer;
 using a2_coursework.View;
@@ -7,9 +7,9 @@ using a2_coursework.View.JobOption;
 
 namespace a2_coursework.Factory; 
 public static class CleaningJobOptionFactory {
-    public static (DisplayCleaningJobOptionView view, DisplayJobOptionPresenter presenter) CreateDisplayCleaningJobOption() {
+    public static (DisplayCleaningJobOptionView view, DisplayCleaningJobOptionPresenter presenter) CreateDisplayCleaningJobOption() {
         DisplayCleaningJobOptionView view = new();
-        DisplayJobOptionPresenter presenter = new(view);
+        DisplayCleaningJobOptionPresenter presenter = new(view);
 
         return (view, presenter);
     }

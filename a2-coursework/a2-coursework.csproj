@@ -38,7 +38,25 @@
     <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="View\CleaningJob\AddCleaningJobView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\CleaningJob\BookCleaningJobView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\ManageCleaningJobOptionsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\ManageCleaningJobStaffView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\SelectCleaningJobOptionsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\ManageCleaningJobOptionDurationView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\ManageCleaningJobOptionDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Customer\ManageCustomerContactDetailsView.cs">
@@ -59,6 +77,9 @@
     <Compile Update="View\LoginAttempt\DisplayLoginAttemptView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Stock\StockManagement\ManageStockPriceView.cs">
+      <SubType>Form</SubType>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
@@ -72,6 +93,12 @@
     <None Update="Database.mdf">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="View\Order\Deliveries\" />
+    <Folder Include="View\Order\OrderApproval\" />
+    <Folder Include="View\Order\StockRequest\" />
   </ItemGroup>
 
 </Project>

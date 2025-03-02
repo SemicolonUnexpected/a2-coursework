@@ -1,0 +1,23 @@
+﻿using a2_coursework.Model.CleaningJobOption;
+using a2_coursework.View;
+
+namespace a2_coursework.Interfaces;
+
+public interface IManageCleaningJobOptionsView : IDisplayView<DisplayCleaningJobOptionModel> {
+    public event EventHandler? Search;
+    public event EventHandler? SelectionChanged;
+    public event EventHandler<SortRequestEventArgs>? SortRequested;
+
+    public string SearchText { get; set; }
+    public DisplayCleaningJobOptionModel? SelectedItem { get; }
+    public string DataGridText { get; set; }
+
+    public string CleaningOptionName { get; set; }
+    public string CleaningOptionDescription { get; set; }
+    public int Quantity { get; set; }
+    public decimal Subtotal { set; }
+    public decimal Total { set; }
+
+    public void DisableAll();
+    public void EnableAll();
+}

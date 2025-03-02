@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.Model.JobOption;
+﻿namespace a2_coursework.Model.CleaningJobOption;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Data;
@@ -8,11 +8,37 @@ using System.Threading.Tasks;
 public static class CleaningJobOptionDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-    public static async Task<List<CleaningJobOptionModel>> GetJobOptions() {
+    public static async Task<List<CleaningJobOptionModel>> GetCleaningJobOptions() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("GetJobOptions", connection);
+        await using SqlCommand command = new("GetCleaningJobOptions", connection);
+        command.CommandType = CommandType.StoredProcedure;
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<CleaningJobOptionModel> jobOptions = [];
+
+        while (await reader.ReadAsync()) {
+            jobOptions.Add(
+                new CleaningJobOptionModel(
+                    id: reader.GetInt32(reader.GetOrdinal("Id")),
+                    name: reader.GetString(reader.GetOrdinal("Name")),
+                    description: reader.GetString(reader.GetOrdinal("Description")),
+                    unitCost: reader.GetDecimal(reader.GetOrdinal("UnitCost")),
+                    archived: reader.GetBoolean(reader.GetOrdinal("Archived"))
+                )
+            );
+        }
+
+        return jobOptions;
+    }
+
+    public static async Task<List<CleaningJobOptionModel>> GetNonArchivedCleaningJobOptions() {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetNonArchivedCleaningJobOptions", connection);
         command.CommandType = CommandType.StoredProcedure;
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();

@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Properties;
 
 namespace a2_coursework.Theming;
-internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image doubleBackArrow, Image doubleForwardArrow, Image plus, Image minus, Image navigation, Image search, Image cross, Image tick, Image edit, Image delete, Image archive, Image restore, Image openBox, Image closedBox) {
+internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image backArrow, Image forwardArrow, Image doubleBackArrow, Image doubleForwardArrow, Image plus, Image minus, Image navigation, Image search, Image cross, Image tick, Image edit, Image delete, Image archive, Image restore, Image openBox, Image closedBox, Image download) {
     public static IconTheme Current {
         get {
             if (Theme.Current.AppearanceTheme == AppearanceTheme.Dark) return Dark;
@@ -28,7 +28,8 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
         archive: Resources.archive_light,
         restore: Resources.archive_restore_light,
         openBox: Resources.package_open_light,
-        closedBox: Resources.package_light
+        closedBox: Resources.package_light,
+        download: Resources.download_light
         );
 
     public static IconTheme Light { get; } = new(
@@ -50,7 +51,8 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
         archive: Resources.archive_dark,
         restore: Resources.archive_restore_dark,
         openBox: Resources.package_open_dark,
-        closedBox: Resources.package_dark
+        closedBox: Resources.package_dark,
+        download: Resources.download_dark
         );
 
     #region Static Icons
@@ -79,6 +81,7 @@ internal class IconTheme(Image eye, Image eyeCrossed, Image settings, Image back
     public Image Restore { get; } = restore;
     public Image ClosedBox { get; } = closedBox;
     public Image OpenBox { get; } = openBox;
+    public Image Download { get; } = download;
 
     #endregion
 }
