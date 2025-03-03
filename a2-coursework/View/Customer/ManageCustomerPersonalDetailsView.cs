@@ -3,7 +3,7 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Customer;
+namespace a2_coursework.View.CleaningJob;
 public partial class ManageCustomerPersonalDetailsView : Form, IThemeable, IManageCustomerPersonalDetailsView {
     public event EventHandler? ForenameChanged;
     public event EventHandler? SurnameChanged;

@@ -1,10 +1,11 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.CustomControls;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.View.Customer; 
+namespace a2_coursework.View.CleaningJob; 
 public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerModel>, IChildView, IThemeable, IDisplayCustomerView {
     private readonly BindingSource _bindingSource = [];
 
@@ -98,7 +99,7 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
         };
 
         columnId.DataPropertyName = nameof(DisplayCustomerModel.Id);
-        columnName.DataPropertyName = nameof(DisplayCustomerModel.Name);
+        columnName.DataPropertyName = nameof(DisplayCustomerModel.Names);
         columnEmail.DataPropertyName = nameof(DisplayCustomerModel.Email);
         columnPhoneNumber.DataPropertyName = nameof(DisplayCustomerModel.PhoneNumber);
         columnArchived.DataPropertyName = nameof(DisplayCustomerModel.Archived);
@@ -194,6 +195,8 @@ public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerMod
         SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, isAscending);
         SortRequested?.Invoke(this, sortRequestEventArgs);
     }
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK) => CustomMessageBox.Show(text, caption, buttons);
 
     public void CleanUp() {
         Theming.Theme.AppearanceThemeChanged -= Theme;

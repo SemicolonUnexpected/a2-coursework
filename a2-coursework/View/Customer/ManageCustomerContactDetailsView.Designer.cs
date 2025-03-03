@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.Customer {
+﻿namespace a2_coursework.View.CleaningJob {
     partial class ManageCustomerContactDetailsView {
         /// <summary>
         /// Required designer variable.

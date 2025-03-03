@@ -34,6 +34,33 @@ public static class CustomerDAL {
         return customers;
     }
 
+    public static async Task<List<CustomerModel>> GetNonArchivedCustomers() {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetNonArchivedCustomers", connection);
+        command.CommandType = CommandType.StoredProcedure;
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<CustomerModel> customers = [];
+
+        while (await reader.ReadAsync()) {
+            customers.Add(
+                new CustomerModel(
+                    id: reader.GetInt32(reader.GetOrdinal("Id")),
+                    forename: reader.GetString(reader.GetOrdinal("Forename")),
+                    surname: reader.GetString(reader.GetOrdinal("Surname")),
+                    email: reader.GetString(reader.GetOrdinal("Email")),
+                    phoneNumber: reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                    address: reader.GetString(reader.GetOrdinal("Address")),
+                    archived: reader.GetBoolean(reader.GetOrdinal("Archived"))
+                )
+            );
+        }
+
+        return customers;
+    }
     public static async Task<bool> AddCustomer(CustomerModel customer) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
@@ -96,5 +123,24 @@ public static class CustomerDAL {
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
+    }
+
+    public static async Task<bool> CustomerInFutureJob(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("CountCustomersInFutureJobs", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        while (await reader.ReadAsync()) {
+            int numberOfReferences = reader.GetInt32(reader.GetOrdinal("Count"));
+
+            return numberOfReferences > 0;
+        }
+
+        return false;
     }
 }

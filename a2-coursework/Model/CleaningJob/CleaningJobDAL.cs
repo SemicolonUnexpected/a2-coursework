@@ -29,6 +29,11 @@ public class CleaningJobDAL {
                 extraInformation: reader.GetString(reader.GetOrdinal("ExtraInformation"))));
         }
 
+        foreach (CleaningJobModel model in cleaningJobModels) {
+            model.StaffIds = await GetCleaningJobStaffIds(model.Id);
+            model.CleaningJobOptions = await GetCleaningJobCleaningOptions(model.Id);
+        }
+
         return cleaningJobModels;
     }
 
@@ -57,7 +62,31 @@ public class CleaningJobDAL {
                 extraInformation: reader.GetString(reader.GetOrdinal("ExtraInformation"))));
         }
 
+        foreach (CleaningJobModel model in cleaningJobModels) {
+            model.StaffIds = await GetCleaningJobStaffIds(model.Id);
+            model.CleaningJobOptions = await GetCleaningJobCleaningOptions(model.Id);
+        }
+
         return cleaningJobModels;
+    }
+
+    public static async Task<List<int>> GetCleaningJobStaffIds(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetCleaningJobStaffIds", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<int> cleaningJobStaffIds = [];
+
+        while (await reader.ReadAsync()) {
+            cleaningJobStaffIds.Add(reader.GetInt32(reader.GetOrdinal("StaffId")));
+        }
+
+        return cleaningJobStaffIds;
     }
 
     public static async Task<bool> DeleteCleaningJob(int id) {
@@ -83,10 +112,10 @@ public class CleaningJobDAL {
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
-        List<CleaningJobOptionModel> cleaningJobModels = [];
+        List<CleaningJobOptionModel> cleaningJobOptionModels = [];
 
         while (await reader.ReadAsync()) {
-            cleaningJobModels.Add(new CleaningJobOptionModel(
+            cleaningJobOptionModels.Add(new CleaningJobOptionModel(
                 id: reader.GetInt32(reader.GetOrdinal("Id")),
                 name: reader.GetString(reader.GetOrdinal("Name")),
                 description: reader.GetString(reader.GetOrdinal("Description")),
@@ -97,6 +126,22 @@ public class CleaningJobDAL {
             });
         }
 
-        return cleaningJobModels;
+        return cleaningJobOptionModels;
     }
+
+    public static async Task<bool> UpdateCleaningJobDetails(int id, string address, string extraInformation) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetCleaningJobCleaningOptions", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@address", address);
+        command.Parameters.AddWithValue("@extraInformation", extraInformation);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
 }

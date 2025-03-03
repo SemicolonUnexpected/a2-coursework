@@ -4,7 +4,7 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Customer;
 using a2_coursework.Model.Customer;
 using a2_coursework.View;
-using a2_coursework.View.Customer;
+using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Presenter.Customer;
 public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, CustomerModel, DisplayCustomerModel>, IChildPresenter, INavigatingPresenter {
@@ -104,6 +104,11 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
 
         try {
             _isAsyncRunning = true;
+
+            if (await CustomerDAL.CustomerInFutureJob(model.Id)) {
+                _view.ShowMessageBox("The customer is used in a future job so cannot be archived.", "Cannot archive customer");
+                return;
+            }
 
             bool success = await CustomerDAL.UpdateCustomerArchived(model.Id, model.Archived);
 

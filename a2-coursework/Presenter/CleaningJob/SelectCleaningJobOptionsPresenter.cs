@@ -4,7 +4,7 @@ using a2_coursework.Model.CleaningJobOption;
 
 namespace a2_coursework.Presenter.CleaningJob;
 
-class SelectCleaningJobOptionsPresenter : DisplayPresenter<ISelectCleaningJobOptionsView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, INotifyingChildPresenter {
+public class SelectCleaningJobOptionsPresenter : DisplayPresenter<ISelectCleaningJobOptionsView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, INotifyingChildPresenter {
     public event EventHandler? DetailsChanged;
 
     public SelectCleaningJobOptionsPresenter(ISelectCleaningJobOptionsView view) : base(view) {
@@ -45,7 +45,7 @@ class SelectCleaningJobOptionsPresenter : DisplayPresenter<ISelectCleaningJobOpt
 
     protected override IComparable RankSearch(string searchText, CleaningJobOptionModel model) => GeneralHelpers.LevensteinDistance(searchText, model.Name);
 
-    public List<int> Models {
+    public List<int> SelectedItems {
         get => _view.SelectedItems.ConvertAll(x => x.Id);
         set => _view.SetSelectedItemsById(value);
     }

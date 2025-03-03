@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Customer;
+namespace a2_coursework.View.CleaningJob;
 public partial class ManageCustomerContactDetailsView : Form, IManageCustomerContactDetailsView, IThemeable {
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;

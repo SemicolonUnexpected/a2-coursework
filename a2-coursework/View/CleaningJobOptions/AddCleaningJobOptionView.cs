@@ -4,7 +4,7 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJobOption;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Customer; 
+namespace a2_coursework.View.CleaningJob; 
 public partial class AddCleaningJobOptionView : Form, IAddCleaningJobOptionView, IThemeable, IChildView {
     public event EventHandler? Next;
     public event EventHandler? Previous;

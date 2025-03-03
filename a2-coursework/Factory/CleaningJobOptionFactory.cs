@@ -2,7 +2,7 @@
 using a2_coursework.Presenter.CleaningJobOption;
 using a2_coursework.Presenter.Customer;
 using a2_coursework.View;
-using a2_coursework.View.Customer;
+using a2_coursework.View.CleaningJob;
 using a2_coursework.View.JobOption;
 
 namespace a2_coursework.Factory; 

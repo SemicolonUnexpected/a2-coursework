@@ -1,6 +1,6 @@
 ﻿using a2_coursework.Model.Customer;
 using a2_coursework.Presenter.Customer;
-using a2_coursework.View.Customer;
+using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Factory;
 public static class CustomerFactory {

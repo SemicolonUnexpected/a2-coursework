@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace a2_coursework.View.Customer; 
+namespace a2_coursework.View.CleaningJob; 
 public class DisplayCustomerModel : INotifyPropertyChanged {
     private int _id;
     public int Id {
@@ -14,7 +14,7 @@ public class DisplayCustomerModel : INotifyPropertyChanged {
     }
 
     private string _name = "";
-    public string Name {
+    public string Names {
         get => _name;
         set {
             _name = value;
@@ -52,7 +52,7 @@ public class DisplayCustomerModel : INotifyPropertyChanged {
 
     public DisplayCustomerModel(CustomerModel model) {
         Id = model.Id;
-        Name = $"{model.Forename} {model.Surname}";
+        Names = $"{model.Forename} {model.Surname}";
         Email = model.Email;
         PhoneNumber = model.PhoneNumber;
         Archived = model.Archived;

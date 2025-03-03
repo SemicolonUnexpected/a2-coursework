@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Customer;
+namespace a2_coursework.View.CleaningJob;
 public partial class ManageCleaningJobOptionDurationView : Form, IManageCleaningJobDuration, IThemeable {
     public event EventHandler? DateChanged;
     public event EventHandler? StartTimeChanged;

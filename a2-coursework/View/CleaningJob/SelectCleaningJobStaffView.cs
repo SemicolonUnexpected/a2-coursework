@@ -6,7 +6,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.StaffView.StaffManagement;
 using System.ComponentModel;
 
-namespace a2_coursework.View.Customer;
+namespace a2_coursework.View.CleaningJob;
 public partial class SelectCleaningJobStaffView : Form, IDisplayView<DisplayStaffModel>, IChildView, IThemeable, ISelectCleaningJobStaffView {
     private readonly BindingSource _bindingSource = [];
 

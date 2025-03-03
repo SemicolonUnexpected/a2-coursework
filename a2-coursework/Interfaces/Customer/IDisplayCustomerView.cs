@@ -1,5 +1,5 @@
 ﻿using a2_coursework.View;
-using a2_coursework.View.Customer;
+using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Interfaces.Customer; 
 public interface IDisplayCustomerView : IDisplayView<DisplayCustomerModel> {
@@ -19,4 +19,6 @@ public interface IDisplayCustomerView : IDisplayView<DisplayCustomerModel> {
 
     public void DisableAll();
     public void EnableAll();
+
+    public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);
 }

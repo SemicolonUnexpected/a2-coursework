@@ -1,4 +1,6 @@
-﻿namespace a2_coursework.Model.CleaningJob;
+﻿using a2_coursework.Model.CleaningJobOption;
+
+namespace a2_coursework.Model.CleaningJob;
 public class CleaningJobModel(int id, DateTime startDate, DateTime endDate, string address, int customerId, int staffId, string extraInformation) {
     public int Id { get; set; } = id;
     public DateTime StartDate { get; set; } = startDate;
@@ -7,4 +9,6 @@ public class CleaningJobModel(int id, DateTime startDate, DateTime endDate, stri
     public int CustomerId { get; set; } = customerId;
     public int StaffId { get; set; } = staffId;
     public string ExtraInformation { get; set; } = extraInformation;
+    public List<int> StaffIds { get; set; } = [];
+    public List<CleaningJobOptionModel> CleaningJobOptions { get; set; } = [];
 }

@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Interfaces.CleaningJob;
-public interface IManageCleaningJobOptionDetails : IView {
+public interface IManageCleaningJobOptionDetails : IChildView {
     public event EventHandler? AddressChanged;
     public event EventHandler? ExtraInformationChanged;
 
@@ -7,7 +7,7 @@ public interface IManageCleaningJobOptionDetails : IView {
     public string Address { get; set; }
     public bool ReadOnly { get; set; }
 
-    public void SetExtraInformtionCharacterCount(int number);
+    public void SetExtraInformationCharacterCount(int number);
     public void SetAddressCharacterCount(int number);
 
     public void SetAddressBorderError(bool isError);
