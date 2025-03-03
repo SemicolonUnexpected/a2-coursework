@@ -6,15 +6,13 @@ using a2_coursework.Model.Staff;
 using a2_coursework.UserControls;
 
 namespace a2_coursework.Presenter.SignIn;
-public class MasterPresenter : BasePresenter<IMasterView>
-{
+public class MasterPresenter : BasePresenter<IMasterView> {
     private readonly StaffModel _staff;
     private IChildPresenter? _childPresenter;
 
     public event EventHandler? FormClosed;
 
-    public MasterPresenter(IMasterView view, StaffModel staff) : base(view)
-    {
+    public MasterPresenter(IMasterView view, StaffModel staff) : base(view) {
         _staff = staff;
 
         _view.GenerateMenu(GetMenuItems(_staff.PrivilegeLevel));
@@ -26,18 +24,18 @@ public class MasterPresenter : BasePresenter<IMasterView>
         _view.SignOut += OnSignOut;
         _view.FormClosed += OnFormClosed;
         _view.FormClosing += OnFormClosing;
+
+        _view.SetSideMenuToggledIndex(0, 0, true);
     }
 
-    private void OnFormClosing(object? sender, FormClosingEventArgs e)
-    {
+    private void OnFormClosing(object? sender, FormClosingEventArgs e) {
         if (_childPresenter is null) return;
 
         e.Cancel = !_childPresenter.CanExit();
     }
 
     private void OnFormClosed(object? sender, FormClosedEventArgs e) => FormClosed?.Invoke(this, EventArgs.Empty);
-    private void OnToggleChanged(object? sender, string selectedItem)
-    {
+    private void OnToggleChanged(object? sender, string selectedItem) {
         (IChildView view, IChildPresenter presenter) = GetView(selectedItem);
         Navigate(view, presenter);
     }
@@ -45,8 +43,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
     private void OnSignOut(object? sender, EventArgs e) => SignOut();
     private void OnPreviewToggleChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
 
-    private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch
-    {
+    private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch {
         PrivilegeLevel.Office => [
             ["Dashboard"],
             ["Cleaning", "Manage cleaning", "Manage customers"],
@@ -79,8 +76,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
         _ => throw new NotImplementedException(),
     };
 
-    public (IChildView view, IChildPresenter presenter) GetView(string menuItemName) => menuItemName switch
-    {
+    public (IChildView view, IChildPresenter presenter) GetView(string menuItemName) => menuItemName switch {
         "Personal information" => GetPersonalInformationSettings(),
         "Emergency contact" => GetEmergencyContactSettings(),
         "Contact details" => GetContactDetailsSettings(),
@@ -96,6 +92,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
         "Stock" => GetStockReport(),
         "Login attempts" => GetLoginAttempts(),
         "Book cleaning" => GetBookCleaning(),
+        "Dashboard" => GetDashboardView(),
         _ => throw new NotImplementedException(),
     };
 
@@ -115,19 +112,17 @@ public class MasterPresenter : BasePresenter<IMasterView>
     private (IChildView view, IChildPresenter presenter) GetStaffReport() => ReportFactory.CreateReport("StaffReport", StaffReportGenerator.StaffSecurityReport());
     private (IChildView view, IChildPresenter presenter) GetStockReport() => ReportFactory.CreateReport("StockReport", StockReportGenerator.StockItemsReport());
     private (IChildView view, IChildPresenter presenter) GetBookCleaning() => CleaningJobFactory.CreateBookCleaningJob();
+    private (IChildView view, IChildPresenter presenter) GetDashboardView() => SignInFactory.CreateDashboard(_staff);
 
-    private void SignOut()
-    {
-        if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK)
-        {
+    private void SignOut() {
+        if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {
             Application.Restart();
         }
     }
 
     private bool CanNavigate() => _childPresenter is null || _childPresenter.CanExit();
 
-    private void Navigate(IChildView view, IChildPresenter presenter)
-    {
+    private void Navigate(IChildView view, IChildPresenter presenter) {
         // Display the next view
         _view.DisplayChildView(view);
 
@@ -141,8 +136,7 @@ public class MasterPresenter : BasePresenter<IMasterView>
 
     public void Show() => _view.Show();
 
-    public override void CleanUp()
-    {
+    public override void CleanUp() {
         _view.PreviewToggleChanged -= OnPreviewToggleChanged;
         _view.ToggleChanged -= OnToggleChanged;
         _view.SignOut -= OnSignOut;

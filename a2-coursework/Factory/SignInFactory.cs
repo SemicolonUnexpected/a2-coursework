@@ -1,6 +1,4 @@
-﻿using a2_coursework.Interfaces;
-using a2_coursework.Model.Staff;
-using a2_coursework.Presenter;
+﻿using a2_coursework.Model.Staff;
 using a2_coursework.Presenter.Customer;
 using a2_coursework.Presenter.SignIn;
 using a2_coursework.View;
@@ -32,6 +30,13 @@ public static class SignInFactory {
     public static (DisplayLoginAttemptView view, DisplayLoginAttemptPresenter presenter) CreateDisplayLoginAttempt() {
         DisplayLoginAttemptView view = new();
         DisplayLoginAttemptPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (DashboardView view, DashboardPresenter presenter) CreateDashboard(StaffModel staff) {
+        DashboardView view = new();
+        DashboardPresenter presenter = new(view, staff);
 
         return (view, presenter);
     }

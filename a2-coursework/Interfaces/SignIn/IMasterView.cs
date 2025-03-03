@@ -12,6 +12,7 @@ public interface IMasterView : IView {
     public string UsernameText { set; }
     public void DisplayChildView(IChildView childForm);
     public void GenerateMenu(string[][] menuItems);
+    public void SetSideMenuToggledIndex(int i, int j, bool toggled);
     public void Show();
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);

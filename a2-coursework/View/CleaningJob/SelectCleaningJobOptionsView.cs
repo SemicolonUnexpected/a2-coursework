@@ -89,7 +89,7 @@ public partial class SelectCleaningJobOptionsView : Form, IDisplayView<DisplayCl
 
         columnId.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Id);
         columnName.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Name);
-        columnUnitCost.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Name);
+        columnUnitCost.DataPropertyName = nameof(DisplayCleaningJobOptionModel.UnitCost);
     }
 
     public string SearchText {

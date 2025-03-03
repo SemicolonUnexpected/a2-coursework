@@ -1,18 +1,13 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
-using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.CleaningJobOption;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleaningJobOptionsView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, INotifyingChildPresenter {
-    private readonly int _id;
-
     public event EventHandler? DetailsChanged;
 
-    public ManageCleaningJobOptionsPresenter(IManageCleaningJobOptionsView view, int id) : base(view) {
-        _id = id;
-
-        LoadData();
+    public ManageCleaningJobOptionsPresenter(IManageCleaningJobOptionsView view, Task<List<CleaningJobOptionModel>> getModels) : base(view) {
+        LoadData(getModels);
 
         _view.SelectionChanged += OnSelectedItemChanged;
         _view.QuantityChanged += OnQuantityChanged;
@@ -54,14 +49,14 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
         _view.Total = CalculateTotal();
     }
 
-    private async void LoadData() {
+    private async void LoadData(Task<List<CleaningJobOptionModel>> getModels) {
         _view.DataGridText = "Loading...";
         _view.DisableAll();
 
         try {
             _isAsyncRunning = true;
 
-            _models = await CleaningJobDAL.GetCleaningJobCleaningOptions(_id);
+            _models = await getModels;
 
             DisplayItems();
 

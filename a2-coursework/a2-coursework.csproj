@@ -47,7 +47,7 @@
     <Compile Update="View\CleaningJob\ManageCleaningJobOptionsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\CleaningJob\ManageCleaningJobStaffView.cs">
+    <Compile Update="View\CleaningJob\SelectCleaningJobStaffView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJob\SelectCleaningJobOptionsView.cs">
