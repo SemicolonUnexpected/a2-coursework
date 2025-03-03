@@ -23,23 +23,22 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DashboardView));
             pbLogoTitle = new PictureBox();
-            toolTip = new ToolTip(components);
-            label1 = new Label();
-            customPanel2 = new a2_coursework.CustomControls.CustomPanel();
-            label3 = new Label();
+            lblWelcome = new Label();
+            pnlLastLogin = new a2_coursework.CustomControls.CustomPanel();
+            lblLastLogin = new Label();
             flowLayoutPanel = new FlowLayoutPanel();
-            customPanel1 = new a2_coursework.CustomControls.CustomPanel();
-            label2 = new Label();
-            dateInput1 = new a2_coursework.CustomControls.DateInput();
-            dateInput2 = new a2_coursework.CustomControls.DateInput();
-            label4 = new Label();
+            pnlLastPasswordChange = new a2_coursework.CustomControls.CustomPanel();
+            lblLastPasswordChange = new Label();
+            diLastPasswordChange = new a2_coursework.CustomControls.DateInput();
+            diLastLogin = new a2_coursework.CustomControls.DateInput();
+            lblChangePasswordPrompt = new Label();
+            btnChangePassword = new a2_coursework.CustomControls.CustomButton();
             ((System.ComponentModel.ISupportInitialize)pbLogoTitle).BeginInit();
-            customPanel2.SuspendLayout();
+            pnlLastLogin.SuspendLayout();
             flowLayoutPanel.SuspendLayout();
-            customPanel1.SuspendLayout();
+            pnlLastPasswordChange.SuspendLayout();
             SuspendLayout();
             // 
             // pbLogoTitle
@@ -53,145 +52,172 @@
             pbLogoTitle.TabIndex = 0;
             pbLogoTitle.TabStop = false;
             // 
-            // label1
+            // lblWelcome
             // 
-            label1.AccessibleDescription = "Welcome";
-            label1.Anchor = AnchorStyles.None;
-            label1.Font = new Font("Bahnschrift", 24F);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(19, 85);
-            label1.Margin = new Padding(10);
-            label1.Name = "label1";
-            label1.Size = new Size(746, 39);
-            label1.TabIndex = 1;
-            label1.Text = "Good afternoon, John Doe";
-            label1.TextAlign = ContentAlignment.MiddleCenter;
+            lblWelcome.AccessibleDescription = "Welcome";
+            lblWelcome.Anchor = AnchorStyles.None;
+            lblWelcome.Font = new Font("Bahnschrift", 24F);
+            lblWelcome.ForeColor = Color.White;
+            lblWelcome.Location = new Point(19, 85);
+            lblWelcome.Margin = new Padding(10);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(746, 39);
+            lblWelcome.TabIndex = 1;
+            lblWelcome.Text = "Good afternoon, John Doe";
+            lblWelcome.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // customPanel2
+            // pnlLastLogin
             // 
-            customPanel2.Anchor = AnchorStyles.None;
-            customPanel2.BorderColor = Color.FromArgb(39, 39, 42);
-            customPanel2.BorderThickness = 1F;
-            customPanel2.Controls.Add(dateInput2);
-            customPanel2.Controls.Add(label3);
-            customPanel2.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            customPanel2.Location = new Point(20, 20);
-            customPanel2.Margin = new Padding(20);
-            customPanel2.Name = "customPanel2";
-            customPanel2.Size = new Size(300, 250);
-            customPanel2.TabIndex = 1;
+            pnlLastLogin.Anchor = AnchorStyles.None;
+            pnlLastLogin.BorderColor = Color.FromArgb(39, 39, 42);
+            pnlLastLogin.BorderThickness = 1F;
+            pnlLastLogin.Controls.Add(diLastLogin);
+            pnlLastLogin.Controls.Add(lblLastLogin);
+            pnlLastLogin.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlLastLogin.Location = new Point(20, 20);
+            pnlLastLogin.Margin = new Padding(20);
+            pnlLastLogin.Name = "pnlLastLogin";
+            pnlLastLogin.Size = new Size(300, 250);
+            pnlLastLogin.TabIndex = 1;
             // 
-            // label3
+            // lblLastLogin
             // 
-            label3.AccessibleDescription = "Welcome";
-            label3.AutoSize = true;
-            label3.Font = new Font("Bahnschrift", 20F);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(10, 10);
-            label3.Margin = new Padding(10);
-            label3.Name = "label3";
-            label3.Size = new Size(134, 33);
-            label3.TabIndex = 1;
-            label3.Text = "Last login";
+            lblLastLogin.AccessibleDescription = "Welcome";
+            lblLastLogin.AutoSize = true;
+            lblLastLogin.Font = new Font("Bahnschrift", 20F);
+            lblLastLogin.ForeColor = Color.White;
+            lblLastLogin.Location = new Point(10, 10);
+            lblLastLogin.Margin = new Padding(10);
+            lblLastLogin.Name = "lblLastLogin";
+            lblLastLogin.Size = new Size(134, 33);
+            lblLastLogin.TabIndex = 1;
+            lblLastLogin.Text = "Last login";
             // 
             // flowLayoutPanel
             // 
             flowLayoutPanel.Anchor = AnchorStyles.None;
             flowLayoutPanel.AutoSize = true;
             flowLayoutPanel.AutoSizeMode = AutoSizeMode.GrowAndShrink;
-            flowLayoutPanel.Controls.Add(customPanel2);
-            flowLayoutPanel.Controls.Add(customPanel1);
+            flowLayoutPanel.Controls.Add(pnlLastLogin);
+            flowLayoutPanel.Controls.Add(pnlLastPasswordChange);
             flowLayoutPanel.Location = new Point(52, 137);
             flowLayoutPanel.Name = "flowLayoutPanel";
             flowLayoutPanel.Size = new Size(680, 290);
             flowLayoutPanel.TabIndex = 2;
             flowLayoutPanel.Resize += flowLayoutPanel_Resize;
             // 
-            // customPanel1
+            // pnlLastPasswordChange
             // 
-            customPanel1.Anchor = AnchorStyles.None;
-            customPanel1.BorderColor = Color.FromArgb(39, 39, 42);
-            customPanel1.BorderThickness = 1F;
-            customPanel1.Controls.Add(label4);
-            customPanel1.Controls.Add(dateInput1);
-            customPanel1.Controls.Add(label2);
-            customPanel1.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            customPanel1.Location = new Point(360, 20);
-            customPanel1.Margin = new Padding(20);
-            customPanel1.Name = "customPanel1";
-            customPanel1.Size = new Size(300, 250);
-            customPanel1.TabIndex = 1;
+            pnlLastPasswordChange.Anchor = AnchorStyles.None;
+            pnlLastPasswordChange.BorderColor = Color.FromArgb(39, 39, 42);
+            pnlLastPasswordChange.BorderThickness = 1F;
+            pnlLastPasswordChange.Controls.Add(btnChangePassword);
+            pnlLastPasswordChange.Controls.Add(lblChangePasswordPrompt);
+            pnlLastPasswordChange.Controls.Add(diLastPasswordChange);
+            pnlLastPasswordChange.Controls.Add(lblLastPasswordChange);
+            pnlLastPasswordChange.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlLastPasswordChange.Location = new Point(360, 20);
+            pnlLastPasswordChange.Margin = new Padding(20);
+            pnlLastPasswordChange.Name = "pnlLastPasswordChange";
+            pnlLastPasswordChange.Size = new Size(300, 250);
+            pnlLastPasswordChange.TabIndex = 1;
             // 
-            // label2
+            // lblLastPasswordChange
             // 
-            label2.AccessibleDescription = "Welcome";
-            label2.AutoSize = true;
-            label2.Font = new Font("Bahnschrift", 20F);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(10, 10);
-            label2.Margin = new Padding(10);
-            label2.Name = "label2";
-            label2.Size = new Size(287, 33);
-            label2.TabIndex = 1;
-            label2.Text = "Last password change";
+            lblLastPasswordChange.AccessibleDescription = "Welcome";
+            lblLastPasswordChange.AutoSize = true;
+            lblLastPasswordChange.Font = new Font("Bahnschrift", 20F);
+            lblLastPasswordChange.ForeColor = Color.White;
+            lblLastPasswordChange.Location = new Point(10, 10);
+            lblLastPasswordChange.Margin = new Padding(10);
+            lblLastPasswordChange.Name = "lblLastPasswordChange";
+            lblLastPasswordChange.Size = new Size(287, 33);
+            lblLastPasswordChange.TabIndex = 1;
+            lblLastPasswordChange.Text = "Last password change";
             // 
-            // dateInput1
+            // diLastPasswordChange
             // 
-            dateInput1.BorderColor = Color.FromArgb(39, 39, 42);
-            dateInput1.BorderErrorColor = Color.Red;
-            dateInput1.BorderThickness = 1F;
-            dateInput1.Day = null;
-            dateInput1.DayToolTip = "";
-            dateInput1.Location = new Point(61, 110);
-            dateInput1.MaxDate = null;
-            dateInput1.MaximumSize = new Size(180, 70);
-            dateInput1.MinDate = null;
-            dateInput1.MinimumSize = new Size(180, 70);
-            dateInput1.Month = null;
-            dateInput1.MonthToolTip = "";
-            dateInput1.Name = "dateInput1";
-            dateInput1.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            dateInput1.ReadOnly = true;
-            dateInput1.Size = new Size(180, 70);
-            dateInput1.TabIndex = 2;
-            dateInput1.ToolTipsActive = true;
-            dateInput1.Year = null;
-            dateInput1.YearToolTip = "";
+            diLastPasswordChange.BorderColor = Color.FromArgb(39, 39, 42);
+            diLastPasswordChange.BorderErrorColor = Color.Red;
+            diLastPasswordChange.BorderThickness = 1F;
+            diLastPasswordChange.Day = null;
+            diLastPasswordChange.DayToolTip = "";
+            diLastPasswordChange.Location = new Point(61, 110);
+            diLastPasswordChange.MaxDate = null;
+            diLastPasswordChange.MaximumSize = new Size(180, 70);
+            diLastPasswordChange.MinDate = null;
+            diLastPasswordChange.MinimumSize = new Size(180, 70);
+            diLastPasswordChange.Month = null;
+            diLastPasswordChange.MonthToolTip = "";
+            diLastPasswordChange.Name = "diLastPasswordChange";
+            diLastPasswordChange.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            diLastPasswordChange.ReadOnly = true;
+            diLastPasswordChange.Size = new Size(180, 70);
+            diLastPasswordChange.TabIndex = 2;
+            diLastPasswordChange.ToolTipsActive = true;
+            diLastPasswordChange.Year = null;
+            diLastPasswordChange.YearToolTip = "";
             // 
-            // dateInput2
+            // diLastLogin
             // 
-            dateInput2.BorderColor = Color.FromArgb(39, 39, 42);
-            dateInput2.BorderErrorColor = Color.Red;
-            dateInput2.BorderThickness = 1F;
-            dateInput2.Day = null;
-            dateInput2.DayToolTip = "";
-            dateInput2.Location = new Point(57, 110);
-            dateInput2.MaxDate = null;
-            dateInput2.MaximumSize = new Size(180, 70);
-            dateInput2.MinDate = null;
-            dateInput2.MinimumSize = new Size(180, 70);
-            dateInput2.Month = null;
-            dateInput2.MonthToolTip = "";
-            dateInput2.Name = "dateInput2";
-            dateInput2.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            dateInput2.ReadOnly = true;
-            dateInput2.Size = new Size(180, 70);
-            dateInput2.TabIndex = 2;
-            dateInput2.ToolTipsActive = true;
-            dateInput2.Year = null;
-            dateInput2.YearToolTip = "";
+            diLastLogin.BorderColor = Color.FromArgb(39, 39, 42);
+            diLastLogin.BorderErrorColor = Color.Red;
+            diLastLogin.BorderThickness = 1F;
+            diLastLogin.Day = null;
+            diLastLogin.DayToolTip = "";
+            diLastLogin.Location = new Point(57, 110);
+            diLastLogin.MaxDate = null;
+            diLastLogin.MaximumSize = new Size(180, 70);
+            diLastLogin.MinDate = null;
+            diLastLogin.MinimumSize = new Size(180, 70);
+            diLastLogin.Month = null;
+            diLastLogin.MonthToolTip = "";
+            diLastLogin.Name = "diLastLogin";
+            diLastLogin.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            diLastLogin.ReadOnly = true;
+            diLastLogin.Size = new Size(180, 70);
+            diLastLogin.TabIndex = 2;
+            diLastLogin.ToolTipsActive = true;
+            diLastLogin.Year = null;
+            diLastLogin.YearToolTip = "";
             // 
-            // label4
+            // lblChangePasswordPrompt
             // 
-            label4.AccessibleDescription = "Sign in below to access your account";
-            label4.AutoSize = true;
-            label4.Font = new Font("Bahnschrift", 12F);
-            label4.ForeColor = Color.FromArgb(168, 171, 174);
-            label4.Location = new Point(13, 53);
-            label4.Name = "label4";
-            label4.Size = new Size(228, 19);
-            label4.TabIndex = 4;
-            label4.Text = "Please change your password";
+            lblChangePasswordPrompt.AccessibleDescription = "Sign in below to access your account";
+            lblChangePasswordPrompt.AutoSize = true;
+            lblChangePasswordPrompt.Font = new Font("Bahnschrift", 12F);
+            lblChangePasswordPrompt.ForeColor = Color.FromArgb(168, 171, 174);
+            lblChangePasswordPrompt.Location = new Point(13, 53);
+            lblChangePasswordPrompt.Name = "lblChangePasswordPrompt";
+            lblChangePasswordPrompt.Size = new Size(228, 19);
+            lblChangePasswordPrompt.TabIndex = 4;
+            lblChangePasswordPrompt.Text = "Please change your password";
+            // 
+            // btnChangePassword
+            // 
+            btnChangePassword.BackColor = SystemColors.Control;
+            btnChangePassword.BorderColor = Color.Empty;
+            btnChangePassword.BorderThickness = 0F;
+            btnChangePassword.ClickedBorderColor = Color.Empty;
+            btnChangePassword.ClickedColor = Color.FromArgb(226, 226, 226);
+            btnChangePassword.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnChangePassword.Cursor = Cursors.Hand;
+            btnChangePassword.DisabledBorderColor = Color.Empty;
+            btnChangePassword.DisabledColor = Color.FromArgb(226, 226, 226);
+            btnChangePassword.Font = new Font("Bahnschrift", 12F);
+            btnChangePassword.ForeColor = Color.FromArgb(9, 9, 10);
+            btnChangePassword.HoverBorderColor = Color.Empty;
+            btnChangePassword.HoverColor = Color.FromArgb(226, 226, 226);
+            btnChangePassword.Image = null;
+            btnChangePassword.ImageRectangle = new Rectangle(0, 0, 0, 0);
+            btnChangePassword.Location = new Point(30, 200);
+            btnChangePassword.Margin = new Padding(30, 30, 30, 20);
+            btnChangePassword.Name = "btnChangePassword";
+            btnChangePassword.Size = new Size(240, 30);
+            btnChangePassword.TabIndex = 5;
+            btnChangePassword.Text = "Change Password";
+            btnChangePassword.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
+            btnChangePassword.TextPosition = new Point(50, 5);
             // 
             // DashboardView
             // 
@@ -201,7 +227,7 @@
             BackgroundImageLayout = ImageLayout.Stretch;
             ClientSize = new Size(784, 461);
             Controls.Add(flowLayoutPanel);
-            Controls.Add(label1);
+            Controls.Add(lblWelcome);
             Controls.Add(pbLogoTitle);
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
@@ -209,26 +235,26 @@
             Name = "DashboardView";
             Text = "LoginView";
             ((System.ComponentModel.ISupportInitialize)pbLogoTitle).EndInit();
-            customPanel2.ResumeLayout(false);
-            customPanel2.PerformLayout();
+            pnlLastLogin.ResumeLayout(false);
+            pnlLastLogin.PerformLayout();
             flowLayoutPanel.ResumeLayout(false);
-            customPanel1.ResumeLayout(false);
-            customPanel1.PerformLayout();
+            pnlLastPasswordChange.ResumeLayout(false);
+            pnlLastPasswordChange.PerformLayout();
             ResumeLayout(false);
             PerformLayout();
         }
 
         #endregion
         private PictureBox pbLogoTitle;
-        private ToolTip toolTip;
-        private Label label1;
-        private CustomControls.CustomPanel customPanel2;
-        private Label label3;
+        private Label lblWelcome;
+        private CustomControls.CustomPanel pnlLastLogin;
+        private Label lblLastLogin;
         private FlowLayoutPanel flowLayoutPanel;
-        private CustomControls.CustomPanel customPanel1;
-        private Label label2;
-        private CustomControls.DateInput dateInput2;
-        private CustomControls.DateInput dateInput1;
-        private Label label4;
+        private CustomControls.CustomPanel pnlLastPasswordChange;
+        private Label lblLastPasswordChange;
+        private CustomControls.DateInput diLastLogin;
+        private CustomControls.DateInput diLastPasswordChange;
+        private Label lblChangePasswordPrompt;
+        private CustomControls.CustomButton btnChangePassword;
     }
 }
