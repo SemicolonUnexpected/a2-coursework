@@ -43,7 +43,6 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
         sb.Theme();
         lblError.ThemeSubtitle();
 
-        pnlLayout.BackColor = ColorScheme.Current.Background;
         pnlDetails.Theme();
         lblName.ThemeTitle();
         tbName.Theme();
@@ -76,7 +75,6 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
         sb.SetFontName(fontName);
         lblError.SetFontName(fontName);
 
-        pnlLayout.SetFontName(fontName);
         pnlDetails.SetFontName(fontName);
         lblName.SetFontName(fontName);
         tbName.SetFontName(fontName);
@@ -226,7 +224,12 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
 
-        pnlLayout.Width = Width / 3;
-        pnlLayout.Location = new Point(Width - pnlLayout.Width, (Height - pnlLayout.Height / 2));
+        searchBar.Width = pnlData.Width * 4 / 5;
+        searchBar.Location = new Point(pnlData.Location.X + (pnlData.Width - searchBar.Width) / 2, searchBar.Location.Y);
+        Refresh();
+    }
+
+    private void pnlDetails_Resize(object sender, EventArgs e) {
+
     }
 }

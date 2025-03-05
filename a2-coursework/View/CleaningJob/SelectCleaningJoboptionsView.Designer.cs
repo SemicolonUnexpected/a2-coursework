@@ -30,12 +30,12 @@
             pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            sb = new a2_coursework.CustomControls.CustomScrollBar();
-            topBar = new a2_coursework.User_Controls.DataGrid.SearchBar();
-            lblInfo = new Label();
             columnId = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnUnitCost = new DataGridViewTextBoxColumn();
+            sb = new a2_coursework.CustomControls.CustomScrollBar();
+            topBar = new a2_coursework.User_Controls.DataGrid.SearchBar();
+            lblInfo = new Label();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -125,6 +125,30 @@
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
+            // columnId
+            // 
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnId";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
+            // 
+            // columnName
+            // 
+            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
+            columnName.HeaderText = "Name";
+            columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnUnitCost
+            // 
+            columnUnitCost.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnUnitCost.HeaderText = "Unit Cost";
+            columnUnitCost.Name = "columnUnitCost";
+            columnUnitCost.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
             // sb
             // 
             sb.BackColor = Color.FromArgb(9, 9, 10);
@@ -149,6 +173,7 @@
             // 
             // topBar
             // 
+            topBar.Anchor = AnchorStyles.Top;
             topBar.BackColor = Color.FromArgb(9, 9, 10);
             topBar.Location = new Point(12, 46);
             topBar.Name = "topBar";
@@ -159,7 +184,7 @@
             // 
             // lblInfo
             // 
-            lblInfo.Anchor = AnchorStyles.None;
+            lblInfo.Anchor = AnchorStyles.Top;
             lblInfo.Font = new Font("Bahnschrift", 12F);
             lblInfo.ForeColor = Color.FromArgb(168, 171, 174);
             lblInfo.Location = new Point(14, 9);
@@ -169,30 +194,6 @@
             lblInfo.TabIndex = 27;
             lblInfo.Text = "Select the required job options below";
             lblInfo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
-            // columnId
-            // 
-            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnId.HeaderText = "ID";
-            columnId.Name = "columnId";
-            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnId.Width = 47;
-            // 
-            // columnName
-            // 
-            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle2;
-            columnName.HeaderText = "Name";
-            columnName.Name = "columnName";
-            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnUnitCost
-            // 
-            columnUnitCost.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnUnitCost.HeaderText = "Unit Cost";
-            columnUnitCost.Name = "columnUnitCost";
-            columnUnitCost.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // SelectCleaningJobOptionsView
             // 

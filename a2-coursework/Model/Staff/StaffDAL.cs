@@ -241,7 +241,7 @@ internal static class StaffDAL {
 
         await using SqlCommand command = new("GetStaffByPrivilege", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@privilegeLevel", (int)PrivilegeLevel.Cleaner);
+        command.Parameters.AddWithValue("@privilegeLevelId", (int)PrivilegeLevel.Cleaner);
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
@@ -264,7 +264,7 @@ internal static class StaffDAL {
                 emergencyContactForename: reader.GetString(reader.GetOrdinal("EmergencyContactForename")),
                 emergencyContactSurname: reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
                 emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
-                privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
+                privilegeLevel: (PrivilegeLevel)reader.GetInt32(reader.GetOrdinal("PrivilegeLevelId")),
                 theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnschrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
             ));
         }

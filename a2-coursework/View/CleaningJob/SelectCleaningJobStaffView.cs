@@ -104,7 +104,7 @@ public partial class SelectCleaningJobStaffView : Form, IDisplayView<DisplayStaf
             List<DisplayStaffModel> items = [];
 
             foreach (DataGridViewRow row in dataGridView.SelectedRows) {
-                items.Add(((BindingList<DisplayStaffModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index]);
+                items.Add(((BindingList<DisplayStaffModel>)_bindingSource.DataSource)[row.Index]);
             }
 
             return items;
@@ -112,8 +112,10 @@ public partial class SelectCleaningJobStaffView : Form, IDisplayView<DisplayStaf
     }
 
     public void SetSelectedItemsById(IEnumerable<int> models) {
+        dataGridView.ClearSelection();
+
         foreach (DataGridViewRow row in dataGridView.Rows) {
-            DisplayCleaningJobOptionModel model = (DisplayCleaningJobOptionModel)row.DataBoundItem;
+            DisplayStaffModel model = (DisplayStaffModel)row.DataBoundItem;
 
             if (models.Contains(model.Id)) {
                 row.Selected = true;

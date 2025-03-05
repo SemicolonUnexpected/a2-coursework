@@ -217,8 +217,8 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
     }
 
     private bool AnyChangesSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
-        ILookup<int, int> a = presenter.Models.ToLookup(x => x);
-        ILookup<int, int> b = _model.StaffIds.ToLookup(x => x);
+        List<int> a = presenter.Models;
+        List<int> b = _model.StaffIds;
 
         if (a.Count != b.Count) return true;
 
@@ -233,7 +233,7 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
         else return true;
     }
 
-    private Task<bool> UpdateDatabaseSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) => throw new NotImplementedException();
+    private Task<bool> UpdateDatabaseSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) => CleaningJobDAL.UpdateCleaningJobStaff(_model.Id, presenter.Models);
 
     private void UpdateModelSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
         _model.StaffIds = presenter.Models;

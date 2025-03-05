@@ -221,4 +221,35 @@ public class CleaningJobDAL {
 
         return cleaningStaff;
     }
+
+    private static async Task DeleteAllCleaningJobStaff(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("DeleteAllCleaningJobStaff", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+    }
+
+    public static async Task<bool> UpdateCleaningJobStaff(int id, List<int> staffIds) {
+        await DeleteAllCleaningJobStaff(id);
+
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        bool success = true;
+
+        foreach (int staffId in staffIds) {
+            await using SqlCommand command = new("AddCleaningJobStaff", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@cleaningJobId", id);
+            command.Parameters.AddWithValue("@staffId", staffId);
+
+            success &= (await command.ExecuteNonQueryAsync()) > 0;
+        }
+
+        return success;
+    }
 }

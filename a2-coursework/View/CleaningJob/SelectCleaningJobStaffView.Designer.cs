@@ -30,13 +30,13 @@
             pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            sb = new a2_coursework.CustomControls.CustomScrollBar();
-            topBar = new a2_coursework.User_Controls.DataGrid.SearchBar();
-            lblInfo = new Label();
             columnId = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnEmail = new DataGridViewTextBoxColumn();
             columnPhoneNumber = new DataGridViewTextBoxColumn();
+            sb = new a2_coursework.CustomControls.CustomScrollBar();
+            topBar = new a2_coursework.User_Controls.DataGrid.SearchBar();
+            lblInfo = new Label();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -126,51 +126,6 @@
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
-            // sb
-            // 
-            sb.BackColor = Color.FromArgb(9, 9, 10);
-            sb.Dock = DockStyle.Right;
-            sb.LargeChange = 50;
-            sb.Location = new Point(606, 5);
-            sb.Maximum = 100;
-            sb.Minimum = 0;
-            sb.MinimumThumbHeight = 30;
-            sb.Name = "sb";
-            sb.Padding = new Padding(2);
-            sb.Size = new Size(10, 297);
-            sb.SmallChange = 10;
-            sb.TabIndex = 28;
-            sb.Text = "customScrollBar1";
-            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new a2_coursework.CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
-            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
-            sb.Visible = false;
-            sb.ValueChanged += sb_ValueChanged;
-            // 
-            // topBar
-            // 
-            topBar.BackColor = Color.FromArgb(9, 9, 10);
-            topBar.Location = new Point(12, 46);
-            topBar.Name = "topBar";
-            topBar.Padding = new Padding(2);
-            topBar.SearchText = "";
-            topBar.Size = new Size(623, 44);
-            topBar.TabIndex = 12;
-            // 
-            // lblInfo
-            // 
-            lblInfo.Anchor = AnchorStyles.None;
-            lblInfo.Font = new Font("Bahnschrift", 12F);
-            lblInfo.ForeColor = Color.FromArgb(168, 171, 174);
-            lblInfo.Location = new Point(14, 9);
-            lblInfo.Margin = new Padding(10, 0, 10, 20);
-            lblInfo.Name = "lblInfo";
-            lblInfo.Size = new Size(621, 30);
-            lblInfo.TabIndex = 27;
-            lblInfo.Text = "Select an appropriate number of cleaners for the job below";
-            lblInfo.TextAlign = ContentAlignment.MiddleCenter;
-            // 
             // columnId
             // 
             columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
@@ -200,6 +155,52 @@
             columnPhoneNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             columnPhoneNumber.HeaderText = "Phone Number";
             columnPhoneNumber.Name = "columnPhoneNumber";
+            // 
+            // sb
+            // 
+            sb.BackColor = Color.FromArgb(9, 9, 10);
+            sb.Dock = DockStyle.Right;
+            sb.LargeChange = 50;
+            sb.Location = new Point(606, 5);
+            sb.Maximum = 100;
+            sb.Minimum = 0;
+            sb.MinimumThumbHeight = 30;
+            sb.Name = "sb";
+            sb.Padding = new Padding(2);
+            sb.Size = new Size(10, 297);
+            sb.SmallChange = 10;
+            sb.TabIndex = 28;
+            sb.Text = "customScrollBar1";
+            sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbColor = Color.FromArgb(39, 39, 42);
+            sb.ThumbCorderRadii = new a2_coursework.CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
+            sb.Visible = false;
+            sb.ValueChanged += sb_ValueChanged;
+            // 
+            // topBar
+            // 
+            topBar.Anchor = AnchorStyles.Top;
+            topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.Location = new Point(12, 46);
+            topBar.Name = "topBar";
+            topBar.Padding = new Padding(2);
+            topBar.SearchText = "";
+            topBar.Size = new Size(623, 44);
+            topBar.TabIndex = 12;
+            // 
+            // lblInfo
+            // 
+            lblInfo.Anchor = AnchorStyles.Top;
+            lblInfo.Font = new Font("Bahnschrift", 12F);
+            lblInfo.ForeColor = Color.FromArgb(168, 171, 174);
+            lblInfo.Location = new Point(14, 9);
+            lblInfo.Margin = new Padding(10, 0, 10, 20);
+            lblInfo.Name = "lblInfo";
+            lblInfo.Size = new Size(621, 30);
+            lblInfo.TabIndex = 27;
+            lblInfo.Text = "Select an appropriate number of cleaners for the job below (hold CTRL)";
+            lblInfo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // SelectCleaningJobStaffView
             // 

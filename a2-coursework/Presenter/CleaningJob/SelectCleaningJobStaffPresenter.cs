@@ -1,6 +1,7 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.Staff;
+using a2_coursework.View;
 using a2_coursework.View.StaffView.StaffManagement;
 
 namespace a2_coursework.Presenter.CleaningJob;
@@ -12,9 +13,11 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
         LoadData(getStaff);
 
         _view.SelectionChanged += OnSelectionChanged;
+        _view.SortRequested += OnSortRequested;
     }
 
     private void OnSelectionChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+    private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
 
     private async void LoadData(Task<List<StaffModel>> getStaff) {
         _view.DataGridText = "Loading...";
@@ -26,13 +29,14 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
             _models = await getStaff;
 
             DisplayItems();
+            _view.SetSelectedItemsById(_setSelectedItems);
 
             _view.DataGridText = "";
             _view.EnableAll();
         }
         catch {
             _displayModels.Clear();
-            _view.DataGridText = "Error getting stock from the database";
+            _view.DataGridText = "Error getting staff from the database";
         }
         finally {
             _isAsyncRunning = false;
@@ -44,9 +48,13 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
 
     protected override IComparable RankSearch(string searchText, StaffModel model) => GeneralHelpers.LevensteinDistance(searchText, $"{model.Forename} {model.Surname}");
 
+    private List<int> _setSelectedItems = [];
     public List<int> Models {
         get => _view.SelectedItems.ConvertAll(x => x.Id);
-        set => _view.SetSelectedItemsById(value);
+        set {
+            _setSelectedItems = value;
+            _view.SetSelectedItemsById(value);
+        }
     }
 
     protected override void SortByColumn(string columnName, bool sortAscending) {
@@ -67,5 +75,8 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
             default:
                 throw new NotImplementedException();
         }
+
+        DisplayItems();
+        _view.SetSelectedItemsById(_setSelectedItems);
     }
 }
