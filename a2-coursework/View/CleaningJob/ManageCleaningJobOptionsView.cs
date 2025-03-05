@@ -6,7 +6,7 @@ using System.ComponentModel;
 using System.Globalization;
 
 namespace a2_coursework.View.CleaningJob;
-public partial class DisplayCleaningJobView : Form, IDisplayView<DisplayCleaningJobOptionModel>, IChildView, IThemeable, IManageCleaningJobOptionsView {
+public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCleaningJobOptionModel>, IChildView, IThemeable, IManageCleaningJobOptionsView {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? QuantityChanged;
@@ -14,7 +14,7 @@ public partial class DisplayCleaningJobView : Form, IDisplayView<DisplayCleaning
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
-    public DisplayCleaningJobView() {
+    public ManageCleaningJobOptionsView() {
         InitializeComponent();
 
         Theme();

@@ -1,9 +1,10 @@
 ﻿using a2_coursework.Model.CleaningJobOption;
+using a2_coursework.Model.Staff;
 using Microsoft.Data.SqlClient;
 using System.Configuration;
 using System.Data;
 
-namespace a2_coursework.Model.CleaningJob; 
+namespace a2_coursework.Model.CleaningJob;
 public class CleaningJobDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
@@ -120,9 +121,9 @@ public class CleaningJobDAL {
                 name: reader.GetString(reader.GetOrdinal("Name")),
                 description: reader.GetString(reader.GetOrdinal("Description")),
                 unitCost: reader.GetDecimal(reader.GetOrdinal("UnitCost")),
-                archived: reader.GetBoolean(reader.GetOrdinal("Archived"))) { 
+                archived: reader.GetBoolean(reader.GetOrdinal("Archived"))) {
                 Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
-                CostAtTime = reader.GetDecimal(reader.GetOrdinal("CostAtTime")),
+                CostAtTime = reader.GetDecimal(reader.GetOrdinal("UnitCostAtTime")),
             });
         }
 
@@ -133,7 +134,7 @@ public class CleaningJobDAL {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("GetCleaningJobCleaningOptions", connection);
+        await using SqlCommand command = new("UpdateCleaningJobDetails", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@id", id);
         command.Parameters.AddWithValue("@address", address);
@@ -144,4 +145,80 @@ public class CleaningJobDAL {
         return rowsAffected > 0;
     }
 
+    public static async Task<bool> UpdateCleaningJobTimes(int id, DateTime startDate, DateTime endDate) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateCleaningJobTimes", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@startDate", startDate);
+        command.Parameters.AddWithValue("@endDate", endDate);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
+    public static async Task<bool> UpdateCleaningJobCustomer(int id, int customerId) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateCleaningJobCustomer", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@customerId", customerId);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
+    private static async Task DeleteAllCleaningJobCleaningJobOptions(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("DeleteAllCleaningJobCleaningJobOptions", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+    }
+
+    public static async Task<bool> UpdateCleaningJobCleaningOptions(int id, List<int> cleaningJobOptionIds) {
+        await DeleteAllCleaningJobCleaningJobOptions(id);
+
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        bool success = false;
+
+        foreach (int cleaningJobOptionId in cleaningJobOptionIds) {
+            await using SqlCommand command = new("AddCleaningJobCleaningOption", connection);
+            command.CommandType = CommandType.StoredProcedure;
+            command.Parameters.AddWithValue("@cleaningJobId", id);
+            command.Parameters.AddWithValue("@cleaningJobOptionId", cleaningJobOptionId);
+
+            success &= (await command.ExecuteNonQueryAsync()) > 0;
+        }
+
+        return success;
+    }
+
+    public static async Task<List<StaffModel>> GetAvailableCleaners(CleaningJobModel cleaningJob) {
+        List<StaffModel> cleaningStaff = await StaffDAL.GetCleaningStaff();
+        List<CleaningJobModel> cleaningJobsOnDay = await GetCleaningJobsByDate(cleaningJob.StartDate);
+
+        foreach (CleaningJobModel model in cleaningJobsOnDay) {
+            if (model.Id == cleaningJob.Id) continue;
+
+            if (model.StartDate >= cleaningJob.EndDate && model.StartDate <= cleaningJob.EndDate) {
+                foreach (int staffId in model.StaffIds) {
+                    cleaningStaff.RemoveAll(x => x.Id == staffId);
+                }
+            }
+        }
+
+        return cleaningStaff;
+    }
 }

@@ -10,9 +10,13 @@ public class ManageCleaningJobDetailsPresenter : BasePresenter<IManageCleaningJo
         _view.ExtraInformationChanged += OnExtraInformationChanged;
     }
 
-    private void OnExtraInformationChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+    private void OnExtraInformationChanged(object? sender, EventArgs e) {
+        SetExtraInformationCharacterCount();
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     private void OnAddressChanged(object? sender, EventArgs e) {
+        SetAddressCharacterCount();
         ValidateAddress();
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
@@ -42,6 +46,16 @@ public class ManageCleaningJobDetailsPresenter : BasePresenter<IManageCleaningJo
 
     private void ValidateAddress() {
         _addressValid = !string.IsNullOrEmpty(_view.Address);
-        _view.SetAddressBorderError(_addressValid);
+        _view.SetAddressBorderError(!_addressValid);
+    }
+
+    private void SetAddressCharacterCount() => _view.SetAddressCharacterCount(_view.Address.Length);
+    private void SetExtraInformationCharacterCount() => _view.SetExtraInformationCharacterCount(_view.ExtraInformation.Length);
+
+    public override void CleanUp() {
+        _view.AddressChanged -= OnAddressChanged;
+        _view.ExtraInformationChanged -= OnExtraInformationChanged;
+
+        base.CleanUp();
     }
 }

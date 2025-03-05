@@ -161,7 +161,7 @@ public partial class CustomTextBox {
         set => tb.ReadOnly = value;
     }
 
-    [DefaultValue(false)]
+    [DefaultValue(true)]
     public bool AllowPaste {
         get => tb.AllowPaste;
         set => tb.AllowPaste = value;

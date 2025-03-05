@@ -1,4 +1,6 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.View.CleaningJob;
@@ -77,7 +79,7 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
             _view.DataGridText = "";
             _view.EnableAll();
         }
-        catch {
+        catch (Exception e) {
             _displayModels.Clear();
             _view.DataGridText = "Error getting stock from the database";
         }
@@ -91,8 +93,8 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
 
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateEditCleaningJobOption(_modelDisplayMap[_view.SelectedItem]);
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateEditCleaningJob(_modelDisplayMap[_view.SelectedItem]);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void View() {

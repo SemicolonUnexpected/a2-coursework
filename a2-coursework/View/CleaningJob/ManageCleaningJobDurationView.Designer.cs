@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.CleaningJob {
-    partial class ManageCleaningJobOptionDurationView {
+    partial class ManageCleaningJobDurationView {
         /// <summary>
         /// Required designer variable.
         /// </summary>
@@ -37,7 +37,6 @@
             // 
             // lblEndTime
             // 
-            lblEndTime.Anchor = AnchorStyles.None;
             lblEndTime.AutoSize = true;
             lblEndTime.Font = new Font("Bahnschrift", 14F);
             lblEndTime.ForeColor = Color.White;
@@ -50,7 +49,6 @@
             // 
             // lblStartTime
             // 
-            lblStartTime.Anchor = AnchorStyles.None;
             lblStartTime.AutoSize = true;
             lblStartTime.Font = new Font("Bahnschrift", 14F);
             lblStartTime.ForeColor = Color.White;
@@ -67,7 +65,7 @@
             lblDate.AutoSize = true;
             lblDate.Font = new Font("Bahnschrift", 14F);
             lblDate.ForeColor = Color.White;
-            lblDate.Location = new Point(144, 14);
+            lblDate.Location = new Point(145, 44);
             lblDate.Margin = new Padding(5);
             lblDate.Name = "lblDate";
             lblDate.Size = new Size(48, 23);
@@ -76,12 +74,13 @@
             // 
             // dateInput
             // 
+            dateInput.Anchor = AnchorStyles.None;
             dateInput.BorderColor = Color.FromArgb(39, 39, 42);
             dateInput.BorderErrorColor = Color.Red;
             dateInput.BorderThickness = 1F;
             dateInput.Day = null;
             dateInput.DayToolTip = "";
-            dateInput.Location = new Point(144, 45);
+            dateInput.Location = new Point(145, 75);
             dateInput.Margin = new Padding(7);
             dateInput.MaxDate = null;
             dateInput.MaximumSize = new Size(180, 70);
@@ -103,7 +102,7 @@
             lblTimeError.Anchor = AnchorStyles.None;
             lblTimeError.Font = new Font("Bahnschrift", 12F);
             lblTimeError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblTimeError.Location = new Point(144, 268);
+            lblTimeError.Location = new Point(145, 298);
             lblTimeError.Name = "lblTimeError";
             lblTimeError.Size = new Size(361, 38);
             lblTimeError.TabIndex = 24;
@@ -111,7 +110,7 @@
             // 
             // pnlTime
             // 
-            pnlTime.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pnlTime.Anchor = AnchorStyles.None;
             pnlTime.BorderColor = Color.FromArgb(39, 39, 42);
             pnlTime.BorderThickness = 1F;
             pnlTime.Controls.Add(tiEndTime);
@@ -119,7 +118,7 @@
             pnlTime.Controls.Add(lblStartTime);
             pnlTime.Controls.Add(lblEndTime);
             pnlTime.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            pnlTime.Location = new Point(144, 158);
+            pnlTime.Location = new Point(145, 188);
             pnlTime.Margin = new Padding(5);
             pnlTime.Name = "pnlTime";
             pnlTime.Padding = new Padding(10, 5, 10, 5);
@@ -139,6 +138,7 @@
             tiEndTime.Minute = "00";
             tiEndTime.Name = "tiEndTime";
             tiEndTime.PlaceholderColor = Color.Empty;
+            tiEndTime.ReadOnly = false;
             tiEndTime.Size = new Size(99, 40);
             tiEndTime.TabIndex = 24;
             tiEndTime.Time = new TimeOnly(0L);
@@ -156,6 +156,7 @@
             tiStartTime.Minute = "00";
             tiStartTime.Name = "tiStartTime";
             tiStartTime.PlaceholderColor = Color.Empty;
+            tiStartTime.ReadOnly = false;
             tiStartTime.Size = new Size(99, 40);
             tiStartTime.TabIndex = 24;
             tiStartTime.Time = new TimeOnly(0L);
@@ -165,13 +166,13 @@
             lblDateError.Anchor = AnchorStyles.None;
             lblDateError.Font = new Font("Bahnschrift", 12F);
             lblDateError.ForeColor = Color.FromArgb(168, 171, 174);
-            lblDateError.Location = new Point(334, 45);
+            lblDateError.Location = new Point(335, 75);
             lblDateError.Name = "lblDateError";
             lblDateError.Size = new Size(171, 70);
             lblDateError.TabIndex = 24;
-            lblDateError.TextAlign = ContentAlignment.TopCenter;
+            lblDateError.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // ManageCleaningJobOptionDurationView
+            // ManageCleaningJobDurationView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -183,7 +184,7 @@
             Controls.Add(lblDate);
             Controls.Add(pnlTime);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "ManageCleaningJobOptionDurationView";
+            Name = "ManageCleaningJobDurationView";
             Text = "Contact Details";
             pnlTime.ResumeLayout(false);
             pnlTime.PerformLayout();

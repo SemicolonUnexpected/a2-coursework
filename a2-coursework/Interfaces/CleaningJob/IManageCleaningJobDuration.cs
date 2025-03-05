@@ -4,9 +4,9 @@ public interface IManageCleaningJobDuration : IChildView {
     public event EventHandler? StartTimeChanged;
     public event EventHandler? EndTimeChanged;
 
-    public TimeOnly StartTime { get; set; }
+    public TimeOnly? StartTime { get; set; }
     public bool StartTimeValid { get; }
-    public TimeOnly EndTime { get; set; }
+    public TimeOnly? EndTime { get; set; }
     public bool EndTimeValid { get; }
     public DateTime? Date { get; set; }
     public bool DateValid { get; }

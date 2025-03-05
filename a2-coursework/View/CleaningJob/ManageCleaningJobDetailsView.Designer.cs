@@ -45,7 +45,7 @@
             tbExtraInformation.Location = new Point(150, 243);
             tbExtraInformation.Margin = new Padding(5);
             tbExtraInformation.MaximumSize = new Size(355, 79);
-            tbExtraInformation.MaxLength = 256;
+            tbExtraInformation.MaxLength = 500;
             tbExtraInformation.MultiLine = true;
             tbExtraInformation.Name = "tbExtraInformation";
             tbExtraInformation.PlaceholderText = "Please close the gate as the customer has a dog.";
@@ -80,7 +80,7 @@
             lblExtraInformationCharacterLimit.Name = "lblExtraInformationCharacterLimit";
             lblExtraInformationCharacterLimit.Size = new Size(150, 24);
             lblExtraInformationCharacterLimit.TabIndex = 19;
-            lblExtraInformationCharacterLimit.Text = "0/256";
+            lblExtraInformationCharacterLimit.Text = "0/500";
             lblExtraInformationCharacterLimit.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblAddressError
@@ -104,7 +104,7 @@
             lblAddressCharacterLimit.Name = "lblAddressCharacterLimit";
             lblAddressCharacterLimit.Size = new Size(150, 24);
             lblAddressCharacterLimit.TabIndex = 19;
-            lblAddressCharacterLimit.Text = "0/256";
+            lblAddressCharacterLimit.Text = "0/500";
             lblAddressCharacterLimit.TextAlign = ContentAlignment.MiddleRight;
             // 
             // lblAddress
@@ -133,7 +133,7 @@
             tbAddress.Location = new Point(150, 47);
             tbAddress.Margin = new Padding(5);
             tbAddress.MaximumSize = new Size(355, 79);
-            tbAddress.MaxLength = 256;
+            tbAddress.MaxLength = 500;
             tbAddress.MultiLine = true;
             tbAddress.Name = "tbAddress";
             tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn\r\nDown";
@@ -145,7 +145,7 @@
             tbAddress.TextBoxInset = new Padding(10);
             tbAddress.UsePasswordChar = false;
             // 
-            // ManageCleaningJobOptionDetailsView
+            // ManageCleaningJobDetailsView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -159,7 +159,7 @@
             Controls.Add(lblExtraInformation);
             Controls.Add(lblExtraInformationCharacterLimit);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "ManageCleaningJobOptionDetailsView";
+            Name = "ManageCleaningJobDetailsView";
             Text = "Contact Details";
             ResumeLayout(false);
             PerformLayout();

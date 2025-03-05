@@ -1,5 +1,6 @@
 ﻿namespace a2_coursework.CustomControls;
 public partial class TimeInput : UserControl {
+    public event EventHandler? TimeTextChanged;
     public TimeInput() {
         InitializeComponent();
     }
@@ -25,12 +26,13 @@ public partial class TimeInput : UserControl {
         }
     }
 
-
     private void tbHour_TextChanged(object sender, EventArgs e) {
         tbHour.BorderColor = HourValid ? BorderColor : BorderErrorColor;
+        TimeTextChanged?.Invoke(this, EventArgs.Empty);
     }
 
     private void tbMinute_TextChanged(object sender, EventArgs e) {
         tbMinute.BorderColor = MinuteValid ? BorderColor : BorderErrorColor;
+        TimeTextChanged?.Invoke(this, EventArgs.Empty);
     }
 }

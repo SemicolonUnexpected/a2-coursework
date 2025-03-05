@@ -3,12 +3,12 @@ using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.CleaningJob;
-public partial class ManageCleaningJobOptionDurationView : Form, IManageCleaningJobDuration, IThemeable {
+public partial class ManageCleaningJobDurationView : Form, IManageCleaningJobDuration, IThemeable {
     public event EventHandler? DateChanged;
     public event EventHandler? StartTimeChanged;
     public event EventHandler? EndTimeChanged;
 
-    public ManageCleaningJobOptionDurationView() {
+    public ManageCleaningJobDurationView() {
         InitializeComponent();
 
         Theme();
@@ -19,6 +19,10 @@ public partial class ManageCleaningJobOptionDurationView : Form, IManageCleaning
 
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
+
+        dateInput.DateTextChanged += (s, e) => DateChanged?.Invoke(this, EventArgs.Empty);
+        tiStartTime.TimeTextChanged += (s, e) => StartTimeChanged?.Invoke(this, EventArgs.Empty);
+        tiEndTime.TimeTextChanged += (s, e) => EndTimeChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
@@ -31,6 +35,7 @@ public partial class ManageCleaningJobOptionDurationView : Form, IManageCleaning
         pnlTime.Theme();
         lblStartTime.ThemeTitle();
         tiStartTime.Theme();
+        tiEndTime.Theme();
         lblEndTime.ThemeTitle();
         lblTimeError.ThemeError();
     }
@@ -50,23 +55,24 @@ public partial class ManageCleaningJobOptionDurationView : Form, IManageCleaning
 
         lblStartTime.SetFontName(fontName);
         tiStartTime.SetFontName(fontName);
+        tiEndTime.SetFontName(fontName);
         lblEndTime.SetFontName(fontName);
         lblTimeError.SetFontName(fontName);
     }
 
-    public TimeOnly StartTime {
+    public TimeOnly? StartTime {
         get => tiStartTime.Time;
-        set => tiEndTime.Time = value;
+        set => tiStartTime.Time = value;
     }
 
     public bool StartTimeValid => tiStartTime.TimeValid;
 
-    public TimeOnly EndTime {
+    public TimeOnly? EndTime {
         get => tiEndTime.Time;
         set => tiEndTime.Time = value;
     }
 
-    public bool EndTimeValid => tiStartTime.TimeValid;
+    public bool EndTimeValid => tiEndTime.TimeValid;
 
     public DateTime? Date {
         get => dateInput.Date;

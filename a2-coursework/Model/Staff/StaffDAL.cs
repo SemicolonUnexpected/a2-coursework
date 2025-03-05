@@ -60,7 +60,7 @@ internal static class StaffDAL {
                 emergencyContactSurname: reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
                 emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
                 privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
-                theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnshrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
+                theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnschrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
             );
         }
         return null;
@@ -235,12 +235,50 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
+    public static async Task<List<StaffModel>> GetCleaningStaff() {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetStaffByPrivilege", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@privilegeLevel", (int)PrivilegeLevel.Cleaner);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<StaffModel> staff = [];
+
+        while (await reader.ReadAsync()) {
+            staff.Add(new StaffModel(
+                id: reader.GetInt32(reader.GetOrdinal("Id")),
+                hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
+                salt: Convert.FromHexString(reader.GetString(reader.GetOrdinal("Salt"))),
+                lastPasswordChange: reader.GetDateTime(reader.GetOrdinal("LastPasswordChange")),
+                username: reader.GetString(reader.GetOrdinal("Username")),
+                archived: reader.GetBoolean(reader.GetOrdinal("Archived")),
+                forename: reader.GetString(reader.GetOrdinal("Forename")),
+                surname: reader.GetString(reader.GetOrdinal("Surname")),
+                dateOfBirth: reader.IsDBNull("DateOfBirth") ? null : reader.GetDateTime(reader.GetOrdinal("DateOfBirth")),
+                email: reader.GetString(reader.GetOrdinal("Email")),
+                phoneNumber: reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                address: reader.GetString(reader.GetOrdinal("Address")),
+                emergencyContactForename: reader.GetString(reader.GetOrdinal("EmergencyContactForename")),
+                emergencyContactSurname: reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
+                emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
+                privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
+                theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnschrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
+            ));
+        }
+
+        return staff;
+    }
+
+
     private static PrivilegeLevel ConvertToPrivilegeLevel(string value) => value switch {
         "admin" => PrivilegeLevel.Admin,
         "office" => PrivilegeLevel.Office,
         "manager" => PrivilegeLevel.Manager,
         "cleaner" => PrivilegeLevel.Cleaner,
         "cleaningmanager" => PrivilegeLevel.CleaningManager,
-        _ => throw new NotImplementedException("Not a valid user priviledge level"),
+        _ => throw new NotImplementedException("Not a valid user privilege level"),
     };
 }

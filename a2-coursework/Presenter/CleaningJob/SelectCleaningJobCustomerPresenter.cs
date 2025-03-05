@@ -43,11 +43,11 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
 
     protected override List<CustomerModel> OrderDefault(List<CustomerModel> models) => [.. models.OrderBy(x => x.Id)];
 
-    protected override IComparable RankSearch(string searchText, CustomerModel model) => GeneralHelpers.LevensteinDistance(searchText, model.Name);
+    protected override IComparable RankSearch(string searchText, CustomerModel model) => GeneralHelpers.LevensteinDistance(searchText, $"{model.Forename} {model.Surname}");
 
-    public int SelectedItem {
-        get => _view.SelectedItems[0].ConvertAll(x => x.Id);
-        set => _view.SetSelectedItemsById(value);
+    public int SelectedId {
+        get => _modelDisplayMap[_view.SelectedItem].Id;
+        set => _view.SetSelectedItemId(value);
     }
 
     protected override void SortByColumn(string columnName, bool sortAscending) {
@@ -56,10 +56,13 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
                 SortBy(x => x.Id, sortAscending);
                 break;
             case "columnName":
-                SortBy(x => x.Name, sortAscending);
+                SortBy(x => $"{x.Forename} {x.Surname}", sortAscending);
                 break;
-            case "columnUnitCost":
-                SortBy(x => x.UnitCost, sortAscending);
+            case "columnEmail":
+                SortBy(x => x.Email, sortAscending);
+                break;
+            case "columnPhoneNumber":
+                SortBy(x => x.PhoneNumber, sortAscending);
                 break;
 
             default:

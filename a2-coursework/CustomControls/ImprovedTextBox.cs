@@ -11,7 +11,7 @@ public partial class ImprovedTextBox : TextBox {
     private const int WM_PASTE = 0x0302;
 
     protected override void WndProc(ref Message m) {
-        // If the textbox recieves the show tooltip message return
+        // If the textbox receives the show tooltip message return
         if (m.Msg == EM_SHOWBALLOONTIP) {
             m.Result = 0;
             return;
@@ -25,8 +25,8 @@ public partial class ImprovedTextBox : TextBox {
         base.WndProc(ref m);
     }
 
-    [DefaultValue(false)]
-    public bool AllowPaste { get; set; }
+    [DefaultValue(true)]
+    public bool AllowPaste { get; set; } = true;
 
     private bool _isPlaceholderText = false;
     private string _placeholderText = "";

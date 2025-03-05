@@ -2,10 +2,9 @@
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
-using a2_coursework.Presenter.CleaningJob;
 using a2_coursework.View.CleaningJob;
 
-namespace a2_coursework.Presenter.CleaningJobOption;
+namespace a2_coursework.Presenter.CleaningJob;
 public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView, CleaningJobModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
@@ -29,6 +28,11 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
 
     protected override (IChildView childView, INotifyingChildPresenter childPresenter) GetView(string selectedItem) => selectedItem switch {
         "Details" => GetDetails(),
+        "Times" => GetDuration(),
+        "Staff" => GetSelectStaff(),
+        "Options" => GetOptions(),
+        "Quantity" => GetManageOptions(),
+        "Customer" => GetCustomer(),
         _ => throw new NotImplementedException(),
     };
 
@@ -62,33 +66,179 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
     }
     #endregion
 
-    #region Select Cleaning Job Options
-    private (IChildView childView, INotifyingChildPresenter childPresenter) GetOptions() {
-        (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobOptions();
+    #region Manage Cleaning Job Times
+    private (IChildView childView, INotifyingChildPresenter childPresenter) GetDuration() {
+        (ManageCleaningJobDurationView view, ManageCleaningJobDurationPresenter presenter) = CleaningJobFactory.CreateManageCleaningJobDuration();
 
-        PopulateDefaultValuesCurrent = () => PopulateDefaultValuesCleaningJobOptions(presenter);
-        AnyChangesCurrent = () => AnyChangesCleaningJobOptions(presenter);
-        ValidateCurrent = () => ValidateInputsCleaningJobOptions(presenter);
-        UpdateDatabaseCurrent = () => UpdateDatabaseCleaningJobOptions(presenter);
-        UpdateModelCurrent = () => UpdateModelCleaningJobOptions(presenter);
+        PopulateDefaultValuesCurrent = () => PopulateDefaultValuesCleaningJobDuration(presenter);
+        AnyChangesCurrent = () => AnyChangesCleaningJobDuration(presenter);
+        ValidateCurrent = () => ValidateInputsCleaningJobDuration(presenter);
+        UpdateDatabaseCurrent = () => UpdateDatabaseCleaningJobDuration(presenter);
+        UpdateModelCurrent = () => UpdateModelCleaningJobDuration(presenter);
 
         return (view, presenter);
     }
 
-    private void PopulateDefaultValuesCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
-        presenter.SelectedItems
+    private void PopulateDefaultValuesCleaningJobDuration(ManageCleaningJobDurationPresenter presenter) {
+        presenter.StartDate = _model.StartDate;
+        presenter.EndDate = _model.EndDate;
     }
 
-    private bool AnyChangesCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) => presenter.Address != _model.Address || presenter.ExtraInformation != _model.ExtraInformation;
+    private bool AnyChangesCleaningJobDuration(ManageCleaningJobDurationPresenter presenter) => presenter.StartDate != _model.StartDate || presenter.EndDate != _model.EndDate;
 
-    private bool ValidateInputsCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) => presenter.AddressValid;
+    private bool ValidateInputsCleaningJobDuration(ManageCleaningJobDurationPresenter presenter) => presenter.DatesValid;
 
-    private Task<bool> UpdateDatabaseCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) => CleaningJobDAL.UpdateCleaningJobOptions(_model.Id, presenter.Address, presenter.ExtraInformation);
+    private Task<bool> UpdateDatabaseCleaningJobDuration(ManageCleaningJobDurationPresenter presenter) => CleaningJobDAL.UpdateCleaningJobTimes(_model.Id, (DateTime)presenter.StartDate!, (DateTime)presenter.EndDate!);
 
-    private void UpdateModelCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
-        _model.Address = presenter.Address;
-        _model.ExtraInformation = presenter.ExtraInformation;
+    private void UpdateModelCleaningJobDuration(ManageCleaningJobDurationPresenter presenter) {
+        _model.StartDate = (DateTime)presenter.StartDate!;
+        _model.EndDate = (DateTime)presenter.EndDate!;
     }
+    #endregion
+
+    #region Select Cleaning Job Options
+    private (IChildView childView, INotifyingChildPresenter childPresenter) GetOptions() {
+        (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobOptions();
+
+        PopulateDefaultValuesCurrent = () => PopulateDefaultValuesSelectCleaningJobOptions(presenter);
+        AnyChangesCurrent = () => AnyChangesSelectCleaningJobOptions(presenter);
+        ValidateCurrent = () => ValidateInputsSelectCleaningJobOptions(presenter);
+        UpdateDatabaseCurrent = () => UpdateDatabaseSelectCleaningJobOptions(presenter);
+        UpdateModelCurrent = () => UpdateModelSelectCleaningJobOptions(presenter);
+
+        return (view, presenter);
+    }
+
+    private void PopulateDefaultValuesSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
+        presenter.SelectedItems = _model.StaffIds;
+    }
+
+    private bool AnyChangesSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
+        ILookup<int, int> a = presenter.SelectedItems.ToLookup(x => x);
+        ILookup<int, int> b = _model.StaffIds.ToLookup(x => x);
+
+        if (a.Count != b.Count) return true;
+
+        return !a.All(y => b.Contains(y));
+    }
+
+    private bool ValidateInputsSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
+        if (presenter.SelectedItems.Count == 0) {
+            _view.ShowMessageBox("Please select at least one cleaning option", "No options selected", MessageBoxButtons.OK);
+            return false;
+        }
+        else return true;
+    }
+
+    private Task<bool> UpdateDatabaseSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCleaningOptions(_model.Id, presenter.SelectedItems);
+
+    private void UpdateModelSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
+        _model.StaffIds = presenter.SelectedItems;
+    }
+    #endregion
+
+    #region Manage Cleaning Job Options
+    private (IChildView childView, INotifyingChildPresenter childPresenter) GetManageOptions() {
+        (ManageCleaningJobOptionsView view, ManageCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateManageCleaningJobOptions();
+
+        PopulateDefaultValuesCurrent = () => PopulateDefaultValuesManageCleaningJobOptions(presenter);
+        AnyChangesCurrent = () => AnyChangesManageCleaningJobOptions(presenter);
+        ValidateCurrent = () => ValidateInputsManageCleaningJobOptions(presenter);
+        UpdateDatabaseCurrent = () => UpdateDatabaseManageCleaningJobOptions(presenter);
+        UpdateModelCurrent = () => UpdateModelManageCleaningJobOptions(presenter);
+
+        return (view, presenter);
+    }
+
+    private void PopulateDefaultValuesManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) {
+        presenter.Models = _model.CleaningJobOptions;
+    }
+
+    private bool AnyChangesManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) {
+        Dictionary<int, int> a = presenter.Models.ToDictionary(x => x.Id, x => x.Quantity);
+        Dictionary<int, int> b = _model.CleaningJobOptions.ToDictionary(x => x.Id, x => x.Quantity);
+
+        return a.Keys.Any(x => b.ContainsKey(x) && a[x] != b[x]);
+    }
+
+    private bool ValidateInputsManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) => true;
+
+    private Task<bool> UpdateDatabaseManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) => throw new NotImplementedException();
+
+    private void UpdateModelManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) {
+        _model.CleaningJobOptions = presenter.Models;
+    }
+    #endregion
+
+    #region Select Cleaning Job Customer
+    private (IChildView childView, INotifyingChildPresenter childPresenter) GetCustomer() {
+        (SelectCleaningJobCustomerView view, SelectCleaningJobCustomerPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobCustomer();
+
+        PopulateDefaultValuesCurrent = () => PopulateDefaultValuesSelectCleaningJobCustomer(presenter);
+        AnyChangesCurrent = () => AnyChangesSelectCleaningJobCustomer(presenter);
+        ValidateCurrent = () => ValidateInputsSelectCleaningJobCustomer(presenter);
+        UpdateDatabaseCurrent = () => UpdateDatabaseSelectCleaningJobCustomer(presenter);
+        UpdateModelCurrent = () => UpdateModelSelectCleaningJobCustomer(presenter);
+
+        return (view, presenter);
+    }
+
+    private void PopulateDefaultValuesSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) {
+        presenter.SelectedId = _model.CustomerId;
+    }
+
+    private bool AnyChangesSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => presenter.SelectedId != _model.CustomerId;
+
+    private bool ValidateInputsSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => true;
+
+    private Task<bool> UpdateDatabaseSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCustomer(_model.Id, presenter.SelectedId);
+
+    private void UpdateModelSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) {
+        _model.CustomerId = presenter.SelectedId;
+    }
+
+    #endregion
+
+    #region Select Cleaning Job Staff
+    private (IChildView childView, INotifyingChildPresenter childPresenter) GetSelectStaff() {
+        (SelectCleaningJobStaffView view, SelectCleaningJobStaffPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobStaff(CleaningJobDAL.GetAvailableCleaners(_model));
+
+        PopulateDefaultValuesCurrent = () => PopulateDefaultValuesSelectCleaningJobStaff(presenter);
+        AnyChangesCurrent = () => AnyChangesSelectCleaningJobStaff(presenter);
+        ValidateCurrent = () => ValidateInputsSelectCleaningJobStaff(presenter);
+        UpdateDatabaseCurrent = () => UpdateDatabaseSelectCleaningJobStaff(presenter);
+        UpdateModelCurrent = () => UpdateModelSelectCleaningJobStaff(presenter);
+
+        return (view, presenter);
+    }
+
+    private void PopulateDefaultValuesSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
+        presenter.Models = _model.StaffIds;
+    }
+
+    private bool AnyChangesSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
+        ILookup<int, int> a = presenter.Models.ToLookup(x => x);
+        ILookup<int, int> b = _model.StaffIds.ToLookup(x => x);
+
+        if (a.Count != b.Count) return true;
+
+        return !a.All(y => b.Contains(y));
+    }
+
+    private bool ValidateInputsSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
+        if (presenter.Models.Count == 0) {
+            _view.ShowMessageBox("Please select at least one cleaning option", "No options selected", MessageBoxButtons.OK);
+            return false;
+        }
+        else return true;
+    }
+
+    private Task<bool> UpdateDatabaseSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) => throw new NotImplementedException();
+
+    private void UpdateModelSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
+        _model.StaffIds = presenter.Models;
+    }
+
     #endregion
 
     public override void CleanUp() {

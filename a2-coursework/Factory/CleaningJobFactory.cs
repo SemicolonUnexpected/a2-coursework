@@ -1,4 +1,6 @@
-﻿using a2_coursework.Presenter.CleaningJob;
+﻿using a2_coursework.Model.CleaningJob;
+using a2_coursework.Model.Staff;
+using a2_coursework.Presenter.CleaningJob;
 using a2_coursework.View.CleaningJob;
 using a2_coursework.View.Users;
 
@@ -25,4 +27,38 @@ public class CleaningJobFactory {
         return (view, presenter);
     }
 
+    public static (ManageCleaningJobOptionsView view, ManageCleaningJobOptionsPresenter presenter) CreateManageCleaningJobOptions() {
+        ManageCleaningJobOptionsView view = new();
+        ManageCleaningJobOptionsPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (ManageCleaningJobDurationView view, ManageCleaningJobDurationPresenter presenter) CreateManageCleaningJobDuration() {
+        ManageCleaningJobDurationView view = new();
+        ManageCleaningJobDurationPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (SelectCleaningJobCustomerView view, SelectCleaningJobCustomerPresenter presenter) CreateSelectCleaningJobCustomer() {
+        SelectCleaningJobCustomerView view = new();
+        SelectCleaningJobCustomerPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
+    public static (SelectCleaningJobStaffView view, SelectCleaningJobStaffPresenter presenter) CreateSelectCleaningJobStaff(Task<List<StaffModel>> getStaff) {
+        SelectCleaningJobStaffView view = new();
+        SelectCleaningJobStaffPresenter presenter = new(view, getStaff);
+
+        return (view, presenter);
+    }
+
+    public static (EditCleaningJobView view, EditCleaningJobPresenter presenter) CreateEditCleaningJob(CleaningJobModel model) {
+        EditCleaningJobView view = new();
+        EditCleaningJobPresenter presenter = new(view, model);
+
+        return (view, presenter);
+    }
 }

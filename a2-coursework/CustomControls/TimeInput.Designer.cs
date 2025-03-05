@@ -52,6 +52,8 @@
             tbMinute.TextBoxInset = new Padding(9, 10, 9, 10);
             tbMinute.UsePasswordChar = false;
             tbMinute.TextChanged += tbMinute_TextChanged;
+            tbMinute.KeyPress += tbMinute_KeyPress;
+            tbMinute.Leave += tbMinute_Leave;
             // 
             // tbHour
             // 
@@ -77,6 +79,8 @@
             tbHour.TextBoxInset = new Padding(9, 10, 9, 10);
             tbHour.UsePasswordChar = false;
             tbHour.TextChanged += tbHour_TextChanged;
+            tbHour.KeyPress += tbHour_KeyPress;
+            tbHour.Leave += tbHour_Leave;
             // 
             // lblDivider
             // 

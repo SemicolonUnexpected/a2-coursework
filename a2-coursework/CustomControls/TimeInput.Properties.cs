@@ -102,13 +102,20 @@ public partial class TimeInput {
         }
     }
 
-    private TimeOnly _time;
-    public TimeOnly Time {
-        get => _time;
+    public TimeOnly? Time {
+        get {
+            if (!TimeValid || !int.TryParse(tbHour.Text, out int hour) || !int.TryParse(tbMinute.Text, out int minute)) return null;
+            else return new TimeOnly(hour, minute); 
+        }
         set {
-            _time = value;
-            tbHour.Text = _time.ToString("HH");
-            tbMinute.Text = _time.ToString("mm");
+            if (value is not null) {
+                tbHour.Text = ((TimeOnly)value).ToString("HH");
+                tbMinute.Text = ((TimeOnly)value).ToString("mm");
+            }
+            else {
+                tbHour.Text = "";
+                tbMinute.Text = "";
+            }
         }
     }
 

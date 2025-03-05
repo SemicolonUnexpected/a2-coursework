@@ -2,7 +2,7 @@
 
 namespace a2_coursework.Presenter.CleaningJob;
 
-class ManageCleaningJobDurationPresenter : BasePresenter<IManageCleaningJobDuration>, INotifyingChildPresenter {
+public class ManageCleaningJobDurationPresenter : BasePresenter<IManageCleaningJobDuration>, INotifyingChildPresenter {
     public event EventHandler? DetailsChanged;
 
     public ManageCleaningJobDurationPresenter(IManageCleaningJobDuration view) : base(view) {
@@ -41,7 +41,7 @@ class ManageCleaningJobDurationPresenter : BasePresenter<IManageCleaningJobDurat
             _endTimeValid = _view.EndTimeValid;
             return;
         }
-        else if (_view.StartTime > _view.EndTime) {
+        else if (_view.StartTime >= _view.EndTime) {
             _view.TimeError = "Ensure the end time is after the start time";
 
             _startTimeValid = false;
@@ -61,7 +61,7 @@ class ManageCleaningJobDurationPresenter : BasePresenter<IManageCleaningJobDurat
             _view.DateError = "Date is invalid";
             _dateValid = false;
         }
-        else if (_view.Date < DateTime.Today + new TimeSpan(14, 0, 0, 0)) {
+        else if (DateOnly.FromDateTime((DateTime)_view.Date!) != DateOnly.FromDateTime((DateTime)_setDate!) && _view.Date < DateTime.Today + new TimeSpan(14, 0, 0, 0)) {
             _view.DateError = "Bookings must be made at least two weeks in advance";
             _dateValid = false;
         }
@@ -71,32 +71,35 @@ class ManageCleaningJobDurationPresenter : BasePresenter<IManageCleaningJobDurat
         }
     }
 
-    public bool DateValid => _dateValid;
+    public bool DatesValid => _dateValid && _startTimeValid && _endTimeValid;
 
-    public DateTime? Date {
-        get => _view.Date;
-        set => _view.Date = value;
+    private DateTime? _setDate;
+    public DateTime? StartDate {
+        get {
+            if (_view.Date is null || _view.StartTime is null) return null;
+
+            return DateOnly.FromDateTime((DateTime)_view.Date).ToDateTime((TimeOnly)_view.StartTime);
+        }
+        set {
+            _setDate = value;
+            _view.Date = value;
+            if (value is not null) _view.StartTime = TimeOnly.FromDateTime((DateTime)value);
+        }
+    }
+
+    public DateTime? EndDate {
+        get {
+            if (_view.Date is null || _view.EndTime is null) return null;
+
+            return DateOnly.FromDateTime((DateTime)_view.Date).ToDateTime((TimeOnly)_view.EndTime);
+        }
+        set {
+            _setDate = value;
+            _view.Date = value;
+            if (value is not null) _view.EndTime = TimeOnly.FromDateTime((DateTime)value);
+        }
     }
     
-    public bool StartTimeValid => _startTimeValid;
-
-    public TimeOnly StartTime {
-        get => _view.StartTime;
-        set => _view.StartTime = value;
-    }
-
-    public bool EndTimeValid => _endTimeValid;
-
-    public TimeOnly EndTime {
-        get => _view.EndTime;
-        set => _view.EndTime = value;
-    }
-
-    public bool ReadOnly {
-        get => _view.ReadOnly;
-        set => _view.ReadOnly = value;
-    }
-
     public override void CleanUp() {
         _view.DateChanged -= OnDateChanged;
         _view.StartTimeChanged -= OnStartTimeChanged;

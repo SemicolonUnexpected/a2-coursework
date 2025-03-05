@@ -1,12 +1,11 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces.CleaningJob;
-using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Model.Staff;
 using a2_coursework.View.StaffView.StaffManagement;
 
 namespace a2_coursework.Presenter.CleaningJob;
 
-class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJobStaffView, StaffModel, DisplayStaffModel>, INotifyingChildPresenter {
+public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJobStaffView, StaffModel, DisplayStaffModel>, INotifyingChildPresenter {
     public event EventHandler? DetailsChanged;
 
     public SelectCleaningJobStaffPresenter (ISelectCleaningJobStaffView view, Task<List<StaffModel>> getStaff) : base(view) {
@@ -15,9 +14,7 @@ class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJobStaff
         _view.SelectionChanged += OnSelectionChanged;
     }
 
-    private void OnSelectionChanged(object? sender, EventArgs e) {
-        DetailsChanged?.Invoke(this, EventArgs.Empty);
-    }
+    private void OnSelectionChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
 
     private async void LoadData(Task<List<StaffModel>> getStaff) {
         _view.DataGridText = "Loading...";
@@ -58,10 +55,13 @@ class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJobStaff
                 SortBy(x => x.Id, sortAscending);
                 break;
             case "columnName":
-                SortBy(x => x.Name, sortAscending);
+                SortBy(x => $"{x.Forename} {x.Surname}", sortAscending);
                 break;
-            case "columnUnitCost":
-                SortBy(x => x.UnitCost, sortAscending);
+            case "columnEmail":
+                SortBy(x => x.Email, sortAscending);
+                break;
+            case "columnPhoneNumber":
+                SortBy(x => x.PhoneNumber, sortAscending);
                 break;
 
             default:

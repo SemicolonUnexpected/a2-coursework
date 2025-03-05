@@ -97,19 +97,9 @@ public partial class SelectCleaningJobCustomerView : Form, IDisplayView<DisplayC
         set => topBar.SearchText = value;
     }
 
-    public List<DisplayCustomerModel> SelectedItems {
-        get {
-            List<DisplayCustomerModel> items = [];
+    public DisplayCustomerModel SelectedItem => ((BindingList<DisplayCustomerModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
 
-            foreach (DataGridViewRow row in dataGridView.SelectedRows) {
-                items.Add(((BindingList<DisplayCustomerModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index]);
-            }
-
-            return items;
-        }
-    }
-
-    public void SetSelectedItemById(int id) {
+    public void SetSelectedItemId(int id) {
         foreach (DataGridViewRow row in dataGridView.Rows) {
             DisplayCleaningJobOptionModel model = (DisplayCleaningJobOptionModel)row.DataBoundItem;
 

@@ -19,7 +19,8 @@ public partial class ManageCleaningJobDetailsView: Form, IManageCleaningJobOptio
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
 
-        tbExtraInformation.TextChanged += (s, e) => AddressChanged?.Invoke(this, EventArgs.Empty);
+        tbAddress.TextChanged += (s, e) => AddressChanged?.Invoke(this, EventArgs.Empty);
+        tbExtraInformation.TextChanged += (s, e) => ExtraInformationChanged?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {
@@ -69,7 +70,7 @@ public partial class ManageCleaningJobDetailsView: Form, IManageCleaningJobOptio
     }
 
     public void SetExtraInformationCharacterCount(int number) => lblExtraInformationCharacterLimit.Text = $"{number}/{tbExtraInformation.MaxLength}";
-    public void SetAddressCharacterCount(int number) => lblExtraInformationCharacterLimit.Text = $"{number}/{tbExtraInformation.MaxLength}";
+    public void SetAddressCharacterCount(int number) => lblAddressCharacterLimit.Text = $"{number}/{tbAddress.MaxLength}";
 
     private bool _addressBorderError;
     public void SetAddressBorderError(bool isError) {

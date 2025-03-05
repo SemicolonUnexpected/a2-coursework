@@ -9,6 +9,6 @@ public interface ISelectCleaningJobCustomerView : IDisplayView<DisplayCustomerMo
     public void DisableAll();
     public void EnableAll();
     public string DataGridText { get; set; }
-    public List<DisplayCustomerModel> SelectedItems { get; }
-    public void SetSelectedItemById(int id);
+    public DisplayCustomerModel SelectedItem { get; }
+    public void SetSelectedItemId(int id);
 }

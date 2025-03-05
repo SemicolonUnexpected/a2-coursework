@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.CleaningJob {
-    partial class DisplayCleaningJobView {
+    partial class ManageCleaningJobOptionsView {
         /// <summary>
         /// Required designer variable.
         /// </summary>

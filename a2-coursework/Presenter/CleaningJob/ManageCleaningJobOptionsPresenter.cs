@@ -6,9 +6,7 @@ namespace a2_coursework.Presenter.CleaningJob;
 public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleaningJobOptionsView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, INotifyingChildPresenter {
     public event EventHandler? DetailsChanged;
 
-    public ManageCleaningJobOptionsPresenter(IManageCleaningJobOptionsView view, Task<List<CleaningJobOptionModel>> getModels) : base(view) {
-        LoadData(getModels);
-
+    public ManageCleaningJobOptionsPresenter(IManageCleaningJobOptionsView view) : base(view) {
         _view.SelectionChanged += OnSelectedItemChanged;
         _view.QuantityChanged += OnQuantityChanged;
     }
@@ -31,13 +29,16 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
 
     private decimal CalculateTotal() {
         decimal sum = 0;
+
         foreach (var model in _models) {
             sum += model.Quantity * model.UnitCost;
         }
+
         return sum;
     }
 
     public List<CleaningJobOptionModel> Models {
+        set => LoadData(value);
         get => _models;
     }
 
@@ -49,14 +50,14 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
         _view.Total = CalculateTotal();
     }
 
-    private async void LoadData(Task<List<CleaningJobOptionModel>> getModels) {
+    private void LoadData(List<CleaningJobOptionModel> options) {
         _view.DataGridText = "Loading...";
         _view.DisableAll();
 
         try {
             _isAsyncRunning = true;
 
-            _models = await getModels;
+            _models = options;
 
             DisplayItems();
 
