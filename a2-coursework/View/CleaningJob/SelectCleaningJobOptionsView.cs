@@ -102,7 +102,7 @@ public partial class SelectCleaningJobOptionsView : Form, IDisplayView<DisplayCl
             List<DisplayCleaningJobOptionModel> items = [];
 
             foreach (DataGridViewRow row in dataGridView.SelectedRows) {
-                items.Add(((BindingList<DisplayCleaningJobOptionModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index]);
+                items.Add(((BindingList<DisplayCleaningJobOptionModel>)_bindingSource.DataSource)[row.Index]);
             }
 
             return items;
@@ -110,6 +110,8 @@ public partial class SelectCleaningJobOptionsView : Form, IDisplayView<DisplayCl
     }
 
     public void SetSelectedItemsById(IEnumerable<int> models) {
+        dataGridView.ClearSelection();
+
         foreach (DataGridViewRow row in dataGridView.Rows) {
             DisplayCleaningJobOptionModel model = (DisplayCleaningJobOptionModel)row.DataBoundItem;
 

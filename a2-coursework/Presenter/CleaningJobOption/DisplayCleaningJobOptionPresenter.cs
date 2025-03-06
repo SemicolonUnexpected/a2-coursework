@@ -100,7 +100,7 @@ public class DisplayCleaningJobOptionPresenter : DisplayPresenter<IDisplayCleani
         try {
             _isAsyncRunning = true;
 
-            bool success = await CleaningJobOptionDAL.UpdateJobOptionArchived(model.Id, model.Archived);
+            bool success = await CleaningJobOptionDAL.UpdateJobOptionArchived(model.Id, !model.Archived);
 
             if (success) {
                 model.Archived = !model.Archived;

@@ -66,6 +66,7 @@
             pnlData.Padding = new Padding(5);
             pnlData.Size = new Size(347, 341);
             pnlData.TabIndex = 4;
+            pnlData.Resize += pnlData_Resize;
             // 
             // lblError
             // 
@@ -197,9 +198,12 @@
             // 
             nudQuantity.BackColor = Color.FromArgb(9, 9, 10);
             nudQuantity.Location = new Point(10, 239);
+            nudQuantity.Maximum = 100;
+            nudQuantity.Minimum = 1;
             nudQuantity.Name = "nudQuantity";
             nudQuantity.Size = new Size(249, 40);
             nudQuantity.TabIndex = 11;
+            nudQuantity.Value = 1;
             // 
             // pnlDetails
             // 

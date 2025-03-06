@@ -164,6 +164,15 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
         set => tbTotal.Text = value.ToString("C", new CultureInfo("en-GB"));
     }
 
+    public bool Editable {
+        get => tbName.ReadOnly;
+        set {
+            tbName.ReadOnly = value;
+            tbDescription.ReadOnly = value;
+            nudQuantity.Enabled = value;
+        }
+    }
+
     public void DisplayItems(BindingList<DisplayCleaningJobOptionModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
@@ -223,13 +232,15 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
 
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
-
-        searchBar.Width = pnlData.Width * 4 / 5;
-        searchBar.Location = new Point(pnlData.Location.X + (pnlData.Width - searchBar.Width) / 2, searchBar.Location.Y);
-        Refresh();
     }
 
     private void pnlDetails_Resize(object sender, EventArgs e) {
 
+    }
+
+    private void pnlData_Resize(object sender, EventArgs e) {
+        searchBar.Width = pnlData.Width * 4 / 5;
+        searchBar.Location = new Point(pnlData.Location.X + (pnlData.Width - searchBar.Width) / 2, searchBar.Location.Y);
+        Invalidate();
     }
 }

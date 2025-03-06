@@ -18,6 +18,7 @@ public interface IManageCleaningJobOptionsView : IDisplayView<DisplayCleaningJob
     public int Quantity { get; set; }
     public decimal Subtotal { set; }
     public decimal Total { set; }
+    public bool Editable { get; set; }
 
     public void DisableAll();
     public void EnableAll();

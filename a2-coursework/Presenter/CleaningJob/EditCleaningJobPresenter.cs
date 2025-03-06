@@ -2,6 +2,7 @@
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
+using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Presenter.CleaningJob;
@@ -98,7 +99,7 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
 
     #region Select Cleaning Job Options
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetOptions() {
-        (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobOptions();
+        (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobOptions(CleaningJobOptionDAL.GetNonArchivedCleaningJobOptions());
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesSelectCleaningJobOptions(presenter);
         AnyChangesCurrent = () => AnyChangesSelectCleaningJobOptions(presenter);
@@ -110,30 +111,30 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
     }
 
     private void PopulateDefaultValuesSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
-        presenter.SelectedItems = _model.StaffIds;
+        presenter.SelectedCleaningJobOptions = _model.CleaningJobOptions;
     }
 
     private bool AnyChangesSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
-        ILookup<int, int> a = presenter.SelectedItems.ToLookup(x => x);
-        ILookup<int, int> b = _model.StaffIds.ToLookup(x => x);
+        List<int> a = presenter.SelectedCleaningJobOptions.ConvertAll(x => x.Id);
+        List<int> b = _model.CleaningJobOptions.ConvertAll(x => x.Id);
 
         if (a.Count != b.Count) return true;
 
-        return !a.All(y => b.Contains(y));
+        return !a.All(b.Contains);
     }
 
     private bool ValidateInputsSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
-        if (presenter.SelectedItems.Count == 0) {
-            _view.ShowMessageBox("Please select at least one cleaning option", "No options selected", MessageBoxButtons.OK);
+        if (presenter.SelectedCleaningJobOptions.Count == 0) {
+            //_view.ShowMessageBox("Please select at least one cleaning option", "No options selected", MessageBoxButtons.OK);
             return false;
         }
         else return true;
     }
 
-    private Task<bool> UpdateDatabaseSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCleaningOptions(_model.Id, presenter.SelectedItems);
+    private Task<bool> UpdateDatabaseSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCleaningOptions(_model.Id, presenter.SelectedCleaningJobOptions);
 
     private void UpdateModelSelectCleaningJobOptions(SelectCleaningJobOptionsPresenter presenter) {
-        _model.StaffIds = presenter.SelectedItems;
+        _model.CleaningJobOptions = presenter.SelectedCleaningJobOptions;
     }
     #endregion
 
@@ -213,30 +214,30 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
     }
 
     private void PopulateDefaultValuesSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
-        presenter.Models = _model.StaffIds;
+        presenter.SelectedStaffIds = _model.StaffIds;
     }
 
     private bool AnyChangesSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
-        List<int> a = presenter.Models;
+        List<int> a = presenter.SelectedStaffIds;
         List<int> b = _model.StaffIds;
 
         if (a.Count != b.Count) return true;
 
-        return !a.All(y => b.Contains(y));
+        return !a.All(b.Contains);
     }
 
     private bool ValidateInputsSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
-        if (presenter.Models.Count == 0) {
-            _view.ShowMessageBox("Please select at least one cleaning option", "No options selected", MessageBoxButtons.OK);
+        if (presenter.SelectedStaffIds.Count == 0) {
+            //_view.ShowMessageBox("Please select at least one cleaning option", "No options selected", MessageBoxButtons.OK);
             return false;
         }
         else return true;
     }
 
-    private Task<bool> UpdateDatabaseSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) => CleaningJobDAL.UpdateCleaningJobStaff(_model.Id, presenter.Models);
+    private Task<bool> UpdateDatabaseSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) => CleaningJobDAL.UpdateCleaningJobStaff(_model.Id, presenter.SelectedStaffIds);
 
     private void UpdateModelSelectCleaningJobStaff(SelectCleaningJobStaffPresenter presenter) {
-        _model.StaffIds = presenter.Models;
+        _model.StaffIds = presenter.SelectedStaffIds;
     }
 
     #endregion

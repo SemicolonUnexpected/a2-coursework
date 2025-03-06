@@ -185,19 +185,19 @@ public class CleaningJobDAL {
         int rowsAffected = await command.ExecuteNonQueryAsync();
     }
 
-    public static async Task<bool> UpdateCleaningJobCleaningOptions(int id, List<int> cleaningJobOptionIds) {
+    public static async Task<bool> UpdateCleaningJobCleaningOptions(int id, List<CleaningJobOptionModel> cleaningJobOptions) {
         await DeleteAllCleaningJobCleaningJobOptions(id);
 
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        bool success = false;
+        bool success = true;
 
-        foreach (int cleaningJobOptionId in cleaningJobOptionIds) {
+        foreach (CleaningJobOptionModel cleaningJobOption in cleaningJobOptions) {
             await using SqlCommand command = new("AddCleaningJobCleaningOption", connection);
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.AddWithValue("@cleaningJobId", id);
-            command.Parameters.AddWithValue("@cleaningJobOptionId", cleaningJobOptionId);
+            command.Parameters.AddWithValue("@cleaningJobOptionId", cleaningJobOption.Id);
 
             success &= (await command.ExecuteNonQueryAsync()) > 0;
         }

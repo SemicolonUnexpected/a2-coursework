@@ -12,7 +12,15 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
     }
 
     private void OnSelectedItemChanged(object? sender, EventArgs e) {
-        LoadDetails(_modelDisplayMap[_view.SelectedItem!]);
+        if (_view.SelectedItem is not null) LoadDetails(_modelDisplayMap[_view.SelectedItem]);
+        else {
+            _view.Editable = false;
+            _view.CleaningOptionName = "";
+            _view.CleaningOptionDescription = "";
+            _view.Quantity = 0;
+            _view.Subtotal = 0;
+            _view.Total = CalculateTotal();
+        }
     }
 
     private void OnQuantityChanged(object? sender, EventArgs e) {
@@ -21,6 +29,8 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
     }
 
     private void ChangeQuantity() {
+        if (_view.SelectedItem is null) return;
+
         CleaningJobOptionModel model = _modelDisplayMap[_view.SelectedItem!];
         model.Quantity = _view.Quantity;
         _view.Subtotal = model.Quantity * model.CostAtTime;
@@ -43,6 +53,7 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
     }
 
     private void LoadDetails(CleaningJobOptionModel model) {
+        _view.Editable = true;
         _view.CleaningOptionName = model.Name;
         _view.CleaningOptionDescription = model.Description;
         _view.Quantity = model.Quantity;

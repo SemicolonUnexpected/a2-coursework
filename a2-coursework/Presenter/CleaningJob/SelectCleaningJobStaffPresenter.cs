@@ -49,7 +49,7 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
     protected override IComparable RankSearch(string searchText, StaffModel model) => GeneralHelpers.LevensteinDistance(searchText, $"{model.Forename} {model.Surname}");
 
     private List<int> _setSelectedItems = [];
-    public List<int> Models {
+    public List<int> SelectedStaffIds {
         get => _view.SelectedItems.ConvertAll(x => x.Id);
         set {
             _setSelectedItems = value;

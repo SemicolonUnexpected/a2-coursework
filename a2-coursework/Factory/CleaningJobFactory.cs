@@ -1,4 +1,5 @@
 ﻿using a2_coursework.Model.CleaningJob;
+using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Model.Staff;
 using a2_coursework.Presenter.CleaningJob;
 using a2_coursework.View.CleaningJob;
@@ -20,9 +21,9 @@ public class CleaningJobFactory {
         return (view, presenter);
     }
 
-    public static (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) CreateSelectCleaningJobOptions() {
+    public static (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) CreateSelectCleaningJobOptions(Task<List<CleaningJobOptionModel>> getCleaningJobOptions) {
         SelectCleaningJobOptionsView view = new();
-        SelectCleaningJobOptionsPresenter presenter = new(view);
+        SelectCleaningJobOptionsPresenter presenter = new(view, getCleaningJobOptions);
 
         return (view, presenter);
     }
