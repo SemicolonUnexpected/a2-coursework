@@ -1,0 +1,11 @@
+@startuml
+interface IViewStockQuantityChangeView {
+    +  <<event>> Back : EventHandler? 
+    + Username : string <<set>>
+    + StockName : string <<set>>
+    + Quantity : int <<set>>
+    + ReasonForQuantityChange : string <<set>>
+}
+IChildView <|-- IViewStockQuantityChangeView
+IViewStockQuantityChangeView --> "DateOfChange" DateTime
+@enduml

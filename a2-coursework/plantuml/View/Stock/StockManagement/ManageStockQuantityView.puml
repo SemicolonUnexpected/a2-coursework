@@ -1,0 +1,22 @@
+@startuml
+class ManageStockQuantityView <<partial>> {
+    +  <<event>> BulkAdd : EventHandler? 
+    +  <<event>> BulkRemove : EventHandler? 
+    +  <<event>> ReasonForQuantityChangeChanged : EventHandler? 
+    +  <<event>> QuantityChanged : EventHandler? 
+    + ManageStockQuantityView()
+    + Theme() : void
+    + SetFont() : void
+    + SetToolTipVisibility() : void
+    + Quantity : int <<get>> <<set>>
+    + BulkAddQuantity : int <<get>> <<set>>
+    + BulkRemoveQuantity : int <<get>> <<set>>
+    + ReasonForQuantityChange : string <<get>> <<set>>
+    + ReasonForChangedReadOnly : bool <<get>> <<set>>
+    + SetCharacterCount(number:int) : void
+    + CleanUp() : void
+}
+Form <|-- ManageStockQuantityView
+IManageStockQuantityView <|-- ManageStockQuantityView
+IThemeable <|-- ManageStockQuantityView
+@enduml

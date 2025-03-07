@@ -1,0 +1,24 @@
+@startuml
+class ManageCleaningJobDurationView <<partial>> {
+    +  <<event>> DateChanged : EventHandler? 
+    +  <<event>> StartTimeChanged : EventHandler? 
+    +  <<event>> EndTimeChanged : EventHandler? 
+    + ManageCleaningJobDurationView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + StartTimeValid : bool <<get>>
+    + EndTimeValid : bool <<get>>
+    + DateValid : bool <<get>>
+    + DateError : string <<get>> <<set>>
+    + TimeError : string <<get>> <<set>>
+    + ReadOnly : bool <<get>> <<set>>
+    + CleanUp() : void
+}
+Form <|-- ManageCleaningJobDurationView
+IManageCleaningJobDuration <|-- ManageCleaningJobDurationView
+IThemeable <|-- ManageCleaningJobDurationView
+ManageCleaningJobDurationView --> "StartTime" TimeOnly
+ManageCleaningJobDurationView --> "EndTime" TimeOnly
+ManageCleaningJobDurationView --> "Date" DateTime
+@enduml

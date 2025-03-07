@@ -1,0 +1,13 @@
+@startuml
+class ReportPresenter {
+    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
+    + ReportPresenter(view:IReportView, reportName:string, getPdf:Task<byte[]>, back:Func<(IChildView view, IChildPresenter presenter)>?)
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IReportView>" <|-- ReportPresenter
+IChildPresenter <|-- ReportPresenter
+INavigatingPresenter <|-- ReportPresenter
+@enduml

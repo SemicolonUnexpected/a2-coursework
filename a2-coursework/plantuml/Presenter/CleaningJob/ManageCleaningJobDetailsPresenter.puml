@@ -1,0 +1,15 @@
+@startuml
+class ManageCleaningJobDetailsPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + ManageCleaningJobDetailsPresenter(view:IManageCleaningJobOptionDetails)
+    + ReadOnly : bool <<get>> <<set>>
+    + AddressValid : bool <<get>>
+    + Address : string <<get>> <<set>>
+    + ExtraInformation : string <<get>> <<set>>
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageCleaningJobOptionDetails>" <|-- ManageCleaningJobDetailsPresenter
+INotifyingChildPresenter <|-- ManageCleaningJobDetailsPresenter
+@enduml

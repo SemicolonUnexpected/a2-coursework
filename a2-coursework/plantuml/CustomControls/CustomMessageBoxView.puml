@@ -1,0 +1,12 @@
+@startuml
+class CustomMessageBoxView <<partial>> {
+    + CustomMessageBoxView(text:string, caption:string, buttons:MessageBoxButtons)
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + CleanUp() : void
+}
+Form <|-- CustomMessageBoxView
+IThemeable <|-- CustomMessageBoxView
+IView <|-- CustomMessageBoxView
+@enduml

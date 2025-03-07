@@ -1,0 +1,21 @@
+@startuml
+class ManageCustomerPersonalDetailsView <<partial>> {
+    +  <<event>> ForenameChanged : EventHandler? 
+    +  <<event>> SurnameChanged : EventHandler? 
+    +  <<event>> ArchivedChanged : EventHandler? 
+    + ManageCustomerPersonalDetailsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + Forename : string <<get>> <<set>>
+    + Surname : string <<get>> <<set>>
+    + NameError : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + SetForenameBorderError(isError:bool) : void
+    + SetSurnameBorderError(isError:bool) : void
+    + CleanUp() : void
+}
+Form <|-- ManageCustomerPersonalDetailsView
+IThemeable <|-- ManageCustomerPersonalDetailsView
+IManageCustomerPersonalDetailsView <|-- ManageCustomerPersonalDetailsView
+@enduml

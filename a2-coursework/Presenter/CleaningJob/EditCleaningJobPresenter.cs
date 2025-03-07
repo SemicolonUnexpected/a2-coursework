@@ -156,7 +156,7 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
     }
 
     private bool AnyChangesManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) {
-        Dictionary<int, int> a = presenter.Models.ToDictionary(x => x.Id, x => x.Quantity);
+        Dictionary<int, int> a = presenter.NewQuantities;
         Dictionary<int, int> b = _model.CleaningJobOptions.ToDictionary(x => x.Id, x => x.Quantity);
 
         return a.Keys.Any(x => b.ContainsKey(x) && a[x] != b[x]);
@@ -164,10 +164,12 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
 
     private bool ValidateInputsManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) => true;
 
-    private Task<bool> UpdateDatabaseManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) => throw new NotImplementedException();
+    private Task<bool> UpdateDatabaseManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCleaningOptionsQuantity(_model.Id, presenter.NewQuantities.Select(x => (x.Key, x.Value)));
 
     private void UpdateModelManageCleaningJobOptions(ManageCleaningJobOptionsPresenter presenter) {
-        _model.CleaningJobOptions = presenter.Models;
+        foreach (CleaningJobOptionModel model in _model.CleaningJobOptions) {
+            model.Quantity = presenter.NewQuantities[model.Id];
+        }
     }
     #endregion
 
@@ -190,12 +192,12 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
 
     private bool AnyChangesSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => presenter.SelectedId != _model.CustomerId;
 
-    private bool ValidateInputsSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => true;
+    private bool ValidateInputsSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => presenter.SelectedId is not null;
 
-    private Task<bool> UpdateDatabaseSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCustomer(_model.Id, presenter.SelectedId);
+    private Task<bool> UpdateDatabaseSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) => CleaningJobDAL.UpdateCleaningJobCustomer(_model.Id, (int)presenter.SelectedId!);
 
     private void UpdateModelSelectCleaningJobCustomer(SelectCleaningJobCustomerPresenter presenter) {
-        _model.CustomerId = presenter.SelectedId;
+        _model.CustomerId = (int)presenter.SelectedId!;
     }
 
     #endregion

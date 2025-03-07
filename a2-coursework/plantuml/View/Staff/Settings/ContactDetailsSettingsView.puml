@@ -1,0 +1,26 @@
+@startuml
+class ContactDetailsSettingsView <<partial>> {
+    +  <<event>> EmailChanged : EventHandler? 
+    +  <<event>> PhoneNumberChanged : EventHandler? 
+    +  <<event>> AddressChanged : EventHandler? 
+    +  <<event>> Save : EventHandler? 
+    +  <<event>> Cancel : EventHandler? 
+    + ContactDetailsSettingsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + Email : string <<get>> <<set>>
+    + PhoneNumber : string <<get>> <<set>>
+    + Address : string <<get>> <<set>>
+    + ContactErrorText : string <<get>> <<set>>
+    + SaveCancelVisible : bool <<set>>
+    + IsLoading : bool <<get>> <<set>>
+    + SetEmailBorderError(isError:bool) : void
+    + SetPhoneNumberBorderError(isError:bool) : void
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+    + CleanUp() : void
+}
+Form <|-- ContactDetailsSettingsView
+IContactDetailsSettings <|-- ContactDetailsSettingsView
+IThemeable <|-- ContactDetailsSettingsView
+@enduml

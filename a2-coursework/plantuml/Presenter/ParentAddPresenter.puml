@@ -1,0 +1,10 @@
+@startuml
+abstract class "AddPresenter`2"<TView,TModel> {
+    + AddPresenter(view:TView, model:TModel)
+    + <<virtual>> CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<TView>" <|-- "AddPresenter`2"
+@enduml

@@ -1,0 +1,12 @@
+@startuml
+enum PrivilegeLevel {
+    Office= 1,
+    Admin= 2,
+    Manager= 3,
+    CleaningManager= 4,
+    Cleaner= 5,
+}
+class PrivilegeLevelExtensions <<static>> {
+    + {static} ConvertToString(privilegeLevel:PrivilegeLevel) : string
+}
+@enduml

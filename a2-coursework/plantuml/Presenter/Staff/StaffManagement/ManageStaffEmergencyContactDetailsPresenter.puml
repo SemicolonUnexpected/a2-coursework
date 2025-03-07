@@ -1,0 +1,17 @@
+@startuml
+class ManageStaffEmergencyContactDetailsPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + ManageStaffEmergencyContactDetailsPresenter(view:IManageStaffEmergencyContactDetailsView)
+    + EmergencyContactPhoneNumber : string <<get>> <<set>>
+    + EmergencyContactPhoneNumberValid : bool <<get>>
+    + EmergencyContactForename : string <<get>> <<set>>
+    + EmergencyContactSurname : string <<get>> <<set>>
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageStaffEmergencyContactDetailsView>" <|-- ManageStaffEmergencyContactDetailsPresenter
+IChildPresenter <|-- ManageStaffEmergencyContactDetailsPresenter
+INotifyingChildPresenter <|-- ManageStaffEmergencyContactDetailsPresenter
+@enduml

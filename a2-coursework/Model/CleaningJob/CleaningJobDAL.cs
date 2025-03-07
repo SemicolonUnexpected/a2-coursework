@@ -252,4 +252,30 @@ public class CleaningJobDAL {
 
         return success;
     }
+
+    public static async Task<bool> UpdateCleaningJobCleaningOptionsQuantity(int id, IEnumerable<(int id, int quantity)> cleaningJobOptionIdQuantities) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        bool success = true;
+
+        foreach ((int id, int quantity) idQuantityPair in cleaningJobOptionIdQuantities) {
+            success &= await UpdateCleaningJobCleaningOptionQuantity(id, idQuantityPair.id, idQuantityPair.quantity);
+        }
+
+        return success;
+    }
+
+    public static async Task<bool> UpdateCleaningJobCleaningOptionQuantity(int cleaningJobId, int cleaningJobOptionId, int quantity) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateCleaningJobCleaningOptionQuantity", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@cleaningJobId", cleaningJobId);
+        command.Parameters.AddWithValue("@cleaningJobOptionId", cleaningJobOptionId);
+        command.Parameters.AddWithValue("@quantity", quantity);
+
+        return await command.ExecuteNonQueryAsync() > 0;
+    }
 }

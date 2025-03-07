@@ -1,0 +1,6 @@
+@startuml
+abstract class "BasePresenter`1"<T> {
+    + <<virtual>> CleanUp() : void
+}
+ICleanable <|-- "BasePresenter`1"
+@enduml

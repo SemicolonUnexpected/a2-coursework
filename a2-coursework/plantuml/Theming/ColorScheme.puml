@@ -1,0 +1,25 @@
+@startuml
+class ColorScheme {
+}
+ColorScheme --> "Current" ColorScheme
+ColorScheme o-> "Dark" ColorScheme
+ColorScheme o-> "Light" ColorScheme
+ColorScheme o-> "Red" Color
+ColorScheme o-> "RedDark" Color
+ColorScheme o-> "RedLight" Color
+ColorScheme o-> "PaleBlue" Color
+ColorScheme o-> "PaleBlueDark" Color
+ColorScheme o-> "PaleBlueLight" Color
+ColorScheme o-> "Blue" Color
+ColorScheme o-> "BlueDark" Color
+ColorScheme o-> "BlueLight" Color
+ColorScheme o-> "Background" Color
+ColorScheme o-> "Foreground" Color
+ColorScheme o-> "Primary" Color
+ColorScheme o-> "PrimaryForeground" Color
+ColorScheme o-> "Secondary" Color
+ColorScheme o-> "SecondaryForeground" Color
+ColorScheme o-> "Danger" Color
+ColorScheme o-> "Warning" Color
+ColorScheme o-> "Info" Color
+@enduml

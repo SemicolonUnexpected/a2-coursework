@@ -1,0 +1,121 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+skinparam layout horizontal
+
+' Define abstract and specialized roles
+:Staff: <<abstract>>
+:Manager:
+:Cleaning Manager:
+:Office Staff:
+:Administrator:
+:Cleaning Staff:
+:Customer:
+
+' Role hierarchy - defining inheritance between roles
+:Manager: --|> :Cleaning Manager:
+:Manager: --|> :Office Staff:
+:Cleaning Manager: --|> :Staff:
+:Office Staff: --|> :Staff:
+:Administrator: --|> :Staff:
+:Cleaning Staff: --|> :Staff:
+
+' Main system package containing core functionalities
+package "Cleaning Microsystem" {
+  ' Authentication functionality
+  usecase "Sign In"
+  :Staff: --> "Sign In"
+  
+  ' User settings and profile management
+  package "Settings" {
+    usecase "Edit Personal Information"
+    usecase "Edit Contact Information"
+    usecase "Edit Emergency Contact"
+    usecase "Edit Security Settings"
+    usecase "Edit Appearance"
+
+    ' All staff members can edit their personal settings
+    :Staff: --> "Edit Personal Information"
+    :Staff: --> "Edit Contact Information"
+    :Staff: --> "Edit Emergency Contact"
+    :Staff: --> "Edit Security Settings"
+    :Staff: --> "Edit Appearance"
+  }
+  
+  ' Stock management functionalities
+  package "Stock Management" {
+    usecase "Add Stock"
+    usecase "Edit Stock"
+    usecase "Archive Stock"
+    usecase "View Stock Quantity Changes"
+    
+    ' Only Cleaning Managers have access to stock management
+    :Cleaning Manager: --> "Add Stock"
+    :Cleaning Manager: --> "Edit Stock"
+    :Cleaning Manager: --> "Archive Stock"
+    :Cleaning Manager: --> "View Stock Quantity Changes"
+  }
+  
+  ' Order management functionalities
+  package "Order Management" {
+    usecase "Request Stock"
+    usecase "Approve Stock Request"
+    usecase "Receive Delivery"
+    
+    ' Cleaning Managers can request stock and receive deliveries
+    :Cleaning Manager: --> "Request Stock"
+    :Cleaning Manager: --> "Receive Delivery"
+    ' Office Staff approves stock requests
+    :Office Staff: --> "Approve Stock Request"
+  }
+  
+  ' Administrative functionalities for staff management
+  package "Administration" {
+    usecase "Add Staff"
+    usecase "Edit Staff"
+    usecase "Archive Staff"
+    usecase "Change Staff Settings"
+    usecase "Change Staff Password"
+    usecase "View Sign in Attempts"
+    
+    ' Only Administrators can manage staff records and settings
+    :Administrator: --> "Add Staff"
+    :Administrator: --> "Edit Staff"
+    :Administrator: --> "Archive Staff"
+    :Administrator: --> "Change Staff Settings"
+    :Administrator: --> "Change Staff Password"
+    :Administrator: --> "View Sign in Attempts"
+  }
+  
+  ' Cleaning job management
+  package "Cleaning" {
+    usecase "Book Cleaning Job"
+    usecase "Delete Cleaning Job"
+    usecase "Edit Cleaning Job"
+    usecase "View Cleaning Job"
+    
+    ' Cleaning Staff can only view jobs, but Office Staff can manage them
+    :Cleaning Staff: --> "View Cleaning Job"
+    :Office Staff: --> "Book Cleaning Job"
+    :Office Staff: --> "Delete Cleaning Job"
+    :Office Staff: --> "Edit Cleaning Job"
+    :Office Staff: --> "View Cleaning Job"
+  }
+}
+
+' Customer interactions with office staff, separated for clarity
+package "Customer Interactions" {
+    usecase "Contact Office Staff"
+    usecase "Contact via Phone"
+    usecase "Contact via Email"
+    
+    ' Customers contact office staff through phone or email
+    :Customer: --> "Contact Office Staff"
+    ' Office Staff handle customer interactions
+    "Contact Office Staff" --> :Office Staff:
+    ' Contact methods extend from general contact use case
+    "Contact via Phone" ..|> "Contact Office Staff" : "<<extends>>"
+    "Contact via Email" ..|> "Contact Office Staff" : "<<extends>>"
+}
+
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+interface IEmergencyContactSettings {
+    +  <<event>> EmergencyContactForenameChanged : EventHandler? 
+    +  <<event>> EmergencyContactSurnameChanged : EventHandler? 
+    +  <<event>> EmergencyContactPhoneNumberChanged : EventHandler? 
+    + EmergencyContactForename : string <<get>> <<set>>
+    + EmergencyContactSurname : string <<get>> <<set>>
+    + EmergencyContactPhoneNumber : string <<get>> <<set>>
+    + SetPhoneNumberBorderError(isError:bool) : void
+    + PhoneNumberErrorText : string <<set>>
+}
+ISaveCancelView <|-- IEmergencyContactSettings
+@enduml

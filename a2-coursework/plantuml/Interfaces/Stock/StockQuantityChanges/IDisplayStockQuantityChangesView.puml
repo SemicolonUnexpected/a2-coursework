@@ -1,0 +1,19 @@
+@startuml
+interface IDisplayStockQuantityChangesView {
+    +  <<event>> View : EventHandler? 
+    +  <<event>> ShowArchivedChanged : EventHandler? 
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + SearchText : string <<get>> <<set>>
+    + DataGridText : string <<set>>
+    + ShowArchivedItems : bool <<get>>
+    + DisableAll() : void
+    + EnableAll() : void
+}
+class "IDisplayView`1"<T> {
+}
+"IDisplayView`1" "<DisplayStockQuantityChangeModel>" <|-- IDisplayStockQuantityChangesView
+IView <|-- IDisplayStockQuantityChangesView
+IDisplayStockQuantityChangesView --> "SelectedItem" DisplayStockQuantityChangeModel
+@enduml

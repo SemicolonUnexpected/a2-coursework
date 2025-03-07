@@ -1,0 +1,9 @@
+@startuml
+abstract class "ParentEditPresenter`2"<TView,TModel> {
+    + <<override>> CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "EditPresenter`2"<T1,T2> {
+}
+"EditPresenter`2" "<TView,TModel>" <|-- "ParentEditPresenter`2"
+@enduml

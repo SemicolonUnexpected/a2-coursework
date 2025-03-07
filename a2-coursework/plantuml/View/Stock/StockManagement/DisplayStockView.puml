@@ -1,0 +1,30 @@
+@startuml
+class DisplayStockView <<partial>> {
+    +  <<event>> Add : EventHandler? 
+    +  <<event>> Edit : EventHandler? 
+    +  <<event>> ArchiveToggled : EventHandler? 
+    +  <<event>> ShowArchivedChanged : EventHandler? 
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + DisplayStockView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + SearchText : string <<get>> <<set>>
+    + ShowArchivedItems : bool <<get>>
+    + DataGridText : string <<get>> <<set>>
+    + SelectedItemArchived : bool <<get>> <<set>>
+    + DisplayItems(items:BindingList<DisplayStockModel>) : void
+    + DisableAll() : void
+    + EnableAll() : void
+    + CleanUp() : void
+}
+class "IDisplayView`1"<T> {
+}
+Form <|-- DisplayStockView
+IDisplayStockView <|-- DisplayStockView
+IThemeable <|-- DisplayStockView
+"IDisplayView`1" "<DisplayStockModel>" <|-- DisplayStockView
+DisplayStockView --> "SelectedItem" DisplayStockModel
+@enduml

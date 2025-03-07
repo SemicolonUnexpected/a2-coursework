@@ -1,0 +1,13 @@
+@startuml
+interface IManageStaffEmergencyContactDetailsView {
+    +  <<event>> EmergencyContactForenameChanged : EventHandler? 
+    +  <<event>> EmergencyContactSurnameChanged : EventHandler? 
+    +  <<event>> EmergencyContactPhoneNumberChanged : EventHandler? 
+    + EmergencyContactForename : string <<get>> <<set>>
+    + EmergencyContactSurname : string <<get>> <<set>>
+    + EmergencyContactPhoneNumber : string <<get>> <<set>>
+    + EmergencyContactPhoneNumberError : string <<get>> <<set>>
+    + SetEmergencyContactPhoneNumberBorderError(isError:bool) : void
+}
+IChildView <|-- IManageStaffEmergencyContactDetailsView
+@enduml

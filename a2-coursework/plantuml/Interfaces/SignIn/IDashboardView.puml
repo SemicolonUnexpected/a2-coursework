@@ -1,0 +1,9 @@
+@startuml
+interface IDashboardView {
+    +  <<event>> ChangePasswordClicked : EventHandler? 
+    + Welcome : string <<get>> <<set>>
+    + ShowChangePassword : bool <<get>> <<set>>
+}
+IChildView <|-- IDashboardView
+IDashboardView --> "LastPasswordChange" DateTime
+@enduml

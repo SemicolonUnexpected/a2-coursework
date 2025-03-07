@@ -1,0 +1,20 @@
+@startuml
+class ManageCleaningJobDetailsView <<partial>> {
+    +  <<event>> AddressChanged : EventHandler? 
+    +  <<event>> ExtraInformationChanged : EventHandler? 
+    + ManageCleaningJobDetailsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + ExtraInformation : string <<get>> <<set>>
+    + Address : string <<get>> <<set>>
+    + ReadOnly : bool <<get>> <<set>>
+    + SetExtraInformationCharacterCount(number:int) : void
+    + SetAddressCharacterCount(number:int) : void
+    + SetAddressBorderError(isError:bool) : void
+    + CleanUp() : void
+}
+Form <|-- ManageCleaningJobDetailsView
+IManageCleaningJobOptionDetails <|-- ManageCleaningJobDetailsView
+IThemeable <|-- ManageCleaningJobDetailsView
+@enduml

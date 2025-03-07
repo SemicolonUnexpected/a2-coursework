@@ -1,0 +1,18 @@
+@startuml
+class ManageStaffPersonalDetailsPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + ManageStaffPersonalDetailsPresenter(view:IManageStaffPersonalInformationView)
+    + Forename : string <<get>> <<set>>
+    + ForenameValid : bool <<get>>
+    + Surname : string <<get>> <<set>>
+    + SurnameValid : bool <<get>>
+    + DateOfBirthValid : bool <<get>>
+    + CanExit() : bool
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageStaffPersonalInformationView>" <|-- ManageStaffPersonalDetailsPresenter
+IChildPresenter <|-- ManageStaffPersonalDetailsPresenter
+INotifyingChildPresenter <|-- ManageStaffPersonalDetailsPresenter
+ManageStaffPersonalDetailsPresenter --> "DateOfBirth" DateTime
+@enduml

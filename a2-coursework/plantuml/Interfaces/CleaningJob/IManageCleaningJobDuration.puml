@@ -1,0 +1,17 @@
+@startuml
+interface IManageCleaningJobDuration {
+    +  <<event>> DateChanged : EventHandler? 
+    +  <<event>> StartTimeChanged : EventHandler? 
+    +  <<event>> EndTimeChanged : EventHandler? 
+    + StartTimeValid : bool <<get>>
+    + EndTimeValid : bool <<get>>
+    + DateValid : bool <<get>>
+    + ReadOnly : bool <<get>> <<set>>
+    + DateError : string <<get>> <<set>>
+    + TimeError : string <<get>> <<set>>
+}
+IChildView <|-- IManageCleaningJobDuration
+IManageCleaningJobDuration --> "StartTime" TimeOnly
+IManageCleaningJobDuration --> "EndTime" TimeOnly
+IManageCleaningJobDuration --> "Date" DateTime
+@enduml

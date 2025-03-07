@@ -1,0 +1,17 @@
+@startuml
+interface IManageStockDetailsView {
+    +  <<event>> DescriptionChanged : EventHandler? 
+    +  <<event>> NameChanged : EventHandler? 
+    +  <<event>> SkuChanged : EventHandler? 
+    +  <<event>> ArchivedChanged : EventHandler? 
+    + StockName : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + Sku : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + SetCharacterCount(number:int) : void
+    + NameSkuError : string <<set>>
+    + SetNameBorderError(isError:bool) : void
+    + SetSKUBorderError(isError:bool) : void
+}
+IChildView <|-- IManageStockDetailsView
+@enduml

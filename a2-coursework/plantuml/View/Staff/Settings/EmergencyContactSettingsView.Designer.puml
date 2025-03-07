@@ -1,0 +1,4 @@
+@startuml
+class EmergencyContactSettingsView <<partial>> {
+}
+@enduml

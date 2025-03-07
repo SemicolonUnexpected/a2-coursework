@@ -1,0 +1,4 @@
+@startuml
+class EditCustomerView <<partial>> {
+}
+@enduml

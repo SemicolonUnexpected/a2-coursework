@@ -1,0 +1,8 @@
+@startuml
+class CustomControlHelpers <<static>> {
+    + {static} GetRoundedRectGraphicPath(rectangle:RectangleF, cornerRadius:float) : GraphicsPath
+    + {static} GetRoundedRectGraphicPath(rectangle:RectangleF, cornerRadii:CornerRadiiF) : GraphicsPath
+    + {static} ExecuteRecursive(a:Action<Control>, control:Control?) : void
+    + {static} GetParentForm(control:Control?) : Form?
+}
+@enduml

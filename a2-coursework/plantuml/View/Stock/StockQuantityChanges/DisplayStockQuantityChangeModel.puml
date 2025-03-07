@@ -1,0 +1,15 @@
+@startuml
+class DisplayStockQuantityChangeModel {
+    + Username : string <<get>> <<set>>
+    + StaffName : string <<get>> <<set>>
+    + Quantity : int <<get>> <<set>>
+    + ReasonForQuantityChange : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + StockName : string <<get>> <<set>>
+    + StockSKU : string <<get>> <<set>>
+    + DisplayStockQuantityChangeModel(stockQuantityChange:StockQuantityChange)
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler? 
+}
+INotifyPropertyChanged <|-- DisplayStockQuantityChangeModel
+DisplayStockQuantityChangeModel --> "Date" DateTime
+@enduml

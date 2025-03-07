@@ -1,0 +1,13 @@
+@startuml
+class DisplayStaffModel {
+    + Id : int <<get>> <<set>>
+    + Username : string <<get>> <<set>>
+    + Names : string <<get>> <<set>>
+    + PhoneNumber : string <<get>> <<set>>
+    + Email : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + DisplayStaffModel(staff:StaffModel)
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler? 
+}
+INotifyPropertyChanged <|-- DisplayStaffModel
+@enduml

@@ -1,0 +1,4 @@
+@startuml
+class PreviousNextDoneBar <<partial>> {
+}
+@enduml

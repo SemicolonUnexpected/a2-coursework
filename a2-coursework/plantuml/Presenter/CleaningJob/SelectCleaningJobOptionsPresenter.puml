@@ -1,0 +1,13 @@
+@startuml
+class SelectCleaningJobOptionsPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + SelectCleaningJobOptionsPresenter(view:ISelectCleaningJobOptionsView, getCleaningJobOptions:Task<List<CleaningJobOptionModel>>)
+}
+class "DisplayPresenter`3"<T1,T2,T3> {
+}
+class "List`1"<T> {
+}
+"DisplayPresenter`3" "<ISelectCleaningJobOptionsView,CleaningJobOptionModel,DisplayCleaningJobOptionModel>" <|-- SelectCleaningJobOptionsPresenter
+INotifyingChildPresenter <|-- SelectCleaningJobOptionsPresenter
+SelectCleaningJobOptionsPresenter --> "SelectedCleaningJobOptions<CleaningJobOptionModel>" "List`1"
+@enduml

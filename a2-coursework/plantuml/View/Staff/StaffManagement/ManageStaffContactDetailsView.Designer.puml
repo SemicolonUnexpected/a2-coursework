@@ -1,0 +1,4 @@
+@startuml
+class ManageStaffContactDetailsView <<partial>> {
+}
+@enduml

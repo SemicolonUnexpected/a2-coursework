@@ -1,0 +1,21 @@
+@startuml
+class ManageCleaningJobOptionView <<partial>> {
+    +  <<event>> NameChanged : EventHandler? 
+    +  <<event>> DescriptionChanged : EventHandler? 
+    +  <<event>> UnitCostChanged : EventHandler? 
+    + ManageCleaningJobOptionView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + Name : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + UnitCost : decimal <<get>> <<set>>
+    + NameError : string <<get>> <<set>>
+    + SetNameBorderError(isError:bool) : void
+    + SetCharacterCount(number:int) : void
+    + CleanUp() : void
+}
+Form <|-- ManageCleaningJobOptionView
+IManageCleaningJobOptionView <|-- ManageCleaningJobOptionView
+IThemeable <|-- ManageCleaningJobOptionView
+@enduml

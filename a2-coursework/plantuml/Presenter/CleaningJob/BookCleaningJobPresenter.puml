@@ -1,0 +1,16 @@
+@startuml
+class BookCleaningJobPresenter {
+    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
+    + BookCleaningJobPresenter(view:IBookCleaningJobView)
+    + OnDateChanged(sender:object?, e:EventArgs) : void
+    + OnAdd(sender:object?, e:EventArgs) : void
+    + OnEdit(sender:object?, e:EventArgs) : void
+    + OnView(sender:object?, e:EventArgs) : void
+    + OnDelete(sender:object?, e:EventArgs) : void
+    + <<async>> LoadData() : void
+}
+class "DisplayPresenter`3"<T1,T2,T3> {
+}
+"DisplayPresenter`3" "<IBookCleaningJobView,CleaningJobModel,DisplayCleaningJobModel>" <|-- BookCleaningJobPresenter
+INavigatingPresenter <|-- BookCleaningJobPresenter
+@enduml

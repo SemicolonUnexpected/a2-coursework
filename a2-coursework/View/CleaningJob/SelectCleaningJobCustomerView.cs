@@ -97,11 +97,24 @@ public partial class SelectCleaningJobCustomerView : Form, IDisplayView<DisplayC
         set => topBar.SearchText = value;
     }
 
-    public DisplayCustomerModel SelectedItem => ((BindingList<DisplayCustomerModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+    public DisplayCustomerModel? SelectedItem {
+        get {
+            try {
+                return ((BindingList<DisplayCustomerModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+            }
+            catch (ArgumentOutOfRangeException) {
+                return null;
+            }
+        }
+    }
 
-    public void SetSelectedItemId(int id) {
+    public void SetSelectedItemId(int? id) {
+        dataGridView.ClearSelection();
+
+        if (id is null) return;
+
         foreach (DataGridViewRow row in dataGridView.Rows) {
-            DisplayCleaningJobOptionModel model = (DisplayCleaningJobOptionModel)row.DataBoundItem;
+            DisplayCustomerModel model = (DisplayCustomerModel)row.DataBoundItem;
 
             if (model.Id == id) {
                 row.Selected = true;

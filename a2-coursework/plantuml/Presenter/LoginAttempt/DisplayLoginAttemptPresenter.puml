@@ -1,0 +1,13 @@
+@startuml
+class DisplayLoginAttemptPresenter {
+    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
+    + DisplayLoginAttemptPresenter(view:IDisplayLoginAttemptView)
+    + <<async>> LoadData() : void
+    + <<override>> CleanUp() : void
+}
+class "DisplayPresenter`3"<T1,T2,T3> {
+}
+"DisplayPresenter`3" "<IDisplayLoginAttemptView,LoginAttemptModel,DisplayLoginAttemptModel>" <|-- DisplayLoginAttemptPresenter
+IChildPresenter <|-- DisplayLoginAttemptPresenter
+INavigatingPresenter <|-- DisplayLoginAttemptPresenter
+@enduml

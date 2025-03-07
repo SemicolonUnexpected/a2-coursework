@@ -1,0 +1,20 @@
+@startuml
+interface ISecuritySettingsView {
+    +  <<event>> NewPasswordChanged : EventHandler? 
+    + Username : string <<set>>
+    + PrivilegeLevel : string <<set>>
+    + CurrentPassword : string <<get>>
+    + NewPassword : string <<get>>
+    + ConfirmPassword : string <<get>>
+    + SetCurrentPasswordBorderError(isError:bool) : void
+    + SetNewPasswordBorderError(isError:bool) : void
+    + SetConfirmPasswordBorderError(isError:bool) : void
+    + EightLong : bool <<get>> <<set>>
+    + Number : bool <<get>> <<set>>
+    + SpecialCharacter : bool <<get>> <<set>>
+    + UppercaseLowercase : bool <<get>> <<set>>
+    + PasswordError : string <<set>>
+    + Reset() : void
+}
+ISaveCancelView <|-- ISecuritySettingsView
+@enduml

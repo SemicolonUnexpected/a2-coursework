@@ -1,0 +1,16 @@
+@startuml
+class ManageStockQuantityPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + ManageStockQuantityPresenter(view:IManageStockQuantityView)
+    + Quantity : int <<get>> <<set>>
+    + ReasonForQuantityChange : string <<get>> <<set>>
+    + ReasonForQuantityChangeReadOnly : bool <<get>> <<set>>
+    + ResetBulkEdit() : void
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageStockQuantityView>" <|-- ManageStockQuantityPresenter
+INotifyingChildPresenter <|-- ManageStockQuantityPresenter
+@enduml

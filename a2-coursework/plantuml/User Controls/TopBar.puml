@@ -1,0 +1,9 @@
+@startuml
+class TopBar <<partial>> {
+    +  <<event>> SignOut : EventHandler? 
+    + TopBar()
+    + Theme() : void
+    + UsernameText : string <<get>> <<set>>
+}
+UserControl <|-- TopBar
+@enduml

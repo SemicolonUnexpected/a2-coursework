@@ -1,0 +1,13 @@
+@startuml
+class SplashView <<partial>> {
+    + SplashView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + Progress : double <<get>> <<set>>
+    + CleanUp() : void
+}
+Form <|-- SplashView
+ISplashView <|-- SplashView
+IThemeable <|-- SplashView
+@enduml

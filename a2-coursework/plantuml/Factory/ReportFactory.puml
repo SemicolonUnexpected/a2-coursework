@@ -1,0 +1,5 @@
+@startuml
+class ReportFactory <<static>> {
+    + {static} CreateReport(reportName:string, getPdf:Task<byte[]>) : (ReportView view, ReportPresenter presenter)
+}
+@enduml

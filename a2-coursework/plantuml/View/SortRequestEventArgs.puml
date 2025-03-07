@@ -1,0 +1,8 @@
+@startuml
+class SortRequestEventArgs {
+    + ColumnName : string <<get>> <<init>>
+    + SortAscending : bool <<get>> <<init>>
+    + SortRequestEventArgs(columnName:string, sortAscending:bool)
+}
+EventArgs <|-- SortRequestEventArgs
+@enduml

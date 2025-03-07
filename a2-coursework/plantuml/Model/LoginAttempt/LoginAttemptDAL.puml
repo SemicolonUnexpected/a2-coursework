@@ -1,0 +1,6 @@
+@startuml
+class LoginAttemptDAL <<static>> {
+    + {static} <<async>> LogLoginAttempt(username:string, attemptTime:DateTime, success:bool) : Task<bool>
+    + {static} <<async>> GetLoginAttempts() : Task<List<LoginAttemptModel>>
+}
+@enduml

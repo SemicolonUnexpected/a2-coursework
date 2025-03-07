@@ -1,0 +1,6 @@
+@startuml
+class ControlHelpers <<static>> {
+    + {static} ExecuteRecursive(control:Control, a:Action<Control>) : void
+    + {static} SetFontName(control:Control, fontName:string) : void
+}
+@enduml

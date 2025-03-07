@@ -1,0 +1,10 @@
+@startuml
+class CleaningJobOptionDAL <<static>> {
+    + {static} <<async>> GetCleaningJobOptions() : Task<List<CleaningJobOptionModel>>
+    + {static} <<async>> GetNonArchivedCleaningJobOptions() : Task<List<CleaningJobOptionModel>>
+    + {static} <<async>> GetJobOptionByName(name:string) : Task<CleaningJobOptionModel?>
+    + {static} <<async>> CreateJobOption(jobOption:CleaningJobOptionModel) : Task<bool>
+    + {static} <<async>> UpdateJobOptionArchived(id:int, archived:bool) : Task<bool>
+    + {static} <<async>> UpdateJobOptionDetails(id:int, name:string, description:string, unitCost:decimal) : Task<bool>
+}
+@enduml

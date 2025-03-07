@@ -181,6 +181,7 @@
             // 
             // topBar
             // 
+            topBar.Anchor = AnchorStyles.Top;
             topBar.BackColor = Color.FromArgb(9, 9, 10);
             topBar.Location = new Point(12, 46);
             topBar.Name = "topBar";
@@ -191,7 +192,7 @@
             // 
             // lblInfo
             // 
-            lblInfo.Anchor = AnchorStyles.None;
+            lblInfo.Anchor = AnchorStyles.Top;
             lblInfo.Font = new Font("Bahnschrift", 12F);
             lblInfo.ForeColor = Color.FromArgb(168, 171, 174);
             lblInfo.Location = new Point(14, 9);

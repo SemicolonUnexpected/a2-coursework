@@ -1,0 +1,32 @@
+@startuml
+class DisplayCustomerView <<partial>> {
+    +  <<event>> Add : EventHandler? 
+    +  <<event>> Edit : EventHandler? 
+    +  <<event>> ArchiveToggled : EventHandler? 
+    +  <<event>> ShowArchivedChanged : EventHandler? 
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + DisplayCustomerView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + SearchText : string <<get>> <<set>>
+    + ShowArchivedItems : bool <<get>>
+    + DataGridText : string <<get>> <<set>>
+    + SelectedItemArchived : bool <<get>> <<set>>
+    + DisplayItems(items:BindingList<DisplayCustomerModel>) : void
+    + DisableAll() : void
+    + EnableAll() : void
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+    + CleanUp() : void
+}
+class "IDisplayView`1"<T> {
+}
+Form <|-- DisplayCustomerView
+"IDisplayView`1" "<DisplayCustomerModel>" <|-- DisplayCustomerView
+IChildView <|-- DisplayCustomerView
+IThemeable <|-- DisplayCustomerView
+IDisplayCustomerView <|-- DisplayCustomerView
+DisplayCustomerView --> "SelectedItem" DisplayCustomerModel
+@enduml

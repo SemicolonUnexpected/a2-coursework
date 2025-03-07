@@ -1,0 +1,26 @@
+@startuml
+class CustomTextBox <<partial>> {
+    + BorderThickness : float <<get>> <<set>>
+    + PlaceholderText : string <<get>> <<set>>
+    + <<new>> Text : string <<get>> <<set>>
+    + UsePasswordChar : bool <<get>> <<set>>
+    + <<new>> Focused : bool <<get>>
+    + MaxLength : int <<get>> <<set>>
+    + MultiLine : bool <<get>> <<set>>
+    + ToolTipText : string <<get>> <<set>>
+    + ToolTipsActive : bool <<get>> <<set>>
+    + ReadOnly : bool <<get>> <<set>>
+    + AllowPaste : bool <<get>> <<set>>
+    + InnerTextboxHeight : int <<get>>
+    + <<new>>  <<event>> MouseHover : EventHandler? 
+}
+CustomTextBox --> "CornerRadii" CornerRadiiF
+CustomTextBox --> "BackColor" Color
+CustomTextBox --> "ForeColor" Color
+CustomTextBox --> "BorderColor" Color
+CustomTextBox --> "Font" Font
+CustomTextBox --> "TextBoxInset" Padding
+CustomTextBox --> "HoverColor" Color
+CustomTextBox --> "PlaceholderTextColor" Color
+CustomTextBox --> "TextAlign" HorizontalAlignment
+@enduml

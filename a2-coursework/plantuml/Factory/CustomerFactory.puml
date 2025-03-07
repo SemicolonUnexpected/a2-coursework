@@ -1,0 +1,9 @@
+@startuml
+class CustomerFactory <<static>> {
+    + {static} CreateDisplayCustomer() : (DisplayCustomerView view, DisplayCustomerPresenter presenter)
+    + {static} CreateAddCustomer() : (AddCustomerView view, AddCustomerPresenter presenter)
+    + {static} CreateEditCustomer(model:CustomerModel) : (EditCustomerView view, EditCustomerPresenter presenter)
+    + {static} CreateManageCustomerContactDetails(model:CustomerModel) : (ManageCustomerContactDetailsView view, ManageCustomerContactDetailsPresenter presenter)
+    + {static} CreateManageCustomerPersonalDetails(model:CustomerModel) : (ManageCustomerPersonalDetailsView view, ManageCustomerPersonalDetailsPresenter presenter)
+}
+@enduml

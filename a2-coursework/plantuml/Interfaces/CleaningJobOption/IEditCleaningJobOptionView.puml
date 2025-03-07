@@ -1,0 +1,7 @@
+@startuml
+interface IEditCleaningJobOptionView {
+    +  <<event>> Back : EventHandler? 
+}
+IChildView <|-- IEditCleaningJobOptionView
+IEditView <|-- IEditCleaningJobOptionView
+@enduml

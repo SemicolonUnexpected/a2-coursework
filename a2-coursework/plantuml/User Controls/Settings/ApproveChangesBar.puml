@@ -1,0 +1,12 @@
+@startuml
+class ApproveChangesBar <<partial>> {
+    + ApproveChangesBar()
+    + Theme() : void
+    +  <<event>> Cancel : EventHandler? 
+    +  <<event>> Save : EventHandler? 
+    + IsLoading : bool <<get>> <<set>>
+    + ToolTipsActive : bool <<get>> <<set>>
+}
+UserControl <|-- ApproveChangesBar
+ApproveChangesBar --> "Font" Font
+@enduml

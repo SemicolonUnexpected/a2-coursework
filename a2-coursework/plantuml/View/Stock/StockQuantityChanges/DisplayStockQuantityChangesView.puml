@@ -1,0 +1,25 @@
+@startuml
+class DisplayStockQuantityChangesView <<partial>> {
+    +  <<event>> View : EventHandler? 
+    +  <<event>> ShowArchivedChanged : EventHandler? 
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + DisplayStockQuantityChangesView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + SearchText : string <<get>> <<set>>
+    + ShowArchivedItems : bool <<get>>
+    + DataGridText : string <<get>> <<set>>
+    + DisableAll() : void
+    + EnableAll() : void
+    + CleanUp() : void
+    + DisplayItems(items:BindingList<DisplayStockQuantityChangeModel>) : void
+}
+Form <|-- DisplayStockQuantityChangesView
+IThemeable <|-- DisplayStockQuantityChangesView
+IDisplayStockQuantityChangesView <|-- DisplayStockQuantityChangesView
+IChildView <|-- DisplayStockQuantityChangesView
+DisplayStockQuantityChangesView --> "SelectedItem" DisplayStockQuantityChangeModel
+@enduml

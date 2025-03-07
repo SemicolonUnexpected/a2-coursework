@@ -1,0 +1,13 @@
+@startuml
+class SideMenu <<partial>> {
+    + SideMenu(items:string[][])
+    +  <<event>> PreviewSideMenuToggleChanged : EventHandler<ToggleEventArgs>? 
+    +  <<event>> SideMenuToggleChanged : EventHandler? 
+    +  <<event>> DropdownToggleChanged : EventHandler? 
+    +  <<event>> SideMenuButtonToggleUpdated : EventHandler<MenuToggleButton>? 
+    + SideMenu()
+    + Theme() : void
+    + GenerateMenu(items:string[][]) : void
+}
+UserControl <|-- SideMenu
+@enduml

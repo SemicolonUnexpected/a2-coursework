@@ -1,0 +1,13 @@
+@startuml
+interface IManageCleaningJobOptionDetails {
+    +  <<event>> AddressChanged : EventHandler? 
+    +  <<event>> ExtraInformationChanged : EventHandler? 
+    + ExtraInformation : string <<get>> <<set>>
+    + Address : string <<get>> <<set>>
+    + ReadOnly : bool <<get>> <<set>>
+    + SetExtraInformationCharacterCount(number:int) : void
+    + SetAddressCharacterCount(number:int) : void
+    + SetAddressBorderError(isError:bool) : void
+}
+IChildView <|-- IManageCleaningJobOptionDetails
+@enduml

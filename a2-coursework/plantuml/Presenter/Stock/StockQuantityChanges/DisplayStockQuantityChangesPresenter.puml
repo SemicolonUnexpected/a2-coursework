@@ -1,0 +1,13 @@
+@startuml
+class DisplayStockQuantityChangesPresenter {
+    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
+    + DisplayStockQuantityChangesPresenter(view:IDisplayStockQuantityChangesView)
+    + <<async>> LoadData() : void
+    + <<override>> CleanUp() : void
+}
+class "DisplayPresenter`3"<T1,T2,T3> {
+}
+"DisplayPresenter`3" "<IDisplayStockQuantityChangesView,StockQuantityChange,DisplayStockQuantityChangeModel>" <|-- DisplayStockQuantityChangesPresenter
+IChildPresenter <|-- DisplayStockQuantityChangesPresenter
+INavigatingPresenter <|-- DisplayStockQuantityChangesPresenter
+@enduml

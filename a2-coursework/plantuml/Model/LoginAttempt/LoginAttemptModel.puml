@@ -1,0 +1,7 @@
+@startuml
+class LoginAttemptModel {
+    + Username : string <<get>> <<init>>
+    + Successful : bool <<get>> <<init>>
+}
+LoginAttemptModel o-> "AttemptTime" DateTime
+@enduml

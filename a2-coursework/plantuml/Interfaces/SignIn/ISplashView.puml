@@ -1,0 +1,10 @@
+@startuml
+interface ISplashView {
+    +  <<event>> FormClosed : FormClosedEventHandler? 
+    + Progress : double <<get>> <<set>>
+    + Invoke(a:Action) : void
+    + Show() : void
+    + Close() : void
+}
+IView <|-- ISplashView
+@enduml

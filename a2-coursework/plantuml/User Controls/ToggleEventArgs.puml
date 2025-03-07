@@ -1,0 +1,6 @@
+@startuml
+class ToggleEventArgs {
+    + Handled : bool <<get>> <<set>> = false
+}
+EventArgs <|-- ToggleEventArgs
+@enduml

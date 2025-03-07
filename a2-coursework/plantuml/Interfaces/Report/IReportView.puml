@@ -1,0 +1,13 @@
+@startuml
+interface IReportView {
+    +  <<event>> Download : EventHandler? 
+    +  <<event>> Back : EventHandler? 
+    +  <<event>> Shown : EventHandler? 
+    + ReportName : string <<get>> <<set>>
+    + BackVisible : bool <<set>>
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+    + GetFileName(name:string) : bool
+    + Invoke(a:Action) : void
+}
+IChildView <|-- IReportView
+@enduml

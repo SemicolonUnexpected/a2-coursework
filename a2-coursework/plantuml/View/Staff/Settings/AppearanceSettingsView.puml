@@ -1,0 +1,23 @@
+@startuml
+class AppearanceSettingsView <<partial>> {
+    +  <<event>> DarkModeCheckedChanged : EventHandler? 
+    +  <<event>> ToolTipsCheckedChanged : EventHandler? 
+    +  <<event>> FontNameChanged : EventHandler? 
+    +  <<event>> Save : EventHandler? 
+    +  <<event>> Cancel : EventHandler? 
+    + AppearanceSettingsView()
+    + Theme() : void
+    + SetFont() : void
+    + SetToolTipVisibility() : void
+    + DarkModeChecked : bool <<get>> <<set>>
+    + ShowToolTipsChecked : bool <<get>> <<set>>
+    + FontName : string <<get>> <<set>>
+    + SaveCancelVisible : bool <<get>> <<set>>
+    + IsLoading : bool <<get>> <<set>>
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+    + CleanUp() : void
+}
+Form <|-- AppearanceSettingsView
+IAppearanceSettings <|-- AppearanceSettingsView
+IThemeable <|-- AppearanceSettingsView
+@enduml

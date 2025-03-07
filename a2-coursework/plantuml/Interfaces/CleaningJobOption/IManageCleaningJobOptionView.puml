@@ -1,0 +1,14 @@
+@startuml
+interface IManageCleaningJobOptionView {
+    +  <<event>> NameChanged : EventHandler? 
+    +  <<event>> DescriptionChanged : EventHandler? 
+    +  <<event>> UnitCostChanged : EventHandler? 
+    + Name : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + UnitCost : decimal <<get>> <<set>>
+    + SetCharacterCount(number:int) : void
+    + NameError : string <<get>> <<set>>
+    + SetNameBorderError(isError:bool) : void
+}
+IChildView <|-- IManageCleaningJobOptionView
+@enduml

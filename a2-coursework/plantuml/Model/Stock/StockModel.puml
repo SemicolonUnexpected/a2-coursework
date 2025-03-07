@@ -1,0 +1,12 @@
+@startuml
+class StockModel {
+    + Name : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + Id : int <<get>> <<set>>
+    + Quantity : int <<get>> <<set>>
+    + LowQuantity : int <<get>> <<set>>
+    + HighQuantity : int <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + Sku : string <<get>> <<set>>
+}
+@enduml

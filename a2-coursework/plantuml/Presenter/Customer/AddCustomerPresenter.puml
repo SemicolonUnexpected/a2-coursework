@@ -1,0 +1,12 @@
+@startuml
+class AddCustomerPresenter {
+    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
+    + AddCustomerPresenter(view:IAddCustomerView)
+    + <<override>> CleanUp() : void
+}
+class "AddPresenter`2"<T1,T2> {
+}
+"AddPresenter`2" "<IAddCustomerView,CustomerModel>" <|-- AddCustomerPresenter
+IChildPresenter <|-- AddCustomerPresenter
+INavigatingPresenter <|-- AddCustomerPresenter
+@enduml

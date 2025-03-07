@@ -1,0 +1,25 @@
+@startuml
+class EmergencyContactSettingsView <<partial>> {
+    +  <<event>> EmergencyContactForenameChanged : EventHandler? 
+    +  <<event>> EmergencyContactSurnameChanged : EventHandler? 
+    +  <<event>> EmergencyContactPhoneNumberChanged : EventHandler? 
+    +  <<event>> Save : EventHandler? 
+    +  <<event>> Cancel : EventHandler? 
+    + EmergencyContactSettingsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + EmergencyContactForename : string <<get>> <<set>>
+    + EmergencyContactSurname : string <<get>> <<set>>
+    + EmergencyContactPhoneNumber : string <<get>> <<set>>
+    + PhoneNumberErrorText : string <<get>> <<set>>
+    + SaveCancelVisible : bool <<get>> <<set>>
+    + IsLoading : bool <<get>> <<set>>
+    + SetPhoneNumberBorderError(isError:bool) : void
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+    + CleanUp() : void
+}
+Form <|-- EmergencyContactSettingsView
+IEmergencyContactSettings <|-- EmergencyContactSettingsView
+IThemeable <|-- EmergencyContactSettingsView
+@enduml

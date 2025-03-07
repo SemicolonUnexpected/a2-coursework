@@ -1,0 +1,6 @@
+@startuml
+interface IAddCleaningJobOptionView {
+    +  <<event>> Back : EventHandler? 
+}
+IAddView <|-- IAddCleaningJobOptionView
+@enduml

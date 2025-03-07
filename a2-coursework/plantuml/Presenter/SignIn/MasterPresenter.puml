@@ -1,0 +1,12 @@
+@startuml
+class MasterPresenter {
+    +  <<event>> FormClosed : EventHandler? 
+    + MasterPresenter(view:IMasterView, staff:StaffModel)
+    + GetView(menuItemName:string) : (IChildView view, IChildPresenter presenter)
+    + Show() : void
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IMasterView>" <|-- MasterPresenter
+@enduml

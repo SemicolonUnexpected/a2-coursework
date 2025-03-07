@@ -1,0 +1,16 @@
+@startuml
+class StaffDAL <<static>> {
+    + {static} <<async>> GetStaffCredentials(username:string) : Task<(byte[]? hash, byte[]? salt)>
+    + {static} <<async>> GetStaffByUsername(username:string) : Task<StaffModel?>
+    + {static} <<async>> UpdateStaffPersonalInformation(id:int, forename:string, surname:string, dateOfBirth:DateTime?) : Task<bool>
+    + {static} <<async>> UpdateStaffContactDetails(id:int, email:string, phoneNumber:string, address:string) : Task<bool>
+    + {static} <<async>> UpdateStaffEmergencyContactInformation(id:int, forename:string, surname:string, phoneNumber:string) : Task<bool>
+    + {static} <<async>> UpdateStaffAppearanceSettings(id:int, theme:Theme) : Task<bool>
+    + {static} <<async>> UpdatePassword(id:int, hashedPassword:string, salt:string) : Task<bool>
+    + {static} <<async>> GetStaff() : Task<List<StaffModel>>
+    + {static} <<async>> UpdateStaffArchived(id:int, archived:bool) : Task<bool>
+    + {static} <<async>> UpdateStaffCredentials(id:int, username:string, privilegeLevel:PrivilegeLevel) : Task<bool>
+    + {static} <<async>> CreateStaff(username:string, hashedPassword:string, salt:string, forename:string, surname:string, dateOfBirth:DateTime?, email:string, phoneNumber:string, address:string, emergencyContactForename:string, emergencyContactSurname:string, emergencyContactPhoneNumber:string, privilegeLevelId:int) : Task<bool>
+    + {static} <<async>> GetCleaningStaff() : Task<List<StaffModel>>
+}
+@enduml

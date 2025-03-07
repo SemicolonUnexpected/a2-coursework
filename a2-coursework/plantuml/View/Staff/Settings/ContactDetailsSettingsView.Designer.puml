@@ -1,0 +1,4 @@
+@startuml
+class ContactDetailsSettingsView <<partial>> {
+}
+@enduml

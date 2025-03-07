@@ -1,0 +1,12 @@
+@startuml
+class Paginator <<partial>> {
+    +  <<event>> PageChanged : EventHandler? 
+    + Paginator()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + NumberOfPages : int <<get>> <<set>>
+    + CurrentPageNumber : int <<get>> <<set>>
+    + ClearFocus() : void
+}
+UserControl <|-- Paginator
+@enduml

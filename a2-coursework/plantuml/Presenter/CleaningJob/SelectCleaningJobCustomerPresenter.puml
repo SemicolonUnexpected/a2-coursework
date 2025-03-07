@@ -1,0 +1,11 @@
+@startuml
+class SelectCleaningJobCustomerPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + SelectCleaningJobCustomerPresenter(view:ISelectCleaningJobCustomerView)
+    + SelectedId : int <<get>> <<set>>
+}
+class "DisplayPresenter`3"<T1,T2,T3> {
+}
+"DisplayPresenter`3" "<ISelectCleaningJobCustomerView,CustomerModel,DisplayCustomerModel>" <|-- SelectCleaningJobCustomerPresenter
+INotifyingChildPresenter <|-- SelectCleaningJobCustomerPresenter
+@enduml

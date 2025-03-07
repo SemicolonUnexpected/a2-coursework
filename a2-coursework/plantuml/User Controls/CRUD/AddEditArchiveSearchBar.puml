@@ -1,0 +1,24 @@
+@startuml
+class AddEditArchiveSearchBar <<partial>> {
+    +  <<event>> SearchTextChanged : EventHandler? 
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> Edit : EventHandler? 
+    +  <<event>> ArchiveToggled : EventHandler? 
+    +  <<event>> Add : EventHandler? 
+    +  <<event>> ShowArchivedToggled : EventHandler? 
+    + AddEditArchiveSearchBar()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SearchText : string <<get>> <<set>>
+    + AddEnabled : bool <<get>> <<set>>
+    + EditEnabled : bool <<get>> <<set>>
+    + ArchiveEnabled : bool <<get>> <<set>>
+    + ShowArchivedEnabled : bool <<get>> <<set>>
+    + SearchEnabled : bool <<get>> <<set>>
+    + Restore : bool <<get>> <<set>>
+    + ShowArchived : bool <<get>> <<set>>
+    + SetFont() : void
+}
+UserControl <|-- AddEditArchiveSearchBar
+IThemeable <|-- AddEditArchiveSearchBar
+@enduml

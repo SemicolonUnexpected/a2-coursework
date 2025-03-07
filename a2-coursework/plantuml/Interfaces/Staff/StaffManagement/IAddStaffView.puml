@@ -1,0 +1,6 @@
+@startuml
+interface IAddStaffView {
+    +  <<event>> Back : EventHandler? 
+}
+IAddView <|-- IAddStaffView
+@enduml

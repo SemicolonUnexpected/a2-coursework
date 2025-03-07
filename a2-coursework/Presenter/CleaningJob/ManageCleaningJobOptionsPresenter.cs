@@ -32,8 +32,8 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
         if (_view.SelectedItem is null) return;
 
         CleaningJobOptionModel model = _modelDisplayMap[_view.SelectedItem!];
-        model.Quantity = _view.Quantity;
-        _view.Subtotal = model.Quantity * model.CostAtTime;
+        _newQuantities[model.Id] = _view.Quantity;
+        _view.Subtotal = _newQuantities[model.Id] * model.CostAtTime;
         _view.Total = CalculateTotal();
     }
 
@@ -41,23 +41,28 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
         decimal sum = 0;
 
         foreach (var model in _models) {
-            sum += model.Quantity * model.UnitCost;
+            sum += _newQuantities[model.Id] * model.UnitCost;
         }
 
         return sum;
     }
 
     public List<CleaningJobOptionModel> Models {
-        set => LoadData(value);
-        get => _models;
+        set {
+            _newQuantities = value.ToDictionary(x => x.Id, x => x.Quantity);
+            LoadData(value);
+        }
     }
+
+    private Dictionary<int, int> _newQuantities = [];
+    public Dictionary<int, int> NewQuantities => _newQuantities;
 
     private void LoadDetails(CleaningJobOptionModel model) {
         _view.Editable = true;
         _view.CleaningOptionName = model.Name;
         _view.CleaningOptionDescription = model.Description;
-        _view.Quantity = model.Quantity;
-        _view.Subtotal = model.Quantity * model.CostAtTime;
+        _view.Quantity = _newQuantities[model.Id];
+        _view.Subtotal = _newQuantities[model.Id] * model.CostAtTime;
         _view.Total = CalculateTotal();
     }
 

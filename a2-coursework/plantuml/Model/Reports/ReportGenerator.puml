@@ -1,0 +1,6 @@
+@startuml
+class ReportGenerator <<static>> {
+    + {static} GetBaseReport(reportName:string, content:Action<PageDescriptor>) : Document
+    + {static} ConvertImage(bitmap:Bitmap) : byte[]
+}
+@enduml

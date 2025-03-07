@@ -1,0 +1,7 @@
+@startuml
+class CustomMonthCalendar <<partial>> {
+    +  <<event>> DateChanged : EventHandler? 
+    + CustomMonthCalendar()
+}
+UserControl <|-- CustomMonthCalendar
+@enduml

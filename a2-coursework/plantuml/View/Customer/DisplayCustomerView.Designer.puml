@@ -1,0 +1,4 @@
+@startuml
+class DisplayCustomerView <<partial>> {
+}
+@enduml

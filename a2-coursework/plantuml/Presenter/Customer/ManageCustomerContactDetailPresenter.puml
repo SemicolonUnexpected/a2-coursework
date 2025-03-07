@@ -1,0 +1,17 @@
+@startuml
+class ManageCustomerContactDetailsPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    + ManageCustomerContactDetailsPresenter(view:IManageCustomerContactDetailsView)
+    + Email : string <<get>> <<set>>
+    + EmailValid : bool <<get>>
+    + PhoneNumber : string <<get>> <<set>>
+    + PhoneNumberValid : bool <<get>>
+    + Address : string <<get>> <<set>>
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageCustomerContactDetailsView>" <|-- ManageCustomerContactDetailsPresenter
+INotifyingChildPresenter <|-- ManageCustomerContactDetailsPresenter
+@enduml

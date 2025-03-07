@@ -1,0 +1,16 @@
+@startuml
+class ManageJobCleaningOptionPresenter {
+    +  <<event>> DetailsChanged : EventHandler? 
+    +  <<event>> ValidateNameRequest : EventHandler<ValidationRequestEventArgs<string>>? 
+    + ManageJobCleaningOptionPresenter(view:IManageCleaningJobOptionView)
+    + Name : string <<get>> <<set>>
+    + NameValid : bool <<get>>
+    + Description : string <<get>> <<set>>
+    + UnitCost : decimal <<get>> <<set>>
+    + CanExit() : bool
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageCleaningJobOptionView>" <|-- ManageJobCleaningOptionPresenter
+INotifyingChildPresenter <|-- ManageJobCleaningOptionPresenter
+@enduml

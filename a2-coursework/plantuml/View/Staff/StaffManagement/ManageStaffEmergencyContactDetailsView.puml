@@ -1,0 +1,19 @@
+@startuml
+class ManageStaffEmergencyContactDetailsView <<partial>> {
+    +  <<event>> EmergencyContactForenameChanged : EventHandler? 
+    +  <<event>> EmergencyContactSurnameChanged : EventHandler? 
+    +  <<event>> EmergencyContactPhoneNumberChanged : EventHandler? 
+    + ManageStaffEmergencyContactDetailsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + EmergencyContactForename : string <<get>> <<set>>
+    + EmergencyContactSurname : string <<get>> <<set>>
+    + EmergencyContactPhoneNumber : string <<get>> <<set>>
+    + EmergencyContactPhoneNumberError : string <<get>> <<set>>
+    + SetEmergencyContactPhoneNumberBorderError(isError:bool) : void
+    + CleanUp() : void
+}
+Form <|-- ManageStaffEmergencyContactDetailsView
+IThemeable <|-- ManageStaffEmergencyContactDetailsView
+@enduml

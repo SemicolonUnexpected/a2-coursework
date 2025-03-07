@@ -1,0 +1,18 @@
+@startuml
+class ViewStockQuantityChangeView <<partial>> {
+    +  <<event>> Back : EventHandler? 
+    + ViewStockQuantityChangeView()
+    + Theme() : void
+    + SetFont() : void
+    + SetToolTipVisibility() : void
+    + Username : string <<set>>
+    + StockName : string <<set>>
+    + Quantity : int <<set>>
+    + ReasonForQuantityChange : string <<set>>
+    + CleanUp() : void
+}
+Form <|-- ViewStockQuantityChangeView
+IThemeable <|-- ViewStockQuantityChangeView
+IViewStockQuantityChangeView <|-- ViewStockQuantityChangeView
+ViewStockQuantityChangeView --> "DateOfChange" DateTime
+@enduml

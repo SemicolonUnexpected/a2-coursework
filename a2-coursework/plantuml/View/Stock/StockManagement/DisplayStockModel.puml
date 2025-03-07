@@ -1,0 +1,13 @@
+@startuml
+class DisplayStockModel {
+    + Id : int <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+    + Sku : string <<get>> <<set>>
+    + Quantity : int <<get>> <<set>>
+    + QuantityLevel : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + DisplayStockModel(stockItem:StockModel)
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler? 
+}
+INotifyPropertyChanged <|-- DisplayStockModel
+@enduml

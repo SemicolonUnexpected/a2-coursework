@@ -1,0 +1,12 @@
+@startuml
+class StockDAL <<static>> {
+    + {static} <<async>> GetStock() : Task<List<StockModel>>
+    + {static} <<async>> CreateStock(stock:StockModel, staffId:int, date:DateTime, reasonForQuantityChange:string) : Task<bool>
+    + {static} <<async>> UpdateQuantity(stockId:int, staffId:int, quantity:int, date:DateTime, reasonForQuantityChange:string) : Task<bool>
+    + {static} <<async>> UpdateArchived(id:int, archived:bool) : Task<bool>
+    + {static} <<async>> SkuExists(sku:string) : Task<bool>
+    + {static} <<async>> UpdateDetails(id:int, name:string, description:string, sku:string, archived:bool) : Task<bool>
+    + {static} <<async>> UpdateWarnings(id:int, highQuantity:int, lowQuantity:int) : Task<bool>
+    + {static} <<async>> GetStockQuantityChanges() : Task<List<StockQuantityChange>>
+}
+@enduml

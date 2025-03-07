@@ -1,0 +1,16 @@
+@startuml
+class ManageStockWarningView <<partial>> {
+    +  <<event>> LowQuantityChanged : EventHandler? 
+    +  <<event>> HighQuantityChanged : EventHandler? 
+    + ManageStockWarningView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + LowQuantity : int <<get>> <<set>>
+    + HighQuantity : int <<get>> <<set>>
+    + CleanUp() : void
+}
+Form <|-- ManageStockWarningView
+IManageStockWarningView <|-- ManageStockWarningView
+IThemeable <|-- ManageStockWarningView
+@enduml

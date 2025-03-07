@@ -1,0 +1,17 @@
+@startuml
+interface ISelectCleaningJobOptionsView {
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + DisableAll() : void
+    + EnableAll() : void
+    + DataGridText : string <<get>> <<set>>
+    + SetSelectedItemsById(models:IEnumerable<int>) : void
+}
+class "IDisplayView`1"<T> {
+}
+class "List`1"<T> {
+}
+"IDisplayView`1" "<DisplayCleaningJobOptionModel>" <|-- ISelectCleaningJobOptionsView
+ISelectCleaningJobOptionsView --> "SelectedItems<DisplayCleaningJobOptionModel>" "List`1"
+@enduml

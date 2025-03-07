@@ -1,0 +1,22 @@
+@startuml
+class ManageStaffContactDetailsView <<partial>> {
+    +  <<event>> EmailChanged : EventHandler? 
+    +  <<event>> PhoneNumberChanged : EventHandler? 
+    +  <<event>> AddressChanged : EventHandler? 
+    + ManageStaffContactDetailsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + Email : string <<get>> <<set>>
+    + PhoneNumber : string <<get>> <<set>>
+    + Address : string <<get>> <<set>>
+    + ContactError : string <<get>> <<set>>
+    + SetEmailBorderError(isError:bool) : void
+    + SetPhoneNumberBorderError(isError:bool) : void
+    + SetCharacterCount(number:int) : void
+    + CleanUp() : void
+}
+Form <|-- ManageStaffContactDetailsView
+IManageStaffContactDetailsView <|-- ManageStaffContactDetailsView
+IThemeable <|-- ManageStaffContactDetailsView
+@enduml

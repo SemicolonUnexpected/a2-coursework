@@ -1,0 +1,5 @@
+@startuml
+class StaffReportGenerator <<static>> {
+    + {static} <<async>> StaffSecurityReport() : Task<byte[]>
+}
+@enduml

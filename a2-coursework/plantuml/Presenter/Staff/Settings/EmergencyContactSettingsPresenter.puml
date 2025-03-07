@@ -1,0 +1,9 @@
+@startuml
+class EmergencyContactSettingsPresenter <<partial>> {
+    + EmergencyContactSettingsPresenter(view:IEmergencyContactSettings, staff:StaffModel)
+    + <<override>> CleanUp() : void
+}
+class "SettingsPresenter`1"<T> {
+}
+"SettingsPresenter`1" "<IEmergencyContactSettings>" <|-- EmergencyContactSettingsPresenter
+@enduml

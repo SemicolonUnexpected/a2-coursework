@@ -1,0 +1,4 @@
+@startuml
+class DisplayLoginAttemptView <<partial>> {
+}
+@enduml

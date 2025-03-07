@@ -1,0 +1,10 @@
+@startuml
+class CustomRadioButton <<partial>> {
+    + BorderThickness : float <<get>> <<set>>
+    + CheckRadius : float <<get>> <<set>>
+    + Checked : bool <<get>> <<set>>
+    +  <<event>> CheckChanged : EventHandler? 
+}
+Control <|-- CustomRadioButton
+CustomRadioButton --> "CheckColor" Color
+@enduml

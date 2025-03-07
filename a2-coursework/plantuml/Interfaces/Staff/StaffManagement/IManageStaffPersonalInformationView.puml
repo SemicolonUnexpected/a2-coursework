@@ -1,0 +1,16 @@
+@startuml
+interface IManageStaffPersonalInformationView {
+    +  <<event>> ForenameChanged : EventHandler? 
+    +  <<event>> SurnameChanged : EventHandler? 
+    +  <<event>> DateOfBirthChanged : EventHandler? 
+    + Forename : string <<get>> <<set>>
+    + Surname : string <<get>> <<set>>
+    + DateOfBirthValid : bool <<get>>
+    + NameError : string <<get>> <<set>>
+    + DateOfBirthError : string <<get>> <<set>>
+    + SetForenameBorderError(isError:bool) : void
+    + SetSurnameBorderError(isError:bool) : void
+}
+IChildView <|-- IManageStaffPersonalInformationView
+IManageStaffPersonalInformationView --> "DateOfBirth" DateTime
+@enduml

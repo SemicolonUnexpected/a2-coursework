@@ -1,0 +1,11 @@
+@startuml
+class ImprovedTextBox <<partial>> {
+    + AllowPaste : bool <<get>> <<set>> = true
+    + <<new>> PlaceholderText : string <<get>> <<set>>
+    + <<new>> Text : string <<get>> <<set>>
+    + UsePasswordChar : bool <<get>> <<set>>
+}
+TextBox <|-- ImprovedTextBox
+ImprovedTextBox --> "PlaceholderTextColor" Color
+ImprovedTextBox --> "ForeColor" Color
+@enduml

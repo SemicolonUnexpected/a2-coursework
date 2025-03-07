@@ -1,0 +1,13 @@
+@startuml
+class DisplayCleaningJobOptionModel {
+    + Id : int <<get>> <<set>>
+    + Name : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + UnitCost : decimal <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + CostAtTime : decimal <<get>> <<set>>
+    + DisplayCleaningJobOptionModel(model:CleaningJobOptionModel)
+    +  <<event>> PropertyChanged : PropertyChangedEventHandler? 
+}
+INotifyPropertyChanged <|-- DisplayCleaningJobOptionModel
+@enduml

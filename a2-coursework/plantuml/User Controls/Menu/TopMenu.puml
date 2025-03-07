@@ -1,0 +1,10 @@
+@startuml
+class TopMenu <<partial>> {
+    +  <<event>> SelectedIndexChanged : EventHandler? 
+    +  <<event>> PreviewSelectedIndexChanged : EventHandler<ToggleEventArgs>? 
+    + TopMenu()
+    + Theme() : void
+    + SelectedIndex : int <<get>> <<set>>
+}
+UserControl <|-- TopMenu
+@enduml

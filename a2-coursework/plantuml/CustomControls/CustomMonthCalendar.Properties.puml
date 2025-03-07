@@ -1,0 +1,13 @@
+@startuml
+class CustomMonthCalendar <<partial>> {
+}
+CustomMonthCalendar --> "Date" DateTime
+CustomMonthCalendar --> "DisplayedDate" DateTime
+CustomMonthCalendar --> "DisabledForeColor" Color
+CustomMonthCalendar --> "SelectedDateBackColor" Color
+CustomMonthCalendar --> "NextButton" CustomButton
+CustomMonthCalendar --> "PreviousButton" CustomButton
+CustomMonthCalendar --> "HoverColor" Color
+CustomMonthCalendar --> "ClickedColor" Color
+CustomMonthCalendar --> "DateCornerRadii" CornerRadiiF
+@enduml

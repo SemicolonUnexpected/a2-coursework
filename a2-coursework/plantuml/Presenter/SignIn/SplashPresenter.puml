@@ -1,0 +1,14 @@
+@startuml
+class SplashPresenter {
+    +  <<event>> FinishedLoading : EventHandler? 
+    +  <<event>> FormClosed : EventHandler? 
+    + SplashPresenter(view:ISplashView)
+    + <<async>> ShowLoading(duration:int) : Task
+    + Show() : void
+    + Close() : void
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<ISplashView>" <|-- SplashPresenter
+@enduml

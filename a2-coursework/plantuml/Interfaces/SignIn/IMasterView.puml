@@ -1,0 +1,17 @@
+@startuml
+interface IMasterView {
+    +  <<event>> PreviewToggleChanged : EventHandler<ToggleEventArgs>? 
+    +  <<event>> ToggleChanged : EventHandler<string>? 
+    +  <<event>> SignOut : EventHandler? 
+    +  <<event>> FormClosed : FormClosedEventHandler? 
+    +  <<event>> FormClosing : FormClosingEventHandler? 
+    + UsernameText : string <<set>>
+    + DisplayChildView(childForm:IChildView) : void
+    + GenerateMenu(menuItems:string[][]) : void
+    + SetSideMenuToggledIndex(i:int, j:int, toggled:bool) : void
+    + Show() : void
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+}
+IView <|-- IMasterView
+IMasterView --> "ChildView" IChildView
+@enduml

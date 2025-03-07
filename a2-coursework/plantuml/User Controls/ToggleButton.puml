@@ -1,0 +1,21 @@
+@startuml
+class ToggleButton <<partial>> {
+    +  <<event>> ToggleChanged : EventHandler? 
+    +  <<event>> PreviewToggleChanged : EventHandler<ToggleEventArgs>? 
+    + Toggled : bool <<get>> <<set>>
+    + <<new>>  <<event>> EnabledChanged : EventHandler? 
+    + <<new>> Enabled : bool <<get>> <<set>>
+    + <<new>> Text : string <<get>> <<set>>
+}
+enum ToggleButtonState {
+    Normal,
+    Hover,
+}
+CustomPanel <|-- ToggleButton
+ToggleButton --> "BackColor" Color
+ToggleButton --> "ForeColor" Color
+ToggleButton --> "HoverColor" Color
+ToggleButton --> "ToggledColor" Color
+ToggleButton --> "Padding" Padding
+ToggleButton +-- ToggleButtonState
+@enduml

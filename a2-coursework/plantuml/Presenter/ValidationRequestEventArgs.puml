@@ -1,0 +1,12 @@
+@startuml
+class "ValidationRequestEventArgs`1"<T> {
+    + Value : T <<get>> <<init>>
+    + Valid : bool? <<get>> = null
+    + ErrorMessage : string <<get>> = ""
+    + ValidationRequestEventArgs(value:T)
+    + SetValidation(valid:bool, errorMessage:string) : void
+    + SetValidation(validationTask:Task<bool>, errorMessage:string) : void
+}
+EventArgs <|-- "ValidationRequestEventArgs`1"
+"ValidationRequestEventArgs`1" --> "ValidationTask<bool>" "Task`1"
+@enduml

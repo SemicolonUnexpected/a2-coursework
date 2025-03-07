@@ -1,0 +1,7 @@
+@startuml
+class CryptographyManager <<static>> {
+    + {static} GetHash(text:string, salt:byte[]) : byte[]
+    + {static} GetHash(text:string, salt:byte[]) : byte[]
+    + {static} VerifyHashEquality(text:string, hash:byte[], salt:byte[]) : bool
+}
+@enduml

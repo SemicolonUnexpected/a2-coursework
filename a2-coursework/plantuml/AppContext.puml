@@ -1,0 +1,6 @@
+@startuml
+class AppContext {
+    + AppContext()
+}
+ApplicationContext <|-- AppContext
+@enduml

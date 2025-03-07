@@ -1,0 +1,15 @@
+@startuml
+interface IManageStockQuantityView {
+    +  <<event>> BulkAdd : EventHandler? 
+    +  <<event>> BulkRemove : EventHandler? 
+    +  <<event>> ReasonForQuantityChangeChanged : EventHandler? 
+    +  <<event>> QuantityChanged : EventHandler? 
+    + Quantity : int <<get>> <<set>>
+    + BulkAddQuantity : int <<get>> <<set>>
+    + BulkRemoveQuantity : int <<get>> <<set>>
+    + ReasonForQuantityChange : string <<get>> <<set>>
+    + ReasonForChangedReadOnly : bool <<get>> <<set>>
+    + SetCharacterCount(number:int) : void
+}
+IChildView <|-- IManageStockQuantityView
+@enduml

@@ -1,0 +1,26 @@
+@startuml
+class SelectCleaningJobCustomerView <<partial>> {
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + SelectCleaningJobCustomerView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + SearchText : string <<get>> <<set>>
+    + SetSelectedItemId(id:int) : void
+    + DataGridText : string <<get>> <<set>>
+    + DisplayItems(items:BindingList<DisplayCustomerModel>) : void
+    + DisableAll() : void
+    + EnableAll() : void
+    + CleanUp() : void
+}
+class "IDisplayView`1"<T> {
+}
+Form <|-- SelectCleaningJobCustomerView
+"IDisplayView`1" "<DisplayCustomerModel>" <|-- SelectCleaningJobCustomerView
+IChildView <|-- SelectCleaningJobCustomerView
+IThemeable <|-- SelectCleaningJobCustomerView
+ISelectCleaningJobCustomerView <|-- SelectCleaningJobCustomerView
+SelectCleaningJobCustomerView --> "SelectedItem" DisplayCustomerModel
+@enduml

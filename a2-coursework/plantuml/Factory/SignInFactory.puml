@@ -1,0 +1,9 @@
+@startuml
+class SignInFactory <<static>> {
+    + {static} CreateSplash() : SplashPresenter
+    + {static} CreateSignIn() : SignInPresenter
+    + {static} CreateMaster(staff:StaffModel) : MasterPresenter
+    + {static} CreateDisplayLoginAttempt() : (DisplayLoginAttemptView view, DisplayLoginAttemptPresenter presenter)
+    + {static} CreateDashboard(staff:StaffModel) : (DashboardView view, DashboardPresenter presenter)
+}
+@enduml

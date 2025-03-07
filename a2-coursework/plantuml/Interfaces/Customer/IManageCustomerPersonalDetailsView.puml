@@ -1,0 +1,14 @@
+@startuml
+interface IManageCustomerPersonalDetailsView {
+    +  <<event>> ForenameChanged : EventHandler? 
+    +  <<event>> SurnameChanged : EventHandler? 
+    +  <<event>> ArchivedChanged : EventHandler? 
+    + Forename : string <<get>> <<set>>
+    + Surname : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + NameError : string <<get>> <<set>>
+    + SetForenameBorderError(isError:bool) : void
+    + SetSurnameBorderError(isError:bool) : void
+}
+IChildView <|-- IManageCustomerPersonalDetailsView
+@enduml

@@ -1,0 +1,15 @@
+@startuml
+interface IManageStaffContactDetailsView {
+    +  <<event>> EmailChanged : EventHandler? 
+    +  <<event>> PhoneNumberChanged : EventHandler? 
+    +  <<event>> AddressChanged : EventHandler? 
+    + Email : string <<get>> <<set>>
+    + PhoneNumber : string <<get>> <<set>>
+    + Address : string <<get>> <<set>>
+    + ContactError : string <<get>> <<set>>
+    + SetEmailBorderError(isError:bool) : void
+    + SetPhoneNumberBorderError(isError:bool) : void
+    + SetCharacterCount(number:int) : void
+}
+IChildView <|-- IManageStaffContactDetailsView
+@enduml

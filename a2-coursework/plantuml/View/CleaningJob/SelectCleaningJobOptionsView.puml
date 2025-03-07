@@ -1,0 +1,28 @@
+@startuml
+class SelectCleaningJobOptionsView <<partial>> {
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SelectionChanged : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + SelectCleaningJobOptionsView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + SearchText : string <<get>> <<set>>
+    + SetSelectedItemsById(models:IEnumerable<int>) : void
+    + DataGridText : string <<get>> <<set>>
+    + DisplayItems(items:BindingList<DisplayCleaningJobOptionModel>) : void
+    + DisableAll() : void
+    + EnableAll() : void
+    + CleanUp() : void
+}
+class "IDisplayView`1"<T> {
+}
+class "List`1"<T> {
+}
+Form <|-- SelectCleaningJobOptionsView
+"IDisplayView`1" "<DisplayCleaningJobOptionModel>" <|-- SelectCleaningJobOptionsView
+IChildView <|-- SelectCleaningJobOptionsView
+IThemeable <|-- SelectCleaningJobOptionsView
+ISelectCleaningJobOptionsView <|-- SelectCleaningJobOptionsView
+SelectCleaningJobOptionsView --> "SelectedItems<DisplayCleaningJobOptionModel>" "List`1"
+@enduml

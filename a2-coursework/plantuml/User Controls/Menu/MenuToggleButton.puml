@@ -1,0 +1,13 @@
+@startuml
+class MenuToggleButton <<partial>> {
+    + MenuToggleButton()
+    + Theme() : void
+    +  <<event>> ToggleChanged : EventHandler? 
+    +  <<event>> PreviewToggleChanged : EventHandler<ToggleEventArgs>? 
+    + <<new>> Text : string <<get>> <<set>>
+    + Toggled : bool <<get>> <<set>>
+}
+UserControl <|-- MenuToggleButton
+MenuToggleButton --> "BackColor" Color
+MenuToggleButton --> "ToggleButton" ToggleButton
+@enduml

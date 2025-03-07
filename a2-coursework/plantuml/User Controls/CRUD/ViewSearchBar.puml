@@ -1,0 +1,16 @@
+@startuml
+class ViewSearchBar <<partial>> {
+    +  <<event>> SearchTextChanged : EventHandler? 
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> View : EventHandler? 
+    +  <<event>> ShowArchivedToggled : EventHandler? 
+    + ViewSearchBar()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SearchText : string <<get>> <<set>>
+    + ShowArchived : bool <<get>> <<set>>
+    + SetFont() : void
+}
+UserControl <|-- ViewSearchBar
+IThemeable <|-- ViewSearchBar
+@enduml

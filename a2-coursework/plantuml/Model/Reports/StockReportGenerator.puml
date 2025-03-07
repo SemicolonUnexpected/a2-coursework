@@ -1,0 +1,5 @@
+@startuml
+class StockReportGenerator <<static>> {
+    + {static} <<async>> StockItemsReport() : Task<byte[]>
+}
+@enduml

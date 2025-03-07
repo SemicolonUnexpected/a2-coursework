@@ -1,0 +1,12 @@
+@startuml
+abstract class "DisplayPresenter`3"<TView,TModel,TDisplayModel> {
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+class "IDisplayView`1"<T> {
+}
+"BasePresenter`1" "<TView>" <|-- "DisplayPresenter`3"
+IChildPresenter <|-- "DisplayPresenter`3"
+@enduml

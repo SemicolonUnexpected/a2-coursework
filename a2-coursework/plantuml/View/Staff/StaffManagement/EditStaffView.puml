@@ -1,0 +1,21 @@
+@startuml
+class EditStaffView <<partial>> {
+    +  <<event>> SelectedMenuItemChanged : EventHandler<string>? 
+    +  <<event>> PreviewSelectedMenuItemChanged : EventHandler<ToggleEventArgs>? 
+    +  <<event>> Save : EventHandler? 
+    +  <<event>> Cancel : EventHandler? 
+    +  <<event>> Back : EventHandler? 
+    + EditStaffView()
+    + Theme() : void
+    + SetToolTipVisibility() : void
+    + SetFont() : void
+    + DisplayChildView(childView:IChildView) : void
+    + IsLoading : bool <<get>> <<set>>
+    + SaveCancelVisible : bool <<get>> <<set>>
+    + ShowMessageBox(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
+    + CleanUp() : void
+}
+Form <|-- EditStaffView
+IThemeable <|-- EditStaffView
+IEditStaffView <|-- EditStaffView
+@enduml

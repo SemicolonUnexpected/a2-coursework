@@ -1,0 +1,18 @@
+@startuml
+class ThemingExtenders <<static>> {
+    + {static} Theme(form:Form) : void
+    + {static} Theme(customTextBox:CustomTextBox) : void
+    + {static} ThemeTitle(label:Label) : void
+    + {static} ThemeSubtitle(label:Label) : void
+    + {static} ThemeError(label:Label) : void
+    + {static} ThemeStrong(button:CustomButton) : void
+    + {static} ThemeWeak(button:CustomButton) : void
+    + {static} Theme(panel:CustomPanel) : void
+    + {static} Theme(scrollBar:CustomScrollBar) : void
+    + {static} Theme(dateInput:DateInput) : void
+    + {static} Theme(radioButton:CustomRadioButton) : void
+    + {static} Theme(dataGridView:DataGridView) : void
+    + {static} Theme(customMonthCalendar:CustomMonthCalendar) : void
+    + {static} Theme(timeInput:TimeInput) : void
+}
+@enduml

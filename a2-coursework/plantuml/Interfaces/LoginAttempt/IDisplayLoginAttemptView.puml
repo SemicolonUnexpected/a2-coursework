@@ -1,0 +1,14 @@
+@startuml
+interface IDisplayLoginAttemptView {
+    +  <<event>> Search : EventHandler? 
+    +  <<event>> SortRequested : EventHandler<SortRequestEventArgs>? 
+    + SearchText : string <<get>> <<set>>
+    + DataGridText : string <<set>>
+    + DisableAll() : void
+    + EnableAll() : void
+}
+class "IDisplayView`1"<T> {
+}
+"IDisplayView`1" "<DisplayLoginAttemptModel>" <|-- IDisplayLoginAttemptView
+IChildView <|-- IDisplayLoginAttemptView
+@enduml

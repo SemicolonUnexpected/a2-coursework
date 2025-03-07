@@ -1,5 +1,6 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Model.Customer;
+using a2_coursework.View;
 using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Presenter.CleaningJob;
@@ -11,11 +12,12 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
         LoadData();
 
         _view.SelectionChanged += OnSelectionChanged;
+        _view.SortRequested += OnSortRequested;
     }
 
-    private void OnSelectionChanged(object? sender, EventArgs e) {
-        DetailsChanged?.Invoke(this, EventArgs.Empty);
-    }
+    private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
+
+    private void OnSelectionChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
 
     private async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -27,6 +29,7 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
             _models = await CustomerDAL.GetNonArchivedCustomers();
 
             DisplayItems();
+            _view.SetSelectedItemId(_setSelectedId);
 
             _view.DataGridText = "";
             _view.EnableAll();
@@ -39,15 +42,23 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
             _isAsyncRunning = false;
         }
     }
+
     protected override DisplayCustomerModel CreateDisplayItem(CustomerModel model) => new(model);
 
     protected override List<CustomerModel> OrderDefault(List<CustomerModel> models) => [.. models.OrderBy(x => x.Id)];
 
     protected override IComparable RankSearch(string searchText, CustomerModel model) => GeneralHelpers.LevensteinDistance(searchText, $"{model.Forename} {model.Surname}");
 
-    public int SelectedId {
-        get => _modelDisplayMap[_view.SelectedItem].Id;
-        set => _view.SetSelectedItemId(value);
+    private int? _setSelectedId;
+    public int? SelectedId {
+        get {
+            if (_view.SelectedItem is null) return null;
+            else return _modelDisplayMap[_view.SelectedItem].Id;
+        }
+        set {
+            _setSelectedId = value;
+            _view.SetSelectedItemId(_setSelectedId);
+        }
     }
 
     protected override void SortByColumn(string columnName, bool sortAscending) {
@@ -68,5 +79,8 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
             default:
                 throw new NotImplementedException();
         }
+
+        DisplayItems();
+        _view.SetSelectedItemId(_setSelectedId);
     }
 }

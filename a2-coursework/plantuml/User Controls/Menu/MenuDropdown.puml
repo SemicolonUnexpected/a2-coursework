@@ -1,0 +1,13 @@
+@startuml
+class MenuDropdown <<partial>> {
+    +  <<event>> DropDownToggleChanged : EventHandler? 
+    +  <<event>> DropDownItemToggleChanged : EventHandler? 
+    +  <<event>> PreviewDropDownItemToggleChanged : EventHandler<ToggleEventArgs>? 
+    + MenuDropdown()
+    + MenuDropdown(parentName:string, childNames:string[])
+    + Theme() : void
+    + ParentName : string <<get>> <<set>>
+    + DropDownToggled : bool <<get>> <<set>>
+}
+UserControl <|-- MenuDropdown
+@enduml

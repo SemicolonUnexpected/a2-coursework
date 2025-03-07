@@ -1,0 +1,19 @@
+@startuml
+class ManageStockDetailsPresenter {
+    +  <<event>> ValidateSkuRequest : EventHandler<ValidationRequestEventArgs<string>>? 
+    +  <<event>> DetailsChanged : EventHandler? 
+    + ManageStockDetailsPresenter(view:IManageStockDetailsView)
+    + NameValid : bool <<get>>
+    + Name : string <<get>> <<set>>
+    + SkuValid : bool <<get>>
+    + Sku : string <<get>> <<set>>
+    + Description : string <<get>> <<set>>
+    + Archived : bool <<get>> <<set>>
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IManageStockDetailsView>" <|-- ManageStockDetailsPresenter
+INotifyingChildPresenter <|-- ManageStockDetailsPresenter
+@enduml

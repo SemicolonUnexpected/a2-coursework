@@ -1,0 +1,4 @@
+@startuml
+class SelectCleaningJobOptionsView <<partial>> {
+}
+@enduml

@@ -1,0 +1,13 @@
+@startuml
+class ViewStockQuantityChangePresenter {
+    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
+    + ViewStockQuantityChangePresenter(view:IViewStockQuantityChangeView, stockQuantityChange:StockQuantityChange)
+    + CanExit() : bool
+    + <<override>> CleanUp() : void
+}
+class "BasePresenter`1"<T> {
+}
+"BasePresenter`1" "<IViewStockQuantityChangeView>" <|-- ViewStockQuantityChangePresenter
+INavigatingPresenter <|-- ViewStockQuantityChangePresenter
+IChildPresenter <|-- ViewStockQuantityChangePresenter
+@enduml

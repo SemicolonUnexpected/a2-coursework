@@ -1,0 +1,15 @@
+@startuml
+interface ISignInView {
+    +  <<event>> AttemptSignIn : EventHandler? 
+    +  <<event>> UsernameChanged : EventHandler? 
+    +  <<event>> PasswordChanged : EventHandler? 
+    +  <<event>> FormClosed : FormClosedEventHandler? 
+    + Username : string <<get>> <<set>>
+    + Password : string <<get>> <<set>>
+    + ErrorText : string <<get>> <<set>>
+    + Loading : bool <<set>>
+    + Show() : void
+    + Close() : void
+}
+IView <|-- ISignInView
+@enduml

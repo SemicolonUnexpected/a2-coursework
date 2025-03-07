@@ -1,0 +1,4 @@
+@startuml
+class Paginator <<partial>> {
+}
+@enduml

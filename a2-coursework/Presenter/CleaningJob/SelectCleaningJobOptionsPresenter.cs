@@ -35,7 +35,7 @@ public class SelectCleaningJobOptionsPresenter : DisplayPresenter<ISelectCleanin
         }
         catch {
             _displayModels.Clear();
-            _view.DataGridText = "Error getting stock from the database";
+            _view.DataGridText = "Error getting cleaning options from the database";
         }
         finally {
             _isAsyncRunning = false;
