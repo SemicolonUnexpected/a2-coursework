@@ -1,4 +1,0 @@
-@startuml
-class AddEditDeleteSearchBar <<partial>> {
-}
-@enduml

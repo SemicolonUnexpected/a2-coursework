@@ -1,4 +1,0 @@
-@startuml
-class ManageCleaningJobDurationView <<partial>> {
-}
-@enduml

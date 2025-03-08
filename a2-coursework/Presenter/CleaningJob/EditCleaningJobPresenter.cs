@@ -3,13 +3,18 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.CleaningJobOption;
+using a2_coursework.Model.Staff;
 using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView, CleaningJobModel>, IChildPresenter, INavigatingPresenter {
+    private readonly StaffModel _staff;
+
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public EditCleaningJobPresenter(IEditCleaningJobView view, CleaningJobModel model) : base(view, model) {
+    public EditCleaningJobPresenter(IEditCleaningJobView view, CleaningJobModel model, StaffModel staff) : base(view, model) {
+        _staff = staff;
+
         _view.Back += OnBack;
 
         Navigate(GetDetails());
@@ -19,7 +24,7 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
 
     private void NavigateBack() {
         if (!CanExit()) return;
-        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateBookCleaningJob();
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateBookCleaningJob(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

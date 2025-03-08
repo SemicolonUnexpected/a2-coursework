@@ -4,7 +4,7 @@ using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Settings;
-public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettings, IThemeable {
+public partial class PersonalInformationSettingsView : Form, IPersonalInformationSettingsView, IThemeable {
     public event EventHandler? ForenameChanged;
     public event EventHandler? SurnameChanged;
     public event EventHandler? DateOfBirthChanged;

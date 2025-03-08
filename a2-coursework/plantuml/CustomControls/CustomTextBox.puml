@@ -1,6 +1,0 @@
-@startuml
-class CustomTextBox <<partial>> {
-    + CustomTextBox()
-}
-UserControl <|-- CustomTextBox
-@enduml

@@ -111,7 +111,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetLoginAttempts() => SignInFactory.CreateDisplayLoginAttempt();
     private (IChildView view, IChildPresenter presenter) GetStaffReport() => ReportFactory.CreateReport("StaffReport", StaffReportGenerator.StaffSecurityReport());
     private (IChildView view, IChildPresenter presenter) GetStockReport() => ReportFactory.CreateReport("StockReport", StockReportGenerator.StockItemsReport());
-    private (IChildView view, IChildPresenter presenter) GetBookCleaning() => CleaningJobFactory.CreateBookCleaningJob();
+    private (IChildView view, IChildPresenter presenter) GetBookCleaning() => CleaningJobFactory.CreateBookCleaningJob(_staff);
     private (IChildView view, IChildPresenter presenter) GetDashboardView() => SignInFactory.CreateDashboard(_staff);
 
     private void SignOut() {

@@ -1,4 +1,0 @@
-@startuml
-class CustomTextBox <<partial>> {
-}
-@enduml

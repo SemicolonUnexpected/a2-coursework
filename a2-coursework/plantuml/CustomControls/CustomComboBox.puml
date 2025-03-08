@@ -1,6 +1,0 @@
-@startuml
-class CustomComboBox <<partial>> {
-    + CustomComboBox()
-}
-ComboBox <|-- CustomComboBox
-@enduml

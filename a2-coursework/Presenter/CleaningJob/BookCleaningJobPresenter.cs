@@ -3,13 +3,18 @@ using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
+using a2_coursework.Model.Staff;
 using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, CleaningJobModel, DisplayCleaningJobModel>, INavigatingPresenter {
+    private readonly StaffModel _staff;
+
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public BookCleaningJobPresenter(IBookCleaningJobView view) : base(view) {
+    public BookCleaningJobPresenter(IBookCleaningJobView view, StaffModel staff) : base(view) {
+        _staff = staff;
+
         _view.DateChanged += OnDateChanged;
         _view.Add += OnAdd;
         _view.Edit += OnEdit;
@@ -42,7 +47,7 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayCleaningJobModel CreateDisplayItem(CleaningJobModel model) => new DisplayCleaningJobModel(model);
+    protected override DisplayCleaningJobModel CreateDisplayItem(CleaningJobModel model) => new(model);
 
     protected override IComparable RankSearch(string searchText, CleaningJobModel model) => GeneralHelpers.LevensteinDistance(searchText, model.StartDate.ToString("HH mm") + " - " + model.EndDate.ToString("HH mm"));
 
@@ -93,7 +98,7 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateEditCleaningJob(_modelDisplayMap[_view.SelectedItem]);
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateEditCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
@@ -107,12 +112,10 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
     }
 
     private void Add() {
-        if (_view.SelectedItem is null) return;
-
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateAddCleaningJobOption();
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateAddCleaningJob(_view.Date, _staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private async void Delete() {
@@ -136,7 +139,7 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
     }
 
     private void SetAddEditDeleteView() {
-        bool beforeToday = _view.Date < DateTime.Today;
+        bool beforeToday = _view.Date <= DateTime.Today;
         _view.AddEnabled = !beforeToday;
         _view.DeleteEnabled = !beforeToday;
         _view.ViewMode = beforeToday;

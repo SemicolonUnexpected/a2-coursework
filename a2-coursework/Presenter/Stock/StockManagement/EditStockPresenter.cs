@@ -19,7 +19,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
         Navigate(GetStockDetails());
     }
 
-    private void OnValidateSKU(object? sender, ValidationRequestEventArgs<string> e) => IsValidSku(e);
+    private void OnValidateSku(object? sender, ValidationRequestEventArgs<string> e) => IsValidSku(e);
     private void OnBack(object? sender, EventArgs e) => NavigateBack();
 
     private void NavigateBack() {
@@ -29,11 +29,11 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     }
 
     protected override void BindValidation() {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest += OnValidateSKU;
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest += OnValidateSku;
     }
 
     protected override void UnBindValidation() {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest -= OnValidateSKU;
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest -= OnValidateSku;
     }
 
     protected override (IChildView childView, INotifyingChildPresenter childPresenter) GetView(string selectedItem) => selectedItem switch {
@@ -81,7 +81,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetStockDetails() {
         (ManageStockDetailsView view, ManageStockDetailsPresenter presenter) = StaffFactory.CreateManageStockDetails();
 
-        presenter.ValidateSkuRequest += OnValidateSKU;
+        presenter.ValidateSkuRequest += OnValidateSku;
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesStockDetails(presenter);
         AnyChangesCurrent = () => AnyChangesStockDetails(presenter);
@@ -158,7 +158,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
     #endregion
 
     public override void CleanUp() {
-        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest -= OnValidateSKU;
+        if (_childPresenter is ManageStockDetailsPresenter manageStockDetailsPresenter) manageStockDetailsPresenter.ValidateSkuRequest -= OnValidateSku;
 
         base.CleanUp();
     }

@@ -1,6 +1,0 @@
-@startuml
-interface IAddCustomerView {
-    +  <<event>> Back : EventHandler? 
-}
-IAddView <|-- IAddCustomerView
-@enduml

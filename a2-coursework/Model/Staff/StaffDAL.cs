@@ -42,6 +42,39 @@ internal static class StaffDAL {
 
         await using SqlDataReader reader = command.ExecuteReader();
         if (await reader.ReadAsync()) {
+            return new StaffModel(
+                id: reader.GetInt32(reader.GetOrdinal("Id")),
+                hashedPassword: Convert.FromHexString(reader.GetString(reader.GetOrdinal("HashedPassword"))),
+                salt: Convert.FromHexString(reader["Salt"].ToString()!),
+                lastPasswordChange: reader.GetDateTime(reader.GetOrdinal("LastPasswordChange")),
+                username: reader.GetString(reader.GetOrdinal("Username")),
+                archived: reader.GetBoolean(reader.GetOrdinal("Archived")),
+                forename: reader.GetString(reader.GetOrdinal("Forename")),
+                surname: reader.GetString(reader.GetOrdinal("Surname")),
+                dateOfBirth: reader.IsDBNull("DateOfBirth") ? null : reader.GetDateTime(reader.GetOrdinal("DateOfBirth")),
+                email: reader.GetString(reader.GetOrdinal("Email")),
+                phoneNumber: reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                address: reader.GetString(reader.GetOrdinal("Address")),
+                emergencyContactForename: reader.GetString(reader.GetOrdinal("EmergencyContactForename")),
+                emergencyContactSurname: reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
+                emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
+                privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
+                theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnschrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
+            );
+        }
+        return null;
+    }
+
+    public static async Task<StaffModel?> GetStaffById(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetStaffById", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@username", id);
+
+        await using SqlDataReader reader = command.ExecuteReader();
+        if (await reader.ReadAsync()) {
             // Handle potential null values safely
             return new StaffModel(
                 id: reader.GetInt32(reader.GetOrdinal("Id")),

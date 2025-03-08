@@ -1,4 +1,0 @@
-@startuml
-class ManageStockPriceView <<partial>> {
-}
-@enduml

@@ -1,6 +1,0 @@
-@startuml
-class CustomScrollBar <<partial>> {
-    + CustomScrollBar()
-}
-Control <|-- CustomScrollBar
-@enduml

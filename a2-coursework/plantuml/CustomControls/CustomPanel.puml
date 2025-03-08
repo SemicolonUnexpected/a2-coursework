@@ -1,9 +1,0 @@
-@startuml
-class CustomPanel <<partial>> {
-    + BorderThickness : float <<get>> <<set>>
-    + CustomPanel()
-}
-Panel <|-- CustomPanel
-CustomPanel --> "BorderColor" Color
-CustomPanel --> "CornerRadii" CornerRadiiF
-@enduml

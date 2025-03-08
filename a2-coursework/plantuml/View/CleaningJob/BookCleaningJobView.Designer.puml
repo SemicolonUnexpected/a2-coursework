@@ -1,4 +1,0 @@
-@startuml
-class BookCleaningJobView <<partial>> {
-}
-@enduml

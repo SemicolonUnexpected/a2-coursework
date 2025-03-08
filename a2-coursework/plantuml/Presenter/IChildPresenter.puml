@@ -1,6 +1,0 @@
-@startuml
-interface IChildPresenter {
-    + CanExit() : bool
-}
-ICleanable <|-- IChildPresenter
-@enduml

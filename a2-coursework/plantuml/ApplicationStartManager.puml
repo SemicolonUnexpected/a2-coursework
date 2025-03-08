@@ -1,5 +1,0 @@
-@startuml
-class ApplicationStartupManager {
-    + <<async>> StartApplicationAsync() : void
-}
-@enduml

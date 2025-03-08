@@ -1,5 +1,0 @@
-@startuml
-interface INavigatingPresenter {
-    +  <<event>> NavigationRequest : EventHandler<NavigationEventArgs>? 
-}
-@enduml

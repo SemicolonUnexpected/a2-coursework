@@ -1,4 +1,0 @@
-@startuml
-class ManageStaffPersonalDetailsView <<partial>> {
-}
-@enduml

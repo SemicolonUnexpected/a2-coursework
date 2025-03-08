@@ -1,8 +1,0 @@
-@startuml
-class NavigationEventArgs {
-    + NavigationEventArgs(view:IChildView, presenter:IChildPresenter)
-}
-EventArgs <|-- NavigationEventArgs
-NavigationEventArgs --> "View" IChildView
-NavigationEventArgs --> "Presenter" IChildPresenter
-@enduml

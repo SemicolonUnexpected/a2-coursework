@@ -9,7 +9,6 @@ public class AddCleaningJobOptionPresenter : AddPresenter<IAddCleaningJobOptionV
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
     public AddCleaningJobOptionPresenter(IAddCleaningJobOptionView view) : base(view, new CleaningJobOptionModel(-1, "", "", 0, false)) {
-
         _viewFactories.Add(GetDetails);
 
         _view.Back += OnBack;

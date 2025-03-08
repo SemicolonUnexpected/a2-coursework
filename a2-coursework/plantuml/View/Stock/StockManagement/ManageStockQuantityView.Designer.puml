@@ -1,4 +1,0 @@
-@startuml
-class ManageStockQuantityView <<partial>> {
-}
-@enduml

@@ -1,9 +1,0 @@
-@startuml
-class ContactDetailsSettingsPresenter {
-    + ContactDetailsSettingsPresenter(view:IContactDetailsSettings, staff:StaffModel)
-    + <<override>> CleanUp() : void
-}
-class "SettingsPresenter`1"<T> {
-}
-"SettingsPresenter`1" "<IContactDetailsSettings>" <|-- ContactDetailsSettingsPresenter
-@enduml

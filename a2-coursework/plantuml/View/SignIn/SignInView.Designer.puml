@@ -1,4 +1,0 @@
-@startuml
-class SignInView <<partial>> {
-}
-@enduml

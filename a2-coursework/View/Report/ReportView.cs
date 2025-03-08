@@ -1,7 +1,7 @@
 ﻿using a2_coursework.CustomControls;
 using a2_coursework.Interfaces.Report;
 using a2_coursework.Theming;
-using Patagames.Pdf.Net;
+using PdfiumViewer;
 
 namespace a2_coursework.View;
 public partial class ReportView : Form, IThemeable, IReportView {
@@ -48,7 +48,11 @@ public partial class ReportView : Form, IThemeable, IReportView {
         get => _pdf;
         set {
             _pdf = value;
-            pdfViewer.Document = PdfDocument.Load(_pdf);
+            if (_pdf != null) {
+                var stream = new MemoryStream(_pdf);
+                var document = PdfDocument.Load(stream);
+                pdfRenderer1.Load(document);
+            }
         }
     }
 
@@ -86,22 +90,20 @@ public partial class ReportView : Form, IThemeable, IReportView {
     }
 
     private void pdfViewer_MouseWheel(object? sender, MouseEventArgs e) {
-        if (pdfViewer.Document == null) return; 
+        if (pdfViewer.Document == null) return;
 
         if ((ModifierKeys & Keys.Control) == Keys.Control) {
-            float zoomFactor = 1.1f; 
+            float zoomFactor = 1.1f;
             float newZoom = pdfViewer.Zoom;
 
-            if (e.Delta > 0) 
-            {
+            if (e.Delta > 0) {
                 newZoom *= zoomFactor;
             }
-            else if (e.Delta < 0) 
-            {
+            else if (e.Delta < 0) {
                 newZoom /= zoomFactor;
             }
 
-            newZoom = Math.Max(0.1f, Math.Min(5.0f, newZoom)); 
+            newZoom = Math.Max(0.1f, Math.Min(5.0f, newZoom));
 
             pdfViewer.Zoom = newZoom;
         }

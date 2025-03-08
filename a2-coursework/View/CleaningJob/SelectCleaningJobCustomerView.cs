@@ -1,6 +1,5 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
-using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Theming;
 using System.ComponentModel;
 
@@ -40,6 +39,8 @@ public partial class SelectCleaningJobCustomerView : Form, IDisplayView<DisplayC
         topBar.Theme();
         pnlData.Theme();
         dataGridView.Theme();
+        tbSelectedCustomer.Theme();
+        lblSelectedCustomer.ThemeTitle();
         sb.Theme();
     }
 
@@ -95,6 +96,11 @@ public partial class SelectCleaningJobCustomerView : Form, IDisplayView<DisplayC
     public string SearchText {
         get => topBar.SearchText;
         set => topBar.SearchText = value;
+    }
+
+    public string SelectedCustomerName {
+        get => tbSelectedCustomer.Text;
+            set => tbSelectedCustomer.Text = value;
     }
 
     public DisplayCustomerModel? SelectedItem {

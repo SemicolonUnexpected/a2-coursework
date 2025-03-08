@@ -1,8 +1,0 @@
-@startuml
-class CleaningJobOptionFactory <<static>> {
-    + {static} CreateDisplayCleaningJobOption() : (DisplayCleaningJobOptionView view, DisplayCleaningJobOptionPresenter presenter)
-    + {static} CreateManageCleaningJobOption() : (ManageCleaningJobOptionView view, ManageJobCleaningOptionPresenter presenter)
-    + {static} CreateEditCleaningJobOption(model:CleaningJobOptionModel) : (EditCleaningJobOptionView view, EditCleaningJobOptionPresenter presenter)
-    + {static} CreateAddCleaningJobOption() : (AddCleaningJobOptionView view, AddCleaningJobOptionPresenter presenter)
-}
-@enduml

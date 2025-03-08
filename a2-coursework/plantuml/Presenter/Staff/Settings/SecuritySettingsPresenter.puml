@@ -1,9 +1,0 @@
-@startuml
-class SecuritySettingsPresenter {
-    + SecuritySettingsPresenter(view:ISecuritySettingsView, staff:StaffModel)
-    + <<override>> CleanUp() : void
-}
-class "SettingsPresenter`1"<T> {
-}
-"SettingsPresenter`1" "<ISecuritySettingsView>" <|-- SecuritySettingsPresenter
-@enduml

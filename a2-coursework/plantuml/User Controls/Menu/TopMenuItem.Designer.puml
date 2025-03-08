@@ -1,4 +1,0 @@
-@startuml
-class TopMenuItem <<partial>> {
-}
-@enduml

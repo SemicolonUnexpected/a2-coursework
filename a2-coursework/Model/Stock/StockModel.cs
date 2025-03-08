@@ -8,4 +8,6 @@ public class StockModel(string name, string description, int Id, string SKU, int
     public int HighQuantity { get; set; } = highQuantity;
     public bool Archived { get; set; } = archived;
     public string Sku { get; set; } = SKU;
+    public decimal Price { get; set; }
+    public decimal CostAtTime { get; set; }
 }

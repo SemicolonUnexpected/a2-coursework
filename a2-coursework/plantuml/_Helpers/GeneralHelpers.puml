@@ -1,5 +1,0 @@
-@startuml
-class GeneralHelpers <<static>> {
-    + {static} LevensteinDistance(a:string, b:string) : int
-}
-@enduml

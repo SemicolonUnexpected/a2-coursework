@@ -1,6 +1,0 @@
-@startuml
-class Validators <<static>> {
-    + {static} IsValidPhoneNumber(number:string) : bool
-    + {static} IsValidEmail(email:string) : bool
-}
-@enduml

@@ -1,6 +1,0 @@
-@startuml
-class TestView <<partial>> {
-    + TestView()
-}
-Form <|-- TestView
-@enduml

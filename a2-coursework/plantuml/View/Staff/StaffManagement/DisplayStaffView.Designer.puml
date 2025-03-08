@@ -1,4 +1,0 @@
-@startuml
-class DisplayStaffView <<partial>> {
-}
-@enduml

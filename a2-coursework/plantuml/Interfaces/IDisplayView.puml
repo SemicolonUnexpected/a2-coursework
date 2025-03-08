@@ -1,6 +1,0 @@
-@startuml
-interface "IDisplayView`1"<TDisplayModel> {
-    + DisplayItems(items:BindingList<TDisplayModel>) : void
-}
-IView <|-- "IDisplayView`1"
-@enduml

@@ -1,4 +1,0 @@
-@startuml
-class DashboardView <<partial>> {
-}
-@enduml

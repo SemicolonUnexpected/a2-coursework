@@ -11,6 +11,20 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Model\NewFolder\**" />
+    <Compile Remove="View\NewFolder\**" />
+    <EmbeddedResource Remove="Model\NewFolder\**" />
+    <EmbeddedResource Remove="View\NewFolder\**" />
+    <None Remove="Model\NewFolder\**" />
+    <None Remove="View\NewFolder\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfiumviewer.native.x86.v8-xfa\2018.4.8.256\Build\x86\pdfium.dll" />
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfiumviewer.native.x86_64.v8-xfa\2018.4.8.256\Build\x64\pdfium.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Remove="app.manifest" />
   </ItemGroup>
 
@@ -20,7 +34,10 @@
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="Pdfium.Net.SDK" Version="4.97.2704" />
-    <PackageReference Include="QuestPDF" Version="2025.1.3" />
+    <PackageReference Include="PdfiumViewer.Native.x86.v8-xfa" Version="2018.4.8.256" />
+    <PackageReference Include="PdfiumViewer.Native.x86_64.v8-xfa" Version="2018.4.8.256" />
+    <PackageReference Include="PdfiumViewer.Updated" Version="2.14.5" />
+    <PackageReference Include="QuestPDF" Version="2025.1.5" />
   </ItemGroup>
 
   <ItemGroup>
@@ -83,6 +100,18 @@
     <Compile Update="View\LoginAttempt\DisplayLoginAttemptView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Order\Deliveries\DisplayCustomerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\DisplayOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\OrderApproval\DisplayCustomerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\StockRequest\DisplayCustomerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\SignIn\DashboardView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -105,9 +134,23 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="View\Order\Deliveries\" />
-    <Folder Include="View\Order\OrderApproval\" />
-    <Folder Include="View\Order\StockRequest\" />
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfium.net.sdk\4.97.2704\build\..\content\x86\pdfium.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfium.net.sdk\4.97.2704\build\..\content\icudt.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfium.net.sdk\4.97.2704\build\..\content\icudt.dll" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfium.net.sdk\4.97.2704\build\..\content\libpdfium.dylib" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="C:\Users\Matthew Gracey\.nuget\packages\pdfium.net.sdk\4.97.2704\build\..\content\x64\pdfium.dll" />
   </ItemGroup>
 
 </Project>

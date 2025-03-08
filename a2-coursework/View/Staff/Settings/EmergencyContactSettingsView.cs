@@ -4,7 +4,7 @@ using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Settings;
-public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettings, IThemeable {
+public partial class EmergencyContactSettingsView : Form, IEmergencyContactSettingsView, IThemeable {
     public event EventHandler? EmergencyContactForenameChanged;
     public event EventHandler? EmergencyContactSurnameChanged;
     public event EventHandler? EmergencyContactPhoneNumberChanged;

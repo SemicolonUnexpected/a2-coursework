@@ -1,6 +1,0 @@
-@startuml
-interface IView {
-}
-IDisposable <|-- IView
-ICleanable <|-- IView
-@enduml

@@ -1,6 +1,0 @@
-@startuml
-interface INotifyingChildPresenter {
-    +  <<event>> DetailsChanged : EventHandler? 
-}
-ICleanable <|-- INotifyingChildPresenter
-@enduml

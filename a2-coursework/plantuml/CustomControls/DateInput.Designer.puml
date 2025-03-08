@@ -1,4 +1,0 @@
-@startuml
-class DateInput <<partial>> {
-}
-@enduml

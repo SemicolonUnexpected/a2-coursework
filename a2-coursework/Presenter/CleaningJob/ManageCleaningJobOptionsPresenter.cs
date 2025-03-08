@@ -41,7 +41,7 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
         decimal sum = 0;
 
         foreach (var model in _models) {
-            sum += _newQuantities[model.Id] * model.UnitCost;
+            sum += _newQuantities[model.Id] * model.CostAtTime;
         }
 
         return sum;

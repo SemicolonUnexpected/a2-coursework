@@ -17,7 +17,10 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
 
     private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
 
-    private void OnSelectionChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
+    private void OnSelectionChanged(object? sender, EventArgs e) {
+        SetCustomerName();
+        DetailsChanged?.Invoke(this, EventArgs.Empty);
+    }
 
     private async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -83,4 +86,6 @@ public class SelectCleaningJobCustomerPresenter : DisplayPresenter<ISelectCleani
         DisplayItems();
         _view.SetSelectedItemId(_setSelectedId);
     }
+
+    private void SetCustomerName() => _view.SelectedCustomerName = _view.SelectedItem is null ? "" : $"{_modelDisplayMap[_view.SelectedItem].Forename} {_modelDisplayMap[_view.SelectedItem].Surname}";
 }

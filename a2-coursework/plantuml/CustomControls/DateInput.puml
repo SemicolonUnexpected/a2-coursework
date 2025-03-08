@@ -1,6 +1,0 @@
-@startuml
-class DateInput <<partial>> {
-    + DateInput()
-}
-UserControl <|-- DateInput
-@enduml

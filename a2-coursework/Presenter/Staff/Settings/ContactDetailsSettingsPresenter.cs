@@ -3,8 +3,8 @@ using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Model.Staff;
 
 namespace a2_coursework.Presenter.Users.Settings;
-public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettings> {
-    public ContactDetailsSettingsPresenter(IContactDetailsSettings view, StaffModel staff) : base(view, staff) {
+public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettingsView> {
+    public ContactDetailsSettingsPresenter(IContactDetailsSettingsView view, StaffModel staff) : base(view, staff) {
         _view.EmailChanged += OnContactInformationChanged;
         _view.PhoneNumberChanged += OnContactInformationChanged;
         _view.AddressChanged += OnAddressChanged;

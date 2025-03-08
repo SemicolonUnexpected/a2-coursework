@@ -1,8 +1,0 @@
-@startuml
-interface IEditView {
-    +  <<event>> SelectedMenuItemChanged : EventHandler<string>? 
-    +  <<event>> PreviewSelectedMenuItemChanged : EventHandler<ToggleEventArgs>? 
-    + DisplayChildView(childView:IChildView) : void
-}
-ISaveCancelView <|-- IEditView
-@enduml

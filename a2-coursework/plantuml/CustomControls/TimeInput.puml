@@ -1,7 +1,0 @@
-@startuml
-class TimeInput <<partial>> {
-    +  <<event>> TimeTextChanged : EventHandler? 
-    + TimeInput()
-}
-UserControl <|-- TimeInput
-@enduml

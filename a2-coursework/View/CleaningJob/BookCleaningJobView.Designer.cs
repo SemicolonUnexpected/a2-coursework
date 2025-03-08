@@ -27,18 +27,18 @@
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
-            pnlData = new CustomControls.CustomPanel();
+            pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
+            sb = new a2_coursework.CustomControls.CustomScrollBar();
+            monthCalendar = new a2_coursework.CustomControls.CustomMonthCalendar();
+            lblCleaningJobs = new Label();
+            dateInput = new a2_coursework.CustomControls.DateInput();
+            topBar = new a2_coursework.User_Controls.DataGrid.AddEditDeleteSearchBar();
+            pnlDate = new a2_coursework.CustomControls.CustomPanel();
             columnJobId = new DataGridViewTextBoxColumn();
             columnAddress = new DataGridViewTextBoxColumn();
             columnTime = new DataGridViewTextBoxColumn();
-            sb = new CustomControls.CustomScrollBar();
-            monthCalendar = new CustomControls.CustomMonthCalendar();
-            lblCleaningJobs = new Label();
-            dateInput = new CustomControls.DateInput();
-            topBar = new User_Controls.DataGrid.AddEditDeleteSearchBar();
-            pnlDate = new CustomControls.CustomPanel();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             pnlDate.SuspendLayout();
@@ -52,7 +52,7 @@
             pnlData.Controls.Add(lblError);
             pnlData.Controls.Add(dataGridView);
             pnlData.Controls.Add(sb);
-            pnlData.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlData.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlData.Location = new Point(316, 127);
             pnlData.Margin = new Padding(5);
             pnlData.Name = "pnlData";
@@ -132,29 +132,6 @@
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
-            // columnJobId
-            // 
-            columnJobId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnJobId.DefaultCellStyle = dataGridViewCellStyle2;
-            columnJobId.HeaderText = "Job ID";
-            columnJobId.Name = "columnJobId";
-            columnJobId.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnJobId.Width = 77;
-            // 
-            // columnAddress
-            // 
-            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnAddress.HeaderText = "Address";
-            columnAddress.Name = "columnAddress";
-            // 
-            // columnTime
-            // 
-            columnTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnTime.HeaderText = "Time";
-            columnTime.Name = "columnTime";
-            columnTime.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
             // sb
             // 
             sb.BackColor = Color.FromArgb(9, 9, 10);
@@ -172,7 +149,7 @@
             sb.Text = "customScrollBar1";
             sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
             sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbCorderRadii = new a2_coursework.CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
             sb.Visible = false;
             sb.ValueChanged += sb_ValueChanged;
@@ -182,7 +159,7 @@
             monthCalendar.BackColor = Color.FromArgb(9, 9, 10);
             monthCalendar.ClickedColor = Color.Empty;
             monthCalendar.Date = new DateTime(2025, 2, 28, 0, 0, 0, 0);
-            monthCalendar.DateCornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            monthCalendar.DateCornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             monthCalendar.DisabledForeColor = Color.FromArgb(168, 171, 174);
             monthCalendar.DisplayedDate = new DateTime(2025, 2, 8, 0, 0, 0, 0);
             monthCalendar.Dock = DockStyle.Fill;
@@ -255,13 +232,36 @@
             pnlDate.BorderColor = Color.FromArgb(39, 39, 42);
             pnlDate.BorderThickness = 1F;
             pnlDate.Controls.Add(monthCalendar);
-            pnlDate.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlDate.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlDate.Location = new Point(14, 156);
             pnlDate.Margin = new Padding(5);
             pnlDate.Name = "pnlDate";
             pnlDate.Padding = new Padding(5);
             pnlDate.Size = new Size(290, 330);
             pnlDate.TabIndex = 16;
+            // 
+            // columnJobId
+            // 
+            columnJobId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnJobId.DefaultCellStyle = dataGridViewCellStyle2;
+            columnJobId.HeaderText = "ID";
+            columnJobId.Name = "columnJobId";
+            columnJobId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnJobId.Width = 47;
+            // 
+            // columnAddress
+            // 
+            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnAddress.HeaderText = "Address";
+            columnAddress.Name = "columnAddress";
+            // 
+            // columnTime
+            // 
+            columnTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnTime.HeaderText = "Time";
+            columnTime.Name = "columnTime";
+            columnTime.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // BookCleaningJobView
             // 

@@ -1,7 +1,0 @@
-@startuml
-class CustomButton <<partial>> {
-    + CustomButton()
-    + CheckFocus() : void
-}
-CustomPanel <|-- CustomButton
-@enduml

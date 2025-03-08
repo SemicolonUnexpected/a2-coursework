@@ -1,4 +1,0 @@
-@startuml
-class AddCleaningJobView <<partial>> {
-}
-@enduml

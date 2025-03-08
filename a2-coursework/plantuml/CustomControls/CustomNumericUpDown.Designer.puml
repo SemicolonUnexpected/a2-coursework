@@ -1,4 +1,0 @@
-@startuml
-class CustomNumericUpDown <<partial>> {
-}
-@enduml

@@ -1,4 +1,0 @@
-@startuml
-class SearchBar <<partial>> {
-}
-@enduml

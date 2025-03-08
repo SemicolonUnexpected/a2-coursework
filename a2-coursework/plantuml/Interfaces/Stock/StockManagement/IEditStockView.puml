@@ -1,7 +1,0 @@
-@startuml
-interface IEditStockView {
-    +  <<event>> Back : EventHandler? 
-}
-IChildView <|-- IEditStockView
-IEditView <|-- IEditStockView
-@enduml

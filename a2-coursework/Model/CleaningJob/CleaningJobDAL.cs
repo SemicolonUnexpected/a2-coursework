@@ -5,7 +5,7 @@ using System.Configuration;
 using System.Data;
 
 namespace a2_coursework.Model.CleaningJob;
-public class CleaningJobDAL {
+public static class CleaningJobDAL {
     private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
     public static async Task<List<CleaningJobModel>> GetCleaningJobs() {
@@ -277,5 +277,33 @@ public class CleaningJobDAL {
         command.Parameters.AddWithValue("@quantity", quantity);
 
         return await command.ExecuteNonQueryAsync() > 0;
+    }
+
+    public static async Task<bool> CreateCleaningJob(CleaningJobModel model) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("CreateCleaningJob", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@startDate", model.StartDate);
+        command.Parameters.AddWithValue("@endDate", model.EndDate);
+        command.Parameters.AddWithValue("@address", model.Address);
+        command.Parameters.AddWithValue("@customerId", model.CustomerId);
+        command.Parameters.AddWithValue("@staffId", model.StaffId);
+        command.Parameters.AddWithValue("@extraInformation", model.ExtraInformation);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        if (!await reader.ReadAsync()) return false;
+        
+        int id = reader.GetInt32(reader.GetOrdinal("Id"));
+
+        bool success = true;
+
+        success &= await UpdateCleaningJobCleaningOptions(id, model.CleaningJobOptions);
+        success &= await UpdateCleaningJobCleaningOptionsQuantity(id, model.CleaningJobOptions.Select(x => (x.Id, x.Quantity)));
+        success &= await UpdateCleaningJobStaff(id, model.StaffIds);
+
+        return success;
     }
 }

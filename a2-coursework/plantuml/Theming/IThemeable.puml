@@ -1,7 +1,0 @@
-@startuml
-interface IThemeable {
-    + Theme() : void
-    + SetToolTipVisibility() : void
-    + SetFont() : void
-}
-@enduml

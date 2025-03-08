@@ -10,7 +10,7 @@ public class ManageStockDetailsPresenter : BasePresenter<IManageStockDetailsView
 
     public ManageStockDetailsPresenter(IManageStockDetailsView view) : base(view) {
         _view.DescriptionChanged += OnDescriptionChanged;
-        _view.SkuChanged += OnSKUChanged;
+        _view.SkuChanged += OnSkuChanged;
         _view.NameChanged += OnNameChanged;
         _view.ArchivedChanged += OnArchivedChanged;
     }
@@ -24,7 +24,7 @@ public class ManageStockDetailsPresenter : BasePresenter<IManageStockDetailsView
         DetailsChanged?.Invoke(this, EventArgs.Empty);
         Validate();
     }
-    private void OnSKUChanged(object? sender, EventArgs e) {
+    private void OnSkuChanged(object? sender, EventArgs e) {
         DetailsChanged?.Invoke(this, EventArgs.Empty);
         Validate();
     }
@@ -87,7 +87,7 @@ public class ManageStockDetailsPresenter : BasePresenter<IManageStockDetailsView
     public override void CleanUp() {
         _view.DescriptionChanged -= OnDescriptionChanged;
         _view.SkuChanged -= OnNameChanged;
-        _view.NameChanged -= OnSKUChanged;
+        _view.NameChanged -= OnSkuChanged;
         _view.ArchivedChanged -= OnArchivedChanged;
     }
 }

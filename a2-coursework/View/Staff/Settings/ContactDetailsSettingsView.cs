@@ -4,7 +4,7 @@ using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View;
-public partial class ContactDetailsSettingsView : Form, IContactDetailsSettings, IThemeable {
+public partial class ContactDetailsSettingsView : Form, IContactDetailsSettingsView, IThemeable {
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;

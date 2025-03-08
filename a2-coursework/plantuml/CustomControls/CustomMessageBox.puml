@@ -1,6 +1,0 @@
-@startuml
-class CustomMessageBox <<static>> {
-    + {static} Show(text:string, caption:string) : DialogResult
-    + {static} Show(text:string, caption:string, buttons:MessageBoxButtons) : DialogResult
-}
-@enduml

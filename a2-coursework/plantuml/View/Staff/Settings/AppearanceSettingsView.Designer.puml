@@ -1,4 +1,0 @@
-@startuml
-class AppearanceSettingsView <<partial>> {
-}
-@enduml

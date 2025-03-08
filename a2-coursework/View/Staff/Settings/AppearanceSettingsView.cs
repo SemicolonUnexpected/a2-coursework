@@ -4,7 +4,7 @@ using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Settings;
-public partial class AppearanceSettingsView : Form, IAppearanceSettings, IThemeable {
+public partial class AppearanceSettingsView : Form, IAppearanceSettingsView, IThemeable {
     public event EventHandler? DarkModeCheckedChanged;
     public event EventHandler? ToolTipsCheckedChanged;
     public event EventHandler? FontNameChanged;

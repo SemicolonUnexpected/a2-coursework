@@ -5,11 +5,11 @@ using a2_coursework.Presenter.CleaningJob;
 using a2_coursework.View.CleaningJob;
 using a2_coursework.View.Users;
 
-namespace a2_coursework.Factory; 
+namespace a2_coursework.Factory;
 public class CleaningJobFactory {
-    public static (BookCleaningJobView view, BookCleaningJobPresenter presenter) CreateBookCleaningJob() {
+    public static (BookCleaningJobView view, BookCleaningJobPresenter presenter) CreateBookCleaningJob(StaffModel staff) {
         BookCleaningJobView view = new();
-        BookCleaningJobPresenter presenter = new(view);
+        BookCleaningJobPresenter presenter = new(view, staff);
 
         return (view, presenter);
     }
@@ -56,9 +56,9 @@ public class CleaningJobFactory {
         return (view, presenter);
     }
 
-    public static (EditCleaningJobView view, EditCleaningJobPresenter presenter) CreateEditCleaningJob(CleaningJobModel model) {
+    public static (EditCleaningJobView view, EditCleaningJobPresenter presenter) CreateEditCleaningJob(CleaningJobModel model, StaffModel staff) {
         EditCleaningJobView view = new();
-        EditCleaningJobPresenter presenter = new(view, model);
+        EditCleaningJobPresenter presenter = new(view, model, staff);
 
         return (view, presenter);
     }

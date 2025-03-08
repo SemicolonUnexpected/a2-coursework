@@ -1,9 +1,0 @@
-@startuml
-interface IManageStockWarningView {
-    +  <<event>> LowQuantityChanged : EventHandler? 
-    +  <<event>> HighQuantityChanged : EventHandler? 
-    + LowQuantity : int <<get>> <<set>>
-    + HighQuantity : int <<get>> <<set>>
-}
-IChildView <|-- IManageStockWarningView
-@enduml
