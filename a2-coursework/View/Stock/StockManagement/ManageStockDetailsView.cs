@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.Stock.StockManagement;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.Stock;
+namespace a2_coursework.View.Stock.StockManagement;
 public partial class ManageStockDetailsView : Form, IManageStockDetailsView, IThemeable {
     public event EventHandler? DescriptionChanged;
     public event EventHandler? NameChanged;

@@ -1,13 +1,13 @@
-﻿using a2_coursework.Model.Staff;
-using a2_coursework.Model.Stock;
+﻿using a2_coursework.Model.Stock;
 using QuestPDF.Fluent;
 
 namespace a2_coursework.Model.Reports; 
 public static class StockReportGenerator {
-    public static  async Task<byte[]> StockItemsReport() {
+    public static  async Task<MemoryStream> StockItemsReport() {
         List<StockModel> models = await StockDAL.GetStock();
+        MemoryStream memoryStream = new();
 
-        Document document = ReportGenerator.GetBaseReport("Staff security details", page => {
+        ReportGenerator.GetBaseReport("Staff security details", page => {
             page.Content().Table(table => {
                 table.ColumnsDefinition(columns => {
                     columns.ConstantColumn(30);
@@ -30,8 +30,8 @@ public static class StockReportGenerator {
                     table.Cell().Padding(8).Text(stock.Quantity.ToString());
                 }
             });
-        });
+        }).GeneratePdf(memoryStream);
 
-        return document.GeneratePdf();
+        return memoryStream;
     }
 }

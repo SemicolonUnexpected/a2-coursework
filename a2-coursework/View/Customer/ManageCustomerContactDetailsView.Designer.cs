@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.CleaningJob {
-    partial class ManageCustomerContactDetailsView {
+    partial class ManageCustomerContactDetails {
         /// <summary>
         /// Required designer variable.
         /// </summary>

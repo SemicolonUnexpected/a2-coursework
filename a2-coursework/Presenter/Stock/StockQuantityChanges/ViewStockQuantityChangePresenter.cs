@@ -30,7 +30,7 @@ public class ViewStockQuantityChangePresenter : BasePresenter<IViewStockQuantity
     private void NavigateBack() {
         if (!CanExit()) return;
 
-        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateDisplayStockQuantityChanges();
+        (IChildView view, IChildPresenter presenter) = StockFactory.CreateDisplayStockQuantityChanges();
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

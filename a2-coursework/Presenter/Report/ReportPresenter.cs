@@ -1,15 +1,17 @@
 ﻿using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Report;
+using PdfiumViewer;
 
 namespace a2_coursework.Presenter.Report;
 public class ReportPresenter : BasePresenter<IReportView>, IChildPresenter, INavigatingPresenter {
-    private byte[]? _pdf;
-    private readonly Task<byte[]> _getPdf;
-    private Func<(IChildView view, IChildPresenter presenter)>? _back;
+    private MemoryStream? _pdfMemoryStream;
+    private PdfDocument? _pdf;
+    private readonly Task<MemoryStream> _getPdf;
+    private readonly Func<(IChildView view, IChildPresenter presenter)>? _back;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public ReportPresenter(IReportView view, string reportName, Task<byte[]> getPdf, Func<(IChildView view, IChildPresenter presenter)>? back = null) : base(view) {
+    public ReportPresenter(IReportView view, string reportName, Task<MemoryStream> getPdf, Func<(IChildView view, IChildPresenter presenter)>? back = null) : base(view) {
         _getPdf = getPdf;
         if (back is not null) _view.BackVisible = true;
 
@@ -23,7 +25,7 @@ public class ReportPresenter : BasePresenter<IReportView>, IChildPresenter, INav
 
     private void OnDownload(object? sender, EventArgs e) => Download();
     private void OnBack(object? sender, EventArgs e) => NavigateBack();
-    private void OnShown(object? sender, EventArgs e) => ShowReport();
+    private void OnShown(object? sender, EventArgs e) => Task.Run(ShowReport);
 
     private void NavigateBack() {
         if (_back is null) return;
@@ -33,14 +35,17 @@ public class ReportPresenter : BasePresenter<IReportView>, IChildPresenter, INav
     }
 
     private async void ShowReport() {
-        _pdf = await _getPdf;
-        PopulatePdf(_pdf);
-    }
-
-
-    private void PopulatePdf(byte[] pdf) {
-        _pdf = pdf;
-        _view.Pdf = _pdf;
+        try {
+            _pdfMemoryStream = await _getPdf;
+            _pdf = PdfDocument.Load(_pdfMemoryStream);
+            _view.Invoke(() => {
+                try {
+                    _view.Pdf = _pdf;
+                }
+                catch { }
+            });
+        }
+        catch { }
     }
 
     private void Download() {
@@ -48,7 +53,7 @@ public class ReportPresenter : BasePresenter<IReportView>, IChildPresenter, INav
 
         try {
             if (_view.GetFileName(out string name)) {
-                File.WriteAllBytes(name, _pdf);
+                File.WriteAllBytes(name, _pdfMemoryStream!.ToArray());
                 MessageBox.Show("Saved the report file successfully", "Success");
             }
         }
@@ -63,6 +68,8 @@ public class ReportPresenter : BasePresenter<IReportView>, IChildPresenter, INav
         _view.Download -= OnDownload;
         _view.Back -= OnBack;
         _view.Shown -= OnShown;
+
+        _pdfMemoryStream?.Dispose();
 
         base.CleanUp();
     }

@@ -3,10 +3,11 @@ using QuestPDF.Fluent;
 
 namespace a2_coursework.Model.Reports;
 public static class StaffReportGenerator {
-    public static  async Task<byte[]> StaffSecurityReport() {
+    public static  async Task<MemoryStream> StaffSecurityReport() {
         List<StaffModel> models = await StaffDAL.GetStaff();
+        MemoryStream memoryStream = new();
 
-        Document document = ReportGenerator.GetBaseReport("Staff security details", page => {
+        ReportGenerator.GetBaseReport("Staff security details", page => {
             page.Content().Table(table => {
                 table.ColumnsDefinition(columns => {
                     columns.ConstantColumn(30);
@@ -35,8 +36,8 @@ public static class StaffReportGenerator {
                     table.Cell().Padding(8).Text(staff.LastPasswordChange.ToString("dd MMM yyyy"));
                 }
             });
-        });
+        }).GeneratePdf(memoryStream);
 
-        return document.GeneratePdf();
+        return memoryStream;
     }
 }

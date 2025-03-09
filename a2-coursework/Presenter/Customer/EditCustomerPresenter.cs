@@ -35,7 +35,7 @@ public class EditCustomerPresenter : ParentEditPresenter<IEditCustomerView, Cust
     #region Contact Details
 
     private (IChildView childView, INotifyingChildPresenter childPresenter) GetContactDetails() {
-        (ManageCustomerContactDetailsView view, ManageCustomerContactDetailsPresenter presenter) = CustomerFactory.CreateManageCustomerContactDetails(_model);
+        (SubmitOrderView view, ManageCustomerContactDetailsPresenter presenter) = CustomerFactory.CreateManageCustomerContactDetails(_model);
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesContactDetails(presenter);
         AnyChangesCurrent = () => AnyChangesContactDetails(presenter);

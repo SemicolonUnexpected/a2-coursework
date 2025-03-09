@@ -102,9 +102,9 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetContactDetailsSettings() => StaffFactory.CreateContactDetailsSettingsView(_staff);
     private (IChildView view, IChildPresenter presenter) GetAppearanceSettings() => StaffFactory.CreateAppearanceSettings(_staff);
     private (IChildView view, IChildPresenter presenter) GetSecuritySettings() => StaffFactory.CreateSecuritySettings(_staff);
-    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => StaffFactory.CreateStockDisplay(_staff);
+    private (IChildView view, IChildPresenter presenter) GetStockDisplayView() => StockFactory.CreateStockDisplay(_staff);
     private (IChildView view, IChildPresenter presenter) GetChangePasswordView() => StaffFactory.CreateChangeStaffPassword(_staff);
-    private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => StaffFactory.CreateDisplayStockQuantityChanges();
+    private (IChildView view, IChildPresenter presenter) GetDisplayStockQuantityChangesView() => StockFactory.CreateDisplayStockQuantityChanges();
     private (IChildView view, IChildPresenter presenter) GetDisplayStaff() => StaffFactory.CreateDisplayStaff(_staff);
     private (IChildView view, IChildPresenter presenter) GetDisplayCustomers() => CustomerFactory.CreateDisplayCustomer();
     private (IChildView view, IChildPresenter presenter) GetDisplayJobOptions() => CleaningJobOptionFactory.CreateDisplayCleaningJobOption();

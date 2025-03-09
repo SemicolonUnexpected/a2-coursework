@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.Stock {
+﻿namespace a2_coursework.View.Stock.StockManagement {
     partial class ManageStockDetailsView {
         /// <summary>
         /// Required designer variable.

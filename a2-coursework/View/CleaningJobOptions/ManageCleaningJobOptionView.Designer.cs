@@ -187,7 +187,7 @@
             Controls.Add(lblName);
             Controls.Add(pnlUnitCost);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "ManageCleaningJobOptionView";
+            CleaningJobName = "ManageCleaningJobOptionView";
             Text = "ContactDetailsSettingsView";
             ((System.ComponentModel.ISupportInitialize)nudUnitCost).EndInit();
             pnlUnitCost.ResumeLayout(false);

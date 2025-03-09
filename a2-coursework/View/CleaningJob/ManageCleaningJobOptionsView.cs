@@ -153,7 +153,10 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
 
     public int Quantity {
         get => nudQuantity.Value;
-        set => nudQuantity.Value = value;
+        set {
+            nudQuantity.Value = value;
+            tbQuantity.Text = value.ToString();
+        }
     }
 
     public decimal Subtotal {
@@ -169,7 +172,8 @@ public partial class ManageCleaningJobOptionsView : Form, IDisplayView<DisplayCl
         set {
             tbName.ReadOnly = value;
             tbDescription.ReadOnly = value;
-            nudQuantity.Enabled = value;
+            nudQuantity.Visible = value;
+            tbQuantity.Visible = !value;
         }
     }
 

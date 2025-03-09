@@ -11,7 +11,6 @@ public partial class ReportView : Form, IThemeable, IReportView {
     public ReportView() {
         InitializeComponent();
 
-        pdfViewer.MouseWheel += pdfViewer_MouseWheel;
         Theme();
         Theming.Theme.AppearanceThemeChanged += Theme;
 
@@ -43,16 +42,13 @@ public partial class ReportView : Form, IThemeable, IReportView {
         toolTip.Active = showToolTips;
     }
 
-    private byte[]? _pdf;
-    public byte[]? Pdf {
+    private PdfDocument? _pdf;
+    public PdfDocument? Pdf {
         get => _pdf;
         set {
             _pdf = value;
-            if (_pdf != null) {
-                var stream = new MemoryStream(_pdf);
-                var document = PdfDocument.Load(stream);
-                pdfRenderer1.Load(document);
-            }
+            if (_pdf is null) return;
+            pdfRenderer1.Load(_pdf);
         }
     }
 
@@ -89,23 +85,23 @@ public partial class ReportView : Form, IThemeable, IReportView {
         }
     }
 
-    private void pdfViewer_MouseWheel(object? sender, MouseEventArgs e) {
-        if (pdfViewer.Document == null) return;
+    //private void pdfViewer_MouseWheel(object? sender, MouseEventArgs e) {
+    //    if (pdfViewer.Document == null) return;
 
-        if ((ModifierKeys & Keys.Control) == Keys.Control) {
-            float zoomFactor = 1.1f;
-            float newZoom = pdfViewer.Zoom;
+    //    if ((ModifierKeys & Keys.Control) == Keys.Control) {
+    //        float zoomFactor = 1.1f;
+    //        float newZoom = pdfViewer.Zoom;
 
-            if (e.Delta > 0) {
-                newZoom *= zoomFactor;
-            }
-            else if (e.Delta < 0) {
-                newZoom /= zoomFactor;
-            }
+    //        if (e.Delta > 0) {
+    //            newZoom *= zoomFactor;
+    //        }
+    //        else if (e.Delta < 0) {
+    //            newZoom /= zoomFactor;
+    //        }
 
-            newZoom = Math.Max(0.1f, Math.Min(5.0f, newZoom));
+    //        newZoom = Math.Max(0.1f, Math.Min(5.0f, newZoom));
 
-            pdfViewer.Zoom = newZoom;
-        }
-    }
+    //        pdfViewer.Zoom = newZoom;
+    //    }
+    //}
 }

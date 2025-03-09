@@ -12,8 +12,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
 
     public event EventHandler? Add;
     public event EventHandler? Edit;
-    public event EventHandler? ArchiveToggled;
-    public event EventHandler? ShowArchivedChanged;
+    public event EventHandler? Delete;
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
@@ -32,8 +31,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
 
         topBar.Add += (s, e) => Add?.Invoke(this, EventArgs.Empty);
         topBar.Edit += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
-        topBar.ArchiveToggled += (s, e) => ArchiveToggled?.Invoke(this, EventArgs.Empty);
-        topBar.ShowArchivedToggled += (s, e) => ShowArchivedChanged?.Invoke(this, EventArgs.Empty);
+        topBar.Delete += (s, e) => Delete?.Invoke(this, EventArgs.Empty);
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
@@ -117,21 +115,12 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
         }
     }
 
-    public bool ShowArchivedItems {
-        get => topBar.ShowArchived;
-    }
-
     public string DataGridText {
         get => lblError.Text;
         set {
             lblError.Text = value;
             lblError.Visible = lblError.Text != "";
         }
-    }
-
-    public bool SelectedItemArchived {
-        get => topBar.Restore;
-        set => topBar.Restore = value;
     }
 
     public void DisplayItems(BindingList<DisplayOrderModel> items) {

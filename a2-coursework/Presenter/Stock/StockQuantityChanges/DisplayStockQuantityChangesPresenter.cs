@@ -118,7 +118,7 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
     private void View() {
         if (_view.SelectedItem is null) return;
 
-        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateViewStockQuantityChange(_modelDisplayMap[_view.SelectedItem]);
+        (IChildView view, IChildPresenter presenter) = StockFactory.CreateViewStockQuantityChange(_modelDisplayMap[_view.SelectedItem]);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

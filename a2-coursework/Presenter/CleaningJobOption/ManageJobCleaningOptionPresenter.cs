@@ -23,8 +23,8 @@ public class ManageJobCleaningOptionPresenter : BasePresenter<IManageCleaningJob
     private void OnUnitCostChanged(object? sender, EventArgs e) => DetailsChanged?.Invoke(this, EventArgs.Empty);
 
     public string Name {
-        get => _view.Name;
-        set => _view.Name = value;
+        get => _view.CleaningJobName;
+        set => _view.CleaningJobName = value;
     }
 
     private bool _nameValid = true;
@@ -48,7 +48,7 @@ public class ManageJobCleaningOptionPresenter : BasePresenter<IManageCleaningJob
     private void SetCharacterCount() => _view.SetCharacterCount(_view.Description.Length);
 
     private async void ValidateName() {
-        ValidationRequestEventArgs<string> validationRequestEventArgs = new(_view.Name);
+        ValidationRequestEventArgs<string> validationRequestEventArgs = new(_view.CleaningJobName);
         ValidateNameRequest?.Invoke(this, validationRequestEventArgs);
         if (validationRequestEventArgs.Valid is null && validationRequestEventArgs.ValidationTask is null) return;
         _nameValid = validationRequestEventArgs.Valid ?? await validationRequestEventArgs.ValidationTask!;

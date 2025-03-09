@@ -36,7 +36,7 @@ public class AddCustomerPresenter : AddPresenter<IAddCustomerView, CustomerModel
     #region Contact Details
 
     private (IChildView childView, ICleanable childPresenter) GetContactDetails() {
-        (ManageCustomerContactDetailsView view, ManageCustomerContactDetailsPresenter presenter) = CustomerFactory.CreateManageCustomerContactDetails(_model);
+        (SubmitOrderView view, ManageCustomerContactDetailsPresenter presenter) = CustomerFactory.CreateManageCustomerContactDetails(_model);
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesContactDetails(presenter);
         ValidateCurrent = () => ValidateInputsContactDetails(presenter);

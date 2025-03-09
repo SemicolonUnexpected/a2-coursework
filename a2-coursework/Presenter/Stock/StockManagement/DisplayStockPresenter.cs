@@ -106,7 +106,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
         try {
             _isAsyncRunning = true;
 
-            bool success = await StockDAL.UpdateArchived(stockItem.Id, !stockItem.Archived);
+            bool success = await StockDAL.UpdateStockArchived(stockItem.Id, !stockItem.Archived);
 
             if (success) {
                 stockItem.Archived = !stockItem.Archived;
@@ -126,14 +126,14 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateEditStock(_modelDisplayMap[_view.SelectedItem], _staff);
+        (IChildView view, IChildPresenter presenter) = StockFactory.CreateEditStock(_modelDisplayMap[_view.SelectedItem], _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
         if (_view.SelectedItem is null) return;
 
-        (IChildView view, IChildPresenter presenter) = StaffFactory.CreateAddStock(_staff);
+        (IChildView view, IChildPresenter presenter) = StockFactory.CreateAddStock(_staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

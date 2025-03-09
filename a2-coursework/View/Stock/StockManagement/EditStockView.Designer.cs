@@ -24,11 +24,11 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            topMenu = new UserControls.TopMenu();
+            topMenu = new a2_coursework.UserControls.TopMenu();
             pnlHolder = new Panel();
-            approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
+            approveChangesBar = new a2_coursework.User_Controls.Settings.ApproveChangesBar();
             pnlMenu = new Panel();
-            btnBack = new CustomControls.CustomButton();
+            btnBack = new a2_coursework.CustomControls.CustomButton();
             toolTip = new ToolTip(components);
             pnlMenu.SuspendLayout();
             SuspendLayout();
@@ -36,17 +36,18 @@
             // topMenu
             // 
             topMenu.Anchor = AnchorStyles.Top | AnchorStyles.Bottom;
-            topMenu.Location = new Point(132, 3);
+            topMenu.Location = new Point(66, 3);
             topMenu.Margin = new Padding(100);
             topMenu.MenuItems = new string[]
     {
     "Stock Details",
     "Quantity",
-    "Warnings"
+    "Warnings",
+    "Unit Cost"
     };
             topMenu.Name = "topMenu";
             topMenu.SelectedIndex = 0;
-            topMenu.Size = new Size(390, 34);
+            topMenu.Size = new Size(522, 34);
             topMenu.TabIndex = 24;
             // 
             // pnlHolder
@@ -89,7 +90,7 @@
             btnBack.BorderThickness = 1F;
             btnBack.ClickedBorderColor = Color.FromArgb(39, 39, 42);
             btnBack.ClickedColor = Color.FromArgb(39, 39, 42);
-            btnBack.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnBack.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnBack.Cursor = Cursors.Hand;
             btnBack.DisabledBorderColor = Color.Empty;
             btnBack.DisabledColor = Color.Empty;

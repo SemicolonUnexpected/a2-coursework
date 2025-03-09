@@ -46,6 +46,7 @@
             tbName = new a2_coursework.CustomControls.CustomTextBox();
             tbTotal = new a2_coursework.CustomControls.CustomTextBox();
             lblTotal = new Label();
+            tbQuantity = new a2_coursework.CustomControls.CustomTextBox();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             pnlDetails.SuspendLayout();
@@ -218,6 +219,7 @@
             pnlDetails.Controls.Add(tbSubtotal);
             pnlDetails.Controls.Add(tbName);
             pnlDetails.Controls.Add(nudQuantity);
+            pnlDetails.Controls.Add(tbQuantity);
             pnlDetails.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlDetails.Location = new Point(371, 12);
             pnlDetails.Margin = new Padding(5);
@@ -385,6 +387,32 @@
             lblTotal.TabIndex = 24;
             lblTotal.Text = "Total:";
             // 
+            // tbQuantity
+            // 
+            tbQuantity.Anchor = AnchorStyles.Right;
+            tbQuantity.BackColor = Color.FromArgb(9, 9, 10);
+            tbQuantity.BorderColor = Color.FromArgb(39, 39, 42);
+            tbQuantity.BorderThickness = 1F;
+            tbQuantity.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbQuantity.Font = new Font("Bahnschrift", 12F);
+            tbQuantity.ForeColor = Color.Empty;
+            tbQuantity.HoverColor = Color.Empty;
+            tbQuantity.Location = new Point(10, 239);
+            tbQuantity.Margin = new Padding(5);
+            tbQuantity.MaximumSize = new Size(355, 79);
+            tbQuantity.MaxLength = 256;
+            tbQuantity.MultiLine = false;
+            tbQuantity.Name = "tbQuantity";
+            tbQuantity.PlaceholderText = "";
+            tbQuantity.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
+            tbQuantity.ReadOnly = true;
+            tbQuantity.Size = new Size(249, 40);
+            tbQuantity.TabIndex = 23;
+            tbQuantity.TextAlign = HorizontalAlignment.Left;
+            tbQuantity.TextBoxInset = new Padding(10);
+            tbQuantity.UsePasswordChar = false;
+            tbQuantity.Visible = false;
+            // 
             // ManageCleaningJobOptionsView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -428,5 +456,6 @@
         private Label lblTotal;
         private Label lblSubtotal;
         private CustomControls.CustomTextBox tbSubtotal;
+        private CustomControls.CustomTextBox tbQuantity;
     }
 }

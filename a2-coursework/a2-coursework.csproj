@@ -33,8 +33,7 @@
     <PackageReference Include="LiveCharts.WinForms.NetCore3" Version="0.9.8" />
     <PackageReference Include="Microsoft.Data.SqlClient" Version="6.0.1" />
     <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
-    <PackageReference Include="Pdfium.Net.SDK" Version="4.97.2704" />
-    <PackageReference Include="PdfiumViewer.Native.x86.v8-xfa" Version="2018.4.8.256" />
+    <PackageReference Include="PDFium.x64.v8-xfa" Version="4194.0.0" />
     <PackageReference Include="PdfiumViewer.Native.x86_64.v8-xfa" Version="2018.4.8.256" />
     <PackageReference Include="PdfiumViewer.Updated" Version="2.14.5" />
     <PackageReference Include="QuestPDF" Version="2025.1.5" />
@@ -106,13 +105,28 @@
     <Compile Update="View\Order\DisplayOrderView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Order\ApproveOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\SubmitOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\ManageOrderStockView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\Order\OrderApproval\DisplayCustomerView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\SelectCleaningJobOptionsView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Order\StockRequest\DisplayCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\SignIn\DashboardView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Stock\StockManagement\ManageStockUnitCostView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Stock\StockManagement\ManageStockPriceView.cs">

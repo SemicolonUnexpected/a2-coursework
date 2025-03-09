@@ -20,14 +20,16 @@ public static class StockDAL {
         while (await reader.ReadAsync()) {
             int id = reader.GetInt32(reader.GetOrdinal("Id"));
             stock.Add(
-                new StockModel(Id: id,
+                new StockModel(
+                    id: id,
                     name: reader.GetString(reader.GetOrdinal("Name")),
                     description: reader.GetString(reader.GetOrdinal("Description")),
-                    SKU: reader.GetString(reader.GetOrdinal("SKU")),
+                    sku: reader.GetString(reader.GetOrdinal("SKU")),
                     quantity: reader.GetInt32(reader.GetOrdinal("Quantity")),
                     archived: reader.GetBoolean(reader.GetOrdinal("Archived")),
                     lowQuantity: reader.GetInt32(reader.GetOrdinal("LowQuantity")),
-                    highQuantity: reader.GetInt32(reader.GetOrdinal("HighQuantity"))
+                    highQuantity: reader.GetInt32(reader.GetOrdinal("HighQuantity")),
+                    unitCost: reader.GetDecimal(reader.GetOrdinal("UnitCost"))
                 )
             );
         }
@@ -51,82 +53,97 @@ public static class StockDAL {
         command.Parameters.AddWithValue("@lowQuantity", stock.LowQuantity);
         command.Parameters.AddWithValue("@archived", stock.Archived);
         command.Parameters.AddWithValue("@reasonForQuantityChange", reasonForQuantityChange);
+        command.Parameters.AddWithValue("@unitCost", stock.UnitCost);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateQuantity(int stockId, int staffId, int quantity, DateTime date, string reasonForQuantityChange) {
+    public static async Task<bool> UpdateStockQuantity(int stockId, int staffId, int quantity, DateTime date, string reasonForQuantityChange) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("UpdateStockQuantity", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("stockId", stockId);
-        command.Parameters.AddWithValue("staffId", staffId);
-        command.Parameters.AddWithValue("quantity", quantity);
-        command.Parameters.AddWithValue("date", date);
-        command.Parameters.AddWithValue("reasonForQuantityChange", reasonForQuantityChange);
+        command.Parameters.AddWithValue("@stockId", stockId);
+        command.Parameters.AddWithValue("@staffId", staffId);
+        command.Parameters.AddWithValue("@quantity", quantity);
+        command.Parameters.AddWithValue("@date", date);
+        command.Parameters.AddWithValue("@reasonForQuantityChange", reasonForQuantityChange);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateArchived(int id, bool archived) {
+    public static async Task<bool> UpdateStockArchived(int id, bool archived) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("UpdateStockArchived", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("Id", id);
-        command.Parameters.AddWithValue("archived", archived);
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@archived", archived);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> SkuExists(string sku) {
+    public static async Task<bool> StockSkuExists(string sku) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
-        await using SqlCommand command = new("GetStockBySKU", connection);
+        await using SqlCommand command = new("GetStockBySku", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("sku", sku);
+        command.Parameters.AddWithValue("@sku", sku);
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
         return reader.HasRows;
     }
 
-    public static async Task<bool> UpdateDetails(int id, string name, string description, string sku, bool archived) {
+    public static async Task<bool> UpdateStockDetails(int id, string name, string description, string sku, bool archived) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("UpdateStockDetails", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("id", id);
-        command.Parameters.AddWithValue("name", name);
-        command.Parameters.AddWithValue("description", description);
-        command.Parameters.AddWithValue("sku", sku);
-        command.Parameters.AddWithValue("archived", archived);
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@name", name);
+        command.Parameters.AddWithValue("@description", description);
+        command.Parameters.AddWithValue("@sku", sku);
+        command.Parameters.AddWithValue("@archived", archived);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
 
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> UpdateWarnings(int id, int highQuantity, int lowQuantity) {
+    public static async Task<bool> UpdateStockWarnings(int id, int highQuantity, int lowQuantity) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("UpdateStockWarnings", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("id", id);
-        command.Parameters.AddWithValue("lowQuantity", lowQuantity);
-        command.Parameters.AddWithValue("highQuantity", highQuantity);
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@lowQuantity", lowQuantity);
+        command.Parameters.AddWithValue("@highQuantity", highQuantity);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
+    public static async Task<bool> UpdateStockUnitCost(int id, decimal unitCost) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateStockUnitCost", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@unitCost", unitCost);
 
         int rowsAffected = await command.ExecuteNonQueryAsync();
 

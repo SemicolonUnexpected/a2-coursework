@@ -54,9 +54,10 @@ public partial class ManageCleaningJobOptionView : Form, IManageCleaningJobOptio
         lblCharacterLimit.SetFontName(fontName);
         pnlUnitCost.SetFontName(fontName);
         lblUnitCost.SetFontName(fontName);
+        nudUnitCost.SetFontName(fontName);
     }
 
-    public string Name {
+    public string CleaningJobName {
         get => tbName.Text;
         set => tbName.Text = value;
     }

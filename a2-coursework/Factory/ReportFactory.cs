@@ -3,7 +3,7 @@ using a2_coursework.View;
 
 namespace a2_coursework.Factory; 
 public static class ReportFactory {
-    public static (ReportView view, ReportPresenter presenter) CreateReport(string reportName, Task<byte[]> getPdf) {
+    public static (ReportView view, ReportPresenter presenter) CreateReport(string reportName, Task<MemoryStream> getPdf) {
         ReportView view = new();
         ReportPresenter presenter = new(view, reportName, getPdf);
 

@@ -35,7 +35,7 @@
             columnStatus = new DataGridViewTextBoxColumn();
             sb = new a2_coursework.CustomControls.CustomScrollBar();
             lblOrders = new Label();
-            topBar = new a2_coursework.User_Controls.DataGrid.AddEditArchiveSearchBar();
+            topBar = new a2_coursework.User_Controls.DataGrid.AddEditDeleteSearchBar();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -189,18 +189,16 @@
             // topBar
             // 
             topBar.AddEnabled = true;
-            topBar.Anchor = AnchorStyles.Top;
-            topBar.ArchiveEnabled = true;
             topBar.BackColor = Color.FromArgb(9, 9, 10);
+            topBar.DeleteEnabled = true;
             topBar.EditEnabled = true;
             topBar.Location = new Point(12, 75);
             topBar.Name = "topBar";
-            topBar.Padding = new Padding(0, 2, 0, 2);
             topBar.SearchEnabled = true;
             topBar.SearchText = "";
-            topBar.ShowArchivedEnabled = true;
-            topBar.Size = new Size(625, 44);
-            topBar.TabIndex = 11;
+            topBar.Size = new Size(623, 40);
+            topBar.TabIndex = 10;
+            topBar.ViewMode = false;
             // 
             // DisplayOrderView
             // 
@@ -224,12 +222,12 @@
 
         private CustomControls.CustomPanel pnlData;
         private Label lblOrders;
-        private User_Controls.DataGrid.AddEditArchiveSearchBar topBar;
         private DataGridView dataGridView;
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
         private DataGridViewTextBoxColumn columnId;
         private DataGridViewTextBoxColumn columnStaff;
         private DataGridViewTextBoxColumn columnStatus;
+        private User_Controls.DataGrid.AddEditDeleteSearchBar topBar;
     }
 }

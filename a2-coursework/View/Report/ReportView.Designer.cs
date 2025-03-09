@@ -24,48 +24,12 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            pdfViewer = new Patagames.Pdf.Net.Controls.WinForms.PdfViewer();
             btnDownload = new a2_coursework.CustomControls.CustomButton();
             toolTip = new ToolTip(components);
             btnBack = new a2_coursework.CustomControls.CustomButton();
             saveFileDialog = new SaveFileDialog();
             pdfRenderer1 = new PdfiumViewer.PdfRenderer();
             SuspendLayout();
-            // 
-            // pdfViewer
-            // 
-            pdfViewer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pdfViewer.BackColor = SystemColors.ControlDark;
-            pdfViewer.CurrentIndex = -1;
-            pdfViewer.CurrentPageHighlightColor = Color.Empty;
-            pdfViewer.Document = null;
-            pdfViewer.FormHighlightColor = Color.Transparent;
-            pdfViewer.FormsBlendMode = Patagames.Pdf.Enums.BlendTypes.FXDIB_BLEND_MULTIPLY;
-            pdfViewer.LoadingIconText = "Loading...";
-            pdfViewer.Location = new Point(88, 12);
-            pdfViewer.Margin = new Padding(4, 3, 4, 3);
-            pdfViewer.MouseMode = Patagames.Pdf.Net.Controls.WinForms.MouseModes.Default;
-            pdfViewer.Name = "pdfViewer";
-            pdfViewer.OptimizedLoadThreshold = 1000;
-            pdfViewer.Padding = new Padding(12, 12, 12, 12);
-            pdfViewer.PageAlign = ContentAlignment.MiddleCenter;
-            pdfViewer.PageAutoDispose = true;
-            pdfViewer.PageBackColor = Color.White;
-            pdfViewer.PageBorderColor = Color.Black;
-            pdfViewer.PageMargin = new Padding(10);
-            pdfViewer.PageSeparatorColor = SystemColors.HighlightText;
-            pdfViewer.RenderFlags = Patagames.Pdf.Enums.RenderFlags.FPDF_LCD_TEXT | Patagames.Pdf.Enums.RenderFlags.FPDF_NO_CATCH;
-            pdfViewer.ShowCurrentPageHighlight = true;
-            pdfViewer.ShowLoadingIcon = true;
-            pdfViewer.ShowPageSeparator = true;
-            pdfViewer.Size = new Size(486, 476);
-            pdfViewer.SizeMode = Patagames.Pdf.Net.Controls.WinForms.SizeModes.Zoom;
-            pdfViewer.TabIndex = 0;
-            pdfViewer.TextSelectColor = Color.FromArgb(70, 70, 130, 180);
-            pdfViewer.TilesCount = 2;
-            pdfViewer.UseProgressiveRender = true;
-            pdfViewer.ViewMode = Patagames.Pdf.Net.Controls.WinForms.ViewModes.Vertical;
-            pdfViewer.Zoom = 1.1F;
             // 
             // btnDownload
             // 
@@ -117,11 +81,13 @@
             // 
             // pdfRenderer1
             // 
-            pdfRenderer1.Location = new Point(88, 12);
+            pdfRenderer1.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
+            pdfRenderer1.BackColor = Color.Gray;
+            pdfRenderer1.Location = new Point(82, 12);
             pdfRenderer1.Name = "pdfRenderer1";
             pdfRenderer1.Page = 0;
             pdfRenderer1.Rotation = PdfiumViewer.PdfRotation.Rotate0;
-            pdfRenderer1.Size = new Size(364, 242);
+            pdfRenderer1.Size = new Size(486, 476);
             pdfRenderer1.TabIndex = 19;
             pdfRenderer1.Text = "pdfRenderer1";
             pdfRenderer1.ZoomMode = PdfiumViewer.PdfViewerZoomMode.FitHeight;
@@ -135,7 +101,6 @@
             Controls.Add(pdfRenderer1);
             Controls.Add(btnBack);
             Controls.Add(btnDownload);
-            Controls.Add(pdfViewer);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ReportView";
             Text = "StaffReport";
@@ -143,8 +108,6 @@
         }
 
         #endregion
-
-        private Patagames.Pdf.Net.Controls.WinForms.PdfViewer pdfViewer;
         private CustomControls.CustomButton btnDownload;
         private ToolTip toolTip;
         private SaveFileDialog saveFileDialog;
