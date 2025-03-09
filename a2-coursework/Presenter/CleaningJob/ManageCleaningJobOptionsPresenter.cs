@@ -57,6 +57,11 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
     private Dictionary<int, int> _newQuantities = [];
     public Dictionary<int, int> NewQuantities => _newQuantities;
 
+    public bool ReadOnly {
+        get => !_view.Editable;
+        set => _view.Editable = !value;
+    }
+
     private void LoadDetails(CleaningJobOptionModel model) {
         _view.Editable = true;
         _view.CleaningOptionName = model.Name;

@@ -34,6 +34,31 @@ public static class CustomerDAL {
         return customers;
     }
 
+    public static async Task<CustomerModel?> GetCustomerById(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetCustomerById", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        if (await reader.ReadAsync()) {
+            return new CustomerModel(
+                id: reader.GetInt32(reader.GetOrdinal("Id")),
+                forename: reader.GetString(reader.GetOrdinal("Forename")),
+                surname: reader.GetString(reader.GetOrdinal("Surname")),
+                email: reader.GetString(reader.GetOrdinal("Email")),
+                phoneNumber: reader.GetString(reader.GetOrdinal("PhoneNumber")),
+                address: reader.GetString(reader.GetOrdinal("Address")),
+                archived: reader.GetBoolean(reader.GetOrdinal("Archived"))
+            );
+        }
+
+        return null;
+    }
+
     public static async Task<List<CustomerModel>> GetNonArchivedCustomers() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();

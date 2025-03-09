@@ -4,7 +4,7 @@ using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Model.Staff;
-using a2_coursework.View.CleaningJob;
+using a2_coursework.View.Order;
 
 namespace a2_coursework.Presenter.CleaningJob;
 

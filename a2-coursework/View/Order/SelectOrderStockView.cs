@@ -1,10 +1,11 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.Order;
 using a2_coursework.Theming;
 using a2_coursework.View.Stock.StockManagement;
 using System.ComponentModel;
 
-namespace a2_coursework.View.CleaningJob;
+namespace a2_coursework.View.Order;
 public partial class SelectOrderStockView : Form, IDisplayView<DisplayStockModel>, IChildView, IThemeable, ISelectOrderStockView {
     private readonly BindingSource _bindingSource = [];
 
@@ -96,12 +97,12 @@ public partial class SelectOrderStockView : Form, IDisplayView<DisplayStockModel
         set => topBar.SearchText = value;
     }
 
-    public List<DisplayStockOptionModel> SelectedItems {
+    public List<DisplayStockModel> SelectedItems {
         get {
-            List<DisplayStockOptionModel> items = [];
+            List<DisplayStockModel> items = [];
 
             foreach (DataGridViewRow row in dataGridView.SelectedRows) {
-                items.Add(((BindingList<DisplayStockOptionModel>)_bindingSource.DataSource)[row.Index]);
+                items.Add(((BindingList<DisplayStockModel>)_bindingSource.DataSource)[row.Index]);
             }
 
             return items;
@@ -112,7 +113,7 @@ public partial class SelectOrderStockView : Form, IDisplayView<DisplayStockModel
         dataGridView.ClearSelection();
 
         foreach (DataGridViewRow row in dataGridView.Rows) {
-            DisplayStockOptionModel model = (DisplayStockOptionModel)row.DataBoundItem;
+            DisplayStockModel model = (DisplayStockModel)row.DataBoundItem;
 
             if (models.Contains(model.Id)) {
                 row.Selected = true;
@@ -128,7 +129,7 @@ public partial class SelectOrderStockView : Form, IDisplayView<DisplayStockModel
         }
     }
 
-    public void DisplayItems(BindingList<DisplayStockOptionModel> items) {
+    public void DisplayItems(BindingList<DisplayStockModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();

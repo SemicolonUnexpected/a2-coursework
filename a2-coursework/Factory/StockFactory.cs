@@ -5,6 +5,7 @@ using a2_coursework.Presenter.Stock.StockQuantityChanges;
 using a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
 using a2_coursework.View;
 using a2_coursework.View.Stock;
+using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Factory;
 

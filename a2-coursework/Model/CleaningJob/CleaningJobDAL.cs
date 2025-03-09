@@ -90,6 +90,31 @@ public static class CleaningJobDAL {
         return cleaningJobStaffIds;
     }
 
+    public static async Task<List<StaffModel>> GetCleaningJobCleaningStaff(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetCleaningJobStaffIds", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<int> cleaningJobStaffIds = [];
+
+        while (await reader.ReadAsync()) {
+            cleaningJobStaffIds.Add(reader.GetInt32(reader.GetOrdinal("StaffId")));
+        }
+
+        List<StaffModel> cleaningJobStaff = [];
+
+        foreach(int staffId in cleaningJobStaffIds) {
+            cleaningJobStaff.Add((await StaffDAL.GetStaffById(staffId))!);
+        }
+
+        return cleaningJobStaff;
+    }
+
     public static async Task<bool> DeleteCleaningJob(int id) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();

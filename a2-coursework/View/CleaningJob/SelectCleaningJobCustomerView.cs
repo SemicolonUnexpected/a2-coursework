@@ -1,9 +1,10 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.View.CleaningJob;
+namespace a2_coursework.View.Order;
 public partial class SelectCleaningJobCustomerView : Form, IDisplayView<DisplayCustomerModel>, IChildView, IThemeable, ISelectCleaningJobCustomerView {
     private readonly BindingSource _bindingSource = [];
 

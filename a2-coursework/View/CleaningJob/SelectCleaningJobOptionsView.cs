@@ -5,7 +5,7 @@ using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.View.CleaningJob;
+namespace a2_coursework.View.Order;
 public partial class SelectCleaningJobOptionsView : Form, IDisplayView<DisplayCleaningJobOptionModel>, IChildView, IThemeable, ISelectCleaningJobOptionsView {
     private readonly BindingSource _bindingSource = [];
 

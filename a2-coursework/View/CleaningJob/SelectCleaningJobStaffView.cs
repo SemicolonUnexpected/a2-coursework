@@ -1,12 +1,11 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
-using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Theming;
 using a2_coursework.View.StaffView.StaffManagement;
 using System.ComponentModel;
 
-namespace a2_coursework.View.CleaningJob;
+namespace a2_coursework.View.Order;
 public partial class SelectCleaningJobStaffView : Form, IDisplayView<DisplayStaffModel>, IChildView, IThemeable, ISelectCleaningJobStaffView {
     private readonly BindingSource _bindingSource = [];
 
@@ -97,6 +96,15 @@ public partial class SelectCleaningJobStaffView : Form, IDisplayView<DisplayStaf
     public string SearchText {
         get => topBar.SearchText;
         set => topBar.SearchText = value;
+    }
+
+    private bool _readOnly = false;
+    public bool ReadOnly {
+        get => _readOnly;
+        set {
+            _readOnly = value;
+           lblInfo.Text = _readOnly ? "Staff assigned to the cleaning job" : "Select an appropriate number of cleaners for the job below (hold control)";
+        }
     }
 
     public List<DisplayStaffModel> SelectedItems {

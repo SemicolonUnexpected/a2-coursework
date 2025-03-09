@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.CleaningJob;
+namespace a2_coursework.View.Order;
 public partial class ManageCleaningJobDetailsView: Form, IManageCleaningJobOptionDetails, IThemeable {
     public event EventHandler? AddressChanged;
     public event EventHandler? ExtraInformationChanged;

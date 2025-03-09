@@ -4,7 +4,7 @@ using a2_coursework.Presenter.CleaningJob;
 using a2_coursework.Presenter.CleaningJobOption;
 using a2_coursework.Presenter.Customer;
 using a2_coursework.View;
-using a2_coursework.View.CleaningJob;
+using a2_coursework.View.Order;
 using a2_coursework.View.JobOption;
 using a2_coursework.View.Stock;
 

@@ -5,7 +5,7 @@ using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 using System.ComponentModel;
 
-namespace a2_coursework.View.CleaningJob; 
+namespace a2_coursework.View.Order; 
 public partial class DisplayCustomerView : Form, IDisplayView<DisplayCustomerModel>, IChildView, IThemeable, IDisplayCustomerView {
     private readonly BindingSource _bindingSource = [];
 

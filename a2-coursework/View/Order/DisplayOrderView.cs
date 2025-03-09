@@ -6,7 +6,7 @@ using a2_coursework.Theming;
 using a2_coursework.View.Order;
 using System.ComponentModel;
 
-namespace a2_coursework.View.CleaningJob; 
+namespace a2_coursework.View.Order; 
 public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, IChildView, IThemeable, IDisplayOrderView {
     private readonly BindingSource _bindingSource = [];
 
@@ -153,11 +153,17 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
     }
 
     private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
-        // Format the archived
-        if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
-            if (e.Value is bool isArchived) {
-                e.Value = isArchived ? "Yes" : "No";
-            }
+        if (e.ColumnIndex == 2 && e.RowIndex >= 0) {
+            Color foreColor = (e.Value as string) switch {
+                "Draft" => ColorScheme.Current.Data,
+                "Pending" => ColorScheme.Current.Warning,
+                "Rejected" => ColorScheme.Current.Danger,
+                "Delivered" => ColorScheme.Current.Info,
+                _ => throw new ArgumentOutOfRangeException(),
+            };
+
+            e.CellStyle!.ForeColor = foreColor;
+            e.CellStyle.SelectionForeColor = foreColor;
         }
     }
 

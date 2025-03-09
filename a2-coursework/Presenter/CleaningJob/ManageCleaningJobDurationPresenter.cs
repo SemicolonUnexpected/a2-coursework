@@ -99,7 +99,12 @@ public class ManageCleaningJobDurationPresenter : BasePresenter<IManageCleaningJ
             if (value is not null) _view.EndTime = TimeOnly.FromDateTime((DateTime)value);
         }
     }
-    
+
+    public bool ReadOnly {
+        get => _view.ReadOnly;
+        set => _view.ReadOnly = value;
+    }
+
     public override void CleanUp() {
         _view.DateChanged -= OnDateChanged;
         _view.StartTimeChanged -= OnStartTimeChanged;

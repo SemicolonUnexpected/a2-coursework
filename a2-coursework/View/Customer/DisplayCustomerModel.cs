@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace a2_coursework.View.CleaningJob; 
+namespace a2_coursework.View.Order; 
 public class DisplayCustomerModel : INotifyPropertyChanged {
     private int _id;
     public int Id {

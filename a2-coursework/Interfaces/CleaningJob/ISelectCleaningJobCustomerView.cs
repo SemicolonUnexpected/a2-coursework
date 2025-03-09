@@ -1,6 +1,7 @@
-﻿using a2_coursework.Interfaces;
+﻿using a2_coursework.View;
+using a2_coursework.View.Order;
 
-namespace a2_coursework.View.CleaningJob; 
+namespace a2_coursework.Interfaces.CleaningJob; 
 public interface ISelectCleaningJobCustomerView : IDisplayView<DisplayCustomerModel>, IChildView {
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;

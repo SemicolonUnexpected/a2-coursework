@@ -25,9 +25,10 @@ public static class OrderDAL {
             string status = reader.GetString(reader.GetOrdinal("Status"));
             string discrepancies = reader.GetString(reader.GetOrdinal("Discrepancies"));
             string description = reader.GetString(reader.GetOrdinal("Description"));
+            int staffId = reader.GetInt32(reader.GetOrdinal("StaffId"));
 
             var order = new OrderModel(id, status, discrepancies, description) {
-                Staff = await StaffDAL.GetStaffById(id),
+                Staff = await StaffDAL.GetStaffById(staffId),
                 StockItems = await GetStockItemsForOrder(id)
             };
 
@@ -46,7 +47,7 @@ public static class OrderDAL {
 
         await using SqlCommand command = new("GetOrderStockItems", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@orderId", orderId);
+        command.Parameters.AddWithValue("@id", orderId);
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
@@ -59,10 +60,11 @@ public static class OrderDAL {
                 reader.GetInt32(reader.GetOrdinal("Quantity")),
                 reader.GetInt32(reader.GetOrdinal("LowQuantity")),
                 reader.GetInt32(reader.GetOrdinal("HighQuantity")),
-                reader.GetBoolean(reader.GetOrdinal("Archived"))
+                reader.GetBoolean(reader.GetOrdinal("Archived")),
+                reader.GetDecimal(reader.GetOrdinal("UnitCost"))
             ) {
                 Quantity = reader.GetInt32(reader.GetOrdinal("Quantity")),
-                CostAtTime = reader.GetDecimal(reader.GetOrdinal("CostAtTime"))
+                CostAtTime = reader.GetDecimal(reader.GetOrdinal("UnitCostAtTime"))
             };
 
             stockItems.Add(stockItem);

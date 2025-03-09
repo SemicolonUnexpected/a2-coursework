@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.CleaningJob {
+﻿namespace a2_coursework.View.Order {
     partial class  ManageCleaningJobDetailsView{
         /// <summary>
         /// Required designer variable.
@@ -48,7 +48,7 @@
             tbExtraInformation.MaxLength = 500;
             tbExtraInformation.MultiLine = true;
             tbExtraInformation.Name = "tbExtraInformation";
-            tbExtraInformation.PlaceholderText = "Please close the gate as the customer has a dog.";
+            tbExtraInformation.PlaceholderText = "";
             tbExtraInformation.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbExtraInformation.ReadOnly = false;
             tbExtraInformation.Size = new Size(355, 79);
@@ -136,7 +136,7 @@
             tbAddress.MaxLength = 500;
             tbAddress.MultiLine = true;
             tbAddress.Name = "tbAddress";
-            tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn\r\nDown";
+            tbAddress.PlaceholderText = "";
             tbAddress.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbAddress.ReadOnly = false;
             tbAddress.Size = new Size(355, 79);

@@ -60,10 +60,16 @@
     <Compile Update="View\CleaningJob\BookCleaningJobView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\CleaningJob\ViewCleaningJobView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\CleaningJob\EditCleaningJobView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJob\ManageCleaningJobOptionsView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\ManageCustomerContactDetailsView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJob\SelectCleaningJobCustomerView.cs">
@@ -99,6 +105,9 @@
     <Compile Update="View\LoginAttempt\DisplayLoginAttemptView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Order\AddOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\Order\Deliveries\DisplayCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,6 +115,9 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Order\ApproveOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\EditOrderView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Order\SubmitOrderView.cs">
@@ -117,7 +129,7 @@
     <Compile Update="View\Order\OrderApproval\DisplayCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\Order\SelectCleaningJobOptionsView.cs">
+    <Compile Update="View\Order\SelectOrderStockView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Order\StockRequest\DisplayCustomerView.cs">

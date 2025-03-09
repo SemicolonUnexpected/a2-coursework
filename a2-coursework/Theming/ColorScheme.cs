@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.Theming;
-internal class ColorScheme(Color background, Color foreground, Color primary, Color primaryForeground, Color secondary, Color secondaryForeground, Color danger, Color warning, Color info) {
+internal class ColorScheme(Color background, Color foreground, Color primary, Color primaryForeground, Color secondary, Color secondaryForeground, Color danger, Color warning, Color info, Color data) {
     public static ColorScheme Current {
         get {
             if (Theme.Current.AppearanceTheme == AppearanceTheme.Dark) return Dark;
@@ -17,7 +17,8 @@ internal class ColorScheme(Color background, Color foreground, Color primary, Co
             secondaryForeground: Color.FromArgb(226, 226, 226),
             danger: Color.FromArgb(190, 18, 60),
             warning: Color.FromArgb(245, 158, 11),
-            info: Color.FromArgb(22, 163, 74)
+            info: Color.FromArgb(22, 163, 74),
+            data: Color.FromArgb(14, 165, 233)
         );
 
     public static ColorScheme Light { get; } = new(
@@ -29,7 +30,8 @@ internal class ColorScheme(Color background, Color foreground, Color primary, Co
             secondaryForeground: Color.FromArgb(24, 24, 27),
             danger: Color.FromArgb(225, 29, 72),
             warning: Color.FromArgb(251, 191, 36),
-            info: Color.FromArgb(34, 197, 94)
+            info: Color.FromArgb(34, 197, 94),
+            data: Color.FromArgb(56, 189, 248)
         );
 
     public static Color Red = Color.FromArgb(220, 38, 38);
@@ -54,6 +56,6 @@ internal class ColorScheme(Color background, Color foreground, Color primary, Co
     public Color Danger { get; init; } = danger;
     public Color Warning { get; init; } = warning;
     public Color Info { get; init; } = info;
-
+    public Color Data { get; init; } = data;
     #endregion
 }

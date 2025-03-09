@@ -5,7 +5,7 @@ using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
 using a2_coursework.UserControls;
 
-namespace a2_coursework.View.CleaningJob;
+namespace a2_coursework.View.Order;
 public partial class EditCleaningJobView : Form, IThemeable, IEditCleaningJobView {
     public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;

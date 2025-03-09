@@ -211,10 +211,11 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
         }
 
         bool isAscending = e.Button == MouseButtons.Left;
-        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
 
         SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, isAscending);
         SortRequested?.Invoke(this, sortRequestEventArgs);
+
+        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
     }
 
     public void CleanUp() {

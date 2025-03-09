@@ -4,7 +4,7 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.Staff;
-using a2_coursework.View.CleaningJob;
+using a2_coursework.View.Order;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, CleaningJobModel, DisplayCleaningJobModel>, INavigatingPresenter {
@@ -107,8 +107,8 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
 
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateEditCleaningJobOption(_modelDisplayMap[_view.SelectedItem]);
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateViewCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {

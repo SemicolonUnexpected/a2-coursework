@@ -5,6 +5,7 @@ using a2_coursework.Model.Staff;
 using a2_coursework.Model.Stock;
 using a2_coursework.View;
 using a2_coursework.View.Stock;
+using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Presenter.Stock.StockManagement;
 public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel>, IChildPresenter, INavigatingPresenter {
@@ -41,7 +42,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
         "Stock Details" => GetStockDetails(),
         "Quantity" => GetStockQuantity(),
         "Warnings" => GetStockWarning(),
-        "unit Cost" => GetStockUnitCost(),
+        "Unit Cost" => GetStockUnitCost(),
         _ => throw new NotImplementedException(),
     };
 

@@ -1,5 +1,5 @@
 ﻿using a2_coursework.View;
-using a2_coursework.View.CleaningJob;
+using a2_coursework.View.Order;
 
 namespace a2_coursework.Interfaces.Customer; 
 public interface IDisplayCustomerView : IDisplayView<DisplayCustomerModel> {

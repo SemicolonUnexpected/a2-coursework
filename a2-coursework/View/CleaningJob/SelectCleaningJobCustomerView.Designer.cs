@@ -1,4 +1,4 @@
-﻿namespace a2_coursework.View.CleaningJob {
+﻿namespace a2_coursework.View.Order {
     partial class SelectCleaningJobCustomerView {
         /// <summary>
         /// Required designer variable.

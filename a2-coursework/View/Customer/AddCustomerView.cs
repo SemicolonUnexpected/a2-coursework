@@ -4,7 +4,7 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 
-namespace a2_coursework.View.CleaningJob; 
+namespace a2_coursework.View.Order; 
 public partial class AddCustomerView : Form, IAddCustomerView, IThemeable, IChildView {
     public event EventHandler? Next;
     public event EventHandler? Previous;

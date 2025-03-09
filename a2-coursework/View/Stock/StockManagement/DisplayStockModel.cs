@@ -58,18 +58,26 @@ public class DisplayStockModel : INotifyPropertyChanged {
         }
     }
 
-    public DisplayStockModel(StockModel stockItem) {
-        Id = stockItem.Id;
-        Name = stockItem.Name;
-        Sku = stockItem.Sku;
-        Quantity = stockItem.Quantity;
-        QuantityLevel = stockItem.Quantity >= stockItem.HighQuantity ? "High" : stockItem.Quantity <= stockItem.LowQuantity ? "Low" : "Medium";
-        Archived = stockItem.Archived;
+    private decimal _unitCost;
+    public decimal UnitCost {
+        get => _unitCost;
+        set {
+            _unitCost = value;
+            NotifyPropertyChanged();
+        }
     }
 
-    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") {
-        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+    public DisplayStockModel(StockModel model) {
+        Id = model.Id;
+        Name = model.Name;
+        Sku = model.Sku;
+        Quantity = model.Quantity;
+        QuantityLevel = model.Quantity >= model.HighQuantity ? "High" : model.Quantity <= model.LowQuantity ? "Low" : "Medium";
+        Archived = model.Archived;
+        UnitCost = model.UnitCost;
     }
+
+    private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
 
     public event PropertyChangedEventHandler? PropertyChanged;
 }

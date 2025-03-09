@@ -7,9 +7,11 @@ public interface ISelectCleaningJobStaffView : IDisplayView<DisplayStaffModel> {
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
+    public string DataGridText { get; set; }
+    public bool ReadOnly { get; set; }
+    public List<DisplayStaffModel> SelectedItems { get; }
+
     public void DisableAll();
     public void EnableAll();
-    public string DataGridText { get; set; }
-    public List<DisplayStaffModel> SelectedItems { get; }
     public void SetSelectedItemsById(IEnumerable<int> models);
 }

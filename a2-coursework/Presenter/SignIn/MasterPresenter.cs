@@ -56,7 +56,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
 
         PrivilegeLevel.CleaningManager => [
             ["Dashboard"],
-            ["Stock", "Manage stock", "Request stock", "Quantity changes", "Upcoming deliveries"],
+            ["Stock", "Manage stock", "Order stock", "Quantity changes", "Upcoming deliveries"],
             ["Security", "Manage staff", "Login attempts", "Change password"],
             ["Cleaning", "Book cleaning", "Manage customers", "Manage options"],
             ["Reports", "Staff", "Stock"],
@@ -93,6 +93,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Login attempts" => GetLoginAttempts(),
         "Book cleaning" => GetBookCleaning(),
         "Dashboard" => GetDashboardView(),
+        "Order stock" => GetOrderStock(),
         _ => throw new NotImplementedException(),
     };
 
@@ -113,6 +114,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetStockReport() => ReportFactory.CreateReport("StockReport", StockReportGenerator.StockItemsReport());
     private (IChildView view, IChildPresenter presenter) GetBookCleaning() => CleaningJobFactory.CreateBookCleaningJob(_staff);
     private (IChildView view, IChildPresenter presenter) GetDashboardView() => SignInFactory.CreateDashboard(_staff);
+    private (IChildView view, IChildPresenter presenter) GetOrderStock() => OrderFactory.CreateDisplayOrder(_staff);
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

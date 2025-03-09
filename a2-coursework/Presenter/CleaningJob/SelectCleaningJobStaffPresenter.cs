@@ -57,6 +57,11 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
         }
     }
 
+    public bool ReadOnly {
+        get => _view.ReadOnly;
+        set => _view.ReadOnly = value;
+    }
+
     protected override void SortByColumn(string columnName, bool sortAscending) {
         switch (columnName) {
             case "columnId":

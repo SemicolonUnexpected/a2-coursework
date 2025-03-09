@@ -96,11 +96,11 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
         if (_isAsyncRunning) return;
 
         switch (columnName) {
-            case "columnID":
+            case "columnId":
                 SortBy(x => x.Id, sortAscending);
                 break;
-            case "columnStaffName":
-                SortBy(x => $"{x.Staff.Forename} {x.Staff.Surname}", sortAscending);
+            case "columnStaff":
+                SortBy(x => $"{x.Staff!.Forename} {x.Staff.Surname}", sortAscending);
                 break;
             case "columnStatus":
                 SortBy(x => x.Status, sortAscending);

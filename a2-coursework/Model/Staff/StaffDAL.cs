@@ -71,7 +71,7 @@ internal static class StaffDAL {
 
         await using SqlCommand command = new("GetStaffById", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@username", id);
+        command.Parameters.AddWithValue("@id", id);
 
         await using SqlDataReader reader = command.ExecuteReader();
         if (await reader.ReadAsync()) {

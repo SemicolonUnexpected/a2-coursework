@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Customer;
 using a2_coursework.Model.Customer;
-using a2_coursework.View.CleaningJob;
+using a2_coursework.View.Order;
 
 namespace a2_coursework.Presenter.Customer;
 public class EditCustomerPresenter : ParentEditPresenter<IEditCustomerView, CustomerModel>, IChildPresenter, INavigatingPresenter {
