@@ -225,7 +225,6 @@
             pnlDetails.Padding = new Padding(5);
             pnlDetails.Size = new Size(269, 344);
             pnlDetails.TabIndex = 12;
-            pnlDetails.Resize += pnlDetails_Resize;
             // 
             // lblSubtotal
             // 

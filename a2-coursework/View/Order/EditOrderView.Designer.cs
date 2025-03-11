@@ -67,20 +67,17 @@
             // 
             // topMenu
             // 
-            topMenu.Location = new Point(50, 0);
+            topMenu.Location = new Point(123, 0);
             topMenu.Margin = new Padding(0);
             topMenu.MenuItems = new string[]
     {
-    "Details",
-    "Times",
-    "Staff",
-    "Options",
+    "Stock",
     "Quantity",
-    "Customer"
+    "Submit"
     };
             topMenu.Name = "topMenu";
             topMenu.SelectedIndex = 0;
-            topMenu.Size = new Size(604, 40);
+            topMenu.Size = new Size(408, 40);
             topMenu.TabIndex = 24;
             // 
             // btnBack
@@ -108,7 +105,7 @@
             btnBack.TextPosition = new Point(0, 0);
             toolTip.SetToolTip(btnBack, "Back");
             // 
-            // EditCleaningJobView
+            // EditOrderView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -118,7 +115,7 @@
             Controls.Add(approveChangesBar);
             Controls.Add(pnlMenu);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "EditCleaningJobView";
+            Name = "EditOrderView";
             Text = "EditStaffView";
             pnlMenu.ResumeLayout(false);
             ResumeLayout(false);

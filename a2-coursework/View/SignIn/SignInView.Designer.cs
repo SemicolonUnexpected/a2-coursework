@@ -25,17 +25,17 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SignInView));
-            pnl = new CustomControls.CustomPanel();
+            pnl = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             pbShowPassword = new PictureBox();
             lblSignIn = new Label();
             lblWelcome = new Label();
-            tbPassword = new CustomControls.CustomTextBox();
-            btnSignIn = new CustomControls.CustomButton();
-            tbUsername = new CustomControls.CustomTextBox();
+            tbPassword = new a2_coursework.CustomControls.CustomTextBox();
+            btnSignIn = new a2_coursework.CustomControls.CustomButton();
+            tbUsername = new a2_coursework.CustomControls.CustomTextBox();
             pbLogoTitle = new PictureBox();
-            tbFocusHolder = new CustomControls.ImprovedTextBox();
-            btnSwitchTheme = new CustomControls.CustomButton();
+            tbFocusHolder = new a2_coursework.CustomControls.ImprovedTextBox();
+            btnSwitchTheme = new a2_coursework.CustomControls.CustomButton();
             pnlCover = new Panel();
             toolTip = new ToolTip(components);
             pnl.SuspendLayout();
@@ -55,7 +55,7 @@
             pnl.Controls.Add(tbPassword);
             pnl.Controls.Add(btnSignIn);
             pnl.Controls.Add(tbUsername);
-            pnl.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnl.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnl.Location = new Point(223, 86);
             pnl.Name = "pnl";
             pnl.Size = new Size(340, 340);
@@ -115,7 +115,7 @@
             tbPassword.BackColor = Color.FromArgb(9, 9, 10);
             tbPassword.BorderColor = Color.FromArgb(39, 39, 42);
             tbPassword.BorderThickness = 1F;
-            tbPassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbPassword.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbPassword.Font = new Font("Bahnschrift", 12F);
             tbPassword.ForeColor = Color.Empty;
             tbPassword.HoverColor = Color.Empty;
@@ -142,7 +142,7 @@
             btnSignIn.BorderThickness = 0F;
             btnSignIn.ClickedBorderColor = Color.Empty;
             btnSignIn.ClickedColor = Color.FromArgb(226, 226, 226);
-            btnSignIn.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnSignIn.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnSignIn.Cursor = Cursors.Hand;
             btnSignIn.DisabledBorderColor = Color.Empty;
             btnSignIn.DisabledColor = Color.FromArgb(226, 226, 226);
@@ -167,7 +167,7 @@
             tbUsername.BackColor = Color.FromArgb(9, 9, 10);
             tbUsername.BorderColor = Color.FromArgb(39, 39, 42);
             tbUsername.BorderThickness = 1F;
-            tbUsername.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbUsername.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbUsername.Font = new Font("Bahnschrift", 12F);
             tbUsername.ForeColor = Color.Empty;
             tbUsername.HoverColor = Color.Empty;
@@ -216,7 +216,7 @@
             btnSwitchTheme.BorderThickness = 1F;
             btnSwitchTheme.ClickedBorderColor = Color.Empty;
             btnSwitchTheme.ClickedColor = Color.FromArgb(9, 9, 10);
-            btnSwitchTheme.CornerRadii = new CustomControls.CornerRadiiF(20F, 20F, 20F, 20F);
+            btnSwitchTheme.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(20F, 20F, 20F, 20F);
             btnSwitchTheme.Cursor = Cursors.Hand;
             btnSwitchTheme.DisabledBorderColor = Color.Empty;
             btnSwitchTheme.DisabledColor = Color.Empty;
@@ -246,7 +246,7 @@
             pnlCover.Size = new Size(1086, 462);
             pnlCover.TabIndex = 4;
             // 
-            // LoginView
+            // SignInView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -261,7 +261,7 @@
             DoubleBuffered = true;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(600, 500);
-            Name = "LoginView";
+            Name = "SignInView";
             Text = "LoginView";
             Shown += LoginView_Shown;
             Click += ClearFocus;

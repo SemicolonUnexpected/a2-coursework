@@ -24,8 +24,8 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MasterView));
-            topBar = new UserControls.TopBar();
-            sideMenu = new UserControls.SideMenu.SideMenu();
+            topBar = new a2_coursework.UserControls.TopBar();
+            sideMenu = new a2_coursework.UserControls.SideMenu.SideMenu();
             pnlHolder = new Panel();
             pnlCover = new Panel();
             SuspendLayout();
@@ -60,7 +60,7 @@
             // pnlCover
             // 
             pnlCover.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
-            pnlCover.Location = new Point(0, -14);
+            pnlCover.Location = new Point(0, 0);
             pnlCover.Name = "pnlCover";
             pnlCover.Size = new Size(916, 649);
             pnlCover.TabIndex = 13;

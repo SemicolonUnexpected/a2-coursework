@@ -24,6 +24,37 @@ public static class StockDAL {
                     id: id,
                     name: reader.GetString(reader.GetOrdinal("Name")),
                     description: reader.GetString(reader.GetOrdinal("Description")),
+                    sku: reader.GetString(reader.GetOrdinal("Sku")),
+                    quantity: reader.GetInt32(reader.GetOrdinal("Quantity")),
+                    archived: reader.GetBoolean(reader.GetOrdinal("Archived")),
+                    lowQuantity: reader.GetInt32(reader.GetOrdinal("LowQuantity")),
+                    highQuantity: reader.GetInt32(reader.GetOrdinal("HighQuantity")),
+                    unitCost: reader.GetDecimal(reader.GetOrdinal("UnitCost"))
+                )
+            );
+        }
+
+        return stock;
+    }
+
+    public static async Task<List<StockModel>> GetNonArchivedStock() {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetNonArchivedStock", connection);
+        command.CommandType = CommandType.StoredProcedure;
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<StockModel> stock = [];
+
+        while (await reader.ReadAsync()) {
+            int id = reader.GetInt32(reader.GetOrdinal("Id"));
+            stock.Add(
+                new StockModel(
+                    id: id,
+                    name: reader.GetString(reader.GetOrdinal("Name")),
+                    description: reader.GetString(reader.GetOrdinal("Description")),
                     sku: reader.GetString(reader.GetOrdinal("SKU")),
                     quantity: reader.GetInt32(reader.GetOrdinal("Quantity")),
                     archived: reader.GetBoolean(reader.GetOrdinal("Archived")),

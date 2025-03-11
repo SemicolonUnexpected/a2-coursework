@@ -1,2 +1,14 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1000" height="1000" style="background:#f0f0f0;">
+<rect x="223" y="86" width="340" height="340" fill="lightblue" stroke="black" stroke-width="1"/><text x="228" y="101" font-size="12" fill="black">pnl</text>
+<rect x="251" y="363" width="282" height="46" fill="lightblue" stroke="black" stroke-width="1"/><text x="256" y="378" font-size="12" fill="black">lblError</text>
+<rect x="501" y="263" width="21" height="21" fill="lightblue" stroke="black" stroke-width="1"/><text x="506" y="278" font-size="12" fill="black">pbShowPassword</text>
+<rect x="251" y="151" width="282" height="24" fill="lightblue" stroke="black" stroke-width="1"/><text x="256" y="166" font-size="12" fill="black">lblSignIn</text>
+<rect x="248" y="112" width="146" height="39" fill="lightblue" stroke="black" stroke-width="1"/><text x="253" y="127" font-size="12" fill="black">lblWelcome</text>
+<rect x="251" y="253" width="282" height="40" fill="lightblue" stroke="black" stroke-width="1"/><text x="256" y="268" font-size="12" fill="black">tbPassword</text>
+<rect x="251" y="313" width="282" height="40" fill="lightblue" stroke="black" stroke-width="1"/><text x="256" y="328" font-size="12" fill="black">btnSignIn</text>
+<rect x="251" y="193" width="282" height="40" fill="lightblue" stroke="black" stroke-width="1"/><text x="256" y="208" font-size="12" fill="black">tbUsername</text>
+<rect x="255" y="22" width="282" height="50" fill="lightblue" stroke="black" stroke-width="1"/><text x="260" y="37" font-size="12" fill="black">pbLogoTitle</text>
+<rect x="631" y="154" width="0" height="23" fill="lightblue" stroke="black" stroke-width="1"/><text x="636" y="169" font-size="12" fill="black">tbFocusHolder</text>
+<rect x="724" y="19" width="41" height="41" fill="lightblue" stroke="black" stroke-width="1"/><text x="729" y="34" font-size="12" fill="black">btnSwitchTheme</text>
+<rect x="0" y="0" width="1086" height="462" fill="lightblue" stroke="black" stroke-width="1"/><text x="5" y="15" font-size="12" fill="black">pnlCover</text>
 </svg>

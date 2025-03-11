@@ -29,7 +29,7 @@
             btnSubmit = new a2_coursework.CustomControls.CustomButton();
             SuspendLayout();
             // 
-            // tbAddress
+            // tbDescription
             // 
             tbDescription.Anchor = AnchorStyles.None;
             tbDescription.BackColor = Color.FromArgb(9, 9, 10);
@@ -41,9 +41,10 @@
             tbDescription.HoverColor = Color.Empty;
             tbDescription.Location = new Point(145, 92);
             tbDescription.Margin = new Padding(5);
+            tbDescription.MaximumSize = new Size(355, 166);
             tbDescription.MaxLength = 500;
             tbDescription.MultiLine = true;
-            tbDescription.Name = "tbAddress";
+            tbDescription.Name = "tbDescription";
             tbDescription.PlaceholderText = "Cleaning stock needs replenished after a deep cleaning job";
             tbDescription.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbDescription.ReadOnly = false;
@@ -53,7 +54,7 @@
             tbDescription.TextBoxInset = new Padding(10);
             tbDescription.UsePasswordChar = false;
             // 
-            // lblAddressTitle
+            // lblDescription
             // 
             lblDescription.Anchor = AnchorStyles.None;
             lblDescription.AutoSize = true;
@@ -61,7 +62,7 @@
             lblDescription.ForeColor = Color.White;
             lblDescription.Location = new Point(145, 61);
             lblDescription.Margin = new Padding(5);
-            lblDescription.Name = "lblAddressTitle";
+            lblDescription.Name = "lblDescription";
             lblDescription.Size = new Size(191, 23);
             lblDescription.TabIndex = 23;
             lblDescription.Text = "Description (optional)";
@@ -81,6 +82,7 @@
             // 
             // btnSubmit
             // 
+            btnSubmit.Anchor = AnchorStyles.None;
             btnSubmit.BackColor = SystemColors.Control;
             btnSubmit.BorderColor = Color.Empty;
             btnSubmit.BorderThickness = 0F;

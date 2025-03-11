@@ -1,4 +1,6 @@
 ﻿using a2_coursework._Helpers;
+using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Order;
 using a2_coursework.Model.Order;
 using a2_coursework.Model.Staff;
@@ -20,10 +22,12 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
         _view.Add += OnAdd;
         _view.Edit += OnEdit;
         _view.Search += OnSearch;
+        _view.View += OnView;
         _view.SelectionChanged += OnSelectionChanged;
         _view.SortRequested += OnSortRequested;
     }
 
+    private void OnView(object? sender, EventArgs e) => View();
     private void OnAdd(object? sender, EventArgs e) => Add();
     private void OnEdit(object? sender, EventArgs e) => Edit();
     private void OnSearch(object? sender, EventArgs e) => Search(_view.SearchText);
@@ -68,12 +72,15 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
         }
     }
 
-    protected override IComparable RankSearch(string searchText, OrderModel order) => GeneralHelpers.LevensteinDistance(searchText, $"{order.Staff.Forename} {order.Staff.Surname}");
+    protected override IComparable RankSearch(string searchText, OrderModel order) => GeneralHelpers.LevensteinDistance(searchText, $"{order.Staff.Forename} {order.Staff.Surname} {order.Status}");
 
     protected override List<OrderModel> OrderDefault(List<OrderModel> models) => models.OrderBy(model => model.Id).ToList();
 
     private void SelectionChanged() {
         if (_view.SelectedItem is null) return;
+
+        _view.ViewMode = _view.SelectedItem.Status != "Draft";
+        _view.DeleteEnabled = _view.SelectedItem.Status != "Draft";
     }
 
     private void Edit() {
@@ -81,15 +88,26 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
 
         _cancellationTokenSource.Cancel();
 
-        //(IChildView view, IChildPresenter presenter) = StaffFactory.CreateEditOrder(_modelDisplayMap[_view.SelectedItem], _staff);
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateEditOrder(_modelDisplayMap[_view.SelectedItem], _staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
         if (_view.SelectedItem is null) return;
 
-        //(IChildView view, IChildPresenter presenter) = StaffFactory.CreateAddOrder(_staff);
-        //NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        _cancellationTokenSource.Cancel();
+
+        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateAddOrder(_staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+    }
+
+    private void View() {
+        if (_view.SelectedItem is null) return;
+
+        _cancellationTokenSource.Cancel();
+
+        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateViewOrder(_modelDisplayMap[_view.SelectedItem]);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     protected override void SortByColumn(string columnName, bool sortAscending) {

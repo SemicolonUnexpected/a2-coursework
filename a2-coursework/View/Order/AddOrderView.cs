@@ -1,11 +1,11 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
 using a2_coursework.Interfaces;
-using a2_coursework.Interfaces.CleaningJob;
+using a2_coursework.Interfaces.Order;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Stock;
-public partial class AddOrderView : Form, IAddCleaningJobView, IThemeable, IChildView {
+public partial class AddOrderView : Form, IAddOrderView, IThemeable, IChildView {
     public event EventHandler? Previous;
     public event EventHandler? Next;
     public event EventHandler? Done;

@@ -8,9 +8,10 @@ public interface ISelectOrderStockView : IDisplayView<DisplayStockModel> {
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
-    public void DisableAll();
-    public void EnableAll();
     public string DataGridText { get; set; }
     public List<DisplayStockModel> SelectedItems { get; }
+
+    public void DisableAll();
+    public void EnableAll();
     public void SetSelectedItemsById(IEnumerable<int> models);
 }

@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.View.Order {
-    partial class ManageCustomerContactDetails {
+    partial class ManageCustomerContactDetailsView {
         /// <summary>
         /// Required designer variable.
         /// </summary>

@@ -1,12 +1,13 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
-using a2_coursework.Model.CleaningJobOption;
+using a2_coursework.Interfaces.Order;
 using a2_coursework.Theming;
+using a2_coursework.View.Stock.StockManagement;
 using System.ComponentModel;
 using System.Globalization;
 
 namespace a2_coursework.View.Order;
-public partial class ManageOrderStockView : Form, IDisplayView<DisplayCleaningJobOptionModel>, IChildView, IThemeable, IManageCleaningJobOptionsView {
+public partial class ManageOrderStockView : Form, IDisplayView<DisplayStockModel>, IChildView, IThemeable, IManageOrderStockView {
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? QuantityChanged;
@@ -112,9 +113,9 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayCleaningJo
             }
         };
 
-        columnId.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Id);
-        columnName.DataPropertyName = nameof(DisplayCleaningJobOptionModel.Name);
-        columnUnitCost.DataPropertyName = nameof(DisplayCleaningJobOptionModel.CostAtTime);
+        columnId.DataPropertyName = nameof(DisplayStockModel.Id);
+        columnName.DataPropertyName = nameof(DisplayStockModel.Name);
+        columnUnitCost.DataPropertyName = nameof(DisplayStockModel.UnitCostAtTime);
     }
 
     public string SearchText {
@@ -122,10 +123,10 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayCleaningJo
         set => searchBar.SearchText = value;
     }
 
-    public DisplayCleaningJobOptionModel? SelectedItem {
+    public DisplayStockModel? SelectedItem {
         get {
             try {
-                return ((BindingList<DisplayCleaningJobOptionModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
+                return ((BindingList<DisplayStockModel>)_bindingSource.DataSource)[dataGridView.SelectedRows[0].Index];
             }
             catch (ArgumentOutOfRangeException) {
                 return null;
@@ -141,12 +142,12 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayCleaningJo
         }
     }
 
-    public string CleaningOptionName {
+    public string StockName {
         get => tbName.Text;
         set => tbName.Text = value;
     }
 
-    public string CleaningOptionDescription {
+    public string StockDescription {
         get => tbDescription.Text;
         set => tbDescription.Text = value;
     }
@@ -173,7 +174,7 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayCleaningJo
         }
     }
 
-    public void DisplayItems(BindingList<DisplayCleaningJobOptionModel> items) {
+    public void DisplayItems(BindingList<DisplayStockModel> items) {
         dataGridView.SuspendLayout();
         _bindingSource.DataSource = items;
         dataGridView.ResumeLayout();
@@ -228,14 +229,6 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayCleaningJo
         Theming.Theme.AppearanceThemeChanged -= Theme;
         Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
         Theming.Theme.FontNameChanged -= SetFont;
-    }
-
-    protected override void OnResize(EventArgs e) {
-        base.OnResize(e);
-    }
-
-    private void pnlDetails_Resize(object sender, EventArgs e) {
-
     }
 
     private void pnlData_Resize(object sender, EventArgs e) {

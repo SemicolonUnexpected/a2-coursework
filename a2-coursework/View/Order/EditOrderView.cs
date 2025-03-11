@@ -1,12 +1,12 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.CustomControls;
 using a2_coursework.Interfaces;
-using a2_coursework.Interfaces.CleaningJob;
+using a2_coursework.Interfaces.Order;
 using a2_coursework.Theming;
 using a2_coursework.UserControls;
 
 namespace a2_coursework.View.Order;
-public partial class EditOrderView : Form, IThemeable, IEditCleaningJobView {
+public partial class EditOrderView : Form, IThemeable, IEditOrderView {
     public event EventHandler<string>? SelectedMenuItemChanged;
     public event EventHandler<ToggleEventArgs>? PreviewSelectedMenuItemChanged;
     public event EventHandler? Save;

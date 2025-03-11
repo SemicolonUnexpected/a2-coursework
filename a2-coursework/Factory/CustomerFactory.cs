@@ -25,8 +25,8 @@ public static class CustomerFactory {
         return (view, presenter);
     }
 
-    public static (SubmitOrderView view, ManageCustomerContactDetailsPresenter presenter) CreateManageCustomerContactDetails(CustomerModel model) {
-        SubmitOrderView view = new();
+    public static (ManageCustomerContactDetailsView view, ManageCustomerContactDetailsPresenter presenter) CreateManageCustomerContactDetails(CustomerModel model) {
+        ManageCustomerContactDetailsView view = new();
         ManageCustomerContactDetailsPresenter presenter = new(view);
 
         return (view, presenter);

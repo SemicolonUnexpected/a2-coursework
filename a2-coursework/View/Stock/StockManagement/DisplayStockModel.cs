@@ -67,6 +67,15 @@ public class DisplayStockModel : INotifyPropertyChanged {
         }
     }
 
+    private decimal _unitCostAtTime;
+    public decimal UnitCostAtTime {
+        get => _unitCostAtTime;
+        set {
+            _unitCostAtTime = value;
+            NotifyPropertyChanged();
+        }
+    }
+
     public DisplayStockModel(StockModel model) {
         Id = model.Id;
         Name = model.Name;
@@ -75,6 +84,7 @@ public class DisplayStockModel : INotifyPropertyChanged {
         QuantityLevel = model.Quantity >= model.HighQuantity ? "High" : model.Quantity <= model.LowQuantity ? "Low" : "Medium";
         Archived = model.Archived;
         UnitCost = model.UnitCost;
+        UnitCostAtTime = model.CostAtTime;
     }
 
     private void NotifyPropertyChanged([CallerMemberName] string propertyName = "") => PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

@@ -3,12 +3,12 @@ using a2_coursework.Interfaces.Customer;
 using a2_coursework.Theming;
 
 namespace a2_coursework.View.Order;
-public partial class ManageCustomerContactDetails : Form, IManageCustomerContactDetailsView, IThemeable {
+public partial class ManageCustomerContactDetailsView : Form, IManageCustomerContactDetailsView, IThemeable {
     public event EventHandler? EmailChanged;
     public event EventHandler? PhoneNumberChanged;
     public event EventHandler? AddressChanged;
 
-    public ManageCustomerContactDetails() {
+    public ManageCustomerContactDetailsView() {
         InitializeComponent();
 
         Theme();

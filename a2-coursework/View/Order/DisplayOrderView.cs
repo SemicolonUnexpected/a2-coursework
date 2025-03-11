@@ -3,7 +3,6 @@ using a2_coursework.CustomControls;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Order;
 using a2_coursework.Theming;
-using a2_coursework.View.Order;
 using System.ComponentModel;
 
 namespace a2_coursework.View.Order; 
@@ -13,6 +12,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? Delete;
+    public event EventHandler? View;
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
@@ -34,6 +34,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
         topBar.Delete += (s, e) => Delete?.Invoke(this, EventArgs.Empty);
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
+        topBar.View += (s, e) => View?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
 
         SetupDataGrid();
@@ -139,6 +140,16 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
         dataGridView.Enabled = true;
     }
 
+    public bool ViewMode {
+        set {
+            topBar.ViewMode = value;
+        }
+    }
+
+    public bool DeleteEnabled {
+        set => topBar.DeleteEnabled = value;
+    }
+
     private void SetScrollOptions() {
         int numberOfVisibleRows = (dataGridView.Height - dataGridView.ColumnHeadersHeight) / dataGridView.RowTemplate.Height;
 
@@ -159,6 +170,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
                 "Pending" => ColorScheme.Current.Warning,
                 "Rejected" => ColorScheme.Current.Danger,
                 "Delivered" => ColorScheme.Current.Info,
+                "Submitted" => ColorScheme.Current.Other,
                 _ => throw new ArgumentOutOfRangeException(),
             };
 

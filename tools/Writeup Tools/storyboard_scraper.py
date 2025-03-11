@@ -9,8 +9,8 @@ def extract_controls(designer_file):
     parent_map = defaultdict(list)
 
     # Match Location and Size separately
-    location_pattern = re.compile(r"(\w+)\.Location\s*=\s*new System\.Drawing\.Point\((\d+),\s*(\d+)\);")
-    size_pattern = re.compile(r"(\w+)\.Size\s*=\s*new System\.Drawing\.Size\((\d+),\s*(\d+)\);")
+    location_pattern = re.compile(r"(\w+)\.Location\s*=\s*new\s*Point\((\d+),\s*(\d+)\);")
+    size_pattern = re.compile(r"(\w+)\.Size\s*=\s*new Size\((\d+),\s*(\d+)\);")
     parent_pattern = re.compile(r"(\w+)\.Controls\.Add\((\w+)\);")
 
     for match in location_pattern.finditer(content):
