@@ -24,10 +24,10 @@
         /// </summary>
         private void InitializeComponent() {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ManageStockWarningView));
-            nudLowQuantity = new CustomControls.CustomNumericUpDown();
+            nudLowQuantity = new a2_coursework.CustomControls.CustomNumericUpDown();
             lblLowQuantity = new Label();
             lblHighQuantity = new Label();
-            nudHighQuantity = new CustomControls.CustomNumericUpDown();
+            nudHighQuantity = new a2_coursework.CustomControls.CustomNumericUpDown();
             lblInfo = new Label();
             SuspendLayout();
             // 

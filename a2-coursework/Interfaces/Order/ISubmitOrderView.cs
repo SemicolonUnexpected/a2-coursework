@@ -4,6 +4,7 @@ public interface ISubmitOrderView : IChildView {
     public event EventHandler? DescriptionChanged;
 
     public string Description { get; set; }
+    public bool ReadOnly { get; set; }
 
     public void SetCharacterCount(int number);
 }

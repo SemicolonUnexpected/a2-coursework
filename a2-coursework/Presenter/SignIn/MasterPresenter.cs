@@ -94,6 +94,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Book cleaning" => GetBookCleaning(),
         "Dashboard" => GetDashboardView(),
         "Order stock" => GetOrderStock(),
+        "Upcoming deliveries" => GetUpcomingOrderStock(),
         _ => throw new NotImplementedException(),
     };
 
@@ -115,6 +116,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetBookCleaning() => CleaningJobFactory.CreateBookCleaningJob(_staff);
     private (IChildView view, IChildPresenter presenter) GetDashboardView() => SignInFactory.CreateDashboard(_staff);
     private (IChildView view, IChildPresenter presenter) GetOrderStock() => OrderFactory.CreateDisplayOrder(_staff);
+    private (IChildView view, IChildPresenter presenter) GetUpcomingOrderStock() => OrderFactory.CreateDisplayOrder(_staff, true);
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

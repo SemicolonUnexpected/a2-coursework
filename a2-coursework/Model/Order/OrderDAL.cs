@@ -152,6 +152,17 @@ public static class OrderDAL {
         return await command.ExecuteNonQueryAsync() > 0;
     }
 
+    public static async Task<bool> DeleteOrder(int orderId) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("DeleteOrder", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", orderId);
+
+        return await command.ExecuteNonQueryAsync() > 0;
+    }
+
     public static async Task<bool> CreateOrder(OrderModel model) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
@@ -167,7 +178,7 @@ public static class OrderDAL {
 
         if (!await reader.ReadAsync()) return false;
 
-        int id = reader.GetInt32(reader.GetOrdinal("Id"));
+        int id = (int)reader.GetDecimal(reader.GetOrdinal("Id"));
 
         bool success = true;
 

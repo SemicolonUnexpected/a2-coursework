@@ -173,7 +173,7 @@
             tbUsername.HoverColor = Color.Empty;
             tbUsername.Location = new Point(28, 107);
             tbUsername.Margin = new Padding(10);
-            tbUsername.MaxLength = 256;
+            tbUsername.MaxLength = 255;
             tbUsername.MultiLine = false;
             tbUsername.Name = "tbUsername";
             tbUsername.PlaceholderText = "Username";

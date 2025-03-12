@@ -11,10 +11,13 @@ namespace a2_coursework.Presenter.Order;
 
 public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderModel, DisplayOrderModel>, IChildPresenter, INavigatingPresenter {
     private readonly StaffModel _staff;
+    private readonly bool _upcoming;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public DisplayOrderPresenter(IDisplayOrderView view, StaffModel staff) : base(view) {
+    public DisplayOrderPresenter(IDisplayOrderView view, StaffModel staff, bool upcoming) : base(view) {
+        _upcoming = upcoming;
+
         _staff = staff;
 
         LoadData();
@@ -23,10 +26,12 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
         _view.Edit += OnEdit;
         _view.Search += OnSearch;
         _view.View += OnView;
+        _view.Delete += OnDelete;
         _view.SelectionChanged += OnSelectionChanged;
         _view.SortRequested += OnSortRequested;
     }
 
+    private void OnDelete(object? sender, EventArgs e) => Delete();
     private void OnView(object? sender, EventArgs e) => View();
     private void OnAdd(object? sender, EventArgs e) => Add();
     private void OnEdit(object? sender, EventArgs e) => Edit();
@@ -56,7 +61,8 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
         try {
             _isAsyncRunning = true;
 
-            _models = await OrderDAL.GetOrders();
+            if (_upcoming) _models = [.. (await OrderDAL.GetOrders()).Where(x => x.Status == "Pending")];
+            else _models = await OrderDAL.GetOrders();
 
             DisplayItems();
 
@@ -64,6 +70,7 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
             _view.EnableAll();
         }
         catch {
+            // With the correct method call
             _displayModels.Clear();
             _view.DataGridText = "Error getting orders from the database";
         }
@@ -72,15 +79,46 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
         }
     }
 
-    protected override IComparable RankSearch(string searchText, OrderModel order) => GeneralHelpers.LevensteinDistance(searchText, $"{order.Staff.Forename} {order.Staff.Surname} {order.Status}");
+    protected override IComparable RankSearch(string searchText, OrderModel order) {
+        return Math.Min(
+            (float)GeneralHelpers.LevensteinDistance(searchText, $"{order.Staff?.Forename} {order.Staff?.Surname}") / $"{order.Staff?.Forename} {order.Staff?.Surname}".Length,
+            (float)GeneralHelpers.LevensteinDistance(searchText, order.Status) / order.Status.Length
+            );
+    }
 
-    protected override List<OrderModel> OrderDefault(List<OrderModel> models) => models.OrderBy(model => model.Id).ToList();
+    protected override List<OrderModel> OrderDefault(List<OrderModel> models) => [.. models.OrderBy(model => model.Id)];
 
     private void SelectionChanged() {
         if (_view.SelectedItem is null) return;
 
         _view.ViewMode = _view.SelectedItem.Status != "Draft";
-        _view.DeleteEnabled = _view.SelectedItem.Status != "Draft";
+        _view.DeleteEnabled = _view.SelectedItem.Status == "Draft";
+    }
+
+    private async void Delete() {
+        if (_isAsyncRunning) return;
+
+        if (_view.SelectedItem is null) return;
+
+        _view.DisableAll();
+
+        OrderModel model = _modelDisplayMap[_view.SelectedItem];
+
+        try {
+            _isAsyncRunning = true;
+
+            bool success = await OrderDAL.DeleteOrder(model.Id);
+
+            if (success) {
+                _displayModels.Remove(_view.SelectedItem);
+                _models.Remove(model);
+            }
+        }
+        catch { }
+        finally {
+            _view.EnableAll();
+            _isAsyncRunning = false;
+        }
     }
 
     private void Edit() {
@@ -93,8 +131,6 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
     }
 
     private void Add() {
-        if (_view.SelectedItem is null) return;
-
         _cancellationTokenSource.Cancel();
 
         (IChildView view, IChildPresenter presenter) = OrderFactory.CreateAddOrder(_staff);
@@ -106,7 +142,7 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateViewOrder(_modelDisplayMap[_view.SelectedItem]);
+        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateViewOrder(_modelDisplayMap[_view.SelectedItem], _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

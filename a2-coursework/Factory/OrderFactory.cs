@@ -6,9 +6,9 @@ using a2_coursework.View.Stock;
 
 namespace a2_coursework.Factory;
 public static class OrderFactory {
-    public static (DisplayOrderView view, DisplayOrderPresenter presenter) CreateDisplayOrder(StaffModel staff) {
+    public static (DisplayOrderView view, DisplayOrderPresenter presenter) CreateDisplayOrder(StaffModel staff, bool upcoming = false) {
         DisplayOrderView view = new();
-        DisplayOrderPresenter presenter = new(view, staff);
+        DisplayOrderPresenter presenter = new(view, staff, upcoming);
 
         return (view, presenter);
     }
@@ -43,6 +43,13 @@ public static class OrderFactory {
     public static (AddOrderView view, AddOrderPresenter presenter) CreateAddOrder(StaffModel staff) {
         AddOrderView view = new();
         AddOrderPresenter presenter = new(view, staff);
+        return (view, presenter);
+    }
+
+    public static (ViewOrderView view, ViewOrderPresenter presenter) CreateViewOrder(OrderModel order, StaffModel staff) {
+        ViewOrderView view = new();
+        ViewOrderPresenter presenter = new(view, order, staff);
+
         return (view, presenter);
     }
 }

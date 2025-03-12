@@ -19,4 +19,9 @@ public class SubmitOrderPresenter : BasePresenter<ISubmitOrderView>, INotifyingC
         get => _view.Description;
         set => _view.Description = value;
     }
+
+    public bool ReadOnly {
+        get => _view.ReadOnly;
+        set => _view.ReadOnly = value;
+    }
 }

@@ -12,7 +12,7 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public AddOrderPresenter(IAddOrderView view, StaffModel staff) : base(view, new(-1, "Draft", "", "")) {
+    public AddOrderPresenter(IAddOrderView view, StaffModel staff) : base(view, new(-1, "Draft", "", "") { Staff = staff }) {
         _staff = staff;
 
         _view.Back += OnBack;
@@ -125,15 +125,20 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
         UpdateModelCurrent?.Invoke();
 
         try {
+            _model.Status = "Submitted";
             bool success = await UpdateDatabase();
             if (success) {
                 _view.ShowMessageBox("Order submitted successfully", "Success", MessageBoxButtons.OK);
                 NavigateBack();
             }
-            else _view.ShowMessageBox("Error submitting the order", "Error", MessageBoxButtons.OK);
+            else {
+                _view.ShowMessageBox("Error submitting the order", "Error", MessageBoxButtons.OK);
+                _model.Status = "Draft";
+            }
         }
         catch {
             _view.ShowMessageBox("Error submitting the order", "Error", MessageBoxButtons.OK);
+                _model.Status = "Draft";
         }
     }    
     #endregion
@@ -143,6 +148,8 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
 
         base.CleanUp();
     }
+
+    protected override void OnAddSuccessful() => NavigateBack();
 
     protected override Task<bool> UpdateDatabase() => OrderDAL.CreateOrder(_model);
 }

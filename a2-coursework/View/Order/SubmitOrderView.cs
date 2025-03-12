@@ -46,6 +46,16 @@ public partial class SubmitOrderView : Form, ISubmitOrderView, IThemeable {
         set => tbDescription.Text = value;
     }
 
+    private bool _readOnly;
+    public bool ReadOnly {
+        get => _readOnly;
+        set {
+            _readOnly = value;
+            tbDescription.ReadOnly = _readOnly;
+            btnSubmit.Visible = !_readOnly;
+        }
+    }
+
     public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{tbDescription.MaxLength}";
 
     public void CleanUp() {

@@ -55,6 +55,7 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayStockModel
         tbSubtotal.Theme();
         lblTotal.ThemeTitle();
         tbTotal.Theme();
+        tbQuantity.Theme();
     }
 
     public void SetToolTipVisibility() {
@@ -87,6 +88,7 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayStockModel
         tbSubtotal.SetFontName(fontName);
         lblTotal.SetFontName(fontName);
         tbTotal.SetFontName(fontName);
+        tbQuantity.SetFontName(fontName);
     }
 
     private void SetupDataGrid() {
@@ -168,9 +170,8 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayStockModel
     public bool Editable {
         get => tbName.ReadOnly;
         set {
-            tbName.ReadOnly = value;
-            tbDescription.ReadOnly = value;
-            nudQuantity.Enabled = value;
+            nudQuantity.Visible = value;
+            tbQuantity.Visible = !value;
         }
     }
 
