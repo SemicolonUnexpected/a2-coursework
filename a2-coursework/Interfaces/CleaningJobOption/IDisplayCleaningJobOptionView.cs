@@ -1,8 +1,8 @@
-﻿using a2_coursework.Model.CleaningJobOption;
-using a2_coursework.View;
+﻿using a2_coursework.View;
+using a2_coursework.View.CleaningJobOptions;
 
 namespace a2_coursework.Interfaces.CleaningJobOption; 
-public interface IDisplayCleaningJobOptionView :IDisplayView<DisplayCleaningJobOptionModel> {
+public interface IDisplayCleaningJobOptionView : IDisplayView<DisplayCleaningJobOptionModel>, IChildView {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;

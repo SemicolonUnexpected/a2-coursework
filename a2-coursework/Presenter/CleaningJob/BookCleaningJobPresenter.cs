@@ -4,7 +4,7 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.Staff;
-using a2_coursework.View.Order;
+using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, CleaningJobModel, DisplayCleaningJobModel>, INavigatingPresenter {

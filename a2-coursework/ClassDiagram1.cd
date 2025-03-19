@@ -1,0 +1,2309 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="a2_coursework.AppContext" Collapsed="true">
+    <Position X="84" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAA=</HashCode>
+      <FileName>AppContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.ApplicationStartupManager" Collapsed="true">
+    <Position X="84" Y="9.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAEAAAAAEAAAIBAIAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>ApplicationStartManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Program" Collapsed="true">
+    <Position X="84" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAA=</HashCode>
+      <FileName>Program.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Properties.Resources" Collapsed="true">
+    <Position X="84" Y="7.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>oAAJhwAgGQggBIAzAkEBEICAAQwChgkkhAAFAgARAaA=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework._Helpers.ControlExtensions" Collapsed="true">
+    <Position X="84" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>_Helpers\ControlExtensions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework._Helpers.ControlHelpers" Collapsed="true">
+    <Position X="84" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAIAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>_Helpers\ControlHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework._Helpers.GeneralHelpers" Collapsed="true">
+    <Position X="84" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>_Helpers\GeneralHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework._Helpers.Validators" Collapsed="true">
+    <Position X="84" Y="13.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAABAAAA=</HashCode>
+      <FileName>_Helpers\Validators.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CornerRadiiFConverter" Collapsed="true">
+    <Position X="91.5" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAjAAAAAAAAAEAAAAAAAAgAAAAACAAAAIAAAAAAAA=</HashCode>
+      <FileName>CustomControls\CornerRadiiFConverter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomButton" Collapsed="true">
+    <Position X="95" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgCAAAAIEBAAAIIAQGJAwAAGMUAAwBAYIgAgCSgjQII=</HashCode>
+      <FileName>CustomControls\CustomButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomComboBox" Collapsed="true">
+    <Position X="95.5" Y="1" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAAAAAAAAAAAAAAABAAAAAAAAAAAQAAAAAA=</HashCode>
+      <FileName>CustomControls\CustomComboBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomControlHelpers" Collapsed="true">
+    <Position X="78.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAIAAAAAAAAAAgAAAAAAAEAAAAAA=</HashCode>
+      <FileName>CustomControls\CustomControlHelpers.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomMessageBox" Collapsed="true">
+    <Position X="95.75" Y="5.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>CustomControls\CustomMessageBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomMessageBoxView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="95.75" Y="6" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAACAAAAEQAACACECCAAAABAgAAABABEABIQA=</HashCode>
+      <FileName>CustomControls\CustomMessageBoxView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomMonthCalendar" Collapsed="true">
+    <Position X="95.5" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAQhDqBACAIQUQgDKDH4VIikQDgEALD4YBwCcD/cSo=</HashCode>
+      <FileName>CustomControls\CustomMonthCalendar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomNumericUpDown" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="91.5" Y="4" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gBAAAgCBAiAAIABQaACAKACCAEAAIAAgCAAogAAAEAA=</HashCode>
+      <FileName>CustomControls\CustomNumericUpDown.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomPanel" Collapsed="true">
+    <Position X="94" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AASAIAAAAAAAAAIAQBAAAAACAEAAAAAAAAAAAAAAAIA=</HashCode>
+      <FileName>CustomControls\CustomPanel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomRadioButton" Collapsed="true">
+    <Position X="95.5" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>ABCAAQAAAAAIAAKAQBAAAAACAAAAAEAAAAAABIIAAAA=</HashCode>
+      <FileName>CustomControls\CustomRadioButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomScrollBar" Collapsed="true">
+    <Position X="93.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ghGBAAGIAAABoIqARAAAIAABgFBUDAAAMgopAAAOAEA=</HashCode>
+      <FileName>CustomControls\CustomScrollBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.CustomTextBox" Collapsed="true">
+    <Position X="91.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAwRAQAAACAA4TIBSBCQAAAGgAEEAARCFAAZCAgDAAI=</HashCode>
+      <FileName>CustomControls\CustomTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.DateInput" Collapsed="true">
+    <Position X="91.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAUQAJSCIUcKQCRSALDACBwQAAEUVEIUIAGwBQIA=</HashCode>
+      <FileName>CustomControls\DateInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.ImprovedTextBox" Collapsed="true">
+    <Position X="93.5" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAhBAQQQAgCAASAAAAAAAJAAAAAGAAAQAMAASAAABAA=</HashCode>
+      <FileName>CustomControls\ImprovedTextBox.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.Paginator" Collapsed="true">
+    <Position X="93.5" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IJAQgABBACkAAEAQSACECBACAAAAAjsAACBAAAACAQA=</HashCode>
+      <FileName>CustomControls\Paginator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.CustomControls.TimeInput" Collapsed="true">
+    <Position X="91.5" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIEQABACCBAgAACACEAQACAACAASMRAAEIAQILEYA=</HashCode>
+      <FileName>CustomControls\TimeInput.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.CleaningJobFactory" Collapsed="true">
+    <Position X="78.5" Y="13.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>EICAAEAAAAAAAAAAAAAIABAgAAAAEAAIAAAAAAAAAAQ=</HashCode>
+      <FileName>Factory\CleaningJobFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.CleaningJobOptionFactory" Collapsed="true">
+    <Position X="78.5" Y="14.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAgAAAAAABAAAAAAABAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Factory\CleaningJobOptionFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.CustomerFactory" Collapsed="true">
+    <Position X="78.5" Y="10.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAABAAACAAAAAAAAAAAAAAAAAAAAAAAAIAAAQAA=</HashCode>
+      <FileName>Factory\CustomerFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.OrderFactory" Collapsed="true">
+    <Position X="78.5" Y="13" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAQAEAAQAACAAAAAAEAAAgAAAAAABAAAEAAA=</HashCode>
+      <FileName>Factory\OrderFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.ReportFactory" Collapsed="true">
+    <Position X="78.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Factory\ReportFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.SignInFactory" Collapsed="true">
+    <Position X="78.5" Y="11.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAIAAAAAAAAAAAAEAIAAAAAAAAAAAAAAAIAAAA=</HashCode>
+      <FileName>Factory\SignInFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.StaffFactory" Collapsed="true">
+    <Position X="78.5" Y="12.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>MAICAAACABBAQAAAAAAAABgQgAAAAAAAAABAIEAAAAA=</HashCode>
+      <FileName>Factory\StaffFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Factory.StockFactory" Collapsed="true">
+    <Position X="78.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAAAAAAAgAAAAAgAgAIAABAAAAAAAAAAAgEAAABAAA=</HashCode>
+      <FileName>Factory\StockFactory.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.CleaningJob.CleaningJobDAL" Collapsed="true">
+    <Position X="95.5" Y="15" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ABAgBAAAAEEAAhAQAAAAoAABQAAAABAYAAAAACBAAAk=</HashCode>
+      <FileName>Model\CleaningJob\CleaningJobDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.CleaningJob.CleaningJobModel" Collapsed="true">
+    <Position X="93.25" Y="15" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AABCAAAAAAAAAQAAAAAAAACgAAAAABACAAAAAEAAAAA=</HashCode>
+      <FileName>Model\CleaningJob\CleaningJobModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.CleaningJobOption.CleaningJobOptionDAL" Collapsed="true">
+    <Position X="95.5" Y="15.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEAAAAACAAAAAAACAAAAAAAAYAABAAAAAgAA=</HashCode>
+      <FileName>Model\CleaningJobOption\CleaningJobOptionDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.CleaningJobOption.CleaningJobOptionModel" Collapsed="true">
+    <Position X="93.25" Y="15.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAKAAAAAAAgAAAAAAAAIAQIAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Model\CleaningJobOption\CleaningJobOptionModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.View.CleaningJobOptions.DisplayCleaningJobOptionModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="15.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAKIACAAIAgAIAEAABAIAQIgAAQAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\CleaningJobOptions\DisplayCleaningJobOptionModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.104" />
+  </Class>
+  <Class Name="a2_coursework.Model.Customer.CustomerDAL" Collapsed="true">
+    <Position X="95.5" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAAAQAAAAAAAAgAAAAAAAACAAAAAIAAAEAQABACA=</HashCode>
+      <FileName>Model\Customer\CustomerDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Customer.CustomerModel" Collapsed="true">
+    <Position X="93.25" Y="10.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAACAAAAAAAAABQAAIBAAAAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Customer\CustomerModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.LoginAttempt.LoginAttemptDAL" Collapsed="true">
+    <Position X="95.5" Y="14.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAAAAAAAAAAAAAAAABAAAIAAAAAAAAAAA=</HashCode>
+      <FileName>Model\LoginAttempt\LoginAttemptDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.LoginAttempt.LoginAttemptModel" Collapsed="true">
+    <Position X="93.25" Y="14.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAQAAAAAAAACAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>Model\LoginAttempt\LoginAttemptModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Order.OrderDAL" Collapsed="true">
+    <Position X="95.5" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBCQAAAAAQRAAgAIAAAgACAAAAABAIgEACAAQAAAA=</HashCode>
+      <FileName>Model\Order\OrderDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Order.OrderModel" Collapsed="true">
+    <Position X="93.25" Y="12.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAEAAAgAAgAAAABAAAAACAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Order\OrderModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Reports.ReportGenerator" Collapsed="true">
+    <Position X="78.25" Y="7.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAQAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Reports\ReportGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Reports.StaffReportGenerator" Collapsed="true">
+    <Position X="80.25" Y="15.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAAAAAAAAA=</HashCode>
+      <FileName>Model\Reports\StaffReportGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Reports.CleaningJobReportGenerator" Collapsed="true">
+    <Position X="78.25" Y="8.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Reports\CleaningJobReportGenerator.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Staff.StaffDAL" Collapsed="true">
+    <Position X="95.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAAAAABAQAIiABABQAAAAAAAAAAIAAAAEAIMAAI=</HashCode>
+      <FileName>Model\Staff\StaffDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Staff.StaffModel" Collapsed="true">
+    <Position X="93.25" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABCAQAAACEAAABQAUABQAAoBAASAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Staff\StaffModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Stock.StockDAL" Collapsed="true">
+    <Position X="95.5" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAACAAEAAAAECAACCAAACEIAAAAAiAAAAA=</HashCode>
+      <FileName>Model\Stock\StockDAL.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Stock.StockModel" Collapsed="true">
+    <Position X="93.25" Y="11.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAKAAAAAAAgAAAAAAAAIAQIAAAAAAAAEAAAgAAAAQA=</HashCode>
+      <FileName>Model\Stock\StockModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.Stock.StockQuantityChangeModel" Collapsed="true">
+    <Position X="90.75" Y="11.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAGAAAAIAAAAIAAAAAAAgAAAAAAAAADAAEIgAAAEAA=</HashCode>
+      <FileName>Model\Stock\StockQuantityChangeModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Model.CryptographyManager" Collapsed="true">
+    <Position X="78.25" Y="6.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAIAAACAAAAAAAAAoI=</HashCode>
+      <FileName>Model\CryptographyManager.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.AddCleaningJobPresenter" Collapsed="true">
+    <Position X="12.25" Y="3.25" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>CAABCKAggAAAAACAMUQBBAAIAAABmBkAAAQEBWABIEA=</HashCode>
+      <FileName>Presenter\CleaningJob\AddCleaningJobPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.BookCleaningJobPresenter" Collapsed="true">
+    <Position X="13.5" Y="13.5" Width="5" />
+    <TypeIdentifier>
+      <HashCode>AEJAAAAAgAIQQEAAIAAAAIIAAAEBAQACAAAAAEAAIAA=</HashCode>
+      <FileName>Presenter\CleaningJob\BookCleaningJobPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.183" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.EditCleaningJobPresenter" Collapsed="true">
+    <Position X="30.5" Y="5.5" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>CAABKKAhgABAAIiAMUABBAAIAAAF2JkAAQgHhWABIEA=</HashCode>
+      <FileName>Presenter\CleaningJob\EditCleaningJobPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.171" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.ManageCleaningJobDetailsPresenter" Collapsed="true">
+    <Position X="14.75" Y="10" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AABAAAAAAQAAACAAAACAAAIAgAAAAAACAQAJAEAAAIA=</HashCode>
+      <FileName>Presenter\CleaningJob\ManageCleaningJobDetailsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.ManageCleaningJobDurationPresenter" Collapsed="true">
+    <Position X="17.75" Y="10" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAEBQAAAgCCAAAAgAAgAAAAAADAIAEAAACA=</HashCode>
+      <FileName>Presenter\CleaningJob\ManageCleaningJobDurationPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.162" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.ManageCleaningJobOptionsPresenter" Collapsed="true">
+    <Position X="21.25" Y="13.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>CEBAgAIAAAIQAAAAAACAACCAAAACAAAAAAgIAEABAAA=</HashCode>
+      <FileName>Presenter\CleaningJob\ManageCleaningJobOptionsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.217" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.SelectCleaningJobCustomerPresenter" Collapsed="true">
+    <Position X="27" Y="13.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAAAIUAABAAACAAAAAAAAAAAAAAAAAEEAKAAA=</HashCode>
+      <FileName>Presenter\CleaningJob\SelectCleaningJobCustomerPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.174" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.SelectCleaningJobOptionsPresenter" Collapsed="true">
+    <Position X="32.5" Y="13.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAAAIUAAIAAACAAAAAAAAAAAAAAAAAAEACABA=</HashCode>
+      <FileName>Presenter\CleaningJob\SelectCleaningJobOptionsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.213" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.SelectCleaningJobStaffPresenter" Collapsed="true">
+    <Position X="35.5" Y="13.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAAAIUAAAAAACAAAAAAAAAAAAAAAAIAEACABA=</HashCode>
+      <FileName>Presenter\CleaningJob\SelectCleaningJobStaffPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.ViewCleaningJobCustomerPresenter" Collapsed="true">
+    <Position X="19" Y="11.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAJAAAAAAAAAAAAAAAQAAAAAAAAAAAAAgAAAI=</HashCode>
+      <FileName>Presenter\CleaningJob\ViewCleaningJobCustomerPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.171" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJob.ViewCleaningJobPresenter" Collapsed="true">
+    <Position X="27.5" Y="2.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAggAAAAAAAIAABAAAAAAAAAAkAAAABAUABIAA=</HashCode>
+      <FileName>Presenter\CleaningJob\ViewCleaningJobPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJobOption.AddCleaningJobOptionPresenter" Collapsed="true">
+    <Position X="21.5" Y="3.25" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAhACAAIAAAAQBAAAAAAAAAAkAAAQEAEAAQAA=</HashCode>
+      <FileName>Presenter\CleaningJobOption\AddCleaningJobOptionPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJobOption.EditCleaningJobOptionPresenter" Collapsed="true">
+    <Position X="37.25" Y="7" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAhAiAAAAAAAABIAAAQAAAAAkAAAAHAEAAAQA=</HashCode>
+      <FileName>Presenter\CleaningJobOption\EditCleaningJobOptionPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.244" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJobOption.ManageJobCleaningOptionPresenter" Collapsed="true">
+    <Position X="32.75" Y="11.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAEgAAAAAACCIAQAAAAAAiAAAAIAABgAABA=</HashCode>
+      <FileName>Presenter\CleaningJobOption\ManageJobCleaningOptionPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.171" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.CleaningJobOption.DisplayCleaningJobOptionPresenter" Collapsed="true">
+    <Position X="6.25" Y="13.5" Width="6" />
+    <TypeIdentifier>
+      <HashCode>AEJAEAAAgAIUAAAACAIAAIIEAAAAAQACAAAAQEACgAA=</HashCode>
+      <FileName>Presenter\CleaningJobOption\DisplayCleaningJobOptionPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.158" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Customer.AddCustomerPresenter" Collapsed="true">
+    <Position X="10" Y="3.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAgAgAAAAAAAUBAAAAAABAAApAAAQGAEAAAQA=</HashCode>
+      <FileName>Presenter\Customer\AddCustomerPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Customer.DisplayCustomerPresenter" Collapsed="true">
+    <Position X="9.25" Y="13.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AEJAEAAAgAIUAAAACAIAAIIEAAAAAQACAAAAQEACgAA=</HashCode>
+      <FileName>Presenter\Customer\DisplayCustomerPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.242" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Customer.EditCustomerPresenter" Collapsed="true">
+    <Position X="33" Y="7" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AIAAAEAAgAgAAAAAAAEBYAAAQABAAApAAAAHAEAAAQA=</HashCode>
+      <FileName>Presenter\Customer\EditCustomerPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.215" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Customer.ManageCustomerContactDetailsPresenter" Collapsed="true">
+    <Position X="6.5" Y="10" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>ABgAAAAAACAAAAAABQCCQAIAAAAAAAACAAAAAEgQBIA=</HashCode>
+      <FileName>Presenter\Customer\ManageCustomerContactDetailPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.226" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Customer.ManageCustomerPersonalDetailsPresenter" Collapsed="true">
+    <Position X="11.5" Y="10" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAEAAAAAAEACBAACIBAAQAIAAEAgAAEgAAAA=</HashCode>
+      <FileName>Presenter\Customer\ManageCustomerPersonalDetailsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.LoginAttempt.DisplayLoginAttemptPresenter" Collapsed="true">
+    <Position X="18.5" Y="13.5" Width="5.25" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAgAIUAAAAAAAAAAIEAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Presenter\LoginAttempt\DisplayLoginAttemptPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.192" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.AddOrderPresenter" Collapsed="true">
+    <Position X="14.5" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAgAICBIAAAgQBAAAAAAEAAQgEAEQGAUAAJAA=</HashCode>
+      <FileName>Presenter\Order\AddOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.ApproveRejectOrderPresenter" Collapsed="true">
+    <Position X="24.25" Y="13.5" Width="4.5" />
+    <TypeIdentifier>
+      <HashCode>AEpAAAAEgAIUAAAAAAgAAAIEAAABAAAAAAAAAEAAIIA=</HashCode>
+      <FileName>Presenter\Order\ApproveRejectOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.141" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.DisplayOrderPresenter" Collapsed="true">
+    <Position X="30.25" Y="13.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AEJAACAAgAIUAAAAIAAAAIIEAAEBAQACAAAAQEACIAA=</HashCode>
+      <FileName>Presenter\Order\DisplayOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.187" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.EditOrderPresenter" Collapsed="true">
+    <Position X="30.5" Y="7" Width="3" />
+    <TypeIdentifier>
+      <HashCode>QAFAAAAAgAICBIAAAgABACAAAAMAAQkEAEAHAUBAJAA=</HashCode>
+      <FileName>Presenter\Order\EditOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.185" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.ManageOrderDiscrepanciesPresenter" Collapsed="true">
+    <Position X="16" Y="11.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAACDAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Presenter\Order\ManageOrderDiscrepanciesPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.185" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.ManageOrderStockPresenter" Collapsed="true">
+    <Position X="38.25" Y="13.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>CEBAgAIAAAIQAAAAAACAACCAAAACAAAAAAgIAEABAAA=</HashCode>
+      <FileName>Presenter\Order\ManageOrderStockPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.ReceiveOrderPresenter" Collapsed="true">
+    <Position X="19" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAACAAAAAAQBAAAQAAAQAAgABAQGAQAAJAA=</HashCode>
+      <FileName>Presenter\Order\ReceiveOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.SelectOrderStockPresenter" Collapsed="true">
+    <Position X="40.75" Y="13.5" Width="4.25" />
+    <TypeIdentifier>
+      <HashCode>AEBAAAAAAAIUAAAAAACAAAAAAAAAAQAAAAAAAEACABA=</HashCode>
+      <FileName>Presenter\Order\SelectCleaningJobOptionsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.SubmitOrderPresenter" Collapsed="true">
+    <Position X="27.75" Y="11.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAMwAAAAAACCAAAAAAAAAAAQAAAIAQAACAA=</HashCode>
+      <FileName>Presenter\Order\SubmitOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Order.ViewOrderPresenter" Collapsed="true">
+    <Position X="30.25" Y="2.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAQAAAAAAABAAAAAAAQAAkYAAARAEAAIAA=</HashCode>
+      <FileName>Presenter\Order\ViewOrderPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Report.ReportPresenter" Collapsed="true">
+    <Position X="33.75" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIgAABAAAQIAABAAAAEAAAAAgABAEAAEgAIAA=</HashCode>
+      <FileName>Presenter\Report\ReportPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.185" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.SignIn.DashboardPresenter" Collapsed="true">
+    <Position X="41" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAEAAAAAAAAAAAAAAAACAAAAAEAAAAgAIAA=</HashCode>
+      <FileName>Presenter\SignIn\DashboardPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.SignIn.MasterPresenter" Collapsed="true">
+    <Position X="9" Y="11.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAGgEWAgAAQkAEAAgAAUAKAgBEAGAAEAAAATFEAAYAA=</HashCode>
+      <FileName>Presenter\SignIn\MasterPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.SignIn.SignInPresenter" Collapsed="true">
+    <Position X="24" Y="10" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>gAgQAiAAAAAAAEAEAgAEAAAAACAEAAAAAAAAAECAAAA=</HashCode>
+      <FileName>Presenter\SignIn\SignInPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.SignIn.SplashPresenter" Collapsed="true">
+    <Position X="9.75" Y="10" Width="2" />
+    <TypeIdentifier>
+      <HashCode>gAAAECAAAAAAAAAAAAAAAAAAAAAEAAoAAAAAAUCAAAA=</HashCode>
+      <FileName>Presenter\SignIn\SplashPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.Settings.AppearanceSettingsPresenter" Collapsed="true">
+    <Position X="12.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAAAAAAAAAAQwAAQAAEAAAAA=</HashCode>
+      <FileName>Presenter\Staff\Settings\AppearanceSettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.Settings.ContactDetailsSettingsPresenter" Collapsed="true">
+    <Position X="15" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAAAEAAAAAAAAAAAJAACAAAAQgAAQAAEAAAAA=</HashCode>
+      <FileName>Presenter\Staff\Settings\ContactDetailsSettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.Settings.EmergencyContactSettingsPresenter" Collapsed="true">
+    <Position X="24.25" Y="8.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAgAgBAACAAAAQgAAQAAEAAAAA=</HashCode>
+      <FileName>Presenter\Staff\Settings\EmergencyContactSettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.Settings.PersonalInformationSettingsPresenter" Collapsed="true">
+    <Position X="17.75" Y="8.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAABAACAAAAQgAAQAAEAAAAA=</HashCode>
+      <FileName>Presenter\Staff\Settings\PersonalInformationSettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.Settings.SecuritySettingsPresenter" Collapsed="true">
+    <Position X="21" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEAAAAAAAAAAEBAAAAAAAQgCAQAAMAIAAA=</HashCode>
+      <FileName>Presenter\Staff\Settings\SecuritySettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.Settings.SettingsPresenter&lt;TView&gt;" Collapsed="true">
+    <Position X="19.25" Y="6.25" Width="2" />
+    <InheritanceLine Type="a2_coursework.Presenter.BasePresenter&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="29" Y="8.25" />
+        <Point X="29" Y="7.316" />
+        <Point X="20.25" Y="7.316" />
+        <Point X="20.25" Y="6.941" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAKAAQAEAAAAAAAAAAABAAAAAAAQgAAQAAUgAIAA=</HashCode>
+      <FileName>Presenter\Staff\Settings\SettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.229" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.AddStaffPresenter" Collapsed="true">
+    <Position X="16.75" Y="3.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAQgAAgAoAgAAAwQAAyBAAAggAkABQtAgoQGBECAYQA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\AddStaffPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.EditStaffPresenter" Collapsed="true">
+    <Position X="35.5" Y="7" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQAgAAxAoAgAACQQAAghIAAgwAkABItAAIAHBEAAYwA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\EditStaffPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.185" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.ManageStaffContactDetailsPresenter" Collapsed="true">
+    <Position X="24.75" Y="11.75" Width="3" />
+    <TypeIdentifier>
+      <HashCode>ABgAAAAAACAAAAAABQCCQAIAAAAAAAACAAAAAEgQBIA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\ManageStaffContactDetailsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.141" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.ManageStaffCredentialsPresenter" Collapsed="true">
+    <Position X="30" Y="11.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAACAAiQAAAAQCAgAAAAAACAAAAAAAAAEgAACA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\ManageStaffCredentialsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.171" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.ManageStaffEmergencyContactDetailsPresenter" Collapsed="true">
+    <Position X="36" Y="11.75" Width="3.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAGAAABAAACBCgAAAAAAAAAAAABAAEoAAAA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\ManageStaffEmergencyContactDetailsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.171" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.ManageStaffPasswordPresenter" Collapsed="true">
+    <Position X="35.5" Y="10" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAABAAAAAAAAAAAAEAQAAAAAAAAACAEAAAEAAIAA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\ManageStaffPasswordPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.ManageStaffPersonalDetailsPresenter" Collapsed="true">
+    <Position X="30.5" Y="10" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAEEAAAAEEAChAACABAAQCIAAAAgAAAgAAAA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\ManageStaffPersonalDetailsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.156" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.DisplayStaffPresenter" Collapsed="true">
+    <Position X="11.5" Y="13.5" Width="3.75" />
+    <TypeIdentifier>
+      <HashCode>AEJAEAAAgAIUAAAACAIAAIIEAAAAAQACAAAAQEACoAA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\DisplayStaffPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.141" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.StaffManagement.ManageStaffAppearanceSettingsPresenter" Collapsed="true">
+    <Position X="6.25" Y="8.5" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAQAABAAAEAAiAAAAABAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Presenter\Staff\StaffManagement\ManageStaffAppearanceSettingsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.ManageCleaningJobOptionView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="78.25" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQIAAAAAACAkEAAQBICCKAiCAABAAAEAAgAEAEAIAAA=</HashCode>
+      <FileName>View\CleaningJobOptions\ManageCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.ReportView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.75" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BQAABAEAACAAAAAQKACACACCQABAAABAAAEEAEAABAA=</HashCode>
+      <FileName>View\Report\ReportView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Reports.CleaningJobReportView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63.5" Y="10.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQASIACAACEAAAAQAACACACCAAAAAAAAAAAAAEACAAQ=</HashCode>
+      <FileName>View\Report\CleaningJobReportView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.MasterView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.25" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AABAAGEAACAAIADQAgCACASCAIAAAAAARAAQIEEgAEA=</HashCode>
+      <FileName>View\SignIn\MasterView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.SignInView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACQAIAAACgAAAAUC0CCaKKCgCAAAQgCAgAAAEAEBAQ=</HashCode>
+      <FileName>View\SignIn\SignInView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.127" />
+  </Class>
+  <Class Name="a2_coursework.View.SplashView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="15.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAARAACACACCAAAAAAAAAAAAAECAgAA=</HashCode>
+      <FileName>View\SignIn\SplashView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.ContactDetailsSettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.5" Y="11.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIEUIEgQXCAAIAQAACEaACCAAAAAAACGCAAAUCEAAY=</HashCode>
+      <FileName>View\Staff\Settings\ContactDetailsSettingsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.DisplayStockView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="69.25" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQJAAAACCqAAAUISCASAKAKCAGBUAAKCQBBQQERiCAY=</HashCode>
+      <FileName>View\Stock\StockManagement\DisplayStockView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.SortRequestEventArgs" Collapsed="true">
+    <Position X="99.75" Y="2" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>View\SortRequestEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.Staff.ChangeStaffPasswordPresenter" Collapsed="true">
+    <Position X="22" Y="11.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAEAAAggAAAAAAAAUAAAAAAAAAAAEAAAEgAIAA=</HashCode>
+      <FileName>Presenter\Staff\ChangeStaffPasswordPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.126" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.AddStockPresenter" Collapsed="true">
+    <Position X="24.25" Y="3.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>IIoAgACAgACAABAAAISBAABgAAgEAAgoIAUEAEAAIAA=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\AddStockPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.DisplayStockPresenter" Collapsed="true">
+    <Position X="44.5" Y="13.5" Width="4" />
+    <TypeIdentifier>
+      <HashCode>AEJAEAAAgAIUAAAACAIAAIIEAAAAAQQCAAAAQEACoAA=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\DisplayStockPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.187" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.EditStockPresenter" Collapsed="true">
+    <Position X="40" Y="7" Width="3" />
+    <TypeIdentifier>
+      <HashCode>IQYAhAABgACAABAAIoCFAABgBAgAAggoAAEFAEAAIAE=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\EditStockPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.171" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.ManageStockDetailsPresenter" Collapsed="true">
+    <Position X="38.25" Y="10" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQADAAAAAIGgAAAAAACAAAQIAAAAAAAAEAIFAFgAAAA=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\ManageStockDetailsPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.156" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.ManageStockQuantityPresenter" Collapsed="true">
+    <Position X="41" Y="11.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAcgAAAAECgAAAEAACAAAgAAAAAAAAAAAAAgEgBAAA=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\ManageStockQuantityPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.215" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.ManageStockUnitCostPresenter" Collapsed="true">
+    <Position X="25.75" Y="10" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAIAAAAAAAACAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\ManageStockUnitCostPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.187" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockManagement.ManageStockWarningPresenter" Collapsed="true">
+    <Position X="9.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAQAAAgAgQA=</HashCode>
+      <FileName>Presenter\Stock\StockManagement\ManageStockWarningPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockQuantityChanges.DisplayStockQuantityChangesPresenter" Collapsed="true">
+    <Position X="15.25" Y="13.5" Width="6.25" />
+    <TypeIdentifier>
+      <HashCode>AEJAEAAAgAIUAAAACAAAAAIEAAABAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Presenter\Stock\StockQuantityChanges\DisplayStockQuantityChangesPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.217" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.Stock.StockQuantityChanges.ViewStockQuantityChangePresenter" Collapsed="true">
+    <Position X="21" Y="10" Width="3" />
+    <TypeIdentifier>
+      <HashCode>BAAAAAAAgAEAAAAAAAABAAAAAAAAAAgAAAAAAEgAAAA=</HashCode>
+      <FileName>Presenter\Stock\StockQuantityChanges\ViewStockQuantityChangePresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Bottom" Position="0.162" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.BasePresenter&lt;T&gt;" Collapsed="true">
+    <Position X="28.25" Y="8.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAEAAAAA=</HashCode>
+      <FileName>Presenter\BasePresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.DisplayPresenter&lt;TView, TModel, TDisplayModel&gt;" Collapsed="true">
+    <Position X="11.25" Y="12" Width="3.25" />
+    <InheritanceLine Type="a2_coursework.Presenter.BasePresenter&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="29" Y="8.812" />
+        <Point X="29" Y="11.375" />
+        <Point X="12.875" Y="11.375" />
+        <Point X="12.875" Y="12" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AEBAAIAEAAIAAAQAAAAAAAIIAABAAAAAEAAAAEggAAA=</HashCode>
+      <FileName>Presenter\DisplayPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.EditPresenter&lt;TView, TModel&gt;" Collapsed="true">
+    <Position X="34.5" Y="4" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Presenter.BasePresenter&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="29" Y="8.25" />
+        <Point X="29" Y="5.125" />
+        <Point X="35.625" Y="5.125" />
+        <Point X="35.625" Y="4.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAKAAQAGAAAAAAgAAAAAAAAAAAAQACAQAAUgAAAA=</HashCode>
+      <FileName>Presenter\EditPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.NavigationEventArgs" Collapsed="true">
+    <Position X="99.75" Y="3" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAwBAAAAIAAAAAAAAAA=</HashCode>
+      <FileName>Presenter\NavigationEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.AddPresenter&lt;TView, TModel&gt;" Collapsed="true">
+    <Position X="18.75" Y="4.75" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Presenter.BasePresenter&lt;T&gt;" FixedToPoint="true">
+      <Path>
+        <Point X="29" Y="8.25" />
+        <Point X="29" Y="5.125" />
+        <Point X="21" Y="5.125" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AkJAAAQAgAEAQkAIggQAQABACIAAAAAACAQEEEgAAAA=</HashCode>
+      <FileName>Presenter\ParentAddPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.ParentEditPresenter&lt;TView, TModel&gt;" Collapsed="true">
+    <Position X="34.5" Y="5.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAQAAgAGAAAAIAAAAAAAACMABAAQACAwVGEgAAAA=</HashCode>
+      <FileName>Presenter\ParentEditPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Presenter.ParentViewPresenter&lt;TView, TModel&gt;" Collapsed="true">
+    <Position X="28.75" Y="4" Width="2.5" />
+    <InheritanceLine Type="a2_coursework.Presenter.BasePresenter&lt;T&gt;" FixedFromPoint="true">
+      <Path>
+        <Point X="29" Y="8.25" />
+        <Point X="29" Y="5.125" />
+        <Point X="30" Y="5.125" />
+        <Point X="30" Y="4.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAgAAAAAAAAABAAAAAAAREEgAAAA=</HashCode>
+      <FileName>Presenter\ParentViewPresenter.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.362" />
+  </Class>
+  <Class Name="a2_coursework.Presenter.ValidationRequestEventArgs&lt;T&gt;" Collapsed="true">
+    <Position X="99.75" Y="4" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAACAAIAAAAAAAAAAAAAAAAAgBAAAAAA=</HashCode>
+      <FileName>Presenter\ValidationRequestEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Theming.ColorScheme" Collapsed="true">
+    <Position X="88" Y="9.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BAACACAAAABAAgAAAACAAhBAIAAQABBAAAAwEmiAIAA=</HashCode>
+      <FileName>Theming\ColorScheme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Theming.IconTheme" Collapsed="true">
+    <Position X="88" Y="10" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>IAABAQQAAAFgABAAAICCggABAAEAAABKgCGAAAAgQIA=</HashCode>
+      <FileName>Theming\IconTheme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Theming.Theme" Collapsed="true">
+    <Position X="88" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QoBAAAACgAABAAAIAQCAAAAAAAAAAAAAAAAEEAAAABA=</HashCode>
+      <FileName>Theming\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.Theming.ThemingExtenders" Collapsed="true">
+    <Position X="88" Y="10.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AACAAAAAABAAAABQAAAAAAAAAAAAAAAAIAAAAAAAAAQ=</HashCode>
+      <FileName>Theming\ThemingExtenders.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.User_Controls.DataGrid.AddEditArchiveSearchBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.25" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABJApAAEACDAAQAwiACCCASCAACMtCQDAaABAAAgAAI=</HashCode>
+      <FileName>User Controls\CRUD\AddEditArchiveSearchBar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.User_Controls.DataGrid.AddEditDeleteSearchBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66.5" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>ABJApAAEACAAAAAwiACgCACCEQEFtCADAYABAAAgAAY=</HashCode>
+      <FileName>User Controls\CRUD\AddEditDeleteSearchBar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.User_Controls.DataGrid.ApproveSearchBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="87.25" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>ABgAIIAEQCAAAABwiACACACCAACFfCAAAKABAAggAIA=</HashCode>
+      <FileName>User Controls\CRUD\ApproveSearchBar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.148" />
+  </Class>
+  <Class Name="a2_coursework.User_Controls.DataGrid.SearchBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="87.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIAAEACAAAAAwiACACACCAAAEICAAAIABAAAgAAA=</HashCode>
+      <FileName>User Controls\CRUD\SearchBar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.User_Controls.DataGrid.ViewSearchBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="87.25" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAIIAEACAAAABwiACACACCAAAFJCAAAIABAAAgAAA=</HashCode>
+      <FileName>User Controls\CRUD\ViewSearchBar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.User_Controls.CRUD.PreviousNextDoneBar" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="87.25" Y="4" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgpAgAAAACAAAgBQCACACJCCAAAAJABAAAAAAAAAAAA=</HashCode>
+      <FileName>User Controls\CRUD\PreviousNextDoneBar.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.UserControls.SideMenu.MenuButton" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="84" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQAAAAQQACACACCAAAAAAAAEAAACAABIgA=</HashCode>
+      <FileName>User Controls\Menu\MenuButton.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.122" />
+  </Class>
+  <Class Name="a2_coursework.UserControls.SideMenu.MenuDropdown" Collapsed="true">
+    <Position X="84" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACQDIAAQQACwAABCAEDAkQAAEABxgCAAAAA=</HashCode>
+      <FileName>User Controls\Menu\MenuDropdown.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.UserControls.SideMenu.MenuToggleButton" Collapsed="true">
+    <Position X="84" Y="5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAABCAAEAAQAACAAAACAUAAAAAAUAgQCAABAAA=</HashCode>
+      <FileName>User Controls\Menu\MenuToggleButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.UserControls.SideMenu.SideMenu" Collapsed="true">
+    <Position X="84" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAyAAMACSSECAIAoCAEAAAACABAJAAAAAKgA=</HashCode>
+      <FileName>User Controls\Menu\SideMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.UserControls.TopMenu" Collapsed="true">
+    <Position X="84" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAgAAAAACAAIBAQQACAAABCQAAAAAAAAIBAAAAAAQA=</HashCode>
+      <FileName>User Controls\Menu\TopMenu.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.UserControls.ToggleButton" Collapsed="true">
+    <Position X="92.75" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AACAAQAIAQCAAIQAAABAACACAQAAAAAYQgIQCSADAAI=</HashCode>
+      <FileName>User Controls\ToggleButton.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.UserControls.ToggleEventArgs" Collapsed="true">
+    <Position X="99.75" Y="1" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>User Controls\ToggleEventArgs.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.UserControls.TopBar" Collapsed="true">
+    <Position X="87.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAGAAgCCAAAAQQACAAAgCAEAAAAAAAABAIAAACIA=</HashCode>
+      <FileName>User Controls\TopBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.User_Controls.Menu.TopMenuItem" Collapsed="true">
+    <Position X="84" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAEAAQAACAAAACAAAAAAEAAABACAAAAgI=</HashCode>
+      <FileName>User Controls\Menu\TopMenuItem.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.User_Controls.Settings.ApproveChangesBar" Collapsed="true">
+    <Position X="87.25" Y="6" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAIAAQCCAAAEQSACAAEACAIAAABAAEABAAAICAAI=</HashCode>
+      <FileName>User Controls\Settings\ApproveChangesBar.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="a2_coursework.View.Stock.AddCleaningJobView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60" Y="6.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AwpAAAEAACGAAgBQCgCACACCAAAAAABABAAAAEABAAI=</HashCode>
+      <FileName>View\CleaningJob\AddCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.AddOrderView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.75" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwpAAAEAACGAAgBQCgCACACCAAAAAABABAAAAEABAAI=</HashCode>
+      <FileName>View\Order\AddOrderView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.ManageStaffCredentialsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="1.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACEQAAAQAQCgCACCAGACAwABAAAAIUAIAAA=</HashCode>
+      <FileName>View\Staff\StaffManagement\ManageStaffCredentialsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.AddStockView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="72.25" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwpAAAEAACGAAgBQCgCACACCAAAAAABABAAAAEABAAI=</HashCode>
+      <FileName>View\Stock\StockManagement\AddStockView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.EditStockView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAYEIEAQDCAAABQSgCACACCAAAAAABEBAAAAEAAgAI=</HashCode>
+      <FileName>View\Stock\StockManagement\EditStockView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.ManageStockQuantityView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70.5" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>BAIEgQQAICggABgQEADCCAiiAAAIgAhACAAAlEAAAAA=</HashCode>
+      <FileName>View\Stock\StockManagement\ManageStockQuantityView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.ManageStockWarningView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="65.5" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAGAAAAAQAICACACCACAAAAAAQAAAAFAAEQg=</HashCode>
+      <FileName>View\Stock\StockManagement\ManageStockWarningView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.311" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.DisplayStockQuantityChangesView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="61.5" Y="8.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AQBAAAACCqAAAEASAASwKAKCIWBVAAIAQBAQQEBgCAY=</HashCode>
+      <FileName>View\Stock\StockQuantityChanges\DisplayStockQuantityChangesView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.ViewStockQuantityChangeView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="72.5" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAEAAAAAKgAABBQCQCAKACCAEAIAQBCCEAAgEEAAAA=</HashCode>
+      <FileName>View\Stock\StockQuantityChanges\ViewStockQuantityChangeView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Users.BookCleaningJobView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.75" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQJCAAcAAqAAAFATABSgKAKCUEVFAAIDQBAYQEAwCAY=</HashCode>
+      <FileName>View\CleaningJob\BookCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Users.DisplayLoginAttemptView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.25" Y="8.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQACAIEAAqAAAEASAASQKAKCAEBEAAIAQBARAEIgCAY=</HashCode>
+      <FileName>View\LoginAttempt\DisplayLoginAttemptView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Users.ChangeStaffPasswordView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="69.75" Y="11.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>IBEACBkpAiWYpEDSTVKKKAqCAGABIYAAzBIAgEhAIAI=</HashCode>
+      <FileName>View\Staff\StaffManagement\ChangePasswordView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Users.DisplayStaffView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="67.25" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQJAICECAqQAAUASAASQKAKCAGBEAAKCQBBQQEBiCAY=</HashCode>
+      <FileName>View\Staff\StaffManagement\DisplayStaffView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.CleaningJob.DisplayCleaningJobModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="15" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAgAIAAAABAAAAAgAAAAAICAAAAAEAAAAA=</HashCode>
+      <FileName>View\CleaningJob\DisplayCleaningJobModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.EditCleaningJobView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="62.75" Y="4.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAYEIEAQDCAAABQSgCACACCAAAAAABEBAAAAEAAgAI=</HashCode>
+      <FileName>View\CleaningJob\EditCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageCleaningJobDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="76.5" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>gABEUAEAACAIAAIQAACACCCCAAQAAAECAQAIAECAAIA=</HashCode>
+      <FileName>View\CleaningJob\ManageCleaningJobDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageCleaningJobDurationView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQBJAECCAgFgQCACACACCIAAgAAEFAIAMAEAhAAA=</HashCode>
+      <FileName>View\CleaningJob\ManageCleaningJobDurationView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageCleaningJobOptionsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="63.25" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQMABQQAAqAEAFBSQASCKAqCAEBMQAIAUBBTwEAiAQY=</HashCode>
+      <FileName>View\CleaningJob\ManageCleaningJobOptionsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ViewCleaningJobCustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="69.75" Y="10.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAQAAAJSAEAIAQAACEKACCQAAAAAAAAAAAAEAAAAQ=</HashCode>
+      <FileName>View\CleaningJob\ManageCustomerContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.SelectCleaningJobCustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="62" Y="13.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AUBIIAAAAqYAAEASAASAKgKCAEBEAAIAQBBQQFAiAAY=</HashCode>
+      <FileName>View\CleaningJob\SelectCleaningJobCustomerView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.SelectCleaningJobOptionsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="13.75" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AQJAAAAAAqgAAEASAASAKAKCAUBEAAIAQABQQFAiAAY=</HashCode>
+      <FileName>View\CleaningJob\SelectCleaningJobOptionsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.SelectCleaningJobStaffView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="13.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQBAIAAAAqwAAEASAASAKAKCAUBEAAMAQABYQFAiAAY=</HashCode>
+      <FileName>View\CleaningJob\SelectCleaningJobStaffView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ViewCleaningJobView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="67.75" Y="10.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAYAAEAACCAAABQSgCACACCAAAAAABABAAAAEAAgAI=</HashCode>
+      <FileName>View\CleaningJob\ViewCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.AddCleaningJobOptionView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="6.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AwpAAAEAACGAAgBQCgCACACCAAAAAABABAAAAEABAAI=</HashCode>
+      <FileName>View\CleaningJobOptions\AddCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.172" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.EditCleaningJobOptionView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="67" Y="4.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAYEIEAQDCAAABQSgCACACCAAAAAABEBAAAAEAAgAI=</HashCode>
+      <FileName>View\CleaningJobOptions\EditCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.AddCustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="62" Y="6.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AwpAAAEAACGAAgBQCgCACACCAAAAAABABAAAAEABAAI=</HashCode>
+      <FileName>View\Customer\AddCustomerView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Customer.DisplayCustomerModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="10.5" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAADoAAAACAAAIAAAABAQAAIgAAQAAAAAAAAAAAAAAE=</HashCode>
+      <FileName>View\Customer\DisplayCustomerModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.DisplayCustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="71.75" Y="8.5" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQJAIAECAqQAAUASAASAKAKCAGBEAAKCQBBQQEBiCAY=</HashCode>
+      <FileName>View\Customer\DisplayCustomerView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.EditCustomerView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.75" Y="4.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQAYEIEAQDCAAABQSgCACACCAAAAAABEBAAAAEAAgAI=</HashCode>
+      <FileName>View\Customer\EditCustomerView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageCustomerContactDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60.25" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIEQIEAASAAAIAQAACGbACCAADAAAACCCAAAECAAAQ=</HashCode>
+      <FileName>View\Customer\ManageCustomerContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageCustomerPersonalDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68.75" Y="1.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>CAAQAAkAADAAEAAQBICBaBCKBCAEAAAAwAAAAEAEAAA=</HashCode>
+      <FileName>View\Customer\ManageCustomerPersonalDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ApproveRejectOrderView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="10.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQhAAAEAAqQAAEASAASAKAKCAEBFAAIAQFAQAEAiCoY=</HashCode>
+      <FileName>View\Order\ApproveRejectOrderView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.DisplayOrderModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="12.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AEACACAEAAAAAIAAAABAAAAAgACAAAAAAAAAAACACAA=</HashCode>
+      <FileName>View\Order\DisplayOrderModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.112" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.DisplayOrderView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="8.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQJAAAEAAqQAAEASAASgKAKCEEFFAAICQFAQQEAiCgY=</HashCode>
+      <FileName>View\Order\DisplayOrderView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.EditOrderView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAYEIEAQDCAAABQSgCACACCAAAAAABEBAAAAEAAgAI=</HashCode>
+      <FileName>View\Order\EditOrderView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageOrderStockView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="74.25" Y="1.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AQIABQQAAqAEAFASAASCKAqCAEBMQAIKUBBTwEAiAQY=</HashCode>
+      <FileName>View\Order\ManageOrderStockView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ManageOrderDiscrepanciesView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQIAAAAAACAgAAAQAACCCAiCAAAAAAAAAAAMAEAAAAA=</HashCode>
+      <FileName>View\Order\OrderDiscrepanciesView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.SelectOrderStockView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60" Y="13.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQJAAAAAAqgAAEASAASAKAKCAUBEAAIAQABQQFAiAAY=</HashCode>
+      <FileName>View\Order\SelectOrderStockView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.SubmitOrderView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>ASIAAAAAACAgAAIQAACCCAiCAAAAAAAQEAAMAUAACAA=</HashCode>
+      <FileName>View\Order\SubmitOrderView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Order.ViewOrderView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="10.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAYAAAAACCAAABQSgCACACCAAAAAABEDAAAAEAAgAA=</HashCode>
+      <FileName>View\Order\ViewOrderView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.JobOption.DisplayCleaningJobOptionView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="64.5" Y="8.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AQJAAAACAqAAAUASAASAKQKCAGBEAAKCQBBQQEBiCAY=</HashCode>
+      <FileName>View\CleaningJobOptions\DisplayCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.LoginAttempt.DisplayLoginAttemptModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="14.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAIAAAQAAAAAAgACAAAAAAAIAAACAAgA=</HashCode>
+      <FileName>View\LoginAttempt\DisplayLoginAttemptModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.13" />
+  </Class>
+  <Class Name="a2_coursework.View.Settings.AppearanceSettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60.25" Y="11.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgQAFIEgQDmgAYAZAICEKACCAIIBARAAAiAMAGgQABI=</HashCode>
+      <FileName>View\Staff\Settings\AppearanceSettingsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Settings.EmergencyContactSettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="57.5" Y="11.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AgAEEYFoQDGAEAJQAACACBCCAAA1AAAAAAAAAEAEECI=</HashCode>
+      <FileName>View\Staff\Settings\EmergencyContactSettingsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Settings.PersonalInformationSettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="67" Y="11.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQEIkgQDCAEAA0CICBSASmBCAQCQAAhAAAAEEAAQI=</HashCode>
+      <FileName>View\Staff\Settings\PersonalInformationSettingsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Settings.SecuritySettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="62.5" Y="11.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>IBEAEJkpQiSIJELSTVKKKAqCEEBKIYAAzFIBoEBAIAI=</HashCode>
+      <FileName>View\Staff\Settings\SecuritySettingsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.StaffView.AddStaffView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="70.5" Y="6.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AwpAAAEAACGAAgBQCgCACACCAAAAAABABAAAAEABAAI=</HashCode>
+      <FileName>View\Staff\StaffManagement\AddStaffView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.StaffView.EditStaffView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="59.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAYEIEAQDCAAABQSgCACACCAAAAAABEBAAAAEAAgAI=</HashCode>
+      <FileName>View\Staff\StaffManagement\EditStaffView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.StaffView.ManageStaffAppearanceSettingsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="75.25" Y="3" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AgQABAAAADggAYAYAACEKACCAIIBAYAAACAUAEgQAAA=</HashCode>
+      <FileName>View\Staff\StaffManagement\ManageStaffAppearanceSettingsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.StaffView.ManageStaffContactDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="62.75" Y="3" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIEQIEAASAAAIAQAACGbACCAADAAAACCCAAAECAAAQ=</HashCode>
+      <FileName>View\Staff\StaffManagement\ManageStaffContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.StaffView.ManageStaffEmergencyContactDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="79.25" Y="1.25" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQBIACEAEAJQAACASBCCAAA1QAAAAAAEAEAAACA=</HashCode>
+      <FileName>View\Staff\StaffManagement\ManageStaffEmergencyContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.StaffView.ManageStaffPersonalDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="66" Y="1.25" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAkAADAAEAAwBICBSACGBCAQCAAAxAQAAEEEAAA=</HashCode>
+      <FileName>View\Staff\StaffManagement\ManageStaffPersonalDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Staff.StaffManagement.DisplayStaffModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="12" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAADoAAAACAAAIAAAQBAQAAIgAAAAAAAAAIQAAAAAAE=</HashCode>
+      <FileName>View\Staff\StaffManagement\DisplayStaffModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.View.Staff.StaffManagement.ManageStaffPasswordView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="60.25" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>IBEAAAApAiQIIEFUCECKKAKCAAAAIIACghAAgEBELAA=</HashCode>
+      <FileName>View\Staff\StaffManagement\ManageStaffPasswordView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.StockManagement.DisplayStockModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="98" Y="11.25" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAACYACAAAAIAIABAABAIAQIgAAUAAAAEAACgEAAAAA=</HashCode>
+      <FileName>View\Stock\StockManagement\DisplayStockModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.StockManagement.ManageStockDetailsView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="73" Y="3" Width="2" />
+    <TypeIdentifier>
+      <HashCode>CAIAAAAAIKigSIAQEACSLBiKAAAEAAkCEWQEAEAIAAI=</HashCode>
+      <FileName>View\Stock\StockManagement\ManageStockDetailsView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.StockManagement.ManageStockUnitCostView" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="68" Y="3" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAAQAICAKACCAABAAAEAAgAAAEAAAAA=</HashCode>
+      <FileName>View\Stock\StockManagement\ManageStockUnitCostView.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="a2_coursework.View.Stock.StockQuantityChanges.DisplayStockQuantityChangeModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="102" Y="11.25" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEADAAAEAAAIABBQAAAAAIgAAQAAADAQIAgAAACAA=</HashCode>
+      <FileName>View\Stock\StockQuantityChanges\DisplayStockQuantityChangeModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Class>
+  <Struct Name="a2_coursework.CustomControls.CornerRadiiF" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="91.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAIAAAAABAA4AMAAAAAAAAAAAAAAIAAAAAAAEA=</HashCode>
+      <FileName>CustomControls\CornerRadiiF.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Orientation="Right" Position="0.1" />
+  </Struct>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.IAddCleaningJobView" Collapsed="true">
+    <Position X="42.25" Y="24.5" Width="1.75" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IAddView" FixedToPoint="true">
+      <Path>
+        <Point X="39.25" Y="27.25" />
+        <Point X="39.25" Y="24.812" />
+        <Point X="42.25" Y="24.812" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\CleaningJob\IAddCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.IBookCleaningJobView" Collapsed="true">
+    <Position X="6" Y="22.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAAAMAAIAAAAAAAAAgAAAAEAEFAAADABAQAEAgAAI=</HashCode>
+      <FileName>Interfaces\CleaningJob\IBookCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.IEditCleaningJobView" Collapsed="true">
+    <Position X="10.5" Y="27.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\CleaningJob\IEditCleaningJobView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.IManageCleaningJobDuration" Collapsed="true">
+    <Position X="19.25" Y="35.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAABJAEACAAAgQAAAAAAAAIAAgAAABAIAIAAAAAAA=</HashCode>
+      <FileName>Interfaces\CleaningJob\IManageCleaningJobDuration.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.IManageCleaningJobOptionDetails" Collapsed="true">
+    <Position X="24.5" Y="35.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AABAQAAAAAAIAAAAAAAAACAAAAAAAAACAQAIAAAAAIA=</HashCode>
+      <FileName>Interfaces\CleaningJob\IManageCleaningJobOptionDetails.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.ISelectCleaningJobCustomerView" Collapsed="true">
+    <Position X="15.5" Y="22.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAIAAAAAIIAAAAAAAAAAAAAAAAAAAAAABAQQEAgAAI=</HashCode>
+      <FileName>Interfaces\CleaningJob\ISelectCleaningJobCustomerView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.ISelectCleaningJobOptionsView" Collapsed="true">
+    <Position X="28.75" Y="22.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIgAAAAAAAAAAAAAAQAAAAAAAAAQQEAgAAI=</HashCode>
+      <FileName>Interfaces\CleaningJob\ISelectCleaningJobOptionsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.ISelectCleaningJobStaffView" Collapsed="true">
+    <Position X="18.25" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIgAAAAAAAAAAAAAAQAAAAAAAAAYQEAgAAI=</HashCode>
+      <FileName>Interfaces\CleaningJob\ISelectCleaningJobStaffView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJob.IViewCleaningJobCustomerView" Collapsed="true">
+    <Position X="32.75" Y="35.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAJAAAAAAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\CleaningJob\IViewCleaningJobCustomerView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJobOption.IAddCleaningJobOptionView" Collapsed="true">
+    <Position X="42.25" Y="27.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\CleaningJobOption\IAddCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJobOption.IDisplayCleaningJobOptionView" Collapsed="true">
+    <Position X="20.75" Y="22.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAIAAAQAAAAAAAAAAACAEAACCABAQQEBgAAI=</HashCode>
+      <FileName>Interfaces\CleaningJobOption\IDisplayCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJobOption.IEditCleaningJobOptionView" Collapsed="true">
+    <Position X="7.25" Y="29.75" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" ManuallyRouted="true">
+      <Path>
+        <Point X="35.75" Y="33.5" />
+        <Point X="35.75" Y="32.808" />
+        <Point X="8.375" Y="32.808" />
+        <Point X="8.375" Y="30.57" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\CleaningJobOption\IEditCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.CleaningJobOption.IManageCleaningJobOptionView" Collapsed="true">
+    <Position X="21.25" Y="34" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAABAACIAAAAAAAAAEAAAAEAAAIAAA=</HashCode>
+      <FileName>Interfaces\CleaningJobOption\IManageCleaningJobOptionView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Customer.IAddCustomerView" Collapsed="true">
+    <Position X="42.25" Y="28.5" Width="1.75" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IAddView" FixedToPoint="true">
+      <Path>
+        <Point X="39.25" Y="27.941" />
+        <Point X="39.25" Y="28.875" />
+        <Point X="42.25" Y="28.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Customer\IAddCustomerView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Customer.IDisplayCustomerView" Collapsed="true">
+    <Position X="26.25" Y="22.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAEAAIAAAQAAAAAAAAAAACAEAACCABAQQEBgAAI=</HashCode>
+      <FileName>Interfaces\Customer\IDisplayCustomerView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Customer.IEditCustomerView" Collapsed="true">
+    <Position X="5.75" Y="27.75" Width="1.75" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" ManuallyRouted="true">
+      <Path>
+        <Point X="35.75" Y="33.5" />
+        <Point X="35.75" Y="32.838" />
+        <Point X="6.625" Y="32.838" />
+        <Point X="6.625" Y="28.57" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Customer\IEditCustomerView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Customer.IManageCustomerContactDetailsView" Collapsed="true">
+    <Position X="5.5" Y="35.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAEQAAAACAAAAAAAAACYAAAAACAAAACAAAAAACAAAQ=</HashCode>
+      <FileName>Interfaces\Customer\IManageCustomerContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Customer.IManageCustomerPersonalDetailsView" Collapsed="true">
+    <Position X="8.5" Y="35.75" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAEAAAAAAAAABIABABAIBCAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Customer\IManageCustomerPersonalDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.LoginAttempt.IDisplayLoginAttemptView" Collapsed="true">
+    <Position X="13" Y="22.5" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAAAAQAEAgAAI=</HashCode>
+      <FileName>Interfaces\LoginAttempt\IDisplayLoginAttemptView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IAddOrderView" Collapsed="true">
+    <Position X="42.25" Y="25.5" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IAddView" FixedToPoint="true">
+      <Path>
+        <Point X="39.25" Y="27.25" />
+        <Point X="39.25" Y="25.875" />
+        <Point X="42.25" Y="25.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Order\IAddOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IApproveRejectOrderView" Collapsed="true">
+    <Position X="10.75" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAgAAAAAAIAAAAAAAAAAAAAAAAAFAAAAABAQAEAgAII=</HashCode>
+      <FileName>Interfaces\Order\IApproveRejectOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IDisplayOrderView" Collapsed="true">
+    <Position X="8.5" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAIAAAAAAAAAgAAAAEAEFAAACABAQQEAgAAI=</HashCode>
+      <FileName>Interfaces\Order\IDisplayOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IEditOrderView" Collapsed="true">
+    <Position X="8.5" Y="25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Order\IEditOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IManageOrderStockView" Collapsed="true">
+    <Position X="14.5" Y="24.25" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAQAAIAEAAAAAAAAAAAAAAAEQAAKABASwEAgAAI=</HashCode>
+      <FileName>Interfaces\Order\IManageOrderStockView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IOrderDiscrepanciesView" Collapsed="true">
+    <Position X="5.5" Y="34" Width="2" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" ManuallyRouted="true" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.393" />
+        <Point X="7.125" Y="35.393" />
+        <Point X="7.125" Y="34.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAACAAAAAAAAAAAAAAAMAAAAAAA=</HashCode>
+      <FileName>Interfaces\Order\IOrderDiscrepanciesView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.ISelectOrderStockView" Collapsed="true">
+    <Position X="34.5" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIgAAAAAAAAAAAAAAQAAAAAAAAAQQEAgAAI=</HashCode>
+      <FileName>Interfaces\Order\ISelectOrderStockView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.ISubmitOrderView" Collapsed="true">
+    <Position X="10.5" Y="34" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="11.25" Y="35.375" />
+        <Point X="11.25" Y="34.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>ACAAAAAAAAAgAAAAAAACAAAAAAAAAAAQAAAMAQAACAA=</HashCode>
+      <FileName>Interfaces\Order\ISubmitOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Order.IViewOrderView" Collapsed="true">
+    <Position X="39" Y="33.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Order\IViewOrderView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Report.IReportView" Collapsed="true">
+    <Position X="16" Y="34" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="16.75" Y="35.375" />
+        <Point X="16.75" Y="34.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQABBAEAAAAIAAAAAAAAAAACQAAAAAAAAAEEAAAAAAA=</HashCode>
+      <FileName>Interfaces\Report\IReportView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.SignIn.IDashboardView" Collapsed="true">
+    <Position X="24" Y="34" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAgAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAAAAAAEA=</HashCode>
+      <FileName>Interfaces\SignIn\IDashboardView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.SignIn.IMasterView" Collapsed="true">
+    <Position X="39" Y="30.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAGEAAAAAIADAAAAAAAAAAAAEAAAAQAAQIAEAAAA=</HashCode>
+      <FileName>Interfaces\SignIn\IMasterView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.SignIn.ISignInView" Collapsed="true">
+    <Position X="41.25" Y="30.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAEAwAAAKAAACAEAAACAAAAAACAAAA=</HashCode>
+      <FileName>Interfaces\SignIn\ISignInView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.SignIn.ISplashView" Collapsed="true">
+    <Position X="43.5" Y="30.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAIAAAAAAAAAAAAAAAEAAAAAAAAAACAAAA=</HashCode>
+      <FileName>Interfaces\SignIn\ISplashView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.Settings.IAppearanceSettingsView" Collapsed="true">
+    <Position X="23.5" Y="29.75" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAAAAAAAACAAIAAAAAAACAEAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\Settings\IAppearanceSettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.Settings.IContactDetailsSettingsView" Collapsed="true">
+    <Position X="25.75" Y="29.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAEQAAAACAAAAAAAAAAYAAAAAAAAAACAAAAAQCAAAQ=</HashCode>
+      <FileName>Interfaces\Staff\Settings\IContactDetailsSettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.Settings.IEmergencyContactSettingsView" Collapsed="true">
+    <Position X="28" Y="29.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAQAAAAEAEABAAAAAABAAAAAgAAAAAAAAAAAAEAA=</HashCode>
+      <FileName>Interfaces\Staff\Settings\IEmergencyContactSettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.Settings.IPersonalInformationSettingsView" Collapsed="true">
+    <Position X="30.25" Y="29.75" Width="2.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAEAAAAAAAAgAIABAAQgBCAQCAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\Settings\IPersonalInformationSettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.Settings.ISecuritySettingsView" Collapsed="true">
+    <Position X="32.5" Y="29.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABAIAAQABABAAVAAAAoAAABCIAAAAAABAAAAIAA=</HashCode>
+      <FileName>Interfaces\Staff\Settings\ISecuritySettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IAddStaffView" Collapsed="true">
+    <Position X="42.25" Y="26.5" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IAddView" FixedToPoint="true">
+      <Path>
+        <Point X="39.25" Y="27.25" />
+        <Point X="39.25" Y="26.938" />
+        <Point X="42.25" Y="26.938" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IAddStaffView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IChangePasswordView" Collapsed="true">
+    <Position X="27.25" Y="35.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAABEIAAUAhABAAVAAAAoAACAAIAAAAAAAAEAAIAI=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IChangePasswordView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IDisplayStaffView" Collapsed="true">
+    <Position X="37.25" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAEAAIAAAQAAAAAAAAAAACAEAACCABAQQEBgAAI=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IDisplayStaffView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IEditStaffView" Collapsed="true">
+    <Position X="20.75" Y="27" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IEditStaffView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IManageStaffAppearanceSettingsView" Collapsed="true">
+    <Position X="13" Y="34" Width="2.75" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="14.375" Y="35.375" />
+        <Point X="14.375" Y="34.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgAAAAAAAAAAAIAAAAAAAACAAIAAAAAAACAEAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IManageStaffAppearanceSettingsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IManageStaffContactDetailsView" Collapsed="true">
+    <Position X="7.75" Y="34" Width="2.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="9" Y="35.375" />
+        <Point X="9" Y="34.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAEQAAAACAAAAAAAAACYAAAAACAAAACAAAAAACAAAQ=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IManageStaffContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IManageStaffCredentialsView" Collapsed="true">
+    <Position X="32" Y="34" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="33.125" Y="35.375" />
+        <Point X="33.125" Y="34.691" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAEQAAAAAQAAAAAAACACAgABAAAAAEAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IManageStaffCredentialsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IManageStaffEmergencyContactDetailsView" Collapsed="true">
+    <Position X="17.75" Y="34" Width="3.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAEAEABAAAAAABAAAAAgQAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IManageStaffEmergencyContactDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IManageStaffPasswordView" Collapsed="true">
+    <Position X="25.75" Y="34" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAIAAQAAABEAEAAAAICAAAAIAACAAAAAAAAKAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IManageStaffPasswordView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Staff.StaffManagement.IManageStaffPersonalInformationView" Collapsed="true">
+    <Position X="28.5" Y="34" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAEAAAAAAAAgBIABAAAABCAQCAAAAAQAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Staff\StaffManagement\IManageStaffPersonalInformationView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IAddStockView" Collapsed="true">
+    <Position X="42.5" Y="29.5" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IAddView" FixedToPoint="true">
+      <Path>
+        <Point X="39.25" Y="27.941" />
+        <Point X="39.25" Y="29.875" />
+        <Point X="42.5" Y="29.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IAddStockView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IDisplayStockView" Collapsed="true">
+    <Position X="39" Y="22.5" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAIAAAQAAAAAAAAAAACAEAACCABAQQEBgAAI=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IDisplayStockView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IEditStockView" Collapsed="true">
+    <Position X="18.5" Y="27" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IEditStockView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IManageStockDetailsView" Collapsed="true">
+    <Position X="11.5" Y="35.75" Width="2" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="12.5" Y="35.375" />
+        <Point X="12.5" Y="35.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgQAAAEAACBBAIAAAAAAECEAAEAAAIAAA=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IManageStockDetailsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IManageStockQuantityView" Collapsed="true">
+    <Position X="14" Y="35.75" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="15.125" Y="35.375" />
+        <Point X="15.125" Y="35.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>BAAEgAQAAAAgAAAAAABCAAggAAAAAAAAAAAAgAAAAAA=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IManageStockQuantityView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IManageStockUnitCostView" Collapsed="true">
+    <Position X="16.5" Y="35.75" Width="2.25" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IManageStockUnitCostView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockManagement.IManageStockWarningView" Collapsed="true">
+    <Position X="22" Y="35.75" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="23.125" Y="35.375" />
+        <Point X="23.125" Y="35.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEQg=</HashCode>
+      <FileName>Interfaces\Stock\StockManagement\IManageStockWarningView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockQuantityChanges.IDisplayStockQuantityChangesView" Collapsed="true">
+    <Position X="23.5" Y="22.5" Width="3" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAACAFAAAAABAQQEBgAAI=</HashCode>
+      <FileName>Interfaces\Stock\StockQuantityChanges\IDisplayStockQuantityChangesView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.Stock.StockQuantityChanges.IViewStockQuantityChangeView" Collapsed="true">
+    <Position X="30" Y="35.75" Width="2.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="35.75" Y="34.191" />
+        <Point X="35.75" Y="35.375" />
+        <Point X="31.25" Y="35.375" />
+        <Point X="31.25" Y="35.75" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AQAEAAAAAAAAAAAAAQAAIAAAAAAAAAACAAAAgAAAAAA=</HashCode>
+      <FileName>Interfaces\Stock\StockQuantityChanges\IViewStockQuantityChangeView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IAddView" Collapsed="true">
+    <Position X="38.5" Y="27.25" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IView" FixedToPoint="true">
+      <Path>
+        <Point X="37.75" Y="31.75" />
+        <Point X="37.75" Y="27.562" />
+        <Point X="38.5" Y="27.562" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AgpAAAEAAAAAAgBAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Interfaces\IAddView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IChildView" Collapsed="true">
+    <Position X="35" Y="33.5" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IView" FixedFromPoint="true">
+      <Path>
+        <Point X="37" Y="32.16" />
+        <Point X="36.76" Y="32.16" />
+        <Point X="36.76" Y="33.656" />
+        <Point X="36.5" Y="33.656" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAEAEABAAAAAAAAAIAAEAAAAIEAAAAAIAACAAAAAA=</HashCode>
+      <FileName>Interfaces\IChildView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IDisplayView&lt;TDisplayModel&gt;" Collapsed="true">
+    <Position X="34.75" Y="20.5" Width="2.25" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IView" ManuallyRouted="true" FixedToPoint="true">
+      <Path>
+        <Point X="37.75" Y="31.75" />
+        <Point X="37.75" Y="23.974" />
+        <Point X="41.175" Y="23.974" />
+        <Point X="41.175" Y="20.875" />
+        <Point X="37" Y="20.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IDisplayView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IEditView" Collapsed="true">
+    <Position X="8.5" Y="27.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAEAAAAAAAAgAA=</HashCode>
+      <FileName>Interfaces\IEditView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IManageCleaningJobOptionsView" Collapsed="true">
+    <Position X="31.5" Y="22.5" Width="2.75" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAQAAIAEAAAAAAAAAAAAAAAEQAAAABBSwEAgAAI=</HashCode>
+      <FileName>Interfaces\IManageCleaningJobOptionsView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.ISaveCancelView" Collapsed="true">
+    <Position X="32.75" Y="31.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAEIEAQAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAI=</HashCode>
+      <FileName>Interfaces\ISaveCancelView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IView" Collapsed="true">
+    <Position X="37" Y="31.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Interfaces\IView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Interfaces.IViewView" Collapsed="true">
+    <Position X="37" Y="33.5" Width="1.5" />
+    <InheritanceLine Type="a2_coursework.Interfaces.IChildView" FixedFromPoint="true">
+      <Path>
+        <Point X="36.5" Y="33.875" />
+        <Point X="37" Y="33.875" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAgAA=</HashCode>
+      <FileName>Interfaces\IViewView.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Presenter.IChildPresenter" Collapsed="true">
+    <Position X="41.5" Y="33" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAA=</HashCode>
+      <FileName>Presenter\IChildPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Presenter.ICleanable" Collapsed="true">
+    <Position X="40" Y="32" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>Presenter\ICleanable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Presenter.INavigatingPresenter" Collapsed="true">
+    <Position X="37.75" Y="35.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presenter\INavigatingPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Presenter.INotifyingChildPresenter" Collapsed="true">
+    <Position X="42.25" Y="32" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Presenter\INotifyingChildPresenter.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Interface Name="a2_coursework.Theming.IThemeable" Collapsed="true">
+    <Position X="39.75" Y="35.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAQAAAACACAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Theming\IThemeable.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Enum Name="a2_coursework.CustomControls.CustomButtonAlign" Collapsed="true">
+    <Position X="98.5" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AgAAAgAIAAAAgBAAACAAAQAAAAAAAAAAAAAACAgAAEA=</HashCode>
+      <FileName>CustomControls\CustomButton.Properties.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="a2_coursework.Model.Staff.PrivilegeLevel" Collapsed="true">
+    <Position X="91.5" Y="12" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAIUAAAAAABAAAAAAAAAABAAA=</HashCode>
+      <FileName>Model\Staff\PrivilegeLevel.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Enum Name="a2_coursework.Theming.AppearanceTheme" Collapsed="true">
+    <Position X="88" Y="7.75" Width="1.75" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAgAAAAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>Theming\Theme.cs</FileName>
+    </TypeIdentifier>
+  </Enum>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

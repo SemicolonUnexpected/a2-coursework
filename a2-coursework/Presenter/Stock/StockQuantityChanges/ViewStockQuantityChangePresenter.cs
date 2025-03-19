@@ -3,13 +3,13 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockQuantityChanges;
 using a2_coursework.Model.Stock;
 
-namespace a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
+namespace a2_coursework.Presenter.Stock.StockQuantityChanges;
 public class ViewStockQuantityChangePresenter : BasePresenter<IViewStockQuantityChangeView>, INavigatingPresenter, IChildPresenter {
-    private readonly StockQuantityChange _stockQuantityChange;
+    private readonly StockQuantityChangeModel _stockQuantityChange;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public ViewStockQuantityChangePresenter(IViewStockQuantityChangeView view, StockQuantityChange stockQuantityChange) : base(view) {
+    public ViewStockQuantityChangePresenter(IViewStockQuantityChangeView view, StockQuantityChangeModel stockQuantityChange) : base(view) {
         _stockQuantityChange = stockQuantityChange;
 
         _view.Back += OnBack;

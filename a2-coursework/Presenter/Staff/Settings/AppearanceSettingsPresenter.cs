@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Model.Staff;
 
-namespace a2_coursework.Presenter.Users.Settings;
+namespace a2_coursework.Presenter.Staff.Settings;
 public class AppearanceSettingsPresenter : SettingsPresenter<IAppearanceSettingsView> {
     public AppearanceSettingsPresenter(IAppearanceSettingsView view, StaffModel staff) : base(view, staff) {
         _view.DarkModeCheckedChanged += OnAppearanceSettingChanged;

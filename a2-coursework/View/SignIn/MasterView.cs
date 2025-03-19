@@ -67,7 +67,10 @@ public partial class MasterView : Form, IMasterView, IThemeable {
             dropdown.ToggleButtons[j].Toggled = toggled;
         }
     }
-
+    
+    public void SetSideMenuToggledName(string itemName) {
+        sideMenu.SetToggledName(itemName, true);
+    }
 
     public void DisplayChildView(IChildView childView) {
         // Remove the previous child form

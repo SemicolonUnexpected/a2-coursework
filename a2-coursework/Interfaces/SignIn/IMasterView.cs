@@ -14,6 +14,7 @@ public interface IMasterView : IView {
     public void GenerateMenu(string[][] menuItems);
     public void SetSideMenuToggledIndex(int i, int j, bool toggled);
     public void Show();
+    public void SetSideMenuToggledName(string itemName);
 
     public DialogResult ShowMessageBox(string text, string caption, MessageBoxButtons buttons = MessageBoxButtons.OK);
 }

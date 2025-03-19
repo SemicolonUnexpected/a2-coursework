@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.Staff.Settings;
 using a2_coursework.Model.Staff;
 
-namespace a2_coursework.Presenter.Users.Settings;
+namespace a2_coursework.Presenter.Staff.Settings;
 public class ContactDetailsSettingsPresenter : SettingsPresenter<IContactDetailsSettingsView> {
     public ContactDetailsSettingsPresenter(IContactDetailsSettingsView view, StaffModel staff) : base(view, staff) {
         _view.EmailChanged += OnContactInformationChanged;

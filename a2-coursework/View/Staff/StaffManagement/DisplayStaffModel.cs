@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
-namespace a2_coursework.View.StaffView.StaffManagement;
+namespace a2_coursework.View.Staff.StaffManagement;
 public class DisplayStaffModel : INotifyPropertyChanged {
     private int _id;
     public int Id {

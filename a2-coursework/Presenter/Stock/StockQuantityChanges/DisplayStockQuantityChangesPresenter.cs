@@ -7,7 +7,7 @@ using a2_coursework.View;
 using a2_coursework.View.Stock.StockQuantityChanges;
 
 namespace a2_coursework.Presenter.Stock.StockQuantityChanges;
-public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplayStockQuantityChangesView, StockQuantityChange, DisplayStockQuantityChangeModel>, IChildPresenter, INavigatingPresenter {
+public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplayStockQuantityChangesView, StockQuantityChangeModel, DisplayStockQuantityChangeModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
     public DisplayStockQuantityChangesPresenter(IDisplayStockQuantityChangesView view) : base(view) {
@@ -55,11 +55,11 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
         _displayModels.Clear();
         _modelDisplayMap.Clear();
 
-        IEnumerable<StockQuantityChange> models;
+        IEnumerable<StockQuantityChangeModel> models;
         if (!_view.ShowArchivedItems) models = FilterOutArchived(_models);
         else models = _models;
 
-        foreach (StockQuantityChange stockQuantityChange in models) {
+        foreach (StockQuantityChangeModel stockQuantityChange in models) {
             DisplayStockQuantityChangeModel displayStockQuantityChange = CreateDisplayItem(stockQuantityChange);
             _modelDisplayMap.Add(displayStockQuantityChange, stockQuantityChange);
             _displayModels.Add(displayStockQuantityChange);
@@ -68,13 +68,13 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayStockQuantityChangeModel CreateDisplayItem(StockQuantityChange model) => new DisplayStockQuantityChangeModel(model);
+    protected override DisplayStockQuantityChangeModel CreateDisplayItem(StockQuantityChangeModel model) => new DisplayStockQuantityChangeModel(model);
 
-    private IEnumerable<StockQuantityChange> FilterOutArchived(IEnumerable<StockQuantityChange> stockItems) => stockItems.Where(x => !x.StockArchived);
+    private IEnumerable<StockQuantityChangeModel> FilterOutArchived(IEnumerable<StockQuantityChangeModel> stockItems) => stockItems.Where(x => !x.StockArchived);
 
-    protected override List<StockQuantityChange> OrderDefault(List<StockQuantityChange> models) => models.OrderByDescending(model => model.Date).ToList();
+    protected override List<StockQuantityChangeModel> OrderDefault(List<StockQuantityChangeModel> models) => models.OrderByDescending(model => model.Date).ToList();
 
-    protected override IComparable RankSearch(string searchText, StockQuantityChange model) {
+    protected override IComparable RankSearch(string searchText, StockQuantityChangeModel model) {
         float stockNameDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StockName) / model.StockName.Length;
         float stockSKUDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StockSKU) / model.StockSKU.Length;
         float staffUsernameDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StaffUsername) / model.StaffUsername.Length;

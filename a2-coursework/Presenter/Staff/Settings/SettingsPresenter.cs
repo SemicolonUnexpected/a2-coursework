@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Interfaces;
 using a2_coursework.Model.Staff;
 
-namespace a2_coursework.Presenter.Users.Settings;
+namespace a2_coursework.Presenter.Staff.Settings;
 public abstract class SettingsPresenter<TView> : BasePresenter<TView>, IChildPresenter where TView : ISaveCancelView {
     protected readonly StaffModel _staff;
 

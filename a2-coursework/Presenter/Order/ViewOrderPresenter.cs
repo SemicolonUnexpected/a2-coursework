@@ -16,20 +16,44 @@ public class ViewOrderPresenter : ParentViewPresenter<IViewOrderView, OrderModel
 
         _view.Back += OnBack;
 
+        _view.DiscrepanciesVisible = model.Status == "Delivered";
+
         Navigate(GetManageStock());
     }
 
     private void OnBack(object? sender, EventArgs e) => NavigateBack();
+    private void OnReceive(object? sender, EventArgs e) => Receive();
+
+    protected override void Navigate(IChildView view, ICleanable presenter) {
+        if (_childPresenter is SubmitOrderPresenter currentSubmitOrderPresenter) currentSubmitOrderPresenter.Receive -= OnReceive;
+
+        base.Navigate(view, presenter);
+
+        if (_childPresenter is SubmitOrderPresenter submitOrderPresenter) submitOrderPresenter.Receive += OnReceive;
+    }
 
     private void NavigateBack() {
         if (!CanExit()) return;
-        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateDisplayOrder(_staff);
+
+        (IChildView view, IChildPresenter presenter) viewPresenter;
+
+        if (_staff.PrivilegeLevel == PrivilegeLevel.CleaningManager) viewPresenter = OrderFactory.CreateDisplayOrder(_staff);
+        else viewPresenter = OrderFactory.CreateApproveRejectOrder(_staff);
+
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(viewPresenter.view, viewPresenter.presenter));
+    }
+
+    private void Receive() {
+        if (!CanExit()) return;
+
+        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateReceiveOrder(_model, _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     protected override (IChildView childView, ICleanable childPresenter) GetView(string selectedItem) => selectedItem switch {
         "Quantity" => GetManageStock(),
         "Details" => GetDetails(),
+        "Discrepancies" => GetDiscrepancies(),
         _ => throw new NotImplementedException(),
     };
 
@@ -49,6 +73,19 @@ public class ViewOrderPresenter : ParentViewPresenter<IViewOrderView, OrderModel
         (SubmitOrderView view, SubmitOrderPresenter presenter) = OrderFactory.CreateSubmitOrder();
 
         presenter.Description = _model.Description;
+        presenter.Receivable = _model.Status == "Pending";
+        presenter.ButtonVisible = _staff.PrivilegeLevel == PrivilegeLevel.CleaningManager && (_model.Status == "Pending" || _model.Status == "Draft");
+        presenter.ReadOnly = true;
+
+        return (view, presenter);
+    }
+    #endregion
+
+    #region Discrepancies
+    private (IChildView childView, INotifyingChildPresenter childPresenter) GetDiscrepancies() {
+        (ManageOrderDiscrepanciesView view, ManageOrderDiscrepanciesPresenter presenter) = OrderFactory.CreateOrderDiscrepancies();
+
+        presenter.Discrepancies = _model.Discrepancies;
         presenter.ReadOnly = true;
 
         return (view, presenter);

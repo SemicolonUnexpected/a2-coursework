@@ -102,6 +102,22 @@ public static class OrderDAL {
         return success;
     }
 
+    public static async Task<bool> UpdateOrderDiscrepancies(int orderId, string discrepancies) {
+        await DeleteAllOrderStock(orderId);
+
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("UpdateOrderDiscrepancies", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", orderId);
+        command.Parameters.AddWithValue("@discrepancies", discrepancies);
+
+        int rowsAffected = await command.ExecuteNonQueryAsync();
+
+        return rowsAffected > 0;
+    }
+
     public static async Task<bool> UpdateOrderStockQuantities(int orderId, IEnumerable<(int stockId, int quantity)> stockIdQuantities) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
@@ -140,14 +156,19 @@ public static class OrderDAL {
         return await command.ExecuteNonQueryAsync() > 0;
     }
 
-    public static async Task<bool> SubmitOrder(int orderId) {
+    public static async Task<bool> SubmitOrder(int orderId) => await SetOrderStatus(orderId, "Submitted");
+    public static async Task<bool> ApproveOrder(int orderId) => await SetOrderStatus(orderId, "Pending");
+    public static async Task<bool> RejectOrder(int orderId) => await SetOrderStatus(orderId, "Rejected");
+    public static async Task<bool> ReceiveOrder(int orderId) => await SetOrderStatus(orderId, "Delivered");
+
+    private static async Task<bool> SetOrderStatus(int orderId, string status) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("UpdateOrderStatus", connection);
         command.CommandType = CommandType.StoredProcedure;
         command.Parameters.AddWithValue("@id", orderId);
-        command.Parameters.AddWithValue("@status", "Submitted");
+        command.Parameters.AddWithValue("@status", status);
 
         return await command.ExecuteNonQueryAsync() > 0;
     }
@@ -184,6 +205,26 @@ public static class OrderDAL {
 
         success &= await UpdateOrderStock(id, model.StockItems);
         success &= await UpdateOrderStockQuantities(id, model.StockItems.Select(x => (x.Id, x.Quantity)));
+
+        return success;
+    }
+
+    public static async Task<bool> ReceiveOrderStock(int orderId, Dictionary<int, int> quantities, int staffId) {
+        bool success = true;
+
+        foreach (int id in quantities.Keys) {
+            success &= await StockDAL.UpdateStockQuantity(id, staffId, quantities[id], DateTime.Now, $"Order {orderId} received.");
+        }
+
+        return success;
+    }
+
+    public static async Task<bool> ReceiveOrder(int orderId, Dictionary<int, int> quantities, int staffId, string discrepancies) {
+        bool success = true;
+
+        success &= await ReceiveOrderStock(orderId, quantities, staffId);
+        success &= await UpdateOrderDiscrepancies(orderId, discrepancies);
+        success &= await ReceiveOrder(orderId);
 
         return success;
     }

@@ -38,6 +38,36 @@ public static class CleaningJobDAL {
         return cleaningJobModels;
     }
 
+    public static async Task<List<CleaningJobModel>> GetUpcomingCleaningJobs() {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetUpcomingCleaningJobs", connection);
+        command.CommandType = CommandType.StoredProcedure;
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        List<CleaningJobModel> cleaningJobModels = [];
+
+        while (await reader.ReadAsync()) {
+            cleaningJobModels.Add(new CleaningJobModel(
+                id: reader.GetInt32(reader.GetOrdinal("Id")),
+                startDate: reader.GetDateTime(reader.GetOrdinal("Date")),
+                endDate: reader.GetDateTime(reader.GetOrdinal("Duration")),
+                address: reader.GetString(reader.GetOrdinal("Address")),
+                customerId: reader.GetInt32(reader.GetOrdinal("CustomerId")),
+                staffId: reader.GetInt32(reader.GetOrdinal("StaffId")),
+                extraInformation: reader.GetString(reader.GetOrdinal("ExtraInformation"))));
+        }
+
+        foreach (CleaningJobModel model in cleaningJobModels) {
+            model.StaffIds = await GetCleaningJobStaffIds(model.Id);
+            model.CleaningJobOptions = await GetCleaningJobCleaningOptions(model.Id);
+        }
+
+        return cleaningJobModels;
+    }
+
     public static async Task<List<CleaningJobModel>> GetCleaningJobsByDate(DateTime date) {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
@@ -330,5 +360,32 @@ public static class CleaningJobDAL {
         success &= await UpdateCleaningJobStaff(id, model.StaffIds);
 
         return success;
+    }
+    public static async Task<CleaningJobModel?> GetCleaningJobById(int id) {
+        await using SqlConnection connection = new(_connectionString);
+        await connection.OpenAsync();
+
+        await using SqlCommand command = new("GetCleaningJobById", connection);
+        command.CommandType = CommandType.StoredProcedure;
+        command.Parameters.AddWithValue("@id", id);
+
+        await using SqlDataReader reader = await command.ExecuteReaderAsync();
+
+        if (!await reader.ReadAsync()) return null;
+
+        CleaningJobModel cleaningJob = new(
+            id: reader.GetInt32(reader.GetOrdinal("Id")),
+            startDate: reader.GetDateTime(reader.GetOrdinal("StartDate")),
+            endDate: reader.GetDateTime(reader.GetOrdinal("EndDate")),
+            address: reader.GetString(reader.GetOrdinal("Address")),
+            customerId: reader.GetInt32(reader.GetOrdinal("CustomerId")),
+            staffId: reader.GetInt32(reader.GetOrdinal("StaffId")),
+            extraInformation: reader.GetString(reader.GetOrdinal("ExtraInformation"))
+        );
+
+        cleaningJob.StaffIds = await GetCleaningJobStaffIds(cleaningJob.Id);
+        cleaningJob.CleaningJobOptions = await GetCleaningJobCleaningOptions(cleaningJob.Id);
+
+        return cleaningJob;
     }
 }

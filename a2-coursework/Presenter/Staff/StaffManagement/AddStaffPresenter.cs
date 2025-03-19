@@ -1,9 +1,8 @@
 ﻿using a2_coursework.Factory;
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Staff.StaffManagement;
-using a2_coursework.Model.Security;
+using a2_coursework.Model;
 using a2_coursework.Model.Staff;
-using a2_coursework.View;
 using a2_coursework.View.StaffView;
 
 namespace a2_coursework.Presenter.Staff.StaffManagement;

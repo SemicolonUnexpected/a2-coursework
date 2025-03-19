@@ -2,7 +2,7 @@
 using a2_coursework.CustomControls;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Theming;
-using a2_coursework.View.StaffView.StaffManagement;
+using a2_coursework.View.Staff.StaffManagement;
 using System.ComponentModel;
 
 namespace a2_coursework.View.Users;

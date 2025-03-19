@@ -1,8 +1,8 @@
 ﻿using a2_coursework.View;
-using a2_coursework.View.Order;
+using a2_coursework.View.Customer;
 
 namespace a2_coursework.Interfaces.Customer; 
-public interface IDisplayCustomerView : IDisplayView<DisplayCustomerModel> {
+public interface IDisplayCustomerView : IDisplayView<DisplayCustomerModel>, IChildView {
     public event EventHandler? Add;
     public event EventHandler? Edit;
     public event EventHandler? ArchiveToggled;

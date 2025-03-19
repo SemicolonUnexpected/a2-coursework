@@ -71,6 +71,16 @@ public partial class ViewOrderView : Form, IThemeable, IViewOrderView {
         Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
     }
 
+    private bool _discrepanciesVisible = false;
+    public bool DiscrepanciesVisible {
+        get => _discrepanciesVisible;
+        set {
+            _discrepanciesVisible = value;
+
+            topMenu.MenuItems = _discrepanciesVisible ? ["Quantity", "Details", "Discrepancies"] : ["Quantity", "Details"];
+        }
+    }
+
     protected override void OnResize(EventArgs e) {
         base.OnResize(e);
 

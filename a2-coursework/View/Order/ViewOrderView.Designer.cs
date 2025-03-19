@@ -59,7 +59,8 @@
             topMenu.MenuItems = new string[]
     {
     "Quantity",
-    "Details"
+    "Details",
+    "Discrepancies"
     };
             topMenu.Name = "topMenu";
             topMenu.SelectedIndex = 0;

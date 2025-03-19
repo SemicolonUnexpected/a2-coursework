@@ -40,7 +40,6 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
         if (_childPresenter is SubmitOrderPresenter submitPresenter) submitPresenter.Submit -= OnSubmit;
     }
 
-
     #region Select Stock
     private (IChildView childView, ICleanable childPresenter) GetSelectStock() {
         (SelectOrderStockView view, SelectOrderStockPresenter presenter) = OrderFactory.CreateSelectOrderStock();
@@ -121,25 +120,10 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
         _model.Description = presenter.Description;
     }
 
-    private async void OnSubmit(object? sender, EventArgs e) {
-        UpdateModelCurrent?.Invoke();
+    private void OnSubmit(object? sender, EventArgs e) {
+        _model.Status = "Submitted";
 
-        try {
-            _model.Status = "Submitted";
-            bool success = await UpdateDatabase();
-            if (success) {
-                _view.ShowMessageBox("Order submitted successfully", "Success", MessageBoxButtons.OK);
-                NavigateBack();
-            }
-            else {
-                _view.ShowMessageBox("Error submitting the order", "Error", MessageBoxButtons.OK);
-                _model.Status = "Draft";
-            }
-        }
-        catch {
-            _view.ShowMessageBox("Error submitting the order", "Error", MessageBoxButtons.OK);
-                _model.Status = "Draft";
-        }
+        Done();
     }    
     #endregion
 
@@ -149,7 +133,10 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
         base.CleanUp();
     }
 
-    protected override void OnAddSuccessful() => NavigateBack();
+    protected override void OnAddSuccessful() {
+        (IChildView view, IChildPresenter presenter) = OrderFactory.CreateDisplayOrder(_staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+    }
 
     protected override Task<bool> UpdateDatabase() => OrderDAL.CreateOrder(_model);
 }

@@ -5,6 +5,7 @@ using a2_coursework.Theming;
 namespace a2_coursework.View.Order;
 public partial class SubmitOrderView : Form, ISubmitOrderView, IThemeable {
     public event EventHandler? Submit;
+    public event EventHandler? Receive;
     public event EventHandler? DescriptionChanged;
 
     public SubmitOrderView() {
@@ -20,7 +21,11 @@ public partial class SubmitOrderView : Form, ISubmitOrderView, IThemeable {
         Theming.Theme.FontNameChanged += SetFont;
 
         tbDescription.TextChanged += (s, e) => DescriptionChanged?.Invoke(this, EventArgs.Empty);
-        btnSubmit.Click += (s, e) => Submit?.Invoke(this, EventArgs.Empty);
+
+        btn.Click += (s, e) => {
+            if (_receivable) Receive?.Invoke(this, EventArgs.Empty);
+            else Submit?.Invoke(this, EventArgs.Empty);
+        };
     }
 
     public void Theme() {
@@ -28,7 +33,7 @@ public partial class SubmitOrderView : Form, ISubmitOrderView, IThemeable {
 
         lblDescription.ThemeTitle();
         tbDescription.Theme();
-        btnSubmit.ThemeStrong();
+        btn.ThemeStrong();
     }
 
     public void SetToolTipVisibility() { }
@@ -38,7 +43,7 @@ public partial class SubmitOrderView : Form, ISubmitOrderView, IThemeable {
 
         lblDescription.SetFontName(fontName);
         tbDescription.SetFontName(fontName);
-        btnSubmit.SetFontName(fontName);
+        btn.SetFontName(fontName);
     }
 
     public string Description {
@@ -46,14 +51,23 @@ public partial class SubmitOrderView : Form, ISubmitOrderView, IThemeable {
         set => tbDescription.Text = value;
     }
 
-    private bool _readOnly;
     public bool ReadOnly {
-        get => _readOnly;
+        get => tbDescription.ReadOnly;
+        set => tbDescription.ReadOnly = value;
+    }
+
+    private bool _receivable;
+    public bool Receivable {
+        get => _receivable;
         set {
-            _readOnly = value;
-            tbDescription.ReadOnly = _readOnly;
-            btnSubmit.Visible = !_readOnly;
+            _receivable = value;
+            btn.Text = _receivable ? "Receive" : "Submit";
         }
+    }
+
+    public bool ButtonVisible {
+        get => btn.Visible;
+        set => btn.Visible = value;
     }
 
     public void SetCharacterCount(int number) => lblCharacterLimit.Text = $"{number}/{tbDescription.MaxLength}";

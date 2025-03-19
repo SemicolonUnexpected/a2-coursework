@@ -2,7 +2,6 @@
 using a2_coursework.Model.Stock;
 using a2_coursework.Presenter.Stock.StockManagement;
 using a2_coursework.Presenter.Stock.StockQuantityChanges;
-using a2_coursework.Presenter.StockPresenter.StockQuantityChanges;
 using a2_coursework.View;
 using a2_coursework.View.Stock;
 using a2_coursework.View.Stock.StockManagement;
@@ -66,7 +65,7 @@ public static class StockFactory {
         return (view, presenter);
     }
 
-    public static (ViewStockQuantityChangeView view, ViewStockQuantityChangePresenter presenter) CreateViewStockQuantityChange(StockQuantityChange stockQuantityChange) {
+    public static (ViewStockQuantityChangeView view, ViewStockQuantityChangePresenter presenter) CreateViewStockQuantityChange(StockQuantityChangeModel stockQuantityChange) {
         ViewStockQuantityChangeView view = new();
         ViewStockQuantityChangePresenter presenter = new(view, stockQuantityChange);
 

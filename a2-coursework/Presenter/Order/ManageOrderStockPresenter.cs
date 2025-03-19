@@ -15,7 +15,6 @@ public class ManageOrderStockPresenter : DisplayPresenter<IManageOrderStockView,
     private void OnSelectedItemChanged(object? sender, EventArgs e) {
         if (_view.SelectedItem is not null) LoadDetails(_modelDisplayMap[_view.SelectedItem]);
         else {
-            _view.Editable = false;
             _view.StockName = "";
             _view.StockDescription = "";
             _view.Quantity = 0;
@@ -56,7 +55,9 @@ public class ManageOrderStockPresenter : DisplayPresenter<IManageOrderStockView,
     }
 
     private Dictionary<int, int> _newQuantities = [];
-    public Dictionary<int, int> NewQuantities => _newQuantities;
+    public Dictionary<int, int> NewQuantities {
+        get => _newQuantities;
+    }
 
     public bool ReadOnly {
         get => !_view.Editable;
@@ -64,7 +65,6 @@ public class ManageOrderStockPresenter : DisplayPresenter<IManageOrderStockView,
     }
 
     private void LoadDetails(StockModel model) {
-        _view.Editable = true;
         _view.StockName = model.Name;
         _view.StockDescription = model.Description;
         _view.Quantity = _newQuantities[model.Id];

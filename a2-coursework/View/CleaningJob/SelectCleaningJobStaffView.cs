@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Theming;
-using a2_coursework.View.StaffView.StaffManagement;
+using a2_coursework.View.Staff.StaffManagement;
 using System.ComponentModel;
 
 namespace a2_coursework.View.Order;

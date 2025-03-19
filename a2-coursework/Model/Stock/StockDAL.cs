@@ -181,7 +181,7 @@ public static class StockDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<List<StockQuantityChange>> GetStockQuantityChanges() {
+    public static async Task<List<StockQuantityChangeModel>> GetStockQuantityChanges() {
         await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
@@ -190,11 +190,11 @@ public static class StockDAL {
 
         await using SqlDataReader reader = await command.ExecuteReaderAsync();
 
-        List<StockQuantityChange> stockQuantityChanges = [];
+        List<StockQuantityChangeModel> stockQuantityChanges = [];
 
         while (await reader.ReadAsync()) {
             stockQuantityChanges.Add(
-                new StockQuantityChange(
+                new StockQuantityChangeModel(
                     id: reader.GetInt32(reader.GetOrdinal("Id")),
                     quantity: reader.GetInt32(reader.GetOrdinal("Quantity")),
                     reasonForQuantityChange: reader.GetString(reader.GetOrdinal("ReasonForQuantityChange")),

@@ -156,7 +156,10 @@ public partial class ManageOrderStockView : Form, IDisplayView<DisplayStockModel
 
     public int Quantity {
         get => nudQuantity.Value;
-        set => nudQuantity.Value = value;
+        set {
+            nudQuantity.Value = value;
+            tbQuantity.Text = value.ToString();
+        }
     }
 
     public decimal Subtotal {

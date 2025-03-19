@@ -3,7 +3,7 @@ using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Interfaces.Order;
 
-public interface ISelectOrderStockView : IDisplayView<DisplayStockModel> {
+public interface ISelectOrderStockView : IDisplayView<DisplayStockModel>, IChildView {
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;

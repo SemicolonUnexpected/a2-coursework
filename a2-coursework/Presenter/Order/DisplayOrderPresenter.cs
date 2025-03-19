@@ -20,6 +20,8 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
 
         _staff = staff;
 
+        if (_staff.PrivilegeLevel != PrivilegeLevel.CleaningManager) _view.ViewMode = true;
+
         LoadData();
 
         _view.Add += OnAdd;

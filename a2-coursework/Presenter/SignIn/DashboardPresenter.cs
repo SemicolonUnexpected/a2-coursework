@@ -22,7 +22,7 @@ public class DashboardPresenter : BasePresenter<IDashboardView>, INavigatingPres
     private void NavigateChangePassword() {
         (IChildView view, IChildPresenter presenter) = StaffFactory.CreateSecuritySettings(_staff);
 
-        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter) { NavigateMenu = true, MenuItemName = "Account security" });
     }
 
     private void PopulateDefaultValues() {

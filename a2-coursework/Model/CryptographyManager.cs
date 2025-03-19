@@ -1,7 +1,7 @@
 using System.Security.Cryptography;
 using System.Text;
 
-namespace a2_coursework.Model.Security;
+namespace a2_coursework.Model;
 
 // A static helper class to deal with hashing and salting of a password
 internal static class CryptographyManager {

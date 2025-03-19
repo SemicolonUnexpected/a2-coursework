@@ -1,18 +1,14 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Theming;
-using System.ComponentModel;
 
 namespace a2_coursework.User_Controls.DataGrid;
 public partial class ViewSearchBar : UserControl, IThemeable {
     public event EventHandler? SearchTextChanged;
     public event EventHandler? Search;
     public event EventHandler? View;
-    public event EventHandler? ShowArchivedToggled;
 
     public ViewSearchBar() {
         InitializeComponent();
-
-        toolTip.SetToolTip(btnShowArchived, _showArchived ? "Hide archived" : "Show archived");
 
         Theme();
         SetToolTipVisibility();
@@ -25,8 +21,6 @@ public partial class ViewSearchBar : UserControl, IThemeable {
 
         btnView.ThemeWeak();
         btnView.Image = IconTheme.Current.Eye;
-        btnShowArchived.ThemeWeak();
-        btnShowArchived.Image = _showArchived ? IconTheme.Current.OpenBox : IconTheme.Current.ClosedBox;
         btnClear.ThemeWeak();
         btnClear.Image = IconTheme.Current.Cross;
         pbSearchBtn.Image = IconTheme.Current.Search;
@@ -44,24 +38,7 @@ public partial class ViewSearchBar : UserControl, IThemeable {
         set => tbSearch.Text = value;
     }
 
-    private bool _showArchived = false;
-    [DefaultValue(false)]
-    public bool ShowArchived {
-        get => _showArchived;
-        set {
-            _showArchived = value;
-
-            btnShowArchived.Image = _showArchived ? IconTheme.Current.OpenBox : IconTheme.Current.ClosedBox;
-            toolTip.SetToolTip(btnShowArchived, _showArchived ? "Hide archived" : "Show archived");
-        }
-    }
-
     private void btnView_Click(object sender, EventArgs e) => View?.Invoke(this, EventArgs.Empty);
-
-    private void btnShowArchived_Click(object sender, EventArgs e) {
-        ShowArchived = !ShowArchived;
-        ShowArchivedToggled?.Invoke(this, EventArgs.Empty);
-    }
 
     private void tbSearch_TextChanged(object sender, EventArgs e) {
         SearchTextChanged?.Invoke(this, EventArgs.Empty);

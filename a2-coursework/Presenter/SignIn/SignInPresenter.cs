@@ -1,6 +1,6 @@
 ﻿using a2_coursework.Interfaces.SignIn;
+using a2_coursework.Model;
 using a2_coursework.Model.LoginAttempt;
-using a2_coursework.Model.Security;
 using a2_coursework.Model.Staff;
 using Microsoft.Data.SqlClient;
 using Microsoft.IdentityModel.Tokens;

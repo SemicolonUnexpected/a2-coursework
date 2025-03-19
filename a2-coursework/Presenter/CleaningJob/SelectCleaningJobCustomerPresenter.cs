@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.Customer;
 using a2_coursework.View;
-using a2_coursework.View.Order;
+using a2_coursework.View.Customer;
 
 namespace a2_coursework.Presenter.CleaningJob;
 

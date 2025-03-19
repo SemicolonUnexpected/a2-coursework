@@ -77,7 +77,7 @@ public class DisplayStockQuantityChangeModel : INotifyPropertyChanged {
         }
     }
 
-    public DisplayStockQuantityChangeModel(StockQuantityChange stockQuantityChange) {
+    public DisplayStockQuantityChangeModel(StockQuantityChangeModel stockQuantityChange) {
         Username = stockQuantityChange.StaffUsername;
         StaffName = $"{stockQuantityChange.StaffForename} {stockQuantityChange.StaffSurname}";
         Quantity = stockQuantityChange.Quantity;

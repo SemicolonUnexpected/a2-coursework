@@ -107,7 +107,7 @@
             btnApprove.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnApprove.TextPosition = new Point(0, 0);
             toolTip.SetToolTip(btnApprove, "Add");
-            btnApprove.Click += btnAdd_Click;
+            btnApprove.Click += btnApprove_Click;
             // 
             // btnReject
             // 

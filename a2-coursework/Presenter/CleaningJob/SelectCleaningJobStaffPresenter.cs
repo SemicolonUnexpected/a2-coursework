@@ -2,7 +2,7 @@
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.Staff;
 using a2_coursework.View;
-using a2_coursework.View.StaffView.StaffManagement;
+using a2_coursework.View.Staff.StaffManagement;
 
 namespace a2_coursework.Presenter.CleaningJob;
 

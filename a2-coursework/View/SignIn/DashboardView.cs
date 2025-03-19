@@ -17,6 +17,8 @@ public partial class DashboardView : Form, IThemeable, IDashboardView {
 
         SetFont();
         Theming.Theme.FontNameChanged += SetFont;
+
+        btnChangePassword.Click += (sender, e) => ChangePasswordClicked?.Invoke(this, EventArgs.Empty);
     }
 
     public void Theme() {

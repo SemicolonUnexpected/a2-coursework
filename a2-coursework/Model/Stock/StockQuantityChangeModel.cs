@@ -1,6 +1,6 @@
 ﻿namespace a2_coursework.Model.Stock;
 
-public class StockQuantityChange(int id, int quantity, string reasonForQuantityChange, DateTime date, int stockId, string stockName, bool stockArchived, int staffId, string staffForename, string staffSurname, string staffUsername, string stockSku) {
+public class StockQuantityChangeModel(int id, int quantity, string reasonForQuantityChange, DateTime date, int stockId, string stockName, bool stockArchived, int staffId, string staffForename, string staffSurname, string staffUsername, string stockSku) {
     public int Id { get; init; } = id;
     public int Quantity { get; init; } = quantity;
     public string ReasonForQuantityChange { get; init; } = reasonForQuantityChange;

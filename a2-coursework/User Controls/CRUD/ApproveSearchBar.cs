@@ -1,14 +1,13 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Theming;
-using System.ComponentModel;
 
 namespace a2_coursework.User_Controls.DataGrid;
 public partial class ApproveSearchBar : UserControl, IThemeable {
     public event EventHandler? SearchTextChanged;
     public event EventHandler? Search;
-    public event EventHandler? Edit;
-    public event EventHandler? ArchiveToggled;
-    public event EventHandler? Add;
+    public event EventHandler? Reject;
+    public event EventHandler? View;
+    public event EventHandler? Approve;
     public event EventHandler? ShowArchivedToggled;
 
     public ApproveSearchBar() {
@@ -69,11 +68,11 @@ public partial class ApproveSearchBar : UserControl, IThemeable {
         }
     }
 
-    private void btnAdd_Click(object sender, EventArgs e) => Add?.Invoke(this, EventArgs.Empty);
+    private void btnApprove_Click(object sender, EventArgs e) => Approve?.Invoke(this, EventArgs.Empty);
 
-    private void btnReject_Click(object sender, EventArgs e) => Edit?.Invoke(this, EventArgs.Empty);
+    private void btnReject_Click(object sender, EventArgs e) => Reject?.Invoke(this, EventArgs.Empty);
 
-    private void btnView_Click(object sender, EventArgs e) => ArchiveToggled?.Invoke(this, EventArgs.Empty);
+    private void btnView_Click(object sender, EventArgs e) => View?.Invoke(this, EventArgs.Empty);
 
     private void tbSearch_TextChanged(object sender, EventArgs e) {
         SearchTextChanged?.Invoke(this, EventArgs.Empty);

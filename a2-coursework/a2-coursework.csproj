@@ -57,10 +57,16 @@
     <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="User Controls\CRUD\ViewArchiveSearchBar.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Update="View\CleaningJob\AddCleaningJobView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJob\BookCleaningJobView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\CleaningJob\DisplayUpcomingCleaningJobView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJob\ViewCleaningJobView.cs">
@@ -114,7 +120,13 @@
     <Compile Update="View\Order\Deliveries\DisplayCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Order\ApproveRejectOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\Order\DisplayOrderView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Update="View\Order\OrderDiscrepanciesView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\Order\ViewOrderView.cs">
@@ -138,6 +150,7 @@
     <Compile Update="View\Order\StockRequest\DisplayCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\Report\CleaningJobReportView.cs" />
     <Compile Update="View\SignIn\DashboardView.cs">
       <SubType>Form</SubType>
     </Compile>

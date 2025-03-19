@@ -1,6 +1,7 @@
-﻿using System.ComponentModel;
+﻿using a2_coursework.Model.CleaningJobOption;
+using System.ComponentModel;
 
-namespace a2_coursework.Model.CleaningJobOption;
+namespace a2_coursework.View.CleaningJobOptions;
 
 public class DisplayCleaningJobOptionModel : INotifyPropertyChanged {
     private int _id;

@@ -2,11 +2,12 @@
 using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Model.Staff;
 using a2_coursework.Presenter.CleaningJob;
+using a2_coursework.View.CleaningJob;
 using a2_coursework.View.Order;
 using a2_coursework.View.Users;
 
 namespace a2_coursework.Factory;
-public class CleaningJobFactory {
+public static class CleaningJobFactory {
     public static (BookCleaningJobView view, BookCleaningJobPresenter presenter) CreateBookCleaningJob(StaffModel staff) {
         BookCleaningJobView view = new();
         BookCleaningJobPresenter presenter = new(view, staff);
@@ -73,6 +74,14 @@ public class CleaningJobFactory {
     public static (ViewCleaningJobView view, ViewCleaningJobPresenter presenter) CreateViewCleaningJob(CleaningJobModel model, StaffModel staff) {
         ViewCleaningJobView view = new();
         ViewCleaningJobPresenter presenter = new(view, model, staff);
+
+        return (view, presenter);
+    }
+
+    public static (DisplayUpcomingCleaningJobView view, DisplayUpcomingCleaningJobPresenter presenter) CreateDisplayUpcomingCleaningJob(StaffModel staff) {
+        DisplayUpcomingCleaningJobView view = new();
+        DisplayUpcomingCleaningJobPresenter presenter = new(view, staff);
+
         return (view, presenter);
     }
 }

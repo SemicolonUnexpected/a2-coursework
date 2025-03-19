@@ -1,8 +1,7 @@
 ﻿using a2_coursework.Model.Staff;
+using a2_coursework.Presenter.Staff;
+using a2_coursework.Presenter.Staff.Settings;
 using a2_coursework.Presenter.Staff.StaffManagement;
-using a2_coursework.Presenter.StaffPresenters.ManageStaff;
-using a2_coursework.Presenter.Users;
-using a2_coursework.Presenter.Users.Settings;
 using a2_coursework.View;
 using a2_coursework.View.Settings;
 using a2_coursework.View.Staff.StaffManagement;

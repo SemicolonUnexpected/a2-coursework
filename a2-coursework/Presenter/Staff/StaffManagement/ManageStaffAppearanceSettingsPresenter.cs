@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Presenter;
 
-namespace a2_coursework.View;
+namespace a2_coursework.Presenter.Staff.StaffManagement;
 public class ManageStaffAppearanceSettingsPresenter : BasePresenter<IManageStaffAppearanceSettingsView>, INotifyingChildPresenter, IChildPresenter {
     public event EventHandler? DetailsChanged;
 

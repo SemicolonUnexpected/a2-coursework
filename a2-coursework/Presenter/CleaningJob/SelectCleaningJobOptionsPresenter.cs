@@ -2,6 +2,7 @@
 using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.View;
+using a2_coursework.View.CleaningJobOptions;
 
 namespace a2_coursework.Presenter.CleaningJob;
 

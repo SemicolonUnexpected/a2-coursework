@@ -1,9 +1,10 @@
-﻿using a2_coursework.View;
+﻿using a2_coursework.Model.Stock;
+using a2_coursework.View;
 using a2_coursework.View.Stock.StockManagement;
 
 namespace a2_coursework.Interfaces.Order;
 
-public interface IManageOrderStockView : IDisplayView<DisplayStockModel> {
+public interface IManageOrderStockView : IDisplayView<DisplayStockModel>, IChildView {
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
     public event EventHandler? QuantityChanged;

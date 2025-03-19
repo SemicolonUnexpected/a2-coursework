@@ -39,37 +39,41 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         (IChildView view, IChildPresenter presenter) = GetView(selectedItem);
         Navigate(view, presenter);
     }
-    private void OnNavigateRequested(object? sender, NavigationEventArgs e) => Navigate(e.View, e.Presenter);
+    private void OnNavigateRequested(object? sender, NavigationEventArgs e) {
+        if (e.NavigateMenu) _view.SetSideMenuToggledName(e.MenuItemName);
+        else Navigate(e.View, e.Presenter);
+    }
     private void OnSignOut(object? sender, EventArgs e) => SignOut();
     private void OnPreviewToggleChanged(object? sender, ToggleEventArgs e) => e.Handled = !CanNavigate();
 
     private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch {
         PrivilegeLevel.Office => [
             ["Dashboard"],
-            ["Cleaning", "Manage cleaning", "Manage customers"],
+            ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage options"],
+            ["Stock", "Orders"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.Cleaner => [
             ["Dashboard"],
-            ["Cleaning", "Upcoming jobs", "File report"],
+            ["Cleaning", "Upcoming jobs"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.CleaningManager => [
             ["Dashboard"],
             ["Stock", "Manage stock", "Order stock", "Quantity changes", "Upcoming deliveries"],
-            ["Security", "Manage staff", "Login attempts", "Change password"],
-            ["Cleaning", "Book cleaning", "Manage customers", "Manage options"],
-            ["Reports", "Staff", "Stock"],
-            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
+            ["Reports", "Stock"],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.Admin => [
             ["Dashboard"],
-            ["Security", "Manage staff", "Change password"],
+            ["Security", "Manage staff", "Login attempts", "Change password"],
             ["Reports", "Staff"],
-            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"] ],
+            ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.Manager => [
             ["Dashboard"],
+            ["Stock", "Manage stock", "Orders", "Quantity changes"],
+            ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage options"],
             ["Reports", "Staff", "Stock"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
@@ -95,6 +99,8 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Dashboard" => GetDashboardView(),
         "Order stock" => GetOrderStock(),
         "Upcoming deliveries" => GetUpcomingOrderStock(),
+        "Orders" => GetApproveRejectOrder(),
+        "Upcoming jobs" => GetDisplayUpcomingCleaningJobs(),
         _ => throw new NotImplementedException(),
     };
 
@@ -117,6 +123,8 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetDashboardView() => SignInFactory.CreateDashboard(_staff);
     private (IChildView view, IChildPresenter presenter) GetOrderStock() => OrderFactory.CreateDisplayOrder(_staff);
     private (IChildView view, IChildPresenter presenter) GetUpcomingOrderStock() => OrderFactory.CreateDisplayOrder(_staff, true);
+    private (IChildView view, IChildPresenter presenter) GetApproveRejectOrder() => OrderFactory.CreateApproveRejectOrder(_staff);
+    private (IChildView view, IChildPresenter presenter) GetDisplayUpcomingCleaningJobs() => CleaningJobFactory.CreateDisplayUpcomingCleaningJob(_staff);
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

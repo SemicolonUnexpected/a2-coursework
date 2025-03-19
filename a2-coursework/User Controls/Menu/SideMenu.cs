@@ -55,6 +55,25 @@ public partial class SideMenu : UserControl {
         SetupSizeAndScroll();
     }
 
+    public void SetToggledName(string name, bool toggled) {
+        foreach (Control ctrl in pnlMenuHolder.Controls) {
+            if (ctrl is MenuToggleButton button) {
+                if (button.Text == name) {
+                    button.Toggled = toggled;
+                    return;
+                }
+            }
+            else if (ctrl is MenuDropdown dropdown) {
+                foreach (MenuToggleButton internalButton in dropdown.ToggleButtons) {
+                    if (internalButton.Text == name) {
+                        internalButton.Toggled = toggled;
+                        return;
+                    }
+                }
+            }
+            else throw new NotImplementedException("side menus can only contain toggles and dropdowns");
+        }
+    }
 
     private void OnDropdownToggleChanged(object? sender, EventArgs e) {
         DropdownToggleChanged?.Invoke(sender, e);
@@ -78,7 +97,7 @@ public partial class SideMenu : UserControl {
             else throw new NotImplementedException("side menus can only contain toggles and dropdowns");
         }
 
-        // If none are toggled retoggle the one that was just toggled while not firing the event
+        // If none are toggled toggle the one that was just toggled while not firing the event
         if (!anyToggled) {
             btn.ToggleChanged -= SideMenuToggleButtonChanged;
             btn.Toggled = true;

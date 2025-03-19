@@ -1,6 +1,6 @@
-﻿using a2_coursework.Interfaces;
-
-namespace a2_coursework.Interfaces.Order;
-public interface IViewOrderView : IChildView, IViewView {
+﻿namespace a2_coursework.Interfaces.Order;
+public interface IViewOrderView : IViewView {
     public event EventHandler? Back;
+
+    public bool DiscrepanciesVisible { get; set; }
 }

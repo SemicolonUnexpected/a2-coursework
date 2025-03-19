@@ -4,8 +4,9 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.CleaningJobOption;
 using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.View;
+using a2_coursework.View.CleaningJobOptions;
 
-namespace a2_coursework.Presenter.Customer;
+namespace a2_coursework.Presenter.CleaningJobOption;
 public class DisplayCleaningJobOptionPresenter : DisplayPresenter<IDisplayCleaningJobOptionView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 

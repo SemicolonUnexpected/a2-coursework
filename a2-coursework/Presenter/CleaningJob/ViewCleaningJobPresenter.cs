@@ -1,5 +1,6 @@
 ﻿using a2_coursework.Factory;
 using a2_coursework.Interfaces;
+using a2_coursework.Interfaces.CleaningJob;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.Staff;
 using a2_coursework.View.Order;
@@ -22,8 +23,12 @@ public class ViewCleaningJobPresenter : ParentViewPresenter<IViewCleaningJobView
 
     private void NavigateBack() {
         if (!CanExit()) return;
-        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateBookCleaningJob(_staff);
-        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+
+        (IChildView view, IChildPresenter presenter) viewPresenter;
+        if (_staff.PrivilegeLevel != PrivilegeLevel.Cleaner) viewPresenter = CleaningJobFactory.CreateBookCleaningJob(_staff);
+        else viewPresenter = CleaningJobFactory.CreateDisplayUpcomingCleaningJob(_staff);
+
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(viewPresenter.view, viewPresenter.presenter));
     }
 
     protected override (IChildView childView, ICleanable childPresenter) GetView(string selectedItem) => selectedItem switch {

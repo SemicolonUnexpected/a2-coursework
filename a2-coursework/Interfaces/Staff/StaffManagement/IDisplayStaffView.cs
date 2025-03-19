@@ -1,5 +1,5 @@
 ﻿using a2_coursework.View;
-using a2_coursework.View.StaffView.StaffManagement;
+using a2_coursework.View.Staff.StaffManagement;
 
 namespace a2_coursework.Interfaces.Staff.StaffManagement;
 public interface IDisplayStaffView : IChildView, IDisplayView<DisplayStaffModel> {

@@ -4,9 +4,9 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Staff;
 using a2_coursework.View;
-using a2_coursework.View.StaffView.StaffManagement;
+using a2_coursework.View.Staff.StaffManagement;
 
-namespace a2_coursework.Presenter.StaffPresenters.ManageStaff;
+namespace a2_coursework.Presenter.Staff.StaffManagement;
 
 public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffModel, DisplayStaffModel>, IChildPresenter, INavigatingPresenter {
     private readonly StaffModel _staff;

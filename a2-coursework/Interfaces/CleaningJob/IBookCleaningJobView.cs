@@ -1,5 +1,5 @@
 ﻿using a2_coursework.View;
-using a2_coursework.View.Order;
+using a2_coursework.View.CleaningJob;
 
 namespace a2_coursework.Interfaces.CleaningJob;
 public interface IBookCleaningJobView : IDisplayView<DisplayCleaningJobModel>, IChildView {

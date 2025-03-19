@@ -4,7 +4,7 @@ using a2_coursework.Model.LoginAttempt;
 using a2_coursework.View;
 using a2_coursework.View.LoginAttempt;
 
-namespace a2_coursework.Presenter.Customer;
+namespace a2_coursework.Presenter.LoginAttempt;
 public class DisplayLoginAttemptPresenter : DisplayPresenter<IDisplayLoginAttemptView, LoginAttemptModel, DisplayLoginAttemptModel>, IChildPresenter, INavigatingPresenter {
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 

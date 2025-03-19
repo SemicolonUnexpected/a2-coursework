@@ -36,7 +36,7 @@ public class ManageStaffPersonalDetailsPresenter : BasePresenter<IManageStaffPer
             (true, true) => "",
             (true, false) => "Fill in a valid forename",
             (false, true) => "Fill in a valid surname",
-            (false, false) => "Fill in a valid forname and surname",
+            (false, false) => "Fill in a valid forename and surname",
         };
     }
 

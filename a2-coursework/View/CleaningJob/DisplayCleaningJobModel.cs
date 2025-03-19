@@ -1,7 +1,7 @@
 ﻿using a2_coursework.Model.CleaningJob;
 using System.ComponentModel;
 
-namespace a2_coursework.View.Order; 
+namespace a2_coursework.View.CleaningJob; 
 public class DisplayCleaningJobModel : INotifyPropertyChanged {
     private int _id;
     public int Id {

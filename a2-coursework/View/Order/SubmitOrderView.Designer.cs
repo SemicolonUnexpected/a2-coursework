@@ -26,7 +26,7 @@
             tbDescription = new a2_coursework.CustomControls.CustomTextBox();
             lblDescription = new Label();
             lblCharacterLimit = new Label();
-            btnSubmit = new a2_coursework.CustomControls.CustomButton();
+            btn = new a2_coursework.CustomControls.CustomButton();
             SuspendLayout();
             // 
             // tbDescription
@@ -82,30 +82,30 @@
             // 
             // btnSubmit
             // 
-            btnSubmit.Anchor = AnchorStyles.None;
-            btnSubmit.BackColor = SystemColors.Control;
-            btnSubmit.BorderColor = Color.Empty;
-            btnSubmit.BorderThickness = 0F;
-            btnSubmit.ClickedBorderColor = Color.Empty;
-            btnSubmit.ClickedColor = Color.FromArgb(226, 226, 226);
-            btnSubmit.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            btnSubmit.Cursor = Cursors.Hand;
-            btnSubmit.DisabledBorderColor = Color.Empty;
-            btnSubmit.DisabledColor = Color.FromArgb(226, 226, 226);
-            btnSubmit.Font = new Font("Bahnschrift", 12F);
-            btnSubmit.ForeColor = Color.FromArgb(9, 9, 10);
-            btnSubmit.HoverBorderColor = Color.Empty;
-            btnSubmit.HoverColor = Color.FromArgb(226, 226, 226);
-            btnSubmit.Image = null;
-            btnSubmit.ImageRectangle = new Rectangle(0, 0, 0, 0);
-            btnSubmit.Location = new Point(181, 317);
-            btnSubmit.Margin = new Padding(10);
-            btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(282, 40);
-            btnSubmit.TabIndex = 24;
-            btnSubmit.Text = "Submit";
-            btnSubmit.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
-            btnSubmit.TextPosition = new Point(111, 10);
+            btn.Anchor = AnchorStyles.None;
+            btn.BackColor = SystemColors.Control;
+            btn.BorderColor = Color.Empty;
+            btn.BorderThickness = 0F;
+            btn.ClickedBorderColor = Color.Empty;
+            btn.ClickedColor = Color.FromArgb(226, 226, 226);
+            btn.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btn.Cursor = Cursors.Hand;
+            btn.DisabledBorderColor = Color.Empty;
+            btn.DisabledColor = Color.FromArgb(226, 226, 226);
+            btn.Font = new Font("Bahnschrift", 12F);
+            btn.ForeColor = Color.FromArgb(9, 9, 10);
+            btn.HoverBorderColor = Color.Empty;
+            btn.HoverColor = Color.FromArgb(226, 226, 226);
+            btn.Image = null;
+            btn.ImageRectangle = new Rectangle(0, 0, 0, 0);
+            btn.Location = new Point(181, 317);
+            btn.Margin = new Padding(10);
+            btn.Name = "btnSubmit";
+            btn.Size = new Size(282, 40);
+            btn.TabIndex = 24;
+            btn.Text = "Submit";
+            btn.TextAlign = CustomControls.CustomButtonAlign.MiddleCenter;
+            btn.TextPosition = new Point(111, 10);
             // 
             // SubmitOrderView
             // 
@@ -113,7 +113,7 @@
             AutoScaleMode = AutoScaleMode.Dpi;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 419);
-            Controls.Add(btnSubmit);
+            Controls.Add(btn);
             Controls.Add(tbDescription);
             Controls.Add(lblDescription);
             Controls.Add(lblCharacterLimit);
@@ -128,6 +128,6 @@
         private CustomControls.CustomTextBox tbDescription;
         private Label lblDescription;
         private Label lblCharacterLimit;
-        private CustomControls.CustomButton btnSubmit;
+        private CustomControls.CustomButton btn;
     }
 }

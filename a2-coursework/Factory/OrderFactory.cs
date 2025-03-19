@@ -34,6 +34,13 @@ public static class OrderFactory {
         return (view, presenter);
     }
 
+    public static (ManageOrderDiscrepanciesView view, ManageOrderDiscrepanciesPresenter presenter) CreateOrderDiscrepancies() {
+        ManageOrderDiscrepanciesView view = new();
+        ManageOrderDiscrepanciesPresenter presenter = new(view);
+
+        return (view, presenter);
+    }
+
     public static (EditOrderView view, EditOrderPresenter presenter) CreateEditOrder(OrderModel order, StaffModel staff) {
         EditOrderView view = new();
         EditOrderPresenter presenter = new(view, order, staff);
@@ -49,6 +56,20 @@ public static class OrderFactory {
     public static (ViewOrderView view, ViewOrderPresenter presenter) CreateViewOrder(OrderModel order, StaffModel staff) {
         ViewOrderView view = new();
         ViewOrderPresenter presenter = new(view, order, staff);
+
+        return (view, presenter);
+    }
+
+    public static (ApproveRejectOrderView view, ApproveRejectOrderPresenter presenter) CreateApproveRejectOrder(StaffModel staff) {
+        ApproveRejectOrderView view = new();
+        ApproveRejectOrderPresenter presenter = new(view, staff);
+
+        return (view, presenter);
+    }
+
+    public static (AddOrderView view, ReceiveOrderPresenter presenter) CreateReceiveOrder(OrderModel model, StaffModel staff) {
+        AddOrderView view = new();
+        ReceiveOrderPresenter presenter = new(view, model, staff);
 
         return (view, presenter);
     }

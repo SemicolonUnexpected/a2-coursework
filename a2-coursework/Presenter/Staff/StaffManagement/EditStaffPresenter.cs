@@ -2,7 +2,6 @@
 using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Staff;
-using a2_coursework.View;
 
 namespace a2_coursework.Presenter.Staff.StaffManagement;
 public class EditStaffPresenter : ParentEditPresenter<IEditStaffView, StaffModel>, IChildPresenter, INavigatingPresenter {

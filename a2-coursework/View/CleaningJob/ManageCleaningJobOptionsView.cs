@@ -1,7 +1,7 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
-using a2_coursework.Model.CleaningJobOption;
 using a2_coursework.Theming;
+using a2_coursework.View.CleaningJobOptions;
 using System.ComponentModel;
 using System.Globalization;
 

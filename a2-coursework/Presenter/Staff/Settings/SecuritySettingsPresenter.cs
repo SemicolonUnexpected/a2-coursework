@@ -1,8 +1,8 @@
 ﻿using a2_coursework.Interfaces.Staff.Settings;
-using a2_coursework.Model.Security;
+using a2_coursework.Model;
 using a2_coursework.Model.Staff;
 
-namespace a2_coursework.Presenter.Users.Settings;
+namespace a2_coursework.Presenter.Staff.Settings;
 public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView> {
     private byte[]? _newHash;
     private byte[]? _newSalt;
@@ -84,7 +84,7 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView
 
     protected override void PopulateDefaultValues() {
         _view.Username = _staff.Username;
-        _view.PrivilegeLevel = _staff.PrivilegeLevel.ToString();
+        _view.PrivilegeLevel = _staff.PrivilegeLevel.ConvertToString();
     }
 
     protected override Task<bool> UpdateDatabase() => StaffDAL.UpdatePassword(_staff.Id, Convert.ToHexString(_newHash!), Convert.ToHexString(_newSalt!));

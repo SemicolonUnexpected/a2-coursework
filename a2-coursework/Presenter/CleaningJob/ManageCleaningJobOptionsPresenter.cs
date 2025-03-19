@@ -1,6 +1,7 @@
 ﻿using a2_coursework._Helpers;
 using a2_coursework.Interfaces;
 using a2_coursework.Model.CleaningJobOption;
+using a2_coursework.View.CleaningJobOptions;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleaningJobOptionsView, CleaningJobOptionModel, DisplayCleaningJobOptionModel>, INotifyingChildPresenter {

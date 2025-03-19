@@ -11,7 +11,7 @@ public abstract class AddPresenter<TView, TModel> : BasePresenter<TView> where T
 
     protected ICleanable? _childPresenter;
     protected int _currentViewIndex = 0;
-    protected readonly List<Func<(IChildView, ICleanable)>> _viewFactories = new();
+    protected readonly List<Func<(IChildView, ICleanable)>> _viewFactories = [];
 
     public AddPresenter(TView view, TModel model) : base(view) {
         _model = model;
@@ -44,7 +44,7 @@ public abstract class AddPresenter<TView, TModel> : BasePresenter<TView> where T
         NavigateToCurrentView();
     }
 
-    protected virtual void Done() {
+    protected virtual async void Done() {
         if (!ValidateInputs()) {
             _view.ShowMessageBox("Ensure all data is valid before finishing.", "Invalid data");
             return;
@@ -52,7 +52,7 @@ public abstract class AddPresenter<TView, TModel> : BasePresenter<TView> where T
 
         UpdateModel();
 
-        Add();
+        await Add();
     }
 
     protected virtual void NavigateToCurrentView() {
@@ -82,7 +82,7 @@ public abstract class AddPresenter<TView, TModel> : BasePresenter<TView> where T
     protected abstract void BindValidation(ICleanable presenter);
     protected abstract void UnBindValidation(ICleanable presenter);
 
-    protected virtual async void Add() {
+    protected virtual async Task Add() {
         _view.IsLoading = true;
 
         try {
@@ -109,7 +109,7 @@ public abstract class AddPresenter<TView, TModel> : BasePresenter<TView> where T
     public virtual bool CanExit() {
         if (_view.IsLoading) return false;
 
-        DialogResult result = _view.ShowMessageBox( "All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel );
+        DialogResult result = _view.ShowMessageBox("All your changes will be lost. Click OK if you want to continue", "Are you sure you want to leave?", MessageBoxButtons.OKCancel);
 
         return result == DialogResult.OK;
     }
