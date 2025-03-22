@@ -6,7 +6,9 @@ using System.Data;
 
 namespace a2_coursework.Model.CleaningJob;
 public static class CleaningJobDAL {
-    private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    private static readonly string workingDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string projectDirectoryPath = Directory.GetParent(workingDirectoryPath)!.Parent!.Parent!.Parent!.FullName!;
+    private static readonly string _connectionString = string.Format(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString, projectDirectoryPath);
 
     public static async Task<List<CleaningJobModel>> GetCleaningJobs() {
         await using SqlConnection connection = new(_connectionString);
@@ -22,7 +24,7 @@ public static class CleaningJobDAL {
         while (await reader.ReadAsync()) {
             cleaningJobModels.Add(new CleaningJobModel(
                 id: reader.GetInt32(reader.GetOrdinal("Id")),
-                startDate: reader.GetDateTime(reader.GetOrdinal("Date")),
+                startDate: reader.GetDateTime(reader.GetOrdinal("StartDate")),
                 endDate: reader.GetDateTime(reader.GetOrdinal("Duration")),
                 address: reader.GetString(reader.GetOrdinal("Address")),
                 customerId: reader.GetInt32(reader.GetOrdinal("CustomerId")),
@@ -52,8 +54,8 @@ public static class CleaningJobDAL {
         while (await reader.ReadAsync()) {
             cleaningJobModels.Add(new CleaningJobModel(
                 id: reader.GetInt32(reader.GetOrdinal("Id")),
-                startDate: reader.GetDateTime(reader.GetOrdinal("Date")),
-                endDate: reader.GetDateTime(reader.GetOrdinal("Duration")),
+                startDate: reader.GetDateTime(reader.GetOrdinal("StartDate")),
+                endDate: reader.GetDateTime(reader.GetOrdinal("EndDate")),
                 address: reader.GetString(reader.GetOrdinal("Address")),
                 customerId: reader.GetInt32(reader.GetOrdinal("CustomerId")),
                 staffId: reader.GetInt32(reader.GetOrdinal("StaffId")),

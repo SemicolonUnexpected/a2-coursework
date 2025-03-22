@@ -194,7 +194,10 @@ public class AddCleaningJobPresenter : AddPresenter<IAddCleaningJobView, Cleanin
     }
     #endregion
 
-    protected override void OnAddSuccessful() => NavigateBack();
+    protected override void OnAddSuccessful() {
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateBookCleaningJob(_staff);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+    }
 
     public override void CleanUp() {
         _view.Back -= OnBack;

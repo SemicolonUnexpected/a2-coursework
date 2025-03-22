@@ -28,7 +28,7 @@ public partial class DashboardView : Form, IThemeable, IDashboardView {
         lblWelcome.ThemeTitle();
         pnlLastPasswordChange.Theme();
         lblLastPasswordChange.ThemeTitle();
-        lblChangePasswordPrompt.ThemeError();
+        lblChangePasswordPrompt.ThemeWarning();
         diLastPasswordChange.Theme();
         btnChangePassword.ThemeStrong();
     }

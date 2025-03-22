@@ -3,7 +3,6 @@ using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Stock.StockManagement;
 using a2_coursework.Model.Staff;
 using a2_coursework.Model.Stock;
-using a2_coursework.View;
 using a2_coursework.View.Stock;
 using a2_coursework.View.Stock.StockManagement;
 
@@ -108,13 +107,13 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
 
     private bool ValidateInputsStockDetails(ManageStockDetailsPresenter presenter) => presenter.NameValid && presenter.SkuValid;
 
-    private Task<bool> UpdateDatabaseStockDetails(ManageStockDetailsPresenter presenter) => StockDAL.UpdateStockDetails(_model.Id, _model.Name, presenter.Description, _model.Sku, presenter.Archived);
+    private Task<bool> UpdateDatabaseStockDetails(ManageStockDetailsPresenter presenter) => StockDAL.UpdateStockDetails(_model.Id, presenter.Name, presenter.Description, presenter.Sku, presenter.Archived);
 
     private void UpdateModelStockDetails(ManageStockDetailsPresenter presenter) {
         _model.Name = presenter.Name;
         _model.Sku = presenter.Sku;
-        _model.Description = _model.Description;
-        _model.Archived = _model.Archived;
+        _model.Description = presenter.Description;
+        _model.Archived = presenter.Archived;
     }
 
     private void IsValidSku(ValidationRequestEventArgs<string> validateSKURequest) {

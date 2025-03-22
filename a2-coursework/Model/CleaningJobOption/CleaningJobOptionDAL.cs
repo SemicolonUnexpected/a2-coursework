@@ -6,7 +6,9 @@ using System.Collections.Generic;
 using System.Threading.Tasks;
 
 public static class CleaningJobOptionDAL {
-    private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    private static readonly string workingDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string projectDirectoryPath = Directory.GetParent(workingDirectoryPath)!.Parent!.Parent!.Parent!.FullName!;
+    private static readonly string _connectionString = string.Format(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString, projectDirectoryPath);
 
     public static async Task<List<CleaningJobOptionModel>> GetCleaningJobOptions() {
         await using SqlConnection connection = new(_connectionString);

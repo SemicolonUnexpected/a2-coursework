@@ -71,9 +71,9 @@ public static class CleaningJobFactory {
         return (view, presenter);
     }
 
-    public static (ViewCleaningJobView view, ViewCleaningJobPresenter presenter) CreateViewCleaningJob(CleaningJobModel model, StaffModel staff) {
+    public static (ViewCleaningJobView view, ViewCleaningJobPresenter presenter) CreateViewCleaningJob(CleaningJobModel model, StaffModel staff, bool upcoming) {
         ViewCleaningJobView view = new();
-        ViewCleaningJobPresenter presenter = new(view, model, staff);
+        ViewCleaningJobPresenter presenter = new(view, model, staff, upcoming);
 
         return (view, presenter);
     }

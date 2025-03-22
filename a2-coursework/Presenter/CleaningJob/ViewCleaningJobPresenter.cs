@@ -7,11 +7,13 @@ using a2_coursework.View.Order;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class ViewCleaningJobPresenter : ParentViewPresenter<IViewCleaningJobView, CleaningJobModel>, IChildPresenter, INavigatingPresenter {
+    private readonly bool _upcoming;
     private readonly StaffModel _staff;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public ViewCleaningJobPresenter(IViewCleaningJobView view, CleaningJobModel model, StaffModel staff) : base(view, model) {
+    public ViewCleaningJobPresenter(IViewCleaningJobView view, CleaningJobModel model, StaffModel staff, bool upcoming) : base(view, model) {
+        _upcoming = upcoming;
         _staff = staff;
 
         _view.Back += OnBack;
@@ -25,7 +27,7 @@ public class ViewCleaningJobPresenter : ParentViewPresenter<IViewCleaningJobView
         if (!CanExit()) return;
 
         (IChildView view, IChildPresenter presenter) viewPresenter;
-        if (_staff.PrivilegeLevel != PrivilegeLevel.Cleaner) viewPresenter = CleaningJobFactory.CreateBookCleaningJob(_staff);
+        if (!_upcoming) viewPresenter = CleaningJobFactory.CreateBookCleaningJob(_staff);
         else viewPresenter = CleaningJobFactory.CreateDisplayUpcomingCleaningJob(_staff);
 
         NavigationRequest?.Invoke(this, new NavigationEventArgs(viewPresenter.view, viewPresenter.presenter));

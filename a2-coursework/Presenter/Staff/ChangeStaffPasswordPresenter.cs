@@ -14,7 +14,7 @@ public class ChangeStaffPasswordPresenter : BasePresenter<IChangePasswordView>, 
         _view.ChangePassword += OnChangePassword;
     }
 
-    private void OnUsernameChanged(object? sender, EventArgs e) => ValidateUsername();
+    private async void OnUsernameChanged(object? sender, EventArgs e) => await ValidateUsername();
     private void OnNewPasswordChanged(object? sender, EventArgs e) => ValidatePasswordRequirements();
     private void OnChangePassword(object? sender, EventArgs e) => ChangePassword();
 
@@ -84,8 +84,8 @@ public class ChangeStaffPasswordPresenter : BasePresenter<IChangePasswordView>, 
     }
 
     private async void ChangePassword() {
-        if (!await ValidateUsername() || ValidatePasswordInputs()) {
-            _view.ShowMessageBox("Invalid information. Could not save your changes.", "Save failed");
+        if (!await ValidateUsername() || !ValidatePasswordInputs()) {
+            _view.ShowMessageBox("Invalid information. Could not change password.", "Password change failed");
             return;
         }
 

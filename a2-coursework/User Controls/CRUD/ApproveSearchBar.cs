@@ -29,6 +29,7 @@ public partial class ApproveSearchBar : UserControl, IThemeable {
         btnView.Image = IconTheme.Current.Eye;
         btnClear.ThemeWeak();
         btnClear.Image = IconTheme.Current.Cross;
+        pbSearchBtn.BackColor = ColorScheme.Current.Background;
         pbSearchBtn.Image = IconTheme.Current.Search;
     }
 

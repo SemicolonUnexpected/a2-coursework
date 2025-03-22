@@ -1,4 +1,5 @@
 ﻿using a2_coursework.Factory;
+using a2_coursework.Interfaces;
 using a2_coursework.Interfaces.Report;
 using a2_coursework.Model.CleaningJob;
 using a2_coursework.Model.Reports;
@@ -23,18 +24,9 @@ public class CleaningJobReportPresenter : BasePresenter<ICleaningJobReportView>,
                 return;
             }
 
-            List<StaffModel> cleaningStaff = [];
-            foreach(int staffId in model.StaffIds) {
-                StaffModel? staff = await StaffDAL.GetStaffById(staffId);
-                if (staff is not null) cleaningStaff.Add(staff);
-                else {
-                    _view.ErrorMessage = "Invalid ID";
-                    return;
-                }
-            }
-            var viewPresenter = ReportFactory.CreateReport("Cleaning Job Report", ReportGenerator.GenerateCleaningJobReport(model, cleaningStaff), Task.FromResult((this, _view));
-
-            NavigateEventArgs args = new();
+            (IChildView view, IChildPresenter presenter) = ReportFactory.CreateReport("Cleaning Job Report", CleaningJobReportGenerator.CleaningJobItemsReport(model), () => ReportFactory.CreateCleaningJobReport());
+            NavigationEventArgs? navigationEventArgs = new(view, presenter);
+            NavigationRequest?.Invoke(this, navigationEventArgs);
         }
         else {
             _view.ErrorMessage = "Invalid ID";

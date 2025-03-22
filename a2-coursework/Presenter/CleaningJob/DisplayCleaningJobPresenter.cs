@@ -40,7 +40,7 @@ public class DisplayUpcomingCleaningJobPresenter : DisplayPresenter<IDisplayUpco
         _view.DisplayItems(_displayModels);
     }
 
-    protected override DisplayCleaningJobModel CreateDisplayItem(CleaningJobModel stockItem) => new DisplayCleaningJobModel(stockItem);
+    protected override DisplayCleaningJobModel CreateDisplayItem(CleaningJobModel stockItem) => new(stockItem);
 
     public async void LoadData() {
         _view.DataGridText = "Loading...";
@@ -71,7 +71,7 @@ public class DisplayUpcomingCleaningJobPresenter : DisplayPresenter<IDisplayUpco
     private void View() {
         if (_view.SelectedItem is null) return;
 
-        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateViewCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff);
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateViewCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff, true);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

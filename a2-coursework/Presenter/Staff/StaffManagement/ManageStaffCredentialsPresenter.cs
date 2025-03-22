@@ -1,5 +1,6 @@
 ﻿using a2_coursework.Interfaces.Staff.StaffManagement;
 using a2_coursework.Model.Staff;
+using System.Linq;
 
 namespace a2_coursework.Presenter.Staff.StaffManagement;
 public class ManageStaffCredentialsPresenter : BasePresenter<IManageStaffCredentialsView>, IChildPresenter, INotifyingChildPresenter {
@@ -8,7 +9,7 @@ public class ManageStaffCredentialsPresenter : BasePresenter<IManageStaffCredent
     public event EventHandler<ValidationRequestEventArgs<string>>? ValidateUsernameRequest;
 
     public ManageStaffCredentialsPresenter(IManageStaffCredentialsView view) : base(view) {
-        _view.PrivilegeLevels = Enum.GetNames(typeof(PrivilegeLevel));
+        _view.PrivilegeLevels = Array.ConvertAll((Enum.GetValues(typeof(PrivilegeLevel)) as PrivilegeLevel[])!, x => x.ConvertToString());
 
         _view.PrivilegeLevelChanged += OnPrivilegeLevelChanged;
         _view.UsernameChanged += OnUsernameChanged;
@@ -35,8 +36,8 @@ public class ManageStaffCredentialsPresenter : BasePresenter<IManageStaffCredent
     }
 
     public PrivilegeLevel PrivilegeLevel {
-        get => (PrivilegeLevel)Enum.Parse(typeof(PrivilegeLevel), _view.SelectedPrivilegeLevel);
-        set => _view.SelectedPrivilegeLevel = value.ToString();
+        get => _view.SelectedPrivilegeLevel.ConvertFromString();
+        set => _view.SelectedPrivilegeLevel = value.ConvertToString();
     }
 
     private bool _usernameValid = true;

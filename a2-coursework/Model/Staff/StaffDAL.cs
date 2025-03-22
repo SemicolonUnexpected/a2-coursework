@@ -5,7 +5,9 @@ using System.Data;
 
 namespace a2_coursework.Model.Staff;
 internal static class StaffDAL {
-    private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    private static readonly string workingDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string projectDirectoryPath = Directory.GetParent(workingDirectoryPath)!.Parent!.Parent!.Parent!.FullName!;
+    private static readonly string _connectionString = string.Format(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString, projectDirectoryPath);
 
     public static async Task<(byte[]? hash, byte[]? salt)> GetStaffCredentials(string username) {
         byte[]? hash;
@@ -209,7 +211,7 @@ internal static class StaffDAL {
                 emergencyContactSurname: reader.GetString(reader.GetOrdinal("EmergencyContactSurname")),
                 emergencyContactPhoneNumber: reader.GetString(reader.GetOrdinal("EmergencyContactPhoneNumber")),
                 privilegeLevel: ConvertToPrivilegeLevel(reader.GetString(reader.GetOrdinal("PrivilegeLevel"))),
-                theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnshrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
+                theme: reader.IsDBNull("AppearanceSettings") ? new Theme(AppearanceTheme.Dark, true, "Bahnschrift") : Newtonsoft.Json.JsonConvert.DeserializeObject<Theme>(reader.GetString(reader.GetOrdinal("AppearanceSettings")))!
             ));
         }
 
@@ -245,7 +247,8 @@ internal static class StaffDAL {
         return rowsAffected > 0;
     }
 
-    public static async Task<bool> CreateStaff( string username, string hashedPassword, string salt, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string address, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, int privilegeLevelId) { await using SqlConnection connection = new(_connectionString);
+    public static async Task<bool> CreateStaff(string username, string hashedPassword, string salt, string forename, string surname, DateTime? dateOfBirth, string email, string phoneNumber, string address, string emergencyContactForename, string emergencyContactSurname, string emergencyContactPhoneNumber, int privilegeLevelId) {
+        await using SqlConnection connection = new(_connectionString);
         await connection.OpenAsync();
 
         await using SqlCommand command = new("CreateStaff", connection);
@@ -255,7 +258,7 @@ internal static class StaffDAL {
         command.Parameters.AddWithValue("@salt", salt);
         command.Parameters.AddWithValue("@forename", forename);
         command.Parameters.AddWithValue("@surname", surname);
-        command.Parameters.AddWithValue("@dateOfBirth", dateOfBirth);
+        command.Parameters.AddWithValue("@dateOfBirth", (object?)dateOfBirth ?? DBNull.Value);
         command.Parameters.AddWithValue("@email", email);
         command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
         command.Parameters.AddWithValue("@address", address);

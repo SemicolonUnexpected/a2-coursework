@@ -27,10 +27,10 @@ public partial class ReportView : Form, IThemeable, IReportView {
     public void Theme() {
         BackColor = ColorScheme.Current.Background;
 
-        btnDownload.Theme();
+        btnDownload.ThemeWeak();
         btnDownload.Image = IconTheme.Current.Download;
 
-        btnDownload.Theme();
+        btnBack.ThemeWeak();
         btnBack.Image = IconTheme.Current.BackArrow;
     }
 

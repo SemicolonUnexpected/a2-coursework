@@ -17,6 +17,7 @@ public interface IDisplayOrderView : IChildView, IDisplayView<DisplayOrderModel>
     public DisplayOrderModel? SelectedItem { get; }
     public bool ViewMode { set; }
     public bool DeleteEnabled { set; }
+    public bool Upcoming { get; set; }
 
     public void DisableAll();
     public void EnableAll();

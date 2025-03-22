@@ -7,7 +7,9 @@ using System.Data;
 namespace a2_coursework.Model.Order;
 
 public static class OrderDAL {
-    private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    private static readonly string workingDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string projectDirectoryPath = Directory.GetParent(workingDirectoryPath)!.Parent!.Parent!.Parent!.FullName!;
+    private static readonly string _connectionString = string.Format(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString, projectDirectoryPath);
 
     public static async Task<List<OrderModel>> GetOrders() {
         var orders = new List<OrderModel>();
@@ -29,7 +31,7 @@ public static class OrderDAL {
 
             var order = new OrderModel(id, status, discrepancies, description) {
                 Staff = await StaffDAL.GetStaffById(staffId),
-                StockItems = await GetStockItemsForOrder(id)
+                StockItems = await GetOrderStockItems(id)
             };
 
             orders.Add(order);
@@ -38,7 +40,7 @@ public static class OrderDAL {
         return orders;
     }
 
-    public static async Task<List<StockModel>> GetStockItemsForOrder(int orderId) {
+    public static async Task<List<StockModel>> GetOrderStockItems(int orderId) {
         var stockItems = new List<StockModel>();
 
         await using SqlConnection connection = new(_connectionString);

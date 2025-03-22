@@ -57,7 +57,6 @@
             // 
             // btnBack
             // 
-            btnBack.BackColor = Color.FromArgb(9, 9, 10);
             btnBack.BorderColor = Color.FromArgb(39, 39, 42);
             btnBack.BorderThickness = 1F;
             btnBack.ClickedBorderColor = Color.FromArgb(39, 39, 42);

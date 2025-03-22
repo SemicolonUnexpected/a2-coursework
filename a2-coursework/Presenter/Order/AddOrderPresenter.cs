@@ -70,6 +70,7 @@ public class AddOrderPresenter : AddPresenter<IAddOrderView, OrderModel>, IChild
             if (!_model.StockItems.Any(x => stockItem.Id == x.Id)) {
                 _model.StockItems.Add(stockItem);
                 stockItem.Quantity = 1;
+                stockItem.CostAtTime = stockItem.UnitCost;
             }
         }
     }

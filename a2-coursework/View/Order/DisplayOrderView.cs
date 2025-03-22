@@ -105,6 +105,16 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
         set => topBar.SearchText = value;
     }
 
+    private bool _upcoming = false;
+    public bool Upcoming {
+        get => _upcoming;
+        set {
+            _upcoming = value;
+
+            lblOrders.Text = _upcoming ? "Upcoming Deliveries" : "Orders";
+        }
+    }
+
     public DisplayOrderModel? SelectedItem {
         get {
             try {
@@ -171,7 +181,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
                 "Rejected" => ColorScheme.Current.Danger,
                 "Delivered" => ColorScheme.Current.Info,
                 "Submitted" => ColorScheme.Current.Other,
-                _ => throw new ArgumentOutOfRangeException(),
+                _ => throw new ArgumentOutOfRangeException(nameof(e)),
             };
 
             e.CellStyle!.ForeColor = foreColor;

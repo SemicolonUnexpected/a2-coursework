@@ -4,7 +4,9 @@ using System.Data;
 
 namespace a2_coursework.Model.Stock;
 public static class StockDAL {
-    private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    private static readonly string workingDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string projectDirectoryPath = Directory.GetParent(workingDirectoryPath)!.Parent!.Parent!.Parent!.FullName!;
+    private static readonly string _connectionString = string.Format(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString, projectDirectoryPath);
 
     public static async Task<List<StockModel>> GetStock() {
         await using SqlConnection connection = new(_connectionString);
@@ -56,7 +58,7 @@ public static class StockDAL {
                     name: reader.GetString(reader.GetOrdinal("Name")),
                     description: reader.GetString(reader.GetOrdinal("Description")),
                     sku: reader.GetString(reader.GetOrdinal("SKU")),
-                    quantity: reader.GetInt32(reader.GetOrdinal("Quantity")),
+                    quantity: 1,
                     archived: reader.GetBoolean(reader.GetOrdinal("Archived")),
                     lowQuantity: reader.GetInt32(reader.GetOrdinal("LowQuantity")),
                     highQuantity: reader.GetInt32(reader.GetOrdinal("HighQuantity")),

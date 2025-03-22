@@ -1,4 +1,3 @@
-using a2_coursework.View.Users;
 using QuestPDF.Infrastructure;
 
 namespace a2_coursework;
@@ -15,7 +14,6 @@ internal static class Program {
         Application.EnableVisualStyles();
 
         QuestPDF.Settings.License = LicenseType.Community;
-
 
         // Start the application
         Application.Run(new AppContext());

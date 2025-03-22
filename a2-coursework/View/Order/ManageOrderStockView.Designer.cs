@@ -341,7 +341,7 @@
             tbName.Name = "tbName";
             tbName.PlaceholderText = "";
             tbName.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
-            tbName.ReadOnly = false;
+            tbName.ReadOnly = true;
             tbName.Size = new Size(182, 40);
             tbName.TabIndex = 23;
             tbName.TextAlign = HorizontalAlignment.Left;
@@ -424,7 +424,7 @@
             Controls.Add(pnlDetails);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageOrderStockView";
-            Text = "StockDisplayView";
+            Text = "Stock Quantities";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             pnlDetails.ResumeLayout(false);

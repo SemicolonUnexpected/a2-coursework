@@ -107,12 +107,17 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
 
         _cancellationTokenSource.Cancel();
 
-        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateViewCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff);
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateViewCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff, false);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 
     private void Add() {
         _cancellationTokenSource.Cancel();
+
+        if (_view.Date < DateTime.Today.AddDays(14)) {
+            _view.ShowMessageBox("Bookings must be made at least two weeks in advance", "Cannot place booking", MessageBoxButtons.OK);
+            return;
+        }
 
         (IChildView view, IChildPresenter presenter) = CleaningJobOptionFactory.CreateAddCleaningJob(_view.Date, _staff);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));

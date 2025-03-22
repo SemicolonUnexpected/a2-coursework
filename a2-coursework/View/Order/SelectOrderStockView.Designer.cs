@@ -206,7 +206,7 @@
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SelectOrderStockView";
-            Text = "StockDisplayView";
+            Text = "Select Stock";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);

@@ -51,11 +51,13 @@ public class MasterPresenter : BasePresenter<IMasterView> {
             ["Dashboard"],
             ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage options"],
             ["Stock", "Orders"],
+            ["Reports", "Cleaning job"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.Cleaner => [
             ["Dashboard"],
             ["Cleaning", "Upcoming jobs"],
+            ["Reports", "Cleaning job"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.CleaningManager => [
@@ -74,7 +76,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
             ["Dashboard"],
             ["Stock", "Manage stock", "Orders", "Quantity changes"],
             ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage options"],
-            ["Reports", "Staff", "Stock"],
+            ["Reports", "Staff", "Stock", "Cleaning job"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         _ => throw new NotImplementedException(),
@@ -94,6 +96,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Manage options" => GetDisplayJobOptions(),
         "Staff" => GetStaffReport(),
         "Stock" => GetStockReport(),
+        "Cleaning job" => GetCleaningJobReport(),
         "Login attempts" => GetLoginAttempts(),
         "Book cleaning" => GetBookCleaning(),
         "Dashboard" => GetDashboardView(),
@@ -125,6 +128,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private (IChildView view, IChildPresenter presenter) GetUpcomingOrderStock() => OrderFactory.CreateDisplayOrder(_staff, true);
     private (IChildView view, IChildPresenter presenter) GetApproveRejectOrder() => OrderFactory.CreateApproveRejectOrder(_staff);
     private (IChildView view, IChildPresenter presenter) GetDisplayUpcomingCleaningJobs() => CleaningJobFactory.CreateDisplayUpcomingCleaningJob(_staff);
+    private (IChildView view, IChildPresenter presenter) GetCleaningJobReport() => ReportFactory.CreateCleaningJobReport();
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {

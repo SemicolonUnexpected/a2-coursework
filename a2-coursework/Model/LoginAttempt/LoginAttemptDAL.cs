@@ -4,7 +4,9 @@ using System.Data;
 
 namespace a2_coursework.Model.LoginAttempt;
 public static class LoginAttemptDAL {
-    private static readonly string _connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+    private static readonly string workingDirectoryPath = AppDomain.CurrentDomain.BaseDirectory;
+    private static readonly string projectDirectoryPath = Directory.GetParent(workingDirectoryPath)!.Parent!.Parent!.Parent!.FullName!;
+    private static readonly string _connectionString = string.Format(ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString, projectDirectoryPath);
 
     public static async Task<bool> LogLoginAttempt(string username, DateTime attemptTime, bool success) {
         await using SqlConnection connection = new(_connectionString);

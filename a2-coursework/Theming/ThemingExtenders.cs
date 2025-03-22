@@ -24,7 +24,11 @@ internal static class ThemingExtenders {
     }
 
     public static void ThemeError(this Label label) {
-        label.ForeColor = ColorScheme.Red;
+        label.ForeColor = ColorScheme.Current.Danger;
+    }
+
+    public static void ThemeWarning(this Label label) {
+        label.ForeColor = ColorScheme.Current.Warning;
     }
 
     public static void ThemeStrong(this CustomButton button) {

@@ -18,6 +18,8 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
     public DisplayOrderPresenter(IDisplayOrderView view, StaffModel staff, bool upcoming) : base(view) {
         _upcoming = upcoming;
 
+        _view.Upcoming = upcoming;
+
         _staff = staff;
 
         if (_staff.PrivilegeLevel != PrivilegeLevel.CleaningManager) _view.ViewMode = true;

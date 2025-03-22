@@ -16,4 +16,13 @@ public static class PrivilegeLevelExtensions {
         PrivilegeLevel.Cleaner => "Cleaner",
         _ => throw new NotImplementedException(),
     };
+
+    public static PrivilegeLevel ConvertFromString(this string privilegeLevel) => privilegeLevel switch {
+        "Office" => PrivilegeLevel.Office,
+        "Administrator" => PrivilegeLevel.Admin,
+        "Manager" => PrivilegeLevel.Manager,
+        "Cleaning Manager" => PrivilegeLevel.CleaningManager,
+        "Cleaner" => PrivilegeLevel.Cleaner,
+        _ => throw new ArgumentOutOfRangeException(nameof(privilegeLevel)),
+    };
 }
