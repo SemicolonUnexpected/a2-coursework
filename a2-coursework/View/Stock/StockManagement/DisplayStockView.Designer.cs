@@ -29,19 +29,19 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            pnlData = new CustomControls.CustomPanel();
+            pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
+            sb = new a2_coursework.CustomControls.CustomScrollBar();
+            lblStock = new Label();
+            topBar = new a2_coursework.User_Controls.DataGrid.AddEditArchiveSearchBar();
+            toolTip = new ToolTip(components);
             columnId = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
             columnSku = new DataGridViewTextBoxColumn();
             columnQuantity = new DataGridViewTextBoxColumn();
             columnQuantityLevel = new DataGridViewTextBoxColumn();
             columnArchived = new DataGridViewTextBoxColumn();
-            sb = new CustomControls.CustomScrollBar();
-            lblStock = new Label();
-            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
-            toolTip = new ToolTip(components);
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -54,7 +54,7 @@
             pnlData.Controls.Add(lblError);
             pnlData.Controls.Add(dataGridView);
             pnlData.Controls.Add(sb);
-            pnlData.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlData.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlData.Location = new Point(14, 127);
             pnlData.Margin = new Padding(5);
             pnlData.Name = "pnlData";
@@ -133,58 +133,6 @@
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
-            // columnID
-            // 
-            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnId.HeaderText = "ID";
-            columnId.Name = "columnID";
-            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnId.Width = 47;
-            // 
-            // columnName
-            // 
-            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle2;
-            columnName.HeaderText = "Name";
-            columnName.Name = "columnName";
-            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnSKU
-            // 
-            columnSku.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnSku.HeaderText = "SKU";
-            columnSku.Name = "columnSku";
-            columnSku.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnSku.Width = 62;
-            // 
-            // columnQuantity
-            // 
-            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantity.HeaderText = "Quantity";
-            columnQuantity.Name = "columnQuantity";
-            columnQuantity.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantity.Width = 92;
-            // 
-            // columnQuantityLevel
-            // 
-            columnQuantityLevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnQuantityLevel.HeaderText = "Quantity Level";
-            columnQuantityLevel.Name = "columnQuantityLevel";
-            columnQuantityLevel.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnQuantityLevel.Width = 136;
-            // 
-            // columnArchived
-            // 
-            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnArchived.DataPropertyName = "IsArchived";
-            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
-            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
-            columnArchived.HeaderText = "Archived";
-            columnArchived.Name = "columnArchived";
-            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnArchived.Width = 96;
-            // 
             // sb
             // 
             sb.BackColor = Color.FromArgb(9, 9, 10);
@@ -202,7 +150,7 @@
             sb.Text = "customScrollBar1";
             sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
             sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbCorderRadii = new a2_coursework.CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
             sb.Visible = false;
             sb.ValueChanged += sb_ValueChanged;
@@ -236,7 +184,55 @@
             topBar.Size = new Size(625, 44);
             topBar.TabIndex = 11;
             // 
-            // StockDisplayView
+            // columnId
+            // 
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnId";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
+            // 
+            // columnName
+            // 
+            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
+            columnName.HeaderText = "Name";
+            columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnSku
+            // 
+            columnSku.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnSku.HeaderText = "SKU";
+            columnSku.Name = "columnSku";
+            columnSku.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnQuantity
+            // 
+            columnQuantity.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnQuantity.HeaderText = "Quantity";
+            columnQuantity.Name = "columnQuantity";
+            columnQuantity.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnQuantityLevel
+            // 
+            columnQuantityLevel.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnQuantityLevel.HeaderText = "Quantity Level";
+            columnQuantityLevel.Name = "columnQuantityLevel";
+            columnQuantityLevel.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnArchived
+            // 
+            columnArchived.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnArchived.DataPropertyName = "IsArchived";
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.TopRight;
+            columnArchived.DefaultCellStyle = dataGridViewCellStyle3;
+            columnArchived.HeaderText = "Archived";
+            columnArchived.Name = "columnArchived";
+            columnArchived.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // DisplayStockView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -246,7 +242,7 @@
             Controls.Add(lblStock);
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "StockDisplayView";
+            Name = "DisplayStockView";
             Text = "StockDisplayView";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
@@ -262,12 +258,12 @@
         private DataGridView dataGridView;
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
+        private ToolTip toolTip;
         private DataGridViewTextBoxColumn columnId;
         private DataGridViewTextBoxColumn columnName;
         private DataGridViewTextBoxColumn columnSku;
         private DataGridViewTextBoxColumn columnQuantity;
         private DataGridViewTextBoxColumn columnQuantityLevel;
         private DataGridViewTextBoxColumn columnArchived;
-        private ToolTip toolTip;
     }
 }

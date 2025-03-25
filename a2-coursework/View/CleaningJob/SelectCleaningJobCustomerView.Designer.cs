@@ -23,10 +23,10 @@
         /// the contents of this method with the code editor.
         /// </summary>
         private void InitializeComponent() {
-            DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle7 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle8 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle6 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
@@ -85,26 +85,26 @@
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle5.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle5.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
-            dataGridViewCellStyle5.ForeColor = Color.White;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            dataGridViewCellStyle5.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle5.SelectionForeColor = Color.White;
-            dataGridViewCellStyle5.WrapMode = DataGridViewTriState.False;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 60;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnId, columnName, columnEmail, columnPhoneNumber });
-            dataGridViewCellStyle7.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle7.Font = new Font("Bahnschrift", 10F);
-            dataGridViewCellStyle7.ForeColor = Color.White;
-            dataGridViewCellStyle7.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle7.SelectionForeColor = Color.White;
-            dataGridViewCellStyle7.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView.EnableHeadersVisualStyles = false;
@@ -115,12 +115,12 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 30;
             dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle8.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle8.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle8.ForeColor = Color.White;
-            dataGridViewCellStyle8.SelectionBackColor = Color.FromArgb(39, 39, 42);
-            dataGridViewCellStyle8.WrapMode = DataGridViewTriState.False;
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(39, 39, 42);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView.RowTemplate.Height = 30;
             dataGridView.ScrollBars = ScrollBars.None;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -140,8 +140,8 @@
             // columnName
             // 
             columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle6.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
             columnName.HeaderText = "Name";
             columnName.Name = "columnName";
             columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
@@ -205,7 +205,7 @@
             lblInfo.Text = "Select the customer for the job below";
             lblInfo.TextAlign = ContentAlignment.MiddleCenter;
             // 
-            // tbUsername
+            // tbSelectedCustomer
             // 
             tbSelectedCustomer.Anchor = AnchorStyles.Top;
             tbSelectedCustomer.BackColor = Color.FromArgb(9, 9, 10);
@@ -219,7 +219,7 @@
             tbSelectedCustomer.Margin = new Padding(5, 5, 50, 5);
             tbSelectedCustomer.MaxLength = 256;
             tbSelectedCustomer.MultiLine = false;
-            tbSelectedCustomer.Name = "tbUsername";
+            tbSelectedCustomer.Name = "tbSelectedCustomer";
             tbSelectedCustomer.PlaceholderText = "";
             tbSelectedCustomer.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbSelectedCustomer.ReadOnly = false;
@@ -229,7 +229,7 @@
             tbSelectedCustomer.TextBoxInset = new Padding(10);
             tbSelectedCustomer.UsePasswordChar = false;
             // 
-            // lblUsername
+            // lblSelectedCustomer
             // 
             lblSelectedCustomer.Anchor = AnchorStyles.Top;
             lblSelectedCustomer.AutoSize = true;
@@ -237,7 +237,7 @@
             lblSelectedCustomer.ForeColor = Color.White;
             lblSelectedCustomer.Location = new Point(59, 55);
             lblSelectedCustomer.Margin = new Padding(50, 5, 5, 5);
-            lblSelectedCustomer.Name = "lblUsername";
+            lblSelectedCustomer.Name = "lblSelectedCustomer";
             lblSelectedCustomer.Size = new Size(171, 23);
             lblSelectedCustomer.TabIndex = 29;
             lblSelectedCustomer.Text = "Selected Customer";
@@ -255,7 +255,7 @@
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SelectCleaningJobCustomerView";
-            Text = "StockDisplayView";
+            Text = "Customer";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);

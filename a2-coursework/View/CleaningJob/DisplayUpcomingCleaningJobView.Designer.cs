@@ -24,20 +24,21 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            DataGridViewCellStyle dataGridViewCellStyle9 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle11 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle12 = new DataGridViewCellStyle();
-            DataGridViewCellStyle dataGridViewCellStyle10 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle4 = new DataGridViewCellStyle();
+            DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            columnId = new DataGridViewTextBoxColumn();
-            columnTimes = new DataGridViewTextBoxColumn();
-            columnAddress = new DataGridViewTextBoxColumn();
             sb = new a2_coursework.CustomControls.CustomScrollBar();
             lblStock = new Label();
             toolTip = new ToolTip(components);
-            topBar = new a2_coursework.User_Controls.DataGrid.ViewSearchBar();
+            topBar = new a2_coursework.User_Controls.DataGrid.ViewEditSearchBar();
+            columnId = new DataGridViewTextBoxColumn();
+            columnDate = new DataGridViewTextBoxColumn();
+            columnTimes = new DataGridViewTextBoxColumn();
+            columnAddress = new DataGridViewTextBoxColumn();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             SuspendLayout();
@@ -84,26 +85,26 @@
             dataGridView.CellBorderStyle = DataGridViewCellBorderStyle.SingleHorizontal;
             dataGridView.ClipboardCopyMode = DataGridViewClipboardCopyMode.Disable;
             dataGridView.ColumnHeadersBorderStyle = DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle9.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle9.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
-            dataGridViewCellStyle9.ForeColor = Color.White;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            dataGridViewCellStyle9.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle9.SelectionForeColor = Color.White;
-            dataGridViewCellStyle9.WrapMode = DataGridViewTriState.False;
-            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle1.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.Font = new Font("Bahnschrift", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.White;
+            dataGridViewCellStyle1.Format = "N0";
+            dataGridViewCellStyle1.NullValue = null;
+            dataGridViewCellStyle1.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle1.SelectionForeColor = Color.White;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.False;
+            dataGridView.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView.ColumnHeadersHeight = 60;
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
-            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnId, columnTimes, columnAddress });
-            dataGridViewCellStyle11.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle11.Font = new Font("Bahnschrift", 10F);
-            dataGridViewCellStyle11.ForeColor = Color.White;
-            dataGridViewCellStyle11.SelectionBackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle11.SelectionForeColor = Color.White;
-            dataGridViewCellStyle11.WrapMode = DataGridViewTriState.False;
-            dataGridView.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridView.Columns.AddRange(new DataGridViewColumn[] { columnId, columnDate, columnTimes, columnAddress });
+            dataGridViewCellStyle3.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle3.Font = new Font("Bahnschrift", 10F);
+            dataGridViewCellStyle3.ForeColor = Color.White;
+            dataGridViewCellStyle3.SelectionBackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle3.SelectionForeColor = Color.White;
+            dataGridViewCellStyle3.WrapMode = DataGridViewTriState.False;
+            dataGridView.DefaultCellStyle = dataGridViewCellStyle3;
             dataGridView.Dock = DockStyle.Fill;
             dataGridView.EditMode = DataGridViewEditMode.EditProgrammatically;
             dataGridView.EnableHeadersVisualStyles = false;
@@ -114,12 +115,12 @@
             dataGridView.RowHeadersVisible = false;
             dataGridView.RowHeadersWidth = 30;
             dataGridView.RowHeadersWidthSizeMode = DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            dataGridViewCellStyle12.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = Color.FromArgb(9, 9, 10);
-            dataGridViewCellStyle12.ForeColor = Color.White;
-            dataGridViewCellStyle12.SelectionBackColor = Color.FromArgb(39, 39, 42);
-            dataGridViewCellStyle12.WrapMode = DataGridViewTriState.False;
-            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle4.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = Color.FromArgb(9, 9, 10);
+            dataGridViewCellStyle4.ForeColor = Color.White;
+            dataGridViewCellStyle4.SelectionBackColor = Color.FromArgb(39, 39, 42);
+            dataGridViewCellStyle4.WrapMode = DataGridViewTriState.False;
+            dataGridView.RowsDefaultCellStyle = dataGridViewCellStyle4;
             dataGridView.RowTemplate.Height = 30;
             dataGridView.ScrollBars = ScrollBars.None;
             dataGridView.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
@@ -127,30 +128,6 @@
             dataGridView.TabIndex = 1;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
-            // 
-            // columnId
-            // 
-            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnId.HeaderText = "ID";
-            columnId.Name = "columnId";
-            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnId.Width = 47;
-            // 
-            // columnTimes
-            // 
-            columnTimes.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle10.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnTimes.DefaultCellStyle = dataGridViewCellStyle10;
-            columnTimes.HeaderText = "Times";
-            columnTimes.Name = "columnTimes";
-            columnTimes.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnAddress
-            // 
-            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnAddress.HeaderText = "Address";
-            columnAddress.Name = "columnAddress";
-            columnAddress.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // sb
             // 
@@ -197,6 +174,37 @@
             topBar.SearchText = "";
             topBar.Size = new Size(621, 44);
             topBar.TabIndex = 10;
+            topBar.ViewMode = true;
+            // 
+            // columnId
+            // 
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnId";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
+            // 
+            // columnDate
+            // 
+            columnDate.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnDate.HeaderText = "Date";
+            columnDate.Name = "columnDate";
+            // 
+            // columnTimes
+            // 
+            columnTimes.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnTimes.DefaultCellStyle = dataGridViewCellStyle2;
+            columnTimes.HeaderText = "Times";
+            columnTimes.Name = "columnTimes";
+            columnTimes.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnAddress
+            // 
+            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnAddress.HeaderText = "Address";
+            columnAddress.Name = "columnAddress";
+            columnAddress.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // DisplayUpcomingCleaningJobView
             // 
@@ -224,9 +232,10 @@
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
         private ToolTip toolTip;
+        private User_Controls.DataGrid.ViewEditSearchBar topBar;
         private DataGridViewTextBoxColumn columnId;
+        private DataGridViewTextBoxColumn columnDate;
         private DataGridViewTextBoxColumn columnTimes;
         private DataGridViewTextBoxColumn columnAddress;
-        private User_Controls.DataGrid.ViewSearchBar topBar;
     }
 }

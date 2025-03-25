@@ -36,6 +36,9 @@ public partial class DisplayCleaningJobOptionView : Form, IDisplayView<DisplayCl
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
+        dataGridView.CellDoubleClick += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
+
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
 
         SetupDataGrid();
     }
@@ -57,6 +60,13 @@ public partial class DisplayCleaningJobOptionView : Form, IDisplayView<DisplayCl
 
         foreach (DataGridViewColumn column in dataGridView.Columns) {
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
+        }
+
+        foreach (DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
         }
 
         topBar.SetToolTipVisibility();
@@ -165,7 +175,7 @@ public partial class DisplayCleaningJobOptionView : Form, IDisplayView<DisplayCl
 
     private void dataGridView_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e) {
         // Format the archived
-        if (e.ColumnIndex == 4 && e.RowIndex >= 0) {
+        if (e.ColumnIndex == 3 && e.RowIndex >= 0) {
             if (e.Value is bool isArchived) {
                 e.Value = isArchived ? "Yes" : "No";
             }
@@ -186,10 +196,9 @@ public partial class DisplayCleaningJobOptionView : Form, IDisplayView<DisplayCl
         }
 
         bool isAscending = e.Button == MouseButtons.Left;
-        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
-
         SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, isAscending);
         SortRequested?.Invoke(this, sortRequestEventArgs);
+        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
     }
 
     public void CleanUp() {

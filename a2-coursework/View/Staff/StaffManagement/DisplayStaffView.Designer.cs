@@ -28,12 +28,12 @@
             DataGridViewCellStyle dataGridViewCellStyle5 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle2 = new DataGridViewCellStyle();
             DataGridViewCellStyle dataGridViewCellStyle3 = new DataGridViewCellStyle();
-            pnlData = new CustomControls.CustomPanel();
+            pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            sb = new CustomControls.CustomScrollBar();
+            sb = new a2_coursework.CustomControls.CustomScrollBar();
             lblStaff = new Label();
-            topBar = new User_Controls.DataGrid.AddEditArchiveSearchBar();
+            topBar = new a2_coursework.User_Controls.DataGrid.AddEditArchiveSearchBar();
             columnId = new DataGridViewTextBoxColumn();
             columnUsername = new DataGridViewTextBoxColumn();
             columnName = new DataGridViewTextBoxColumn();
@@ -52,7 +52,7 @@
             pnlData.Controls.Add(lblError);
             pnlData.Controls.Add(dataGridView);
             pnlData.Controls.Add(sb);
-            pnlData.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlData.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlData.Location = new Point(14, 127);
             pnlData.Margin = new Padding(5);
             pnlData.Name = "pnlData";
@@ -148,7 +148,7 @@
             sb.Text = "customScrollBar1";
             sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
             sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbCorderRadii = new a2_coursework.CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
             sb.Visible = false;
             sb.ValueChanged += sb_ValueChanged;
@@ -182,23 +182,22 @@
             topBar.Size = new Size(625, 44);
             topBar.TabIndex = 11;
             // 
-            // columnID
+            // columnId
             // 
             columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
             columnId.HeaderText = "ID";
-            columnId.Name = "columnID";
+            columnId.Name = "columnId";
             columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
             columnId.Width = 47;
             // 
             // columnUsername
             // 
-            columnUsername.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnUsername.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
             columnUsername.DefaultCellStyle = dataGridViewCellStyle2;
             columnUsername.HeaderText = "Username";
             columnUsername.Name = "columnUsername";
             columnUsername.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnUsername.Width = 107;
             // 
             // columnName
             // 
@@ -209,19 +208,17 @@
             // 
             // columnEmail
             // 
-            columnEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnEmail.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             columnEmail.HeaderText = "Email";
             columnEmail.Name = "columnEmail";
             columnEmail.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnEmail.Width = 74;
             // 
             // columnPhoneNumber
             // 
-            columnPhoneNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.ColumnHeader;
+            columnPhoneNumber.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             columnPhoneNumber.HeaderText = "Phone Number";
             columnPhoneNumber.Name = "columnPhoneNumber";
             columnPhoneNumber.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnPhoneNumber.Width = 141;
             // 
             // columnArchived
             // 
@@ -263,8 +260,8 @@
         private DataGridViewTextBoxColumn columnId;
         private DataGridViewTextBoxColumn columnUsername;
         private DataGridViewTextBoxColumn columnName;
-        private DataGridViewTextBoxColumn columnPhoneNumber;
         private DataGridViewTextBoxColumn columnEmail;
+        private DataGridViewTextBoxColumn columnPhoneNumber;
         private DataGridViewTextBoxColumn columnArchived;
     }
 }

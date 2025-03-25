@@ -16,7 +16,7 @@ public static class CleaningJobReportGenerator {
 
         MemoryStream memoryStream = new();
 
-        ReportGenerator.GetBaseReport("Staff security details", page => {
+        ReportGenerator.GetBaseReport("Cleaning Job Report", page => {
             page.Content().Element(container => container.Column(column => {
                 column.Item().Text("Cleaning Job Details").FontSize(16).Bold();
 
@@ -61,7 +61,7 @@ public static class CleaningJobReportGenerator {
 
                     innerColumn.Item().Text(text => {
                         text.Span("Date: ").Bold();
-                        text.Span($"{model.StartDate:dd/mm/yyyy}");
+                        text.Span($"{model.StartDate:dd/MM/yyyy}");
                     });
 
                     innerColumn.Item().Text(text => {
@@ -71,7 +71,7 @@ public static class CleaningJobReportGenerator {
 
                     innerColumn.Item().Text(text => {
                         text.Span("End Time: ").Bold();
-                        text.Span($"{model.StartDate:HH:mm}");
+                        text.Span($"{model.EndDate:HH:mm}");
                     });
 
                     innerColumn.Item().PaddingVertical(5);

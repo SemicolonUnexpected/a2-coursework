@@ -8,11 +8,14 @@ using a2_coursework.View.Order;
 
 namespace a2_coursework.Presenter.CleaningJob;
 public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView, CleaningJobModel>, IChildPresenter, INavigatingPresenter {
+    private bool _upcoming;
     private readonly StaffModel _staff;
 
     public event EventHandler<NavigationEventArgs>? NavigationRequest;
 
-    public EditCleaningJobPresenter(IEditCleaningJobView view, CleaningJobModel model, StaffModel staff) : base(view, model) {
+    public EditCleaningJobPresenter(IEditCleaningJobView view, CleaningJobModel model, StaffModel staff, bool upcoming = false) : base(view, model) {
+        _upcoming = upcoming;
+
         _staff = staff;
 
         _view.Back += OnBack;
@@ -24,8 +27,15 @@ public class EditCleaningJobPresenter : ParentEditPresenter<IEditCleaningJobView
 
     private void NavigateBack() {
         if (!CanExit()) return;
-        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateBookCleaningJob(_staff);
-        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+
+        if (_upcoming) {
+            (IChildView view, DisplayUpcomingCleaningJobPresenter presenter) = CleaningJobFactory.CreateDisplayUpcomingCleaningJob(_staff);
+            NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        }
+        else {
+            (IChildView view, BookCleaningJobPresenter presenter) = CleaningJobFactory.CreateBookCleaningJob(_staff);
+            NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+        }
     }
 
     protected override void BindValidation() { }

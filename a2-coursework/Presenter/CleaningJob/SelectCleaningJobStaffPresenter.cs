@@ -46,7 +46,7 @@ public class SelectCleaningJobStaffPresenter : DisplayPresenter<ISelectCleaningJ
 
     protected override List<StaffModel> OrderDefault(List<StaffModel> models) => [.. models.OrderBy(x => x.Id)];
 
-    protected override IComparable RankSearch(string searchText, StaffModel model) => GeneralHelpers.LevensteinDistance(searchText, $"{model.Forename} {model.Surname}");
+    protected override IComparable RankSearch(string searchText, StaffModel model) => GeneralHelpers.SubstringLevenshteinDistance(searchText, $"{model.Forename} {model.Surname}");
 
     private List<int> _setSelectedItems = [];
     public List<int> SelectedStaffIds {

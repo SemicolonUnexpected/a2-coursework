@@ -49,7 +49,7 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
 
     protected override DisplayCleaningJobModel CreateDisplayItem(CleaningJobModel model) => new(model);
 
-    protected override IComparable RankSearch(string searchText, CleaningJobModel model) => GeneralHelpers.LevensteinDistance(searchText, model.StartDate.ToString("HH mm") + " - " + model.EndDate.ToString("HH mm"));
+    protected override IComparable RankSearch(string searchText, CleaningJobModel model) => GeneralHelpers.SubstringLevenshteinDistance(searchText, model.StartDate.ToString("HH mm") + " - " + model.EndDate.ToString("HH mm"));
 
     protected override List<CleaningJobModel> OrderDefault(List<CleaningJobModel> models) => [.. models.OrderBy(x => x.Id)];
 
@@ -114,7 +114,11 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
     private void Add() {
         _cancellationTokenSource.Cancel();
 
-        if (_view.Date < DateTime.Today.AddDays(14)) {
+        if (_view.Date < DateTime.Today) {
+            _view.ShowMessageBox("Bookings cannot be made retrospectively", "Cannot place booking", MessageBoxButtons.OK);
+            return;
+        }
+        else if (_view.Date < DateTime.Today.AddDays(14)) {
             _view.ShowMessageBox("Bookings must be made at least two weeks in advance", "Cannot place booking", MessageBoxButtons.OK);
             return;
         }
@@ -145,7 +149,6 @@ public class BookCleaningJobPresenter : DisplayPresenter<IBookCleaningJobView, C
 
     private void SetAddEditDeleteView() {
         bool beforeToday = _view.Date <= DateTime.Today;
-        _view.AddEnabled = !beforeToday;
         _view.DeleteEnabled = !beforeToday;
         _view.ViewMode = beforeToday;
     }

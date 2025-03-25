@@ -29,6 +29,7 @@
             lblHighQuantity = new Label();
             nudHighQuantity = new a2_coursework.CustomControls.CustomNumericUpDown();
             lblInfo = new Label();
+            lblError = new Label();
             SuspendLayout();
             // 
             // nudLowQuantity
@@ -89,12 +90,24 @@
             lblInfo.TabIndex = 26;
             lblInfo.Text = resources.GetString("lblInfo.Text");
             // 
+            // lblNameSkuError
+            // 
+            lblError.Anchor = AnchorStyles.None;
+            lblError.Font = new Font("Bahnschrift", 12F);
+            lblError.ForeColor = Color.FromArgb(168, 171, 174);
+            lblError.Location = new Point(157, 284);
+            lblError.Name = "lblNameSkuError";
+            lblError.Size = new Size(355, 53);
+            lblError.TabIndex = 27;
+            lblError.TextAlign = ContentAlignment.TopCenter;
+            // 
             // ManageStockWarningView
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.FromArgb(9, 9, 10);
             ClientSize = new Size(654, 419);
+            Controls.Add(lblError);
             Controls.Add(lblInfo);
             Controls.Add(nudHighQuantity);
             Controls.Add(nudLowQuantity);
@@ -114,5 +127,6 @@
         private Label lblHighQuantity;
         private CustomControls.CustomNumericUpDown nudHighQuantity;
         private Label lblInfo;
+        private Label lblError;
     }
 }

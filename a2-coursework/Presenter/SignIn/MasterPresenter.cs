@@ -49,7 +49,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
     private string[][] GetMenuItems(PrivilegeLevel staffPrivilegeLevel) => staffPrivilegeLevel switch {
         PrivilegeLevel.Office => [
             ["Dashboard"],
-            ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage options"],
+            ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage job options"],
             ["Stock", "Orders"],
             ["Reports", "Cleaning job"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
@@ -69,14 +69,14 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         PrivilegeLevel.Admin => [
             ["Dashboard"],
             ["Security", "Manage staff", "Login attempts", "Change password"],
-            ["Reports", "Staff"],
+            ["Reports", "Current Staff"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         PrivilegeLevel.Manager => [
             ["Dashboard"],
             ["Stock", "Manage stock", "Orders", "Quantity changes"],
-            ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage options"],
-            ["Reports", "Staff", "Stock", "Cleaning job"],
+            ["Cleaning", "Book cleaning", "Upcoming jobs", "Manage customers", "Manage job options"],
+            ["Reports", "Current Staff", "Stock", "Cleaning job"],
             ["Settings", "Personal information", "Contact details", "Emergency contact", "Account security", "Appearance"]],
 
         _ => throw new NotImplementedException(),
@@ -93,8 +93,8 @@ public class MasterPresenter : BasePresenter<IMasterView> {
         "Quantity changes" => GetDisplayStockQuantityChangesView(),
         "Manage staff" => GetDisplayStaff(),
         "Manage customers" => GetDisplayCustomers(),
-        "Manage options" => GetDisplayJobOptions(),
-        "Staff" => GetStaffReport(),
+        "Manage job options" => GetDisplayJobOptions(),
+        "Current Staff" => GetStaffReport(),
         "Stock" => GetStockReport(),
         "Cleaning job" => GetCleaningJobReport(),
         "Login attempts" => GetLoginAttempts(),
@@ -132,6 +132,7 @@ public class MasterPresenter : BasePresenter<IMasterView> {
 
     private void SignOut() {
         if (_view.ShowMessageBox("Are you sure you want to sign out?", "Sign out", MessageBoxButtons.OKCancel) == DialogResult.OK) {
+            _childPresenter?.CleanUp();
             Application.Restart();
         }
     }

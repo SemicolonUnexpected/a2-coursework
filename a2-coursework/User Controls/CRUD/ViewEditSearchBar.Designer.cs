@@ -1,5 +1,5 @@
 ﻿namespace a2_coursework.User_Controls.DataGrid {
-    partial class ViewSearchBar {
+    partial class ViewEditSearchBar {
         /// <summary> 
         /// Required designer variable.
         /// </summary>
@@ -25,7 +25,7 @@
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
             pbSearchBtn = new PictureBox();
-            btnView = new a2_coursework.CustomControls.CustomButton();
+            btn = new a2_coursework.CustomControls.CustomButton();
             pnlSpacer1 = new Panel();
             toolTip = new ToolTip(components);
             btnClear = new a2_coursework.CustomControls.CustomButton();
@@ -47,28 +47,28 @@
             // 
             // btnView
             // 
-            btnView.BackColor = Color.FromArgb(9, 9, 10);
-            btnView.BorderColor = Color.FromArgb(39, 39, 42);
-            btnView.BorderThickness = 1F;
-            btnView.ClickedBorderColor = Color.FromArgb(39, 39, 42);
-            btnView.ClickedColor = Color.FromArgb(39, 39, 42);
-            btnView.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
-            btnView.DisabledBorderColor = Color.Empty;
-            btnView.DisabledColor = Color.Empty;
-            btnView.Dock = DockStyle.Right;
-            btnView.ForeColor = Color.FromArgb(250, 250, 250);
-            btnView.HoverBorderColor = Color.FromArgb(39, 39, 42);
-            btnView.HoverColor = Color.FromArgb(39, 39, 42);
-            btnView.Image = Properties.Resources.eye_light;
-            btnView.ImageRectangle = new Rectangle(7, 7, 26, 26);
-            btnView.Location = new Point(591, 2);
-            btnView.Name = "btnView";
-            btnView.Size = new Size(40, 40);
-            btnView.TabIndex = 11;
-            btnView.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
-            btnView.TextPosition = new Point(0, 0);
-            toolTip.SetToolTip(btnView, "View");
-            btnView.Click += btnView_Click;
+            btn.BackColor = Color.FromArgb(9, 9, 10);
+            btn.BorderColor = Color.FromArgb(39, 39, 42);
+            btn.BorderThickness = 1F;
+            btn.ClickedBorderColor = Color.FromArgb(39, 39, 42);
+            btn.ClickedColor = Color.FromArgb(39, 39, 42);
+            btn.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btn.DisabledBorderColor = Color.Empty;
+            btn.DisabledColor = Color.Empty;
+            btn.Dock = DockStyle.Right;
+            btn.ForeColor = Color.FromArgb(250, 250, 250);
+            btn.HoverBorderColor = Color.FromArgb(39, 39, 42);
+            btn.HoverColor = Color.FromArgb(39, 39, 42);
+            btn.Image = Properties.Resources.eye_light;
+            btn.ImageRectangle = new Rectangle(7, 7, 26, 26);
+            btn.Location = new Point(591, 2);
+            btn.Name = "btnView";
+            btn.Size = new Size(40, 40);
+            btn.TabIndex = 11;
+            btn.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
+            btn.TextPosition = new Point(0, 0);
+            toolTip.SetToolTip(btn, "View");
+            btn.Click += btnView_Click;
             // 
             // pnlSpacer1
             // 
@@ -139,7 +139,7 @@
             Controls.Add(pbSearchBtn);
             Controls.Add(tbSearch);
             Controls.Add(pnlSpacer1);
-            Controls.Add(btnView);
+            Controls.Add(btn);
             Name = "ViewSearchBar";
             Padding = new Padding(2);
             Size = new Size(633, 44);
@@ -149,7 +149,7 @@
 
         #endregion
         private Panel pnlSpacer1;
-        private CustomControls.CustomButton btnView;
+        private CustomControls.CustomButton btn;
         private CustomControls.CustomTextBox tbSearch;
         private PictureBox pbSearchBtn;
         private ToolTip toolTip;

@@ -97,7 +97,7 @@ public class ManageCleaningJobOptionsPresenter : DisplayPresenter<IManageCleanin
 
     protected override DisplayCleaningJobOptionModel CreateDisplayItem(CleaningJobOptionModel model) => new(model);
     protected override List<CleaningJobOptionModel> OrderDefault(List<CleaningJobOptionModel> models) => [.. models.OrderBy(x => x.Id)];
-    protected override IComparable RankSearch(string searchText, CleaningJobOptionModel model) => GeneralHelpers.LevensteinDistance(searchText, model.Name);
+    protected override IComparable RankSearch(string searchText, CleaningJobOptionModel model) => GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Name);
 
     protected override void SortByColumn(string columnName, bool sortAscending) {
         switch (columnName) {

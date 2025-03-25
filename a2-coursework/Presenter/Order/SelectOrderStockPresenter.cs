@@ -47,7 +47,7 @@ public class SelectOrderStockPresenter : DisplayPresenter<ISelectOrderStockView,
 
     protected override List<StockModel> OrderDefault(List<StockModel> models) => [.. models.OrderBy(x => x.Id)];
 
-    protected override IComparable RankSearch(string searchText, StockModel model) => GeneralHelpers.LevensteinDistance(searchText, model.Name);
+    protected override IComparable RankSearch(string searchText, StockModel model) => GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Name);
 
     private List<int> _setSelectedItems = [];
     public List<StockModel> SelectedStockItems {

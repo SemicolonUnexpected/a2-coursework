@@ -29,6 +29,7 @@ public partial class ManageStockWarningView : Form, IManageStockWarningView, ITh
         lblInfo.ThemeSubtitle();
         lblLowQuantity.ThemeTitle();
         lblHighQuantity.ThemeTitle();
+        lblError.ThemeError();
 
         nudHighQuantity.Theme();
         nudLowQuantity.Theme();
@@ -57,6 +58,11 @@ public partial class ManageStockWarningView : Form, IManageStockWarningView, ITh
     public int HighQuantity {
         get => nudHighQuantity.Value;
         set => nudHighQuantity.Value = value;
+    }
+
+    public string Error {
+        get => lblError.Text;
+        set => lblError.Text = value;
     }
 
     public void CleanUp() {

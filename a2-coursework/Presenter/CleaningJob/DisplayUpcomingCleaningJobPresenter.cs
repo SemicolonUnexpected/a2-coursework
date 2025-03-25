@@ -16,14 +16,19 @@ public class DisplayUpcomingCleaningJobPresenter : DisplayPresenter<IDisplayUpco
     public DisplayUpcomingCleaningJobPresenter(IDisplayUpcomingCleaningJobView view, StaffModel staff) : base(view) {
         _staff = staff;
 
+        if (_staff.PrivilegeLevel == PrivilegeLevel.Cleaner) _view.ViewMode = true;
+        else _view.ViewMode = false;
+
         LoadData();
 
         _view.View += OnView;
+        _view.Edit += OnEdit;
         _view.Search += OnSearch;
         _view.SortRequested += OnSortRequested;
     }
 
     private void OnView(object? sender, EventArgs e) => View();
+    private void OnEdit(object? sender, EventArgs e) => Edit();
     private void OnSearch(object? sender, EventArgs e) => Search(_view.SearchText);
     private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
 
@@ -65,13 +70,20 @@ public class DisplayUpcomingCleaningJobPresenter : DisplayPresenter<IDisplayUpco
         }
     }
 
-    protected override IComparable RankSearch(string searchText, CleaningJobModel model) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, model.Address.ToLower()) / model.Address.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), model.StartDate.ToString().ToLower()), 2) + 1) / MathF.Pow(model.StartDate.ToString().Length, 2));
+    protected override IComparable RankSearch(string searchText, CleaningJobModel model) => MathF.Min((float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Address.ToLower()) / model.Address.Length, (float)(MathF.Pow(GeneralHelpers.SubstringLevenshteinDistance(_view.SearchText.ToLower(), model.StartDate.ToString().ToLower()), 2) + 1) / MathF.Pow(model.StartDate.ToString().Length, 2));
     protected override List<CleaningJobModel> OrderDefault(List<CleaningJobModel> models) => [.. models.OrderBy(model => model.Id)];
 
     private void View() {
         if (_view.SelectedItem is null) return;
 
         (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateViewCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff, true);
+        NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
+    }
+
+    private void Edit() {
+        if (_view.SelectedItem is null) return;
+
+        (IChildView view, IChildPresenter presenter) = CleaningJobFactory.CreateEditCleaningJob(_modelDisplayMap[_view.SelectedItem], _staff, true);
         NavigationRequest?.Invoke(this, new NavigationEventArgs(view, presenter));
     }
 

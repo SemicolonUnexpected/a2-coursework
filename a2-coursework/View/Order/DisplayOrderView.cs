@@ -16,6 +16,7 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
     public event EventHandler? Search;
     public event EventHandler? SelectionChanged;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
+    public event EventHandler? CellDoubleCick;
 
     public DisplayOrderView() {
         InitializeComponent();
@@ -36,6 +37,12 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.View += (s, e) => View?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
+        dataGridView.CellDoubleClick += (s, e) => {
+            if (topBar.ViewMode) View?.Invoke(this, EventArgs.Empty);
+            else Edit?.Invoke(this, EventArgs.Empty);
+        };
+
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
 
         SetupDataGrid();
     }
@@ -57,6 +64,14 @@ public partial class DisplayOrderView : Form, IDisplayView<DisplayOrderModel>, I
 
         foreach (DataGridViewColumn column in dataGridView.Columns) {
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
+        }
+
+        foreach(DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
         }
 
         topBar.SetToolTipVisibility();

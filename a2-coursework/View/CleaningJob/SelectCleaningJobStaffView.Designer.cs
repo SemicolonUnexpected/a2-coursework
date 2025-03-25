@@ -199,7 +199,7 @@
             lblInfo.Name = "lblInfo";
             lblInfo.Size = new Size(621, 30);
             lblInfo.TabIndex = 27;
-            lblInfo.Text = "Select an appropriate number of cleaners for the job below (hold CTRL)";
+            lblInfo.Text = "Select an appropriate number of staff for the job (hold CTRL to select multiple)";
             lblInfo.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // SelectCleaningJobStaffView
@@ -213,7 +213,7 @@
             Controls.Add(pnlData);
             FormBorderStyle = FormBorderStyle.None;
             Name = "SelectCleaningJobStaffView";
-            Text = "StockDisplayView";
+            Text = "Cleaning Staff";
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);

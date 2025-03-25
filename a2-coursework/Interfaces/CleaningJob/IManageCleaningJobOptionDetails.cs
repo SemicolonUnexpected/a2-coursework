@@ -6,6 +6,7 @@ public interface IManageCleaningJobOptionDetails : IChildView {
     public string ExtraInformation { get; set; }
     public string Address { get; set; }
     public bool ReadOnly { get; set; }
+    public string AddressError { get; set; }
 
     public void SetExtraInformationCharacterCount(int number);
     public void SetAddressCharacterCount(int number);

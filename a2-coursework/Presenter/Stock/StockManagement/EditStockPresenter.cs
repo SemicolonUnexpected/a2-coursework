@@ -136,7 +136,7 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesStockWarning(presenter);
         AnyChangesCurrent = () => AnyChangesStockWarning(presenter);
-        ValidateCurrent = () => true;
+        ValidateCurrent = () => ValidateInputsStockWarning(presenter);
         UpdateDatabaseCurrent = () => UpdateDatabaseStockWarning(presenter);
         UpdateModelCurrent = () => UpdateModelStockWarning(presenter);
 
@@ -147,6 +147,8 @@ public class EditStockPresenter : ParentEditPresenter<IEditStockView, StockModel
         presenter.HighQuantity = _model.HighQuantity;
         presenter.LowQuantity = _model.LowQuantity;
     }
+
+    private bool ValidateInputsStockWarning(ManageStockWarningPresenter presenter) => !presenter.Error;
 
     private bool AnyChangesStockWarning(ManageStockWarningPresenter presenter) => presenter.LowQuantity != _model.LowQuantity || presenter.HighQuantity != _model.HighQuantity;
 

@@ -81,7 +81,7 @@ public class DisplayCustomerPresenter : DisplayPresenter<IDisplayCustomerView, C
     protected override IComparable RankSearch(string searchText, CustomerModel model) {
         string name = $"{model.Forename} {model.Surname}";
 
-        return MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText,name.ToLower()) / name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), model.Email.ToLower()), 2) + 1) / MathF.Pow(model.Email.Length, 2));
+        return MathF.Min((float)GeneralHelpers.SubstringLevenshteinDistance(searchText,name.ToLower()) / name.Length, (float)(MathF.Pow(GeneralHelpers.SubstringLevenshteinDistance(_view.SearchText.ToLower(), model.Email.ToLower()), 2) + 1) / MathF.Pow(model.Email.Length, 2));
     }
     protected override List<CustomerModel> OrderDefault(List<CustomerModel> models) => models.OrderBy(model => model.Id).ToList();
 

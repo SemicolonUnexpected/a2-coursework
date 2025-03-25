@@ -78,7 +78,7 @@ public class DisplayCleaningJobOptionPresenter : DisplayPresenter<IDisplayCleani
 
     private IEnumerable<CleaningJobOptionModel> FilterOutArchived(IEnumerable<CleaningJobOptionModel> models) => models.Where(x => !x.Archived);
 
-    protected override IComparable RankSearch(string searchText, CleaningJobOptionModel model) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, model.Name.ToLower()) / model.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), model.UnitCost.ToString().ToString().ToLower()), 2) + 1) / MathF.Pow(model.UnitCost.ToString().Length, 2));
+    protected override IComparable RankSearch(string searchText, CleaningJobOptionModel model) => MathF.Min((float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Name.ToLower()) / model.Name.Length, (float)(MathF.Pow(GeneralHelpers.SubstringLevenshteinDistance(_view.SearchText.ToLower(), model.UnitCost.ToString().ToString().ToLower()), 2) + 1) / MathF.Pow(model.UnitCost.ToString().Length, 2));
     protected override List<CleaningJobOptionModel> OrderDefault(List<CleaningJobOptionModel> models) => models.OrderBy(model => model.Id).ToList();
 
     private void SelectionChanged() {

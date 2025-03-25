@@ -36,6 +36,9 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
+        dataGridView.CellDoubleClick += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
+
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
 
         SetupDataGrid();
     }
@@ -59,6 +62,14 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
         }
 
+        foreach(DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
+        }
+
         topBar.SetToolTipVisibility();
     }
 
@@ -73,10 +84,6 @@ public partial class DisplayStockView : Form, IDisplayStockView, IThemeable, IDi
 
     private void SetupDataGrid() {
         dataGridView.AutoGenerateColumns = false;
-        columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnQuantityLevel.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         float scalingFactor = DeviceDpi / 96f;
         dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);

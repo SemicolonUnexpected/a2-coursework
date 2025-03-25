@@ -132,7 +132,7 @@ public class AddStockPresenter : AddPresenter<IAddStockView, StockModel>, IChild
         _model.HighQuantity = presenter.HighQuantity;
     }
 
-    private bool ValidateStockWarning(ManageStockWarningPresenter presenter) => true;
+    private bool ValidateStockWarning(ManageStockWarningPresenter presenter) => !presenter.Error;
     #endregion
 
     #region Stock Unit Cost

@@ -30,9 +30,6 @@
             pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
-            columnId = new DataGridViewTextBoxColumn();
-            columnName = new DataGridViewTextBoxColumn();
-            columnUnitCost = new DataGridViewTextBoxColumn();
             sb = new a2_coursework.CustomControls.CustomScrollBar();
             searchBar = new a2_coursework.User_Controls.DataGrid.SearchBar();
             nudQuantity = new a2_coursework.CustomControls.CustomNumericUpDown();
@@ -47,6 +44,9 @@
             tbQuantity = new a2_coursework.CustomControls.CustomTextBox();
             tbTotal = new a2_coursework.CustomControls.CustomTextBox();
             lblTotal = new Label();
+            columnId = new DataGridViewTextBoxColumn();
+            columnName = new DataGridViewTextBoxColumn();
+            columnUnitCost = new DataGridViewTextBoxColumn();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             pnlDetails.SuspendLayout();
@@ -138,30 +138,6 @@
             dataGridView.TabIndex = 1;
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
-            // 
-            // columnId
-            // 
-            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            columnId.HeaderText = "ID";
-            columnId.Name = "columnId";
-            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnId.Width = 47;
-            // 
-            // columnName
-            // 
-            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnName.DefaultCellStyle = dataGridViewCellStyle2;
-            columnName.HeaderText = "Name";
-            columnName.Name = "columnName";
-            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
-            // 
-            // columnUnitCost
-            // 
-            columnUnitCost.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnUnitCost.HeaderText = "Unit Cost";
-            columnUnitCost.Name = "columnUnitCost";
-            columnUnitCost.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // sb
             // 
@@ -411,6 +387,30 @@
             lblTotal.TabIndex = 24;
             lblTotal.Text = "Total:";
             // 
+            // columnId
+            // 
+            columnId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            columnId.HeaderText = "ID";
+            columnId.Name = "columnId";
+            columnId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnId.Width = 47;
+            // 
+            // columnName
+            // 
+            columnName.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnName.DefaultCellStyle = dataGridViewCellStyle2;
+            columnName.HeaderText = "Name";
+            columnName.Name = "columnName";
+            columnName.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
+            // columnUnitCost
+            // 
+            columnUnitCost.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnUnitCost.HeaderText = "Unit Cost (£)";
+            columnUnitCost.Name = "columnUnitCost";
+            columnUnitCost.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
             // ManageOrderStockView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
@@ -440,9 +440,6 @@
         private Label lblError;
         private CustomControls.CustomScrollBar sb;
         private User_Controls.DataGrid.SearchBar searchBar;
-        private DataGridViewTextBoxColumn columnId;
-        private DataGridViewTextBoxColumn columnName;
-        private DataGridViewTextBoxColumn columnUnitCost;
         private CustomControls.CustomNumericUpDown nudQuantity;
         private CustomControls.CustomPanel pnlDetails;
         private CustomControls.CustomTextBox tbTotal;
@@ -455,5 +452,8 @@
         private Label lblSubtotal;
         private CustomControls.CustomTextBox tbSubtotal;
         private CustomControls.CustomTextBox tbQuantity;
+        private DataGridViewTextBoxColumn columnId;
+        private DataGridViewTextBoxColumn columnName;
+        private DataGridViewTextBoxColumn columnUnitCost;
     }
 }

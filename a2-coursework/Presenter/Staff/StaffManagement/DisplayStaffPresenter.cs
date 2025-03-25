@@ -87,8 +87,8 @@ public class DisplayStaffPresenter : DisplayPresenter<IDisplayStaffView, StaffMo
         string staffNames = $"{staff.Forename} {staff.Surname}";
 
         return MathF.Min(
-            (float)GeneralHelpers.LevensteinDistance(searchText, staffNames.ToLower()) / staffNames.Length,
-            (float)GeneralHelpers.LevensteinDistance(searchText, staff.Username.ToLower()) / staff.Username.Length
+            (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, staffNames.ToLower()) / staffNames.Length,
+            (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, staff.Username.ToLower()) / staff.Username.Length
         );
     }
 

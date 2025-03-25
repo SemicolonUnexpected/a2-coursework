@@ -47,6 +47,7 @@ public class ManageCleaningJobDetailsPresenter : BasePresenter<IManageCleaningJo
     private void ValidateAddress() {
         _addressValid = !string.IsNullOrEmpty(_view.Address);
         _view.SetAddressBorderError(!_addressValid);
+        _view.AddressError = _addressValid ? "" : "Address cannot be empty";
     }
 
     private void SetAddressCharacterCount() => _view.SetAddressCharacterCount(_view.Address.Length);

@@ -75,10 +75,10 @@ public class DisplayStockQuantityChangesPresenter : DisplayPresenter<IDisplaySto
     protected override List<StockQuantityChangeModel> OrderDefault(List<StockQuantityChangeModel> models) => models.OrderByDescending(model => model.Date).ToList();
 
     protected override IComparable RankSearch(string searchText, StockQuantityChangeModel model) {
-        float stockNameDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StockName) / model.StockName.Length;
-        float stockSKUDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StockSKU) / model.StockSKU.Length;
-        float staffUsernameDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.StaffUsername) / model.StaffUsername.Length;
-        float dateDistance = (float)GeneralHelpers.LevensteinDistance(searchText, model.Date.ToString()) / model.StaffUsername.Length;
+        float stockNameDistance = (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.StockName) / model.StockName.Length;
+        float stockSKUDistance = (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.StockSKU) / model.StockSKU.Length;
+        float staffUsernameDistance = (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.StaffUsername) / model.StaffUsername.Length;
+        float dateDistance = (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Date.ToString()) / model.StaffUsername.Length;
 
         float minDistance = Math.Min(Math.Min(stockNameDistance, stockSKUDistance), Math.Min(staffUsernameDistance, dateDistance));
 

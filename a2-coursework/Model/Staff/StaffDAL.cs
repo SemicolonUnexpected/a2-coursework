@@ -123,7 +123,7 @@ internal static class StaffDAL {
 
         await using SqlCommand command = new("UpdateStaffContactDetails", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@staffId", id);
         command.Parameters.AddWithValue("@email", email);
         command.Parameters.AddWithValue("@phoneNumber", phoneNumber);
         command.Parameters.AddWithValue("@address", address);

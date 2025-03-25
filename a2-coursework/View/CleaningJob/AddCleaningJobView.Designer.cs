@@ -27,8 +27,8 @@
             pnlHolder = new Panel();
             pnlTop = new Panel();
             lblTitle = new Label();
-            btnBack = new CustomControls.CustomButton();
-            previousNextDoneBar = new User_Controls.CRUD.PreviousNextDoneBar();
+            btnBack = new a2_coursework.CustomControls.CustomButton();
+            previousNextDoneBar = new a2_coursework.User_Controls.CRUD.PreviousNextDoneBar();
             toolTip = new ToolTip(components);
             pnlTop.SuspendLayout();
             SuspendLayout();
@@ -56,15 +56,15 @@
             // lblTitle
             // 
             lblTitle.Anchor = AnchorStyles.None;
-            lblTitle.AutoSize = true;
             lblTitle.Font = new Font("Bahnschrift", 20F);
             lblTitle.ForeColor = Color.White;
-            lblTitle.Location = new Point(248, 4);
+            lblTitle.Location = new Point(53, 4);
             lblTitle.Margin = new Padding(10);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(158, 33);
+            lblTitle.Size = new Size(555, 33);
             lblTitle.TabIndex = 26;
             lblTitle.Text = "Appearance";
+            lblTitle.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // btnBack
             // 
@@ -74,7 +74,7 @@
             btnBack.BorderThickness = 1F;
             btnBack.ClickedBorderColor = Color.FromArgb(39, 39, 42);
             btnBack.ClickedColor = Color.FromArgb(39, 39, 42);
-            btnBack.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnBack.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnBack.DisabledBorderColor = Color.Empty;
             btnBack.DisabledColor = Color.Empty;
             btnBack.ForeColor = Color.FromArgb(250, 250, 250);
@@ -90,21 +90,21 @@
             btnBack.TextPosition = new Point(0, 0);
             toolTip.SetToolTip(btnBack, "Back");
             // 
-            // backNextDoneBar
+            // previousNextDoneBar
             // 
             previousNextDoneBar.BackColor = Color.FromArgb(9, 9, 10);
             previousNextDoneBar.Dock = DockStyle.Bottom;
+            previousNextDoneBar.DoneVisible = true;
             previousNextDoneBar.Location = new Point(0, 459);
             previousNextDoneBar.Margin = new Padding(0);
-            previousNextDoneBar.Name = "backNextDoneBar";
+            previousNextDoneBar.Name = "previousNextDoneBar";
+            previousNextDoneBar.NextVisible = true;
             previousNextDoneBar.Padding = new Padding(2);
             previousNextDoneBar.PreviousVisible = true;
-            previousNextDoneBar.DoneVisible = true;
-            previousNextDoneBar.NextVisible = true;
             previousNextDoneBar.Size = new Size(654, 41);
             previousNextDoneBar.TabIndex = 30;
             // 
-            // AddStockView
+            // AddCleaningJobView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -114,10 +114,9 @@
             Controls.Add(pnlHolder);
             Controls.Add(pnlTop);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "AddStockView";
-            base.Text = "AddStockView";
+            Name = "AddCleaningJobView";
+            Text = "AddStockView";
             pnlTop.ResumeLayout(false);
-            pnlTop.PerformLayout();
             ResumeLayout(false);
         }
 

@@ -58,7 +58,7 @@ public class DisplayLoginAttemptPresenter : DisplayPresenter<IDisplayLoginAttemp
         }
     }
 
-    protected override IComparable RankSearch(string searchText, LoginAttemptModel model) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, model.Username.ToLower()) / model.Username.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), model.AttemptTime.ToString()), 2) + 1) / MathF.Pow(model.AttemptTime.ToString().Length, 2));
+    protected override IComparable RankSearch(string searchText, LoginAttemptModel model) => MathF.Min((float)GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Username.ToLower()) / model.Username.Length, (float)(MathF.Pow(GeneralHelpers.SubstringLevenshteinDistance(_view.SearchText.ToLower(), model.AttemptTime.ToString()), 2) + 1) / MathF.Pow(model.AttemptTime.ToString().Length, 2));
     protected override List<LoginAttemptModel> OrderDefault(List<LoginAttemptModel> models) => models.OrderByDescending(model => model.AttemptTime).ToList();
 
     protected override void SortByColumn(string columnName, bool sortAscending) {

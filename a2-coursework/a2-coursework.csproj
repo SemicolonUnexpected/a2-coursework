@@ -54,7 +54,7 @@
     <Compile Update="User Controls\CRUD\SearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Update="User Controls\CRUD\ViewSearchBar.cs">
+    <Compile Update="User Controls\CRUD\ViewEditSearchBar.cs">
       <SubType>UserControl</SubType>
     </Compile>
     <Compile Update="User Controls\CRUD\ViewArchiveSearchBar.cs">
@@ -78,7 +78,7 @@
     <Compile Update="View\CleaningJob\ManageCleaningJobOptionsView.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\CleaningJob\ManageCustomerContactDetailsView.cs">
+    <Compile Update="View\CleaningJob\ViewCleaningjobCustomerView.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\CleaningJob\SelectCleaningJobCustomerView.cs">

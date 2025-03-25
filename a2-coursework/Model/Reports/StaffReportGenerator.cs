@@ -7,7 +7,7 @@ public static class StaffReportGenerator {
         List<StaffModel> models = await StaffDAL.GetStaff();
         MemoryStream memoryStream = new();
 
-        ReportGenerator.GetBaseReport("Staff security details", page => {
+        ReportGenerator.GetBaseReport("Staff Report", page => {
             page.Content().Table(table => {
                 table.ColumnsDefinition(columns => {
                     columns.ConstantColumn(30);

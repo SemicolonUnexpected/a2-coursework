@@ -32,6 +32,9 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         dataGridView.SelectionChanged += (s, e) => SelectionChanged?.Invoke(this, EventArgs.Empty);
+        dataGridView.CellDoubleClick += (s, e) => View?.Invoke(this, EventArgs.Empty);
+
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
 
         SetupDataGrid();
     }
@@ -55,6 +58,14 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
         }
 
+        foreach(DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
+        }
+
         topBar.SetToolTipVisibility();
     }
 
@@ -69,9 +80,6 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
 
     private void SetupDataGrid() {
         dataGridView.AutoGenerateColumns = false;
-        columnQuantity.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnArchived.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
-        columnDate.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         float scalingFactor = DeviceDpi / 96f;
         dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);
@@ -182,10 +190,9 @@ public partial class DisplayStockQuantityChangesView : Form, IThemeable, IDispla
         }
 
         bool isAscending = e.Button == MouseButtons.Left;
-        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
-
         SortRequestEventArgs sortRequestEventArgs = new(dataGridView.Columns[e.ColumnIndex].Name, isAscending);
         SortRequested?.Invoke(this, sortRequestEventArgs);
+        dataGridView.Columns[e.ColumnIndex].HeaderCell.SortGlyphDirection = isAscending ? SortOrder.Ascending : SortOrder.Descending;
     }
 
     public void DisplayItems(BindingList<DisplayStockQuantityChangeModel> items) {

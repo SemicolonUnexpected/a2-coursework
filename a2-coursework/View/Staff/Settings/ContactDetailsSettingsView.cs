@@ -141,4 +141,8 @@ public partial class ContactDetailsSettingsView : Form, IContactDetailsSettingsV
         Theming.Theme.ShowToolTipsChanged -= SetToolTipVisibility;
         Theming.Theme.FontNameChanged -= SetFont;
     }
+
+    private void tbPhoneNumber_KeyPress(object sender, KeyPressEventArgs e) {
+        if (!char.IsDigit(e.KeyChar) && !char.IsControl(e.KeyChar)) e.Handled = true;
+    }
 }

@@ -10,11 +10,16 @@ public class ManageStockWarningPresenter : BasePresenter<IManageStockWarningView
     }
 
     private void OnLowQuantityChanged(object? sender, EventArgs e) {
-        if (_view.LowQuantity > _view.HighQuantity) _view.HighQuantity = _view.LowQuantity;
+        if (_view.LowQuantity > _view.HighQuantity) Error = true;
+        else Error = false;
+
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
+
     private void OnHighQuantityChanged(object? sender, EventArgs e) {
-        if (_view.LowQuantity > _view.HighQuantity) _view.LowQuantity = _view.HighQuantity;
+        if (_view.LowQuantity > _view.HighQuantity) Error = true;
+        else Error = false;
+
         DetailsChanged?.Invoke(this, EventArgs.Empty);
     }
 
@@ -26,6 +31,15 @@ public class ManageStockWarningPresenter : BasePresenter<IManageStockWarningView
     public int LowQuantity {
         get => _view.LowQuantity;
         set => _view.LowQuantity = value;
+    }
+
+    private bool _error = false;
+    public bool Error {
+        get => _error;
+        set {
+            _error = value;
+            _view.Error = value ? "Low quantity must be less than high quantity" : "";
+        }
     }
 
     public bool CanExit() => true;

@@ -44,7 +44,7 @@
             tbDescription.MaxLength = 500;
             tbDescription.MultiLine = true;
             tbDescription.Name = "tbDescription";
-            tbDescription.PlaceholderText = "Not all sponges arrived";
+            tbDescription.PlaceholderText = "";
             tbDescription.PlaceholderTextColor = Color.FromArgb(168, 171, 174);
             tbDescription.ReadOnly = false;
             tbDescription.Size = new Size(355, 166);
@@ -76,10 +76,10 @@
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
             lblCharacterLimit.TabIndex = 19;
-            lblCharacterLimit.Text = "0/256";
+            lblCharacterLimit.Text = "0/500";
             lblCharacterLimit.TextAlign = ContentAlignment.MiddleRight;
             // 
-            // OrderDiscrepanciesView
+            // ManageOrderDiscrepanciesView
             // 
             AutoScaleDimensions = new SizeF(96F, 96F);
             AutoScaleMode = AutoScaleMode.Dpi;
@@ -89,7 +89,7 @@
             Controls.Add(lblDescription);
             Controls.Add(lblCharacterLimit);
             FormBorderStyle = FormBorderStyle.None;
-            Name = "OrderDiscrepanciesView";
+            Name = "ManageOrderDiscrepanciesView";
             Text = "Contact Details";
             ResumeLayout(false);
             PerformLayout();

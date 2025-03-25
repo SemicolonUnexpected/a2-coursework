@@ -24,13 +24,13 @@
         /// </summary>
         private void InitializeComponent() {
             lblContactInformation = new Label();
-            tbEmail = new CustomControls.CustomTextBox();
-            tbPhoneNumber = new CustomControls.CustomTextBox();
+            tbEmail = new a2_coursework.CustomControls.CustomTextBox();
+            tbPhoneNumber = new a2_coursework.CustomControls.CustomTextBox();
             lblPhoneNumber = new Label();
             lblEditPromt = new Label();
             lblEmailTitle = new Label();
-            approveChangesBar = new User_Controls.Settings.ApproveChangesBar();
-            tbAddress = new CustomControls.CustomTextBox();
+            approveChangesBar = new a2_coursework.User_Controls.Settings.ApproveChangesBar();
+            tbAddress = new a2_coursework.CustomControls.CustomTextBox();
             lblAddressTitle = new Label();
             lblContactError = new Label();
             lblCharacterLimit = new Label();
@@ -55,13 +55,13 @@
             tbEmail.BackColor = Color.FromArgb(9, 9, 10);
             tbEmail.BorderColor = Color.FromArgb(39, 39, 42);
             tbEmail.BorderThickness = 1F;
-            tbEmail.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbEmail.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbEmail.Font = new Font("Bahnschrift", 12F);
             tbEmail.ForeColor = Color.Empty;
             tbEmail.HoverColor = Color.Empty;
             tbEmail.Location = new Point(151, 136);
             tbEmail.Margin = new Padding(5);
-            tbEmail.MaxLength = 256;
+            tbEmail.MaxLength = 255;
             tbEmail.MultiLine = false;
             tbEmail.Name = "tbEmail";
             tbEmail.PlaceholderText = "johndoe@example.com";
@@ -80,13 +80,13 @@
             tbPhoneNumber.BackColor = Color.FromArgb(9, 9, 10);
             tbPhoneNumber.BorderColor = Color.FromArgb(39, 39, 42);
             tbPhoneNumber.BorderThickness = 1F;
-            tbPhoneNumber.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbPhoneNumber.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbPhoneNumber.Font = new Font("Bahnschrift", 12F);
             tbPhoneNumber.ForeColor = Color.Empty;
             tbPhoneNumber.HoverColor = Color.Empty;
             tbPhoneNumber.Location = new Point(151, 219);
             tbPhoneNumber.Margin = new Padding(5);
-            tbPhoneNumber.MaxLength = 256;
+            tbPhoneNumber.MaxLength = 20;
             tbPhoneNumber.MultiLine = false;
             tbPhoneNumber.Name = "tbPhoneNumber";
             tbPhoneNumber.PlaceholderText = "+441234567890";
@@ -98,6 +98,7 @@
             tbPhoneNumber.TextBoxInset = new Padding(10);
             tbPhoneNumber.ToolTipText = "This may be used to contact you in an emergency";
             tbPhoneNumber.UsePasswordChar = false;
+            tbPhoneNumber.KeyPress += tbPhoneNumber_KeyPress;
             // 
             // lblPhoneNumber
             // 
@@ -156,14 +157,14 @@
             tbAddress.BackColor = Color.FromArgb(9, 9, 10);
             tbAddress.BorderColor = Color.FromArgb(39, 39, 42);
             tbAddress.BorderThickness = 1F;
-            tbAddress.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbAddress.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbAddress.Font = new Font("Bahnschrift", 12F);
             tbAddress.ForeColor = Color.Empty;
             tbAddress.HoverColor = Color.Empty;
             tbAddress.Location = new Point(151, 338);
             tbAddress.Margin = new Padding(5);
             tbAddress.MaximumSize = new Size(355, 79);
-            tbAddress.MaxLength = 256;
+            tbAddress.MaxLength = 255;
             tbAddress.MultiLine = true;
             tbAddress.Name = "tbAddress";
             tbAddress.PlaceholderText = "6 Oak Tree Avenue\r\nLisburn\r\nDown";
@@ -210,7 +211,7 @@
             lblCharacterLimit.Name = "lblCharacterLimit";
             lblCharacterLimit.Size = new Size(150, 24);
             lblCharacterLimit.TabIndex = 10;
-            lblCharacterLimit.Text = "0/256";
+            lblCharacterLimit.Text = "0/255";
             lblCharacterLimit.TextAlign = ContentAlignment.MiddleRight;
             // 
             // ContactDetailsSettingsView

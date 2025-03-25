@@ -185,7 +185,7 @@
             Controls.Add(pnlTime);
             FormBorderStyle = FormBorderStyle.None;
             Name = "ManageCleaningJobDurationView";
-            Text = "Contact Details";
+            Text = "Date and Time";
             pnlTime.ResumeLayout(false);
             pnlTime.PerformLayout();
             ResumeLayout(false);

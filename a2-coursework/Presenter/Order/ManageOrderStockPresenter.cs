@@ -97,7 +97,7 @@ public class ManageOrderStockPresenter : DisplayPresenter<IManageOrderStockView,
 
     protected override DisplayStockModel CreateDisplayItem(StockModel model) => new(model);
     protected override List<StockModel> OrderDefault(List<StockModel> models) => [.. models.OrderBy(x => x.Id)];
-    protected override IComparable RankSearch(string searchText, StockModel model) => GeneralHelpers.LevensteinDistance(searchText, model.Name);
+    protected override IComparable RankSearch(string searchText, StockModel model) => GeneralHelpers.SubstringLevenshteinDistance(searchText, model.Name);
 
     protected override void SortByColumn(string columnName, bool sortAscending) {
         switch (columnName) {

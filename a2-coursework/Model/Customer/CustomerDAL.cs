@@ -158,7 +158,7 @@ public static class CustomerDAL {
 
         await using SqlCommand command = new("CountCustomersInFutureJobs", connection);
         command.CommandType = CommandType.StoredProcedure;
-        command.Parameters.AddWithValue("@id", id);
+        command.Parameters.AddWithValue("@customerId", id);
 
         using SqlDataReader reader = await command.ExecuteReaderAsync();
 

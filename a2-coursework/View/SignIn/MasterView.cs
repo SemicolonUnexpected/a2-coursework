@@ -90,10 +90,10 @@ public partial class MasterView : Form, IMasterView, IThemeable {
     }
 
     private void sideMenu_PreviewSideMenuToggleChanged(object sender, ToggleEventArgs e) {
-        if (((ToggleButton)sender).Toggled == true) {
-            e.Handled = true;
-            return;
-        }
+        //if (((ToggleButton)sender).Toggled == true) {
+        //    e.Handled = true;
+        //    return;
+        //}
 
         PreviewToggleChanged?.Invoke(this, e);
     }

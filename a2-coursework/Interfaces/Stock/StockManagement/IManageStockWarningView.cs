@@ -5,4 +5,5 @@ public interface IManageStockWarningView : IChildView {
 
     public int LowQuantity { get; set; }
     public int HighQuantity { get; set; }
+    public string Error { get; set; }
 }

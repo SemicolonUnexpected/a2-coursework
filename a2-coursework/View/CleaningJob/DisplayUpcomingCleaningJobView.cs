@@ -9,6 +9,7 @@ public partial class DisplayUpcomingCleaningJobView : Form, IDisplayUpcomingClea
     private readonly BindingSource _bindingSource = [];
 
     public event EventHandler? View;
+    public event EventHandler? Edit;
     public event EventHandler? Search;
     public event EventHandler<SortRequestEventArgs>? SortRequested;
 
@@ -26,7 +27,14 @@ public partial class DisplayUpcomingCleaningJobView : Form, IDisplayUpcomingClea
 
         topBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         topBar.View += (s, e) => View?.Invoke(this, EventArgs.Empty);
+        topBar.Edit += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
         topBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
+        dataGridView.CellDoubleClick += (s, e) => {
+            if (ViewMode) View?.Invoke(this, EventArgs.Empty);
+            else Edit?.Invoke(this, EventArgs.Empty);
+        };
+
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
 
         SetupDataGrid();
     }
@@ -50,6 +58,13 @@ public partial class DisplayUpcomingCleaningJobView : Form, IDisplayUpcomingClea
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
         }
 
+        foreach (DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
+        }
+
         topBar.SetToolTipVisibility();
     }
 
@@ -64,7 +79,6 @@ public partial class DisplayUpcomingCleaningJobView : Form, IDisplayUpcomingClea
 
     private void SetupDataGrid() {
         dataGridView.AutoGenerateColumns = false;
-        columnId.HeaderCell.Style.Alignment = DataGridViewContentAlignment.MiddleCenter;
 
         float scalingFactor = DeviceDpi / 96f;
         dataGridView.ColumnHeadersHeight = (int)(40 * scalingFactor);
@@ -90,6 +104,7 @@ public partial class DisplayUpcomingCleaningJobView : Form, IDisplayUpcomingClea
         columnId.DataPropertyName = nameof(DisplayCleaningJobModel.Id);
         columnTimes.DataPropertyName = nameof(DisplayCleaningJobModel.Times);
         columnAddress.DataPropertyName = nameof(DisplayCleaningJobModel.Address);
+        columnDate.DataPropertyName = nameof(DisplayCleaningJobModel.Date);
     }
 
     public string SearchText {
@@ -130,6 +145,11 @@ public partial class DisplayUpcomingCleaningJobView : Form, IDisplayUpcomingClea
     public void EnableAll() {
         topBar.Enabled = true;
         dataGridView.Enabled = true;
+    }
+
+    public bool ViewMode {
+        get => topBar.ViewMode;
+        set => topBar.ViewMode = value;
     }
 
     private void SetScrollOptions() {

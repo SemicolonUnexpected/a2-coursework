@@ -7,12 +7,13 @@ public static class StockReportGenerator {
         List<StockModel> models = await StockDAL.GetStock();
         MemoryStream memoryStream = new();
 
-        ReportGenerator.GetBaseReport("Staff security details", page => {
+        ReportGenerator.GetBaseReport("Stock Report", page => {
             page.Content().Table(table => {
                 table.ColumnsDefinition(columns => {
                     columns.ConstantColumn(30);
                     columns.RelativeColumn();
                     columns.RelativeColumn();
+                    columns.ConstantColumn(100);
                     columns.ConstantColumn(120);
                 });
 
@@ -21,6 +22,7 @@ public static class StockReportGenerator {
                     header.Cell().BorderBottom(2).Padding(8).Text("Name");
                     header.Cell().BorderBottom(2).Padding(8).Text("SKU");
                     header.Cell().BorderBottom(2).Padding(8).Text("Quantity");
+                    header.Cell().BorderBottom(2).Padding(8).Text("Quantity Level");
                 });
 
                 foreach (StockModel stock in models) {
@@ -28,6 +30,7 @@ public static class StockReportGenerator {
                     table.Cell().Padding(8).Text(stock.Name);
                     table.Cell().Padding(8).Text(stock.Sku);
                     table.Cell().Padding(8).Text(stock.Quantity.ToString());
+                    table.Cell().Padding(8).Text(stock.Quantity >= stock.HighQuantity ? "High" : stock.Quantity <= stock.LowQuantity ? "Low" : "Medium").FontColor(stock.Quantity >= stock.HighQuantity ? "#00AA00" : stock.Quantity <= stock.LowQuantity ? "#FF0000" : "#FFA500");
                 }
             });
         }).GeneratePdf(memoryStream);

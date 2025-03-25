@@ -24,16 +24,16 @@
         /// </summary>
         private void InitializeComponent() {
             components = new System.ComponentModel.Container();
-            sb = new CustomControls.CustomScrollBar();
+            sb = new a2_coursework.CustomControls.CustomScrollBar();
             pnlHolder = new Panel();
-            btnChangePassword = new CustomControls.CustomButton();
+            btnChangePassword = new a2_coursework.CustomControls.CustomButton();
             lblChangePassword = new Label();
             lblEditPromt = new Label();
-            pnlChangePassword = new CustomControls.CustomPanel();
+            pnlChangePassword = new a2_coursework.CustomControls.CustomPanel();
             pbShowNewPassword = new PictureBox();
-            tbConfirmPassword = new CustomControls.CustomTextBox();
+            tbConfirmPassword = new a2_coursework.CustomControls.CustomTextBox();
             lblConfirmPassword = new Label();
-            pnlPasswordValidation = new CustomControls.CustomPanel();
+            pnlPasswordValidation = new a2_coursework.CustomControls.CustomPanel();
             pbSpecialCharacter = new PictureBox();
             pbNumber = new PictureBox();
             pbUppercaseLowercase = new PictureBox();
@@ -42,12 +42,12 @@
             lblNumber = new Label();
             lblUppercaseLowercase = new Label();
             lblEightLong = new Label();
-            tbNewPassword = new CustomControls.CustomTextBox();
+            tbNewPassword = new a2_coursework.CustomControls.CustomTextBox();
             lblPasswordError = new Label();
             lblNewPassword = new Label();
-            rbDarkMode = new CustomControls.CustomRadioButton();
+            rbDarkMode = new a2_coursework.CustomControls.CustomRadioButton();
             lblUsername = new Label();
-            tbUsername = new CustomControls.CustomTextBox();
+            tbUsername = new a2_coursework.CustomControls.CustomTextBox();
             lblUsernameError = new Label();
             toolTip = new ToolTip(components);
             pnlHolder.SuspendLayout();
@@ -77,7 +77,7 @@
             sb.Text = "customScrollBar1";
             sb.ThumbClickedColor = Color.FromArgb(39, 39, 42);
             sb.ThumbColor = Color.FromArgb(39, 39, 42);
-            sb.ThumbCorderRadii = new CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
+            sb.ThumbCorderRadii = new a2_coursework.CustomControls.CornerRadiiF(3F, 3F, 3F, 3F);
             sb.ThumbHoverColor = Color.FromArgb(39, 39, 42);
             sb.Visible = false;
             sb.ValueChanged += sb_ValueChanged;
@@ -105,7 +105,7 @@
             btnChangePassword.BorderThickness = 0F;
             btnChangePassword.ClickedBorderColor = Color.Empty;
             btnChangePassword.ClickedColor = Color.FromArgb(226, 226, 226);
-            btnChangePassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnChangePassword.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnChangePassword.Cursor = Cursors.Hand;
             btnChangePassword.DisabledBorderColor = Color.Empty;
             btnChangePassword.DisabledColor = Color.FromArgb(226, 226, 226);
@@ -162,7 +162,7 @@
             pnlChangePassword.Controls.Add(lblPasswordError);
             pnlChangePassword.Controls.Add(lblNewPassword);
             pnlChangePassword.Controls.Add(rbDarkMode);
-            pnlChangePassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlChangePassword.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlChangePassword.Location = new Point(69, 232);
             pnlChangePassword.Margin = new Padding(5);
             pnlChangePassword.Name = "pnlChangePassword";
@@ -189,7 +189,7 @@
             tbConfirmPassword.BackColor = Color.FromArgb(9, 9, 10);
             tbConfirmPassword.BorderColor = Color.FromArgb(39, 39, 42);
             tbConfirmPassword.BorderThickness = 1F;
-            tbConfirmPassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbConfirmPassword.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbConfirmPassword.Font = new Font("Bahnschrift", 12F);
             tbConfirmPassword.ForeColor = Color.Empty;
             tbConfirmPassword.HoverColor = Color.Empty;
@@ -233,7 +233,7 @@
             pnlPasswordValidation.Controls.Add(lblNumber);
             pnlPasswordValidation.Controls.Add(lblUppercaseLowercase);
             pnlPasswordValidation.Controls.Add(lblEightLong);
-            pnlPasswordValidation.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            pnlPasswordValidation.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             pnlPasswordValidation.Location = new Point(10, 95);
             pnlPasswordValidation.Margin = new Padding(5);
             pnlPasswordValidation.Name = "pnlPasswordValidation";
@@ -343,7 +343,7 @@
             tbNewPassword.BackColor = Color.FromArgb(9, 9, 10);
             tbNewPassword.BorderColor = Color.FromArgb(39, 39, 42);
             tbNewPassword.BorderThickness = 1F;
-            tbNewPassword.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbNewPassword.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbNewPassword.Font = new Font("Bahnschrift", 12F);
             tbNewPassword.ForeColor = Color.Empty;
             tbNewPassword.HoverColor = Color.Empty;
@@ -420,7 +420,7 @@
             tbUsername.BackColor = Color.FromArgb(9, 9, 10);
             tbUsername.BorderColor = Color.FromArgb(39, 39, 42);
             tbUsername.BorderThickness = 1F;
-            tbUsername.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbUsername.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbUsername.Font = new Font("Bahnschrift", 12F);
             tbUsername.ForeColor = Color.Empty;
             tbUsername.HoverColor = Color.Empty;
@@ -436,7 +436,7 @@
             tbUsername.TabIndex = 0;
             tbUsername.TextAlign = HorizontalAlignment.Left;
             tbUsername.TextBoxInset = new Padding(10);
-            tbUsername.UsePasswordChar = true;
+            tbUsername.UsePasswordChar = false;
             // 
             // lblUsernameError
             // 

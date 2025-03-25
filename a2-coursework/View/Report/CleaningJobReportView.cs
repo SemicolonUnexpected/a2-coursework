@@ -60,4 +60,16 @@ public partial class CleaningJobReportView : Form, IThemeable, ICleaningJobRepor
         Theming.Theme.FontNameChanged -= SetToolTipVisibility;
         Theming.Theme.FontNameChanged -= SetFont;
     }
+
+    private void tbID_KeyPress(object sender, KeyPressEventArgs e) {
+        if (e.KeyChar == 13) {
+            GenerateReport?.Invoke(this, EventArgs.Empty);
+        }
+    }
+
+    private void tbID_KeyDown(object sender, KeyEventArgs e) {
+        if (e.KeyValue == 13) {
+            GenerateReport?.Invoke(this, EventArgs.Empty);
+        }
+    }
 }

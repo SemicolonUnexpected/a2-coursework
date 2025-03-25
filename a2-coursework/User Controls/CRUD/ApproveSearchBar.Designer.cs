@@ -106,7 +106,7 @@
             btnApprove.TabIndex = 14;
             btnApprove.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnApprove.TextPosition = new Point(0, 0);
-            toolTip.SetToolTip(btnApprove, "Add");
+            toolTip.SetToolTip(btnApprove, "Approve");
             btnApprove.Click += btnApprove_Click;
             // 
             // btnReject
@@ -132,7 +132,7 @@
             btnReject.TabIndex = 13;
             btnReject.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnReject.TextPosition = new Point(0, 0);
-            toolTip.SetToolTip(btnReject, "Edit");
+            toolTip.SetToolTip(btnReject, "Reject");
             btnReject.Click += btnReject_Click;
             // 
             // pnlSpacer3
@@ -165,7 +165,7 @@
             btnView.TabIndex = 11;
             btnView.TextAlign = CustomControls.CustomButtonAlign.TopLeft;
             btnView.TextPosition = new Point(0, 0);
-            toolTip.SetToolTip(btnView, "Archive");
+            toolTip.SetToolTip(btnView, "View");
             btnView.Click += btnView_Click;
             // 
             // pnlSpacer2

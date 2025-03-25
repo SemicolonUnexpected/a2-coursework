@@ -36,6 +36,12 @@ public partial class BookCleaningJobView : Form, IThemeable, IBookCleaningJobVie
         topBar.Edit += (s, e) => Edit?.Invoke(this, EventArgs.Empty);
         topBar.View += (s, e) => View?.Invoke(this, EventArgs.Empty);
         topBar.Delete += (s, e) => Delete?.Invoke(this, EventArgs.Empty);
+        dataGridView.CellDoubleClick += (s, e) => {
+            if (topBar.ViewMode) View?.Invoke(this, EventArgs.Empty);
+            else Edit?.Invoke(this, EventArgs.Empty);
+        };
+
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
 
         SetupDataGrid();
     }
@@ -60,6 +66,13 @@ public partial class BookCleaningJobView : Form, IThemeable, IBookCleaningJobVie
 
         foreach (DataGridViewColumn column in dataGridView.Columns) {
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
+        }
+
+        foreach (DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
         }
 
         topBar.SetToolTipVisibility();

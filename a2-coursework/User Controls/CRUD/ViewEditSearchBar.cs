@@ -2,12 +2,13 @@
 using a2_coursework.Theming;
 
 namespace a2_coursework.User_Controls.DataGrid;
-public partial class ViewSearchBar : UserControl, IThemeable {
+public partial class ViewEditSearchBar : UserControl, IThemeable {
     public event EventHandler? SearchTextChanged;
     public event EventHandler? Search;
     public event EventHandler? View;
+    public event EventHandler? Edit;
 
-    public ViewSearchBar() {
+    public ViewEditSearchBar() {
         InitializeComponent();
 
         Theme();
@@ -19,8 +20,8 @@ public partial class ViewSearchBar : UserControl, IThemeable {
 
         tbSearch.Theme();
 
-        btnView.ThemeWeak();
-        btnView.Image = IconTheme.Current.Eye;
+        btn.ThemeWeak();
+        btn.Image = _viewMode ? IconTheme.Current.Eye : IconTheme.Current.Edit;
         btnClear.ThemeWeak();
         btnClear.Image = IconTheme.Current.Cross;
         pbSearchBtn.Image = IconTheme.Current.Search;
@@ -38,7 +39,10 @@ public partial class ViewSearchBar : UserControl, IThemeable {
         set => tbSearch.Text = value;
     }
 
-    private void btnView_Click(object sender, EventArgs e) => View?.Invoke(this, EventArgs.Empty);
+    private void btnView_Click(object sender, EventArgs e) {
+        if (_viewMode) View?.Invoke(this, EventArgs.Empty);
+        else Edit?.Invoke(this, EventArgs.Empty);
+    }
 
     private void tbSearch_TextChanged(object sender, EventArgs e) {
         SearchTextChanged?.Invoke(this, EventArgs.Empty);
@@ -48,6 +52,16 @@ public partial class ViewSearchBar : UserControl, IThemeable {
             btnClear.Visible = true;
         }
         else btnClear.Visible = false;
+    }
+
+    private bool _viewMode = true;
+    public bool ViewMode {
+        get => _viewMode;
+        set {
+            _viewMode = value;
+            btn.Image = _viewMode ? IconTheme.Current.Eye : IconTheme.Current.Edit;
+            toolTip.SetToolTip(btn, _viewMode ? "View" : "Edit");
+        }
     }
 
     private void btnClear_Click(object sender, EventArgs e) => tbSearch.Text = "";

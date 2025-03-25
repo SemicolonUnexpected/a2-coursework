@@ -263,13 +263,14 @@ public static class CleaningJobDAL {
     }
 
     public static async Task<List<StaffModel>> GetAvailableCleaners(CleaningJobModel cleaningJob) {
-        List<StaffModel> cleaningStaff = await StaffDAL.GetCleaningStaff();
+        List<StaffModel> cleaningStaff = await StaffDAL.GetCleaningStaff().ContinueWith(x => x.Result.Where(y => !y.Archived).ToList());
         List<CleaningJobModel> cleaningJobsOnDay = await GetCleaningJobsByDate(cleaningJob.StartDate);
 
         foreach (CleaningJobModel model in cleaningJobsOnDay) {
             if (model.Id == cleaningJob.Id) continue;
 
-            if (model.StartDate >= cleaningJob.EndDate && model.StartDate <= cleaningJob.EndDate) {
+            // If the start date or end date of the model overlaps with the start and end date of the cleaning job, remove that staff member as they are not available
+            if (model.StartDate <= cleaningJob.EndDate && model.StartDate >= cleaningJob.StartDate || model.StartDate <= cleaningJob.EndDate && model.StartDate >= cleaningJob.StartDate || model.StartDate <= cleaningJob.StartDate && model.EndDate >= cleaningJob.EndDate) {
                 foreach (int staffId in model.StaffIds) {
                     cleaningStaff.RemoveAll(x => x.Id == staffId);
                 }

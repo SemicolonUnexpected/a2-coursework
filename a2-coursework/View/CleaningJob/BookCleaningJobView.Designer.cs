@@ -30,15 +30,15 @@
             pnlData = new a2_coursework.CustomControls.CustomPanel();
             lblError = new Label();
             dataGridView = new DataGridView();
+            columnJobId = new DataGridViewTextBoxColumn();
+            columnAddress = new DataGridViewTextBoxColumn();
+            columnTime = new DataGridViewTextBoxColumn();
             sb = new a2_coursework.CustomControls.CustomScrollBar();
             monthCalendar = new a2_coursework.CustomControls.CustomMonthCalendar();
             lblCleaningJobs = new Label();
             dateInput = new a2_coursework.CustomControls.DateInput();
             topBar = new a2_coursework.User_Controls.DataGrid.AddEditDeleteSearchBar();
             pnlDate = new a2_coursework.CustomControls.CustomPanel();
-            columnJobId = new DataGridViewTextBoxColumn();
-            columnAddress = new DataGridViewTextBoxColumn();
-            columnTime = new DataGridViewTextBoxColumn();
             pnlData.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
             pnlDate.SuspendLayout();
@@ -132,6 +132,29 @@
             dataGridView.ColumnHeaderMouseClick += dataGridView_ColumnHeaderMouseClick;
             dataGridView.Resize += dataGridView_Resize;
             // 
+            // columnJobId
+            // 
+            columnJobId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
+            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            columnJobId.DefaultCellStyle = dataGridViewCellStyle2;
+            columnJobId.HeaderText = "ID";
+            columnJobId.Name = "columnJobId";
+            columnJobId.SortMode = DataGridViewColumnSortMode.Programmatic;
+            columnJobId.Width = 47;
+            // 
+            // columnAddress
+            // 
+            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnAddress.HeaderText = "Address";
+            columnAddress.Name = "columnAddress";
+            // 
+            // columnTime
+            // 
+            columnTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+            columnTime.HeaderText = "Time";
+            columnTime.Name = "columnTime";
+            columnTime.SortMode = DataGridViewColumnSortMode.Programmatic;
+            // 
             // sb
             // 
             sb.BackColor = Color.FromArgb(9, 9, 10);
@@ -196,7 +219,7 @@
             dateInput.Location = new Point(72, 78);
             dateInput.MaxDate = null;
             dateInput.MaximumSize = new Size(180, 70);
-            dateInput.MinDate = null;
+            dateInput.MinDate = new DateTime(1900, 1, 1, 0, 0, 0, 0);
             dateInput.MinimumSize = new Size(180, 70);
             dateInput.Month = null;
             dateInput.MonthToolTip = "";
@@ -239,29 +262,6 @@
             pnlDate.Padding = new Padding(5);
             pnlDate.Size = new Size(290, 330);
             pnlDate.TabIndex = 16;
-            // 
-            // columnJobId
-            // 
-            columnJobId.AutoSizeMode = DataGridViewAutoSizeColumnMode.AllCells;
-            dataGridViewCellStyle2.Alignment = DataGridViewContentAlignment.MiddleLeft;
-            columnJobId.DefaultCellStyle = dataGridViewCellStyle2;
-            columnJobId.HeaderText = "ID";
-            columnJobId.Name = "columnJobId";
-            columnJobId.SortMode = DataGridViewColumnSortMode.Programmatic;
-            columnJobId.Width = 47;
-            // 
-            // columnAddress
-            // 
-            columnAddress.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnAddress.HeaderText = "Address";
-            columnAddress.Name = "columnAddress";
-            // 
-            // columnTime
-            // 
-            columnTime.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
-            columnTime.HeaderText = "Time";
-            columnTime.Name = "columnTime";
-            columnTime.SortMode = DataGridViewColumnSortMode.Programmatic;
             // 
             // BookCleaningJobView
             // 

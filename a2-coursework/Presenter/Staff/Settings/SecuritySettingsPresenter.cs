@@ -92,6 +92,7 @@ public class SecuritySettingsPresenter : SettingsPresenter<ISecuritySettingsView
     protected override void UpdateStaff() {
         _staff.HashedPassword = _newHash!;
         _staff.Salt = _newSalt!;
+        _staff.LastPasswordChange = DateTime.Now;
 
         _view.Reset();
     }

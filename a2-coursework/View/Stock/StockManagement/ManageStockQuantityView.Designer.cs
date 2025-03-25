@@ -28,12 +28,12 @@
             lblBulkRemove = new Label();
             lblReasonForChange = new Label();
             lblStaffLink = new Label();
-            nudQuantity = new CustomControls.CustomNumericUpDown();
-            nudBulkAdd = new CustomControls.CustomNumericUpDown();
-            nudBulkRemove = new CustomControls.CustomNumericUpDown();
-            btnRemove = new CustomControls.CustomButton();
-            btnAdd = new CustomControls.CustomButton();
-            tbReasonForQuantityChange = new CustomControls.CustomTextBox();
+            nudQuantity = new a2_coursework.CustomControls.CustomNumericUpDown();
+            nudBulkAdd = new a2_coursework.CustomControls.CustomNumericUpDown();
+            nudBulkRemove = new a2_coursework.CustomControls.CustomNumericUpDown();
+            btnRemove = new a2_coursework.CustomControls.CustomButton();
+            btnAdd = new a2_coursework.CustomControls.CustomButton();
+            tbReasonForQuantityChange = new a2_coursework.CustomControls.CustomTextBox();
             lblCharacterLimit = new Label();
             tbFocusHolder = new TextBox();
             SuspendLayout();
@@ -47,9 +47,9 @@
             lblQuantity.Location = new Point(135, 3);
             lblQuantity.Margin = new Padding(5);
             lblQuantity.Name = "lblQuantity";
-            lblQuantity.Size = new Size(80, 23);
+            lblQuantity.Size = new Size(151, 23);
             lblQuantity.TabIndex = 12;
-            lblQuantity.Text = "Quantity";
+            lblQuantity.Text = "Current Quantity";
             lblQuantity.Click += ClearFocusOnClick;
             // 
             // lblBulkAdd
@@ -61,9 +61,9 @@
             lblBulkAdd.Location = new Point(135, 83);
             lblBulkAdd.Margin = new Padding(5);
             lblBulkAdd.Name = "lblBulkAdd";
-            lblBulkAdd.Size = new Size(86, 23);
+            lblBulkAdd.Size = new Size(42, 23);
             lblBulkAdd.TabIndex = 12;
-            lblBulkAdd.Text = "Bulk Add";
+            lblBulkAdd.Text = "Add";
             lblBulkAdd.Click += ClearFocusOnClick;
             // 
             // lblBulkRemove
@@ -75,9 +75,9 @@
             lblBulkRemove.Location = new Point(135, 166);
             lblBulkRemove.Margin = new Padding(5);
             lblBulkRemove.Name = "lblBulkRemove";
-            lblBulkRemove.Size = new Size(122, 23);
+            lblBulkRemove.Size = new Size(78, 23);
             lblBulkRemove.TabIndex = 12;
-            lblBulkRemove.Text = "Bulk Remove";
+            lblBulkRemove.Text = "Remove";
             lblBulkRemove.Click += ClearFocusOnClick;
             // 
             // lblReasonForChange
@@ -146,7 +146,7 @@
             btnRemove.BorderThickness = 0F;
             btnRemove.ClickedBorderColor = Color.Empty;
             btnRemove.ClickedColor = Color.FromArgb(226, 226, 226);
-            btnRemove.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnRemove.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnRemove.Cursor = Cursors.Hand;
             btnRemove.DisabledBorderColor = Color.Empty;
             btnRemove.DisabledColor = Color.FromArgb(226, 226, 226);
@@ -174,7 +174,7 @@
             btnAdd.BorderThickness = 0F;
             btnAdd.ClickedBorderColor = Color.Empty;
             btnAdd.ClickedColor = Color.FromArgb(226, 226, 226);
-            btnAdd.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            btnAdd.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             btnAdd.Cursor = Cursors.Hand;
             btnAdd.DisabledBorderColor = Color.Empty;
             btnAdd.DisabledColor = Color.FromArgb(226, 226, 226);
@@ -200,7 +200,7 @@
             tbReasonForQuantityChange.BackColor = Color.FromArgb(9, 9, 10);
             tbReasonForQuantityChange.BorderColor = Color.FromArgb(39, 39, 42);
             tbReasonForQuantityChange.BorderThickness = 1F;
-            tbReasonForQuantityChange.CornerRadii = new CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
+            tbReasonForQuantityChange.CornerRadii = new a2_coursework.CustomControls.CornerRadiiF(10F, 10F, 10F, 10F);
             tbReasonForQuantityChange.Font = new Font("Bahnschrift", 12F);
             tbReasonForQuantityChange.ForeColor = Color.Empty;
             tbReasonForQuantityChange.HoverColor = Color.Empty;

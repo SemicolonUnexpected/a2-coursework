@@ -72,12 +72,12 @@ public class ApproveRejectOrderPresenter : DisplayPresenter<IApproveRejectOrderV
 
     protected override IComparable RankSearch(string searchText, OrderModel order) {
         return Math.Min(
-            (float)GeneralHelpers.LevensteinDistance(searchText, $"{order.Staff?.Forename} {order.Staff?.Surname}") / $"{order.Staff?.Forename} {order.Staff?.Surname}".Length,
-            (float)GeneralHelpers.LevensteinDistance(searchText, order.Status) / order.Status.Length
+            (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, $"{order.Staff?.Forename} {order.Staff?.Surname}") / $"{order.Staff?.Forename} {order.Staff?.Surname}".Length,
+            (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, order.Status) / order.Status.Length
             );
     }
 
-    protected override List<OrderModel> OrderDefault(List<OrderModel> models) => [.. models.OrderBy(model => model.Id)];
+    protected override List<OrderModel> OrderDefault(List<OrderModel> models) => [.. models.OrderByDescending(model => model.Id)];
 
     private async void Approve() {
         if (_isAsyncRunning) return;

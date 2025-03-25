@@ -42,6 +42,9 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
     private void OnSearch(object? sender, EventArgs e) => Search(_view.SearchText);
     private void OnSelectionChanged(object? sender, EventArgs e) => SelectionChanged();
     private void OnSortRequested(object? sender, SortRequestEventArgs e) => SortByColumn(e.ColumnName, e.SortAscending);
+    private void OnCellDoubleClick() {
+        View();
+    }
 
     protected override void DisplayItems() {
         _displayModels.Clear();
@@ -85,12 +88,12 @@ public class DisplayOrderPresenter : DisplayPresenter<IDisplayOrderView, OrderMo
 
     protected override IComparable RankSearch(string searchText, OrderModel order) {
         return Math.Min(
-            (float)GeneralHelpers.LevensteinDistance(searchText, $"{order.Staff?.Forename} {order.Staff?.Surname}") / $"{order.Staff?.Forename} {order.Staff?.Surname}".Length,
-            (float)GeneralHelpers.LevensteinDistance(searchText, order.Status) / order.Status.Length
+            (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, $"{order.Staff?.Forename} {order.Staff?.Surname}") / $"{order.Staff?.Forename} {order.Staff?.Surname}".Length,
+            (float)GeneralHelpers.SubstringLevenshteinDistance(searchText, order.Status) / order.Status.Length
             );
     }
 
-    protected override List<OrderModel> OrderDefault(List<OrderModel> models) => [.. models.OrderBy(model => model.Id)];
+    protected override List<OrderModel> OrderDefault(List<OrderModel> models) => [.. models.OrderByDescending(model => model.Id)];
 
     private void SelectionChanged() {
         if (_view.SelectedItem is null) return;

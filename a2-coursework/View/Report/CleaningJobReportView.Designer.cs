@@ -86,6 +86,8 @@
             tbID.TextAlign = HorizontalAlignment.Left;
             tbID.TextBoxInset = new Padding(10);
             tbID.UsePasswordChar = false;
+            tbID.KeyPress += tbID_KeyPress;
+            tbID.KeyDown += tbID_KeyDown;
             // 
             // btnGenerateReport
             // 

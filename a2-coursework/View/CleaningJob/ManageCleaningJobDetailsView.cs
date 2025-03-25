@@ -69,6 +69,11 @@ public partial class ManageCleaningJobDetailsView: Form, IManageCleaningJobOptio
         }
     }
 
+    public string AddressError {
+        get => lblAddressError.Text;
+        set => lblAddressError.Text = value;
+    }
+
     public void SetExtraInformationCharacterCount(int number) => lblExtraInformationCharacterLimit.Text = $"{number}/{tbExtraInformation.MaxLength}";
     public void SetAddressCharacterCount(int number) => lblAddressCharacterLimit.Text = $"{number}/{tbAddress.MaxLength}";
 

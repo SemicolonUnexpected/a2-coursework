@@ -83,7 +83,7 @@ public class DisplayStockPresenter : DisplayPresenter<IDisplayStockView, StockMo
 
     private IEnumerable<StockModel> FilterOutArchived(IEnumerable<StockModel> stockItems) => stockItems.Where(x => !x.Archived);
 
-    protected override IComparable RankSearch(string searchText, StockModel stockItem) => MathF.Min((float)GeneralHelpers.LevensteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.LevensteinDistance(_view.SearchText.ToLower(), stockItem.Sku.ToLower()), 2) + 1) / MathF.Pow(stockItem.Sku.Length, 2));
+    protected override IComparable RankSearch(string searchText, StockModel stockItem) => MathF.Min((float)GeneralHelpers.SubstringLevenshteinDistance(searchText, stockItem.Name.ToLower()) / stockItem.Name.Length, (float)(MathF.Pow(GeneralHelpers.SubstringLevenshteinDistance(_view.SearchText.ToLower(), stockItem.Sku.ToLower()), 2) + 1) / MathF.Pow(stockItem.Sku.Length, 2));
     protected override List<StockModel> OrderDefault(List<StockModel> models) => models.OrderBy(model => model.Id).ToList();
 
     private void SelectionChanged() {

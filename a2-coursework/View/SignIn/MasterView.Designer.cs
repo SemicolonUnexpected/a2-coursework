@@ -78,7 +78,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(900, 650);
             Name = "MasterView";
-            Text = "Master";
+            Text = "Movers";
             Shown += MasterView_Shown;
             ResumeLayout(false);
         }

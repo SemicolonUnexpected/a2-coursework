@@ -30,10 +30,20 @@ public class DisplayCleaningJobModel : INotifyPropertyChanged {
         }
     }
 
+    private string _date = "";
+    public string Date {
+        get => _date;
+        set {
+            _date = value;
+            NotifyPropertyChanged(nameof(Date));
+        }
+    }
+
     public DisplayCleaningJobModel(CleaningJobModel model) {
         Id = model.Id;
         Times = model.StartDate.ToString("HH:mm") + " - " + model.EndDate.ToString("HH:mm");
         Address = model.Address.Replace('\n', ' ');
+        Date = model.StartDate.ToString("dd/MM/yyyy");
     }
 
     public event PropertyChangedEventHandler? PropertyChanged;

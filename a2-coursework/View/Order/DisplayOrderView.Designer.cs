@@ -176,15 +176,15 @@
             // lblOrders
             // 
             lblOrders.Anchor = AnchorStyles.Top;
-            lblOrders.AutoSize = true;
             lblOrders.Font = new Font("Bahnschrift", 24F);
             lblOrders.ForeColor = Color.White;
-            lblOrders.Location = new Point(266, 23);
+            lblOrders.Location = new Point(12, 23);
             lblOrders.Margin = new Padding(10);
             lblOrders.Name = "lblOrders";
-            lblOrders.Size = new Size(117, 39);
+            lblOrders.Size = new Size(623, 39);
             lblOrders.TabIndex = 9;
             lblOrders.Text = "Orders";
+            lblOrders.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // topBar
             // 
@@ -215,7 +215,6 @@
             pnlData.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion

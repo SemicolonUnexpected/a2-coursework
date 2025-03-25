@@ -27,6 +27,8 @@ public partial class DisplayLoginAttemptView : Form, IThemeable, IDisplayLoginAt
         searchBar.Search += (s, e) => Search?.Invoke(this, EventArgs.Empty);
         searchBar.SearchTextChanged += (s, e) => Search?.Invoke(this, EventArgs.Empty);
 
+        _bindingSource.ListChanged += (s, e) => SetToolTipVisibility();
+
         SetupDataGrid();
     }
 
@@ -47,6 +49,14 @@ public partial class DisplayLoginAttemptView : Form, IThemeable, IDisplayLoginAt
 
         foreach (DataGridViewColumn column in dataGridView.Columns) {
             column.ToolTipText = showToolTips ? "Left click to sort ascending\nRight click to sort descending" : "";
+        }
+
+        foreach(DataGridViewRow row in dataGridView.Rows) {
+            if (row.Index == -1) continue;
+
+            foreach (DataGridViewCell cell in row.Cells) {
+                cell.ToolTipText = showToolTips ? "Double click to open" : "";
+            }
         }
 
         searchBar.SetToolTipVisibility();

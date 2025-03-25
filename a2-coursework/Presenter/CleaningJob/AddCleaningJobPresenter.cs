@@ -87,11 +87,14 @@ public class AddCleaningJobPresenter : AddPresenter<IAddCleaningJobView, Cleanin
         _model.StartDate = (DateTime)presenter.StartDate!;
         _model.EndDate = (DateTime)presenter.EndDate!;
     }
-    #endregion
-
-    #region Select Cleaning Job Options
     private (IChildView childView, ICleanable) GetOptions() {
-        (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobOptions(CleaningJobOptionDAL.GetNonArchivedCleaningJobOptions());
+        (SelectCleaningJobOptionsView view, SelectCleaningJobOptionsPresenter presenter) = CleaningJobFactory.CreateSelectCleaningJobOptions(
+            CleaningJobOptionDAL.GetNonArchivedCleaningJobOptions().ContinueWith(x => {
+                List<CleaningJobOptionModel> result = x.Result;
+                result.ForEach(y => y.Quantity = 1);
+                return result;
+            })
+        );
 
         PopulateDefaultValuesCurrent = () => PopulateDefaultValuesSelectCleaningJobOptions(presenter);
         ValidateCurrent = () => ValidateInputsSelectCleaningJobOptions(presenter);

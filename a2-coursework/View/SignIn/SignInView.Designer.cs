@@ -262,7 +262,7 @@
             Icon = (Icon)resources.GetObject("$this.Icon");
             MinimumSize = new Size(600, 500);
             Name = "SignInView";
-            Text = "LoginView";
+            Text = "Movers";
             Shown += LoginView_Shown;
             Click += ClearFocus;
             pnl.ResumeLayout(false);

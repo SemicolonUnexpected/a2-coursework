@@ -67,7 +67,7 @@
             Name = "SplashView";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Splash";
+            Text = "Movers";
             TopMost = true;
             ((System.ComponentModel.ISupportInitialize)pb).EndInit();
             ResumeLayout(false);

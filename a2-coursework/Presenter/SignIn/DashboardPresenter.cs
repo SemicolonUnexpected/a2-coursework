@@ -26,7 +26,7 @@ public class DashboardPresenter : BasePresenter<IDashboardView>, INavigatingPres
     }
 
     private void PopulateDefaultValues() {
-        string welcomeMessage = DateTime.Now.Hour < 12 ? "Good Morning" : DateTime.Now.Hour < 4 ? "Good afternoon" : "Good morning";
+        string welcomeMessage = DateTime.Now.Hour < 12 ? "Good Morning" : DateTime.Now.Hour < 16 ? "Good afternoon" : "Good evening";
         _view.Welcome = $"{welcomeMessage}, {_staff.Forename}";
 
         _view.LastPasswordChange = _staff.LastPasswordChange;
